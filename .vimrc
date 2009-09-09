@@ -4,6 +4,7 @@ set backspace=indent,eol,start
 set ruler
 set showcmd
 set incsearch
+set nohlsearch
 set ignorecase smartcase
 set autoindent
 set number
@@ -23,17 +24,15 @@ set sidescroll=4
 set path=$PWD/**
 set linebreak
 set showbreak=+>
-
-" Fold php classes and functions:
-let php_folding=1
+set nottybuiltin
 
 " define the toggling function
-function MapToggle(key, opt)
+function! MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
   exec 'nnoremap '.a:key.' '.cmd
   exec 'inoremap '.a:key." \<C-O>".cmd
 endfunction
-command -nargs=+ MapToggle call MapToggle(<f-args>)
+command! -nargs=+ MapToggle call MapToggle(<f-args>)
 
 " MapToggle <F7> paste
 MapToggle <F8> hlsearch
@@ -55,6 +54,7 @@ autocmd BufReadPost *
 	\ endif
 
 autocmd FileType text setlocal textwidth=98
+autocmd FileType php set filetype=html.php
 
 syntax on
 filetype plugin indent on
@@ -74,6 +74,13 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" Easier mapping to get to the previous file:
+" map <C-Backspace> <C-^>
+map  <C-^>
+
+" Easier sourcing of the vimrc file
+map <F5> <Esc>:so %<cr>
 
 " Faster scrolling:
 nmap J 4j
@@ -104,10 +111,10 @@ nnoremap j gj
 nnoremap k gk
 
 " Run file through ghci
-command Ghci !ghci %
+command! Ghci !ghci %
 " Run file through swi-prolog
-command Swi !pl -f % -g true
+command! Swi !pl -f % -g true
 " Compile cpp file as prog.exe
-command Compile !g++ -o prog %
+command! Compile !g++ -o prog %
 
-let g:AutoComplPop_NotEnableAtStartup = 1 
+let g:AutoComplPop_NotEnableAtStartup = 1

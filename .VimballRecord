@@ -1,1 +1,2 @@
 Align.vba: call delete('/home/andrew/.vim/plugin/AlignPlugin.vim')|call delete('/home/andrew/.vim/plugin/AlignMapsPlugin.vim')|call delete('/home/andrew/.vim/plugin/cecutil.vim')|call delete('/home/andrew/.vim/doc/Align.txt')|call delete('/home/andrew/.vim/autoload/Align.vim')|call delete('/home/andrew/.vim/autoload/AlignMaps.vim')
+LargeFile.vba: call delete('/home/andrew/.vim/plugin/LargeFile.vim')|call delete('/home/andrew/.vim/doc/LargeFile.txt')

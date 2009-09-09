@@ -73,6 +73,8 @@ DBI	dbext.txt	/*DBI*
 ExtractSnips()	snipMate.txt	/*ExtractSnips()*
 ExtractSnipsFile()	snipMate.txt	/*ExtractSnipsFile()*
 Filename()	snipMate.txt	/*Filename()*
+LargeFile-copyright	LargeFile.txt	/*LargeFile-copyright*
+LargeFile.txt	LargeFile.txt	/*LargeFile.txt*
 NERDTree	NERD_tree.txt	/*NERDTree*
 NERDTree-!	NERD_tree.txt	/*NERDTree-!*
 NERDTree-?	NERD_tree.txt	/*NERDTree-?*
@@ -280,6 +282,8 @@ i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 i_CTRL-R_<Tab>	snipMate.txt	/*i_CTRL-R_<Tab>*
 ingres	dbext.txt	/*ingres*
 interbase	dbext.txt	/*interbase*
+largefile	LargeFile.txt	/*largefile*
+largefile-history	LargeFile.txt	/*largefile-history*
 list-snippets	snipMate.txt	/*list-snippets*
 multi_snip	snipMate.txt	/*multi_snip*
 mysql	dbext.txt	/*mysql*
