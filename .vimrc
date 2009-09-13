@@ -56,7 +56,8 @@ autocmd BufReadPost *
 	\ endif
 
 autocmd FileType text setlocal textwidth=98
-autocmd FileType php set filetype=html.php.js
+autocmd FileType php set filetype=php.html.javascript
+autocmd FileType html set filetype=html.javascript
 
 syntax on
 filetype plugin indent on
@@ -70,14 +71,8 @@ else
   nmap <C-Left> gT
 endif
 
-" Toggling the NERD Tree:
-if &term == "rxvt-256color"
-  map  <Esc>:NERDTreeToggle<cr>
-  nmap  :NERDTreeToggle<cr>
-else
-  map <S-Enter> <Esc>:NERDTreeToggle<cr>
-  nmap <S-Enter> :NERDTreeToggle<cr>
-endif
+" Toggling the NERD tree
+nmap <C-o> :NERDTreeToggle<cr>
 
 " Moving through splits:
 map <C-h> <C-w>h
@@ -85,16 +80,11 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Easier mapping to get to the previous file:
-map <C-Backspace> <C-^>
-
 " Faster scrolling:
 nmap J 4j
 nmap K 4k
 
 " Completion:
-" imap <C-Space> <C-n>
-" imap <Nul> <C-n>
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
@@ -127,3 +117,7 @@ let g:AutoComplPop_NotEnableAtStartup = 1
 
 " Dbext profile:
 source ~/.dbextrc
+
+" Snippet settings:
+let g:snippets_dir = "~/.vim/custom_snippets/"
+let g:snips_author = "Andrew Radev"
