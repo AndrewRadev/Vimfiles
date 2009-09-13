@@ -42,7 +42,7 @@ MapToggle <F9> wrap
 
 colo elflord
 
-hi Pmenu ctermbg=Black guibg=Black guifg=White
+hi Pmenu ctermbg=Black
 hi NonText cterm=NONE ctermfg=NONE
 
 " When editing a file, always jump to the last known cursor position.
@@ -124,3 +124,6 @@ command! Swi !pl -f % -g true
 command! Compile !g++ -o prog %
 
 let g:AutoComplPop_NotEnableAtStartup = 1
+
+" Dbext profile:
+source ~/.dbextrc
