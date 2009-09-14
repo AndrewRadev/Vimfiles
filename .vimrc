@@ -28,7 +28,7 @@ set showbreak=+>
 set guifont=Andale\ Mono\ 14
 set guioptions=crbh
 
-" define the toggling function
+" Define the toggling function
 function! MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
   exec 'nnoremap '.a:key.' '.cmd
@@ -59,7 +59,7 @@ autocmd FileType text setlocal textwidth=98
 autocmd FileType php set filetype=php.html.javascript
 autocmd FileType html set filetype=html.javascript
 
-syntax on
+syntax enable
 filetype plugin indent on
 
 " Moving through tabs:
