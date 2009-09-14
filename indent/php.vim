@@ -24,8 +24,6 @@
 
 " Options: 
 let php_noindent_switch=0    " set this to '1' to not try to indent switch/case statements
-set sw=3                     " default shiftwidth of 3 spaces
-
 
 if exists("b:did_indent")
 	finish
@@ -75,13 +73,9 @@ function GetPhpIndent()
 	let ind = indent(lnum) + (&sw * ind)
 
 	" Indent after php open tags 
-	if line =~ '<?php' && line !~ '?>'
+	if line =~ '<?php' && line !~ '?>' && cline !~ '^\s*[?>]'
 		let ind = ind + &sw
 	endif
-	if cline =~ '^\s*[?>]' " // Fix from Holger Dzeik <dzeik@nentec.de> Thanks!
-		let ind = ind - &sw
-	endif
-
 
 	if exists("b:php_noindent_switch") " version 1 behavior, diy switch/case,etc
 		" Indent blocks enclosed by {} or ()
