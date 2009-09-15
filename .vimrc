@@ -15,7 +15,7 @@ set softtabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
-set completeopt=menu
+set completeopt=longest,menuone
 set backupdir=~/.backup/
 set noswapfile
 set encoding=utf-8

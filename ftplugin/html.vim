@@ -1,13 +1,17 @@
+" Uses autoload/lib.vim
+
 compiler tidy
 
 " Automatic completion of closing tags
 " First, completion function:
-function! AutoFinishTags()
-  let completion_start = htmlcomplete#CompleteTags(1, '')
-  call complete( col('.'), htmlcomplete#CompleteTags(0, '') )
-  return ''
+function! AutoFinishHtmlTags()
+  if &omnifunc == '' || lib#CursorIsInsidePhpMarkup()
+    return ''
+  else
+    return "\<C-x>\<C-o>"
+  endif
 endfunction
 " Map that to '/',
 " '>' activates indenting,
 " '<bs>' removes the '>'
-inoremap / /<C-r>=AutoFinishTags()<cr>><bs>
+inoremap <silent> <buffer> / /<C-r>=AutoFinishHtmlTags()<cr>><bs>

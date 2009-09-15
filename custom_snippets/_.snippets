@@ -3,7 +3,11 @@
 # (c) holds no legal value ;)
 snippet c)
 	`&enc[:2] == "utf" ? "©" : "(c)"` Copyright `strftime("%Y")` ${1:`g:snips_author`}. All Rights Reserved.${2}
+# Date -- 2009-09-15:
 snippet date
 	`strftime("%Y-%m-%d")`
+# Pretty date -- September 15, 2009:
+snippet pdate
+	`strftime("%B %d, %Y)`
 snippet name
 	`g:snips_author`
