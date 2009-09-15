@@ -18,6 +18,7 @@ set expandtab
 set completeopt=menu
 set backupdir=~/.backup/
 set noswapfile
+set encoding=utf-8
 set ffs=unix,dos
 set sidescroll=4
 set path=$PWD/**
@@ -26,7 +27,7 @@ set showbreak=+>
 
 " GUI options:
 set guifont=Andale\ Mono\ 14
-set guioptions=crbh
+set guioptions=crb
 
 " Define the toggling function
 function! MapToggle(key, opt)
@@ -40,9 +41,12 @@ MapToggle <F7> list
 MapToggle <F8> hlsearch
 MapToggle <F9> wrap
 
+syntax enable
+filetype plugin indent on
+
 colo elflord
 
-hi Pmenu ctermbg=Black
+hi Pmenu ctermbg=Black guibg=#000000 guifg=#ffffff
 hi NonText cterm=NONE ctermfg=NONE
 
 " When editing a file, always jump to the last known cursor position.
@@ -58,9 +62,6 @@ autocmd BufReadPost *
 autocmd FileType text setlocal textwidth=98
 autocmd FileType php set filetype=php.html.javascript
 autocmd FileType html set filetype=html.javascript
-
-syntax enable
-filetype plugin indent on
 
 " Moving through tabs:
 if &term == "rxvt-256color"
@@ -113,10 +114,11 @@ command! Swi !pl -f % -g true
 " Compile cpp file as prog.exe
 command! Compile !g++ -o prog %
 
-let g:AutoComplPop_NotEnableAtStartup = 1
-
 " Dbext profile:
 source ~/.dbextrc
+
+" Dbext settings:
+let g:dbext_default_use_sep_result_buffer = 1
 
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
