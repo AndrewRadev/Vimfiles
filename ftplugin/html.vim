@@ -3,6 +3,8 @@
 compiler tidy
 
 " Automatic completion of closing tags
+" TODO: Don't activate in js
+" TODO: Omnicompletion with some options may lead to breakage...
 " First, completion function:
 function! AutoFinishHtmlTags()
   if &omnifunc == '' || lib#CursorIsInsidePhpMarkup()
