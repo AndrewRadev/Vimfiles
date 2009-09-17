@@ -1,9 +1,14 @@
+" Vimball Archiver by Charles E. Campbell, Jr., Ph.D.
+UseVimball
+finish
+plugin/cecutil.vim	[[[1
+482
 " cecutil.vim : save/restore window position
 "               save/restore mark position
 "               save/restore selected user maps
 "  Author:	Charles E. Campbell, Jr.
-"  Version:	18b	ASTRO-ONLY
-"  Date:	Aug 27, 2008
+"  Version:	17
+"  Date:	Sep 04, 2007
 "
 "  Saving Restoring Destroying Marks: {{{1
 "       call SaveMark(markname)       let savemark= SaveMark(markname)
@@ -28,21 +33,19 @@
 " believe, and shudder. But do you want to know, vain man, that
 " faith apart from works is dead?  (James 2:19,20 WEB)
 
-" ---------------------------------------------------------------------
 " Load Once: {{{1
 if &cp || exists("g:loaded_cecutil")
  finish
 endif
-let g:loaded_cecutil = "v18b"
+let g:loaded_cecutil = "v17"
 let s:keepcpo        = &cpo
 set cpo&vim
-"DechoTabOn
+"DechoVarOn
 
-" =======================
+" -----------------------
 "  Public Interface: {{{1
-" =======================
+" -----------------------
 
-" ---------------------------------------------------------------------
 "  Map Interface: {{{2
 if !hasmapto('<Plug>SaveWinPosn')
  map <unique> <Leader>swp <Plug>SaveWinPosn
@@ -53,7 +56,6 @@ endif
 nmap <silent> <Plug>SaveWinPosn		:call SaveWinPosn()<CR>
 nmap <silent> <Plug>RestoreWinPosn	:call RestoreWinPosn()<CR>
 
-" ---------------------------------------------------------------------
 " Command Interface: {{{2
 com! -bar -nargs=0 SWP	call SaveWinPosn()
 com! -bar -nargs=0 RWP	call RestoreWinPosn()
@@ -67,12 +69,8 @@ else
  let s:modifier= "sil keepj "
 endif
 
-" ===============
-" Functions: {{{1
-" ===============
-
 " ---------------------------------------------------------------------
-" SaveWinPosn: {{{2
+" SaveWinPosn: {{{1
 "    let winposn= SaveWinPosn()  will save window position in winposn variable
 "    call SaveWinPosn()          will save window position in b:cecutil_winposn{b:cecutil_iwinposn}
 "    let winposn= SaveWinPosn(0) will *only* save window position in winposn variable (no stacking done)
@@ -82,10 +80,10 @@ fun! SaveWinPosn(...)
 "   call Dfunc("SaveWinPosn : empty buffer")
    return ""
   endif
-  let so_keep   = &l:so
-  let siso_keep = &l:siso
-  let ss_keep   = &l:ss
-  setlocal so=0 siso=0 ss=0
+  let so_keep   = &so
+  let siso_keep = &siso
+  let ss_keep   = &ss
+  set so=0 siso=0 ss=0
 
   let swline    = line(".")
   let swcol     = col(".")
@@ -114,9 +112,9 @@ fun! SaveWinPosn(...)
    let b:cecutil_winposn{b:cecutil_iwinposn}= savedposn
   endif
 
-  let &l:so   = so_keep
-  let &l:siso = siso_keep
-  let &l:ss   = ss_keep
+  let &so   = so_keep
+  let &siso = siso_keep
+  let &ss   = ss_keep
 
 "  if exists("b:cecutil_iwinposn")	 " Decho
 "   call Decho("b:cecutil_winpos{".b:cecutil_iwinposn."}[".b:cecutil_winposn{b:cecutil_iwinposn}."]")
@@ -128,7 +126,7 @@ fun! SaveWinPosn(...)
 endfun
 
 " ---------------------------------------------------------------------
-" RestoreWinPosn: {{{2
+" RestoreWinPosn: {{{1
 fun! RestoreWinPosn(...)
 "  call Dfunc("RestoreWinPosn() a:0=".a:0)
 "  call Decho("getline(1)<".getline(1).">")
@@ -137,10 +135,10 @@ fun! RestoreWinPosn(...)
 "   call Dfunc("RestoreWinPosn : empty buffer")
    return ""
   endif
-  let so_keep   = &l:so
-  let siso_keep = &l:siso
-  let ss_keep   = &l:ss
-  setlocal so=0 siso=0 ss=0
+  let so_keep   = &so
+  let siso_keep = &siso
+  let ss_keep   = &ss
+  set so=0 siso=0 ss=0
 
   if a:0 == 0 || a:1 == ""
    " use saved window position in b:cecutil_winposn{b:cecutil_iwinposn} if it exists
@@ -191,25 +189,23 @@ fun! RestoreWinPosn(...)
    endif
   endif
 
-  " Seems to be something odd: vertical motions after RWP
-  " cause jump to first column.  The following fixes that.
-  " Note: was using wincol()>1, but with signs, a cursor
-  " at column 1 yields wincol()==3.  Beeping ensued.
-  if virtcol('.') > 1
+  " seems to be something odd: vertical motions after RWP
+  " cause jump to first column.  Following fixes that
+  if wincol() > 1
    silent norm! hl
   elseif virtcol(".") < virtcol("$")
    silent norm! lh
   endif
 
-  let &l:so   = so_keep
-  let &l:siso = siso_keep
-  let &l:ss   = ss_keep
+  let &so   = so_keep
+  let &siso = siso_keep
+  let &ss   = ss_keep
 
 "  call Dret("RestoreWinPosn")
 endfun
 
 " ---------------------------------------------------------------------
-" GoWinbufnr: go to window holding given buffer (by number) {{{2
+" GoWinbufnr: go to window holding given buffer (by number) {{{1
 "   Prefers current window; if its buffer number doesn't match,
 "   then will try from topleft to bottom right
 fun! GoWinbufnr(bufnum)
@@ -228,7 +224,7 @@ fun! GoWinbufnr(bufnum)
 endfun
 
 " ---------------------------------------------------------------------
-" SaveMark: sets up a string saving a mark position. {{{2
+" SaveMark: sets up a string saving a mark position. {{{1
 "           For example, SaveMark("a")
 "           Also sets up a global variable, g:savemark_{markname}
 fun! SaveMark(markname)
@@ -261,7 +257,7 @@ fun! SaveMark(markname)
 endfun
 
 " ---------------------------------------------------------------------
-" RestoreMark: {{{2
+" RestoreMark: {{{1
 "   call RestoreMark("a")  -or- call RestoreMark(savemark)
 fun! RestoreMark(markname)
 "  call Dfunc("RestoreMark(markname<".a:markname.">)")
@@ -303,7 +299,7 @@ fun! RestoreMark(markname)
 endfun
 
 " ---------------------------------------------------------------------
-" DestroyMark: {{{2
+" DestroyMark: {{{1
 "   call DestroyMark("a")  -- destroys mark
 fun! DestroyMark(markname)
 "  call Dfunc("DestroyMark(markname<".a:markname.">)")
@@ -338,7 +334,7 @@ fun! DestroyMark(markname)
 endfun
 
 " ---------------------------------------------------------------------
-" QArgSplitter: to avoid \ processing by <f-args>, <q-args> is needed. {{{2
+" QArgSplitter: to avoid \ processing by <f-args>, <q-args> is needed. {{{1
 " However, <q-args> doesn't split at all, so this one returns a list
 " with splits at all whitespace (only!), plus a leading length-of-list.
 " The resulting list:  qarglist[0] corresponds to a:0
@@ -353,7 +349,7 @@ fun! QArgSplitter(qarg)
 endfun
 
 " ---------------------------------------------------------------------
-" ListWinPosn: {{{2
+" ListWinPosn:
 "fun! ListWinPosn()                                                        " Decho 
 "  if !exists("b:cecutil_iwinposn") || b:cecutil_iwinposn == 0             " Decho 
 "   call Decho("nothing on SWP stack")                                     " Decho
@@ -372,19 +368,14 @@ endfun
 "com! -nargs=0 LWP	call ListWinPosn()                                    " Decho 
 
 " ---------------------------------------------------------------------
-" SaveUserMaps: this function sets up a script-variable (s:restoremap) {{{2
+" SaveUserMaps: this function sets up a script-variable (s:restoremap) {{{1
 "          which can be used to restore user maps later with
 "          call RestoreUserMaps()
 "
-"          mapmode - see :help maparg for details (n v o i c l "")
+"          mapmode - see :help maparg for its list
 "                    ex. "n" = Normal
-"                    The letters "b" and "u" are optional prefixes;
-"                    The "u" means that the map will also be unmapped
-"                    The "b" means that the map has a <buffer> qualifier
-"                    ex. "un"  = Normal + unmapping
-"                    ex. "bn"  = Normal + <buffer>
-"                    ex. "bun" = Normal + <buffer> + unmapping
-"                    ex. "ubn" = Normal + <buffer> + unmapping
+"                    If the first letter is u, then unmapping will be done
+"                    ex. "un" = Normal + unmapping
 "          maplead - see mapchx
 "          mapchx  - "<something>" handled as a single map item.
 "                    ex. "<left>"
@@ -409,70 +400,60 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
 
   " set up dounmap: if 1, then save and unmap  (a:mapmode leads with a "u")
   "                 if 0, save only
-  let mapmode  = a:mapmode
-  let dounmap  = 0
-  let dobuffer = ""
-  while mapmode =~ '^[bu]'
-   if     mapmode =~ '^u'
-    let dounmap= 1
-    let mapmode= strpart(a:mapmode,1)
-   elseif mapmode =~ '^b'
-    let dobuffer= "<buffer> "
-    let mapmode= strpart(a:mapmode,1)
-   endif
-  endwhile
-"  call Decho("dounmap=".dounmap."  dobuffer<".dobuffer.">")
+  if a:mapmode =~ '^u'
+   let dounmap= 1
+   let mapmode= strpart(a:mapmode,1)
+  else
+   let dounmap= 0
+   let mapmode= a:mapmode
+  endif
  
   " save single map :...something...
   if strpart(a:mapchx,0,1) == ':'
-"   call Decho("save single map :...something...")
    let amap= strpart(a:mapchx,1)
    if amap == "|" || amap == "\<c-v>"
     let amap= "\<c-v>".amap
    endif
    let amap                    = a:maplead.amap
-   let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|:silent! ".mapmode."unmap ".dobuffer.amap
+   let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|:silent! ".mapmode."unmap ".amap
    if maparg(amap,mapmode) != ""
     let maprhs                  = substitute(maparg(amap,mapmode),'|','<bar>','ge')
-	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|:".mapmode."map ".dobuffer.amap." ".maprhs
+   	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|:".mapmode."map ".amap." ".maprhs
    endif
    if dounmap
-	exe "silent! ".mapmode."unmap ".dobuffer.amap
+    exe "silent! ".mapmode."unmap ".amap
    endif
  
   " save single map <something>
   elseif strpart(a:mapchx,0,1) == '<'
-"   call Decho("save single map <something>")
    let amap       = a:mapchx
    if amap == "|" || amap == "\<c-v>"
     let amap= "\<c-v>".amap
-"	call Decho("amap[[".amap."]]")
    endif
-   let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|silent! ".mapmode."unmap ".dobuffer.amap
+   let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|silent! ".mapmode."unmap ".amap
    if maparg(a:mapchx,mapmode) != ""
     let maprhs                  = substitute(maparg(amap,mapmode),'|','<bar>','ge')
-	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".amap." ".dobuffer.maprhs
+   	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".amap." ".maprhs
    endif
    if dounmap
-	exe "silent! ".mapmode."unmap ".dobuffer.amap
+    exe "silent! ".mapmode."unmap ".amap
    endif
  
   " save multiple maps
   else
-"   call Decho("save multiple maps")
    let i= 1
    while i <= strlen(a:mapchx)
     let amap= a:maplead.strpart(a:mapchx,i-1,1)
 	if amap == "|" || amap == "\<c-v>"
 	 let amap= "\<c-v>".amap
 	endif
-	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|silent! ".mapmode."unmap ".dobuffer.amap
+    let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|silent! ".mapmode."unmap ".amap
     if maparg(amap,mapmode) != ""
      let maprhs                  = substitute(maparg(amap,mapmode),'|','<bar>','ge')
-	 let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".amap." ".dobuffer.maprhs
+   	 let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".amap." ".maprhs
     endif
 	if dounmap
-	 exe "silent! ".mapmode."unmap ".dobuffer.amap
+     exe "silent! ".mapmode."unmap ".amap
 	endif
     let i= i + 1
    endwhile
@@ -481,7 +462,7 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
 endfun
 
 " ---------------------------------------------------------------------
-" RestoreUserMaps: {{{2
+" RestoreUserMaps: {{{1
 "   Used to restore user maps saved by SaveUserMaps()
 fun! RestoreUserMaps(suffix)
 "  call Dfunc("RestoreUserMaps(suffix<".a:suffix.">)")
@@ -496,13 +477,217 @@ fun! RestoreUserMaps(suffix)
 "  call Dret("RestoreUserMaps")
 endfun
 
-" ==============
+" ---------------------------------------------------------------------
 "  Restore: {{{1
-" ==============
 let &cpo= s:keepcpo
 unlet s:keepcpo
 
-" ================
+" ---------------------------------------------------------------------
 "  Modelines: {{{1
-" ================
 " vim: ts=4 fdm=marker
+doc/cecutil.txt	[[[1
+204
+*cecutil.txt*	DrChip's Utilities				Sep 04, 2007
+
+Author:  Charles E. Campbell, Jr.  <NdrOchip@ScampbellPfamily.AbizM>
+	  (remove NOSPAM from Campbell's email first)
+Copyright: (c) 2004-2006 by Charles E. Campbell, Jr.	*cecutil-copyright*
+           The VIM LICENSE applies to cecutil.vim and cecutil.txt
+           (see |copyright|) except use "cecutil" instead of "Vim"
+	   No warranty, express or implied.  Use At-Your-Own-Risk.
+
+==============================================================================
+1. Contents					*cecutil* *cecutil-contents*
+
+	1. Contents.................: |cecutil-contents|
+	2. Positioning..............: |cecutil-posn|
+	3. Marks....................: |cecutil-marks|
+	4. Maps.....................: |cecutil-maps|
+	5. History..................: |cecutil-history|
+
+==============================================================================
+2. Positioning				*cecutil-posn*	*cecutil-position*
+
+    let winposn= SaveWinPosn()				*cecutil-savewinposn*
+
+	This operation will save window position in winposn variable and
+	on a (buffer local) b:winposn{} stack.
+
+    call SaveWinPosn()
+
+	This function will save window position in b:winposn{b:iwinposn}
+
+    let winposn= SaveWinPosn(0)
+
+	This operation will _only_ save the window position in winposn variable.
+	Ie. the window position will not appear on the b:winposn{} stack.  You 
+	will then need to use RestoreWinPosn(winposn) to restore to this window
+	position.
+
+    call RestoreWinPosn()				*cecutil-restorewinposn*
+
+	This function call will use the local buffer b:winposn{} stack to
+	restore the last window position saved therein.  It will also
+	pop the stack.
+
+    call RestoreWinPosn(winposn)
+
+	This function call will use the winposn variable and restore
+	the window position accordingly.  It will also search the
+	stack and remove any similar entry from the stack.
+
+			*cecutil-map* *cecutil-cmd* *cecutil-swp* *cecutil-rwp*
+    \swp : save current window position (uses the b:winposn{} stack)
+    :SWP   like \swp, but provided as a command
+
+    \rwp : restore window position      (uses the b:winposn{} stack)
+    :RWP   like \rwp, but provided as a command
+
+==============================================================================
+3. Marks						*cecutil-marks*
+
+    call SaveMark(markname)				*cecutil-savemark*
+    let savemark= SaveMark(markname)
+    SM markname >
+
+		ex. call SaveMark("a")
+		let savemarkb= SaveMark("b")
+		:SM a
+<
+	This function saves a string in the global variable g:savemark_{markname}
+	which contains sufficient information to completely restore the position
+	of a mark.  It also returns that string.
+
+   call RestoreMark(markname)				*cecutil-restoremark*
+   call RestoreMark(savemark)
+
+	This function either takes a single-character string (ex. "a") and uses
+	g:savemark_{markname} to restore the mark position or assumes that
+	the string passed to it is a SaveMark() string (and uses it to restore
+	the mark). >
+
+		ex. call RestoreMark("a")
+		    call RestoreMark(savemarkb)
+		    :RM a
+<
+
+   call DestroyMark(markname)				*cecutil-destroymark*
+
+	The DestroyMark() function completely removes a mark.  It does this
+	by saving the window position, copying line one, putting the
+	to-be-destroyed mark on that new line, deleting the new line, and
+	then restoring the window position.  The windows' modified status
+	is preserved. >
+
+		ex. call DestroyMark("a")
+		    :DM a
+<
+
+==============================================================================
+4.Maps							*cecutil-maps*
+							*cecutil-saveusermaps*
+    call SaveUserMaps(mapmode,maplead,mapchx,suffix)
+
+	This function sets up a script-variable (ie. a variable that can
+	generally be accessed only from within cecutil's own functions;
+	see |s:|) called s:restoremap.  The selected user's maps are appended
+	to this variable; the RestoreUserMaps() (|cecutil-restoreusermaps|)
+	function uses the contents of this variable to restore user maps.
+
+		mapmode	- see :help maparg for its list (see |maparg()|) >
+			  ex. "n" = Normal
+<			  Will now accept an optional leading "u"; if present,
+			  SaveUserMaps() will save and unmap (otherwise, it
+			  will save only)
+		mapchx	- "<something>" handled as a single map item. >
+			  ex. "<left>"
+<       		- "string" a string of single letters which are actually
+			  multiple two-letter maps
+		maplead - the maps are assumed to have the form >
+				maplead . each_character_in_string
+<			  ex. maplead="\" and mapchx="abc" saves mappings for >
+			    \a, \b, and \c
+<			  Of course, if maplead is "", then for mapchx="abc",
+			  mappings for just a, b, and c are saved.
+			- :something  handled as a single map item, w/o the ":" >
+			  ex.  mapchx= ":abc"
+<			  will save the user mapping for "abc"
+		suffix  - a string unique to your plugin >
+			  ex.  suffix= "DrawIt"
+<
+	Some examples follow: >
+
+		call SaveUserMaps("n","","webWEBjklh$0%;,nN","HiMtchBrkt")
+<		normal mode maps for w, e, b, W, E, B, j, k, l, etc
+		(if any) are all saved in the variable
+		s:restoremaps_HiMtchBrkt >
+
+		call SaveUserMaps("n","","<up>","DrawIt")
+<		the normal mode map (if any) for the <up> key is saved in
+		the variable s:restoremaps_DrawIt >
+
+		call SaveUserMaps("n","",":F(","HiMtchBrkt")
+<		the normal mode map for F( (if any) is saved in the
+		variable s:restoremaps_HiMtchBrkt
+
+    call RestoreUserMaps(suffix)
+
+    	The usermaps saved by SaveUserMaps() with the given suffix will be
+	restored (ie. s:restoremaps_{suffix}).  Example: >
+
+		call RestoreUserMaps("HiMtchBrkt")
+<		will restore all user maps redefined for the HiMtchBrkt plugin
+
+
+==============================================================================
+5. History						*cecutil-history* {{{1
+
+	v17 Sep 04, 2007 : * new function, QArgSplitter(), included
+	v16 Oct 30, 2006 : * com -> com! so AsNeeded is happier
+	    Feb 12, 2007   * fixed a bug where :somemap (a map of "somemap")
+			     did not use the optional mapleader (so it'd be
+			     a map of "\somemap", if "\" is the mapleader).
+			     (problem pointed out by Michael Zhang)
+	v15 Jan 25, 2006 : * bypass for report option for DestroyMark() included
+	                   * SaveWinPosn() and RestoreWinPosn() now handle an
+			     empty buffer
+			   * b:(varname) now use b:cecutil_(varname)
+			   * map restoration improved
+	v14 Jan 23, 2006 : * bypasses for si, so, and siso options included
+	    Jan 25, 2006   * SaveUserMaps' mapmode argument, heretofore just
+	                     a single letter (see |maparg()|), now accepts a
+			     leading "u".  If present, SaveUserMaps() will
+			     do an unmap.
+	v13 Jan 12, 2006 : * SaveUserMaps() was saving user maps but then also
+	                     unmap'ing them.  HiMtchBrkt needed to append a
+	                     function call to maps, not overwrite them.  So
+	                     the new SaveUserMaps() just saves user maps,
+	                     leaving their definitions in place.
+	   Jan 18, 2006    * keepjumps used to avoid jumplist changes when
+	                     using SaveWinPosn() and RestoreWinPosn()
+	v12 Dec 29, 2005 : * bugfix (affected Mines.vim)
+	v11 Dec 29, 2005 : * two new functions (SaveUserMaps() and
+	                     RestoreUserMaps() )
+	v10 Nov 22, 2005 : * SaveWinPosn bugfix
+	v9  Jun 02, 2005 : * <q-args> produces a "" argument when there are
+	                     no arguments, which caused difficulties.  Fixed.
+	v8  Apr 22, 2005 : * <q-args> used to handle marknames with commands
+	                     Thus, :DM a  will delete mark a
+	v7  Mar 10, 2005 : * removed zO from saved window position; caused
+	                     problems with ftplugin/currfunc.vim
+	                   * doing a SWP and RWP on an empty buffer produced
+	                     "empty buffer" messages; now these are ignored
+	    Apr 13, 2005   * command (SWP RWP MP SP etc) now have -bar so
+	                     that the "|" can be used to chain such commands
+	v6  Feb 17, 2005 : * improved SaveMark() and RestoreMark()
+	v5  Jan 18, 2005 : * s:loaded_winposn changed to g:loaded_cecutil
+	v4  Oct 25, 2004 : * changed com! to com so that error messages will
+	                     be given when there's a command-name conflict
+	v3  May 19, 2004 : * bugfix: the sequence \swp\rwp wasn't working right
+	                   * bugfix: \swp...\rwp was echoing the current
+	                     line when the \rwp should've been silent
+	                   * improved Dfunc/Decho/Dret debugging
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:fdm=marker

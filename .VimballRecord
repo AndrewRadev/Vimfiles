@@ -1,2 +1,6 @@
+cecutil.vba: call delete('/home/andrew/.vim/plugin/cecutil.vim')|call delete('/home/andrew/.vim/doc/cecutil.txt')
 Align.vba: call delete('/home/andrew/.vim/plugin/AlignPlugin.vim')|call delete('/home/andrew/.vim/plugin/AlignMapsPlugin.vim')|call delete('/home/andrew/.vim/plugin/cecutil.vim')|call delete('/home/andrew/.vim/doc/Align.txt')|call delete('/home/andrew/.vim/autoload/Align.vim')|call delete('/home/andrew/.vim/autoload/AlignMaps.vim')
+ZoomWin.vba: call delete('/home/andrew/.vim/plugin/ZoomWinPlugin.vim')|call delete('/home/andrew/.vim/doc/ZoomWin.txt')|call delete('/home/andrew/.vim/autoload/ZoomWin.vim')
+Decho.vba: call delete('/home/andrew/.vim/plugin/Decho.vim')|call delete('/home/andrew/.vim/plugin/cecutil.vim')|call delete('/home/andrew/.vim/syntax/Decho.vim')|call delete('/home/andrew/.vim/doc/Decho.txt')
+getscript.vba: call delete('/home/andrew/.vim/plugin/getscriptPlugin.vim')|call delete('/home/andrew/.vim/autoload/getscript.vim')|call delete('/home/andrew/.vim/GetLatest/GetLatestVimScripts.dist')|call delete('/home/andrew/.vim/doc/pi_getscript.txt')
 LargeFile.vba: call delete('/home/andrew/.vim/plugin/LargeFile.vim')|call delete('/home/andrew/.vim/doc/LargeFile.txt')
