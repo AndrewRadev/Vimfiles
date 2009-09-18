@@ -24,6 +24,7 @@ set sidescroll=4
 set path=$PWD/**
 set linebreak
 set showbreak=+>
+set t_Co=256
 
 " GUI options:
 set guifont=Andale\ Mono\ 14
@@ -71,6 +72,9 @@ else
   nmap <C-Right> gt
   nmap <C-Left> gT
 endif
+
+" Open WORD under cursor with uzbl
+nmap gw :!firefox <cWORD> &<cr>
 
 " Toggling the NERD tree
 nmap <C-o> :NERDTreeToggle<cr>

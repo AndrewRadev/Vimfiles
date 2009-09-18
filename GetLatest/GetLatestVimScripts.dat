@@ -9,3 +9,6 @@ ScriptID SourceID Filename
 642 8136 :AutoInstall: getscript.vim
 1697 8283 :AutoInstall: surround.vim
 120 9388 :AutoInstall: Decho.vim
+197 11399 :AutoInstall: genutils.vim
+273 7701 :AutoInstall: taglist.vim
+1623 6102 :AutoInstall: phpfolding.vim
