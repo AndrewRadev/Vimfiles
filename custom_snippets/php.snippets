@@ -2,6 +2,8 @@ snippet php
 	<?php
 		${1}
 	?>
+snippet php=
+	<?php echo ${1:'debug'} ?>
 snippet ec
 	echo '${1:string}'${2};
 snippet inc
@@ -205,7 +207,13 @@ snippet for
 snippet foreach
 	foreach ($${1:variable} as $${2:key}) {
 		${3:// code...}
-	}
+	}${4}
+snippet foreach=
+	<?php foreach ($${1:variable} as $${2:key}) { ?>
+
+	${3:<!-- html -->}
+
+	<?php } ?>${4}
 snippet fun
 	${1:public }function ${2:FunctionName}(${3}) {
 		${4:// code...}

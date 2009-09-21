@@ -15,6 +15,7 @@ set softtabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
+set smarttab
 set completeopt=longest,menuone
 set backupdir=~/.backup/
 set noswapfile
@@ -29,6 +30,15 @@ set t_Co=256
 " GUI options:
 set guifont=Andale\ Mono\ 14
 set guioptions=crb
+
+" Align by columns:
+function! AlignSpace() range
+  AlignPush
+  AlignCtrl lp0P0
+  execute a:firstline.','.a:lastline.'Align \s\S'
+  AlignPop
+endfunction
+command! -range AlignSpace <line1>,<line2>call AlignSpace()
 
 " Define the toggling function
 function! MapToggle(key, opt)
@@ -73,8 +83,8 @@ else
   nmap <C-Left> gT
 endif
 
-" Open WORD under cursor with uzbl
-nmap gw :!firefox <cWORD> &<cr>
+" Open file (link) under cursor with firefox
+nmap gw :!firefox <cfile> &<cr>
 
 " Toggling the NERD tree
 nmap <C-o> :NERDTreeToggle<cr>

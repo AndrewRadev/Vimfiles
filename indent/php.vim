@@ -32,7 +32,7 @@ let b:did_indent = 1
 
 setlocal indentexpr=GetPhpIndent()
 "setlocal indentkeys+=0=,0),=EO
-setlocal indentkeys+=0=,0),=EO,o,O,*<Return>,<>>,<bs>,{,}
+setlocal indentkeys+=0=,0),=EO,o,O,*<Return>,<>>,{,}
 
 " Only define the function once.
 if exists("*GetPhpIndent")
