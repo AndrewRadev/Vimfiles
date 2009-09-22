@@ -73,9 +73,9 @@ function GetPhpIndent()
    let ind = indent(lnum) + (&sw * ind)
 
    " Indent after php open tags 
-   if line =~ '<?php' && line !~ '?>' && cline !~ '^\s*[?>]'
-      let ind = ind + &sw
-   endif
+   " if line =~ '<?php' && line !~ '?>' && cline !~ '^\s*[?>]'
+      " let ind = ind + &sw
+   " endif
 
    if exists("b:php_noindent_switch") " version 1 behavior, diy switch/case,etc
       " Indent blocks enclosed by {} or ()

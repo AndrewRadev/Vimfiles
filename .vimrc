@@ -31,6 +31,12 @@ set t_Co=256
 set guifont=Andale\ Mono\ 14
 set guioptions=crb
 
+if has('gui_win32')
+  command! -bar -nargs=1 OpenURL :!start cmd /cstart /b <args>
+else
+  command! -bar -nargs=1 OpenURL :!firefox <args>&
+endif
+
 " Align by columns:
 function! AlignSpace() range
   AlignPush
@@ -73,6 +79,9 @@ autocmd BufReadPost *
 autocmd FileType text setlocal textwidth=98
 autocmd FileType php set filetype=php.html.javascript
 autocmd FileType html set filetype=html.javascript
+autocmd FileType javascript set filetype=javascript.jquery
+
+autocmd FileType nerdtree nmap a pma
 
 " Moving through tabs:
 if &term == "rxvt-256color"
@@ -82,9 +91,6 @@ else
   nmap <C-Right> gt
   nmap <C-Left> gT
 endif
-
-" Open file (link) under cursor with firefox
-nmap gw :!firefox <cfile> &<cr>
 
 " Toggling the NERD tree
 nmap <C-o> :NERDTreeToggle<cr>

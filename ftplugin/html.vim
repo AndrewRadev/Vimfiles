@@ -1,3 +1,3 @@
-" Uses autoload/lib.vim
-
-compiler tidy
+if !exists("b:current_compiler")
+  compiler tidy
+endif
