@@ -37,6 +37,8 @@ else
   command! -bar -nargs=1 OpenURL :!firefox <args>&
 endif
 
+nmap gu :Utl<cr>
+
 " Align by columns:
 function! AlignSpace() range
   AlignPush
@@ -50,13 +52,13 @@ command! -range AlignSpace <line1>,<line2>call AlignSpace()
 function! MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
   exec 'nnoremap '.a:key.' '.cmd
-  exec 'inoremap '.a:key." \<C-O>".cmd
+  " exec 'inoremap '.a:key." \<C-O>".cmd
 endfunction
 command! -nargs=+ MapToggle call MapToggle(<f-args>)
 
-MapToggle <F7> list
-MapToggle <F8> hlsearch
-MapToggle <F9> wrap
+MapToggle sl list
+MapToggle sh hlsearch
+MapToggle sw wrap
 
 syntax enable
 filetype plugin indent on
@@ -94,6 +96,9 @@ endif
 
 " Toggling the NERD tree
 nmap <C-o> :NERDTreeToggle<cr>
+
+" Instead of <C-o>, use <bs> to go back files:
+nnoremap <bs> <C-o>
 
 " Moving through splits:
 map <C-h> <C-w>h
