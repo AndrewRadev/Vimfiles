@@ -31,13 +31,10 @@ set t_Co=256
 set guifont=Andale\ Mono\ 14
 set guioptions=crb
 
-if has('gui_win32')
-  command! -bar -nargs=1 OpenURL :!start cmd /cstart /b <args>
-else
-  command! -bar -nargs=1 OpenURL :!firefox <args>&
-endif
+syntax enable
+filetype plugin indent on
 
-nmap gu :Utl<cr>
+colo elflord
 
 " Align by columns:
 function! AlignSpace() range
@@ -60,14 +57,6 @@ MapToggle sl list
 MapToggle sh hlsearch
 MapToggle sw wrap
 
-syntax enable
-filetype plugin indent on
-
-colo elflord
-
-hi Pmenu ctermbg=Black guibg=#000000 guifg=#ffffff
-hi NonText cterm=NONE ctermfg=NONE
-
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -83,28 +72,28 @@ autocmd FileType php set filetype=php.html.javascript
 autocmd FileType html set filetype=html.javascript
 autocmd FileType javascript set filetype=javascript.jquery
 
-autocmd FileType nerdtree nmap a pma
+" Faster addition of new node:
+autocmd FileType nerdtree nmap <buffer> a pma
 
-" Moving through tabs:
-if &term == "rxvt-256color"
-  nmap Oc gt
-  nmap Od gT 
-else
-  nmap <C-Right> gt
-  nmap <C-Left> gT
-endif
+" Faster movement through tabs:
+nmap <C-l> gt
+nmap <C-h> gT
 
 " Toggling the NERD tree
-nmap <C-o> :NERDTreeToggle<cr>
+nmap gn :NERDTreeToggle<cr>
 
 " Instead of <C-o>, use <bs> to go back files:
 nnoremap <bs> <C-o>
 
+" Managing urls (and more):
+command! -bar -nargs=1 OpenURL :Utl openLink <args>
+nmap gu :Utl<cr>
+
 " Moving through splits:
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nmap gh <C-w>h
+nmap gj <C-w>j
+nmap gk <C-w>k
+nmap gl <C-w>l
 
 " Faster scrolling:
 nmap J 4j
@@ -112,7 +101,7 @@ nmap K 4k
 
 " Completion:
 inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
+" inoremap <C-k> <C-p>
 
 " Indent/Unindent:
 nmap <Tab> >>
