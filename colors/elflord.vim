@@ -22,7 +22,6 @@ hi DiffDelete   cterm=none     ctermfg=238         ctermbg=244   guibg=#808080 g
 hi DiffText     cterm=bold     ctermfg=255         ctermbg=196   guifg=#ffffff
 hi Directory    cterm=none     ctermfg=Green       guifg=Green
 hi Error        term=reverse   ctermbg=Red         ctermfg=White guibg=Red     guifg=White
-hi Folded       cterm=none     ctermfg=16          ctermbg=White guifg=#000000 guibg=#ffffff
 hi Function     term=bold      ctermfg=White       guifg=White
 hi Identifier   term=underline cterm=bold          ctermfg=Cyan  guifg=#40ffff
 hi Ignore       ctermfg=black  guifg=bg
@@ -36,8 +35,9 @@ hi PreProc      term=underline ctermfg=LightBlue   guifg=#ff80ff
 hi Repeat       term=underline ctermfg=White       guifg=white
 hi Special      term=bold      ctermfg=DarkMagenta guifg=Red
 hi Statement    term=bold      ctermfg=Yellow      gui=bold      guifg=#aa4444
-hi StatusLine   cterm=bold     ctermfg=16          ctermbg=111   guibg=#000000 guifg=#87afd7
-hi StatusLineNC cterm=none     ctermfg=16          ctermbg=109   guibg=#000000 guifg=#87afd7
+hi StatusLine   cterm=bold     ctermfg=16          ctermbg=White guibg=#000000 guifg=White
+hi StatusLineNC cterm=none     ctermfg=16          ctermbg=Gray  guibg=#000000 guifg=Gray
+hi Folded       cterm=none     ctermfg=16          ctermbg=111   guifg=#000000 guibg=#87afd7
 hi Todo         term=standout  ctermbg=Yellow      ctermfg=Black guifg=Blue    guibg=Yellow
 hi Type         term=underline ctermfg=LightGreen  guifg=#60ff60 gui=bold
 hi VertSplit    cterm=none     ctermfg=254         guifg=#ffffff gui=none

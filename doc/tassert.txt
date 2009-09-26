@@ -1,0 +1,305 @@
+*tAssert.txt*           Simple Assertions & Logging
+                        Thomas Link (micathom AT gmail com?subject=vim)
+
+
+This plugin defines a command |:TAssert| that takes an expression as 
+argument and throws an exception if this expression evaluates to 
+|empty()|. You can insert these comments throughout your code whenever 
+something could potentially go wrong. The exception is then thrown right 
+where the problem occurs. You could think of it as a poor man's 
+design-by-contract substitute.
+
+One goal of this plugin is to allow users to quickly switch on or off 
+assertions depending on the context. This can be done either by:
+
+    1. Turning assertions off so that they are not evaluated. This can 
+       be achieved by setting g:TASSERT to 0 or by calling the command 
+       |:TAssertOff|.
+
+    2. Commenting out assertions in the current buffer by calling the 
+       commmand |:TAssertComment|.
+
+
+Example: >
+
+    fun! Test(a, b)
+        TAssertType a:a, 'string'
+        TAssertType a:b, 'number'
+        TAssert !empty(a:a)
+        return repeat(a:a, a:b)
+    endf
+
+NOTE: The |:TAssertType| command requires the spec.vim plugin.
+
+
+                                                    *tAssert-logging*
+Logging:~
+
+TAssert also includes a few convenience commands for logging -- see 
+|:TLog|.
+
+                                                    *g:TLOG*
+The variable g:TLOG controls where messages are written to:
+
+    echom ... Print messages in the echo area.
+    file  ... Print messages to a file; syntax "file:FILENAME"
+    Decho ... Print messages via Decho (vimscript#642)
+
+
+                                                    *tAssert-install*
+Install:~
+
+Edit the vba file and type: >
+
+    :so %
+
+See :help vimball for details. If you have difficulties or use vim 7.0, 
+please make sure, you have the current version of vimball (vimscript 
+#1502) installed.
+
+See also |tassert-macros|.
+
+
+                                                    *tAssert-redistribute*
+Compatibility:~
+
+If you want to redistribute files containing assertions but don't want 
+to have people install this plugin, insert this close to the top of 
+your file: >
+
+    if exists(':TAssert')
+        exec TAssertInit()
+    else
+        command! -nargs=* -bang TAssert :
+        command! -nargs=* -bang TAssertBegin :
+        command! -nargs=* -bang TAssertEnd :
+    endif
+
+Alternatively, use the |:TAssertComment| command.
+
+
+========================================================================
+Contents~
+
+        :TAssert ............... |:TAssert|
+        :TAssertType ........... |:TAssertType|
+        :TAssertOn ............. |:TAssertOn|
+        :TAssertOff ............ |:TAssertOff|
+        :TAssertComment ........ |:TAssertComment|
+        :TAssertUncomment ...... |:TAssertUncomment|
+        IsA .................... |IsA()|
+        IsNumber ............... |IsNumber()|
+        IsString ............... |IsString()|
+        IsFuncref .............. |IsFuncref()|
+        IsList ................. |IsList()|
+        IsDictionary ........... |IsDictionary()|
+        IsException ............ |IsException()|
+        IsError ................ |IsError()|
+        IsEqual ................ |IsEqual()|
+        IsNotEqual ............. |IsNotEqual()|
+        IsEmpty ................ |IsEmpty()|
+        IsNotEmpty ............. |IsNotEmpty()|
+        IsMatch ................ |IsMatch()|
+        IsNotMatch ............. |IsNotMatch()|
+        IsExistent ............. |IsExistent()|
+        :TLog .................. |:TLog|
+        :TLogTODO .............. |:TLogTODO|
+        :TLogDBG ............... |:TLogDBG|
+        :TLogStyle ............. |:TLogStyle|
+        :TLogVAR ............... |:TLogVAR|
+        :TLogOn ................ |:TLogOn|
+        :TLogOff ............... |:TLogOff|
+        :TLogBufferOn .......... |:TLogBufferOn|
+        :TLogBufferOff ......... |:TLogBufferOff|
+        :TLogComment ........... |:TLogComment|
+        :TLogUncomment ......... |:TLogUncomment|
+        tlog#Comment ........... |tlog#Comment()|
+        tlog#Uncomment ......... |tlog#Uncomment()|
+        tlog#Log ............... |tlog#Log()|
+        tlog#Debug ............. |tlog#Debug()|
+        tlog#Style ............. |tlog#Style()|
+        tlog#Var ............... |tlog#Var()|
+        tlog#Display_echo ...... |tlog#Display_echo()|
+        tlog#Display_echom ..... |tlog#Display_echom()|
+        tlog#Display_file ...... |tlog#Display_file()|
+        tlog#Display_Decho ..... |tlog#Display_Decho()|
+
+
+========================================================================
+plugin/07tassert.vim~
+
+                                                    *:TAssert*
+TAssert[!] {expr}
+    Test that an expression doesn't evaluate to something |empty()|. 
+    With [!] failures are logged according to the setting of 
+    |g:tAssertLog|.
+
+                                                    *:TAssertType*
+TAssertType EXPRESSION, TYPE
+    Check if EXPRESSION is of a certain TYPE (see |IsA()|).
+    
+    This command requires macros/tassert.vim to be loaded.
+
+                                                    *:TAssertOn*
+:TAssertOn
+    Switch assertions on and reload the plugin.
+
+                                                    *:TAssertOff*
+:TAssertOff
+    Switch assertions off and reload the plugin.
+
+                                                    *:TAssertComment*
+:TAssertComment
+    Comment TAssert* commands and all lines between a TAssertBegin 
+    and a TAssertEnd command.
+
+                                                    *:TAssertUncomment*
+:TAssertUncomment
+    Uncomment TAssert* commands and all lines between a TAssertBegin 
+    and a TAssertEnd command.
+
+
+========================================================================
+macros/tassert.vim~
+
+
+                                                    *tassert-macros*
+As of version 1.0, the Is*() functions moved from the main file to 
+macros/tassert.vim. In order to have them available in your code, add 
+this statement to your |vimrc| file: >
+
+    runtime macros/tassert.vim
+<
+
+                                                    *IsA()*
+IsA(expr, type)
+
+                                                    *IsNumber()*
+IsNumber(expr)
+
+                                                    *IsString()*
+IsString(expr)
+
+                                                    *IsFuncref()*
+IsFuncref(expr)
+
+                                                    *IsList()*
+IsList(expr)
+
+                                                    *IsDictionary()*
+IsDictionary(expr)
+
+                                                    *IsException()*
+IsException(expr)
+
+                                                    *IsError()*
+IsError(expr, expected)
+
+                                                    *IsEqual()*
+IsEqual(expr, expected)
+
+                                                    *IsNotEqual()*
+IsNotEqual(expr, expected)
+
+                                                    *IsEmpty()*
+IsEmpty(expr)
+
+                                                    *IsNotEmpty()*
+IsNotEmpty(expr)
+
+                                                    *IsMatch()*
+IsMatch(expr, expected)
+
+                                                    *IsNotMatch()*
+IsNotMatch(expr, expected)
+
+                                                    *IsExistent()*
+IsExistent(expr)
+
+
+========================================================================
+plugin/05tlog.vim~
+
+                                                    *:TLog*
+:TLog MESSAGE
+
+                                                    *:TLogTODO*
+:TLogTODO MESSAGE
+    Mark as "Not yet implemented".
+
+                                                    *:TLogDBG*
+:TLogDBG EXPRESSION
+    Expression must evaluate to a string.
+
+                                                    *:TLogStyle*
+:TLogStyle STYLE EXPRESSION
+    Expression must evaluate to a string.
+
+                                                    *:TLogVAR*
+:TLogVAR VAR1, VAR2 ...
+    Display variable names and their values.
+    This command doesn't work with script-local variables.
+
+                                                    *:TLogOn*
+:TLogOn
+    Enable logging.
+
+                                                    *:TLogOff*
+:TLogOff
+    Disable logging.
+
+                                                    *:TLogBufferOn*
+:TLogBufferOn
+    Enable logging for the current buffer.
+
+                                                    *:TLogBufferOff*
+:TLogBufferOff
+    Disable logging for the current buffer.
+
+                                                    *:TLogComment*
+:TLogComment
+    Comment out all tlog-related lines in the current buffer which should 
+    contain a vim script.
+
+                                                    *:TLogUncomment*
+:TLogUncomment
+    Re-enable all tlog-related statements.
+
+
+========================================================================
+autoload/tlog.vim~
+
+                                                    *tlog#Comment()*
+tlog#Comment(line1, line2)
+
+                                                    *tlog#Uncomment()*
+tlog#Uncomment(line1, line2)
+
+                                                    *tlog#Log()*
+tlog#Log(text)
+
+                                                    *tlog#Debug()*
+tlog#Debug(text)
+
+                                                    *tlog#Style()*
+tlog#Style(style, text)
+
+                                                    *tlog#Var()*
+tlog#Var(caller, var, ...)
+
+                                                    *tlog#Display_echo()*
+tlog#Display_echo(text)
+
+                                                    *tlog#Display_echom()*
+tlog#Display_echom(text)
+
+                                                    *tlog#Display_file()*
+tlog#Display_file(text)
+
+                                                    *tlog#Display_Decho()*
+tlog#Display_Decho(text)
+
+
+
+
+vim:tw=78:fo=tcq2:isk=!-~,^*,^|,^":ts=8:ft=help:norl:

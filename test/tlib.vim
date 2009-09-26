@@ -8,6 +8,7 @@
 
 if !exists("loaded_tassert")
     echoerr 'tAssert (vimscript #1730) is required'
+    finish
 endif
 
 

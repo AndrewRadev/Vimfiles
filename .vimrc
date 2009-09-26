@@ -20,7 +20,6 @@ set smarttab
 set completeopt=longest,menuone
 set backupdir=~/.backup/
 set noswapfile
-set hidden
 set encoding=utf-8
 set ffs=unix,dos
 set sidescroll=4

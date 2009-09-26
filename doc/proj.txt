@@ -1,0 +1,52 @@
+*proj.txt*  Simple plugin for projects
+            For Vim version 7.x
+	        Depends on NERDTree
+
+                               By Thomas Allen
+                            tmallen@703designs.com
+
+                                                          *proj* *proj-plugin*
+
+I'd like to believe that using this plugin is fairly straightforward. First,
+create a file at ~/.vimproj. If you'd like to use a different location, add
+the following to your .vimrc (or wherever you configure Vim):
+
+	let g:ProjFile = '/path/to/your/project.file'
+
+This file uses a regular INI format and doesn't support comments. Here is a
+sample .vimproj file:
+
+	[review]
+	path = /var/www/rails_apps/review_app
+	vim = /home/thomas/.vim-review
+
+	[wordpress]
+	path = /var/www/apache2/wordpress
+
+	[vim]
+	path = /home/thomas/.vim
+
+	[proj]
+	path = /home/thomas/.vim/plugin
+
+    [path-with-spaces]
+    path = /home/thomas/Some\ Folder
+
+Right now, Proj only supports two options: "path" and "vim". "path" is the
+project's root directory. "vim" is the location of a file with some
+modifications specific to the project. The configuration from the "vim" file
+is not erased when another project is loaded, so use with care if you're doing
+anything fancy.
+
+To select a project, use the "Proj" command. To open the "review" project in
+the sample .vimproj file:
+
+	:Proj review
+
+Project names tab-complete. Oh, and if you use a file browser other than 
+NERDTree, it should work with Proj. To specify one, add this to your .vimrc:
+
+	let g:ProjFileBrowser = 'filebrowser-command'
+
+This command can be pretty much anything, as it's just passed to "exec".
+
