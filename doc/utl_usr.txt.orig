@@ -1986,17 +1986,28 @@ Barrie Stott <G.B.Stott at bolton.ac.uk>, for helping a lot with the
 REKellyIV <Feral at FireTop.Com>
 Klaus Horsten <horsten at gmx.at>.
 Patrik Nyman <patrik.nyman at orient.su.se>
-Engelhard Hess <Engelhard.Hess at artofbits.de>
+<<<<<<< HEAD
+Engelhard HeЯ <Engelhard.Hess at artofbits.de>
+=======
+Engelhard Heß <Engelhard.Hess at artofbits.de>
+>>>>>>> 0893bd4412054333e4e159f7af834ec15cdde350
 Grant Bowman <grantbow at grantbow.com>
 Ward Fuller <wfuller at SeeBeyond.com>
 Mark S. Thomas <Mark.Thomas at SWFWMD.STATE.FL.US>
 William Natter <wnatter at nortelnetworks.com>
 Alex Jakushev <Alex.Jakushev at kemek.lt>
 Geoff Caplan <geoff at advantae.com>
-Bruno Diaz <bruno.diaz at gmx.net>
+<<<<<<< HEAD
+Bruno Dнaz <bruno.diaz at gmx.net>
 Michael Lesniak <ich at mlesniak.de>
 Janek Kozicki <janek at thenut.eti.pg.gda.pl>
-Olivier Teulire <ipkiss at via.ecp.fr>
+Olivier Teuliиre <ipkiss at via.ecp.fr>
+=======
+Bruno Díaz <bruno.diaz at gmx.net>
+Michael Lesniak <ich at mlesniak.de>
+Janek Kozicki <janek at thenut.eti.pg.gda.pl>
+Olivier Teulière <ipkiss at via.ecp.fr>
+>>>>>>> 0893bd4412054333e4e159f7af834ec15cdde350
 Nathan Howell <nathan at atdot.ca> 
 Samuel Wright <sam.wright@celoxica.com>
 clemens fischer <ino-qc@spotteswoode.de.eu.org>

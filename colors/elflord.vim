@@ -44,6 +44,8 @@ hi VertSplit    cterm=none     ctermfg=254         guifg=#ffffff gui=none
 hi WildMenu     cterm=none     ctermfg=16          ctermbg=11
 hi SignColumn   cterm=none     ctermbg=none        guibg=#000000
 
+hi NonText cterm=NONE ctermfg=NONE
+
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
 hi link String          Constant
