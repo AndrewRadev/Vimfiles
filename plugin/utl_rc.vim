@@ -32,83 +32,6 @@ let utl__file_rc =    expand("<sfile>")	    " Do not remove this line
 "		    if downloaded document handled in Vim)
 
 
-<<<<<<< HEAD
-    " [id=utl_cfg_hdl_scm_http]
-    "
-    " Hints:
-    " 1. If  g:utl_cfg_hdl_mt_generic  is defined then you can probably
-    "   construct utl_cfg_hdl_scm_http by just replacing %u -> %p (Unix) or %u
-    "   -> %P (Windows).
-    " 2. Instead of directly defining  g:utl_cfg_hdl_scm_http  it is recommended
-    "   to define  g:utl_cfg_hdl_scm_http_system . Doing so enables the dynamic
-    "   handler switching:
-    " 3. Suggestion for mapping for dynamic switch between handlers [id=map_http]
-    "   :map <Leader>uhs :let g:utl_cfg_hdl_scm_http=g:utl_cfg_hdl_scm_http_system<cr>
-    "   :map <Leader>uhw :let g:utl_cfg_hdl_scm_http=g:utl_cfg_hdl_scm_http__wget<cr>
-
-
-    " [id=utl_cfg_hdl_scm_http_system] {
-    "	    Definition of your system's standard web handler, e.g. Firefox.
-    "	    Either directly (e.g. Firefox), or indirectly ("start" command
-    "	    in Windows).
-    "	    Note: Needs not necessarily be the system's standard handler.
-    "	    Can be anything but should be seen in contrast to
-    "	    utl_cfg_hdl_scm_http__wget below
-    "
-    if !exists("g:utl_cfg_hdl_scm_http_system")
-
-	if has("win32")
-	    let g:utl_cfg_hdl_scm_http_system = 'silent !cmd /q /c start "dummy title" "%u"'
-	    "let g:utl_cfg_hdl_scm_http_system = 'silent !start C:\Program Files\Internet Explorer\iexplore.exe %u#%f' 
-	    "let g:utl_cfg_hdl_scm_http_system = 'silent !start C:\Program Files\Mozilla Firefox\firefox.exe %u#%f'
-
-	elseif has("unix")
-
-	    " TODO: Standard Handler for Unixes that can be shipped
-	    "	    preconfigured with next utl.vim release
-	    "	    Probably to distinguish different Unix/Linux flavors.
-	    "
-	    "	    Proposed for Ubuntu/Debian by Jeremy Cantrell
-	    "	    to use xdg-open program
-	    "	    'silent !xdg-open %u'  <- does this work?
-	    "
-	    " 2nd best solution: explicitly configured browser:
-	    "
-	    "	Konqueror
-	    "let g:utl_cfg_hdl_scm_http_system = "silent !konqueror '%u#%f' &"
-	    "
-	    "	Lynx Browser.
-	    "let g:utl_cfg_hdl_scm_http_system = "!xterm -e lynx '%u#%f'"
-	    "
-	    "	Firefox
-	    "	Check if an instance is already running, and if yes use it, else start firefox.
-	    "	See <URL:http://www.mozilla.org/unix/remote.html> for mozilla/firefox -remote control
-	    "let g:utl_cfg_hdl_scm_http_system = "silent !firefox -remote 'ping()' && firefox -remote 'openURL( %u )' || firefox '%u#%f' &"
-
-	endif
-	" else if MacOS
-	" ??
-	"let g:utl_cfg_hdl_scm_http_system = "silent !open -a Safari '%u#%f'"
-	"
-	"}
-
-    endif
-
-    if !exists("g:utl_cfg_hdl_scm_http")
-	if exists("g:utl_cfg_hdl_scm_http_system")
-	    let g:utl_cfg_hdl_scm_http=g:utl_cfg_hdl_scm_http_system
-	endif
-    endif
-
-
-    " [id=utl_cfg_hdl_scm_http__wget]
-    let g:utl_cfg_hdl_scm_http__wget="call Utl_if_hdl_scm_http__wget('%u')"
-
-    " Platform independent
-    "	Delegate to netrw.vim	    [id=http_netrw]
-    "let g:utl_cfg_hdl_scm_http="silent %d %u"
-    "
-=======
 " [id=utl_cfg_hdl_scm_http]
 "
 " Hints:
@@ -185,7 +108,6 @@ let g:utl_cfg_hdl_scm_http__wget="call Utl_if_hdl_scm_http__wget('%u')"
 "	Delegate to netrw.vim	    [id=http_netrw]
 "let g:utl_cfg_hdl_scm_http="silent %d %u"
 "
->>>>>>> 0893bd4412054333e4e159f7af834ec15cdde350
 
 "]
 
@@ -196,15 +118,6 @@ let g:utl_cfg_hdl_scm_http__wget="call Utl_if_hdl_scm_http__wget('%u')"
 " %d - display mode (e.g. 'edit', 'tabedit', 'split' etc. Probably only relevant
 "		    if downloaded document handled in Vim)
 
-<<<<<<< HEAD
-    " [id=utl_cfg_hdl_scm_scp]
-    " Delegate to netrw.vim.  TODO: Should set utl__hdl_scm_ret_list to buffer name
-    " NOTE: On Windows I have set  g:netrw_scp_cmd="pscp -q" (pscp comes with
-    "	    the  putty  tool), see also <url:vimscript:NetrwSettings>
-    if !exists("g:utl_cfg_hdl_scm_scp")
-	    let g:utl_cfg_hdl_scm_scp = "silent %d %u"
-    endif
-=======
 " [id=utl_cfg_hdl_scm_scp]
 " Delegate to netrw.vim.  TODO: Should set utl__hdl_scm_ret_list to buffer name
 " NOTE: On Windows I have set  g:netrw_scp_cmd="pscp -q" (pscp comes with
@@ -212,7 +125,6 @@ let g:utl_cfg_hdl_scm_http__wget="call Utl_if_hdl_scm_http__wget('%u')"
 if !exists("g:utl_cfg_hdl_scm_scp")
   let g:utl_cfg_hdl_scm_scp = "silent %d %u"
 endif
->>>>>>> 0893bd4412054333e4e159f7af834ec15cdde350
 
 "]
 
@@ -220,26 +132,6 @@ endif
 " Allowed conversion specifiers are: 
 " %u - will be replaced with the mailto URL
 "
-<<<<<<< HEAD
-    if !exists("g:utl_cfg_hdl_scm_mailto")
-
-	" [id=utl_cfg_hdl_scm_mailto] {
-	if has("win32")
-	    let g:utl_cfg_hdl_scm_mailto = 'silent !cmd /q /c start "dummy title" "%u"'
-	endif
-	" Samples:
-	" Windows
-	"	 Outlook
-	"let g:utl_cfg_hdl_scm_mailto = 'silent !start C:\Programme\Microsoft Office\Office11\OUTLOOK.EXE /c ipm.note /m %u'
-	"let g:utl_cfg_hdl_scm_mailto = 'silent !start C:\Program Files\Microsoft Office\Office10\OUTLOOK.exe /c ipm.note /m %u' 
-	"
-	" Unix
-	"let g:utl_cfg_hdl_scm_mailto = "!xterm -e mutt '%u'" 
-	"let g:utl_cfg_hdl_scm_mailto = "silent !kmail '%u' &"
-	"}
-
-    endif
-=======
 if !exists("g:utl_cfg_hdl_scm_mailto")
 
   " [id=utl_cfg_hdl_scm_mailto] {
@@ -258,7 +150,6 @@ if !exists("g:utl_cfg_hdl_scm_mailto")
   "}
 
 endif
->>>>>>> 0893bd4412054333e4e159f7af834ec15cdde350
 
 
 " id=schemeHandlerMail---------------------------------------------------------[
@@ -269,19 +160,6 @@ endif
 " %f - from		    the specifiers will be converted as 
 " %s - subject		      %a=myfolder, %p=Inbox, %d=12.04.2008 15:04, %f=foo, %s=bar
 
-<<<<<<< HEAD
-    " Windows
-    "	Outlook						[id=utl_cfg_hdl_scm_mail__outlook]
-    if has("win32")
-	let g:utl_cfg_hdl_scm_mail__outlook = "call Utl_if_hdl_scm_mail__outlook('%a','%p','%d','%f','%s')"
-    endif
-
-    " [id=utl_cfg_hdl_scm_mail] {
-    if !exists("g:utl_cfg_hdl_scm_mail")
-	"let g:utl_cfg_hdl_scm_mail=g:utl_cfg_hdl_scm_mail__outlook
-    endif
-    "}
-=======
 " Windows
 "	Outlook						[id=utl_cfg_hdl_scm_mail__outlook]
 if has("win32")
@@ -293,7 +171,6 @@ if !exists("g:utl_cfg_hdl_scm_mail")
   "let g:utl_cfg_hdl_scm_mail=g:utl_cfg_hdl_scm_mail__outlook
 endif
 "}
->>>>>>> 0893bd4412054333e4e159f7af834ec15cdde350
 
 "]
 
@@ -331,116 +208,6 @@ endif
 "   see last item.
 
 
-<<<<<<< HEAD
-    " [id=utl_cfg_hdl_mt_generic] {
-    "	    You can either define the generic variable or a variable
-    "	    for the specific media type, see #r=mediaTypeHandlersSpecific
-    if !exists("g:utl_cfg_hdl_mt_generic")
-	if has("win32")
-	    let g:utl_cfg_hdl_mt_generic = 'silent !cmd /q /c start "dummy title" "%P"'
-	elseif has("unix")
-	    if $WINDOWMANAGER =~? 'kde'
-		let g:utl_cfg_hdl_mt_generic = 'silent !konqueror "%p" &'
-	    endif
-	    " ? Candidate for Debian/Ubuntu: 'silent !xdg-open %u'
-	endif
-    endif
-    "}
-    
-
-    " [id=mediaTypeHandlersSpecific] {
-
-    "if !exists("g:utl_cfg_hdl_mt_application_excel")
-    "	     let g:utl_cfg_hdl_mt_application_excel = ':silent !start C:\Program Files\Microsoft Office\Office10\EXCEL.EXE "%P"'
-    "endif
-
-    "if !exists("g:utl_cfg_hdl_mt_application_msmsg")
-    "	     let g:utl_cfg_hdl_mt_application_msmsg = ':silent !start C:\Program Files\Microsoft Office\Office10\OUTLOOK.EXE -f "%P"'
-    "endif
-
-    "if !exists("g:utl_cfg_hdl_mt_application_powerpoint")
-    "        let g:utl_cfg_hdl_mt_application_powerpoint = ':silent !start C:\Program Files\Microsoft Office\Office10\POWERPNT.EXE "%P"'
-    "endif
-
-    "if !exists("g:utl_cfg_hdl_mt_application_rtf")
-    "	     let g:utl_cfg_hdl_mt_application_rtf = ':silent !start C:\Program Files\Windows NT\Accessories\wordpad.exe "%P"'
-    "endif
-    
-    "if !exists("g:utl_cfg_hdl_mt_text_html")
-    "	     let g:utl_cfg_hdl_mt_text_html = 'VIM'
-    "		Windows
-    "	     let g:utl_cfg_hdl_mt_text_html = 'silent !start C:\Program Files\Internet Explorer\iexplore.exe %P' 
-    "		KDE
-    "	     let g:utl_cfg_hdl_mt_text_html = ':silent !konqueror %p#%f &'
-    "endif
-
-
-    "if !exists("g:utl_cfg_hdl_mt_application_zip")
-    "	     let g:utl_cfg_hdl_mt_application_zip = ':!start C:\winnt\explorer.exe "%P"'
-    "endif
-
-    "if !exists("g:utl_cfg_hdl_mt_video_x_msvideo")
-    "	     let g:utl_cfg_hdl_mt_video_x_msvideo = ':silent !start C:\Program Files\VideoLAN\VLC\vlc.exe "%P"'
-    "endif
-
-
-    "--- Some alternatives for displaying directories	[id=utl_cfg_hdl_mt_text_directory] {
-    if has("win32")
-	let g:utl_cfg_hdl_mt_text_directory__cmd = ':!start cmd /K cd /D "%P"'   " Dos box
-    endif
-    let g:utl_cfg_hdl_mt_text_directory__vim = 'VIM'   " Vim builtin file explorer
-
-    if !exists("g:utl_cfg_hdl_mt_text_directory")
-	    let g:utl_cfg_hdl_mt_text_directory=utl_cfg_hdl_mt_text_directory__vim
-	    "
-	    "	KDE
-	    "let g:utl_cfg_hdl_mt_text_directory = ':silent !konqueror %p &'
-    endif
-    " Suggestion for mappings for dynamic switch between handlers [id=map_directory]
-    ":map <Leader>udg :let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_generic<cr>
-    ":map <Leader>udv :let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__vim<cr>
-    ":map <Leader>udc :let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd<cr>
-    "
-    "}
-
-
-    "						[id=utl_cfg_hdl_mt_application_pdf__acrobat] {
-    "let g:utl_cfg_hdl_mt_application_pdf__acrobat="call Utl_if_hdl_mt_application_pdf_acrobat('%P', '%f')"
-    "if !exists("g:utl_cfg_hdl_mt_application_pdf")
-    "	     let g:utl_cfg_hdl_mt_application_pdf = g:utl_cfg_hdl_mt_application_pdf__acrobat
-    "
-    "		Linux/KDE
-    "	     let g:utl_cfg_hdl_mt_application_pdf = ':silent !acroread %p &'
-    "endif
-    "}
-
-
-    "						[id=utl_cfg_hdl_mt_application_msword__word] {
-    "let g:utl_cfg_hdl_mt_application_msword__word = "call Utl_if_hdl_mt_application_msword__word('%P','%f')"
-    "if !exists("g:utl_cfg_hdl_mt_application_msword")
-    "        let g:utl_cfg_hdl_mt_application_msword = g:utl_cfg_hdl_mt_application_msword__word
-    "		Linux/Unix
-    "	     let g:utl_cfg_hdl_mt_application_msword = ... Open Office
-    "endif
-    "}
-
-
-    "if !exists("g:utl_cfg_hdl_mt_application_postscript")
-    "		Seem to need indirect call via xterm, otherwise no way to
-    "		stop at each page
-    "	     let g:utl_cfg_hdl_mt_application_postscript = ':!xterm -e gs %p &'
-    "endif
-
-    "if !exists("g:utl_cfg_hdl_mt_audio_mpeg")
-    "	     let g:utl_cfg_hdl_mt_audio_mpeg =	    ':silent !xmms %p &'
-    "endif
-
-    "if !exists("g:utl_cfg_hdl_mt_image_jpeg")
-    "	     let g:utl_cfg_hdl_mt_image_jpeg = ':!xnview %p &'
-    "endif
-
-    "}
-=======
 " [id=utl_cfg_hdl_mt_generic] {
 "	    You can either define the generic variable or a variable
 "	    for the specific media type, see #r=mediaTypeHandlersSpecific
@@ -546,7 +313,6 @@ endif
 "endif
 
 "}
->>>>>>> 0893bd4412054333e4e159f7af834ec15cdde350
 
 "]
 

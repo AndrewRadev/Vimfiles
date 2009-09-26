@@ -14,3 +14,7 @@ ScriptID SourceID Filename
 1567 10297 rails.vim
 2653 11003 cuteErrorMarker.vim
 293  9060  utl.vim
+305  1414  sql_iabbr.vim
+1863 10035 tlib.vim
+52   8279  calendar.vim
+2018 7939  ttags.vim

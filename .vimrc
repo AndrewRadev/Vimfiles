@@ -2,6 +2,7 @@
 set nocompatible
 set backspace=indent,eol,start
 set ruler
+set laststatus=2
 set showcmd
 set incsearch
 set nohlsearch
@@ -19,13 +20,15 @@ set smarttab
 set completeopt=longest,menuone
 set backupdir=~/.backup/
 set noswapfile
+set hidden
 set encoding=utf-8
 set ffs=unix,dos
 set sidescroll=4
-set path=$PWD/**
+set path=./**
 set linebreak
 set showbreak=+>
 set t_Co=256
+set clipboard=unnamed
 
 " GUI options:
 set guifont=Andale\ Mono\ 14
@@ -75,6 +78,11 @@ autocmd FileType javascript set filetype=javascript.jquery
 " Faster addition of new node:
 autocmd FileType nerdtree nmap <buffer> a pma
 
+" Maximise on open on Win32:
+if has('win32')
+  autocmd GUIEnter * simalt ~x
+endif
+
 " Faster movement through tabs:
 nmap <C-l> gt
 nmap <C-h> gT
@@ -108,14 +116,16 @@ nmap <Tab> >>
 nmap <S-Tab> <<
 
 " Using the clipboard on Linux:
-noremap d "+d
-noremap dd "+dd
-noremap D "+D
-nnoremap p "+p
-nnoremap P "+P
-vnoremap y "+y
-nnoremap y "+y
-nnoremap yy "+yy
+if !has('win32')
+  noremap d "+d
+  noremap dd "+dd
+  noremap D "+D
+  nnoremap p "+p
+  nnoremap P "+P
+  vnoremap y "+y
+  nnoremap y "+y
+  nnoremap yy "+yy
+endif
 
 " Move through visual lines:
 nnoremap j gj

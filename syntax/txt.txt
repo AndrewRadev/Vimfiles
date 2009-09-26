@@ -1,0 +1,69 @@
+This is the default syntax coloring for all documents. Idea behind this is to color unknown format documents, texts, logs, changelogs, readmes etc. The goal is to keep it very simple. Features:
+
+- colors numbers                -> 2 4  3.1415
+- colors operators and signs    -> @$%*~^
+- colors cites                  -> "like this" and 'Eddy'
+- colors international cites    -> ‚polish’ „polish” «french» ‘british’ „german“ ‹french›
+- colors text brackets          -> brackets (looks very nice) inside a text
+- colors brackets/delimeters    -> <1|0> [param] {font-size:10px}
+- colors commonly used comments -> /*remove*/ and //comment
+- colors TODO, Error, Debug     -> TODO FIXME XXX NOTE ERROR BUG DEBUG
+- colors basic smileys          -> ;) :-o :\ :D :P
+- colors changelogs tags        -> add: chg: rem: del: fix:
+
+Examples:
+
+--- Vim 6.3 README NOTES (part)------------------------------------------------
+
+NOTE:
+- You can only send messages to these lists if you have subscribed!
+- You need to send the messages from the same location as where you subscribed
+  from (to avoid spam mail).
+- Maximum message size is 40000 characters.
+
+If you want to join a maillist, send a message to
+    <vim-help@vim.org>
+Make sure that your "From:" address is correct.  Then the list server will
+send you a help message.
+
+--- Opera 9 installation log (part)--------------------------------------------
+
+Info 2898.Tahoma8, Tahoma, 0
+DEBUG: Error 2888:  Executing the TextStyle view failed
+Internal Error 2888. TextStyle
+Action 09:02:16: SetupInitialization. Dialog created
+DEBUG: Error 2888:  Executing the TextStyle view failed
+Internal Error 2888. TextStyle
+
+--- CTags help file (part) ---------------------------------------------------
+
+Exuberant Ctags 5.5.4, Copyright (C) 1996-2003 Darren Hiebert                 
+  Compiled: Mar 29 2004, 22:21:09                                             
+  Addresses: <dhiebert@users.sourceforge.net>, http://ctags.sourceforge.net   
+  Optional compiled features: +win32, +regex, +internal-sort                  
+                                                                              
+Usage: ctags.exe [options] [file(s)]                                          
+                                                                              
+  -a   Append the tags to an existing tag file.                               
+  -B   Use backward searching patterns (?...?).                               
+  -e   Output tag file for use with Emacs.                                    
+  -f <name>                                                                   
+       Write tags to specified file. Value of "-" writes tags to stdout       
+       ["tags"; or "TAGS" when -e supplied].                                  
+  -F   Use forward searching patterns (/.../) (default).                      
+  -h <list>                                                                   
+       Specify list of file extensions to be treated as include files.        
+       [".h.H.hh.hpp.hxx.h++"].                                               
+  -I <list|@file>                                                             
+       A list of tokens to be specially handled is read from either the       
+       command line or the specified file.                                    
+  -L <file>                                                                   
+       A list of source file names are read from the specified file.          
+       If specified as "-", then standard input is read.                      
+  -n   Equivalent to --excmd=number.                                          
+  -N   Equivalent to --excmd=pattern.                                         
+  -o   Alternative for -f.                                                    
+  -R   Equivalent to --recurse.                                               
+  -u   Equivalent to --sort=no.                                               
+  -V   Equivalent to --verbose.                                               
+  -x   Print a tabular cross reference file to standard output.               

@@ -22,7 +22,7 @@ hi DiffDelete   cterm=none     ctermfg=238         ctermbg=244   guibg=#808080 g
 hi DiffText     cterm=bold     ctermfg=255         ctermbg=196   guifg=#ffffff
 hi Directory    cterm=none     ctermfg=Green       guifg=Green
 hi Error        term=reverse   ctermbg=Red         ctermfg=White guibg=Red     guifg=White
-hi Folded       cterm=none     ctermfg=16          ctermbg=110   guifg=#000000 guibg=#87afd7
+hi Folded       cterm=none     ctermfg=16          ctermbg=White guifg=#000000 guibg=#ffffff
 hi Function     term=bold      ctermfg=White       guifg=White
 hi Identifier   term=underline cterm=bold          ctermfg=Cyan  guifg=#40ffff
 hi Ignore       ctermfg=black  guifg=bg
