@@ -1,0 +1,12 @@
+" This file is made up of Key-value pairs
+" individual file extensions should only show up in one pair; behavior may be
+" inconsistent if they show up in several.  To include filetypes in multiple
+" groups, you can link to a group using <Key> where key is a groupname
+" extensions should not be regular expressions for matching to happen correctly
+
+C=*.c *.h
+C++=*.cpp *.hpp *.cxx *.hxx *.cc <C>
+Java=*.java
+VHDL=*.hdl *.vhd *.vhdl *.vbe *.vst
+Web=*.php *.htm *.html *.js
+

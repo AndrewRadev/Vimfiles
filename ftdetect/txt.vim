@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *  setfiletype txt
+au BufRead,BufNewFile * setfiletype txt

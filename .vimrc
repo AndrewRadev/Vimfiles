@@ -26,6 +26,7 @@ set sidescroll=4
 set path=./**
 set linebreak
 set showbreak=+>
+set lazyredraw
 set t_Co=256
 set clipboard=unnamed
 
@@ -146,3 +147,13 @@ let g:dbext_default_use_sep_result_buffer = 1
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
 let g:snips_author = "Andrew Radev"
+
+" For testing purposes:
+let g:autotagVerbosityLevel = 2
+
+" EasyGrep options:
+let g:EasyGrepMode              = 2 " Track extension
+let g:EasyGrepCommand           = 0 " vimgprep
+let g:EasyGrepRecursive         = 1 " -> True
+let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
+let g:EasyGrepExtraWarnings     = 1 " -> True

@@ -46,6 +46,19 @@
 <Leader>stcl	plugin/dbext.vim	/^        nmap <unique> <Leader>stcl <Plug>DBListColumn$/;"	m
 <Leader>stw	plugin/dbext.vim	/^    nmap <unique> <Leader>stw <Plug>DBSelectFromTableWithWhere$/;"	m
 <Leader>swp	plugin/cecutil.vim	/^ map <unique> <Leader>swp <Plug>SaveWinPosn$/;"	m
+<Leader>vA	plugin/EasyGrep.vim	/^    map <silent> <Leader>vA <plug>EgMapGrepCurrentWord_A$/;"	m
+<Leader>vA	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>vA <plug>EgMapGrepSelection_A$/;"	m
+<Leader>vR	plugin/EasyGrep.vim	/^    map <silent> <Leader>vR <plug>EgMapReplaceCurrentWord_R$/;"	m
+<Leader>vR	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>vR <plug>EgMapReplaceSelection_R$/;"	m
+<Leader>vV	plugin/EasyGrep.vim	/^    map <silent> <Leader>vV <plug>EgMapGrepCurrentWord_V$/;"	m
+<Leader>vV	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>vV <plug>EgMapGrepSelection_V$/;"	m
+<Leader>va	plugin/EasyGrep.vim	/^    map <silent> <Leader>va <plug>EgMapGrepCurrentWord_a$/;"	m
+<Leader>va	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>va <plug>EgMapGrepSelection_a$/;"	m
+<Leader>vo	plugin/EasyGrep.vim	/^    map <silent> <Leader>vo <plug>EgMapGrepOptions$/;"	m
+<Leader>vr	plugin/EasyGrep.vim	/^    map <silent> <Leader>vr <plug>EgMapReplaceCurrentWord_r$/;"	m
+<Leader>vr	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>vr <plug>EgMapReplaceSelection_r$/;"	m
+<Leader>vv	plugin/EasyGrep.vim	/^    map <silent> <Leader>vv <plug>EgMapGrepCurrentWord_v$/;"	m
+<Leader>vv	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>vv <plug>EgMapGrepSelection_v$/;"	m
 <Plug>AM_Htd	plugin/AlignMapsPlugin.vim	/^map <silent> <script> <Plug>AM_Htd <SID>WS:'y,'zs%<[tT][rR]><[tT][dD][^>]\\{-}>\\<Bar><\/[tT][dD]><[tT][dD][^>]\\{-}>\\<Bar><\/[tT][dD]><\/[tT][rR]>%@&@%g<CR>'yjma'zk:AlignCtrl m=Ilp1P0 @<CR>:'a,.Align<CR>:'y,'zs\/ @\/@\/<CR>:'y,'zs\/@ <[tT][rR]>\/<[tT][rR]>\/ge<CR>:'y,'zs\/@\/\/ge<CR><SID>WE$/;"	m
 <Plug>AM_T|	plugin/AlignMapsPlugin.vim	/^map <silent> <script> <Plug>AM_T| <SID>WS:AlignCtrl mIp0P0=r <Bar><CR>:'a,.Align<CR><SID>WE$/;"	m
 <Plug>AM_T#	plugin/AlignMapsPlugin.vim	/^map <silent> <script> <Plug>AM_T#   <SID>WS:AlignCtrl mIp0P0=r #<CR>:'a,.Align<CR><SID>WE$/;"	m
@@ -140,9 +153,27 @@
 <SID>xx	plugin/taglist.vim	/^    map <SID>xx <SID>xx$/;"	m
 <c-r><tab>	after/plugin/snipMate.vim	/^ino <silent> <c-r><tab> <c-r>=ShowAvailableSnips()<cr>$/;"	m
 <c-w>o	plugin/ZoomWinPlugin.vim	/^ nmap <unique> <c-w>o  <Plug>ZoomWin$/;"	m
+<plug>EgMapGrepCurrentWord_A	plugin/EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapGrepCurrentWord_A    :call <sid>GrepCurrentWord("add", 1)<CR>$/;"	m
+<plug>EgMapGrepCurrentWord_V	plugin/EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapGrepCurrentWord_V    :call <sid>GrepCurrentWord("", 1)<CR>$/;"	m
+<plug>EgMapGrepCurrentWord_a	plugin/EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapGrepCurrentWord_a    :call <sid>GrepCurrentWord("add", 0)<CR>$/;"	m
+<plug>EgMapGrepCurrentWord_v	plugin/EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapGrepCurrentWord_v    :call <sid>GrepCurrentWord("", 0)<CR>$/;"	m
+<plug>EgMapGrepOptions	plugin/EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapGrepOptions          :call <sid>GrepOptions()<CR>$/;"	m
+<plug>EgMapGrepSelection_A	plugin/EasyGrep.vim	/^vmap <silent> <unique> <script> <plug>EgMapGrepSelection_A     y:call <sid>GrepSelection("add", 1)<CR>$/;"	m
+<plug>EgMapGrepSelection_V	plugin/EasyGrep.vim	/^vmap <silent> <unique> <script> <plug>EgMapGrepSelection_V     y:call <sid>GrepSelection("", 1)<CR>$/;"	m
+<plug>EgMapGrepSelection_a	plugin/EasyGrep.vim	/^vmap <silent> <unique> <script> <plug>EgMapGrepSelection_a     y:call <sid>GrepSelection("add", 0)<CR>$/;"	m
+<plug>EgMapGrepSelection_v	plugin/EasyGrep.vim	/^vmap <silent> <unique> <script> <plug>EgMapGrepSelection_v     y:call <sid>GrepSelection("", 0)<CR>$/;"	m
+<plug>EgMapReplaceCurrentWord_R	plugin/EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapReplaceCurrentWord_R :call <sid>ReplaceCurrentWord(1)<CR>$/;"	m
+<plug>EgMapReplaceCurrentWord_r	plugin/EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapReplaceCurrentWord_r :call <sid>ReplaceCurrentWord(0)<CR>$/;"	m
+<plug>EgMapReplaceSelection_R	plugin/EasyGrep.vim	/^vmap <silent> <unique> <script> <plug>EgMapReplaceSelection_R  y:call <sid>ReplaceSelection(1)<CR>$/;"	m
+<plug>EgMapReplaceSelection_r	plugin/EasyGrep.vim	/^vmap <silent> <unique> <script> <plug>EgMapReplaceSelection_r  y:call <sid>ReplaceSelection(0)<CR>$/;"	m
 <s-tab>	after/plugin/snipMate.vim	/^ino <silent> <s-tab> <c-r>=BackwardsSnippet()<cr>$/;"	m
 <tab>	after/plugin/snipMate.vim	/^ino <silent> <tab> <c-r>=TriggerSnippet()<cr>$/;"	m
 Abbrev	autoload/rails.vim	/^function! s:Abbrev(bang,...) abort$/;"	f
+ActivateAll	plugin/EasyGrep.vim	/^function! <sid>ActivateAll()$/;"	f
+ActivateBuffers	plugin/EasyGrep.vim	/^function! <sid>ActivateBuffers()$/;"	f
+ActivateChoice	plugin/EasyGrep.vim	/^function! s:ActivateChoice(choice)$/;"	f
+ActivateTracked	plugin/EasyGrep.vim	/^function! <sid>ActivateTracked()$/;"	f
+ActivateUser	plugin/EasyGrep.vim	/^function! <sid>ActivateUser()$/;"	f
 Add	test/tlib.vim	/^fun! Add(a,b)$/;"	f
 AddBracketExpand	autoload/rails.vim	/^function! s:AddBracketExpand(abbr,expn)$/;"	f
 AddColonExpand	autoload/rails.vim	/^function! s:AddColonExpand(abbr,expn)$/;"	f
@@ -166,10 +197,12 @@ AlignMaps#WrapperStart	autoload/AlignMaps.vim	/^fun! AlignMaps#WrapperStart(vis)
 AlignPop	plugin/AlignPlugin.vim	/^com!              -nargs=0 AlignPop  call Align#AlignPop()$/;"	c
 AlignPush	plugin/AlignPlugin.vim	/^com!              -nargs=0 AlignPush call Align#AlignPush()$/;"	c
 AlignReplaceQuotedSpaces	plugin/AlignPlugin.vim	/^com!       -range -nargs=0 AlignReplaceQuotedSpaces <line1>,<line2>call Align#AlignReplaceQuotedSpaces()$/;"	c
+AlreadyExists	plugin/EasyGrep.vim	/^function! s:AlreadyExists(pat)$/;"	f
 Alter	plugin/dbext.vim	/^command! -nargs=+ Alter             :call dbext#DB_execSql("alter " . <q-args>)$/;"	c
 Alternate	autoload/rails.vim	/^function! s:Alternate(bang,cmd,...)$/;"	f
 AlternateFile	autoload/rails.vim	/^function! s:AlternateFile()$/;"	f
 BMRU_Push	autoload/tlib/buffer.vim	/^function! s:BMRU_Push(bnr) "{{{3$/;"	f
+BackToForwardSlash	plugin/EasyGrep.vim	/^function! s:BackToForwardSlash(arg)$/;"	f
 BackwardsSnippet	plugin/snipMate.vim	/^fun! BackwardsSnippet()$/;"	f
 BinSearchToAppend	autoload/genutils.vim	/^function! s:BinSearchToAppend(start, end, line, cmp, direction)$/;"	f
 BinSearchToAppend2	autoload/genutils.vim	/^function! s:BinSearchToAppend2(start, end, line, cmp, direction, accessor,$/;"	f
@@ -194,6 +227,7 @@ Bookmark.setPath	plugin/NERD_tree.vim	/^function! s:Bookmark.setPath(path)$/;"	f
 Bookmark.str	plugin/NERD_tree.vim	/^function! s:Bookmark.str()$/;"	f
 Bookmark.toRoot	plugin/NERD_tree.vim	/^function! s:Bookmark.toRoot()$/;"	f
 Bookmark.validate	plugin/NERD_tree.vim	/^function! s:Bookmark.validate()$/;"	f
+BreakDown	plugin/EasyGrep.vim	/^function! s:BreakDown(keyList)$/;"	f
 BufAbbreviations	autoload/rails.vim	/^function! s:BufAbbreviations()$/;"	f
 BufCommands	autoload/rails.vim	/^function! s:BufCommands()$/;"	f
 BufDatabase	autoload/rails.vim	/^function! s:BufDatabase(...)$/;"	f
@@ -209,6 +243,7 @@ BufNavCommands	autoload/rails.vim	/^function! s:BufNavCommands()$/;"	f
 BufScriptWrappers	autoload/rails.vim	/^function! s:BufScriptWrappers()$/;"	f
 BufSettings	autoload/rails.vim	/^function! s:BufSettings()$/;"	f
 BufSyntax	autoload/rails.vim	/^function! s:BufSyntax()$/;"	f
+BuildPatternList	plugin/EasyGrep.vim	/^function! s:BuildPatternList(...)$/;"	f
 BuildTabStops	autoload/snipMate.vim	/^fun s:BuildTabStops(snip, lnum, col, indent)$/;"	f
 Calendar	plugin/calendar.vim	/^function! Calendar(...)$/;"	f
 CalendarDiary	plugin/calendar.vim	/^function! s:CalendarDiary(day, month, year, week, dir)$/;"	f
@@ -220,6 +255,7 @@ CalendarVar	plugin/calendar.vim	/^function! s:CalendarVar(var)$/;"	f
 Call	plugin/dbext.vim	/^command! -nargs=+ Call              :call dbext#DB_execSql("call " . <q-args>)$/;"	c
 Char2Num	autoload/genutils.vim	/^function! s:Char2Num(c)$/;"	f
 CheckAgentReturnValue	autoload/tlib/input.vim	/^function! s:CheckAgentReturnValue(name, value) "{{{3$/;"	f
+CheckLinks	plugin/EasyGrep.vim	/^function! s:CheckLinks()$/;"	f
 CheckMethod	macros/tassert.vim	/^fun! s:CheckMethod(dict, prototype, method)$/;"	f
 CheckType	macros/tassert.vim	/^fun! s:CheckType(expr, type)$/;"	f
 Choose	plugin/matchit.vim	/^fun! s:Choose(patterns, string, comma, branch, prefix, suffix, ...)$/;"	f
@@ -227,11 +263,14 @@ ChooseSnippet	plugin/snipMate.vim	/^fun s:ChooseSnippet(scope, trigger)$/;"	f
 CleanUp	plugin/matchit.vim	/^fun! s:CleanUp(options, mode, startline, startcol, ...)$/;"	f
 CleanupMarkErrors	plugin/cuteErrorMarker.vim	/^command! CleanupMarkErrors call CleanupMarkErrors()$/;"	c
 CleanupMarkErrors	plugin/cuteErrorMarker.vim	/^fun! CleanupMarkErrors() "{{{$/;"	f
+ClearActivated	plugin/EasyGrep.vim	/^function! s:ClearActivated()$/;"	f
+ClearGatewayVariables	plugin/EasyGrep.vim	/^function! s:ClearGatewayVariables()$/;"	f
 Close	ftplugin/html_snip_helper.vim	/^fun! Close()$/;"	f
 CommandEdit	autoload/rails.vim	/^function! s:CommandEdit(bang,cmd,name,prefix,suffix,filter,default,...)$/;"	f
 CommandList	autoload/rails.vim	/^function! s:CommandList(A,L,P)$/;"	f
 CommentRegion	autoload/tassert.vim	/^fun! s:CommentRegion(mode, line1, line2)$/;"	f
 CompareBufferNrByMRU	autoload/tlib/buffer.vim	/^function! s:CompareBufferNrByMRU(a, b) "{{{3$/;"	f
+CompareCurrentFileCurrentDirectory	plugin/EasyGrep.vim	/^function! s:CompareCurrentFileCurrentDirectory()$/;"	f
 CompilerSet	compiler/php.vim	/^  command -nargs=* CompilerSet setlocal <args>$/;"	c
 CompilerSet	compiler/tidy.vim	/^  command -nargs=* CompilerSet setlocal <args>$/;"	c
 Complete_cd	autoload/rails.vim	/^function! s:Complete_cd(ArgLead, CmdLine, CursorPos)$/;"	f
@@ -255,7 +294,10 @@ Cream_statusline	additional_scripts/cream-statusline-prototype.vim	/^function! s
 Cream_statusline_global	additional_scripts/cream-statusline-prototype.vim	/^function! Cream_statusline_global()$/;"	f
 Cream_statusline_prototype_toggle	additional_scripts/cream-statusline-prototype.vim	/^function! Cream_statusline_prototype_toggle()$/;"	f
 Create	plugin/dbext.vim	/^command! -nargs=+ Create            :call dbext#DB_execSql("create " . <q-args>)$/;"	c
+CreateDict	plugin/EasyGrep.vim	/^function! s:CreateDict()$/;"	f
 CreateMenus	plugin/rails.vim	/^function! s:CreateMenus() abort$/;"	f
+CreateOptionMappings	plugin/EasyGrep.vim	/^function! s:CreateOptionMappings()$/;"	f
+CreateOptions	plugin/EasyGrep.vim	/^function! s:CreateOptions()$/;"	f
 CustomComplete	autoload/rails.vim	/^function! s:CustomComplete(A,L,P,cmd)$/;"	f
 DBCheckModeline	plugin/dbext.vim	/^    command! -nargs=0 DBCheckModeline$/;"	c
 DBCommit	plugin/dbext.vim	/^command! -nargs=0 DBCommit          :call dbext#DB_commit()$/;"	c
@@ -567,6 +609,10 @@ Detect	plugin/rails.vim	/^function! s:Detect(filename)$/;"	f
 Dfunc	plugin/Decho.vim	/^fun! Dfunc(...)$/;"	f
 Dhide	plugin/Decho.vim	/^com! -nargs=0 Dhide    						call s:Dhide(1)$/;"	c
 Dhide	plugin/Decho.vim	/^fun! <SID>Dhide(hide)$/;"	f
+DoBreakDown	plugin/EasyGrep.vim	/^function! s:DoBreakDown(key)$/;"	f
+DoEscapeList	plugin/EasyGrep.vim	/^function! s:DoEscapeList(lst, seperator, func)$/;"	f
+DoGrep	plugin/EasyGrep.vim	/^function! s:DoGrep(word, add, whole, count, escapeArgs)$/;"	f
+DoReplace	plugin/EasyGrep.vim	/^function! s:DoReplace(target, replacement, whole, escapeArgs)$/;"	f
 Doc	autoload/rails.vim	/^function! s:Doc(bang, string)$/;"	f
 Dredir	plugin/Decho.vim	/^com! -nargs=+ -complete=expression Dredir	call Dredir(<args>)$/;"	c
 Dredir	plugin/Decho.vim	/^fun! Dredir(...)$/;"	f
@@ -574,28 +620,49 @@ Dret	plugin/Decho.vim	/^fun! Dret(...)$/;"	f
 Drop	plugin/dbext.vim	/^command! -nargs=+ Drop              :call dbext#DB_execSql("drop " . <q-args>)$/;"	c
 Dsep	plugin/Decho.vim	/^com! -nargs=? Dsep						    call DechoSep(<args>)$/;"	c
 Dshow	plugin/Decho.vim	/^com! -nargs=0 Dshow    						call s:Dhide(0)$/;"	c
+Echo	plugin/EasyGrep.vim	/^function! <sid>Echo(message)$/;"	f
 EchoError	plugin/symfony.vim	/^function! g:EchoError(msg)$/;"	f
+EchoFilesSearched	plugin/EasyGrep.vim	/^function! <sid>EchoFilesSearched()$/;"	f
+EchoOptionsSet	plugin/EasyGrep.vim	/^function! <sid>EchoOptionsSet()$/;"	f
 Edit	autoload/rails.vim	/^function! s:Edit(bang,count,arg,...)$/;"	f
 EditCallback	autoload/tlib/input.vim	/^function! s:EditCallback(...) "{{{3$/;"	f
 EditSimpleRb	autoload/rails.vim	/^function! s:EditSimpleRb(bang,cmd,name,target,prefix,suffix,...)$/;"	f
+Error	plugin/EasyGrep.vim	/^function! s:Error(message)$/;"	f
+Escape	plugin/EasyGrep.vim	/^function! s:Escape(str, lst)$/;"	f
+EscapeList	plugin/EasyGrep.vim	/^function! s:EscapeList(lst, seperator)$/;"	f
+EscapeSpecial	plugin/EasyGrep.vim	/^function! s:EscapeSpecial(str)$/;"	f
 ExecWinCmdNoEa	autoload/genutils.vim	/^function! s:ExecWinCmdNoEa(winCmd)$/;"	f
 Extract	autoload/rails.vim	/^function! s:Extract(bang,...) range abort$/;"	f
 ExtractSnips	plugin/snipMate.vim	/^fun! ExtractSnips(dir, ft)$/;"	f
 ExtractSnipsFile	plugin/snipMate.vim	/^fun! ExtractSnipsFile(file, ft)$/;"	f
 FGforBG	after/syntax/css.vim	/^function! s:FGforBG(bg)$/;"	f
+FileEscape	plugin/EasyGrep.vim	/^function! s:FileEscape(item)$/;"	f
 Filename	autoload/snipMate.vim	/^fun! Filename(...)$/;"	f
+FillWindow	plugin/EasyGrep.vim	/^function! s:FillWindow()$/;"	f
 Find	autoload/rails.vim	/^function! s:Find(bang,count,arg,...)$/;"	f
 FindBufferForName	autoload/genutils.vim	/^function! s:FindBufferForName(fileName)$/;"	f
+FindByKey	plugin/EasyGrep.vim	/^function! s:FindByKey(key)$/;"	f
+FindByPattern	plugin/EasyGrep.vim	/^function! s:FindByPattern(pattern)$/;"	f
 FindCurrentAction	plugin/symfony.vim	/^function! FindCurrentAction()$/;"	f
 FindCurrentFileName	plugin/symfony.vim	/^function! FindCurrentFileName()$/;"	f
 FormatTag	autoload/ttags.vim	/^function! s:FormatTag(tag) "{{{3$/;"	f
 GUDebugEcho	autoload/genutils.vim	/^command! -complete=file -nargs=* GUDebugEcho :echo <q-args>$/;"	c
 GetActionNameFromAction	plugin/symfony.vim	/^function! GetActionNameFromAction(action_name)$/;"	f
 GetActionNameFromActionFileName	plugin/symfony.vim	/^function! GetActionNameFromActionFileName(action_file_name)$/;"	f
+GetBufferIdList	plugin/EasyGrep.vim	/^function! s:GetBufferIdList()$/;"	f
+GetBufferNamesList	plugin/EasyGrep.vim	/^function! s:GetBufferNamesList()$/;"	f
+GetBuffersOutput	plugin/EasyGrep.vim	/^function! s:GetBuffersOutput()$/;"	f
+GetCommenter	plugin/LineCommenter.vim	/^function GetCommenter(StringKey)$/;"	f
 GetComponentNameFromComponentFileName	plugin/symfony.vim	/^function! GetComponentNameFromComponentFileName(component_file_name)$/;"	f
 GetCurrentWord	plugin/words_tools.vim	/^function! GetCurrentWord()$/;"	f
+GetErrorList	plugin/EasyGrep.vim	/^function! s:GetErrorList()$/;"	f
+GetErrorListName	plugin/EasyGrep.vim	/^function! s:GetErrorListName()$/;"	f
 GetExecuteActionNameFromAction	plugin/symfony.vim	/^function! GetExecuteActionNameFromAction(action_name)$/;"	f
+GetFileAssociationList	plugin/EasyGrep.vim	/^function! s:GetFileAssociationList()$/;"	f
 GetFileName	plugin/symfony.vim	/^function! GetFileName(file)$/;"	f
+GetHeadOfLine	plugin/LineCommenter.vim	/^function GetHeadOfLine(Commenter)$/;"	f
+GetHeadOfLineWithSpace	plugin/LineCommenter.vim	/^function GetHeadOfLineWithSpace(Commenter)$/;"	f
+GetKeyFromLink	plugin/EasyGrep.vim	/^function! s:GetKeyFromLink(str)$/;"	f
 GetLatestVimScripts	autoload/getscript.vim	/^com!        -nargs=0 GetLatestVimScripts call getscript#GetLatestVimScripts()$/;"	c
 GetLatestVimScripts	plugin/getscriptPlugin.vim	/^com!        -nargs=0 GetLatestVimScripts call getscript#GetLatestVimScripts()$/;"	c
 GetLogArg	autoload/tlog.vim	/^fun! s:GetLogArg()$/;"	f
@@ -608,18 +675,32 @@ GetOneScript	autoload/getscript.vim	/^fun! s:GetOneScript(...)$/;"	f
 GetPath	ftplugin/nerdtree.vim	/^function! GetPath()$/;"	f
 GetPhpIndent	indent/php.vim	/^function GetPhpIndent()$/;"	f
 GetPreviousWord	plugin/words_tools.vim	/^function! GetPreviousWord()$/;"	f
+GetSavedName	plugin/EasyGrep.vim	/^function! s:GetSavedName(var)$/;"	f
 GetScript	autoload/getscript.vim	/^com!        -nargs=0 GetScript           call getscript#GetLatestVimScripts()$/;"	c
 GetScripts	plugin/getscriptPlugin.vim	/^com!        -nargs=0 GetScripts          call getscript#GetLatestVimScripts()$/;"	c
+GetSearchPatternFriendlyName	plugin/EasyGrep.vim	/^function! s:GetSearchPatternFriendlyName()$/;"	f
 GetSnippet	plugin/snipMate.vim	/^fun s:GetSnippet(word, scope)$/;"	f
 GetSnippets	plugin/snipMate.vim	/^fun! GetSnippets(dir, filetypes)$/;"	f
 GetSuccessTemplateFromAction	plugin/symfony.vim	/^function! GetSuccessTemplateFromAction(action_name)$/;"	f
 GetSuccessTemplateFromComponent	plugin/symfony.vim	/^function! GetSuccessTemplateFromComponent(component_name)$/;"	f
 GetTag	autoload/ttags.vim	/^function! s:GetTag(world, id) "{{{3$/;"	f
 GetToken	plugin/calendar.vim	/^function! s:GetToken(src,dlm,cnt)$/;"	f
+GetVisibleBuffers	plugin/EasyGrep.vim	/^function! s:GetVisibleBuffers()$/;"	f
 GetWinDim	autoload/genutils.vim	/^function! s:GetWinDim(dir, win)$/;"	f
 GoWinbufnr	plugin/cecutil.vim	/^fun! GoWinbufnr(bufnum)$/;"	f
 GotoWinNum	autoload/ZoomWin.vim	/^fun! s:GotoWinNum(winnum)$/;"	f
+Grep	plugin/EasyGrep.vim	/^command! -count -bang -nargs=1 Grep :call s:GrepInput( <f-args> , "", "<bang>", "<count>")$/;"	c
+GrepAdd	plugin/EasyGrep.vim	/^command! -count -bang -nargs=1 GrepAdd :call s:GrepInput( <f-args>, "add", "<bang>", "<count>")$/;"	c
+GrepCurrentWord	plugin/EasyGrep.vim	/^function! <sid>GrepCurrentWord(add, whole)$/;"	f
+GrepInput	plugin/EasyGrep.vim	/^function! s:GrepInput(word, add, bang, count)$/;"	f
+GrepOptions	plugin/EasyGrep.vim	/^command! GrepOptions :call <sid>GrepOptions()$/;"	c
+GrepOptions	plugin/EasyGrep.vim	/^function! <sid>GrepOptions()$/;"	f
+GrepSelection	plugin/EasyGrep.vim	/^function! <sid>GrepSelection(add, whole)$/;"	f
+GrepSetManual	plugin/EasyGrep.vim	/^function! s:GrepSetManual(str)$/;"	f
 HLTest	syntax/Decho.vim	/^  fun! s:HLTest(hlname)$/;"	f
+HasActivatedItem	plugin/EasyGrep.vim	/^function! s:HasActivatedItem()$/;"	f
+HasFilesThatMatch	plugin/EasyGrep.vim	/^function! s:HasFilesThatMatch()$/;"	f
+HasMatches	plugin/EasyGrep.vim	/^function! s:HasMatches()$/;"	f
 HiDefaults	autoload/rails.vim	/^function! s:HiDefaults()$/;"	f
 HiLink	syntax/jquery.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
 HiLink	syntax/jquery.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
@@ -636,6 +717,7 @@ ImAmInAComponentTemplate	plugin/symfony.vim	/^function! ImAmInAComponentTemplate
 ImAmInAModule	plugin/symfony.vim	/^function! ImAmInAModule() $/;"	f
 ImAmInAnAction	plugin/symfony.vim	/^function! ImAmInAnAction() $/;"	f
 ImAmInAnActionTemplate	plugin/symfony.vim	/^function! ImAmInAnActionTemplate()$/;"	f
+Info	plugin/EasyGrep.vim	/^function! s:Info(message)$/;"	f
 Init	autoload/tlib/input.vim	/^function! s:Init(world, cmd) "{{{3$/;"	f
 InitStatusline	autoload/rails.vim	/^function! s:InitStatusline()$/;"	f
 InjectIntoStatusline	autoload/rails.vim	/^function! s:InjectIntoStatusline(status)$/;"	f
@@ -651,13 +733,20 @@ IsError	macros/tassert.vim	/^fun! IsError(expr, expected)$/;"	f
 IsException	macros/tassert.vim	/^fun! IsException(expr)$/;"	f
 IsExistent	macros/tassert.vim	/^fun! IsExistent(expr)$/;"	f
 IsFuncref	macros/tassert.vim	/^fun! IsFuncref(expr)$/;"	f
+IsLink	plugin/EasyGrep.vim	/^function! s:IsLink(str)$/;"	f
 IsList	macros/tassert.vim	/^fun! IsList(expr)$/;"	f
 IsMatch	macros/tassert.vim	/^fun! IsMatch(expr, expected)$/;"	f
+IsModeAll	plugin/EasyGrep.vim	/^function! s:IsModeAll()$/;"	f
+IsModeBuffers	plugin/EasyGrep.vim	/^function! s:IsModeBuffers()$/;"	f
+IsModeTracked	plugin/EasyGrep.vim	/^function! s:IsModeTracked()$/;"	f
+IsModeUser	plugin/EasyGrep.vim	/^function! s:IsModeUser()$/;"	f
 IsNotEmpty	macros/tassert.vim	/^fun! IsNotEmpty(expr)$/;"	f
 IsNotEqual	macros/tassert.vim	/^fun! IsNotEqual(expr, expected)$/;"	f
 IsNotMatch	macros/tassert.vim	/^fun! IsNotMatch(expr, expected)$/;"	f
 IsNumber	macros/tassert.vim	/^fun! IsNumber(expr)$/;"	f
+IsRecursive	plugin/EasyGrep.vim	/^function! s:IsRecursive(pattern)$/;"	f
 IsString	macros/tassert.vim	/^fun! IsString(expr)$/;"	f
+LineCommenter	plugin/LineCommenter.vim	/^function LineCommenter()$/;"	f
 LocalModelines	autoload/rails.vim	/^function! s:LocalModelines(lnum)$/;"	f
 Log	autoload/rails.vim	/^function! s:Log(bang,arg)$/;"	f
 MakeQFE	autoload/ttags.vim	/^function! s:MakeQFE(tag) "{{{3$/;"	f
@@ -684,7 +773,10 @@ Navcommand	autoload/rails.vim	/^function! s:Navcommand(bang,...)$/;"	f
 NewProject	autoload/rails.vim	/^function! s:NewProject(proj,rr)$/;"	f
 NewProjectTemplate	autoload/rails.vim	/^function! s:NewProjectTemplate(proj,rr)$/;"	f
 NoTags	autoload/ttags.vim	/^function! s:NoTags() "{{{3$/;"	f
+OnOrOff	plugin/EasyGrep.vim	/^function! s:OnOrOff(num)$/;"	f
+OpenOptionsExplorer	plugin/EasyGrep.vim	/^function! s:OpenOptionsExplorer()$/;"	f
 ParseArgs	autoload/ttags.vim	/^function! s:ParseArgs(keyargs_as_string) "{{{3$/;"	f
+ParseFileAssociationList	plugin/EasyGrep.vim	/^function! s:ParseFileAssociationList()$/;"	f
 ParseSkip	plugin/matchit.vim	/^fun! s:ParseSkip(str)$/;"	f
 ParseWords	plugin/matchit.vim	/^fun! s:ParseWords(groups)$/;"	f
 Path.AbsolutePathFor	plugin/NERD_tree.vim	/^function! s:Path.AbsolutePathFor(str)$/;"	f
@@ -723,6 +815,7 @@ Path.strTrunk	plugin/NERD_tree.vim	/^function! s:Path.strTrunk()$/;"	f
 PersistentVarName	autoload/genutils.vim	/^function! s:PersistentVarName(pluginName, persistentVar)$/;"	f
 PlaceErrorMarkersHook	plugin/cuteErrorMarker.vim	/^fun! PlaceErrorMarkersHook() "{{{$/;"	f
 Pos	additional_scripts/cream-statusline-prototype.vim	/^function! s:Pos(...)$/;"	f
+PostCreate	plugin/EasyGrep.vim	/^function! s:PostCreate(str, sp)$/;"	f
 Preview	autoload/rails.vim	/^function! s:Preview(bang,lnum,arg)$/;"	f
 PreviewCSSColorInLine	after/syntax/css.vim	/^function! s:PreviewCSSColorInLine(where)$/;"	f
 PrintFormat	autoload/tlib/string.vim	/^function! s:PrintFormat(format, string) "{{{3$/;"	f
@@ -733,6 +826,7 @@ ProjectMenu	plugin/rails.vim	/^function! s:ProjectMenu()$/;"	f
 QArgSplitter	autoload/Align.vim	/^fun! s:QArgSplitter(qarg)$/;"	f
 QArgSplitter	plugin/cecutil.vim	/^fun! QArgSplitter(qarg)$/;"	f
 QSortR	autoload/genutils.vim	/^function! s:QSortR(start, end, cmp, direction, accessor, swapper, context)$/;"	f
+Quit	plugin/EasyGrep.vim	/^function! <sid>Quit()$/;"	f
 RM	plugin/cecutil.vim	/^com! -bar -nargs=1 RM	call RestoreMark(<q-args>)$/;"	c
 RWP	plugin/cecutil.vim	/^com! -bar -nargs=0 RWP	call RestoreWinPosn()$/;"	c
 Rails	plugin/rails.vim	/^command! -bar -bang -nargs=* -complete=dir Rails :if s:autoload()|call rails#new_app_command(<bang>0,<f-args>)|endif$/;"	c
@@ -759,12 +853,20 @@ Related	autoload/rails.vim	/^function! s:Related(bang,cmd,...)$/;"	f
 RelatedFile	autoload/rails.vim	/^function! s:RelatedFile()$/;"	f
 RemoveErrorMarkersHook	plugin/cuteErrorMarker.vim	/^fun! RemoveErrorMarkersHook() "{{{$/;"	f
 RemoveSnippet	autoload/snipMate.vim	/^fun s:RemoveSnippet()$/;"	f
+Replace	plugin/EasyGrep.vim	/^command! -bang -nargs=+ Replace :call s:Replace("<bang>", <q-args>)$/;"	c
+Replace	plugin/EasyGrep.vim	/^function! s:Replace(whole, argv)$/;"	f
+ReplaceCurrentWord	plugin/EasyGrep.vim	/^function! <sid>ReplaceCurrentWord(whole)$/;"	f
+ReplaceSelection	plugin/EasyGrep.vim	/^function! <sid>ReplaceSelection(whole)$/;"	f
+ReplaceString	plugin/EasyGrep.vim	/^function! s:ReplaceString(str, whole, escapeArgs)$/;"	f
+ReplaceUndo	plugin/EasyGrep.vim	/^command! -bang ReplaceUndo :call s:ReplaceUndo("<bang>")$/;"	c
+ReplaceUndo	plugin/EasyGrep.vim	/^function! s:ReplaceUndo(bang)$/;"	f
 ResetSnippets	plugin/snipMate.vim	/^fun! ResetSnippets()$/;"	f
 Resolve	plugin/matchit.vim	/^fun! s:Resolve(source, target, output)$/;"	f
 RestoreMark	plugin/cecutil.vim	/^fun! RestoreMark(markname)$/;"	f
 RestoreOrigin	autoload/ttags.vim	/^function! s:RestoreOrigin(world) "{{{3$/;"	f
 RestorePosn	autoload/ZoomWin.vim	/^fun! s:RestorePosn(savedposn)$/;"	f
 RestoreUserMaps	plugin/cecutil.vim	/^fun! RestoreUserMaps(suffix)$/;"	f
+RestoreVariable	plugin/EasyGrep.vim	/^function! s:RestoreVariable(var, ...)$/;"	f
 RestoreWinPosn	plugin/cecutil.vim	/^fun! RestoreWinPosn(...)$/;"	f
 RestoreWindowSettings2	autoload/genutils.vim	/^function! s:RestoreWindowSettings2(id)$/;"	f
 RewriteFormatString	autoload/tlib/string.vim	/^function! s:RewriteFormatString(format, pattern, string) "{{{3$/;"	f
@@ -776,13 +878,17 @@ SWP	plugin/cecutil.vim	/^com! -bar -nargs=0 SWP	call SaveWinPosn()$/;"	c
 SaveMark	plugin/cecutil.vim	/^fun! SaveMark(markname)$/;"	f
 SavePosn	autoload/ZoomWin.vim	/^fun! s:SavePosn(savewinhoriz)$/;"	f
 SaveUserMaps	plugin/cecutil.vim	/^fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)$/;"	f
+SaveVariable	plugin/EasyGrep.vim	/^function! s:SaveVariable(var)$/;"	f
 SaveWinPosn	plugin/cecutil.vim	/^fun! SaveWinPosn(...)$/;"	f
+Select	plugin/EasyGrep.vim	/^function! <sid>Select()$/;"	f
 Select	plugin/dbext.vim	/^command! -nargs=+ Select            :call dbext#DB_execSql("select " . <q-args>)$/;"	c
 SelectClass	plugin/cuteErrorMarker.vim	/^fun! s:SelectClass( error ) "{{{$/;"	f
 SelectWord	autoload/snipMate.vim	/^fun s:SelectWord()$/;"	f
 Set	autoload/rails.vim	/^function! s:Set(bang,...)$/;"	f
 SetAppConfig	plugin/symfony.vim	/^function! SetAppConfig()$/;"	f
 SetBasePath	autoload/rails.vim	/^function! s:SetBasePath()$/;"	f
+SetCurrentExtension	plugin/EasyGrep.vim	/^function! s:SetCurrentExtension()$/;"	f
+SetGatewayVariables	plugin/EasyGrep.vim	/^function! s:SetGatewayVariables()$/;"	f
 SetMatcher	after/syntax/css.vim	/^function! s:SetMatcher(clr,pat)$/;"	f
 SetModuleConfig	plugin/symfony.vim	/^function! SetModuleConfig()$/;"	f
 SetNamedColor	after/syntax/css.vim	/^function! s:SetNamedColor(clr,name)$/;"	f
@@ -790,11 +896,19 @@ SetOptDefault	plugin/rails.vim	/^function! s:SetOptDefault(opt,val)$/;"	f
 SetOrigin	autoload/ttags.vim	/^function! s:SetOrigin(world) "{{{3$/;"	f
 SetProjectConfig	plugin/symfony.vim	/^function! SetProjectConfig()$/;"	f
 SetScrollBind	autoload/tlib/file.vim	/^function! s:SetScrollBind(world) "{{{3$/;"	f
+SetWatchExtension	plugin/EasyGrep.vim	/^function! s:SetWatchExtension()$/;"	f
 SfPluginLoad	plugin/symfony.vim	/^command! -nargs=1 -complete=dir SfPluginLoad :call SfPluginLoad(<args>)$/;"	c
 SfPluginLoad	plugin/symfony.vim	/^function! SfPluginLoad(path)$/;"	f
 SfSwitchView	plugin/symfony.vim	/^command! -n=? -complete=dir SfSwitchView :call Switch()$/;"	c
+ShellEscape	plugin/EasyGrep.vim	/^function! s:ShellEscape(item)$/;"	f
+ShellEscapeList	plugin/EasyGrep.vim	/^function! s:ShellEscapeList(lst, seperator)$/;"	f
 ShowAvailableSnips	plugin/snipMate.vim	/^fun! ShowAvailableSnips()$/;"	f
 ShowTag	autoload/ttags.vim	/^function! s:ShowTag(world, tagline) "{{{3$/;"	f
+Sort	plugin/EasyGrep.vim	/^function! <sid>Sort()$/;"	f
+SortExtension	plugin/EasyGrep.vim	/^function! SortExtension(lhs, rhs)$/;"	f
+SortExtensionReversed	plugin/EasyGrep.vim	/^function! SortExtensionReversed(lhs, rhs)$/;"	f
+SortName	plugin/EasyGrep.vim	/^function! SortName(lhs, rhs)$/;"	f
+SortNameReversed	plugin/EasyGrep.vim	/^function! SortNameReversed(lhs, rhs)$/;"	f
 SqlIab_ReplaceConditionally	ftplugin/sql_iabbr.vim	/^function! SqlIab_ReplaceConditionally(original, replacement)$/;"	f
 Stlp	additional_scripts/cream-statusline-prototype.vim	/^command! -nargs=0 Stlp call Cream_statusline_prototype_toggle()$/;"	c
 Strlen	autoload/Align.vim	/^fun! s:Strlen(x)$/;"	f
@@ -965,6 +1079,16 @@ Tlist_Window_Update_File	plugin/taglist.vim	/^function! s:Tlist_Window_Update_Fi
 Tlist_Window_Update_Line_Offsets	plugin/taglist.vim	/^function! s:Tlist_Window_Update_Line_Offsets(start_idx, increment, offset)$/;"	f
 Tlist_Window_Zoom	plugin/taglist.vim	/^function! s:Tlist_Window_Zoom()$/;"	f
 Tlist_prototype_get	additional_scripts/cream-statusline-prototype.vim	/^function! s:Tlist_prototype_get()$/;"	f
+ToggleCommand	plugin/EasyGrep.vim	/^function! <sid>ToggleCommand()$/;"	f
+ToggleEveryMatch	plugin/EasyGrep.vim	/^function! <sid>ToggleEveryMatch()$/;"	f
+ToggleHidden	plugin/EasyGrep.vim	/^function! <sid>ToggleHidden()$/;"	f
+ToggleIgnoreCase	plugin/EasyGrep.vim	/^function! <sid>ToggleIgnoreCase()$/;"	f
+ToggleJumpToMatch	plugin/EasyGrep.vim	/^function! <sid>ToggleJumpToMatch()$/;"	f
+ToggleOpenWindow	plugin/EasyGrep.vim	/^function! <sid>ToggleOpenWindow()$/;"	f
+ToggleOptionsDisplay	plugin/EasyGrep.vim	/^function! <sid>ToggleOptionsDisplay()$/;"	f
+ToggleRecursion	plugin/EasyGrep.vim	/^function! <sid>ToggleRecursion()$/;"	f
+ToggleWholeWord	plugin/EasyGrep.vim	/^function! <sid>ToggleWholeWord()$/;"	f
+ToggleWindow	plugin/EasyGrep.vim	/^function! <sid>ToggleWindow()$/;"	f
 TreeDirNode.AbsoluteTreeRoot	plugin/NERD_tree.vim	/^function! s:TreeDirNode.AbsoluteTreeRoot()$/;"	f
 TreeDirNode.GetSelected	plugin/NERD_tree.vim	/^function! s:TreeDirNode.GetSelected()$/;"	f
 TreeDirNode.New	plugin/NERD_tree.vim	/^function! s:TreeDirNode.New(path)$/;"	f
@@ -1016,11 +1140,16 @@ TreeFileNode.rename	plugin/NERD_tree.vim	/^function! s:TreeFileNode.rename(newNa
 TreeFileNode.renderToString	plugin/NERD_tree.vim	/^function! s:TreeFileNode.renderToString()$/;"	f
 TreeFileNode.strDisplay	plugin/NERD_tree.vim	/^function! s:TreeFileNode.strDisplay()$/;"	f
 TriggerSnippet	plugin/snipMate.vim	/^fun! TriggerSnippet()$/;"	f
+Trim	plugin/EasyGrep.vim	/^function! s:Trim(s)$/;"	f
 U	autoload/repeat.vim	/^nnoremap <silent> U     :<C-U>call <SID>wrap('U',v:count)<CR>$/;"	m
 UniqValue	autoload/tlib/list.vim	/^function! s:UniqValue(value) "{{{3$/;"	f
 Update	plugin/dbext.vim	/^command! -nargs=+ Update            :call dbext#DB_execSql("update " . <q-args>)$/;"	c
+UpdateAll	plugin/EasyGrep.vim	/^function! s:UpdateAll()$/;"	f
 UpdateChangedSnip	autoload/snipMate.vim	/^fun s:UpdateChangedSnip(entering)$/;"	f
+UpdateChoice	plugin/EasyGrep.vim	/^function! s:UpdateChoice(choice)$/;"	f
+UpdateOptions	plugin/EasyGrep.vim	/^function! s:UpdateOptions()$/;"	f
 UpdatePlaceholderTabStops	autoload/snipMate.vim	/^fun s:UpdatePlaceholderTabStops()$/;"	f
+UpdateRange	plugin/EasyGrep.vim	/^function! s:UpdateRange(first, last)$/;"	f
 UpdateTabStops	autoload/snipMate.vim	/^fun s:UpdateTabStops()$/;"	f
 UpdateVars	autoload/snipMate.vim	/^fun s:UpdateVars()$/;"	f
 UriRef_getFragment	plugin/utl_uri.vim	/^fu! UriRef_getFragment(uriref)$/;"	f
@@ -1070,6 +1199,8 @@ Utl_utilBack2FwdSlashes	plugin/utl.vim	/^fu! Utl_utilBack2FwdSlashes(str)$/;"	f
 Utl_utilCopyExtract	plugin/utl.vim	/^fu! Utl_utilCopyExtract(srcFile, outFile, mark)$/;"	f
 Utl_utilExpandConvSpec	plugin/utl.vim	/^fu! Utl_utilExpandConvSpec(str, convSpecDict)$/;"	f
 Utl_utilFwd2BackSlashes	plugin/utl.vim	/^fu! Utl_utilFwd2BackSlashes(str)$/;"	f
+WarnNoMatches	plugin/EasyGrep.vim	/^function! s:WarnNoMatches(pattern)$/;"	f
+Warning	plugin/EasyGrep.vim	/^function! s:Warning(message)$/;"	f
 Wholematch	plugin/matchit.vim	/^fun! s:Wholematch(string, pat, start)$/;"	f
 Xterm2rgb	after/syntax/css.vim	/^function! s:Xterm2rgb(color) $/;"	f
 ZoomWin	plugin/ZoomWinPlugin.vim	/^com! ZoomWin :set lz|silent call ZoomWin#ZoomWin()|set nolz$/;"	c
@@ -1163,6 +1294,7 @@ cache_has	autoload/rails.vim	/^function! s:cache_has(key) dict$/;"	f
 cache_needs	autoload/rails.vim	/^function! s:cache_needs(key) dict$/;"	f
 cache_set	autoload/rails.vim	/^function! s:cache_set(key,value) dict$/;"	f
 cascade	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> cascade <C-R>=SqlIab_ReplaceConditionally('cascade', 'CASCADE')<CR>$/;"	m
+cc	plugin/LineCommenter.vim	/^nmap <silent>cc :call LineCommenter()<Esc>$/;"	m
 centerView	plugin/NERD_tree.vim	/^function! s:centerView()$/;"	f
 chCwd	plugin/NERD_tree.vim	/^function! s:chCwd()$/;"	f
 chRoot	plugin/NERD_tree.vim	/^function! s:chRoot()$/;"	f
@@ -1204,6 +1336,7 @@ controllerEdit	autoload/rails.vim	/^function! s:controllerEdit(bang,cmd,...)$/;"
 controllerList	autoload/rails.vim	/^function! s:controllerList(A,L,P)$/;"	f
 copy	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> copy <C-R>=SqlIab_ReplaceConditionally('copy', 'COPY')<CR>$/;"	m
 copyNode	plugin/NERD_tree.vim	/^function! s:copyNode()$/;"	f
+countstr	plugin/EasyGrep.vim	/^function! s:countstr(str, ele)$/;"	f
 cre	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> cre <C-R>=SqlIab_ReplaceConditionally('cre', 'CREATE')<CR>$/;"	m
 create	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> create <C-R>=SqlIab_ReplaceConditionally('create', 'CREATE')<CR>$/;"	m
 createTreeWin	plugin/NERD_tree.vim	/^function! s:createTreeWin()$/;"	f
@@ -1343,6 +1476,25 @@ g%	plugin/matchit.vim	/^vnoremap <silent> g% :<C-U>call <SID>Match_wrapper('',0,
 g:Align_xstrlen	autoload/Align.vim	/^  let g:Align_xstrlen= 0$/;"	v
 g:Align_xstrlen	autoload/Align.vim	/^  let g:Align_xstrlen= 1$/;"	v
 g:DrChipTopLvlMenu	plugin/AlignMapsPlugin.vim	/^  let g:DrChipTopLvlMenu= "DrChip."$/;"	v
+g:EasyGrepAllOptionsInExplorer	plugin/EasyGrep.vim	/^    let g:EasyGrepAllOptionsInExplorer=0$/;"	v
+g:EasyGrepCommand	plugin/EasyGrep.vim	/^    let g:EasyGrepCommand=0$/;"	v
+g:EasyGrepEveryMatch	plugin/EasyGrep.vim	/^    let g:EasyGrepEveryMatch=0$/;"	v
+g:EasyGrepExtraWarnings	plugin/EasyGrep.vim	/^    let g:EasyGrepExtraWarnings=1$/;"	v
+g:EasyGrepFileAssociationsInExplorer	plugin/EasyGrep.vim	/^    let g:EasyGrepFileAssociationsInExplorer=1$/;"	v
+g:EasyGrepHidden	plugin/EasyGrep.vim	/^    let g:EasyGrepHidden=0$/;"	v
+g:EasyGrepIgnoreCase	plugin/EasyGrep.vim	/^    let g:EasyGrepIgnoreCase=&ignorecase$/;"	v
+g:EasyGrepInvertWholeWord	plugin/EasyGrep.vim	/^    let g:EasyGrepInvertWholeWord=0$/;"	v
+g:EasyGrepJumpToMatch	plugin/EasyGrep.vim	/^    let g:EasyGrepJumpToMatch=1$/;"	v
+g:EasyGrepMode	plugin/EasyGrep.vim	/^        let g:EasyGrepMode = 0$/;"	v
+g:EasyGrepMode	plugin/EasyGrep.vim	/^    let g:EasyGrepMode=0$/;"	v
+g:EasyGrepOpenWindowOnMatch	plugin/EasyGrep.vim	/^    let g:EasyGrepOpenWindowOnMatch=1$/;"	v
+g:EasyGrepOptionPrefix	plugin/EasyGrep.vim	/^    let g:EasyGrepOptionPrefix='<leader>vy'$/;"	v
+g:EasyGrepRecursive	plugin/EasyGrep.vim	/^    let g:EasyGrepRecursive=0$/;"	v
+g:EasyGrepReplaceAllPerFile	plugin/EasyGrep.vim	/^    let g:EasyGrepReplaceAllPerFile=0$/;"	v
+g:EasyGrepReplaceWindowMode	plugin/EasyGrep.vim	/^        let g:EasyGrepReplaceWindowMode = 0$/;"	v
+g:EasyGrepReplaceWindowMode	plugin/EasyGrep.vim	/^    let g:EasyGrepReplaceWindowMode=0$/;"	v
+g:EasyGrepVersion	plugin/EasyGrep.vim	/^let g:EasyGrepVersion = "0.95"$/;"	v
+g:EasyGrepWindow	plugin/EasyGrep.vim	/^    let g:EasyGrepWindow=0$/;"	v
 g:GetLatestVimScripts_allowautoinstall	autoload/getscript.vim	/^ let g:GetLatestVimScripts_allowautoinstall= 1$/;"	v
 g:GetLatestVimScripts_mv	autoload/getscript.vim	/^   let g:GetLatestVimScripts_mv= "mv"$/;"	v
 g:GetLatestVimScripts_mv	autoload/getscript.vim	/^   let g:GetLatestVimScripts_mv= "ren"$/;"	v
@@ -2045,20 +2197,29 @@ s	plugin/surround.vim	/^            vmap  s    <Plug>Vsurround$/;"	m
 s	test/tlib.vim	/^    let s = printf('%sfoo%sbar%s', c, c, c)$/;"	v
 s:Bookmark	plugin/NERD_tree.vim	/^let s:Bookmark = {}$/;"	v
 s:C	autoload/genutils.vim	/^let s:C = 100$/;"	v
+s:CommandChoice	plugin/EasyGrep.vim	/^let s:CommandChoice = g:EasyGrepCommand < len(s:Commands) ? g:EasyGrepCommand : 0$/;"	v
+s:Commands	plugin/EasyGrep.vim	/^let s:Commands = [ "vimgrep", "grep" ]$/;"	v
+s:CurrentFileCurrentDirChecked	plugin/EasyGrep.vim	/^let s:CurrentFileCurrentDirChecked = 0$/;"	v
 s:D	autoload/genutils.vim	/^let s:D = 500$/;"	v
 s:DECHOMSG	plugin/Decho.vim	/^ let s:DECHOMSG = 2$/;"	v
 s:DECHOREM	plugin/Decho.vim	/^ let s:DECHOREM = 4$/;"	v
 s:DECHOTAB	plugin/Decho.vim	/^ let s:DECHOTAB = 5$/;"	v
 s:DECHOVAR	plugin/Decho.vim	/^ let s:DECHOVAR = 3$/;"	v
 s:DECHOWIN	plugin/Decho.vim	/^ let s:DECHOWIN = 1$/;"	v
+s:FilesToGrep	plugin/EasyGrep.vim	/^let s:FilesToGrep="*"$/;"	v
 s:I	autoload/genutils.vim	/^let s:I = 1$/;"	v
 s:L	autoload/genutils.vim	/^let s:L = 50$/;"	v
 s:M	autoload/genutils.vim	/^let s:M = 1000$/;"	v
 s:NERDTreeBufName	plugin/NERD_tree.vim	/^let s:NERDTreeBufName = 'NERD_tree_'$/;"	v
 s:NERDTreeSortStarIndex	plugin/NERD_tree.vim	/^let s:NERDTreeSortStarIndex = index(g:NERDTreeSortOrder, '*')$/;"	v
 s:NERD_tree_version	plugin/NERD_tree.vim	/^let s:NERD_tree_version = '3.1.1'$/;"	v
+s:OptionsExplorerOpen	plugin/EasyGrep.vim	/^let s:OptionsExplorerOpen = 0$/;"	v
 s:Path	plugin/NERD_tree.vim	/^let s:Path = {}$/;"	v
+s:SortChoice	plugin/EasyGrep.vim	/^let s:SortChoice = 0$/;"	v
+s:SortFunctions	plugin/EasyGrep.vim	/^let s:SortFunctions = [ "SortName", "SortNameReversed", "SortExtension", "SortExtensionReversed" ]$/;"	v
+s:SortOptions	plugin/EasyGrep.vim	/^let s:SortOptions = [ "Name", "Name Reversed", "Extension", "Extension Reversed" ]$/;"	v
 s:Tlist_Skip_Refresh	plugin/taglist.vim	/^let s:Tlist_Skip_Refresh = 0$/;"	v
+s:TrackedExt	plugin/EasyGrep.vim	/^let s:TrackedExt = "*"$/;"	v
 s:TreeDirNode	plugin/NERD_tree.vim	/^let s:TreeDirNode = copy(s:TreeFileNode)$/;"	v
 s:TreeFileNode	plugin/NERD_tree.vim	/^let s:TreeFileNode = {}$/;"	v
 s:UNPROTECTED_CHAR_PRFX	autoload/genutils.vim	/^let s:UNPROTECTED_CHAR_PRFX = '\\%(\\%([^\\\\]\\|^\\)\\\\\\%(\\\\\\\\\\)*\\)\\@<!' " Doesn't eat slashes.$/;"	v
@@ -2510,6 +2671,7 @@ u	autoload/repeat.vim	/^nnoremap <silent> u     :<C-U>call <SID>wrap('u',v:count
 uid	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> uid <C-R>=SqlIab_ReplaceConditionally('uid', 'UID')<CR>$/;"	m
 union	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> union <C-R>=SqlIab_ReplaceConditionally('union', 'UNION')<CR>$/;"	m
 unique	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> unique <C-R>=SqlIab_ReplaceConditionally('unique', 'UNIQUE')<CR>$/;"	m
+unique	plugin/EasyGrep.vim	/^function! s:unique(lst)$/;"	f
 unique	plugin/NERD_tree.vim	/^function! s:unique(list)$/;"	f
 unittestEdit	autoload/rails.vim	/^function! s:unittestEdit(bang,cmd,...)$/;"	f
 unittestList	autoload/rails.vim	/^function! s:unittestList(A,L,P)$/;"	f
