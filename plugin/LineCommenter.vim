@@ -17,17 +17,19 @@
 "   %:         matlab, tex, etc.
 " Install:     Just drop this script file into vim's plugin directory.
 
-nmap <silent>cc :call LineCommenter()<Esc>
+nmap <silent>,, :call LineCommenter()<Esc>
 
 
 function GetCommenter(StringKey)
   let s:DictCommenters = {'abap':['\*',''], 'abc':['%',''], 'ada':['--',''], 'apache':['#',''], 'asm':[';',''], 'aspvbs':['''',''], 'asterisk':[';',''], 'awk':['#',''], 'basic':['''',''], 'bcpl':['//',''], 'c':['//',''], 'cecil':['--',''], 'cfg':['#',''], 'clean':['//',''], 'cmake':['#',''], 'cobol':['\*',''], 'cpp':['//',''], 'cs':['//',''], 'css':['/\*','\*/'], 'cxx':['//',''], 'd':['//',''], 'debcontrol':['#',''], 'diff':['#',''], 'dosbatch':['rem ',''], 'dosini':[';',''], 'dtml':['<!--','-->'], 'dylan':['//',''], 'e':['#',''], 'eiffel':['--',''], 'erlang':['%',''], 'euphora':['--',''], 'forth':['\',''], 'fortran':['!',''], 'foxpro':['\*',''], 'fs':['//',''], 'groovy':['//',''], 'grub':['#',''], 'h':['//',''], 'haskell':['--',''], 'hpp':['//',''], 'html':['<!--','-->'], 'htmldjango':['<!--','-->'], 'htmlm4':['<!--','-->'], 'icon':['#',''], 'io':['#',''], 'j':['NB.',''], 'java':['//',''], 'javascript':['//',''], 'lex':['//',''], 'lhaskell':['%',''], 'lilo':['#',''], 'lisp':[';',''], 'logo':[';',''], 'lua':['--',''], 'make':['#',''], 'matlab':['%',''], 'maple':['#',''], 'merd':['#',''], 'mma':['(\*','\*)'], 'modula3':['(\*','\*)'], 'mumps':[';',''], 'natural':['\*',''], 'nemerle':['//',''], 'objc':['//',''], 'objcpp':['//',''], 'ocaml':['(\*','\*)'], 'oz':['%',''], 'pascal':['{','}'], 'perl':['#',''], 'php':['//',''], 'pike':['//',''], 'pliant':['#',''], 'plsql':['--',''], 'postscr':['%',''], 'prolog':['%',''], 'python':['#',''], 'rebol':[';',''], 'rexx':['/\*','\*/'], 'ruby':['#',''], 'sas':['/\*','\*/'], 'sather':['--',''], 'scala':['//',''], 'scheme':[';',''], 'sed':['#',''], 'sgml':['<!--','-->'], 'sh':['#',''], 'sieve':['#',''], 'simula':['--',''], 'sql':['--',''], 'st':['"','"'], 'tcl':['#',''], 'tex':['%',''], 'vb':['''',''], 'vhdl':['--',''], 'vim':['"',''], 'xf86conf':['#',''], 'xhtml':['<!--','-->'], 'xml':['<!--','-->'], 'xquery':['<!--','-->'], 'xsd':['<!--','-->'], 'yacc':['//',''], 'yaml':['#',''], 'ycp':['//',''], 'yorick':['//','']}
 
-  if has_key(s:DictCommenters, a:StringKey)
-    return s:DictCommenters[a:StringKey]
-  else
-    return ['', '']
-  endif
+  for key in split(a:StringKey, '\.')
+    if has_key(s:DictCommenters, key)
+      return s:DictCommenters[key]
+    endif
+  endfor
+
+  return ['', '']
 endfunction
 
 

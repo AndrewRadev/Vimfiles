@@ -29,6 +29,7 @@ set showbreak=+>
 set lazyredraw
 set t_Co=256
 set clipboard=unnamed
+set diffopt=filler,vertical
 
 " GUI options:
 set guifont=Andale\ Mono\ 14
@@ -131,23 +132,15 @@ endif
 nnoremap j gj
 nnoremap k gk
 
-" Run file through ghci
-command! Ghci !ghci %
-" Run file through swi-prolog
-command! Swi !pl -f % -g true
-" Compile cpp file as prog.exe
-command! Compile !g++ -o prog %
-
-" Dbext profile:
-source ~/.dbextrc
-
 " Dbext settings:
+let g:dbext_default_buffer_lines = 30
 let g:dbext_default_use_sep_result_buffer = 1
 
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
 let g:snips_author = "Andrew Radev"
 
+let g:ProjFile = '$HOME/.vimproj'
 " For testing purposes:
 let g:autotagVerbosityLevel = 2
 
@@ -157,3 +150,6 @@ let g:EasyGrepCommand           = 0 " vimgprep
 let g:EasyGrepRecursive         = 1 " -> True
 let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
 let g:EasyGrepExtraWarnings     = 1 " -> True
+
+" AutoTags:
+let g:autotagCtagsCmd = "ctags --sort=foldcase"

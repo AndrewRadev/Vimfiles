@@ -5,6 +5,10 @@ function! GetPath()
 
   let current_path = NERDTreeGetCurrentPath()
 
+  if empty( current_path )
+    return
+  endif
+
   " TODO: figure out the problem with strForOs(0)
   let result = current_path.drive . current_path.strAbs()
 "  Decho( result )

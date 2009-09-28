@@ -4,6 +4,8 @@ snippet php
 	?>
 snippet php=
 	<?php echo ${1:'debug'} ?>
+snippet debug
+	print_r($${1:'var'}); die;
 snippet ec
 	echo '${1:string}'${2};
 snippet inc

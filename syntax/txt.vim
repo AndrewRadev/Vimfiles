@@ -59,8 +59,8 @@ syn region txtCite      matchgroup=txtOperator  start="\(\s\|^\)\@<='"  end="'" 
 
 " Comments
 syn region txtComment   start="("       end=")"         contains=@txtContains,txtCite,@txtAlwaysContains
-syn region txtComments  matchgroup=txtComments start="\/\/"     end="$"         contains=@txtAlwaysContains     oneline
-syn region txtComments  start="\/\*"    end="\*\/"      contains=@txtAlwaysContains
+" syn region txtComments  matchgroup=txtComments start="\/\/"     end="$"         contains=@txtAlwaysContains     oneline
+" syn region txtComments  start="\/\*"    end="\*\/"      contains=@txtAlwaysContains
 
 syn region txtDelims    matchgroup=txtOperator start="<"        end=">"         contains=@txtContains,@txtAlwaysContains oneline
 syn region txtDelims    matchgroup=txtOperator start="{"        end="}"         contains=@txtContains,@txtAlwaysContains oneline
@@ -69,7 +69,7 @@ syn region txtDelims    matchgroup=txtOperator start="\["       end="\]"        
 syn match txtLink       "\(http\|https\|ftp\)\(\w\|[\-&=,?\:\.\/]\)*"   contains=txtOperator
 
 " Basic smileys
-syn match txtSmile      "[:;=8][\-]\?\([(\/\\)\[\]]\+\|[OoPpDdFf]\+\)"
+" syn match txtSmile      "[:;=8][\-]\?\([(\/\\)\[\]]\+\|[OoPpDdFf]\+\)"
 
 " Changelog tags: add, chg, rem, fix
 syn match txtChangelogs         "\<add\>\s*:" contains=txtOperator
