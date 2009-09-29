@@ -259,12 +259,14 @@ endif
 
 "--- Some alternatives for displaying directories	[id=utl_cfg_hdl_mt_text_directory] {
 if has("win32")
-  let g:utl_cfg_hdl_mt_text_directory__cmd = ':!start cmd /K cd /D "%P"'   " Dos box
+  let g:utl_cfg_hdl_mt_text_directory__cmd = ':!start explorer "%P"'   " Dos box
+else
+  let g:utl_cfg_hdl_mt_text_directory__cmd = ':!thunar %p &'
 endif
 let g:utl_cfg_hdl_mt_text_directory__vim = 'VIM'   " Vim builtin file explorer
 
 if !exists("g:utl_cfg_hdl_mt_text_directory")
-  let g:utl_cfg_hdl_mt_text_directory=utl_cfg_hdl_mt_text_directory__vim
+  let g:utl_cfg_hdl_mt_text_directory=utl_cfg_hdl_mt_text_directory__cmd
   "
   "	KDE
   "let g:utl_cfg_hdl_mt_text_directory = ':silent !konqueror %p &'

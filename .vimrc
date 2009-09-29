@@ -38,16 +38,7 @@ set guioptions=crb
 syntax enable
 filetype plugin indent on
 
-colo elflord
-
-" Align by columns:
-function! AlignSpace() range
-  AlignPush
-  AlignCtrl lp0P0
-  execute a:firstline.','.a:lastline.'Align \s\S'
-  AlignPop
-endfunction
-command! -range AlignSpace <line1>,<line2>call AlignSpace()
+colo custom_elflord
 
 " Define the toggling function
 function! MapToggle(key, opt)
@@ -75,9 +66,6 @@ autocmd FileType text setlocal textwidth=98
 autocmd FileType php set filetype=php.html.javascript
 autocmd FileType html set filetype=html.javascript
 autocmd FileType javascript set filetype=javascript.jquery
-
-" Faster addition of new node:
-autocmd FileType nerdtree nmap <buffer> a pma
 
 " Maximise on open on Win32:
 if has('win32')
@@ -108,7 +96,7 @@ nmap gl <C-w>l
 nmap J 4j
 nmap K 4k
 
-" Completion:
+" Completion remappings:
 inoremap <C-j> <C-n>
 " inoremap <C-k> <C-p>
 
@@ -116,17 +104,12 @@ inoremap <C-j> <C-n>
 nmap <Tab> >>
 nmap <S-Tab> <<
 
-" Using the clipboard on Linux:
-if !has('win32')
-  noremap d "+d
-  noremap dd "+dd
-  noremap D "+D
-  nnoremap p "+p
-  nnoremap P "+P
-  vnoremap y "+y
-  nnoremap y "+y
-  nnoremap yy "+yy
-endif
+" FindFile mappings:
+nmap <C-f> :NERDTreeClose<Space>\|<Space>FF<cr>
+imap <C-f> <Esc>:NERDTreeClose<Space>\|<Space>FF<cr>
+
+" Align by columns:
+command! -range AlignSpace <line1>,<line2>call lib#AlignSpace()
 
 " Move through visual lines:
 nnoremap j gj
@@ -134,13 +117,18 @@ nnoremap k gk
 
 " Dbext settings:
 let g:dbext_default_buffer_lines = 30
-let g:dbext_default_use_sep_result_buffer = 1
 
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
 let g:snips_author = "Andrew Radev"
 
 let g:ProjFile = '$HOME/.vimproj'
+
+" Some specific files for quick acess:
+command! Vimproj :exe "edit " . g:ProjFile 
+command! EditClipboard edit `=@*`
+command! RefreshTags !ctags -R .
+
 " For testing purposes:
 let g:autotagVerbosityLevel = 2
 
@@ -151,5 +139,15 @@ let g:EasyGrepRecursive         = 1 " -> True
 let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
 let g:EasyGrepExtraWarnings     = 1 " -> True
 
-" AutoTags:
+" AutoTags options:
 let g:autotagCtagsCmd = "ctags --sort=foldcase"
+
+" FindFile options:
+let g:FindFileIgnore = [
+      \ '*.o', 
+      \ '*.pyc',
+      \ '*/tmp/*',
+      \ '*.hi',
+      \ '*/.svn/*',
+      \ '.git/*'
+      \ ]

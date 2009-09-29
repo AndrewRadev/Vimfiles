@@ -11,7 +11,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "elflord-custom"
+let g:colors_name = "custom_elflord"
 
 hi Comment      term=bold      ctermfg=DarkCyan    guifg=#80a0ff gui=italic
 hi Constant     term=underline ctermfg=Magenta     guifg=Magenta
