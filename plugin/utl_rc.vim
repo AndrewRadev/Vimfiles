@@ -70,7 +70,7 @@ if !exists("g:utl_cfg_hdl_scm_http_system")
     "	    Proposed for Ubuntu/Debian by Jeremy Cantrell
     "	    to use xdg-open program
     "	    'silent !xdg-open %u'  <- does this work?
-    let g:utl_cfg_hdl_scm_http_system = "silent call system('xdg-open %u &') | redraw!"
+    let g:utl_cfg_hdl_scm_http_system = "silent call system('xdg-open %u & &> /dev/null') | redraw!"
     "
     " 2nd best solution: explicitly configured browser:
     "

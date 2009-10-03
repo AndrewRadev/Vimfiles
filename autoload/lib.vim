@@ -39,4 +39,3 @@ function! lib#AlignSpace() range
   execute a:firstline.','.a:lastline.'Align \s\S'
   AlignPop
 endfunction
-

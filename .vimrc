@@ -53,19 +53,16 @@ MapToggle sh hlsearch
 MapToggle sw wrap
 
 " When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-" Also don't do it when the mark is in the first line, that is the default
-" position when opening a file.
 autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") |
 	\   exe "normal! g`\"" |
 	\ endif
 
 autocmd FileType text setlocal textwidth=98
-autocmd FileType php set filetype=php.html.javascript
-autocmd FileType html set filetype=html.javascript
-autocmd FileType javascript set filetype=javascript.jquery
+autocmd BufEnter *.php set filetype=php.html.javascript
+autocmd BufEnter *.html set filetype=html.javascript
+autocmd BufEnter *.js set filetype=javascript.jquery
+autocmd BufEnter *.hs compiler ghc
 
 " Maximise on open on Win32:
 if has('win32')
@@ -122,12 +119,14 @@ let g:dbext_default_buffer_lines = 30
 let g:snippets_dir = "~/.vim/custom_snippets/"
 let g:snips_author = "Andrew Radev"
 
+" Proj settings:
 let g:ProjFile = '$HOME/.vimproj'
+let g:ProjSplitMethod = 'edit'
 
 " Some specific files for quick acess:
-command! Vimproj :exe "edit " . g:ProjFile 
-command! EditClipboard edit `=@*`
-command! RefreshTags !ctags -R .
+command! Eclipboard edit `=@*`
+
+command! RefreshTags !ctags -R --sort=foldcase .
 
 " For testing purposes:
 let g:autotagVerbosityLevel = 2
@@ -151,3 +150,31 @@ let g:FindFileIgnore = [
       \ '*/.svn/*',
       \ '.git/*'
       \ ]
+
+" Utl media handlers:
+if has('win32')
+  let g:utl_cfg_hdl_mt_generic = 'silent !cmd /q /c start "dummy title" "%P"'
+  let g:utl_cfg_hdl_mt_text_directory = ':!start explorer "%P"'
+else
+  " Generic handler doesn't work without a desktop...
+  " Open directories:
+  let g:utl_cfg_hdl_mt_text_directory = ':!thunar %p &> /dev/null &'
+  " Applications:
+  let g:utl_cfg_hdl_mt_application_pdf     = ':!evince  %p &> /dev/null &'
+  let g:utl_cfg_hdl_mt_application_zip     = ':!squeeze %p &> /dev/null &'
+  let g:utl_cfg_hdl_mt_application_x_gzip  = ':!squeeze %p &> /dev/null &'
+  let g:utl_cfg_hdl_mt_application_x_bzip2 = ':!squeeze %p &> /dev/null &'
+  let g:utl_cfg_hdl_mt_application_excel   = ':!soffice %p &> /dev/null &'
+  " Images:
+  let g:utl_cfg_hdl_mt_image_generic = ':!gliv %p &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_png     = ':!gliv %p &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_jpeg    = ':!gliv %p &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_gif     = ':!gliv %p &> /dev/null &'
+  " Video:
+  let g:utl_cfg_hdl_mt_video_x_msvideo = ':!smplayer %p &> /dev/null &'
+endif
+
+" Settings for Haskell mode:
+let g:haddock_browser = "firefox"
+let g:haddock_browser_callformat = '%s file://%s &> /dev/null &'
+let g:naddock_docdir = '/usr/share/doc/ghc/libraries/html/'

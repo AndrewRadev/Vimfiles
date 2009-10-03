@@ -1,52 +1,52 @@
 *proj.txt*  Simple plugin for projects
             For Vim version 7.x
-	        Depends on NERDTree
 
                                By Thomas Allen
-                            tmallen@703designs.com
+                             thomasmallen@gmail.com
 
-                                                          *proj* *proj-plugin*
+                                                   *proj* *proj-plugin* *Proj*
 
-I'd like to believe that using this plugin is fairly straightforward. First,
-create a file at ~/.vimproj. If you'd like to use a different location, add
-the following to your .vimrc (or wherever you configure Vim):
+Proj lets you save settings for your project in a simple file.
 
-	let g:ProjFile = '/path/to/your/project.file'
+                                         *Proj-commands* *ProjFile* *ProjInfo* 
+                                          *ProjRefresh* *ProjReload* *ProjVim*
+Commands:
+    :Proj <project> - Open project named <project> (tab-completes)
+    :ProjFile - Open the project file in a split
+    :ProjInfo - Show all of the current project's settings in the status line
+    :ProjNotes - Open the project note file in a split
+    :ProjRefresh - Reload the current project
+    :ProjReload - Reload the project file
+    :ProjVim - Open the project's vim settings file in a split
 
-This file uses a regular INI format and doesn't support comments. Here is a
-sample .vimproj file:
 
-	[review]
-	path = /var/www/rails_apps/review_app
-	vim = /home/thomas/.vim-review
+                                                                 *Proj-syntax*
+File Syntax:
+    DOS .ini
 
-	[wordpress]
-	path = /var/www/apache2/wordpress
+                                                               *Proj-settings*
+Available Settings:
+    browser - A custom command for the filebrowser
+    notes - Path to a text file with project notes
+    path - Path to the project root directory
+    vim - Path to a file with vim commands
 
-	[vim]
-	path = /home/thomas/.vim
-
-	[proj]
-	path = /home/thomas/.vim/plugin
+                                                                 *Proj-sample*
+Sample Project File:
+    ; This is a comment
+    [project]
+    path = /path/to/project
+    vim = /path/to/settings_file.vim
 
     [path-with-spaces]
-    path = /home/thomas/Some\ Folder
+    path = /path/to/my\ project ; Escape spaces with \
 
-Right now, Proj only supports two options: "path" and "vim". "path" is the
-project's root directory. "vim" is the location of a file with some
-modifications specific to the project. The configuration from the "vim" file
-is not erased when another project is loaded, so use with care if you're doing
-anything fancy.
-
-To select a project, use the "Proj" command. To open the "review" project in
-the sample .vimproj file:
-
-	:Proj review
-
-Project names tab-complete. Oh, and if you use a file browser other than 
-NERDTree, it should work with Proj. To specify one, add this to your .vimrc:
-
-	let g:ProjFileBrowser = 'filebrowser-command'
-
-This command can be pretty much anything, as it's just passed to "exec".
+                                                         *Proj-global-options*
+Global Options:
+    g:ProjFileBrowser (default: 'NERDTree') - The filebrowser command. Set to 
+        'off' to not open a filebrowser.
+    g:ProjFile (default: '~/.vimproj') - Path to the project file.  
+    g:ProjNoteFile (default: 'notes.txt') - Path to the project note file
+    g:ProjSplitMethod (default: 'vsp') - Command to use when opening a file 
+        with a Proj command such as ProjFile.
 
