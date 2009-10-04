@@ -19,10 +19,8 @@ ScriptID SourceID Filename
 52   8279  calendar.vim
 2018 7939  ttags.vim
 2719 11460 proj.tbz
-1730 10172 07tAssert.vim
 2158 8429  diffchanges.vim
 2428 9489  LineCommenter.vim
 1899 7528  FindFile.vim
 1343 11095 autotag.vim
 2438 10265 EasyGrep.zip
-159  3640  minibufexpl.vim

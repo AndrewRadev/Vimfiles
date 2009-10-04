@@ -72,7 +72,7 @@ endif
 let g:haskell_functions = "ghc"
 
 " avoid hit-enter prompts
-set cmdheight=3
+"set cmdheight=3
 
 " edit static GHC options
 " TODO: add completion for options/packages?

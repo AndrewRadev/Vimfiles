@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: September 29, 2009
+" Last Modified: October 04, 2009
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -38,4 +38,10 @@ function! lib#AlignSpace() range
   AlignCtrl lp0P0
   execute a:firstline.','.a:lastline.'Align \s\S'
   AlignPop
+endfunction
+
+" Function to toggle between settings:
+function! lib#MapToggle(key, opt)
+  let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
+  exec 'nnoremap '.a:key.' '.cmd
 endfunction

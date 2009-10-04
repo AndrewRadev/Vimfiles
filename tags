@@ -54,6 +54,15 @@
 <Leader>vR	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>vR <plug>EgMapReplaceSelection_R$/;"	m
 <Leader>vV	plugin/EasyGrep.vim	/^    map <silent> <Leader>vV <plug>EgMapGrepCurrentWord_V$/;"	m
 <Leader>vV	plugin/EasyGrep.vim	/^    vmap <silent> <Leader>vV <plug>EgMapGrepSelection_V$/;"	m
+<LocalLeader>ct	compiler/ghc.vim	/^map <LocalLeader>ct :call GHC_CreateTagfile()<cr>$/;"	m
+<LocalLeader>ie	compiler/ghc.vim	/^map <LocalLeader>ie :call GHC_MkImportsExplicit()<cr>$/;"	m
+<LocalLeader>lang	compiler/ghc.vim	/^    map <LocalLeader>lang :emenu ]LANGUAGES_GHC.$/;"	m
+<LocalLeader>lang	compiler/ghc.vim	/^    map <LocalLeader>lang :popup ]LANGUAGES_GHC<cr>$/;"	m
+<LocalLeader>opt	compiler/ghc.vim	/^  map <LocalLeader>opt :emenu ]OPTIONS_GHC.$/;"	m
+<LocalLeader>opt	compiler/ghc.vim	/^  map <LocalLeader>opt :popup ]OPTIONS_GHC<cr>$/;"	m
+<LocalLeader>si	compiler/ghc.vim	/^map <LocalLeader>si :call GHC_ShowInfo()<cr>$/;"	m
+<LocalLeader>t	compiler/ghc.vim	/^map <LocalLeader>t :call GHC_ShowType(0)<cr>$/;"	m
+<LocalLeader>T	compiler/ghc.vim	/^map <LocalLeader>T :call GHC_ShowType(1)<cr>$/;"	m
 <Plug>AlignMapsWrapperEnd	:call	plugin/AlignMapsPlugin.vim	/^nmap <silent> <script> <Plug>AlignMapsWrapperEnd	:call AlignMaps#WrapperEnd()<CR>:set nolz<CR>$/;"	m
 <Plug>AlignMapsWrapperStart	:<c-u>set	plugin/AlignMapsPlugin.vim	/^vmap <silent> <script> <Plug>AlignMapsWrapperStart	:<c-u>set lz<CR>:call AlignMaps#WrapperStart(1)<CR>$/;"	m
 <Plug>AlignMapsWrapperStart	:set	plugin/AlignMapsPlugin.vim	/^nmap <silent> <script> <Plug>AlignMapsWrapperStart	:set lz<CR>:call AlignMaps#WrapperStart(0)<CR>$/;"	m
@@ -253,6 +262,9 @@ b:current_syntax	syntax/jquery.vim	/^let b:current_syntax = 'javascript.jquery'$
 b:current_syntax	syntax/txt.vim	/^let b:current_syntax = "txt"$/;"	v
 b:did_indent	indent/php.vim	/^let b:did_indent = 1$/;"	v
 b:did_sql_iabbr	ftplugin/sql_iabbr.vim	/^let b:did_sql_iabbr = 1$/;"	v
+b:ghc_staticoptions	compiler/ghc.vim	/^  let b:ghc_staticoptions = ''$/;"	v
+b:ghc_types	compiler/ghc.vim	/^  let b:ghc_types = {}$/;"	v
+b:my_changedtick	compiler/ghc.vim	/^  let b:my_changedtick = b:changedtick$/;"	v
 b:php_noindent_switch	indent/php.vim	/^   let b:php_noindent_switch = 1$/;"	v
 BackToForwardSlash	plugin/EasyGrep.vim	/^function! s:BackToForwardSlash(arg)$/;"	f
 BackwardsSnippet	plugin/snipMate.vim	/^fun! BackwardsSnippet()$/;"	f
@@ -413,6 +425,7 @@ conque#suspend	autoload/conque.vim	/^function! conque#suspend()"{{{$/;"	f
 conque#write	autoload/conque.vim	/^function! conque#write(add_newline)"{{{$/;"	f
 ConqueSplit	plugin/conque.vim	/^command! -nargs=+ -complete=shellcmd ConqueSplit call conque#open(<q-args>, ['split'])$/;"	c
 ConqueVSplit	plugin/conque.vim	/^command! -nargs=+ -complete=shellcmd ConqueVSplit call conque#open(<q-args>, ['vsplit'])$/;"	c
+Console	ftplugin/haskell.vim	/^command! -buffer Console !ghci % $/;"	c
 constraints	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> constraints <C-R>=SqlIab_ReplaceConditionally('constraints', 'CONSTRAINTS')<CR>$/;"	m
 controller	autoload/rails.vim	/^function! s:controller(...)$/;"	f
 controllerEdit	autoload/rails.vim	/^function! s:controllerEdit(bang,cmd,...)$/;"	f
@@ -437,6 +450,7 @@ CreateOptions	plugin/EasyGrep.vim	/^function! s:CreateOptions()$/;"	f
 createTreeWin	plugin/NERD_tree.vim	/^function! s:createTreeWin()$/;"	f
 cs	plugin/surround.vim	/^    nmap          cs   <Plug>Csurround$/;"	m
 current	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> current <C-R>=SqlIab_ReplaceConditionally('current', 'CURRENT')<CR>$/;"	m
+current_compiler	compiler/ghc.vim	/^let current_compiler = "ghc"$/;"	v
 current_compiler	compiler/php.vim	/^let current_compiler = "php"$/;"	v
 current_compiler	compiler/tidy.vim	/^let current_compiler = "tidy"$/;"	v
 cursor	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> cursor <C-R>=SqlIab_ReplaceConditionally('cursor', 'CURSOR')<CR>$/;"	m
@@ -993,6 +1007,8 @@ g:getscript_shq	autoload/getscript.vim	/^  let g:getscript_shq= "'"$/;"	v
 g:getscript_shq	autoload/getscript.vim	/^  let g:getscript_shq= &shq$/;"	v
 g:getscript_shq	autoload/getscript.vim	/^  let g:getscript_shq= &sxq$/;"	v
 g:getscript_shq	autoload/getscript.vim	/^ let g:getscript_shq= g:netrw_shq$/;"	v
+g:ghc	compiler/ghc.vim	/^    let g:ghc = 'ghc'$/;"	v
+g:haskell_functions	compiler/ghc.vim	/^let g:haskell_functions = "ghc"$/;"	v
 g:last_action_line	plugin/symfony.vim	/^let g:last_action_line = []$/;"	v
 g:last_template_line	plugin/symfony.vim	/^let g:last_template_line = []$/;"	v
 g:loaded_Align	autoload/Align.vim	/^let g:loaded_Align = "v35"$/;"	v
@@ -1023,12 +1039,25 @@ g:repeat_tick	autoload/repeat.vim	/^let g:repeat_tick = -1$/;"	v
 g:sf_app_name	plugin/symfony.vim	/^let g:sf_app_name      = ""$/;"	v
 g:sf_module_name	plugin/symfony.vim	/^let g:sf_module_name   = "" $/;"	v
 g:ST_WIN_CMD	autoload/genutils.vim	/^let g:ST_WIN_CMD = 0 | let g:ST_WIN_SH = 1 | let g:ST_UNIX = 2$/;"	v
+g:utl_cfg_hdl_mt_application_excel	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_application_excel   = ':!soffice %p &> \/dev\/null &'$/;"	v
+g:utl_cfg_hdl_mt_application_pdf	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_application_pdf     = ':!evince  %p &> \/dev\/null &'$/;"	v
+g:utl_cfg_hdl_mt_application_x_bzip2	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_application_x_bzip2 = ':!squeeze %p &> \/dev\/null &'$/;"	v
+g:utl_cfg_hdl_mt_application_x_gzip	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_application_x_gzip  = ':!squeeze %p &> \/dev\/null &'$/;"	v
+g:utl_cfg_hdl_mt_application_zip	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_application_zip     = ':!squeeze %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_mt_generic	plugin/utl_rc.vim	/^    let g:utl_cfg_hdl_mt_generic = 'silent !cmd \/q \/c start "dummy title" "%P"'$/;"	v
 g:utl_cfg_hdl_mt_generic	plugin/utl_rc.vim	/^    let g:utl_cfg_hdl_mt_generic = 'silent !xdg-open %p &'$/;"	v
+g:utl_cfg_hdl_mt_generic	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_generic = 'silent !cmd \/q \/c start "dummy title" "%P"'$/;"	v
+g:utl_cfg_hdl_mt_image_generic	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_image_generic = ':!gliv %p &> \/dev\/null &'$/;"	v
+g:utl_cfg_hdl_mt_image_gif	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_image_gif     = ':!gliv %p &> \/dev\/null &'$/;"	v
+g:utl_cfg_hdl_mt_image_jpeg	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_image_jpeg    = ':!gliv %p &> \/dev\/null &'$/;"	v
+g:utl_cfg_hdl_mt_image_png	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_image_png     = ':!gliv %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_mt_text_directory	plugin/utl_rc.vim	/^  let g:utl_cfg_hdl_mt_text_directory=utl_cfg_hdl_mt_text_directory__cmd$/;"	v
+g:utl_cfg_hdl_mt_text_directory	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_text_directory = ':!start explorer "%P"'$/;"	v
+g:utl_cfg_hdl_mt_text_directory	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_text_directory = ':!thunar %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_mt_text_directory__cmd	plugin/utl_rc.vim	/^  let g:utl_cfg_hdl_mt_text_directory__cmd = ':!start explorer "%P"'   " Dos box$/;"	v
 g:utl_cfg_hdl_mt_text_directory__cmd	plugin/utl_rc.vim	/^  let g:utl_cfg_hdl_mt_text_directory__cmd = ':!thunar %p &'$/;"	v
 g:utl_cfg_hdl_mt_text_directory__vim	plugin/utl_rc.vim	/^let g:utl_cfg_hdl_mt_text_directory__vim = 'VIM'   " Vim builtin file explorer$/;"	v
+g:utl_cfg_hdl_mt_video_x_msvideo	startup/utl.vim	/^  let g:utl_cfg_hdl_mt_video_x_msvideo = ':!smplayer %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_scm_http	plugin/utl_rc.vim	/^    let g:utl_cfg_hdl_scm_http=g:utl_cfg_hdl_scm_http_system$/;"	v
 g:utl_cfg_hdl_scm_http_system	plugin/utl_rc.vim	/^    let g:utl_cfg_hdl_scm_http_system = "silent call system('xdg-open %u & &> \/dev\/null') | redraw!"$/;"	v
 g:utl_cfg_hdl_scm_http_system	plugin/utl_rc.vim	/^    let g:utl_cfg_hdl_scm_http_system = 'silent !cmd \/q \/c start "dummy title" "%u"'$/;"	v
@@ -1194,6 +1223,28 @@ getTreeWinNum	plugin/NERD_tree.vim	/^function! s:getTreeWinNum()$/;"	f
 GetVisibleBuffers	plugin/EasyGrep.vim	/^function! s:GetVisibleBuffers()$/;"	f
 GetWinDim	autoload/genutils.vim	/^function! s:GetWinDim(dir, win)$/;"	f
 get_command	autoload/conque.vim	/^function! s:get_command()"{{{$/;"	f
+GHCi	compiler/ghc.vim	/^command! -nargs=1 GHCi redraw | echo system(g:ghc. ' ' . b:ghc_staticoptions .' '.expand("%").' -e "'.escape(<f-args>,'"').'"')$/;"	c
+GHCReload	compiler/ghc.vim	/^command! GHCReload call GHC_BrowseAll()$/;"	c
+GHCStaticOptions	compiler/ghc.vim	/^command! GHCStaticOptions call GHC_StaticOptions()$/;"	c
+GHC_BrowseAll	compiler/ghc.vim	/^function! GHC_BrowseAll()$/;"	f
+GHC_BrowseBangStar	compiler/ghc.vim	/^function! GHC_BrowseBangStar(module)$/;"	f
+GHC_BrowseMultiple	compiler/ghc.vim	/^function! GHC_BrowseMultiple(imports,modules)$/;"	f
+GHC_CompleteImports	compiler/ghc.vim	/^function! GHC_CompleteImports(findstart, base)$/;"	f
+GHC_CountErrors	compiler/ghc.vim	/^function! GHC_CountErrors()$/;"	f
+GHC_CreateTagfile	compiler/ghc.vim	/^function! GHC_CreateTagfile()$/;"	f
+GHC_HaveTypes	compiler/ghc.vim	/^function! GHC_HaveTypes()$/;"	f
+GHC_Info	compiler/ghc.vim	/^function! GHC_Info(what)$/;"	f
+GHC_MkImportsExplicit	compiler/ghc.vim	/^function! GHC_MkImportsExplicit()$/;"	f
+GHC_NameCurrent	compiler/ghc.vim	/^function! GHC_NameCurrent()$/;"	f
+GHC_Process	compiler/ghc.vim	/^function! GHC_Process(imports,output)$/;"	f
+GHC_ProcessBang	compiler/ghc.vim	/^function! GHC_ProcessBang(module,output)$/;"	f
+GHC_ShowInfo	compiler/ghc.vim	/^function! GHC_ShowInfo()$/;"	f
+GHC_ShowType	compiler/ghc.vim	/^function! GHC_ShowType(addTypeDecl)$/;"	f
+GHC_StaticOptions	compiler/ghc.vim	/^function! GHC_StaticOptions()$/;"	f
+ghc_supported_languages	compiler/ghc.vim	/^  let ghc_supported_languages = split(system(g:ghc . ' --supported-languages'),'\\n')$/;"	v
+GHC_TypeBalloon	compiler/ghc.vim	/^  function! GHC_TypeBalloon()$/;"	f
+ghc_version	compiler/ghc.vim	/^let ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\\n','','')$/;"	v
+GHC_VersionGE	compiler/ghc.vim	/^function! GHC_VersionGE(target)$/;"	f
 gm	ftplugin/php.vim	/^nmap <buffer> gm :exe ":Utl ol http:\/\/php.net\/manual-lookup.php?pattern=" . expand("<cword>")<cr>$/;"	m
 GotoWinNum	autoload/ZoomWin.vim	/^fun! s:GotoWinNum(winnum)$/;"	f
 GoWinbufnr	plugin/cecutil.vim	/^fun! GoWinbufnr(bufnum)$/;"	f
@@ -1210,6 +1261,7 @@ group	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> group <C-R>=SqlIab_Re
 gsub	autoload/rails.vim	/^function! s:gsub(str,pat,rep)$/;"	f
 gsub	plugin/rails.vim	/^function! s:gsub(str,pat,rep)$/;"	f
 gu	ftplugin/nerdtree.vim	/^nmap <buffer> gu :exe printf("Utl ol %s", GetPath())<cr><cr>$/;"	m
+gu	startup/utl.vim	/^nmap gu :Utl<cr>$/;"	m
 GUDebugEcho	autoload/genutils.vim	/^command! -complete=file -nargs=* GUDebugEcho :echo <q-args>$/;"	c
 handleMiddleMouse	plugin/NERD_tree.vim	/^function! s:handleMiddleMouse()$/;"	f
 HasActivatedItem	plugin/EasyGrep.vim	/^function! s:HasActivatedItem()$/;"	f
@@ -1770,6 +1822,7 @@ level	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> level <C-R>=SqlIab_Re
 lib#AlignSpace	autoload/lib.vim	/^function! lib#AlignSpace() range$/;"	f
 lib#CursorIsInsidePhpMarkup	autoload/lib.vim	/^function! lib#CursorIsInsidePhpMarkup()$/;"	f
 lib#GetNERDTreePath	autoload/lib.vim	/^function! lib#GetNERDTreePath()$/;"	f
+lib#MapToggle	autoload/lib.vim	/^function! lib#MapToggle(key, opt)$/;"	f
 libEdit	autoload/rails.vim	/^function! s:libEdit(bang,cmd,...)$/;"	f
 libList	autoload/rails.vim	/^function! s:libList(A,L,P)$/;"	f
 line	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> line <C-R>=SqlIab_ReplaceConditionally('line', 'LINE')<CR>$/;"	m
@@ -1837,6 +1890,7 @@ MakeQFL	autoload/ttags.vim	/^function! s:MakeQFL(tags) "{{{3$/;"	f
 MakeSnip	plugin/snipMate.vim	/^fun! MakeSnip(scope, trigger, content, ...)$/;"	f
 MakeSpace	autoload/Align.vim	/^fun! s:MakeSpace(spacecnt)$/;"	f
 makewithruby	autoload/rails.vim	/^function! s:makewithruby(arg,bang,...)$/;"	f
+maplocalleader	compiler/ghc.vim	/^  let maplocalleader='_'$/;"	v
 MarkErrors	plugin/cuteErrorMarker.vim	/^command! MarkErrors call MarkErrors()$/;"	c
 MarkErrors	plugin/cuteErrorMarker.vim	/^fun! MarkErrors() "{{{$/;"	f
 Match	autoload/genutils.vim	/^function! s:Match(expr, pat, start)$/;"	f
@@ -1908,11 +1962,14 @@ openExplorer	plugin/NERD_tree.vim	/^function! s:openExplorer()$/;"	f
 openInNewTab	plugin/NERD_tree.vim	/^function! s:openInNewTab(stayCurrentTab)$/;"	f
 openNodeRecursively	plugin/NERD_tree.vim	/^function! s:openNodeRecursively()$/;"	f
 OpenOptionsExplorer	plugin/EasyGrep.vim	/^function! s:OpenOptionsExplorer()$/;"	f
+OpenURL	startup/utl.vim	/^command! -bar -nargs=1 OpenURL :Utl openLink <args>$/;"	c
 operator	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> operator <C-R>=SqlIab_ReplaceConditionally('operator', 'OPERATOR')<CR>$/;"	m
 opfunc	plugin/surround.vim	/^function! s:opfunc(type,...) " {{{1$/;"	f
 opfunc2	plugin/surround.vim	/^function! s:opfunc2(arg)$/;"	f
 option	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> option <C-R>=SqlIab_ReplaceConditionally('option', 'OPTION')<CR>$/;"	m
 opts	autoload/rails.vim	/^function! s:opts()$/;"	f
+opts	compiler/ghc.vim	/^  let opts = filter(split(substitute(system(g:ghc . ' -v0 --interactive', ':set'), '  ', '','g'), '\\n'), 'v:val =~ "-f"')$/;"	v
+opts	compiler/ghc.vim	/^  let opts = ["-fglasgow-exts","-fallow-undecidable-instances","-fallow-overlapping-instances","-fno-monomorphism-restriction","-fno-mono-pat-binds","-fno-cse","-fbang-patterns","-funbox-strict-fields"]$/;"	v
 or	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> or <C-R>=SqlIab_ReplaceConditionally('or', 'OR')<CR>$/;"	m
 order	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> order <C-R>=SqlIab_ReplaceConditionally('order', 'ORDER')<CR>$/;"	m
 out	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> out <C-R>=SqlIab_ReplaceConditionally('out', 'OUT')<CR>$/;"	m
@@ -1960,8 +2017,8 @@ pathsplit	autoload/rails.vim	/^function! s:pathsplit(path) abort$/;"	f
 pctfree	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> pctfree <C-R>=SqlIab_ReplaceConditionally('pctfree', 'PCTFREE')<CR>$/;"	m
 perdirvimrc_loaded	additional_scripts/perdirvimrc.vim	/^let perdirvimrc_loaded = 1$/;"	v
 PersistentVarName	autoload/genutils.vim	/^function! s:PersistentVarName(pluginName, persistentVar)$/;"	f
-php_baselib	ftplugin/php.vim	/^let php_baselib = 1$/;"	v
-php_folding	ftplugin/php.vim	/^let php_folding = 1$/;"	v
+php_baselib	ftplugin/php.vim	/^let php_baselib       = 1$/;"	v
+php_folding	ftplugin/php.vim	/^let php_folding       = 1$/;"	v
 php_htmlInStrings	ftplugin/php.vim	/^let php_htmlInStrings = 1$/;"	v
 php_noindent_switch	indent/php.vim	/^let php_noindent_switch = 0    " set this to '1' to not try to indent switch\/case statements$/;"	v
 PlaceErrorMarkersHook	plugin/cuteErrorMarker.vim	/^fun! PlaceErrorMarkersHook() "{{{$/;"	f
@@ -2251,6 +2308,7 @@ s:filename	additional_scripts/perdirvimrc.vim	/^    let s:filename = join(s:subd
 s:FilesToGrep	plugin/EasyGrep.vim	/^let s:FilesToGrep="*"$/;"	v
 s:firstmenu	plugin/AlignMapsPlugin.vim	/^ let s:firstmenu= 1$/;"	v
 s:format	autoload/tlib/progressbar.vim	/^let s:format = []$/;"	v
+s:ghc_templates	compiler/ghc.vim	/^let s:ghc_templates = ["module _ () where","class _ where","class _ => _ where","instance _ where","instance _ => _ where","type family _","type instance _ = ","data _ = ","newtype _ = ","type _ = "]$/;"	v
 s:I	autoload/genutils.vim	/^let s:I = 1$/;"	v
 s:id_counter	autoload/tlib/Object.vim	/^let s:id_counter = 0$/;"	v
 s:id_hlname	syntax/Decho.vim	/^  let s:id_hlname= hlID("Warning")$/;"	v
@@ -2324,6 +2382,7 @@ s:save_cpo	plugin/ttags.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	plugin/utl.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	plugin/utl_scm.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	plugin/utl_uri.vim	/^let s:save_cpo = &cpo$/;"	v
+s:scriptname	compiler/ghc.vim	/^let s:scriptname = "ghc.vim"$/;"	v
 s:selection	autoload/genutils.vim	/^let s:selection = -1$/;"	v
 s:self_file	plugin/07tassert.vim	/^        let s:self_file = escape(expand('<sfile>:p'), " \\t\\n*?[{`$\\\\%#'\\"|!<")$/;"	v
 s:self_file	plugin/07tassert.vim	/^        let s:self_file = fnameescape(expand('<sfile>:p'))$/;"	v
