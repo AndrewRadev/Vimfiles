@@ -39,7 +39,7 @@ snippet $_ SESSION['...']
 snippet /*
 	/**
 	 * ${1}
-	 **/
+	 */
 # Class - post doc
 snippet doc_cp
 	/**
@@ -47,21 +47,21 @@ snippet doc_cp
 	 *
 	 * @package ${2:default}
 	 * @author ${3:`g:snips_author`}
-	**/${4}
+	 */${4}
 # Class Variable - post doc
 snippet doc_vp
 	/**
 	 * ${1:undocumented class variable}
 	 *
 	 * @var ${2:string}
-	 **/${3}
+	 */${3}
 # Class Variable
 snippet doc_v
 	/**
 	 * ${3:undocumented class variable}
 	 *
 	 * @var ${4:string}
-	 **/
+	 */
 	${1:var} $${2};${5}
 # Class
 snippet doc_c
@@ -70,7 +70,7 @@ snippet doc_c
 	 *
 	 * @packaged ${4:default}
 	 * @author ${5:`g:snips_author`}
-	 **/
+	 */
 	${1:}class ${2:}
 	{${6}
 	} // END $1class $2
@@ -78,12 +78,12 @@ snippet doc_c
 snippet doc_dp
 	/**
 	 * ${1:undocumented constant}
-	 **/${2}
+	 */${2}
 # Constant Definition
 snippet doc_d
 	/**
 	 * ${3:undocumented constant}
-	 **/
+	 */
 	define(${1}, ${2});${4}
 # Function - post doc
 snippet doc_fp
@@ -92,7 +92,7 @@ snippet doc_fp
 	 *
 	 * @return ${2:void}
 	 * @author ${3:`g:snips_author`}
-	 **/${4}
+	 */${4}
 # Function signature
 snippet doc_s
 	/**
@@ -100,7 +100,7 @@ snippet doc_s
 	 *
 	 * @return ${5:void}
 	 * @author ${6:`g:snips_author`}
-	 **/
+	 */
 	${1}function ${2}(${3});${7}
 # Function
 snippet doc_f
@@ -109,7 +109,7 @@ snippet doc_f
 	 *
 	 * @return ${5:void}
 	 * @author ${6:`g:snips_author`}
-	 **/
+	 */
 	${1}function ${2}(${3})
 	{${7}
 	}
@@ -122,7 +122,7 @@ snippet doc_h
 	 * @version ${3:$Id$}
 	 * @copyright ${4:$2}, `strftime('%d %B, %Y')`
 	 * @package ${5:default}
-	 **/
+	 */
 	
 	/**
 	 * Define DocBlock
@@ -134,7 +134,7 @@ snippet doc_i
 	 *
 	 * @package ${3:default}
 	 * @author ${4:`g:snips_author`}
-	 **/
+	 */
 	interface ${1:}
 	{${5}
 	} // END interface $1
@@ -146,8 +146,7 @@ snippet class
 	class ${2:ClassName}
 	{
 		${3}
-		function ${4:__construct}(${5:argument})
-		{
+		function ${4:__construct}(${5:argument}) {
 			${6:// code...}
 		}
 	}
@@ -223,3 +222,9 @@ snippet fun
 # $... = array (...)
 snippet array
 	$${1:arrayName} = array('${2}' => ${3});${4}
+snippet =>
+	'${1:key}' => '${1:value}'${3}
+snippet * getter
+	$${1:this}->get`lib#Capitalize('${*}')`()${2}
+snippet * setter
+	$${1:this}->set`lib#Capitalize('${*}')`(${2:'value'})${3}

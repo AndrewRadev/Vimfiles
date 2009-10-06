@@ -1,8 +1,8 @@
 " Vim syntax file
 " Language:    jQuery
 " Maintainer:  Bruno Michel <brmichel@free.fr>
-" Last Change: Sep 20, 2009
-" Version:     0.2
+" Last Change: 2009 Oct 10
+" Version:     0.3
 " URL:         http://jquery.com/
 
 if exists("b:current_syntax") && b:current_syntax =~ "jquery"
@@ -15,7 +15,7 @@ syn match   jQuery          /jQuery\|\$/
 
 syn match   jFunc           /\.\w\+(/ contains=@jFunctions
 
-syn cluster jFunctions      contains=jCore,jAttributes,jTraversing,jManipulation,jCSS,jEvents,jAjax,jUtilities
+syn cluster jFunctions      contains=jCore,jAttributes,jTraversing,jManipulation,jCSS,jEvents,jAjax,jUtilities,jEffects
 syn keyword jCore           contained each size length selector context eq get index
 syn keyword jCore           contained data removeData queue dequeue
 syn keyword jCore           contained extend noConflict
@@ -58,12 +58,12 @@ syn cluster jSelectors      contains=jId,jClass,jOperators,jBasicFilters,jConten
 syn match   jId             contained /#[0-9A-Za-z_\-]\+/
 syn match   jClass          contained /\.[0-9A-Za-z_\-]\+/
 syn match   jOperators      contained /*\|>\|>|\~/
-syn match   jBasicFilters   contained /:(first\|last\|not\|eveb\|odd\|eq\|gt\|lt\|header\|animated)/
-syn match   jContentFilters contained /:(contains\|empty\|has\|parent)/
-syn match   jVisibility     contained /:(hidden\|visible)/
-syn match   jChildFilters   contained /:(nth\|first\|last\|only)-child/
-syn match   jForms          contained /:(input\|text\|password\|radio\|checkbox\|submit\|image\|reset\|button\|file)/
-syn match   jFormFilters    contained /:(enabled\|disabled\|checked\|selected)/
+syn match   jBasicFilters   contained /:\(first\|last\|not\|even\|odd\|eq\|gt\|lt\|header\|animated\)/
+syn match   jContentFilters contained /:\(contains\|empty\|has\|parent\)/
+syn match   jVisibility     contained /:\(hidden\|visible\)/
+syn match   jChildFilters   contained /:\(nth\|first\|last\|only\)-child/
+syn match   jForms          contained /:\(input\|text\|password\|radio\|checkbox\|submit\|image\|reset\|button\|file\)/
+syn match   jFormFilters    contained /:\(enabled\|disabled\|checked\|selected\)/
 
 
 " Define the default highlighting.

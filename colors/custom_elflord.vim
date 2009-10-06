@@ -15,7 +15,7 @@ let g:colors_name = "custom_elflord"
 
 hi Comment      term=bold       ctermfg=DarkCyan    guifg=#80a0ff
 hi Constant     term=underline  ctermfg=Magenta     guifg=Magenta
-hi CursorLine   cterm=underline gui=underline
+hi CursorLine   cterm=underline gui=underline       guibg=Black
 hi DiffAdd      cterm=none      ctermbg=235         guibg=#262626
 hi DiffChange   cterm=none      ctermbg=235         guibg=#262626
 hi DiffDelete   cterm=none      ctermfg=238         ctermbg=244   guibg=#808080 guifg=#444444

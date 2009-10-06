@@ -153,6 +153,22 @@ fun! TriggerSnippet()
 		endif
 	endfor
 
+	" Modification by Andrew:
+	" If no predefined snippets were found and we actually have a valid word, 
+	" try the wildcard snippet.
+	for scope in [bufnr('%')] + split(&ft, '\.') + ['_']
+		if snippet == '' && trigger !~ '^\W*$'
+			let [_, snippet] = s:GetSnippet('*', scope)
+			let snippet = substitute(snippet, '${\*}', trigger, 'g')
+		endif
+		if snippet != ''
+			let col = col('.') - len(trigger)
+			sil exe 's/\V'.escape(trigger, '/.').'\%#//'
+			return snipMate#expandSnip(snippet, col)
+		endif
+	endfor
+	" End of modification
+
 	if exists('SuperTabKey')
 		call feedkeys(SuperTabKey)
 		return ''
@@ -186,7 +202,7 @@ fun s:GetSnippet(word, scope)
 			let snippet = s:snippets[a:scope][word]
 		elseif exists('s:multi_snips["'.a:scope.'"]["'.escape(word, '\"').'"]')
 			let snippet = s:ChooseSnippet(a:scope, word)
-			if snippet == '' | break | endif
+			if snippet == '' | return ['', ''] | endif
 		else
 			if match(word, '\W') == -1 | break | endif
 			let word = substitute(word, '.\{-}\W', '', '')
@@ -195,6 +211,7 @@ fun s:GetSnippet(word, scope)
 	if word == '' && a:word != '.' && stridx(a:word, '.') != -1
 		let [word, snippet] = s:GetSnippet('.', a:scope)
 	endif
+
 	return [word, snippet]
 endf
 

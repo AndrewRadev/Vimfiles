@@ -29,11 +29,12 @@ set smarttab
 set softtabstop=2
 set t_Co=256
 set tabstop=2
+set updatetime=1000
 set wildmenu
 
 if has("win32")
   set backupdir=c:/tmp
-  set guifont=DejaVu_Sans_Mono:h14
+  set guifont=Andale_Mono:h13,DejaVu_Sans_Mono:h13
 else
   set backupdir=~/.backup
   set guifont=Andale\ Mono\ 14

@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: October 04, 2009
+" Last Modified: October 06, 2009
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -44,4 +44,10 @@ endfunction
 function! lib#MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
   exec 'nnoremap '.a:key.' '.cmd
+endfunction
+
+" Function to capitalize first letter of argument:
+" word -> Word
+function! lib#Capitalize(word)
+  return substitute(a:word, '^\w', '\U\0', 'g')
 endfunction

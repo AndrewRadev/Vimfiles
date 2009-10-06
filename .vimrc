@@ -34,8 +34,9 @@ nmap gl <C-w>l
 nmap J 4j
 nmap K 4k
 
-" Toggling the NERD tree
+" Toggling the NERD tree:
 nmap gn :NERDTreeToggle<cr>
+nmap gN :NERDTree<cr>
 
 " Instead of <C-o>, use <bs> to go back files:
 nnoremap <bs> <C-o>
@@ -55,12 +56,15 @@ imap <C-f> <Esc>:NERDTreeClose<Space>\|<Space>FF<cr>
 " Dbext settings:
 let g:dbext_default_buffer_lines = 30
 
+" Showmarks settings:
+let g:showmarks_ignore_type="hmpq"
+
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
 let g:snips_author = "Andrew Radev"
 
 " Proj settings:
-let g:ProjFile = '$HOME/.vimproj'
+let g:ProjFile = '~/.vimproj'
 let g:ProjSplitMethod = 'edit'
 
 " For testing purposes:
