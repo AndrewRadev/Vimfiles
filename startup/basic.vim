@@ -7,17 +7,18 @@ set diffopt=filler,vertical
 set encoding=utf-8
 set expandtab
 set ffs=unix,dos
+set formatoptions=croq
 set guioptions=crb
 set ignorecase smartcase
 set incsearch
 set laststatus=2
 set lazyredraw
 set linebreak
-set nocompatible
+set listchars=eol:.,tab:\|-
 set nohlsearch
 set noswapfile
 set number
-set path=./**
+set path=$PWD/**
 set ruler
 set shiftround
 set shiftwidth=2

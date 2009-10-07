@@ -1,3 +1,5 @@
+set nocompatible
+
 " Load settings:
 runtime! startup/basic.vim
 runtime! startup/autocommands.vim
@@ -15,6 +17,9 @@ command! RefreshTags !ctags -R --sort=foldcase .
 MapToggle sl list
 MapToggle sh hlsearch
 MapToggle sw wrap
+
+" To avoid unexpected behaviour, remove the <s> mapping entirely:
+nnoremap s <Nop>
 
 " Always move through visual lines:
 nnoremap j gj
@@ -57,7 +62,12 @@ imap <C-f> <Esc>:NERDTreeClose<Space>\|<Space>FF<cr>
 let g:dbext_default_buffer_lines = 30
 
 " Showmarks settings:
-let g:showmarks_ignore_type="hmpq"
+let g:showmarks_ignore_type = "rhmpq"
+let g:showmarks_textlower = "-"
+let g:showmarks_textupper = "-"
+let g:showmarks_textother = "-"
+let g:showmarks_include = "abcdefghijklmnopqrstuvwxyz"
+let g:showmarks_include .= toupper(g:showmarks_include)
 
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
@@ -68,10 +78,10 @@ let g:ProjFile = '~/.vimproj'
 let g:ProjSplitMethod = 'edit'
 
 " For testing purposes:
-let g:autotagVerbosityLevel = 2
+let g:autotagVerbosityLevel = 0
 
 " EasyGrep options:
-let g:EasyGrepMode              = 1 " Don't track extension
+let g:EasyGrepMode              = 0 " Don't track extension
 let g:EasyGrepCommand           = 0 " vimgprep
 let g:EasyGrepRecursive         = 1 " -> True
 let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs

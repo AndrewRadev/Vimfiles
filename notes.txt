@@ -1,9 +1,7 @@
 TODO: Find a way to fix css.vim
 TODO: Think of something to make application detection easier for Utl
-TODO: Fix php indenting somehow...
 
-TODO: Find out why showmarks is popping up for the NERDTree...
-TODO: Change the default highlighting for showmarks
+TODO: Work on symfony plugin.
 
 Snippets: 
   - nested snippets (additional check on <tab>?)

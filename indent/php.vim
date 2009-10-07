@@ -76,6 +76,15 @@ function GetPhpIndent()
    " if line =~ '<?php' && line !~ '?>' && cline !~ '^\s*[?>]'
       " let ind = ind + &sw
    " endif
+   
+   " Indent block comments properly:
+   if line =~ '^\s*/\*'
+      let ind = ind + 1
+      return ind
+   elseif line =~ '\*/$'
+      let ind = ind - 1
+      return ind
+   end
 
    if exists("b:php_noindent_switch") " version 1 behavior, diy switch/case,etc
       " Indent blocks enclosed by {} or ()

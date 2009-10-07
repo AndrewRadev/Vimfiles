@@ -13,6 +13,8 @@ autocmd BufEnter *.html set filetype=html.javascript
 autocmd BufEnter *.html compiler tidy
 
 autocmd BufEnter *.js set filetype=javascript.jquery
+
+autocmd BufEnter *.hsc set filetype=haskell
 autocmd BufEnter *.hs compiler ghc
 
 " Maximise on open on Win32:

@@ -134,7 +134,6 @@ noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call <sid>ShowMarks()<
 if g:showmarks_enable == 1
 	aug ShowMarks
 		au!
-		autocmd BufEnter * call s:ShowMarks()
 		autocmd CursorHold * call s:ShowMarks()
 		autocmd InsertLeave * call s:ShowMarks()
 	aug END
@@ -319,7 +318,6 @@ fun! s:ShowMarksToggle()
 			au!
 			autocmd CursorHold * call s:ShowMarks()
 			autocmd InsertLeave * call s:ShowMarks()
-			autocmd BufEnter * call s:ShowMarks()
 		aug END
 	else
 		let g:showmarks_enable = 0

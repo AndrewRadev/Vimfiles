@@ -42,7 +42,12 @@ hi Todo         term=standout   ctermbg=Yellow      ctermfg=Black guifg=Blue    
 hi Type         term=underline  ctermfg=LightGreen  guifg=#60ff60 gui=bold
 hi VertSplit    cterm=none      ctermfg=254         guifg=#ffffff gui=none
 hi WildMenu     cterm=none      ctermfg=16          ctermbg=11
-hi SignColumn   cterm=none      ctermbg=none        guibg=#000000
+hi SignColumn   cterm=none      ctermbg=none ctermfg=White        guibg=#000000
+
+hi ShowMarksHLo cterm=None ctermfg=Magenta gui=None guifg=Magenta
+hi ShowMarksHLu cterm=None ctermfg=Red gui=None guifg=Red
+hi ShowMarksHLl cterm=None ctermfg=LightBlue gui=None guifg=LightBlue
+hi ShowMarksHLm cterm=None ctermfg=Red gui=None guifg=Red
 
 hi NonText cterm=NONE ctermfg=NONE
 
