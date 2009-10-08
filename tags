@@ -7,21 +7,16 @@
 %	.\plugin\matchit.vim	/^nnoremap <silent> %  :<C-U>call <SID>Match_wrapper('',1,'n') <CR>$/;"	m
 %	.\plugin\matchit.vim	/^onoremap <silent> %  v:<C-U>call <SID>Match_wrapper('',1,'o') <CR>$/;"	m
 %	.\plugin\matchit.vim	/^vnoremap <silent> %  :<C-U>call <SID>Match_wrapper('',1,'v') <CR>m'gv``$/;"	m
-&Plugin.&DiffChanges.&Diff\	.\plugin\diffchanges.vim	/^nnoremenu <script> &Plugin.&DiffChanges.&Diff\\ Toggle  <SID>DiffChangesDiffToggle$/;"	m
-&Plugin.&DiffChanges.&Patch\	.\plugin\diffchanges.vim	/^nnoremenu <script> &Plugin.&DiffChanges.&Patch\\ Toggle <SID>DiffChangesPatchToggle$/;"	m
 +=	.\plugin\autotag.vim	/^            cmd += " '%s'" % source$/;"	m
 ,,	.\plugin\LineCommenter.vim	/^nmap <silent>,, :call LineCommenter()<Esc>$/;"	m
 .	.\autoload\repeat.vim	/^nnoremap <silent> .     :<C-U>call <SID>repeat(v:count)<CR>$/;"	m
 <C-G>S	.\plugin\surround.vim	/^    imap        <C-G>S <Plug>ISurround$/;"	m
+<C-G>s	.\plugin\surround.vim	/^    imap        <C-G>s <Plug>Isurround$/;"	m
 <C-R>	.\autoload\repeat.vim	/^nnoremap <silent> <C-R> :<C-U>call <SID>wrap("\\<Lt>C-R>",v:count)<CR>$/;"	m
 <c-r><tab>	.\after\plugin\snipMate.vim	/^ino <silent> <c-r><tab> <c-r>=ShowAvailableSnips()<cr>$/;"	m
 <C-S>	.\plugin\surround.vim	/^        imap     <C-S> <Plug>Isurround$/;"	m
 <c-w>o	.\plugin\ZoomWinPlugin.vim	/^ nmap <unique> <c-w>o  <Plug>ZoomWin$/;"	m
 <C-X>u	.\ftplugin\sql_iabbr.vim	/^inoremap <buffer> <C-X>u <C-W><C-R>=g:UndoBuffer<CR><C-V><Space>$/;"	m
-<Leader>caL	.\plugin\calendar.vim	/^  nmap <unique> <Leader>caL <Plug>CalendarH$/;"	m
-<Leader>cal	.\plugin\calendar.vim	/^  nmap <unique> <Leader>cal <Plug>CalendarV$/;"	m
-<leader>dcd	.\plugin\diffchanges.vim	/^	nmap <silent> <unique> <leader>dcd <Plug>DiffChangesDiffToggle$/;"	m
-<leader>dcp	.\plugin\diffchanges.vim	/^	nmap <silent> <unique> <leader>dcp <Plug>DiffChangesPatchToggle$/;"	m
 <Leader>rwp	.\plugin\cecutil.vim	/^ map <unique> <Leader>rwp <Plug>RestoreWinPosn$/;"	m
 <Leader>sal	.\plugin\dbext.vim	/^        nmap <unique> <silent> <Leader>sal :.,.DBVarRangeAssign<CR>$/;"	m
 <Leader>sap	.\plugin\dbext.vim	/^        nmap <unique> <silent> <Leader>sap :'<,'>DBVarRangeAssign<CR>$/;"	m
@@ -50,13 +45,19 @@
 <Leader>stcl	.\plugin\dbext.vim	/^        nmap <unique> <Leader>stcl <Plug>DBListColumn$/;"	m
 <Leader>stw	.\plugin\dbext.vim	/^    nmap <unique> <Leader>stw <Plug>DBSelectFromTableWithWhere$/;"	m
 <Leader>swp	.\plugin\cecutil.vim	/^ map <unique> <Leader>swp <Plug>SaveWinPosn$/;"	m
+<Leader>vA	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vA <plug>EgMapGrepCurrentWord_A$/;"	m
 <Leader>va	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>va <plug>EgMapGrepCurrentWord_a$/;"	m
 <Leader>va	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>va <plug>EgMapGrepSelection_a$/;"	m
+<Leader>vA	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vA <plug>EgMapGrepSelection_A$/;"	m
 <Leader>vo	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vo <plug>EgMapGrepOptions$/;"	m
 <Leader>vr	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vr <plug>EgMapReplaceCurrentWord_r$/;"	m
+<Leader>vR	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vR <plug>EgMapReplaceCurrentWord_R$/;"	m
+<Leader>vR	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vR <plug>EgMapReplaceSelection_R$/;"	m
 <Leader>vr	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vr <plug>EgMapReplaceSelection_r$/;"	m
+<Leader>vV	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vV <plug>EgMapGrepCurrentWord_V$/;"	m
 <Leader>vv	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vv <plug>EgMapGrepCurrentWord_v$/;"	m
 <Leader>vv	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vv <plug>EgMapGrepSelection_v$/;"	m
+<Leader>vV	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vV <plug>EgMapGrepSelection_V$/;"	m
 <LocalLeader>.	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>. :call Qualify()<cr>$/;"	m
 <LocalLeader>?	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>? :call Haddock()<cr>$/;"	m
 <LocalLeader>?1	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>?1 :call HaskellSearchEngine('hoogle')<cr>$/;"	m
@@ -130,8 +131,6 @@
 <Plug>AM_t~		<SID>WS:AlignCtrl	.\plugin\AlignMapsPlugin.vim	/^map <silent> <script> <Plug>AM_t~		<SID>WS:AlignCtrl mIp0P0=l ~<CR>:'a,.Align<CR>:'y,'zs\/ \\( *\\);\/;\\1\/ge<CR><SID>WE$/;"	m
 <Plug>AM_T~	.\plugin\AlignMapsPlugin.vim	/^map <silent> <script> <Plug>AM_T~   <SID>WS:AlignCtrl mIp0P0=r ~<CR>:'a,.Align<CR>:'y,'zs\/ \\( *\\);\/;\\1\/ge<CR><SID>WE$/;"	m
 <Plug>AM_w=		<SID>WS:'a,'zg/=/s/\s\+\([*/+\-%<Bar>&\~^]\==\)/	.\plugin\AlignMapsPlugin.vim	/^map <silent> <script> <Plug>AM_w=		<SID>WS:'a,'zg\/=\/s\/\\s\\+\\([*\/+\\-%<Bar>&\\~^]\\==\\)\/ \\1\/e<CR>:'a,'zg\/=\/s@ \\+\\([*\/+\\-%<Bar>&\\~^]\\)=@\\1=@ge<CR>:'a,'zg\/=\/s\/==\/\\="\\<Char-0x0f>\\<Char-0x0f>"\/ge<CR>:'a,'zg\/=\/s\/!=\/\\="!\\<Char-0x0f>"\/ge<CR>'zk:AlignCtrl mWp1P1=l =<CR>:AlignCtrl g =<CR>:'a,'z-1g\/=\/Align<CR>:'a,'z-1g\/=\/s@\\([*\/+\\-%<Bar>&\\~^!=]\\)\\( \\+\\)=@\\2\\1=@ge<CR>:'a,'z-1g\/=\/s\/\\( \\+\\);\/;\\1\/ge<CR>:'a,'z-1v\/^\\s*\\\/[*\/]\/s\/\\\/[*\/]\/@&@\/e<CR>:'a,'z-1v\/^\\s*\\\/[*\/]\/s\/\\*\\\/\/@&\/e<CR>'zk:call AlignMaps#StdAlign(1)<cr>:'y,'zs\/^\\(\\s*\\) @\/\\1\/e<CR>:'a,'z-1g\/=\/s\/\\xff\/=\/ge<CR>:'y,'zg\/=\/s\/ @\/\/eg<CR><SID>WE$/;"	m
-<Plug>CalendarH	.\plugin\calendar.vim	/^nmap <silent> <Plug>CalendarH :cal Calendar(1)<CR>$/;"	m
-<Plug>CalendarV	.\plugin\calendar.vim	/^nmap <silent> <Plug>CalendarV :cal Calendar(0)<CR>$/;"	m
 <Plug>Csurround	.\plugin\surround.vim	/^nnoremap <silent> <Plug>Csurround  :<C-U>call <SID>changesurround()<CR>$/;"	m
 <Plug>DBDescribeProcedure	.\plugin\dbext.vim	/^    nmap <unique> <script> <Plug>DBDescribeProcedure :DBDescribeProcedure<CR>$/;"	m
 <Plug>DBDescribeProcedureAskName	.\plugin\dbext.vim	/^    nmap <unique> <script> <Plug>DBDescribeProcedureAskName$/;"	m
@@ -151,8 +150,6 @@
 <Plug>DBSelectFromTableAskName	.\plugin\dbext.vim	/^    nmap <unique> <script> <Plug>DBSelectFromTableAskName$/;"	m
 <Plug>DBSelectFromTableWithWhere	.\plugin\dbext.vim	/^    nmap <unique> <script> <Plug>DBSelectFromTableWithWhere$/;"	m
 <Plug>DBSelectFromTopXTable	.\plugin\dbext.vim	/^    nmap <unique> <script> <Plug>DBSelectFromTopXTable :DBSelectFromTableTopX<CR>$/;"	m
-<Plug>DiffChangesDiffToggle	.\plugin\diffchanges.vim	/^nnoremap <unique> <script> <Plug>DiffChangesDiffToggle  <SID>DiffChangesDiffToggle$/;"	m
-<Plug>DiffChangesPatchToggle	.\plugin\diffchanges.vim	/^nnoremap <unique> <script> <Plug>DiffChangesPatchToggle <SID>DiffChangesPatchToggle$/;"	m
 <Plug>Dsurround	.\plugin\surround.vim	/^nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround(<SID>inputtarget())<CR>$/;"	m
 <plug>EgMapGrepCurrentWord_a	.\plugin\EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapGrepCurrentWord_a    :call <sid>GrepCurrentWord("add", 0)<CR>$/;"	m
 <plug>EgMapGrepCurrentWord_A	.\plugin\EasyGrep.vim	/^nmap <silent> <unique> <script> <plug>EgMapGrepCurrentWord_A    :call <sid>GrepCurrentWord("add", 1)<CR>$/;"	m
@@ -179,8 +176,6 @@
 <Plug>Ysurround	.\plugin\surround.vim	/^nnoremap <silent> <Plug>Ysurround  :<C-U>set opfunc=<SID>opfunc<CR>g@$/;"	m
 <Plug>ZoomWin	.\plugin\ZoomWinPlugin.vim	/^nnoremap <silent> <script> <Plug>ZoomWin :set lz<CR>:silent call ZoomWin#ZoomWin()<CR>:set nolz<CR>$/;"	m
 <s-tab>	.\after\plugin\snipMate.vim	/^ino <silent> <s-tab> <c-r>=BackwardsSnippet()<cr>$/;"	m
-<SID>DiffChangesDiffToggle	.\plugin\diffchanges.vim	/^nnoremap <SID>DiffChangesDiffToggle  :DiffChangesDiffToggle<cr>$/;"	m
-<SID>DiffChangesPatchToggle	.\plugin\diffchanges.vim	/^nnoremap <SID>DiffChangesPatchToggle :DiffChangesPatchToggle<cr>$/;"	m
 <SID>WE	<Plug>AlignMapsWrapperEnd	.\plugin\AlignMapsPlugin.vim	/^ nmap <unique> <SID>WE	<Plug>AlignMapsWrapperEnd$/;"	m
 <SID>WS	<Plug>AlignMapsWrapperStart	.\plugin\AlignMapsPlugin.vim	/^ map <unique> <SID>WS	<Plug>AlignMapsWrapperStart$/;"	m
 <SID>xx	.\autoload\rails.vim	/^map <SID>xx <SID>xx$/;"	m
@@ -278,14 +273,12 @@ autotag	.\plugin\autotag.vim	/^augroup autotag$/;"	a
 AutoTag	.\plugin\autotag.vim	/^function! AutoTag()$/;"	f
 b:current_syntax	.\syntax\jquery.vim	/^let b:current_syntax = 'javascript.jquery'$/;"	v
 b:current_syntax	.\syntax\txt.vim	/^let b:current_syntax = "txt"$/;"	v
-b:did_indent	.\indent\unused.vim	/^let b:did_indent = 1$/;"	v
-b:did_indent	indent/php.vim	/^let b:did_indent = 1$/;"	v
+b:did_indent	.\indent\php.vim	/^let b:did_indent = 1$/;"	v
 b:did_sql_iabbr	.\ftplugin\sql_iabbr.vim	/^let b:did_sql_iabbr = 1$/;"	v
 b:ghc_staticoptions	.\compiler\ghc.vim	/^  let b:ghc_staticoptions = ''$/;"	v
 b:ghc_types	.\compiler\ghc.vim	/^  let b:ghc_types = {}$/;"	v
 b:my_changedtick	.\compiler\ghc.vim	/^  let b:my_changedtick = b:changedtick$/;"	v
-b:php_noindent_switch	.\indent\unused.vim	/^   let b:php_noindent_switch = 1$/;"	v
-b:php_noindent_switch	indent/php.vim	/^   let b:php_noindent_switch = 1$/;"	v
+b:php_noindent_switch	.\indent\php.vim	/^   let b:php_noindent_switch = 1$/;"	v
 BackToForwardSlash	.\plugin\EasyGrep.vim	/^function! s:BackToForwardSlash(arg)$/;"	f
 BackwardsSnippet	.\plugin\snipMate.vim	/^fun! BackwardsSnippet()$/;"	f
 beep	.\plugin\surround.vim	/^function! s:beep()$/;"	f
@@ -358,13 +351,6 @@ cache_get	.\autoload\rails.vim	/^function! s:cache_get(...) dict$/;"	f
 cache_has	.\autoload\rails.vim	/^function! s:cache_has(key) dict$/;"	f
 cache_needs	.\autoload\rails.vim	/^function! s:cache_needs(key) dict$/;"	f
 cache_set	.\autoload\rails.vim	/^function! s:cache_set(key,value) dict$/;"	f
-Calendar	.\plugin\calendar.vim	/^function! Calendar(...)$/;"	f
-CalendarDiary	.\plugin\calendar.vim	/^function! s:CalendarDiary(day, month, year, week, dir)$/;"	f
-CalendarDoAction	.\plugin\calendar.vim	/^function! s:CalendarDoAction(...)$/;"	f
-CalendarHelp	.\plugin\calendar.vim	/^function! s:CalendarHelp()$/;"	f
-CalendarMakeDir	.\plugin\calendar.vim	/^function! s:CalendarMakeDir(dir)$/;"	f
-CalendarSign	.\plugin\calendar.vim	/^function! s:CalendarSign(day, month, year)$/;"	f
-CalendarVar	.\plugin\calendar.vim	/^function! s:CalendarVar(var)$/;"	f
 Call	.\plugin\dbext.vim	/^command! -nargs=+ Call              :call dbext#DB_execSql("call " . <q-args>)$/;"	c
 CamelCase	.\ftplugin\haskell_doc.vim	/^function! CamelCase(shorthand,string)$/;"	f
 cascade	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> cascade <C-R>=SqlIab_ReplaceConditionally('cascade', 'CASCADE')<CR>$/;"	m
@@ -836,12 +822,6 @@ Dhide	.\plugin\Decho.vim	/^com! -nargs=0 Dhide    						call s:Dhide(1)$/;"	c
 Dhide	.\plugin\Decho.vim	/^fun! <SID>Dhide(hide)$/;"	f
 did_drchip_decho_syntax	.\syntax\Decho.vim	/^  let did_drchip_decho_syntax= 1$/;"	v
 did_lisp_syntax_inits	.\syntax\jquery.vim	/^    let did_lisp_syntax_inits = 1$/;"	v
-DiffChangesDiffToggle	.\plugin\diffchanges.vim	/^command! -bar DiffChangesDiffToggle  :call s:DiffChangesToggle('diff')$/;"	c
-DiffChangesOff	.\plugin\diffchanges.vim	/^function! s:DiffChangesOff() "{{{1$/;"	f
-DiffChangesOn	.\plugin\diffchanges.vim	/^function! s:DiffChangesOn(mode) "{{{1$/;"	f
-DiffChangesPair	.\plugin\diffchanges.vim	/^function! s:DiffChangesPair(buf_num) "{{{1$/;"	f
-DiffChangesPatchToggle	.\plugin\diffchanges.vim	/^command! -bar DiffChangesPatchToggle :call s:DiffChangesToggle('patch')$/;"	c
-DiffChangesToggle	.\plugin\diffchanges.vim	/^function! s:DiffChangesToggle(mode) "{{{1$/;"	f
 displayHelp	.\plugin\NERD_tree.vim	/^function! s:displayHelp()$/;"	f
 distinct	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> distinct <C-R>=SqlIab_ReplaceConditionally('distinct', 'DISTINCT')<CR>$/;"	m
 djump	.\autoload\rails.vim	/^function! s:djump(def)$/;"	f
@@ -894,7 +874,6 @@ environmentEdit	.\autoload\rails.vim	/^function! s:environmentEdit(cmd,...)$/;"	
 environmentList	.\autoload\rails.vim	/^function! s:environmentList(A,L,P)$/;"	f
 error	.\autoload\rails.vim	/^function! s:error(str)$/;"	f
 error	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> error <C-R>=SqlIab_ReplaceConditionally('error', 'ERROR')<CR>$/;"	m
-Error	.\plugin\diffchanges.vim	/^function! s:Error(message) "{{{1$/;"	f
 Error	.\plugin\EasyGrep.vim	/^function! s:Error(message)$/;"	f
 error	.\plugin\rails.vim	/^function! s:error(str)$/;"	f
 escape	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> escape <C-R>=SqlIab_ReplaceConditionally('escape', 'ESCAPE')<CR>$/;"	m
@@ -987,17 +966,8 @@ g:autotagDisabled	.\plugin\autotag.vim	/^   let g:autotagDisabled=0$/;"	v
 g:autotagExcludeSuffixes	.\plugin\autotag.vim	/^   let g:autotagExcludeSuffixes="tml.xml.text.txt"$/;"	v
 g:autotagTagsFile	.\plugin\autotag.vim	/^   let g:autotagTagsFile="tags"$/;"	v
 g:autotagVerbosityLevel	.\plugin\autotag.vim	/^   let g:autotagVerbosityLevel=0$/;"	v
-g:calendar_action	.\plugin\calendar.vim	/^  let g:calendar_action = "<SID>CalendarDiary"$/;"	v
-g:calendar_diary	.\plugin\calendar.vim	/^  let g:calendar_diary = "~\/diary"$/;"	v
-g:calendar_focus_today	.\plugin\calendar.vim	/^  let g:calendar_focus_today = 0$/;"	v
-g:calendar_mark	.\plugin\calendar.vim	/^  let g:calendar_mark = 'left'$/;"	v
-g:calendar_navi	.\plugin\calendar.vim	/^  let g:calendar_navi = 'top'$/;"	v
-g:calendar_navi_label	.\plugin\calendar.vim	/^  let g:calendar_navi_label = "Prev,Today,Next"$/;"	v
-g:calendar_sign	.\plugin\calendar.vim	/^  let g:calendar_sign = "<SID>CalendarSign"$/;"	v
-g:calendar_version	.\plugin\calendar.vim	/^let g:calendar_version = "1.7"$/;"	v
 g:colors_name	.\colors\custom_elflord.vim	/^let g:colors_name = "custom_elflord"$/;"	v
 g:colors_name	.\colors\leo.vim	/^let g:colors_name = "leo256"$/;"	v
-g:colors_name	colors/custom_elflord.vim	/^let g:colors_name = "custom_elflord"$/;"	v
 g:dbext_dbi_debug	.\autoload\dbext_dbi.vim	/^   let g:dbext_dbi_debug = 0$/;"	v
 g:dbext_dbi_max_rows	.\autoload\dbext_dbi.vim	/^   let g:dbext_dbi_max_rows = 300$/;"	v
 g:dbext_dbi_msg	.\autoload\dbext_dbi.vim	/^   let g:dbext_dbi_msg = ""$/;"	v
@@ -1013,9 +983,6 @@ g:decho_bufname	.\plugin\Decho.vim	/^ let g:decho_bufname= "DBG"$/;"	v
 g:decho_winheight	.\plugin\Decho.vim	/^ let g:decho_winheight= 5$/;"	v
 g:did_ft	.\plugin\snipMate.vim	/^let g:did_ft = {}$/;"	v
 g:did_info_syntax_inits	.\syntax\info.vim	/^  let g:did_info_syntax_inits = 1$/;"	v
-g:diffchanges_diff	.\plugin\diffchanges.vim	/^let g:diffchanges_diff = []$/;"	v
-g:diffchanges_patch	.\plugin\diffchanges.vim	/^let g:diffchanges_patch = []$/;"	v
-g:diffchanges_patch_cmd	.\plugin\diffchanges.vim	/^	let g:diffchanges_patch_cmd = 'diff -u'$/;"	v
 g:DrChipTopLvlMenu	.\plugin\AlignMapsPlugin.vim	/^  let g:DrChipTopLvlMenu= "DrChip."$/;"	v
 g:EasyGrepAllOptionsInExplorer	.\plugin\EasyGrep.vim	/^    let g:EasyGrepAllOptionsInExplorer=0$/;"	v
 g:EasyGrepCommand	.\plugin\EasyGrep.vim	/^    let g:EasyGrepCommand=0$/;"	v
@@ -1257,8 +1224,7 @@ GetNthElement	.\autoload\tlib\list.vim	/^function! s:GetNthElement(n, lists, def
 GetOneScript	.\autoload\getscript.vim	/^fun! s:GetOneScript(...)$/;"	f
 getopt	.\autoload\rails.vim	/^function! s:getopt(opt,...)$/;"	f
 getPath	.\plugin\NERD_tree.vim	/^function! s:getPath(ln)$/;"	f
-GetPhpIndent	.\indent\unused.vim	/^function GetPhpIndent()$/;"	f
-GetPhpIndent	indent/php.vim	/^function GetPhpIndent()$/;"	f
+GetPhpIndent	.\indent\php.vim	/^function GetPhpIndent()$/;"	f
 getpidfor	.\autoload\rails.vim	/^function! s:getpidfor(bind,port)$/;"	f
 GetProject	.\plugin\proj.vim	/^function! s:GetProject(name)$/;"	f
 GetSavedName	.\plugin\EasyGrep.vim	/^function! s:GetSavedName(var)$/;"	f
@@ -1272,7 +1238,6 @@ GetSnippets	.\plugin\snipMate.vim	/^fun! GetSnippets(dir, filetypes)$/;"	f
 GetSuccessTemplateFromAction	.\plugin\symfony.vim	/^function! GetSuccessTemplateFromAction(action_name)$/;"	f
 GetSuccessTemplateFromComponent	.\plugin\symfony.vim	/^function! GetSuccessTemplateFromComponent(component_name)$/;"	f
 GetTag	.\autoload\ttags.vim	/^function! s:GetTag(world, id) "{{{3$/;"	f
-GetToken	.\plugin\calendar.vim	/^function! s:GetToken(src,dlm,cnt)$/;"	f
 getTreeWinNum	.\plugin\NERD_tree.vim	/^function! s:getTreeWinNum()$/;"	f
 GetVisibleBuffers	.\plugin\EasyGrep.vim	/^function! s:GetVisibleBuffers()$/;"	f
 GetWinDim	.\autoload\genutils.vim	/^function! s:GetWinDim(dir, win)$/;"	f
@@ -1300,7 +1265,6 @@ ghc_version	.\compiler\ghc.vim	/^let ghc_version = substitute(system(g:ghc . ' -
 GHC_VersionGE	.\compiler\ghc.vim	/^function! GHC_VersionGE(target)$/;"	f
 GHC_VersionGE	.\ftplugin\haskell_doc.vim	/^function! GHC_VersionGE(target)$/;"	f
 gm	.\ftplugin\php.vim	/^nmap <buffer> gm :exe ":Utl ol http:\/\/php.net\/manual-lookup.php?pattern=" . expand("<cword>")<cr>$/;"	m
-gm	ftplugin/php.vim	/^nmap <buffer> gm :exe ":Utl ol http:\/\/php.net\/manual-lookup.php?pattern=" . expand("<cword>")<cr>$/;"	m
 GotoWinNum	.\autoload\ZoomWin.vim	/^fun! s:GotoWinNum(winnum)$/;"	f
 GoWinbufnr	.\plugin\cecutil.vim	/^fun! GoWinbufnr(bufnum)$/;"	f
 grant	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> grant <C-R>=SqlIab_ReplaceConditionally('grant', 'GRANT')<CR>$/;"	m
@@ -1350,18 +1314,12 @@ HpasteEditEntry	.\ftplugin\haskell_hpaste.vim	/^command! -nargs=1 HpasteEditEntr
 HpasteEditEntry	.\ftplugin\haskell_hpaste.vim	/^function! HpasteEditEntry(entry)$/;"	f
 HpasteIndex	.\ftplugin\haskell_hpaste.vim	/^command! HpasteIndex call HpasteIndex()$/;"	c
 HpasteIndex	.\ftplugin\haskell_hpaste.vim	/^function! HpasteIndex()$/;"	f
-HtmlIndentClose	.\indent\unused.vim	/^fun! <SID>HtmlIndentClose(lnum)$/;"	f
-HtmlIndentClose	indent/php.vim	/^fun! <SID>HtmlIndentClose(lnum)$/;"	f
-HtmlIndentCloseAlt	.\indent\unused.vim	/^fun! <SID>HtmlIndentCloseAlt(lnum)$/;"	f
-HtmlIndentCloseAlt	indent/php.vim	/^fun! <SID>HtmlIndentCloseAlt(lnum)$/;"	f
-HtmlIndentOpen	.\indent\unused.vim	/^fun! <SID>HtmlIndentOpen(lnum)$/;"	f
-HtmlIndentOpen	indent/php.vim	/^fun! <SID>HtmlIndentOpen(lnum)$/;"	f
-HtmlIndentOpenAlt	.\indent\unused.vim	/^fun! <SID>HtmlIndentOpenAlt(lnum)$/;"	f
-HtmlIndentOpenAlt	indent/php.vim	/^fun! <SID>HtmlIndentOpenAlt(lnum)$/;"	f
-HtmlIndentPush	.\indent\unused.vim	/^fun! <SID>HtmlIndentPush(tag)$/;"	f
-HtmlIndentPush	indent/php.vim	/^fun! <SID>HtmlIndentPush(tag)$/;"	f
-HtmlIndentSum	.\indent\unused.vim	/^fun! <SID>HtmlIndentSum(lnum, style)$/;"	f
-HtmlIndentSum	indent/php.vim	/^fun! <SID>HtmlIndentSum(lnum, style)$/;"	f
+HtmlIndentClose	.\indent\php.vim	/^fun! <SID>HtmlIndentClose(lnum)$/;"	f
+HtmlIndentCloseAlt	.\indent\php.vim	/^fun! <SID>HtmlIndentCloseAlt(lnum)$/;"	f
+HtmlIndentOpen	.\indent\php.vim	/^fun! <SID>HtmlIndentOpen(lnum)$/;"	f
+HtmlIndentOpenAlt	.\indent\php.vim	/^fun! <SID>HtmlIndentOpenAlt(lnum)$/;"	f
+HtmlIndentPush	.\indent\php.vim	/^fun! <SID>HtmlIndentPush(tag)$/;"	f
+HtmlIndentSum	.\indent\php.vim	/^fun! <SID>HtmlIndentSum(lnum, style)$/;"	f
 identified	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> identified <C-R>=SqlIab_ReplaceConditionally('identified', 'IDENTIFIED')<CR>$/;"	m
 IDoc	.\ftplugin\haskell_doc.vim	/^command! -nargs=+ IDoc call IDoc(<f-args>)$/;"	c
 IDoc	.\ftplugin\haskell_doc.vim	/^function! IDoc(name,...) $/;"	f
@@ -1377,7 +1335,6 @@ ImportDocIndex	.\ftplugin\haskell_doc.vim	/^command! ImportDocIndex call ImportD
 ImportDocIndex	.\ftplugin\haskell_doc.vim	/^function! ImportDocIndex()$/;"	f
 in	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> in <C-R>=SqlIab_ReplaceConditionally('in', 'IN')<CR>$/;"	m
 IncludeMarks	.\plugin\showmarks.vim	/^fun! s:IncludeMarks()$/;"	f
-IncludeMarks	plugin/showmarks.vim	/^fun! s:IncludeMarks()$/;"	f
 increment	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> increment <C-R>=SqlIab_ReplaceConditionally('increment', 'INCREMENT')<CR>$/;"	m
 indentLevelFor	.\plugin\NERD_tree.vim	/^function! s:indentLevelFor(line)$/;"	f
 index	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> index <C-R>=SqlIab_ReplaceConditionally('index', 'INDEX')<CR>$/;"	m
@@ -1454,12 +1411,10 @@ LineCommenter	.\plugin\LineCommenter.vim	/^function LineCommenter()$/;"	f
 linepeak	.\autoload\rails.vim	/^function! s:linepeak()$/;"	f
 listen	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> listen <C-R>=SqlIab_ReplaceConditionally('listen', 'LISTEN')<CR>$/;"	m
 load	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> load <C-R>=SqlIab_ReplaceConditionally('load', 'LOAD')<CR>$/;"	m
-loaded_diffchanges	.\plugin\diffchanges.vim	/^let loaded_diffchanges = 1$/;"	v
 loaded_genutils	.\plugin\genutils.vim	/^let loaded_genutils = 205$/;"	v
 loaded_matchit	.\plugin\matchit.vim	/^let loaded_matchit = 1$/;"	v
 loaded_nerd_tree	.\plugin\NERD_tree.vim	/^let loaded_nerd_tree = 1$/;"	v
 loaded_showmarks	.\plugin\showmarks.vim	/^let loaded_showmarks = 1$/;"	v
-loaded_showmarks	plugin/showmarks.vim	/^let loaded_showmarks = 1$/;"	v
 loaded_snips	.\plugin\snipMate.vim	/^let loaded_snips = 1$/;"	v
 loaded_taglist	.\plugin\taglist.vim	/^            let loaded_taglist = 'no'$/;"	v
 loaded_taglist	.\plugin\taglist.vim	/^        let loaded_taglist = 'no'$/;"	v
@@ -1515,7 +1470,6 @@ long	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> long <C-R>=SqlIab_Re
 loop	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> loop <C-R>=SqlIab_ReplaceConditionally('loop', 'LOOP')<CR>$/;"	m
 lseg	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> lseg <C-R>=SqlIab_ReplaceConditionally('lseg', 'LSEG')<CR>$/;"	m
 m	.\plugin\showmarks.vim	/^noremap <silent> m :exe 'norm \\sm'.nr2char(getchar())<bar>call <sid>ShowMarks()<CR>$/;"	m
-m	plugin/showmarks.vim	/^noremap <silent> m :exe 'norm \\sm'.nr2char(getchar())<bar>call <sid>ShowMarks()<CR>$/;"	m
 macaddr	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> macaddr <C-R>=SqlIab_ReplaceConditionally('macaddr', 'MACADDR')<CR>$/;"	m
 MakeQFE	.\autoload\ttags.vim	/^function! s:MakeQFE(tag) "{{{3$/;"	f
 MakeQFL	.\autoload\ttags.vim	/^function! s:MakeQFL(tags) "{{{3$/;"	f
@@ -1563,7 +1517,6 @@ move	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> move <C-R>=SqlIab_Re
 MultiMatch	.\plugin\matchit.vim	/^fun! s:MultiMatch(spflag, mode)$/;"	f
 name	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> name <C-R>=SqlIab_ReplaceConditionally('name', 'NAME')<CR>$/;"	m
 NameOfMark	.\plugin\showmarks.vim	/^fun! s:NameOfMark(mark)$/;"	f
-NameOfMark	plugin/showmarks.vim	/^fun! s:NameOfMark(mark)$/;"	f
 Navcommand	.\autoload\rails.vim	/^function! s:Navcommand(bang,...)$/;"	f
 NERDTree	.\plugin\NERD_tree.vim	/^augroup NERDTree$/;"	a
 NERDTree	.\plugin\NERD_tree.vim	/^command! -n=? -complete=dir -bar NERDTree :call s:initNerdTree('<args>')$/;"	c
@@ -1662,13 +1615,9 @@ pathsplit	.\autoload\rails.vim	/^function! s:pathsplit(path) abort$/;"	f
 pctfree	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> pctfree <C-R>=SqlIab_ReplaceConditionally('pctfree', 'PCTFREE')<CR>$/;"	m
 PersistentVarName	.\autoload\genutils.vim	/^function! s:PersistentVarName(pluginName, persistentVar)$/;"	f
 php_baselib	.\ftplugin\php.vim	/^let php_baselib       = 1$/;"	v
-php_baselib	ftplugin/php.vim	/^let php_baselib       = 1$/;"	v
 php_folding	.\ftplugin\php.vim	/^let php_folding       = 1$/;"	v
-php_folding	ftplugin/php.vim	/^let php_folding       = 1$/;"	v
 php_htmlInStrings	.\ftplugin\php.vim	/^let php_htmlInStrings = 1$/;"	v
-php_htmlInStrings	ftplugin/php.vim	/^let php_htmlInStrings = 1$/;"	v
-php_noindent_switch	.\indent\unused.vim	/^let php_noindent_switch = 0    " set this to '1' to not try to indent switch\/case statements$/;"	v
-php_noindent_switch	indent/php.vim	/^let php_noindent_switch = 0    " set this to '1' to not try to indent switch\/case statements$/;"	v
+php_noindent_switch	.\indent\php.vim	/^let php_noindent_switch = 0    " set this to '1' to not try to indent switch\/case statements$/;"	v
 PlaceErrorMarkersHook	.\plugin\cuteErrorMarker.vim	/^fun! PlaceErrorMarkersHook() "{{{$/;"	f
 pluginEdit	.\autoload\rails.vim	/^function! s:pluginEdit(cmd,...)$/;"	f
 pluginList	.\autoload\rails.vim	/^function! s:pluginList(A,L,P)$/;"	f
@@ -1788,8 +1737,6 @@ putCursorInTreeWin	.\plugin\NERD_tree.vim	/^function! s:putCursorInTreeWin()$/;"
 putCursorOnBookmarkTable	.\plugin\NERD_tree.vim	/^function! s:putCursorOnBookmarkTable()$/;"	f
 QArgSplitter	.\autoload\Align.vim	/^fun! s:QArgSplitter(qarg)$/;"	f
 QArgSplitter	.\plugin\cecutil.vim	/^fun! QArgSplitter(qarg)$/;"	f
-qsort	test.hs	/^qsort (x:xs) = (qsort lesser) ++ [x] ++ (qsort higher)$/;"	f
-qsort	test.hs	/^qsort [] = []$/;"	f
 QSortR	.\autoload\genutils.vim	/^function! s:QSortR(start, end, cmp, direction, accessor, swapper, context)$/;"	f
 Qualify	.\ftplugin\haskell_doc.vim	/^function! Qualify()$/;"	f
 Quit	.\plugin\EasyGrep.vim	/^function! <sid>Quit()$/;"	f
@@ -1804,6 +1751,7 @@ rails#new_app_command	.\autoload\rails.vim	/^function! rails#new_app_command(ban
 rails#pluralize	.\autoload\rails.vim	/^function! rails#pluralize(word)$/;"	f
 rails#singularize	.\autoload\rails.vim	/^function! rails#singularize(word)$/;"	f
 rails#statusline	.\autoload\rails.vim	/^function! rails#statusline(...)$/;"	f
+rails#STATUSLINE	.\autoload\rails.vim	/^function! rails#STATUSLINE(...)$/;"	f
 rails#underscore	.\autoload\rails.vim	/^function! rails#underscore(str)$/;"	f
 RailsBufInit	.\autoload\rails.vim	/^function! RailsBufInit(path)$/;"	f
 RailsFile	.\autoload\rails.vim	/^function! RailsFile()$/;"	f
@@ -1902,8 +1850,8 @@ rquote	.\autoload\rails.vim	/^function! s:rquote(str)$/;"	f
 rule	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> rule <C-R>=SqlIab_ReplaceConditionally('rule', 'RULE')<CR>$/;"	m
 RWP	.\plugin\cecutil.vim	/^com! -bar -nargs=0 RWP	call RestoreWinPosn()$/;"	c
 S	.\plugin\surround.vim	/^            vmap  S    <Plug>VSurround$/;"	m
+s	.\plugin\surround.vim	/^            vmap  s    <Plug>Vsurround$/;"	m
 s:all_marks	.\plugin\showmarks.vim	/^let s:all_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\\""$/;"	v
-s:all_marks	plugin/showmarks.vim	/^let s:all_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\\""$/;"	v
 s:apps	.\autoload\rails.vim	/^  let s:apps = {}$/;"	v
 s:app_prototype	.\autoload\rails.vim	/^let s:app_prototype = {}$/;"	v
 s:app_prototype	.\autoload\rails.vim	/^let s:app_prototype.cache = s:cache_prototype$/;"	v
@@ -1944,7 +1892,6 @@ s:decho_depth	.\plugin\Decho.vim	/^ let s:decho_depth  = 0$/;"	v
 s:defFCShellInstalled	.\autoload\genutils.vim	/^let s:defFCShellInstalled = 0$/;"	v
 s:did_snips_mappings	.\after\plugin\snipMate.vim	/^let s:did_snips_mappings = 1$/;"	v
 s:did_snip_helper	.\ftplugin\html_snip_helper.vim	/^let s:did_snip_helper = 1$/;"	v
-s:diffchanges_modes	.\plugin\diffchanges.vim	/^let s:diffchanges_modes = ['diff', 'patch']$/;"	v
 s:dir_stack	.\autoload\tlib\dir.vim	/^let s:dir_stack = []$/;"	v
 s:docdir	.\ftplugin\haskell_doc.vim	/^    let s:docdir = alternate$/;"	v
 s:docdir	.\ftplugin\haskell_doc.vim	/^    let s:docdir = field$/;"	v
@@ -2048,7 +1995,6 @@ s:save_cpo	.\autoload\tlib\normal.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	.\autoload\tlib\notify.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	.\autoload\tlib\syntax.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	.\plugin\02tlib.vim	/^let s:save_cpo = &cpo$/;"	v
-s:save_cpo	.\plugin\diffchanges.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	.\plugin\matchit.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	.\plugin\ttags.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	.\plugin\utl.vim	/^let s:save_cpo = &cpo$/;"	v
@@ -2184,32 +2130,18 @@ ShowAvailableSnips	.\plugin\snipMate.vim	/^fun! ShowAvailableSnips()$/;"	f
 showFileSystemMenu	.\plugin\NERD_tree.vim	/^function! s:showFileSystemMenu()$/;"	f
 ShowMarks	.\plugin\showmarks.vim	/^	aug ShowMarks$/;"	a
 ShowMarks	.\plugin\showmarks.vim	/^fun! s:ShowMarks()$/;"	f
-ShowMarks	plugin/showmarks.vim	/^	aug ShowMarks$/;"	a
-ShowMarks	plugin/showmarks.vim	/^fun! s:ShowMarks()$/;"	f
 ShowMarksClearAll	.\plugin\showmarks.vim	/^com! -nargs=0 ShowMarksClearAll  :call <sid>ShowMarksClearAll()$/;"	c
 ShowMarksClearAll	.\plugin\showmarks.vim	/^fun! s:ShowMarksClearAll()$/;"	f
-ShowMarksClearAll	plugin/showmarks.vim	/^com! -nargs=0 ShowMarksClearAll  :call <sid>ShowMarksClearAll()$/;"	c
-ShowMarksClearAll	plugin/showmarks.vim	/^fun! s:ShowMarksClearAll()$/;"	f
 ShowMarksClearMark	.\plugin\showmarks.vim	/^com! -nargs=0 ShowMarksClearMark :call <sid>ShowMarksClearMark()$/;"	c
 ShowMarksClearMark	.\plugin\showmarks.vim	/^fun! s:ShowMarksClearMark()$/;"	f
-ShowMarksClearMark	plugin/showmarks.vim	/^com! -nargs=0 ShowMarksClearMark :call <sid>ShowMarksClearMark()$/;"	c
-ShowMarksClearMark	plugin/showmarks.vim	/^fun! s:ShowMarksClearMark()$/;"	f
 ShowMarksHideAll	.\plugin\showmarks.vim	/^fun! s:ShowMarksHideAll()$/;"	f
-ShowMarksHideAll	plugin/showmarks.vim	/^fun! s:ShowMarksHideAll()$/;"	f
 ShowMarksOn	.\plugin\showmarks.vim	/^com! -nargs=0 ShowMarksOn        :call <sid>ShowMarksOn()$/;"	c
 ShowMarksOn	.\plugin\showmarks.vim	/^fun! s:ShowMarksOn()$/;"	f
-ShowMarksOn	plugin/showmarks.vim	/^com! -nargs=0 ShowMarksOn        :call <sid>ShowMarksOn()$/;"	c
-ShowMarksOn	plugin/showmarks.vim	/^fun! s:ShowMarksOn()$/;"	f
 ShowMarksPlaceMark	.\plugin\showmarks.vim	/^com! -nargs=0 ShowMarksPlaceMark :call <sid>ShowMarksPlaceMark()$/;"	c
 ShowMarksPlaceMark	.\plugin\showmarks.vim	/^fun! s:ShowMarksPlaceMark()$/;"	f
-ShowMarksPlaceMark	plugin/showmarks.vim	/^com! -nargs=0 ShowMarksPlaceMark :call <sid>ShowMarksPlaceMark()$/;"	c
-ShowMarksPlaceMark	plugin/showmarks.vim	/^fun! s:ShowMarksPlaceMark()$/;"	f
 ShowMarksSetup	.\plugin\showmarks.vim	/^fun! s:ShowMarksSetup()$/;"	f
-ShowMarksSetup	plugin/showmarks.vim	/^fun! s:ShowMarksSetup()$/;"	f
 ShowMarksToggle	.\plugin\showmarks.vim	/^com! -nargs=0 ShowMarksToggle    :call <sid>ShowMarksToggle()$/;"	c
 ShowMarksToggle	.\plugin\showmarks.vim	/^fun! s:ShowMarksToggle()$/;"	f
-ShowMarksToggle	plugin/showmarks.vim	/^com! -nargs=0 ShowMarksToggle    :call <sid>ShowMarksToggle()$/;"	c
-ShowMarksToggle	plugin/showmarks.vim	/^fun! s:ShowMarksToggle()$/;"	f
 ShowTag	.\autoload\ttags.vim	/^function! s:ShowTag(world, tagline) "{{{3$/;"	f
 size	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> size <C-R>=SqlIab_ReplaceConditionally('size', 'SIZE')<CR>$/;"	m
 SM	.\plugin\cecutil.vim	/^com! -bar -nargs=1 SM	call SaveMark(<q-args>)$/;"	c
@@ -2654,6 +2586,7 @@ TTagselect	.\plugin\ttags.vim	/^command! -nargs=* -bang TTagselect call ttags#Se
 TVarArg	.\plugin\02tlib.vim	/^command! -nargs=+ TVarArg exec tlib#arg#Let([<args>])$/;"	c
 type	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> type <C-R>=SqlIab_ReplaceConditionally('type', 'TYPE')<CR>$/;"	m
 u	.\autoload\repeat.vim	/^nnoremap <silent> u     :<C-U>call <SID>wrap('u',v:count)<CR>$/;"	m
+U	.\autoload\repeat.vim	/^nnoremap <silent> U     :<C-U>call <SID>wrap('U',v:count)<CR>$/;"	m
 uid	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> uid <C-R>=SqlIab_ReplaceConditionally('uid', 'UID')<CR>$/;"	m
 union	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> union <C-R>=SqlIab_ReplaceConditionally('union', 'UNION')<CR>$/;"	m
 unique	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> unique <C-R>=SqlIab_ReplaceConditionally('unique', 'UNIQUE')<CR>$/;"	m
@@ -2737,14 +2670,12 @@ varchar	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> varchar <C-R>=Sql
 varchar2	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> varchar2 <C-R>=SqlIab_ReplaceConditionally('varchar2', 'VARCHAR2')<CR>$/;"	m
 varray	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> varray <C-R>=SqlIab_ReplaceConditionally('varray', 'VARRAY')<CR>$/;"	m
 VerifyText	.\plugin\showmarks.vim	/^fun! s:VerifyText(which)$/;"	f
-VerifyText	plugin/showmarks.vim	/^fun! s:VerifyText(which)$/;"	f
 view	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> view <C-R>=SqlIab_ReplaceConditionally('view', 'VIEW')<CR>$/;"	m
 viewEdit	.\autoload\rails.vim	/^function! s:viewEdit(cmd,...)$/;"	f
 viewList	.\autoload\rails.vim	/^function! s:viewList(A,L,P)$/;"	f
 viewspattern	.\autoload\rails.vim	/^function! s:viewspattern()$/;"	f
 vim	.\plugin\autotag.vim	/^import vim$/;"	m
 warn	.\autoload\rails.vim	/^function! s:warn(str)$/;"	f
-Warn	.\plugin\diffchanges.vim	/^function! s:Warn(message) "{{{1$/;"	f
 Warning	.\plugin\EasyGrep.vim	/^function! s:Warning(message)$/;"	f
 WarnNoMatches	.\plugin\EasyGrep.vim	/^function! s:WarnNoMatches(pattern)$/;"	f
 whenever	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> whenever <C-R>=SqlIab_ReplaceConditionally('whenever', 'WHENEVER')<CR>$/;"	m
@@ -2755,8 +2686,11 @@ wrap	.\autoload\repeat.vim	/^function! s:wrap(command,count)$/;"	f
 wrap	.\plugin\surround.vim	/^function! s:wrap(string,char,type,...)$/;"	f
 wrapreg	.\plugin\surround.vim	/^function! s:wrapreg(reg,char,...)$/;"	f
 xid	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> xid <C-R>=SqlIab_ReplaceConditionally('xid', 'XID')<CR>$/;"	m
+yS	.\plugin\surround.vim	/^    nmap          yS   <Plug>YSurround$/;"	m
 ys	.\plugin\surround.vim	/^    nmap          ys   <Plug>Ysurround$/;"	m
 ySs	.\plugin\surround.vim	/^    nmap          ySs  <Plug>YSsurround$/;"	m
+ySS	.\plugin\surround.vim	/^    nmap          ySS  <Plug>YSsurround$/;"	m
+yss	.\plugin\surround.vim	/^    nmap          yss  <Plug>Yssurround$/;"	m
 ZoomWin	.\plugin\ZoomWinPlugin.vim	/^com! ZoomWin :set lz|silent call ZoomWin#ZoomWin()|set nolz$/;"	c
 ZoomWin	.\plugin\ZoomWinPlugin.vim	/^fun! ZoomWin()$/;"	f
 ZoomWin#CleanupSessionFile	.\autoload\ZoomWin.vim	/^fun! ZoomWin#CleanupSessionFile()$/;"	f
@@ -2766,7 +2700,6 @@ ZoomWinPreserve	.\autoload\ZoomWin.vim	/^fun! s:ZoomWinPreserve(open)$/;"	f
 [%	.\plugin\matchit.vim	/^onoremap <silent> [% v:<C-U>call <SID>MultiMatch("bW", "o") <CR>$/;"	m
 [%	.\plugin\matchit.vim	/^vmap [% <Esc>[%m'gv``$/;"	m
 \sm	.\plugin\showmarks.vim	/^noremap <unique> <script> \\sm m$/;"	m
-\sm	plugin/showmarks.vim	/^noremap <unique> <script> \\sm m$/;"	m
 ]%	.\plugin\matchit.vim	/^nnoremap <silent> ]% :<C-U>call <SID>MultiMatch("W",  "n") <CR>$/;"	m
 ]%	.\plugin\matchit.vim	/^onoremap <silent> ]% v:<C-U>call <SID>MultiMatch("W",  "o") <CR>$/;"	m
 ]%	.\plugin\matchit.vim	/^vmap ]% <Esc>]%m'gv``$/;"	m

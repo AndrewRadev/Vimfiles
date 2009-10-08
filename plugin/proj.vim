@@ -68,6 +68,7 @@ endfunction
 function! s:RefreshCurrent()
     if has_key(s:Current, 'path') == 1
         exec 'cd ' . s:Current['path']
+        set path=./**
     end
 
     if has_key(s:Current, 'vim') == 1

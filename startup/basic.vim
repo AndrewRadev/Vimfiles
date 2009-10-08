@@ -2,34 +2,30 @@ set autoindent
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cmdheight=1
-set completeopt=longest,menuone
+set completeopt=menuone,preview
 set diffopt=filler,vertical
 set encoding=utf-8
-set expandtab
+set expandtab smarttab
 set ffs=unix,dos
-set formatoptions=croq
+set formatoptions=croqn
 set guioptions=crb
 set ignorecase smartcase
-set incsearch
+set incsearch nohlsearch
 set laststatus=2
 set lazyredraw
-set linebreak
+set linebreak showbreak=+>
 set listchars=eol:.,tab:\|-
-set nohlsearch
 set noswapfile
 set number
 set path=$PWD/**
 set ruler
-set shiftround
-set shiftwidth=2
+set shiftwidth=2 shiftround
 set shortmess=aTI
-set showbreak=+>
 set showcmd
 set sidescroll=4
-set smarttab
-set softtabstop=2
+set statusline=%<%f\ %h%m%r%=%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
-set tabstop=2
+set tabstop=2 softtabstop=2
 set updatetime=1000
 set wildmenu
 
@@ -40,8 +36,3 @@ else
   set backupdir=~/.backup
   set guifont=Andale\ Mono\ 14
 endif
-
-syntax enable
-filetype plugin indent on
-
-colorscheme custom_elflord

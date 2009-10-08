@@ -1,7 +1,6 @@
 ScriptID SourceID Filename
 --------------------------
 294  10110 Align.vim
-120  9388  decho.vim
 642  8136  GetLatestVimScripts.vim
 508  9865  ZoomWin.vim
 1066 7618  cecutil.vim
@@ -16,7 +15,6 @@ ScriptID SourceID Filename
 293  9060  utl.vim
 305  1414  sql_iabbr.vim
 1863 10035 tlib.vim
-52   8279  calendar.vim
 2018 7939  ttags.vim
 2719 11460 proj.tbz
 2428 9489  LineCommenter.vim

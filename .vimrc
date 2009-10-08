@@ -77,9 +77,6 @@ let g:snips_author = "Andrew Radev"
 let g:ProjFile = '~/.vimproj'
 let g:ProjSplitMethod = 'edit'
 
-" For testing purposes:
-let g:autotagVerbosityLevel = 0
-
 " EasyGrep options:
 let g:EasyGrepMode              = 0 " Don't track extension
 let g:EasyGrepCommand           = 0 " vimgprep
@@ -89,6 +86,9 @@ let g:EasyGrepExtraWarnings     = 1 " -> True
 
 " AutoTags options:
 let g:autotagCtagsCmd = "ctags --sort=foldcase"
+
+" TTags options:
+let g:ttags_display = 'quickfix'
 
 " FindFile options:
 let g:FindFileIgnore = [

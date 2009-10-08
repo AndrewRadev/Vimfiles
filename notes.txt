@@ -1,8 +1,18 @@
-TODO: Find a way to fix css.vim
-TODO: Think of something to make application detection easier for Utl
+Find a way to fix css.vim
+Think of something to make application detection easier for Utl
 
-TODO: Work on symfony plugin.
+PHP:
+  - Work on symfony plugin.
+  - Fix omnicompletion + hack the ctags php parser.
+
+Haskell:
+  - Move most of the ghc functions to autoload.
+  - Forget about ctags?
 
 Snippets: 
   - nested snippets (additional check on <tab>?)
   - wildcard + additional character?
+
+Changes to plugins:
+  - snipMate
+  - php indenting script
