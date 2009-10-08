@@ -17,7 +17,6 @@ set linebreak showbreak=+>
 set listchars=eol:.,tab:\|-
 set noswapfile
 set number
-set path=$PWD/**
 set ruler
 set shiftwidth=2 shiftround
 set shortmess=aTI

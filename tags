@@ -11,7 +11,6 @@
 ,,	.\plugin\LineCommenter.vim	/^nmap <silent>,, :call LineCommenter()<Esc>$/;"	m
 .	.\autoload\repeat.vim	/^nnoremap <silent> .     :<C-U>call <SID>repeat(v:count)<CR>$/;"	m
 <C-G>S	.\plugin\surround.vim	/^    imap        <C-G>S <Plug>ISurround$/;"	m
-<C-G>s	.\plugin\surround.vim	/^    imap        <C-G>s <Plug>Isurround$/;"	m
 <C-R>	.\autoload\repeat.vim	/^nnoremap <silent> <C-R> :<C-U>call <SID>wrap("\\<Lt>C-R>",v:count)<CR>$/;"	m
 <c-r><tab>	.\after\plugin\snipMate.vim	/^ino <silent> <c-r><tab> <c-r>=ShowAvailableSnips()<cr>$/;"	m
 <C-S>	.\plugin\surround.vim	/^        imap     <C-S> <Plug>Isurround$/;"	m
@@ -46,36 +45,39 @@
 <Leader>stw	.\plugin\dbext.vim	/^    nmap <unique> <Leader>stw <Plug>DBSelectFromTableWithWhere$/;"	m
 <Leader>swp	.\plugin\cecutil.vim	/^ map <unique> <Leader>swp <Plug>SaveWinPosn$/;"	m
 <Leader>vA	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vA <plug>EgMapGrepCurrentWord_A$/;"	m
-<Leader>va	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>va <plug>EgMapGrepCurrentWord_a$/;"	m
 <Leader>va	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>va <plug>EgMapGrepSelection_a$/;"	m
-<Leader>vA	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vA <plug>EgMapGrepSelection_A$/;"	m
 <Leader>vo	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vo <plug>EgMapGrepOptions$/;"	m
 <Leader>vr	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vr <plug>EgMapReplaceCurrentWord_r$/;"	m
-<Leader>vR	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vR <plug>EgMapReplaceCurrentWord_R$/;"	m
 <Leader>vR	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vR <plug>EgMapReplaceSelection_R$/;"	m
-<Leader>vr	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vr <plug>EgMapReplaceSelection_r$/;"	m
 <Leader>vV	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vV <plug>EgMapGrepCurrentWord_V$/;"	m
-<Leader>vv	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vv <plug>EgMapGrepCurrentWord_v$/;"	m
 <Leader>vv	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vv <plug>EgMapGrepSelection_v$/;"	m
-<Leader>vV	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vV <plug>EgMapGrepSelection_V$/;"	m
 <LocalLeader>.	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>. :call Qualify()<cr>$/;"	m
 <LocalLeader>?	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>? :call Haddock()<cr>$/;"	m
 <LocalLeader>?1	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>?1 :call HaskellSearchEngine('hoogle')<cr>$/;"	m
 <LocalLeader>?2	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>?2 :call HaskellSearchEngine('hayoo!')<cr>$/;"	m
 <LocalLeader>??	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>?? :let es=g:haskell_search_engines$/;"	m
 <LocalLeader>ct	.\compiler\ghc.vim	/^map <LocalLeader>ct :call GHC_CreateTagfile()<cr>$/;"	m
+<LocalLeader>ct	compiler/ghc.vim	/^map <LocalLeader>ct :call ghc#CreateTagfile()<cr>$/;"	m
 <LocalLeader>i	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>i :call Import(0,0)<cr>$/;"	m
 <LocalLeader>ie	.\compiler\ghc.vim	/^map <LocalLeader>ie :call GHC_MkImportsExplicit()<cr>$/;"	m
+<LocalLeader>ie	compiler/ghc.vim	/^map <LocalLeader>ie :call ghc#MkImportsExplicit()<cr>$/;"	m
 <LocalLeader>im	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>im :call Import(1,0)<cr>$/;"	m
 <LocalLeader>iq	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>iq :call Import(0,1)<cr>$/;"	m
 <LocalLeader>iqm	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>iqm :call Import(1,1)<cr>$/;"	m
 <LocalLeader>lang	.\compiler\ghc.vim	/^    map <LocalLeader>lang :emenu ]LANGUAGES_GHC.$/;"	m
 <LocalLeader>lang	.\compiler\ghc.vim	/^    map <LocalLeader>lang :popup ]LANGUAGES_GHC<cr>$/;"	m
+<LocalLeader>lang	compiler/ghc.vim	/^    map <LocalLeader>lang :emenu ]LANGUAGES_GHC.$/;"	m
+<LocalLeader>lang	compiler/ghc.vim	/^    map <LocalLeader>lang :popup ]LANGUAGES_GHC<cr>$/;"	m
 <LocalLeader>opt	.\compiler\ghc.vim	/^  map <LocalLeader>opt :emenu ]OPTIONS_GHC.$/;"	m
 <LocalLeader>opt	.\compiler\ghc.vim	/^  map <LocalLeader>opt :popup ]OPTIONS_GHC<cr>$/;"	m
+<LocalLeader>opt	compiler/ghc.vim	/^  map <LocalLeader>opt :emenu ]OPTIONS_GHC.$/;"	m
+<LocalLeader>opt	compiler/ghc.vim	/^  map <LocalLeader>opt :popup ]OPTIONS_GHC<cr>$/;"	m
 <LocalLeader>si	.\compiler\ghc.vim	/^map <LocalLeader>si :call GHC_ShowInfo()<cr>$/;"	m
+<LocalLeader>si	compiler/ghc.vim	/^map <LocalLeader>si :call ghc#ShowInfo()<cr>$/;"	m
 <LocalLeader>t	.\compiler\ghc.vim	/^map <LocalLeader>t :call GHC_ShowType(0)<cr>$/;"	m
 <LocalLeader>T	.\compiler\ghc.vim	/^map <LocalLeader>T :call GHC_ShowType(1)<cr>$/;"	m
+<LocalLeader>t	compiler/ghc.vim	/^map <LocalLeader>t :call ghc#ShowType(0)<cr>$/;"	m
+<LocalLeader>T	compiler/ghc.vim	/^map <LocalLeader>T :call ghc#ShowType(1)<cr>$/;"	m
 <Plug>AlignMapsWrapperEnd	:call	.\plugin\AlignMapsPlugin.vim	/^nmap <silent> <script> <Plug>AlignMapsWrapperEnd	:call AlignMaps#WrapperEnd()<CR>:set nolz<CR>$/;"	m
 <Plug>AlignMapsWrapperStart	:<c-u>set	.\plugin\AlignMapsPlugin.vim	/^vmap <silent> <script> <Plug>AlignMapsWrapperStart	:<c-u>set lz<CR>:call AlignMaps#WrapperStart(1)<CR>$/;"	m
 <Plug>AlignMapsWrapperStart	:set	.\plugin\AlignMapsPlugin.vim	/^nmap <silent> <script> <Plug>AlignMapsWrapperStart	:set lz<CR>:call AlignMaps#WrapperStart(0)<CR>$/;"	m
@@ -276,8 +278,11 @@ b:current_syntax	.\syntax\txt.vim	/^let b:current_syntax = "txt"$/;"	v
 b:did_indent	.\indent\php.vim	/^let b:did_indent = 1$/;"	v
 b:did_sql_iabbr	.\ftplugin\sql_iabbr.vim	/^let b:did_sql_iabbr = 1$/;"	v
 b:ghc_staticoptions	.\compiler\ghc.vim	/^  let b:ghc_staticoptions = ''$/;"	v
+b:ghc_staticoptions	compiler/ghc.vim	/^  let b:ghc_staticoptions = ''$/;"	v
 b:ghc_types	.\compiler\ghc.vim	/^  let b:ghc_types = {}$/;"	v
+b:ghc_types	compiler/ghc.vim	/^  let b:ghc_types = {}$/;"	v
 b:my_changedtick	.\compiler\ghc.vim	/^  let b:my_changedtick = b:changedtick$/;"	v
+b:my_changedtick	compiler/ghc.vim	/^  let b:my_changedtick = b:changedtick$/;"	v
 b:php_noindent_switch	.\indent\php.vim	/^   let b:php_noindent_switch = 1$/;"	v
 BackToForwardSlash	.\plugin\EasyGrep.vim	/^function! s:BackToForwardSlash(arg)$/;"	f
 BackwardsSnippet	.\plugin\snipMate.vim	/^fun! BackwardsSnippet()$/;"	f
@@ -400,7 +405,9 @@ CompareCurrentFileCurrentDirectory	.\plugin\EasyGrep.vim	/^function! s:CompareCu
 compareNodes	.\plugin\NERD_tree.vim	/^function! s:compareNodes(n1, n2)$/;"	f
 CompilerSet	.\compiler\php.vim	/^  command -nargs=* CompilerSet setlocal <args>$/;"	c
 CompilerSet	.\compiler\tidy.vim	/^  command -nargs=* CompilerSet setlocal <args>$/;"	c
+CompilerSet	compiler/ruby.vim	/^  command -nargs=* CompilerSet setlocal <args>$/;"	c
 Complete	.\plugin\proj.vim	/^function! s:Complete(A, L, P)$/;"	f
+Complete	plugin/proj.vim	/^function! s:Complete(A, L, P)$/;"	f
 completeArgs	.\plugin\utl.vim	/^fu! s:completeArgs(dummy_argLead, cmdLine, dummy_cursorPos)$/;"	f
 CompleteAux	.\ftplugin\haskell_doc.vim	/^function! CompleteAux(al,cl,cp)$/;"	f
 completeBookmarks	.\plugin\NERD_tree.vim	/^function! s:completeBookmarks(A,L,P)$/;"	f
@@ -449,6 +456,8 @@ current	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> current <C-R>=Sql
 current_compiler	.\compiler\ghc.vim	/^let current_compiler = "ghc"$/;"	v
 current_compiler	.\compiler\php.vim	/^let current_compiler = "php"$/;"	v
 current_compiler	.\compiler\tidy.vim	/^let current_compiler = "tidy"$/;"	v
+current_compiler	compiler/ghc.vim	/^let current_compiler = "ghc"$/;"	v
+current_compiler	compiler/ruby.vim	/^let current_compiler = "ruby"$/;"	v
 cursor	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> cursor <C-R>=SqlIab_ReplaceConditionally('cursor', 'CURSOR')<CR>$/;"	m
 CustomComplete	.\autoload\rails.vim	/^function! s:CustomComplete(A,L,P,cmd)$/;"	f
 database	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> database <C-R>=SqlIab_ReplaceConditionally('database', 'DATABASE')<CR>$/;"	m
@@ -850,12 +859,15 @@ Dsep	.\plugin\Decho.vim	/^com! -nargs=? Dsep						    call DechoSep(<args>)$/;"	
 Dshow	.\plugin\Decho.vim	/^com! -nargs=0 Dshow    						call s:Dhide(0)$/;"	c
 dumpHelp	.\plugin\NERD_tree.vim	/^function! s:dumpHelp()$/;"	f
 DumpInfo	.\plugin\proj.vim	/^function! s:DumpInfo()$/;"	f
+DumpInfo	plugin/proj.vim	/^function! s:DumpInfo()$/;"	f
 Echo	.\plugin\EasyGrep.vim	/^function! <sid>Echo(message)$/;"	f
 echo	.\plugin\NERD_tree.vim	/^function! s:echo(msg)$/;"	f
 echo	.\plugin\proj.vim	/^function! s:echo(msg)$/;"	f
+echo	plugin/proj.vim	/^function! s:echo(msg)$/;"	f
 echoError	.\plugin\NERD_tree.vim	/^function! s:echoError(msg)$/;"	f
 echoError	.\plugin\proj.vim	/^function! s:echoError(msg)$/;"	f
 EchoError	.\plugin\symfony.vim	/^function! g:EchoError(msg)$/;"	f
+echoError	plugin/proj.vim	/^function! s:echoError(msg)$/;"	f
 EchoFilesSearched	.\plugin\EasyGrep.vim	/^function! <sid>EchoFilesSearched()$/;"	f
 EchoOptionsSet	.\plugin\EasyGrep.vim	/^function! <sid>EchoOptionsSet()$/;"	f
 echoWarning	.\plugin\NERD_tree.vim	/^function! s:echoWarning(msg)$/;"	f
@@ -1025,6 +1037,7 @@ g:getscript_shq	.\autoload\getscript.vim	/^  let g:getscript_shq= &sxq$/;"	v
 g:getscript_shq	.\autoload\getscript.vim	/^ let g:getscript_shq= g:netrw_shq$/;"	v
 g:ghc	.\compiler\ghc.vim	/^    let g:ghc = 'ghc'$/;"	v
 g:ghc	.\ftplugin\haskell_doc.vim	/^    let g:ghc = 'ghc'$/;"	v
+g:ghc	compiler/ghc.vim	/^    let g:ghc = 'ghc'$/;"	v
 g:ghc_pkg	.\ftplugin\haskell_doc.vim	/^  let g:ghc_pkg = substitute(g:ghc,'\\(.*\\)ghc','\\1ghc-pkg','')$/;"	v
 g:haddock_browser_callformat	.\ftplugin\haskell_doc.vim	/^      let g:haddock_browser_callformat = '%s %s '.printf(&shellredir,'\/dev\/null').' &'$/;"	v
 g:haddock_browser_callformat	.\ftplugin\haskell_doc.vim	/^      let g:haddock_browser_callformat = '%s %s'$/;"	v
@@ -1032,6 +1045,7 @@ g:haddock_browser_callformat	.\ftplugin\haskell_doc.vim	/^    let g:haddock_brow
 g:haddock_index	.\ftplugin\haskell_doc.vim	/^let g:haddock_index = {}$/;"	v
 g:haddock_moduleindex	.\ftplugin\haskell_doc.vim	/^let g:haddock_moduleindex = {}$/;"	v
 g:haskell_functions	.\compiler\ghc.vim	/^let g:haskell_functions = "ghc"$/;"	v
+g:haskell_functions	compiler/ghc.vim	/^let g:haskell_functions = "ghc"$/;"	v
 g:haskell_search_engines	.\ftplugin\haskell_doc.vim	/^  let g:haskell_search_engines = $/;"	v
 g:last_action_line	.\plugin\symfony.vim	/^let g:last_action_line = []$/;"	v
 g:last_template_line	.\plugin\symfony.vim	/^let g:last_template_line = []$/;"	v
@@ -1059,10 +1073,18 @@ g:makeArgumentString	.\autoload\genutils.vim	/^let g:makeArgumentString = 'exec 
 g:NERDTreeIgnore	.\plugin\NERD_tree.vim	/^    let g:NERDTreeIgnore = ['\\~$']$/;"	v
 g:NERDTreeSortOrder	.\plugin\NERD_tree.vim	/^    let g:NERDTreeSortOrder = ['\\\/$', '*', '\\.swp$',  '\\.bak$', '\\~$']$/;"	v
 g:Projects	.\plugin\proj.vim	/^let g:Projects = s:LoadProjects()$/;"	v
+g:Projects	plugin/proj.vim	/^let g:Projects = s:LoadProjects()$/;"	v
 g:repeat_tick	.\autoload\repeat.vim	/^let g:repeat_tick = -1$/;"	v
 g:sf_app_name	.\plugin\symfony.vim	/^let g:sf_app_name      = ""$/;"	v
 g:sf_module_name	.\plugin\symfony.vim	/^let g:sf_module_name   = "" $/;"	v
 g:ST_WIN_CMD	.\autoload\genutils.vim	/^let g:ST_WIN_CMD = 0 | let g:ST_WIN_SH = 1 | let g:ST_UNIX = 2$/;"	v
+g:SuperTabCompletionContexts	startup/supertab.vim	/^let g:SuperTabCompletionContexts           = $/;"	v
+g:SuperTabContextDefaultCompletionType	startup/supertab.vim	/^let g:SuperTabContextDefaultCompletionType = '<c-n>'$/;"	v
+g:SuperTabDefaultCompletionType	startup/supertab.vim	/^let g:SuperTabDefaultCompletionType        = 'context'$/;"	v
+g:SuperTabMappingBackward	startup/supertab.vim	/^let g:SuperTabMappingBackward              = '<c-k>'$/;"	v
+g:SuperTabMappingForward	startup/supertab.vim	/^let g:SuperTabMappingForward               = '<c-j>'$/;"	v
+g:SuperTabMidWordCompletion	startup/supertab.vim	/^let g:SuperTabMidWordCompletion            = 1$/;"	v
+g:SuperTabRetainCompletionDuration	startup/supertab.vim	/^let g:SuperTabRetainCompletionDuration     = 'insert'$/;"	v
 g:utl_cfg_hdl_mt_application_excel	.\startup\utl.vim	/^  let g:utl_cfg_hdl_mt_application_excel   = ':!soffice %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_mt_application_pdf	.\startup\utl.vim	/^  let g:utl_cfg_hdl_mt_application_pdf     = ':!evince  %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_mt_application_x_bzip2	.\startup\utl.vim	/^  let g:utl_cfg_hdl_mt_application_x_bzip2 = ':!squeeze %p &> \/dev\/null &'$/;"	v
@@ -1227,6 +1249,7 @@ getPath	.\plugin\NERD_tree.vim	/^function! s:getPath(ln)$/;"	f
 GetPhpIndent	.\indent\php.vim	/^function GetPhpIndent()$/;"	f
 getpidfor	.\autoload\rails.vim	/^function! s:getpidfor(bind,port)$/;"	f
 GetProject	.\plugin\proj.vim	/^function! s:GetProject(name)$/;"	f
+GetProject	plugin/proj.vim	/^function! s:GetProject(name)$/;"	f
 GetSavedName	.\plugin\EasyGrep.vim	/^function! s:GetSavedName(var)$/;"	f
 GetScript	.\autoload\getscript.vim	/^com!        -nargs=0 GetScript           call getscript#GetLatestVimScripts()$/;"	c
 getscript#GetLatestVimScripts	.\autoload\getscript.vim	/^fun! getscript#GetLatestVimScripts()$/;"	f
@@ -1241,9 +1264,29 @@ GetTag	.\autoload\ttags.vim	/^function! s:GetTag(world, id) "{{{3$/;"	f
 getTreeWinNum	.\plugin\NERD_tree.vim	/^function! s:getTreeWinNum()$/;"	f
 GetVisibleBuffers	.\plugin\EasyGrep.vim	/^function! s:GetVisibleBuffers()$/;"	f
 GetWinDim	.\autoload\genutils.vim	/^function! s:GetWinDim(dir, win)$/;"	f
+ghc#BrowseAll	autoload/ghc.vim	/^function! ghc#BrowseAll()$/;"	f
+ghc#BrowseBangStar	autoload/ghc.vim	/^function! ghc#BrowseBangStar(module)$/;"	f
+ghc#BrowseMultiple	autoload/ghc.vim	/^function! ghc#BrowseMultiple(imports,modules)$/;"	f
+ghc#CompleteImports	autoload/ghc.vim	/^function! ghc#CompleteImports(findstart, base)$/;"	f
+ghc#CountErrors	autoload/ghc.vim	/^function! ghc#CountErrors()$/;"	f
+ghc#CreateTagfile	autoload/ghc.vim	/^function! ghc#CreateTagfile()$/;"	f
+ghc#HaveTypes	autoload/ghc.vim	/^function! ghc#HaveTypes()$/;"	f
+ghc#Info	autoload/ghc.vim	/^function! ghc#Info(what)$/;"	f
+ghc#MkImportsExplicit	autoload/ghc.vim	/^function! ghc#MkImportsExplicit()$/;"	f
+ghc#NameCurrent	autoload/ghc.vim	/^function! ghc#NameCurrent()$/;"	f
+ghc#Process	autoload/ghc.vim	/^function! ghc#Process(imports,output)$/;"	f
+ghc#ProcessBang	autoload/ghc.vim	/^function! ghc#ProcessBang(module,output)$/;"	f
+ghc#ShowInfo	autoload/ghc.vim	/^function! ghc#ShowInfo()$/;"	f
+ghc#ShowType	autoload/ghc.vim	/^function! ghc#ShowType(addTypeDecl)$/;"	f
+ghc#StaticOptions	autoload/ghc.vim	/^function! ghc#StaticOptions()$/;"	f
+ghc#TypeBalloon	autoload/ghc.vim	/^function! ghc#TypeBalloon()$/;"	f
+ghc#VersionGE	autoload/ghc.vim	/^function! ghc#VersionGE(target)$/;"	f
 GHCi	.\compiler\ghc.vim	/^command! -nargs=1 GHCi redraw | echo system(g:ghc. ' ' . b:ghc_staticoptions .' '.expand("%").' -e "'.escape(<f-args>,'"').'"')$/;"	c
+GHCi	compiler/ghc.vim	/^command! -nargs=1 GHCi redraw | echo system(g:ghc. ' ' . b:ghc_staticoptions .' '.expand("%").' -e "'.escape(<f-args>,'"').'"')$/;"	c
 GHCReload	.\compiler\ghc.vim	/^command! GHCReload call GHC_BrowseAll()$/;"	c
+GHCReload	compiler/ghc.vim	/^command! GHCReload call ghc#BrowseAll()$/;"	c
 GHCStaticOptions	.\compiler\ghc.vim	/^command! GHCStaticOptions call GHC_StaticOptions()$/;"	c
+GHCStaticOptions	compiler/ghc.vim	/^command! GHCStaticOptions call ghc#StaticOptions()$/;"	c
 GHC_BrowseAll	.\compiler\ghc.vim	/^function! GHC_BrowseAll()$/;"	f
 GHC_BrowseBangStar	.\compiler\ghc.vim	/^function! GHC_BrowseBangStar(module)$/;"	f
 GHC_BrowseMultiple	.\compiler\ghc.vim	/^function! GHC_BrowseMultiple(imports,modules)$/;"	f
@@ -1260,8 +1303,10 @@ GHC_ShowInfo	.\compiler\ghc.vim	/^function! GHC_ShowInfo()$/;"	f
 GHC_ShowType	.\compiler\ghc.vim	/^function! GHC_ShowType(addTypeDecl)$/;"	f
 GHC_StaticOptions	.\compiler\ghc.vim	/^function! GHC_StaticOptions()$/;"	f
 ghc_supported_languages	.\compiler\ghc.vim	/^  let ghc_supported_languages = split(system(g:ghc . ' --supported-languages'),'\\n')$/;"	v
+ghc_supported_languages	compiler/ghc.vim	/^  let ghc_supported_languages = split(system(g:ghc . ' --supported-languages'),'\\n')$/;"	v
 GHC_TypeBalloon	.\compiler\ghc.vim	/^  function! GHC_TypeBalloon()$/;"	f
 ghc_version	.\compiler\ghc.vim	/^let ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\\n','','')$/;"	v
+ghc_version	compiler/ghc.vim	/^let ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\\n','','')$/;"	v
 GHC_VersionGE	.\compiler\ghc.vim	/^function! GHC_VersionGE(target)$/;"	f
 GHC_VersionGE	.\ftplugin\haskell_doc.vim	/^function! GHC_VersionGE(target)$/;"	f
 gm	.\ftplugin\php.vim	/^nmap <buffer> gm :exe ":Utl ol http:\/\/php.net\/manual-lookup.php?pattern=" . expand("<cword>")<cr>$/;"	m
@@ -1458,6 +1503,7 @@ loaded_utl	.\plugin\utl.vim	/^let loaded_utl = "3.0a"$/;"	v
 loaded_utl_scm	.\plugin\utl_scm.vim	/^let loaded_utl_scm = 1$/;"	v
 loaded_utl_uri	.\plugin\utl_uri.vim	/^let loaded_utl_uri = 1$/;"	v
 LoadProjects	.\plugin\proj.vim	/^function! s:LoadProjects()$/;"	f
+LoadProjects	plugin/proj.vim	/^function! s:LoadProjects()$/;"	f
 localeEdit	.\autoload\rails.vim	/^function! s:localeEdit(cmd,...)$/;"	f
 localeList	.\autoload\rails.vim	/^function! s:localeList(A,L,P)$/;"	f
 LocalModelines	.\autoload\rails.vim	/^function! s:LocalModelines(lnum)$/;"	f
@@ -1478,6 +1524,7 @@ MakeSpace	.\autoload\Align.vim	/^fun! s:MakeSpace(spacecnt)$/;"	f
 makewithruby	.\autoload\rails.vim	/^function! s:makewithruby(arg,bang,...)$/;"	f
 maplocalleader	.\compiler\ghc.vim	/^  let maplocalleader='_'$/;"	v
 maplocalleader	.\ftplugin\haskell_doc.vim	/^  let maplocalleader='_'$/;"	v
+maplocalleader	compiler/ghc.vim	/^  let maplocalleader='_'$/;"	v
 MarkErrors	.\plugin\cuteErrorMarker.vim	/^command! MarkErrors call MarkErrors()$/;"	c
 MarkErrors	.\plugin\cuteErrorMarker.vim	/^fun! MarkErrors() "{{{$/;"	f
 Match	.\autoload\genutils.vim	/^function! s:Match(expr, pat, start)$/;"	f
@@ -1552,13 +1599,17 @@ openBookmark	.\plugin\NERD_tree.vim	/^function! s:openBookmark(name)$/;"	f
 openEntrySplit	.\plugin\NERD_tree.vim	/^function! s:openEntrySplit(vertical, forceKeepWindowOpen)$/;"	f
 openExplorer	.\plugin\NERD_tree.vim	/^function! s:openExplorer()$/;"	f
 OpenFile	.\plugin\proj.vim	/^function! s:OpenFile()$/;"	f
+OpenFile	plugin/proj.vim	/^function! s:OpenFile()$/;"	f
 openInNewTab	.\plugin\NERD_tree.vim	/^function! s:openInNewTab(stayCurrentTab)$/;"	f
 openNodeRecursively	.\plugin\NERD_tree.vim	/^function! s:openNodeRecursively()$/;"	f
 OpenNotes	.\plugin\proj.vim	/^function! s:OpenNotes()$/;"	f
+OpenNotes	plugin/proj.vim	/^function! s:OpenNotes()$/;"	f
 OpenOptionsExplorer	.\plugin\EasyGrep.vim	/^function! s:OpenOptionsExplorer()$/;"	f
 OpenProject	.\plugin\proj.vim	/^function! s:OpenProject(name)$/;"	f
+OpenProject	plugin/proj.vim	/^function! s:OpenProject(name)$/;"	f
 OpenURL	.\startup\utl.vim	/^command! -bar -nargs=1 OpenURL :Utl openLink <args>$/;"	c
 OpenVimFile	.\plugin\proj.vim	/^function! s:OpenVimFile()$/;"	f
+OpenVimFile	plugin/proj.vim	/^function! s:OpenVimFile()$/;"	f
 operator	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> operator <C-R>=SqlIab_ReplaceConditionally('operator', 'OPERATOR')<CR>$/;"	m
 opfunc	.\plugin\surround.vim	/^function! s:opfunc(type,...) " {{{1$/;"	f
 opfunc2	.\plugin\surround.vim	/^function! s:opfunc2(arg)$/;"	f
@@ -1566,6 +1617,8 @@ option	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> option <C-R>=SqlIa
 opts	.\autoload\rails.vim	/^function! s:opts()$/;"	f
 opts	.\compiler\ghc.vim	/^  let opts = filter(split(substitute(system(g:ghc . ' -v0 --interactive', ':set'), '  ', '','g'), '\\n'), 'v:val =~ "-f"')$/;"	v
 opts	.\compiler\ghc.vim	/^  let opts = ["-fglasgow-exts","-fallow-undecidable-instances","-fallow-overlapping-instances","-fno-monomorphism-restriction","-fno-mono-pat-binds","-fno-cse","-fbang-patterns","-funbox-strict-fields"]$/;"	v
+opts	compiler/ghc.vim	/^  let opts = filter(split(substitute(system(g:ghc . ' -v0 --interactive', ':set'), '  ', '','g'), '\\n'), 'v:val =~ "-f"')$/;"	v
+opts	compiler/ghc.vim	/^  let opts = ["-fglasgow-exts","-fallow-undecidable-instances","-fallow-overlapping-instances","-fno-monomorphism-restriction","-fno-mono-pat-binds","-fno-cse","-fbang-patterns","-funbox-strict-fields"]$/;"	v
 or	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> or <C-R>=SqlIab_ReplaceConditionally('or', 'OR')<CR>$/;"	m
 order	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> order <C-R>=SqlIab_ReplaceConditionally('order', 'ORDER')<CR>$/;"	m
 os	.\plugin\autotag.vim	/^import os$/;"	m
@@ -1614,6 +1667,11 @@ pathjoin	.\autoload\rails.vim	/^function! s:pathjoin(...) abort$/;"	f
 pathsplit	.\autoload\rails.vim	/^function! s:pathsplit(path) abort$/;"	f
 pctfree	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> pctfree <C-R>=SqlIab_ReplaceConditionally('pctfree', 'PCTFREE')<CR>$/;"	m
 PersistentVarName	.\autoload\genutils.vim	/^function! s:PersistentVarName(pluginName, persistentVar)$/;"	f
+phpcomplete#CompletePHP	autoload/phpcomplete.vim	/^function! phpcomplete#CompletePHP(findstart, base)$/;"	f
+phpcomplete#GetClassContents	autoload/phpcomplete.vim	/^function! phpcomplete#GetClassContents(file, name) " {{{$/;"	f
+phpcomplete#GetClassLocation	autoload/phpcomplete.vim	/^function! phpcomplete#GetClassLocation(classname) " {{{$/;"	f
+phpcomplete#GetClassName	autoload/phpcomplete.vim	/^function! phpcomplete#GetClassName(scontext) " {{{$/;"	f
+phpcomplete#LoadData	autoload/phpcomplete.vim	/^function! phpcomplete#LoadData() " {{{$/;"	f
 php_baselib	.\ftplugin\php.vim	/^let php_baselib       = 1$/;"	v
 php_folding	.\ftplugin\php.vim	/^let php_folding       = 1$/;"	v
 php_htmlInStrings	.\ftplugin\php.vim	/^let php_htmlInStrings = 1$/;"	v
@@ -1639,14 +1697,21 @@ ProcessHaddockIndexes	.\ftplugin\haskell_doc.vim	/^function! ProcessHaddockIndex
 ProcessHaddockIndexes2	.\ftplugin\haskell_doc.vim	/^function! ProcessHaddockIndexes2(location,files)$/;"	f
 ProcessSnippet	.\autoload\snipMate.vim	/^fun s:ProcessSnippet(snip)$/;"	f
 Proj	.\plugin\proj.vim	/^command! -complete=customlist,s:Complete -nargs=1 Proj :call s:OpenProject('<args>')$/;"	c
+Proj	plugin/proj.vim	/^command! -complete=customlist,s:Complete -nargs=1 Proj :call s:OpenProject('<args>')$/;"	c
 Project	.\autoload\rails.vim	/^function! s:Project(bang,arg)$/;"	f
 ProjectMenu	.\plugin\rails.vim	/^function! s:ProjectMenu()$/;"	f
 ProjFile	.\plugin\proj.vim	/^command! ProjFile :call s:OpenFile()$/;"	c
+ProjFile	plugin/proj.vim	/^command! ProjFile :call s:OpenFile()$/;"	c
 ProjInfo	.\plugin\proj.vim	/^command! ProjInfo :call s:DumpInfo()$/;"	c
+ProjInfo	plugin/proj.vim	/^command! ProjInfo :call s:DumpInfo()$/;"	c
 ProjNotes	.\plugin\proj.vim	/^command! ProjNotes :call s:OpenNotes()$/;"	c
+ProjNotes	plugin/proj.vim	/^command! ProjNotes :call s:OpenNotes()$/;"	c
 ProjRefresh	.\plugin\proj.vim	/^command! ProjRefresh :call s:RefreshCurrent()$/;"	c
+ProjRefresh	plugin/proj.vim	/^command! ProjRefresh :call s:RefreshCurrent()$/;"	c
 ProjReload	.\plugin\proj.vim	/^command! ProjReload :call s:LoadProjects()$/;"	c
+ProjReload	plugin/proj.vim	/^command! ProjReload :call s:LoadProjects()$/;"	c
 ProjVim	.\plugin\proj.vim	/^command! ProjVim :call s:OpenVimFile()$/;"	c
+ProjVim	plugin/proj.vim	/^command! ProjVim :call s:OpenVimFile()$/;"	c
 promptToDelBuffer	.\plugin\NERD_tree.vim	/^function! s:promptToDelBuffer(bufnum, msg)$/;"	f
 prototype.AssessName	.\autoload\tlib\Filter_cnf.vim	/^function! s:prototype.AssessName(world, name) dict "{{{3$/;"	f
 prototype.BuildTable	.\autoload\tlib\World.vim	/^function! s:prototype.BuildTable() dict "{{{3$/;"	f
@@ -1751,7 +1816,6 @@ rails#new_app_command	.\autoload\rails.vim	/^function! rails#new_app_command(ban
 rails#pluralize	.\autoload\rails.vim	/^function! rails#pluralize(word)$/;"	f
 rails#singularize	.\autoload\rails.vim	/^function! rails#singularize(word)$/;"	f
 rails#statusline	.\autoload\rails.vim	/^function! rails#statusline(...)$/;"	f
-rails#STATUSLINE	.\autoload\rails.vim	/^function! rails#STATUSLINE(...)$/;"	f
 rails#underscore	.\autoload\rails.vim	/^function! rails#underscore(str)$/;"	f
 RailsBufInit	.\autoload\rails.vim	/^function! RailsBufInit(path)$/;"	f
 RailsFile	.\autoload\rails.vim	/^function! RailsFile()$/;"	f
@@ -1795,6 +1859,7 @@ Refresh	.\autoload\rails.vim	/^function! s:Refresh(bang)$/;"	f
 RefreshBuffer	.\autoload\rails.vim	/^function! s:RefreshBuffer()$/;"	f
 refreshCurrent	.\plugin\NERD_tree.vim	/^function! s:refreshCurrent()$/;"	f
 RefreshCurrent	.\plugin\proj.vim	/^function! s:RefreshCurrent()$/;"	f
+RefreshCurrent	plugin/proj.vim	/^function! s:RefreshCurrent()$/;"	f
 refreshRoot	.\plugin\NERD_tree.vim	/^function! s:refreshRoot()$/;"	f
 refs	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> refs <C-R>=SqlIab_ReplaceConditionally('refs', 'REFERENCES')<CR>$/;"	m
 regproc	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> regproc <C-R>=SqlIab_ReplaceConditionally('regproc', 'REGPROC')<CR>$/;"	m
@@ -1850,7 +1915,6 @@ rquote	.\autoload\rails.vim	/^function! s:rquote(str)$/;"	f
 rule	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> rule <C-R>=SqlIab_ReplaceConditionally('rule', 'RULE')<CR>$/;"	m
 RWP	.\plugin\cecutil.vim	/^com! -bar -nargs=0 RWP	call RestoreWinPosn()$/;"	c
 S	.\plugin\surround.vim	/^            vmap  S    <Plug>VSurround$/;"	m
-s	.\plugin\surround.vim	/^            vmap  s    <Plug>Vsurround$/;"	m
 s:all_marks	.\plugin\showmarks.vim	/^let s:all_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\\""$/;"	v
 s:apps	.\autoload\rails.vim	/^  let s:apps = {}$/;"	v
 s:app_prototype	.\autoload\rails.vim	/^let s:app_prototype = {}$/;"	v
@@ -1870,6 +1934,7 @@ s:cpo_save	.\autoload\rails.vim	/^let s:cpo_save = &cpo$/;"	v
 s:cpo_save	.\compiler\php.vim	/^let s:cpo_save = &cpo$/;"	v
 s:cpo_save	.\plugin\surround.vim	/^let s:cpo_save = &cpo$/;"	v
 s:cpo_save	.\plugin\taglist.vim	/^let s:cpo_save = &cpo$/;"	v
+s:cpo_save	compiler/ruby.vim	/^let s:cpo_save = &cpo$/;"	v
 s:CurrentFileCurrentDirChecked	.\plugin\EasyGrep.vim	/^let s:CurrentFileCurrentDirChecked = 0$/;"	v
 s:D	.\autoload\genutils.vim	/^let s:D = 500$/;"	v
 s:d1	.\plugin\utl.vim	/^let s:d1= { 'o': 'openLink', 'ol': 'openLink', 'cl': 'copyLink', 'cf': 'copyFileName', 'cfn': 'copyFileName', 'h': 'help' }$/;"	v
@@ -1922,6 +1987,7 @@ s:flagref	.\ftplugin\haskell_doc.vim	/^let s:flagref = s:guide . 'flag-reference
 s:format	.\autoload\tlib\progressbar.vim	/^let s:format = []$/;"	v
 s:ghc_libdir	.\ftplugin\haskell_doc.vim	/^  let s:ghc_libdir = substitute(system(g:ghc . ' --print-libdir'),'\\n','','')$/;"	v
 s:ghc_templates	.\compiler\ghc.vim	/^let s:ghc_templates = ["module _ () where","class _ where","class _ => _ where","instance _ where","instance _ => _ where","type family _","type instance _ = ","data _ = ","newtype _ = ","type _ = "]$/;"	v
+s:ghc_templates	compiler/ghc.vim	/^let s:ghc_templates = ["module _ () where","class _ where","class _ => _ where","instance _ where","instance _ => _ where","type family _","type instance _ = ","data _ = ","newtype _ = ","type _ = "]$/;"	v
 s:ghc_version	.\ftplugin\haskell_doc.vim	/^  let s:ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\\n','','')$/;"	v
 s:guide	.\ftplugin\haskell_doc.vim	/^let s:guide             = s:docdir . 'users_guide\/'$/;"	v
 s:haddock_indexfile	.\ftplugin\haskell_doc.vim	/^let s:haddock_indexfile = s:haddock_indexfiledir . 'haddock_index.vim'$/;"	v
@@ -1973,6 +2039,7 @@ s:os_slash	.\plugin\NERD_tree.vim	/^let s:os_slash = '\/'$/;"	v
 s:path	.\plugin\cuteErrorMarker.vim	/^let s:path = globpath( &rtp, 'signs\/err' . s:ext )$/;"	v
 s:Path	.\plugin\NERD_tree.vim	/^let s:Path = {}$/;"	v
 s:ProjVersion	.\plugin\proj.vim	/^let s:ProjVersion = '1.0'$/;"	v
+s:ProjVersion	plugin/proj.vim	/^let s:ProjVersion = '1.0'$/;"	v
 s:prototype	.\autoload\tlib\Filter_cnf.vim	/^let s:prototype = tlib#Object#New({'_class': ['Filter_cnf'], 'name': 'cnf'}) "{{{2$/;"	v
 s:prototype	.\autoload\tlib\Filter_cnfd.vim	/^let s:prototype = tlib#Filter_cnf#New({'_class': ['Filter_cnfd'], 'name': 'cnfd'}) "{{{2$/;"	v
 s:prototype	.\autoload\tlib\Filter_fuzzy.vim	/^let s:prototype = tlib#Filter_cnf#New({'_class': ['Filter_fuzzy'], 'name': 'fuzzy'}) "{{{2$/;"	v
@@ -2002,6 +2069,8 @@ s:save_cpo	.\plugin\utl_scm.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	.\plugin\utl_uri.vim	/^let s:save_cpo = &cpo$/;"	v
 s:scriptname	.\compiler\ghc.vim	/^let s:scriptname = "ghc.vim"$/;"	v
 s:scriptname	.\ftplugin\haskell_doc.vim	/^let s:scriptname = "haskell_doc.vim"$/;"	v
+s:scriptname	autoload/ghc.vim	/^let s:scriptname = "ghc.vim"$/;"	v
+s:scriptname	compiler/ghc.vim	/^let s:scriptname = "ghc.vim"$/;"	v
 s:seen	.\plugin\sudo.vim	/^let s:seen=1$/;"	v
 s:selection	.\autoload\genutils.vim	/^let s:selection = -1$/;"	v
 s:sid	.\autoload\rails.vim	/^let s:sid = s:sub(maparg("<SID>xx"),'xx$','')$/;"	v
@@ -2085,6 +2154,7 @@ s:value	.\autoload\tlib\progressbar.vim	/^let s:value = []$/;"	v
 s:view_types	.\autoload\rails.vim	/^let s:view_types = 'rhtml,erb,rxml,builder,rjs,mab,liquid,haml,dryml,mn'$/;"	v
 s:width	.\autoload\tlib\progressbar.vim	/^let s:width = []$/;"	v
 s:X	.\autoload\genutils.vim	/^let s:X = 10$/;"	v
+SafeTagsExpansion	startup/supertab.vim	/^function! SafeTagsExpansion()$/;"	f
 SaveMark	.\plugin\cecutil.vim	/^fun! SaveMark(markname)$/;"	f
 savepoint	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> savepoint <C-R>=SqlIab_ReplaceConditionally('savepoint', 'SAVEPOINT')<CR>$/;"	m
 SavePosn	.\autoload\ZoomWin.vim	/^fun! s:SavePosn(savewinhoriz)$/;"	f
@@ -2106,6 +2176,7 @@ session	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> session <C-R>=Sql
 Set	.\autoload\rails.vim	/^function! s:Set(bang,...)$/;"	f
 set	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> set <C-R>=SqlIab_ReplaceConditionally('set', 'SET')<CR>$/;"	m
 Set	.\plugin\proj.vim	/^function! s:Set(var, val)$/;"	f
+Set	plugin/proj.vim	/^function! s:Set(var, val)$/;"	f
 SetAppConfig	.\plugin\symfony.vim	/^function! SetAppConfig()$/;"	f
 SetBasePath	.\autoload\rails.vim	/^function! s:SetBasePath()$/;"	f
 SetCurrentExtension	.\plugin\EasyGrep.vim	/^function! s:SetCurrentExtension()$/;"	f
@@ -2165,6 +2236,7 @@ start	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> start <C-R>=SqlIab_
 startswith	.\autoload\rails.vim	/^function! s:startswith(string,prefix)$/;"	f
 string	.\plugin\autotag.vim	/^import string$/;"	m
 strip	.\plugin\proj.vim	/^function! s:strip(text)$/;"	f
+strip	plugin/proj.vim	/^function! s:strip(text)$/;"	f
 stripMarkupFromLine	.\plugin\NERD_tree.vim	/^function! s:stripMarkupFromLine(line, removeLeadingSpaces)$/;"	f
 Strlen	.\autoload\Align.vim	/^fun! s:Strlen(x)$/;"	f
 stylesheetEdit	.\autoload\rails.vim	/^function! s:stylesheetEdit(cmd,...)$/;"	f
@@ -2586,7 +2658,6 @@ TTagselect	.\plugin\ttags.vim	/^command! -nargs=* -bang TTagselect call ttags#Se
 TVarArg	.\plugin\02tlib.vim	/^command! -nargs=+ TVarArg exec tlib#arg#Let([<args>])$/;"	c
 type	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> type <C-R>=SqlIab_ReplaceConditionally('type', 'TYPE')<CR>$/;"	m
 u	.\autoload\repeat.vim	/^nnoremap <silent> u     :<C-U>call <SID>wrap('u',v:count)<CR>$/;"	m
-U	.\autoload\repeat.vim	/^nnoremap <silent> U     :<C-U>call <SID>wrap('U',v:count)<CR>$/;"	m
 uid	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> uid <C-R>=SqlIab_ReplaceConditionally('uid', 'UID')<CR>$/;"	m
 union	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> union <C-R>=SqlIab_ReplaceConditionally('union', 'UNION')<CR>$/;"	m
 unique	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> unique <C-R>=SqlIab_ReplaceConditionally('unique', 'UNIQUE')<CR>$/;"	m
@@ -2664,6 +2735,7 @@ Utl_utilFwd2BackSlashes	.\plugin\utl.vim	/^fu! Utl_utilFwd2BackSlashes(str)$/;"	
 utl__file_rc	.\plugin\utl_rc.vim	/^let utl__file_rc =    expand("<sfile>")	    " Do not remove this line$/;"	v
 vacuum	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> vacuum <C-R>=SqlIab_ReplaceConditionally('vacuum', 'VACUUM')<CR>$/;"	m
 Valid	.\plugin\proj.vim	/^function! s:Valid(project)$/;"	f
+Valid	plugin/proj.vim	/^function! s:Valid(project)$/;"	f
 validate	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> validate <C-R>=SqlIab_ReplaceConditionally('validate', 'VALIDATE')<CR>$/;"	m
 values	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> values <C-R>=SqlIab_ReplaceConditionally('values', 'VALUES')<CR>$/;"	m
 varchar	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> varchar <C-R>=SqlIab_ReplaceConditionally('varchar', 'VARCHAR')<CR>$/;"	m
@@ -2687,10 +2759,7 @@ wrap	.\plugin\surround.vim	/^function! s:wrap(string,char,type,...)$/;"	f
 wrapreg	.\plugin\surround.vim	/^function! s:wrapreg(reg,char,...)$/;"	f
 xid	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> xid <C-R>=SqlIab_ReplaceConditionally('xid', 'XID')<CR>$/;"	m
 yS	.\plugin\surround.vim	/^    nmap          yS   <Plug>YSurround$/;"	m
-ys	.\plugin\surround.vim	/^    nmap          ys   <Plug>Ysurround$/;"	m
 ySs	.\plugin\surround.vim	/^    nmap          ySs  <Plug>YSsurround$/;"	m
-ySS	.\plugin\surround.vim	/^    nmap          ySS  <Plug>YSsurround$/;"	m
-yss	.\plugin\surround.vim	/^    nmap          yss  <Plug>Yssurround$/;"	m
 ZoomWin	.\plugin\ZoomWinPlugin.vim	/^com! ZoomWin :set lz|silent call ZoomWin#ZoomWin()|set nolz$/;"	c
 ZoomWin	.\plugin\ZoomWinPlugin.vim	/^fun! ZoomWin()$/;"	f
 ZoomWin#CleanupSessionFile	.\autoload\ZoomWin.vim	/^fun! ZoomWin#CleanupSessionFile()$/;"	f

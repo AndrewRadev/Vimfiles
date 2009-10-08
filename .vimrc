@@ -1,9 +1,16 @@
 set nocompatible
 
+filetype plugin on
+filetype indent on
+syntax on
+
+colo custom_elflord
+
 " Load settings:
 runtime! startup/basic.vim
 runtime! startup/autocommands.vim
 runtime! startup/utl.vim
+runtime! startup/supertab.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
@@ -47,8 +54,8 @@ nmap gN :NERDTree<cr>
 nnoremap <bs> <C-o>
 
 " Completion remappings:
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
+"inoremap <C-j> <C-n>
+"inoremap <C-k> <C-p>
 
 " Indent/Unindent:
 nmap <Tab> >>
