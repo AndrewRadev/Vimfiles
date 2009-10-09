@@ -899,6 +899,7 @@ escvar	.\plugin\rails.vim	/^function! s:escvar(r)$/;"	f
 exception	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> exception <C-R>=SqlIab_ReplaceConditionally('exception', 'EXCEPTION')<CR>$/;"	m
 exclusive	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> exclusive <C-R>=SqlIab_ReplaceConditionally('exclusive', 'EXCLUSIVE')<CR>$/;"	m
 exec	.\plugin\NERD_tree.vim	/^function! s:exec(cmd)$/;"	f
+execGitCmd	nerdtree_plugin/git_menu.vim	/^function! s:execGitCmd(sub_cmd)$/;"	f
 execute	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> execute <C-R>=SqlIab_ReplaceConditionally('execute', 'EXECUTE')<CR>$/;"	m
 executeNode	.\plugin\NERD_tree.vim	/^function! s:executeNode()$/;"	f
 ExecWinCmdNoEa	.\autoload\genutils.vim	/^function! s:ExecWinCmdNoEa(winCmd)$/;"	f
@@ -1062,6 +1063,7 @@ g:loaded_dbext_dbi_msg	.\autoload\dbext_dbi.vim	/^    let g:loaded_dbext_dbi_msg
 g:loaded_Decho	.\plugin\Decho.vim	/^let g:loaded_Decho = "v20"$/;"	v
 g:loaded_getscript	.\autoload\getscript.vim	/^let g:loaded_getscript= "v29"$/;"	v
 g:loaded_getscriptPlugin	.\plugin\getscriptPlugin.vim	/^let g:loaded_getscriptPlugin = "v29"$/;"	v
+g:loaded_nerdtree_git_menu	nerdtree_plugin/git_menu.vim	/^let g:loaded_nerdtree_git_menu = 1$/;"	v
 g:loaded_rails	.\plugin\rails.vim	/^let g:loaded_rails = 1$/;"	v
 g:loaded_repeat	.\autoload\repeat.vim	/^let g:loaded_repeat = 1$/;"	v
 g:loaded_surround	.\plugin\surround.vim	/^let g:loaded_surround = 1$/;"	v
@@ -1302,6 +1304,7 @@ ghc_version	.\compiler\ghc.vim	/^let ghc_version = substitute(system(g:ghc . ' -
 ghc_version	compiler/ghc.vim	/^let ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\\n','','')$/;"	v
 GHC_VersionGE	.\compiler\ghc.vim	/^function! GHC_VersionGE(target)$/;"	f
 GHC_VersionGE	.\ftplugin\haskell_doc.vim	/^function! GHC_VersionGE(target)$/;"	f
+GitRepoPath	nerdtree_plugin/git_menu.vim	/^function! s:GitRepoPath()$/;"	f
 gm	.\ftplugin\php.vim	/^nmap <buffer> gm :exe ":Utl ol http:\/\/php.net\/manual-lookup.php?pattern=" . expand("<cword>")<cr>$/;"	m
 GotoWinNum	.\autoload\ZoomWin.vim	/^fun! s:GotoWinNum(winnum)$/;"	f
 GoWinbufnr	.\plugin\cecutil.vim	/^fun! GoWinbufnr(bufnum)$/;"	f
@@ -1564,8 +1567,14 @@ NERDTreeClose	.\plugin\NERD_tree.vim	/^command! -n=0 -bar NERDTreeClose :call s:
 NERDTreeFromBookmark	.\plugin\NERD_tree.vim	/^command! -n=1 -complete=customlist,s:completeBookmarks -bar NERDTreeFromBookmark call s:initNerdTree('<args>')$/;"	c
 NERDTreeGetCurrentNode	.\plugin\NERD_tree.vim	/^function! NERDTreeGetCurrentNode()$/;"	f
 NERDTreeGetCurrentPath	.\plugin\NERD_tree.vim	/^function! NERDTreeGetCurrentPath()$/;"	f
+NERDTreeGitAdd	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitAdd()$/;"	f
+NERDTreeGitCheckout	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitCheckout()$/;"	f
+NERDTreeGitMenuEnabled	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitMenuEnabled()$/;"	f
+NERDTreeGitMove	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitMove()$/;"	f
+NERDTreeGitRemove	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitRemove()$/;"	f
 NERDTreeHijackNetrw	.\plugin\NERD_tree.vim	/^    augroup NERDTreeHijackNetrw$/;"	a
 NERDTreeMirror	.\plugin\NERD_tree.vim	/^command! -n=0 -bar NERDTreeMirror call s:initNerdTreeMirror()$/;"	c
+NERDTreeStartShell	nerdtree_plugin/startshell_mapping.vim	/^function! NERDTreeStartShell()$/;"	f
 NERDTreeToggle	.\plugin\NERD_tree.vim	/^command! -n=? -complete=dir -bar NERDTreeToggle :call s:toggle('<args>')$/;"	c
 NewProject	.\autoload\rails.vim	/^function! s:NewProject(proj,rr)$/;"	f
 NewProjectTemplate	.\autoload\rails.vim	/^function! s:NewProjectTemplate(proj,rr)$/;"	f
@@ -2008,6 +2017,7 @@ s:makeArgumentList	.\autoload\genutils.vim	/^let s:makeArgumentList = ''$/;"	v
 s:makeArgumentString	.\autoload\genutils.vim	/^let s:makeArgumentString = ''$/;"	v
 s:mapleader	.\plugin\AlignMapsPlugin.vim	/^  let s:mapleader = exists("g:mapleader")? g:mapleader : '\\'$/;"	v
 s:max	.\autoload\tlib\progressbar.vim	/^let s:max = []$/;"	v
+s:menu	nerdtree_plugin/git_menu.vim	/^let s:menu = NERDTreeAddSubmenu({$/;"	v
 s:menu_char_prefix	.\plugin\taglist.vim	/^let s:menu_char_prefix =$/;"	v
 s:ml	.\ftplugin\haskell_doc.vim	/^    let s:ml = matchlist(s:r,s:headerPat)$/;"	v
 s:ml	.\ftplugin\haskell_doc.vim	/^  let s:ml = matchlist(s:contents,s:headerPat)$/;"	v

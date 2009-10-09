@@ -10,7 +10,6 @@ colo custom_elflord
 runtime! startup/basic.vim
 runtime! startup/autocommands.vim
 runtime! startup/utl.vim
-runtime! startup/supertab.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
@@ -54,8 +53,11 @@ nmap gN :NERDTree<cr>
 nnoremap <bs> <C-o>
 
 " Completion remappings:
-"inoremap <C-j> <C-n>
-"inoremap <C-k> <C-p>
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
+inoremap <C-o> <C-x><C-o>
+inoremap <C-u> <C-x><C-u>
+set completefunc=syntaxcomplete#Complete
 
 " Indent/Unindent:
 nmap <Tab> >>
