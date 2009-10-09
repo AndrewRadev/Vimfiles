@@ -2,7 +2,8 @@ set autoindent
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cmdheight=1
-set completeopt=menuone,preview
+set complete=.,w,b,i
+set completeopt=menuone,longest
 set diffopt=filler,vertical
 set encoding=utf-8
 set expandtab smarttab

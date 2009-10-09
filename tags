@@ -1078,13 +1078,6 @@ g:repeat_tick	.\autoload\repeat.vim	/^let g:repeat_tick = -1$/;"	v
 g:sf_app_name	.\plugin\symfony.vim	/^let g:sf_app_name      = ""$/;"	v
 g:sf_module_name	.\plugin\symfony.vim	/^let g:sf_module_name   = "" $/;"	v
 g:ST_WIN_CMD	.\autoload\genutils.vim	/^let g:ST_WIN_CMD = 0 | let g:ST_WIN_SH = 1 | let g:ST_UNIX = 2$/;"	v
-g:SuperTabCompletionContexts	startup/supertab.vim	/^let g:SuperTabCompletionContexts           = $/;"	v
-g:SuperTabContextDefaultCompletionType	startup/supertab.vim	/^let g:SuperTabContextDefaultCompletionType = '<c-n>'$/;"	v
-g:SuperTabDefaultCompletionType	startup/supertab.vim	/^let g:SuperTabDefaultCompletionType        = 'context'$/;"	v
-g:SuperTabMappingBackward	startup/supertab.vim	/^let g:SuperTabMappingBackward              = '<c-k>'$/;"	v
-g:SuperTabMappingForward	startup/supertab.vim	/^let g:SuperTabMappingForward               = '<c-j>'$/;"	v
-g:SuperTabMidWordCompletion	startup/supertab.vim	/^let g:SuperTabMidWordCompletion            = 1$/;"	v
-g:SuperTabRetainCompletionDuration	startup/supertab.vim	/^let g:SuperTabRetainCompletionDuration     = 'insert'$/;"	v
 g:utl_cfg_hdl_mt_application_excel	.\startup\utl.vim	/^  let g:utl_cfg_hdl_mt_application_excel   = ':!soffice %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_mt_application_pdf	.\startup\utl.vim	/^  let g:utl_cfg_hdl_mt_application_pdf     = ':!evince  %p &> \/dev\/null &'$/;"	v
 g:utl_cfg_hdl_mt_application_x_bzip2	.\startup\utl.vim	/^  let g:utl_cfg_hdl_mt_application_x_bzip2 = ':!squeeze %p &> \/dev\/null &'$/;"	v
@@ -1667,11 +1660,6 @@ pathjoin	.\autoload\rails.vim	/^function! s:pathjoin(...) abort$/;"	f
 pathsplit	.\autoload\rails.vim	/^function! s:pathsplit(path) abort$/;"	f
 pctfree	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> pctfree <C-R>=SqlIab_ReplaceConditionally('pctfree', 'PCTFREE')<CR>$/;"	m
 PersistentVarName	.\autoload\genutils.vim	/^function! s:PersistentVarName(pluginName, persistentVar)$/;"	f
-phpcomplete#CompletePHP	autoload/phpcomplete.vim	/^function! phpcomplete#CompletePHP(findstart, base)$/;"	f
-phpcomplete#GetClassContents	autoload/phpcomplete.vim	/^function! phpcomplete#GetClassContents(file, name) " {{{$/;"	f
-phpcomplete#GetClassLocation	autoload/phpcomplete.vim	/^function! phpcomplete#GetClassLocation(classname) " {{{$/;"	f
-phpcomplete#GetClassName	autoload/phpcomplete.vim	/^function! phpcomplete#GetClassName(scontext) " {{{$/;"	f
-phpcomplete#LoadData	autoload/phpcomplete.vim	/^function! phpcomplete#LoadData() " {{{$/;"	f
 php_baselib	.\ftplugin\php.vim	/^let php_baselib       = 1$/;"	v
 php_folding	.\ftplugin\php.vim	/^let php_folding       = 1$/;"	v
 php_htmlInStrings	.\ftplugin\php.vim	/^let php_htmlInStrings = 1$/;"	v
@@ -2154,7 +2142,6 @@ s:value	.\autoload\tlib\progressbar.vim	/^let s:value = []$/;"	v
 s:view_types	.\autoload\rails.vim	/^let s:view_types = 'rhtml,erb,rxml,builder,rjs,mab,liquid,haml,dryml,mn'$/;"	v
 s:width	.\autoload\tlib\progressbar.vim	/^let s:width = []$/;"	v
 s:X	.\autoload\genutils.vim	/^let s:X = 10$/;"	v
-SafeTagsExpansion	startup/supertab.vim	/^function! SafeTagsExpansion()$/;"	f
 SaveMark	.\plugin\cecutil.vim	/^fun! SaveMark(markname)$/;"	f
 savepoint	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> savepoint <C-R>=SqlIab_ReplaceConditionally('savepoint', 'SAVEPOINT')<CR>$/;"	m
 SavePosn	.\autoload\ZoomWin.vim	/^fun! s:SavePosn(savewinhoriz)$/;"	f
