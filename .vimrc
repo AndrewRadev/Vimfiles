@@ -57,15 +57,12 @@ inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
+inoremap <C-f> <C-x><C-f>
 set completefunc=syntaxcomplete#Complete
 
 " Indent/Unindent:
 nmap <Tab> >>
 nmap <S-Tab> <<
-
-" FindFile mappings:
-nmap <C-f> :NERDTreeClose<Space>\|<Space>FF<cr>
-imap <C-f> <Esc>:NERDTreeClose<Space>\|<Space>FF<cr>
 
 " Dbext settings:
 let g:dbext_default_buffer_lines = 30

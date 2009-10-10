@@ -55,6 +55,7 @@
 'snippets'	snipMate.txt	/*'snippets'*
 .snippet	snipMate.txt	/*.snippet*
 .snippets	snipMate.txt	/*.snippets*
+:Abolish	abolish.txt	/*:Abolish*
 :DocIndex	haskellmode.txt	/*:DocIndex*
 :DocSettings	haskellmode.txt	/*:DocSettings*
 :ExportDocIndex	haskellmode.txt	/*:ExportDocIndex*
@@ -74,6 +75,8 @@
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
+:S	abolish.txt	/*:S*
+:Subvert	abolish.txt	/*:Subvert*
 :TBrowseOutput	tlib.txt	/*:TBrowseOutput*
 :TKeyArg	tlib.txt	/*:TKeyArg*
 :TLet	tlib.txt	/*:TLet*
@@ -257,6 +260,15 @@ _lang	haskellmode.txt	/*_lang*
 _opt	haskellmode.txt	/*_opt*
 _si	haskellmode.txt	/*_si*
 _t	haskellmode.txt	/*_t*
+abolish	abolish.txt	/*abolish*
+abolish-abbrev	abolish.txt	/*abolish-abbrev*
+abolish-author	abolish.txt	/*abolish-author*
+abolish-coercion	abolish.txt	/*abolish-coercion*
+abolish-grep	abolish.txt	/*abolish-grep*
+abolish-patterns	abolish.txt	/*abolish-patterns*
+abolish-search	abolish.txt	/*abolish-search*
+abolish-substitute	abolish.txt	/*abolish-substitute*
+abolish.txt	abolish.txt	/*abolish.txt*
 align	Align.txt	/*align*
 align-align	Align.txt	/*align-align*
 align-codepoint	Align.txt	/*align-codepoint*
@@ -377,6 +389,7 @@ cecutil-swp	cecutil.txt	/*cecutil-swp*
 cecutil.txt	cecutil.txt	/*cecutil.txt*
 compiler-ghc	haskellmode.txt	/*compiler-ghc*
 config/rails.vim	rails.txt	/*config\/rails.vim*
+cr	abolish.txt	/*cr*
 cs	surround.txt	/*cs*
 database-extension	dbext.txt	/*database-extension*
 db2	dbext.txt	/*db2*
