@@ -53,8 +53,8 @@ nmap gN :NERDTree<cr>
 nnoremap <bs> <C-o>
 
 " Completion remappings:
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
+"inoremap <C-j> <C-n> "should learn to use the defaults
+"inoremap <C-k> <C-p>
 inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
@@ -78,6 +78,11 @@ let g:showmarks_include .= toupper(g:showmarks_include)
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
 let g:snips_author = "Andrew Radev"
+
+" FuzzyFinderTextmate settings:
+let g:fuzzy_ceiling = 100000
+let g:fuzzy_ignore = "*/.svn/*;.git/*"
+command! Edit FuzzyFinderTextMate
 
 " Proj settings:
 let g:ProjFile = '~/.vimproj'
