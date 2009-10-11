@@ -1,18 +1,21 @@
 " Requires: Utl
+if !exists("loaded_utl")
+    finish
+endif
 
 call NERDTreeAddKeyMap({
       \ 'key': 'gu',
-      \ 'callback': 'OpenCurrentNodeWithUtl',
-      \ 'quickhelpText': 'open current node with the Utl plugin' })
+      \ 'callback': 'NERDTreeOpenCurrentNodeWithUtl',
+      \ 'quickhelpText': 'open with Utl plugin' })
 
-function! OpenCurrentNodeWithUtl()
+function! NERDTreeOpenCurrentNodeWithUtl()
   " Get the path of the item under the cursor if possible:
-  let currentDir = g:NERDTreeFileNode.GetSelected()
-  if currentDir == {}
+  let currentFile = g:NERDTreeFileNode.GetSelected()
+  if currentFile == {}
     return
   endif
 
-  let link = currentDir.path.str()
+  let link = currentFile.path.str()
 
   " Convert it to the format Utl expects:
   let link = substitute(link, '\', '/', 'g')

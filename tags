@@ -1,5 +1,5 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
-!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
@@ -346,6 +346,7 @@ BufSettings	autoload/rails.vim	/^function! s:BufSettings()$/;"	f
 BufSyntax	autoload/rails.vim	/^function! s:BufSyntax()$/;"	f
 BuildPatternList	plugin/EasyGrep.vim	/^function! s:BuildPatternList(...)$/;"	f
 BuildTabStops	autoload/snipMate.vim	/^fun s:BuildTabStops(snip, lnum, col, indent)$/;"	f
+build_match_result	ruby/fuzzy_file_finder.rb	/^    def build_match_result(match, inside_segments)$/;"	f
 by	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> by <C-R>=SqlIab_ReplaceConditionally('by', 'BY')<CR>$/;"	m
 bytea	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> bytea <C-R>=SqlIab_ReplaceConditionally('bytea', 'BYTEA')<CR>$/;"	m
 c	plugin/abolish.vim	/^function! s:c()$/;"	f
@@ -365,6 +366,7 @@ changesurround	plugin/surround.vim	/^function! s:changesurround() " {{{1$/;"	f
 char	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> char <C-R>=SqlIab_ReplaceConditionally('char', 'CHAR')<CR>$/;"	m
 Char2Num	autoload/genutils.vim	/^function! s:Char2Num(c)$/;"	f
 character	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> character <C-R>=SqlIab_ReplaceConditionally('character', 'CHARACTER')<CR>$/;"	m
+CharacterRun	ruby/fuzzy_file_finder.rb	/^  class CharacterRun < Struct.new(:string, :inside) #:nodoc:$/;"	c	class:FuzzyFileFinder
 chCwd	plugin/NERD_tree.vim	/^function! s:chCwd()$/;"	f
 check	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> check <C-R>=SqlIab_ReplaceConditionally('check', 'CHECK')<CR>$/;"	m
 CheckAgentReturnValue	autoload/tlib/input.vim	/^function! s:CheckAgentReturnValue(name, value) "{{{3$/;"	f
@@ -442,6 +444,7 @@ Complete_server	autoload/rails.vim	/^function! s:Complete_server(A,L,P)$/;"	f
 Complete_set	autoload/rails.vim	/^function! s:Complete_set(A,L,P)$/;"	f
 completion_filter	autoload/rails.vim	/^function! s:completion_filter(results,A)$/;"	f
 compress	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> compress <C-R>=SqlIab_ReplaceConditionally('compress', 'COMPRESS')<CR>$/;"	m
+Concat	plugin/fuzzyfinder.vim	/^function! <SID>Concat(in)$/;"	f
 connect	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> connect <C-R>=SqlIab_ReplaceConditionally('connect', 'CONNECT')<CR>$/;"	m
 Console	ftplugin/haskell.vim	/^command! -buffer Console !ghci % $/;"	c
 constraints	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> constraints <C-R>=SqlIab_ReplaceConditionally('constraints', 'CONSTRAINTS')<CR>$/;"	m
@@ -848,6 +851,7 @@ desc	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> desc <C-R>=SqlIab_Repl
 DestroyMark	plugin/cecutil.vim	/^fun! DestroyMark(markname)$/;"	f
 destroyPlaylist	plugin/vimmpc.py	/^    def destroyPlaylist(self):$/;"	m	class:MPC
 Detect	plugin/rails.vim	/^function! s:Detect(filename)$/;"	f
+determine_shared_prefix	ruby/fuzzy_file_finder.rb	/^    def determine_shared_prefix$/;"	f
 Dfunc	plugin/Decho.vim	/^fun! Dfunc(...)$/;"	f
 Dhide	plugin/Decho.vim	/^com! -nargs=0 Dhide    						call s:Dhide(1)$/;"	c
 Dhide	plugin/Decho.vim	/^fun! <SID>Dhide(hide)$/;"	f
@@ -855,6 +859,7 @@ did_drchip_decho_syntax	syntax/Decho.vim	/^  let did_drchip_decho_syntax= 1$/;"	
 did_lisp_syntax_inits	syntax/jquery.vim	/^    let did_lisp_syntax_inits = 1$/;"	v
 difflib	plugin/vimmpc.py	/^import difflib$/;"	i
 diffPlaylist	plugin/vimmpc.py	/^    def diffPlaylist(self):$/;"	m	class:MPC
+Directory	ruby/fuzzy_file_finder.rb	/^  class Directory #:nodoc:$/;"	c	class:FuzzyFileFinder
 dispatcher	plugin/abolish.vim	/^function! s:dispatcher(bang,line1,line2,count,args)$/;"	f
 displayHelp	plugin/NERD_tree.vim	/^function! s:displayHelp()$/;"	f
 displayPlaylist	plugin/vimmpc.py	/^    def displayPlaylist(self):$/;"	m	class:MPC
@@ -921,18 +926,21 @@ error	plugin/rails.vim	/^function! s:error(str)$/;"	f
 escape	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> escape <C-R>=SqlIab_ReplaceConditionally('escape', 'ESCAPE')<CR>$/;"	m
 Escape	plugin/EasyGrep.vim	/^function! s:Escape(str, lst)$/;"	f
 EscapeChars	plugin/FindFile.vim	/^fun! <SID>EscapeChars(toEscape)$/;"	f
+EscapeFilename	plugin/fuzzyfinder_textmate.vim	/^function! s:EscapeFilename(fn)$/;"	f
 EscapeList	plugin/EasyGrep.vim	/^function! s:EscapeList(lst, seperator)$/;"	f
 EscapeSpecial	plugin/EasyGrep.vim	/^function! s:EscapeSpecial(str)$/;"	f
 escarg	autoload/rails.vim	/^function! s:escarg(p)$/;"	f
 esccmd	autoload/rails.vim	/^function! s:esccmd(p)$/;"	f
 escvar	plugin/rails.vim	/^function! s:escvar(r)$/;"	f
+EvaluateMatchingRate	plugin/fuzzyfinder.vim	/^function! <SID>EvaluateMatchingRate(expr, pattern)$/;"	f
 exception	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> exception <C-R>=SqlIab_ReplaceConditionally('exception', 'EXCEPTION')<CR>$/;"	m
 exclusive	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> exclusive <C-R>=SqlIab_ReplaceConditionally('exclusive', 'EXCLUSIVE')<CR>$/;"	m
 exec	plugin/NERD_tree.vim	/^function! s:exec(cmd)$/;"	f
-execGitCmd	nerdtree_plugin/git_menu.vim	/^function! s:execGitCmd(sub_cmd)$/;"	f
 execute	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> execute <C-R>=SqlIab_ReplaceConditionally('execute', 'EXECUTE')<CR>$/;"	m
 ExecWinCmdNoEa	autoload/genutils.vim	/^function! s:ExecWinCmdNoEa(winCmd)$/;"	f
 exists	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> exists <C-R>=SqlIab_ReplaceConditionally('exists', 'EXISTS')<CR>$/;"	m
+ExistsPrompt	plugin/fuzzyfinder.vim	/^function! <SID>ExistsPrompt(in)$/;"	f
+ExpandAbbrevMap	plugin/fuzzyfinder.vim	/^function! <SID>ExpandAbbrevMap(base, abbrev_map)$/;"	f
 expand_braces	plugin/abolish.vim	/^function! s:expand_braces(dict)$/;"	f
 explain	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> explain <C-R>=SqlIab_ReplaceConditionally('explain', 'EXPLAIN')<CR>$/;"	m
 ExportDocIndex	ftplugin/haskell_doc.vim	/^command! ExportDocIndex call ExportDocIndex()$/;"	c
@@ -956,12 +964,15 @@ file	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> file <C-R>=SqlIab_Repl
 FileEscape	plugin/EasyGrep.vim	/^function! s:FileEscape(item)$/;"	f
 fileinput	plugin/autotag.vim	/^import fileinput$/;"	m
 Filename	autoload/snipMate.vim	/^fun! Filename(...)$/;"	f
+FileSystemEntry	ruby/fuzzy_file_finder.rb	/^  class FileSystemEntry #:nodoc:$/;"	c	class:FuzzyFileFinder
 file_getline	autoload/rails.vim	/^function! s:file_getline(lnum,...) dict abort$/;"	f
 file_lines	autoload/rails.vim	/^function! s:file_lines() dict abort$/;"	f
 file_name	autoload/rails.vim	/^function! s:file_name() dict abort$/;"	f
 file_path	autoload/rails.vim	/^function! s:file_path() dict abort$/;"	f
 FillWindow	plugin/EasyGrep.vim	/^function! s:FillWindow()$/;"	f
+FilterEx	plugin/fuzzyfinder.vim	/^function! <SID>FilterEx(in, string, limit)$/;"	f
 Find	autoload/rails.vim	/^function! s:Find(count,cmd,...)$/;"	f
+find	ruby/fuzzy_file_finder.rb	/^  def find(pattern, max=nil)$/;"	f	class:FuzzyFileFinder
 findamethod	autoload/rails.vim	/^function! s:findamethod(func,repl)$/;"	f
 findasymbol	autoload/rails.vim	/^function! s:findasymbol(sym,repl)$/;"	f
 FindBufferForName	autoload/genutils.vim	/^function! s:FindBufferForName(fileName)$/;"	f
@@ -990,6 +1001,7 @@ FlagReference	ftplugin/haskell_doc.vim	/^  command! -nargs=1 -complete=customlis
 FlagReference	ftplugin/haskell_doc.vim	/^  function! FlagReference(section)$/;"	f
 float	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> float <C-R>=SqlIab_ReplaceConditionally('float', 'FLOAT')<CR>$/;"	m
 focus_current_track_key	plugin/vimmpc.py	/^focus_current_track_key = MPC_setVariable("g:mpc_focus_current_track_key", "<C-L>")$/;"	v
+follow_tree	ruby/fuzzy_file_finder.rb	/^    def follow_tree(directory)$/;"	f	class:FuzzyFileFinder
 for	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> for <C-R>=SqlIab_ReplaceConditionally('for', 'FOR')<CR>$/;"	m
 foreign	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> foreign <C-R>=SqlIab_ReplaceConditionally('foreign', 'FOREIGN')<CR>$/;"	m
 foriegn	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> foriegn <C-R>=SqlIab_ReplaceConditionally('foriegn', 'FOREIGN')<CR>$/;"	m
@@ -1002,6 +1014,55 @@ function	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> function <C-R>=Sql
 function	plugin/abolish.vim	/^function! s:function(name)$/;"	f
 functionaltestEdit	autoload/rails.vim	/^function! s:functionaltestEdit(cmd,...)$/;"	f
 functionaltestList	autoload/rails.vim	/^function! s:functionaltestList(A,L,P)$/;"	f
+FuzzyFileFinder	ruby/fuzzy_file_finder.rb	/^class FuzzyFileFinder$/;"	c
+FuzzyFinderMode.Base.complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.complete(findstart, base)$/;"	f
+FuzzyFinderMode.Base.empty_cache_if_existed	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.empty_cache_if_existed(force)$/;"	f
+FuzzyFinderMode.Base.extend_options	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.extend_options()$/;"	f
+FuzzyFinderMode.Base.glob_ex	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.glob_ex(dir, file, excluded, matching_limit)$/;"	f
+FuzzyFinderMode.Base.launch	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.launch(initial_text)$/;"	f
+FuzzyFinderMode.Base.make_complete_func	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.make_complete_func(name)$/;"	f
+FuzzyFinderMode.Base.make_fuzzy_pattern	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.make_fuzzy_pattern(base)$/;"	f
+FuzzyFinderMode.Base.next_mode	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.next_mode(rev)$/;"	f
+FuzzyFinderMode.Base.on_bs	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_bs()$/;"	f
+FuzzyFinderMode.Base.on_buf_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_buf_enter()$/;"	f
+FuzzyFinderMode.Base.on_buf_leave	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_buf_leave()$/;"	f
+FuzzyFinderMode.Base.on_buf_write_post	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_buf_write_post()$/;"	f
+FuzzyFinderMode.Base.on_cr	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_cr(index, check_dir)$/;"	f
+FuzzyFinderMode.Base.on_cursor_moved_i	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_cursor_moved_i()$/;"	f
+FuzzyFinderMode.Base.on_insert_leave	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_insert_leave()$/;"	f
+FuzzyFinderMode.Base.on_mode_leave	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_mode_leave()$/;"	f
+FuzzyFinderMode.Base.on_open	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_open(expr, mode)$/;"	f
+FuzzyFinderMode.Base.on_switch_ignore_case	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_switch_ignore_case()$/;"	f
+FuzzyFinderMode.Base.on_switch_mode	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.on_switch_mode(next_prev)$/;"	f
+FuzzyFinderMode.Base.read_info_from_file	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.read_info_from_file()$/;"	f
+FuzzyFinderMode.Base.to_str	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.to_str(...)$/;"	f
+FuzzyFinderMode.Base.write_info_to_file	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Base.write_info_to_file()$/;"	f
+FuzzyFinderMode.Buffer.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Buffer.on_complete(base)$/;"	f
+FuzzyFinderMode.Buffer.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Buffer.on_mode_enter()$/;"	f
+FuzzyFinderMode.Buffer.on_open	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Buffer.on_open(expr, mode)$/;"	f
+FuzzyFinderMode.Dir.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Dir.on_complete(base)$/;"	f
+FuzzyFinderMode.Dir.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Dir.on_mode_enter()$/;"	f
+FuzzyFinderMode.Dir.on_open	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Dir.on_open(expr, mode)$/;"	f
+FuzzyFinderMode.FavFile.add	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.FavFile.add(in_file, adds)$/;"	f
+FuzzyFinderMode.FavFile.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.FavFile.on_complete(base)$/;"	f
+FuzzyFinderMode.FavFile.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.FavFile.on_mode_enter()$/;"	f
+FuzzyFinderMode.File.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.File.on_complete(base)$/;"	f
+FuzzyFinderMode.File.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.File.on_mode_enter()$/;"	f
+FuzzyFinderMode.MruFile.on_buf_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.MruFile.on_buf_enter()$/;"	f
+FuzzyFinderMode.MruFile.on_buf_write_post	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.MruFile.on_buf_write_post()$/;"	f
+FuzzyFinderMode.MruFile.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.MruFile.on_complete(base)$/;"	f
+FuzzyFinderMode.MruFile.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.MruFile.on_mode_enter()$/;"	f
+FuzzyFinderMode.MruFile.update_info	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.MruFile.update_info()$/;"	f
+FuzzyFinderMode.Tag.find_tag	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Tag.find_tag(pattern, matching_limit)$/;"	f
+FuzzyFinderMode.Tag.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Tag.on_complete(base)$/;"	f
+FuzzyFinderMode.Tag.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Tag.on_mode_enter()$/;"	f
+FuzzyFinderMode.Tag.on_open	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.Tag.on_open(expr, mode)$/;"	f
+FuzzyFinderMode.TaggedFile.find_tagged_file	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.find_tagged_file(pattern, matching_limit)$/;"	f
+FuzzyFinderMode.TaggedFile.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.on_complete(base)$/;"	f
+FuzzyFinderMode.TaggedFile.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.on_mode_enter()$/;"	f
+FuzzyFinderMode.TextMate.on_open	plugin/fuzzyfinder_textmate.vim	/^  function! g:FuzzyFinderMode.TextMate.on_open(expr, mode)$/;"	f
+FuzzyFinderTextMate	plugin/fuzzyfinder_textmate.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderTextMate   call FuzzyFinderTextMateLauncher(<q-args>, len(<q-bang>))$/;"	c
+FuzzyFinderTextMateLauncher	plugin/fuzzyfinder_textmate.vim	/^  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching)$/;"	f
 fuzzyglob	autoload/rails.vim	/^function! s:fuzzyglob(arg)$/;"	f
 g%	plugin/matchit.vim	/^nnoremap <silent> g% :<C-U>call <SID>Match_wrapper('',0,'n') <CR>$/;"	m
 g%	plugin/matchit.vim	/^onoremap <silent> g% v:<C-U>call <SID>Match_wrapper('',0,'o') <CR>$/;"	m
@@ -1055,6 +1116,15 @@ g:EasyGrepReplaceWindowMode	plugin/EasyGrep.vim	/^    let g:EasyGrepReplaceWindo
 g:EasyGrepVersion	plugin/EasyGrep.vim	/^let g:EasyGrepVersion = "0.95"$/;"	v
 g:EasyGrepWindow	plugin/EasyGrep.vim	/^    let g:EasyGrepWindow=0$/;"	v
 g:FindFileIgnore	plugin/FindFile.vim	/^    let g:FindFileIgnore = ['*.o', '*.pyc', '*\/tmp\/*']$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode = { 'Base' : {} }$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.Buffer = copy(g:FuzzyFinderMode.Base)$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.Dir = copy(g:FuzzyFinderMode.Base)$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.FavFile = copy(g:FuzzyFinderMode.Base)$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.File = copy(g:FuzzyFinderMode.Base)$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.MruFile = copy(g:FuzzyFinderMode.Base)$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.Tag = copy(g:FuzzyFinderMode.Base)$/;"	v
+g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.TaggedFile = copy(g:FuzzyFinderMode.Base)$/;"	v
+g:FuzzyFinderOptions	plugin/fuzzyfinder_textmate.vim	/^  let g:FuzzyFinderOptions.TextMate = copy(g:FuzzyFinderOptions.File)$/;"	v
 g:GetLatestVimScripts_allowautoinstall	autoload/getscript.vim	/^ let g:GetLatestVimScripts_allowautoinstall= 1$/;"	v
 g:GetLatestVimScripts_mv	autoload/getscript.vim	/^   let g:GetLatestVimScripts_mv= "mv"$/;"	v
 g:GetLatestVimScripts_mv	autoload/getscript.vim	/^   let g:GetLatestVimScripts_mv= "ren"$/;"	v
@@ -1103,7 +1173,6 @@ g:loaded_getscriptPlugin	plugin/getscriptPlugin.vim	/^let g:loaded_getscriptPlug
 g:loaded_mpc	plugin/vimmpc.vim	/^    let g:loaded_mpc = 1$/;"	v
 g:loaded_nerdtree_exec_menuitem	nerdtree_plugin/exec_menuitem.vim	/^let g:loaded_nerdtree_exec_menuitem = 1$/;"	v
 g:loaded_nerdtree_fs_menu	nerdtree_plugin/fs_menu.vim	/^let g:loaded_nerdtree_fs_menu = 1$/;"	v
-g:loaded_nerdtree_git_menu	nerdtree_plugin/git_menu.vim	/^let g:loaded_nerdtree_git_menu = 1$/;"	v
 g:loaded_rails	plugin/rails.vim	/^let g:loaded_rails = 1$/;"	v
 g:loaded_repeat	autoload/repeat.vim	/^let g:loaded_repeat = 1$/;"	v
 g:loaded_surround	plugin/surround.vim	/^let g:loaded_surround = 1$/;"	v
@@ -1119,7 +1188,6 @@ g:NERDTreeIgnore	plugin/NERD_tree.vim	/^    let g:NERDTreeIgnore = ['\\~$']$/;"	
 g:NERDTreePath	plugin/NERD_tree.vim	/^let g:NERDTreePath = s:Path$/;"	v
 g:NERDTreeSortOrder	plugin/NERD_tree.vim	/^    let g:NERDTreeSortOrder = ['\\\/$', '*', '\\.swp$',  '\\.bak$', '\\~$']$/;"	v
 g:NERDTreeStatusline	plugin/NERD_tree.vim	/^    let g:NERDTreeStatusline = "%{exists('b:NERDTreeRoot')?b:NERDTreeRoot.path.str():''}"$/;"	v
-g:open_external_loaded	nerdtree_plugin/open_external.vim	/^let g:open_external_loaded = 1$/;"	v
 g:Projects	plugin/proj.vim	/^let g:Projects = s:LoadProjects()$/;"	v
 g:repeat_tick	autoload/repeat.vim	/^let g:repeat_tick = -1$/;"	v
 g:sf_app_name	plugin/symfony.vim	/^let g:sf_app_name      = ""$/;"	v
@@ -1264,12 +1332,16 @@ genutils#UserFileComplete2	autoload/genutils.vim	/^function! genutils#UserFileCo
 genutils#UserFileExpand	autoload/genutils.vim	/^function! genutils#UserFileExpand(fileArgs)$/;"	f
 GetActionNameFromAction	plugin/symfony.vim	/^function! GetActionNameFromAction(action_name)$/;"	f
 GetActionNameFromActionFileName	plugin/symfony.vim	/^function! GetActionNameFromActionFileName(action_file_name)$/;"	f
+GetAvailableModes	plugin/fuzzyfinder.vim	/^function! <SID>GetAvailableModes()$/;"	f
 GetBufferIdList	plugin/EasyGrep.vim	/^function! s:GetBufferIdList()$/;"	f
 GetBufferNamesList	plugin/EasyGrep.vim	/^function! s:GetBufferNamesList()$/;"	f
+GetBuffers	plugin/fuzzyfinder.vim	/^function! <SID>GetBuffers()$/;"	f
 GetBuffersOutput	plugin/EasyGrep.vim	/^function! s:GetBuffersOutput()$/;"	f
 getchar	plugin/surround.vim	/^function! s:getchar()$/;"	f
 GetCommenter	plugin/LineCommenter.vim	/^function GetCommenter(StringKey)$/;"	f
 GetComponentNameFromComponentFileName	plugin/symfony.vim	/^function! GetComponentNameFromComponentFileName(component_file_name)$/;"	f
+GetCurrentTagFiles	plugin/fuzzyfinder.vim	/^function! <SID>GetCurrentTagFiles()$/;"	f
+GetCurrentTagFiles	plugin/fuzzyfinder_textmate.vim	/^function! s:GetCurrentTagFiles()$/;"	f
 getCurrentTrack	plugin/vimmpc.py	/^    def getCurrentTrack(self):$/;"	m	class:MPC
 GetCurrentWord	additional_scripts/words_tools.vim	/^function! GetCurrentWord()$/;"	f
 GetErrorList	plugin/EasyGrep.vim	/^function! s:GetErrorList()$/;"	f
@@ -1284,12 +1356,12 @@ GetKeyFromLink	plugin/EasyGrep.vim	/^function! s:GetKeyFromLink(str)$/;"	f
 GetLatestVimScripts	autoload/getscript.vim	/^com!        -nargs=0 GetLatestVimScripts call getscript#GetLatestVimScripts()$/;"	c
 GetLatestVimScripts	plugin/getscriptPlugin.vim	/^com!        -nargs=0 GetLatestVimScripts call getscript#GetLatestVimScripts()$/;"	c
 GetNearestWord	additional_scripts/words_tools.vim	/^function! GetNearestWord()$/;"	f
-GetNERDTreePath	nerdtree_plugin/open_external.vim	/^function! GetNERDTreePath()$/;"	f
 GetNextWinnrInStack	autoload/genutils.vim	/^function! s:GetNextWinnrInStack(dir)$/;"	f
 GetNthElement	autoload/tlib/list.vim	/^function! s:GetNthElement(n, lists, default) "{{{3$/;"	f
 GetOneScript	autoload/getscript.vim	/^fun! s:GetOneScript(...)$/;"	f
 getopt	autoload/rails.vim	/^function! s:getopt(opt,...)$/;"	f
 getPath	plugin/NERD_tree.vim	/^function! s:getPath(ln)$/;"	f
+GetPathSeparatorIfDirectory	plugin/fuzzyfinder.vim	/^function! <SID>GetPathSeparatorIfDirectory(path)$/;"	f
 GetPhpIndent	indent/php.vim	/^function GetPhpIndent()$/;"	f
 getpidfor	autoload/rails.vim	/^function! s:getpidfor(bind,port)$/;"	f
 GetPreviousWord	additional_scripts/words_tools.vim	/^function! GetPreviousWord()$/;"	f
@@ -1305,6 +1377,8 @@ GetSnippets	plugin/snipMate.vim	/^fun! GetSnippets(dir, filetypes)$/;"	f
 GetSuccessTemplateFromAction	plugin/symfony.vim	/^function! GetSuccessTemplateFromAction(action_name)$/;"	f
 GetSuccessTemplateFromComponent	plugin/symfony.vim	/^function! GetSuccessTemplateFromComponent(component_name)$/;"	f
 GetTag	autoload/ttags.vim	/^function! s:GetTag(world, id) "{{{3$/;"	f
+GetTaggedFileList	plugin/fuzzyfinder.vim	/^function! <SID>GetTaggedFileList(tagfile)$/;"	f
+GetTagList	plugin/fuzzyfinder.vim	/^function! <SID>GetTagList(tagfile)$/;"	f
 getTrackInfo	plugin/vimmpc.py	/^    def getTrackInfo(self):$/;"	m	class:MPC
 getTreeWinNum	plugin/NERD_tree.vim	/^function! s:getTreeWinNum()$/;"	f
 GetVisibleBuffers	plugin/EasyGrep.vim	/^function! s:GetVisibleBuffers()$/;"	f
@@ -1332,7 +1406,6 @@ GHCStaticOptions	compiler/ghc.vim	/^command! GHCStaticOptions call ghc#StaticOpt
 ghc_supported_languages	compiler/ghc.vim	/^  let ghc_supported_languages = split(system(g:ghc . ' --supported-languages'),'\\n')$/;"	v
 ghc_version	compiler/ghc.vim	/^let ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\\n','','')$/;"	v
 GHC_VersionGE	ftplugin/haskell_doc.vim	/^function! GHC_VersionGE(target)$/;"	f
-GitRepoPath	nerdtree_plugin/git_menu.vim	/^function! s:GitRepoPath()$/;"	f
 gm	ftplugin/php.vim	/^nmap <buffer> gm :exe ":Utl ol http:\/\/php.net\/manual-lookup.php?pattern=" . expand("<cword>")<cr>$/;"	m
 gmtime	plugin/vimmpc.py	/^from time import gmtime, strftime$/;"	i
 GotoWinNum	autoload/ZoomWin.vim	/^fun! s:GotoWinNum(winnum)$/;"	f
@@ -1376,6 +1449,9 @@ helperList	autoload/rails.vim	/^function! s:helperList(A,L,P)$/;"	f
 helpermethods	autoload/rails.vim	/^function! s:helpermethods()$/;"	f
 HiDefaults	autoload/rails.vim	/^function! s:HiDefaults()$/;"	f
 highlightCurrent	plugin/vimmpc.py	/^    def highlightCurrent(self):$/;"	m	class:MPC
+HighlightError	plugin/fuzzyfinder.vim	/^function! <SID>HighlightError(error)$/;"	f
+HighlightError	plugin/fuzzyfinder_textmate.vim	/^function! s:HighlightError()$/;"	f
+HighlightPrompt	plugin/fuzzyfinder_textmate.vim	/^function! s:HighlightPrompt(prompt, highlight)$/;"	f
 HiLink	syntax/jquery.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
 HiLink	syntax/jquery.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 HiLink	syntax/txt.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
@@ -1544,6 +1620,7 @@ identified	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> identified <C-R>
 IDoc	ftplugin/haskell_doc.vim	/^command! -nargs=+ IDoc call IDoc(<f-args>)$/;"	c
 IDoc	ftplugin/haskell_doc.vim	/^function! IDoc(name,...) $/;"	f
 if	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> if <C-R>=SqlIab_ReplaceConditionally('if', 'IF')<CR>$/;"	m
+ignore?	ruby/fuzzy_file_finder.rb	/^    def ignore?(name)$/;"	f	class:FuzzyFileFinder
 ImAmInAComponent	plugin/symfony.vim	/^function! ImAmInAComponent() $/;"	f
 ImAmInAComponentTemplate	plugin/symfony.vim	/^function! ImAmInAComponentTemplate()$/;"	f
 ImAmInAModule	plugin/symfony.vim	/^function! ImAmInAModule() $/;"	f
@@ -1562,6 +1639,10 @@ inet	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> inet <C-R>=SqlIab_Repl
 Info	plugin/EasyGrep.vim	/^function! s:Info(message)$/;"	f
 Init	autoload/tlib/input.vim	/^function! s:Init(world, cmd) "{{{3$/;"	f
 initial	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> initial <C-R>=SqlIab_ReplaceConditionally('initial', 'INITIAL')<CR>$/;"	m
+Initialize	plugin/fuzzyfinder.vim	/^function! <SID>Initialize()$/;"	f
+initialize	ruby/fuzzy_file_finder.rb	/^    def initialize(name, is_root=false)$/;"	f	class:FuzzyFileFinder.Directory
+initialize	ruby/fuzzy_file_finder.rb	/^    def initialize(parent, name)$/;"	f	class:FuzzyFileFinder.FileSystemEntry
+initialize	ruby/fuzzy_file_finder.rb	/^  def initialize(directories=['.'], ceiling=10_000, ignores=nil)$/;"	f	class:FuzzyFileFinder
 initializerEdit	autoload/rails.vim	/^function! s:initializerEdit(cmd,...)$/;"	f
 initializerList	autoload/rails.vim	/^function! s:initializerList(A,L,P)$/;"	f
 initNerdTree	plugin/NERD_tree.vim	/^function! s:initNerdTree(name)$/;"	f
@@ -1578,6 +1659,8 @@ insert	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> insert <C-R>=SqlIab_
 Insert	plugin/dbext.vim	/^command! -nargs=+ Insert            :call dbext#DB_execSql("insert " . <q-args>)$/;"	c
 insert	plugin/surround.vim	/^function! s:insert(...) " {{{1$/;"	f
 InsertRefs	plugin/matchit.vim	/^fun! s:InsertRefs(groupBR, prefix, group, suffix, matchline)$/;"	f
+inspect	ruby/fuzzy_file_finder.rb	/^  def inspect #:nodoc:$/;"	f	class:FuzzyFileFinder
+InstantiateTextMateMode	plugin/fuzzyfinder_textmate.vim	/^function! InstantiateTextMateMode() "{{{$/;"	f
 int	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> int <C-R>=SqlIab_ReplaceConditionally('int', 'INTEGER')<CR>$/;"	m
 int2vector	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> int2vector <C-R>=SqlIab_ReplaceConditionally('int2vector', 'INT2VECTOR')<CR>$/;"	m
 integer	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> integer <C-R>=SqlIab_ReplaceConditionally('integer', 'INTEGER')<CR>$/;"	m
@@ -1633,6 +1716,7 @@ LineCommenter	plugin/LineCommenter.vim	/^function LineCommenter()$/;"	f
 linepeak	autoload/rails.vim	/^function! s:linepeak()$/;"	f
 listen	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> listen <C-R>=SqlIab_ReplaceConditionally('listen', 'LISTEN')<CR>$/;"	m
 load	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> load <C-R>=SqlIab_ReplaceConditionally('load', 'LOAD')<CR>$/;"	m
+loaded_fuzzyfinder	plugin/fuzzyfinder.vim	/^let loaded_fuzzyfinder = 1$/;"	v
 loaded_genutils	plugin/genutils.vim	/^let loaded_genutils = 205$/;"	v
 loaded_matchit	plugin/matchit.vim	/^let loaded_matchit = 1$/;"	v
 loaded_mru	plugin/mru.vim	/^let loaded_mru=1$/;"	v
@@ -1694,11 +1778,15 @@ loop	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> loop <C-R>=SqlIab_Repl
 lseg	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> lseg <C-R>=SqlIab_ReplaceConditionally('lseg', 'LSEG')<CR>$/;"	m
 m	plugin/showmarks.vim	/^noremap <silent> m :exe 'norm \\sm'.nr2char(getchar())<bar>call <sid>ShowMarks()<CR>$/;"	m
 macaddr	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> macaddr <C-R>=SqlIab_ReplaceConditionally('macaddr', 'MACADDR')<CR>$/;"	m
+MakeCompletionItem	plugin/fuzzyfinder.vim	/^function! <SID>MakeCompletionItem(expr, number_str, abbr, time, entered, evals_path_tail)$/;"	f
+MakeNumberedList	plugin/fuzzyfinder.vim	/^function! <SID>MakeNumberedList(in, first)$/;"	f
 MakeQFE	autoload/ttags.vim	/^function! s:MakeQFE(tag) "{{{3$/;"	f
 MakeQFL	autoload/ttags.vim	/^function! s:MakeQFL(tags) "{{{3$/;"	f
+MakeRateStars	plugin/fuzzyfinder.vim	/^function! <SID>MakeRateStars(rate, base)$/;"	f
 MakeSnip	plugin/snipMate.vim	/^fun! MakeSnip(scope, trigger, content, ...)$/;"	f
 MakeSpace	autoload/Align.vim	/^fun! s:MakeSpace(spacecnt)$/;"	f
 makewithruby	autoload/rails.vim	/^function! s:makewithruby(arg,bang,...)$/;"	f
+make_pattern	ruby/fuzzy_file_finder.rb	/^    def make_pattern(pattern)$/;"	f	class:FuzzyFileFinder
 maplocalleader	compiler/ghc.vim	/^  let maplocalleader='_'$/;"	v
 maplocalleader	ftplugin/haskell_doc.vim	/^  let maplocalleader='_'$/;"	v
 MarkErrors	plugin/cuteErrorMarker.vim	/^command! MarkErrors call MarkErrors()$/;"	c
@@ -1707,6 +1795,8 @@ Match	autoload/genutils.vim	/^function! s:Match(expr, pat, start)$/;"	f
 matchcursor	autoload/rails.vim	/^function! s:matchcursor(pat)$/;"	f
 MatchDebug	plugin/matchit.vim	/^  command! -nargs=0 MatchDebug call s:Match_debug()$/;"	c
 Match_debug	plugin/matchit.vim	/^fun! s:Match_debug()$/;"	f
+match_file	ruby/fuzzy_file_finder.rb	/^    def match_file(file, file_regex, path_match, &block)$/;"	f
+match_path	ruby/fuzzy_file_finder.rb	/^    def match_path(path, path_matches, path_regex, path_segments)$/;"	f
 match_type	autoload/rails.vim	/^function! s:match_type(type,...)$/;"	f
 Match_wrapper	plugin/matchit.vim	/^function! s:Match_wrapper(word, forward, mode) range$/;"	f
 maxextents	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> maxextents <C-R>=SqlIab_ReplaceConditionally('maxextents', 'MAXEXTENTS')<CR>$/;"	m
@@ -1807,14 +1897,10 @@ NERDTreeDeleteNode	nerdtree_plugin/fs_menu.vim	/^function! NERDTreeDeleteNode()$
 NERDTreeExecFile	nerdtree_plugin/exec_menuitem.vim	/^function! NERDTreeExecFile()$/;"	f
 NERDTreeExecFileActive	nerdtree_plugin/exec_menuitem.vim	/^function! NERDTreeExecFileActive()$/;"	f
 NERDTreeFromBookmark	plugin/NERD_tree.vim	/^command! -n=1 -complete=customlist,s:completeBookmarks -bar NERDTreeFromBookmark call s:initNerdTree('<args>')$/;"	c
-NERDTreeGitAdd	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitAdd()$/;"	f
-NERDTreeGitCheckout	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitCheckout()$/;"	f
-NERDTreeGitMenuEnabled	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitMenuEnabled()$/;"	f
-NERDTreeGitMove	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitMove()$/;"	f
-NERDTreeGitRemove	nerdtree_plugin/git_menu.vim	/^function! NERDTreeGitRemove()$/;"	f
 NERDTreeHijackNetrw	plugin/NERD_tree.vim	/^    augroup NERDTreeHijackNetrw$/;"	a
 NERDTreeMirror	plugin/NERD_tree.vim	/^command! -n=0 -bar NERDTreeMirror call s:initNerdTreeMirror()$/;"	c
 NERDTreeMoveNode	nerdtree_plugin/fs_menu.vim	/^function! NERDTreeMoveNode()$/;"	f
+NERDTreeOpenCurrentNodeWithUtl	nerdtree_plugin/utl_mapping.vim	/^function! NERDTreeOpenCurrentNodeWithUtl()$/;"	f
 NERDTreeRender	plugin/NERD_tree.vim	/^function! NERDTreeRender()$/;"	f
 NERDTreeStartShell	nerdtree_plugin/startshell_mapping.vim	/^function! NERDTreeStartShell()$/;"	f
 NERDTreeToggle	plugin/NERD_tree.vim	/^command! -n=? -complete=dir -bar NERDTreeToggle :call s:toggle('<args>')$/;"	c
@@ -1843,10 +1929,10 @@ on	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> on <C-R>=SqlIab_ReplaceC
 online	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> online <C-R>=SqlIab_ReplaceConditionally('online', 'ONLINE')<CR>$/;"	m
 OnOrOff	plugin/EasyGrep.vim	/^function! s:OnOrOff(num)$/;"	f
 openBookmark	plugin/NERD_tree.vim	/^function! s:openBookmark(name)$/;"	f
-OpenCurrentNode	nerdtree_plugin/open_external.vim	/^function! OpenCurrentNode()$/;"	f
-OpenCurrentNodeWithUtl	nerdtree_plugin/utl_mapping.vim	/^function! OpenCurrentNodeWithUtl()$/;"	f
+OpenBuffer	plugin/fuzzyfinder_textmate.vim	/^function! s:OpenBuffer(nr, mode)$/;"	f
 openEntrySplit	plugin/NERD_tree.vim	/^function! s:openEntrySplit(vertical, forceKeepWindowOpen)$/;"	f
 openExplorer	plugin/NERD_tree.vim	/^function! s:openExplorer()$/;"	f
+OpenFile	plugin/fuzzyfinder_textmate.vim	/^function! s:OpenFile(path, mode)$/;"	f
 OpenFile	plugin/proj.vim	/^function! s:OpenFile()$/;"	f
 openInNewTab	plugin/NERD_tree.vim	/^function! s:openInNewTab(stayCurrentTab)$/;"	f
 openNodeRecursively	plugin/NERD_tree.vim	/^function! s:openNodeRecursively()$/;"	f
@@ -1877,6 +1963,7 @@ ParseWords	plugin/matchit.vim	/^fun! s:ParseWords(groups)$/;"	f
 parse_substitute	plugin/abolish.vim	/^function! s:parse_substitute(bang,line1,line2,count,args)$/;"	f
 parse_subvert	plugin/abolish.vim	/^function! s:parse_subvert(bang,line1,line2,count,args)$/;"	f
 path	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> path <C-R>=SqlIab_ReplaceConditionally('path', 'PATH')<CR>$/;"	m
+path	ruby/fuzzy_file_finder.rb	/^    def path$/;"	f	class:FuzzyFileFinder.FileSystemEntry
 Path.AbsolutePathFor	plugin/NERD_tree.vim	/^function! s:Path.AbsolutePathFor(str)$/;"	f
 Path.bookmarkNames	plugin/NERD_tree.vim	/^function! s:Path.bookmarkNames()$/;"	f
 Path.cacheDisplayString	plugin/NERD_tree.vim	/^function! s:Path.cacheDisplayString()$/;"	f
@@ -2128,6 +2215,7 @@ remote_toggle_repeat_key	plugin/vimmpc.py	/^remote_toggle_repeat_key = MPC_setVa
 remote_toggle_stop_after_playing_key	plugin/vimmpc.py	/^remote_toggle_stop_after_playing_key = MPC_setVariable("g:mpc_remote_stop_after_playing_key", "x")$/;"	v
 remote_update_key	plugin/vimmpc.py	/^remote_update_key = MPC_setVariable("g:mpc_remote_update_key", "u")$/;"	v
 RemoveErrorMarkersHook	plugin/cuteErrorMarker.vim	/^fun! RemoveErrorMarkersHook() "{{{$/;"	f
+RemovePrompt	plugin/fuzzyfinder.vim	/^function! <SID>RemovePrompt(in)$/;"	f
 RemoveSnippet	autoload/snipMate.vim	/^fun s:RemoveSnippet()$/;"	f
 rename	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> rename <C-R>=SqlIab_ReplaceConditionally('rename', 'RENAME')<CR>$/;"	m
 renderBookmarks	plugin/NERD_tree.vim	/^function! s:renderBookmarks()$/;"	f
@@ -2145,6 +2233,7 @@ ReplaceSelection	plugin/EasyGrep.vim	/^function! <sid>ReplaceSelection(whole)$/;
 ReplaceString	plugin/EasyGrep.vim	/^function! s:ReplaceString(str, whole, escapeArgs)$/;"	f
 ReplaceUndo	plugin/EasyGrep.vim	/^command! -bang ReplaceUndo :call s:ReplaceUndo("<bang>")$/;"	c
 ReplaceUndo	plugin/EasyGrep.vim	/^function! s:ReplaceUndo(bang)$/;"	f
+rescan!	ruby/fuzzy_file_finder.rb	/^  def rescan!$/;"	f	class:FuzzyFileFinder
 reset	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> reset <C-R>=SqlIab_ReplaceConditionally('reset', 'RESET')<CR>$/;"	m
 resetomnicomplete	autoload/rails.vim	/^function! s:resetomnicomplete()$/;"	f
 ResetSnippets	plugin/snipMate.vim	/^fun! ResetSnippets()$/;"	f
@@ -2165,6 +2254,7 @@ RewriteFormatString	autoload/tlib/string.vim	/^function! s:RewriteFormatString(f
 Rgb2xterm	additional_scripts/css.vim	/^function! s:Rgb2xterm(color)$/;"	f
 RM	plugin/cecutil.vim	/^com! -bar -nargs=1 RM	call RestoreMark(<q-args>)$/;"	c
 rollback	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> rollback <C-R>=SqlIab_ReplaceConditionally('rollback', 'ROLLBACK')<CR>$/;"	m
+root?	ruby/fuzzy_file_finder.rb	/^    def root?$/;"	f	class:FuzzyFileFinder.Directory
 row	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> row <C-R>=SqlIab_ReplaceConditionally('row', 'ROW')<CR>$/;"	m
 rowid	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> rowid <C-R>=SqlIab_ReplaceConditionally('rowid', 'ROWID')<CR>$/;"	m
 rowlabel	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> rowlabel <C-R>=SqlIab_ReplaceConditionally('rowlabel', 'ROWLABEL')<CR>$/;"	m
@@ -2296,7 +2386,6 @@ s:makeArgumentList	autoload/genutils.vim	/^let s:makeArgumentList = ''$/;"	v
 s:makeArgumentString	autoload/genutils.vim	/^let s:makeArgumentString = ''$/;"	v
 s:mapleader	plugin/AlignMapsPlugin.vim	/^  let s:mapleader = exists("g:mapleader")? g:mapleader : '\\'$/;"	v
 s:max	autoload/tlib/progressbar.vim	/^let s:max = []$/;"	v
-s:menu	nerdtree_plugin/git_menu.vim	/^let s:menu = NERDTreeAddSubmenu({$/;"	v
 s:MenuController	plugin/NERD_tree.vim	/^let s:MenuController = {}$/;"	v
 s:MenuItem	plugin/NERD_tree.vim	/^let s:MenuItem = {}$/;"	v
 s:menu_char_prefix	plugin/taglist.vim	/^let s:menu_char_prefix =$/;"	v
@@ -2442,6 +2531,7 @@ SaveVariable	plugin/EasyGrep.vim	/^function! s:SaveVariable(var)$/;"	f
 SaveWinPosn	plugin/cecutil.vim	/^fun! SaveWinPosn(...)$/;"	f
 scanlineforuris	autoload/rails.vim	/^function! s:scanlineforuris(line)$/;"	f
 scrub	autoload/rails.vim	/^function! s:scrub(collection,item)$/;"	f
+search	ruby/fuzzy_file_finder.rb	/^  def search(pattern, &block)$/;"	f	class:FuzzyFileFinder
 select	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> select <C-R>=SqlIab_ReplaceConditionally('select', 'SELECT')<CR>$/;"	m
 Select	plugin/dbext.vim	/^command! -nargs=+ Select            :call dbext#DB_execSql("select " . <q-args>)$/;"	c
 Select	plugin/EasyGrep.vim	/^function! <sid>Select()$/;"	f
@@ -2468,6 +2558,7 @@ SetOrigin	autoload/ttags.vim	/^function! s:SetOrigin(world) "{{{3$/;"	f
 SetProjectConfig	plugin/symfony.vim	/^function! SetProjectConfig()$/;"	f
 SetScrollBind	autoload/tlib/file.vim	/^function! s:SetScrollBind(world) "{{{3$/;"	f
 setStep	plugin/vimmpc.py	/^        def setStep(self, newAmount):$/;"	m	class:MPC.ProgressBar
+SetTemporaryOption	plugin/fuzzyfinder.vim	/^function! <SID>SetTemporaryOption(option, ...)$/;"	f
 setupStatusline	plugin/NERD_tree.vim	/^function! s:setupStatusline()$/;"	f
 setupSyntaxHighlighting	plugin/NERD_tree.vim	/^function! s:setupSyntaxHighlighting()$/;"	f
 SetWatchExtension	plugin/EasyGrep.vim	/^function! s:SetWatchExtension()$/;"	f
@@ -2512,12 +2603,14 @@ SNR	autoload/genutils.vim	/^function! s:SNR()$/;"	f
 some	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> some <C-R>=SqlIab_ReplaceConditionally('some', 'SOME')<CR>$/;"	m
 sort	plugin/abolish.vim	/^function! s:sort(a,b)$/;"	f
 Sort	plugin/EasyGrep.vim	/^function! <sid>Sort()$/;"	f
+SortByMultipleOrder	plugin/fuzzyfinder.vim	/^function! <SID>SortByMultipleOrder(i1, i2)$/;"	f
 SortExtension	plugin/EasyGrep.vim	/^function! SortExtension(lhs, rhs)$/;"	f
 SortExtensionReversed	plugin/EasyGrep.vim	/^function! SortExtensionReversed(lhs, rhs)$/;"	f
 SortName	plugin/EasyGrep.vim	/^function! SortName(lhs, rhs)$/;"	f
 SortNameReversed	plugin/EasyGrep.vim	/^function! SortNameReversed(lhs, rhs)$/;"	f
 specEdit	autoload/rails.vim	/^function! s:specEdit(cmd,...)$/;"	f
 specList	autoload/rails.vim	/^function! s:specList(A,L,P)$/;"	f
+SplitPath	plugin/fuzzyfinder.vim	/^function! <SID>SplitPath(path)$/;"	f
 SqlIab_ReplaceConditionally	ftplugin/sql_iabbr.vim	/^function! SqlIab_ReplaceConditionally(original, replacement)$/;"	f
 start	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> start <C-R>=SqlIab_ReplaceConditionally('start', 'START')<CR>$/;"	m
 startswith	autoload/rails.vim	/^function! s:startswith(string,prefix)$/;"	f
@@ -2883,6 +2976,8 @@ toggleStopAfterPlaying	plugin/vimmpc.py	/^    def toggleStopAfterPlaying(self):$
 ToggleWholeWord	plugin/EasyGrep.vim	/^function! <sid>ToggleWholeWord()$/;"	f
 ToggleWindow	plugin/EasyGrep.vim	/^function! <sid>ToggleWindow()$/;"	f
 toggleZoom	plugin/NERD_tree.vim	/^function! s:toggleZoom()$/;"	f
+TooManyEntries	ruby/fuzzy_file_finder.rb	/^  class TooManyEntries < RuntimeError; end$/;"	c	class:FuzzyFileFinder
+to_s	ruby/fuzzy_file_finder.rb	/^    def to_s$/;"	f	class:FuzzyFileFinder.CharacterRun
 traceback	plugin/autotag.vim	/^   import traceback$/;"	m
 TrackFoldText	plugin/vimmpc.vim	/^function TrackFoldText()$/;"	f
 trans	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> trans <C-R>=SqlIab_ReplaceConditionally('trans', 'TRANSACTION')<CR>$/;"	m
@@ -2967,6 +3062,7 @@ uid	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> uid <C-R>=SqlIab_Replac
 union	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> union <C-R>=SqlIab_ReplaceConditionally('union', 'UNION')<CR>$/;"	m
 unique	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> unique <C-R>=SqlIab_ReplaceConditionally('unique', 'UNIQUE')<CR>$/;"	m
 unique	plugin/EasyGrep.vim	/^function! s:unique(lst)$/;"	f
+Unique	plugin/fuzzyfinder.vim	/^function <SID>Unique(in)$/;"	f
 unique	plugin/NERD_tree.vim	/^function! s:unique(list)$/;"	f
 UniqValue	autoload/tlib/list.vim	/^function! s:UniqValue(value) "{{{3$/;"	f
 unittestEdit	autoload/rails.vim	/^function! s:unittestEdit(cmd,...)$/;"	f
@@ -3050,6 +3146,7 @@ varchar	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> varchar <C-R>=SqlIa
 varchar2	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> varchar2 <C-R>=SqlIab_ReplaceConditionally('varchar2', 'VARCHAR2')<CR>$/;"	m
 varray	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> varray <C-R>=SqlIab_ReplaceConditionally('varray', 'VARRAY')<CR>$/;"	m
 VerifyText	plugin/showmarks.vim	/^fun! s:VerifyText(which)$/;"	f
+Version	ruby/fuzzy_file_finder.rb	/^  module Version$/;"	m	class:FuzzyFileFinder
 view	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> view <C-R>=SqlIab_ReplaceConditionally('view', 'VIEW')<CR>$/;"	m
 viewEdit	autoload/rails.vim	/^function! s:viewEdit(cmd,...)$/;"	f
 viewList	autoload/rails.vim	/^function! s:viewList(A,L,P)$/;"	f
