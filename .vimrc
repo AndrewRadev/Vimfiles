@@ -49,6 +49,8 @@ nmap K 4k
 nmap gn :NERDTreeToggle<cr>
 nmap gN :NERDTree<cr>
 
+let g:NERDTreeHijackNetrw = 0
+
 " Instead of <C-o>, use <bs> to go back files:
 nnoremap <bs> <C-o>
 
@@ -66,14 +68,6 @@ nmap <S-Tab> <<
 
 " Dbext settings:
 let g:dbext_default_buffer_lines = 30
-
-" Showmarks settings:
-let g:showmarks_ignore_type = "rhmpq"
-let g:showmarks_textlower = "-"
-let g:showmarks_textupper = "-"
-let g:showmarks_textother = "-"
-let g:showmarks_include = "abcdefghijklmnopqrstuvwxyz"
-let g:showmarks_include .= toupper(g:showmarks_include)
 
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"

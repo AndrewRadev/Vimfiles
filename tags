@@ -480,7 +480,6 @@ cursor	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> cursor <C-R>=SqlIab_
 CustomComplete	autoload/rails.vim	/^function! s:CustomComplete(A,L,P,cmd)$/;"	f
 dashcase	plugin/abolish.vim	/^function! s:dashcase(word)$/;"	f
 database	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> database <C-R>=SqlIab_ReplaceConditionally('database', 'DATABASE')<CR>$/;"	m
-DatabaseFoldText	plugin/vimmpc.vim	/^function DatabaseFoldText()$/;"	f
 database_direction	plugin/vimmpc.py	/^database_direction = MPC_setVariable("g:mpc_database_direction", "vsplit")$/;"	v
 database_size	plugin/vimmpc.py	/^database_size = MPC_setVariable("g:mpc_database_size", "30")$/;"	v
 database_type	plugin/vimmpc.py	/^database_type = MPC_setVariable("g:mpc_database_type", "aboveleft") # :help opening-window$/;"	v
@@ -926,7 +925,6 @@ error	plugin/rails.vim	/^function! s:error(str)$/;"	f
 escape	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> escape <C-R>=SqlIab_ReplaceConditionally('escape', 'ESCAPE')<CR>$/;"	m
 Escape	plugin/EasyGrep.vim	/^function! s:Escape(str, lst)$/;"	f
 EscapeChars	plugin/FindFile.vim	/^fun! <SID>EscapeChars(toEscape)$/;"	f
-EscapeFilename	plugin/fuzzyfinder_textmate.vim	/^function! s:EscapeFilename(fn)$/;"	f
 EscapeList	plugin/EasyGrep.vim	/^function! s:EscapeList(lst, seperator)$/;"	f
 EscapeSpecial	plugin/EasyGrep.vim	/^function! s:EscapeSpecial(str)$/;"	f
 escarg	autoload/rails.vim	/^function! s:escarg(p)$/;"	f
@@ -1060,9 +1058,6 @@ FuzzyFinderMode.Tag.on_open	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode
 FuzzyFinderMode.TaggedFile.find_tagged_file	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.find_tagged_file(pattern, matching_limit)$/;"	f
 FuzzyFinderMode.TaggedFile.on_complete	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.on_complete(base)$/;"	f
 FuzzyFinderMode.TaggedFile.on_mode_enter	plugin/fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.on_mode_enter()$/;"	f
-FuzzyFinderMode.TextMate.on_open	plugin/fuzzyfinder_textmate.vim	/^  function! g:FuzzyFinderMode.TextMate.on_open(expr, mode)$/;"	f
-FuzzyFinderTextMate	plugin/fuzzyfinder_textmate.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderTextMate   call FuzzyFinderTextMateLauncher(<q-args>, len(<q-bang>))$/;"	c
-FuzzyFinderTextMateLauncher	plugin/fuzzyfinder_textmate.vim	/^  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching)$/;"	f
 fuzzyglob	autoload/rails.vim	/^function! s:fuzzyglob(arg)$/;"	f
 g%	plugin/matchit.vim	/^nnoremap <silent> g% :<C-U>call <SID>Match_wrapper('',0,'n') <CR>$/;"	m
 g%	plugin/matchit.vim	/^onoremap <silent> g% v:<C-U>call <SID>Match_wrapper('',0,'o') <CR>$/;"	m
@@ -1124,7 +1119,6 @@ g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.File = copy(g:F
 g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.MruFile = copy(g:FuzzyFinderMode.Base)$/;"	v
 g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.Tag = copy(g:FuzzyFinderMode.Base)$/;"	v
 g:FuzzyFinderMode	plugin/fuzzyfinder.vim	/^let g:FuzzyFinderMode.TaggedFile = copy(g:FuzzyFinderMode.Base)$/;"	v
-g:FuzzyFinderOptions	plugin/fuzzyfinder_textmate.vim	/^  let g:FuzzyFinderOptions.TextMate = copy(g:FuzzyFinderOptions.File)$/;"	v
 g:GetLatestVimScripts_allowautoinstall	autoload/getscript.vim	/^ let g:GetLatestVimScripts_allowautoinstall= 1$/;"	v
 g:GetLatestVimScripts_mv	autoload/getscript.vim	/^   let g:GetLatestVimScripts_mv= "mv"$/;"	v
 g:GetLatestVimScripts_mv	autoload/getscript.vim	/^   let g:GetLatestVimScripts_mv= "ren"$/;"	v
@@ -1170,7 +1164,6 @@ g:loaded_dbext_dbi_msg	autoload/dbext_dbi.vim	/^    let g:loaded_dbext_dbi_msg =
 g:loaded_Decho	plugin/Decho.vim	/^let g:loaded_Decho = "v20"$/;"	v
 g:loaded_getscript	autoload/getscript.vim	/^let g:loaded_getscript= "v29"$/;"	v
 g:loaded_getscriptPlugin	plugin/getscriptPlugin.vim	/^let g:loaded_getscriptPlugin = "v29"$/;"	v
-g:loaded_mpc	plugin/vimmpc.vim	/^    let g:loaded_mpc = 1$/;"	v
 g:loaded_nerdtree_exec_menuitem	nerdtree_plugin/exec_menuitem.vim	/^let g:loaded_nerdtree_exec_menuitem = 1$/;"	v
 g:loaded_nerdtree_fs_menu	nerdtree_plugin/fs_menu.vim	/^let g:loaded_nerdtree_fs_menu = 1$/;"	v
 g:loaded_rails	plugin/rails.vim	/^let g:loaded_rails = 1$/;"	v
@@ -1341,7 +1334,6 @@ getchar	plugin/surround.vim	/^function! s:getchar()$/;"	f
 GetCommenter	plugin/LineCommenter.vim	/^function GetCommenter(StringKey)$/;"	f
 GetComponentNameFromComponentFileName	plugin/symfony.vim	/^function! GetComponentNameFromComponentFileName(component_file_name)$/;"	f
 GetCurrentTagFiles	plugin/fuzzyfinder.vim	/^function! <SID>GetCurrentTagFiles()$/;"	f
-GetCurrentTagFiles	plugin/fuzzyfinder_textmate.vim	/^function! s:GetCurrentTagFiles()$/;"	f
 getCurrentTrack	plugin/vimmpc.py	/^    def getCurrentTrack(self):$/;"	m	class:MPC
 GetCurrentWord	additional_scripts/words_tools.vim	/^function! GetCurrentWord()$/;"	f
 GetErrorList	plugin/EasyGrep.vim	/^function! s:GetErrorList()$/;"	f
@@ -1450,8 +1442,6 @@ helpermethods	autoload/rails.vim	/^function! s:helpermethods()$/;"	f
 HiDefaults	autoload/rails.vim	/^function! s:HiDefaults()$/;"	f
 highlightCurrent	plugin/vimmpc.py	/^    def highlightCurrent(self):$/;"	m	class:MPC
 HighlightError	plugin/fuzzyfinder.vim	/^function! <SID>HighlightError(error)$/;"	f
-HighlightError	plugin/fuzzyfinder_textmate.vim	/^function! s:HighlightError()$/;"	f
-HighlightPrompt	plugin/fuzzyfinder_textmate.vim	/^function! s:HighlightPrompt(prompt, highlight)$/;"	f
 HiLink	syntax/jquery.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
 HiLink	syntax/jquery.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 HiLink	syntax/txt.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
@@ -1660,7 +1650,6 @@ Insert	plugin/dbext.vim	/^command! -nargs=+ Insert            :call dbext#DB_exe
 insert	plugin/surround.vim	/^function! s:insert(...) " {{{1$/;"	f
 InsertRefs	plugin/matchit.vim	/^fun! s:InsertRefs(groupBR, prefix, group, suffix, matchline)$/;"	f
 inspect	ruby/fuzzy_file_finder.rb	/^  def inspect #:nodoc:$/;"	f	class:FuzzyFileFinder
-InstantiateTextMateMode	plugin/fuzzyfinder_textmate.vim	/^function! InstantiateTextMateMode() "{{{$/;"	f
 int	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> int <C-R>=SqlIab_ReplaceConditionally('int', 'INTEGER')<CR>$/;"	m
 int2vector	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> int2vector <C-R>=SqlIab_ReplaceConditionally('int2vector', 'INT2VECTOR')<CR>$/;"	m
 integer	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> integer <C-R>=SqlIab_ReplaceConditionally('integer', 'INTEGER')<CR>$/;"	m
@@ -1850,7 +1839,6 @@ modify	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> modify <C-R>=SqlIab_
 money	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> money <C-R>=SqlIab_ReplaceConditionally('money', 'MONEY')<CR>$/;"	m
 move	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> move <C-R>=SqlIab_ReplaceConditionally('move', 'MOVE')<CR>$/;"	m
 MPC	plugin/vimmpc.py	/^class MPC:$/;"	c
-MPC	plugin/vimmpc.vim	/^    command! -nargs=0 MPC python MPC_init("Playlist")$/;"	c
 MPC_createBuffer	plugin/vimmpc.py	/^def MPC_createBuffer(filename, type, direction, size, name):$/;"	f
 MPC_init	plugin/vimmpc.py	/^def MPC_init(filename):$/;"	f
 MPC_lookupBuffer	plugin/vimmpc.py	/^def MPC_lookupBuffer(filename):$/;"	f
@@ -1929,10 +1917,8 @@ on	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> on <C-R>=SqlIab_ReplaceC
 online	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> online <C-R>=SqlIab_ReplaceConditionally('online', 'ONLINE')<CR>$/;"	m
 OnOrOff	plugin/EasyGrep.vim	/^function! s:OnOrOff(num)$/;"	f
 openBookmark	plugin/NERD_tree.vim	/^function! s:openBookmark(name)$/;"	f
-OpenBuffer	plugin/fuzzyfinder_textmate.vim	/^function! s:OpenBuffer(nr, mode)$/;"	f
 openEntrySplit	plugin/NERD_tree.vim	/^function! s:openEntrySplit(vertical, forceKeepWindowOpen)$/;"	f
 openExplorer	plugin/NERD_tree.vim	/^function! s:openExplorer()$/;"	f
-OpenFile	plugin/fuzzyfinder_textmate.vim	/^function! s:OpenFile(path, mode)$/;"	f
 OpenFile	plugin/proj.vim	/^function! s:OpenFile()$/;"	f
 openInNewTab	plugin/NERD_tree.vim	/^function! s:openInNewTab(stayCurrentTab)$/;"	f
 openNodeRecursively	plugin/NERD_tree.vim	/^function! s:openNodeRecursively()$/;"	f
@@ -2979,7 +2965,6 @@ toggleZoom	plugin/NERD_tree.vim	/^function! s:toggleZoom()$/;"	f
 TooManyEntries	ruby/fuzzy_file_finder.rb	/^  class TooManyEntries < RuntimeError; end$/;"	c	class:FuzzyFileFinder
 to_s	ruby/fuzzy_file_finder.rb	/^    def to_s$/;"	f	class:FuzzyFileFinder.CharacterRun
 traceback	plugin/autotag.vim	/^   import traceback$/;"	m
-TrackFoldText	plugin/vimmpc.vim	/^function TrackFoldText()$/;"	f
 trans	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> trans <C-R>=SqlIab_ReplaceConditionally('trans', 'TRANSACTION')<CR>$/;"	m
 transaction	ftplugin/sql_iabbr.vim	/^inoreabbr <silent> <buffer> transaction <C-R>=SqlIab_ReplaceConditionally('transaction', 'TRANSACTION')<CR>$/;"	m
 TreeDirNode.AbsoluteTreeRoot	plugin/NERD_tree.vim	/^function! s:TreeDirNode.AbsoluteTreeRoot()$/;"	f

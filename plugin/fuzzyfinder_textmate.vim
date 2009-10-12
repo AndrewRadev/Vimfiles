@@ -65,7 +65,7 @@ ruby << RUBY
     rescue LoadError
     end
 
-    require 'fuzzy_file_finder'
+    require "#{ENV['USERPROFILE']}/fuzzy_file_finder"
   end
 RUBY
 

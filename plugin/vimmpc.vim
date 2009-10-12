@@ -35,6 +35,10 @@ if !has("python")
     finish
 endif
 
+if has('win32')
+  finish
+endif
+
 function TrackFoldText()
     let line = getline(v:foldstart)
     let tracks = v:foldend - v:foldstart - 1

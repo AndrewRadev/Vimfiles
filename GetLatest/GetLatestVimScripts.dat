@@ -20,7 +20,5 @@ ScriptID SourceID Filename
 1899 7528  :AutoInstall: FindFile.vim
 1343 11095 :AutoInstall: autotag.vim
 2438 10265 :AutoInstall: EasyGrep.zip
-152  3342  :AutoInstall: showmarks.vim
 1658 11500 :AutoInstall: NERD_tree.zip
 521  9274  :AutoInstall: mru.vim
-1545 11499 :AutoInstall: abolish.zip
