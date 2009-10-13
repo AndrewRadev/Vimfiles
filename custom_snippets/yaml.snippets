@@ -1,0 +1,45 @@
+snippet hasone
+	${1:Class}:
+		foreignType: one
+		onDelete:    CASCADE
+		onUpdate:    CASCADE
+
+snippet hasmany
+	${1:Classes}:
+		class:			 ${2:Class}
+		type:				 many
+		foreignType: one
+		local:       id
+		foreign:     ${3:foreign}_id
+		onDelete:    CASCADE
+		onUpdate:    CASCADE
+
+snippet habtm
+	${1:RelatedClasses}:
+		class:       ${2:RelatedClass}
+		type:        many
+		foreignType: many
+		local:       ${3:local}_id
+		foreign:     ${3:foreign}_id
+		refClass:    ${4:ThisClass}Has$2
+		onDelete:    CASCADE
+		onUpdate:    CASCADE
+
+snippet join
+	${1:Class}Has${2:Item}:
+		package: Join
+		columns:
+			${3:class}_id:	{ type: integer, notnull: true, primary: true }
+			${4:item}_id:		{ type: integer, notnull: true, primary: true }
+		relations:
+			$1:		{ local: $3_id, foreign: id }
+			$2:		{ local: $4_id, foreign: id }
+
+snippet id
+	id: { type: integer, primary: true, autoincrement: true }
+	
+snippet header
+	options:
+		type:    INNODB
+		collate: utf8_unicode_ci
+		charset: utf8

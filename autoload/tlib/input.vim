@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-06-30.
-" @Last Change: 2009-02-25.
-" @Revision:    0.0.637
+" @Last Change: 2009-08-23.
+" @Revision:    0.0.648
 
 if &cp || exists("loaded_tlib_input_autoload")
     finish
@@ -132,11 +132,11 @@ function! tlib#input#ListW(world, ...) "{{{3
             let key_agents[k] = handler.agent
         endif
     endfor
-    let statusline  = &statusline
-    let laststatus  = &laststatus
+    " let statusline  = &l:statusline
+    " let laststatus  = &laststatus
     let lastsearch  = @/
     let @/ = ''
-    let &laststatus = 2
+    " let &laststatus = 2
     let world.initial_display = 1
 
     try
@@ -277,7 +277,12 @@ function! tlib#input#ListW(world, ...) "{{{3
                     " TLogDBG 8
                     if world.initial_display || !tlib#char#IsAvailable()
                         " TLogDBG len(dlist)
-                        call world.DisplayList(world.query .' (filter: '. world.DisplayFilter() .'; press "?" for help)', dlist)
+                        if g:tlib_inputlist_shortmessage
+                            let query = 'Filter: '. world.DisplayFilter()
+                        else
+                            let query = world.query .' (filter: '. world.DisplayFilter() .'; press "?" for help)'
+                        endif
+                        call world.DisplayList(query, dlist)
                         call world.FollowCursor()
                         let world.initial_display = 0
                         " TLogDBG 9
@@ -432,7 +437,14 @@ function! tlib#input#ListW(world, ...) "{{{3
         elseif world.state =~ '\<empty\>'
             " TLog "empty"
             " TLogDBG 'return empty'
-            return stridx(world.type, 'm') != -1 ? [] : stridx(world.type, 'i') != -1 ? 0 : ''
+            " TLogVAR world.type
+            if stridx(world.type, 'm') != -1
+                return []
+            elseif stridx(world.type, 'i') != -1
+                return 0
+            else
+                return ''
+            endif
         elseif !empty(world.return_agent)
             " TLog "return_agent"
             " TLogDBG 'return agent'
@@ -464,8 +476,9 @@ function! tlib#input#ListW(world, ...) "{{{3
         endif
 
     finally
-        let &statusline = statusline
-        let &laststatus = laststatus
+        " TLogVAR statusline
+        " let &l:statusline = statusline
+        " let &laststatus = laststatus
         silent! let @/  = lastsearch
         " TLogDBG 'finally 2'
         " TLogDBG string(world.Methods())

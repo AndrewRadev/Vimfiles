@@ -3,8 +3,8 @@
 " @Website:     http://members.a1.net/t.link/
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-05-01.
-" @Last Change: 2009-02-25.
-" @Revision:    0.1.696
+" @Last Change: 2009-08-23.
+" @Revision:    0.1.738
 
 " :filedoc:
 " A prototype used by |tlib#input#List|.
@@ -103,16 +103,25 @@ endf
 
 " :nodoc:
 function! s:prototype.FormatFilename(file) dict "{{{3
-    let fname = fnamemodify(a:file, ":p:t")
-    " let fname = fnamemodify(a:file, ":t")
-    " if isdirectory(a:file)
-    "     let fname .='/'
-    " endif
-    let dname = fnamemodify(a:file, ":h")
+    let width = eval(g:tlib_inputlist_width_filename)
+    let split = match(a:file, '[/\\]\zs[^/\\]\+$')
+    if split == -1
+        let fname = ''
+        let dname = a:file
+    else
+        let fname = strpart(a:file, split)
+        let dname = strpart(a:file, 0, split - 1)
+    endif
+    " let fname = fnamemodify(a:file, ":p:t")
+    " " let fname = fnamemodify(a:file, ":t")
+    " " if isdirectory(a:file)
+    " "     let fname .='/'
+    " " endif
+    " let dname = fnamemodify(a:file, ":h")
     " let dname = pathshorten(fnamemodify(a:file, ":h"))
-    let dnmax = &co - max([eval(g:tlib_inputlist_width_filename), len(fname)]) - 11 - self.index_width - &fdc
+    let dnmax = &co - max([width, len(fname)]) - 11 - self.index_width - &fdc
     if len(dname) > dnmax
-        let dname = '...'. strpart(fnamemodify(a:file, ":h"), len(dname) - dnmax)
+        let dname = '...'. strpart(dname, len(dname) - dnmax)
     endif
     let marker = []
     if g:tlib_inputlist_filename_indicators
@@ -525,6 +534,7 @@ function! s:prototype.CloseScratch(...) dict "{{{3
         return 0
     else
         let rv = tlib#scratch#CloseScratch(self, reset_scratch)
+        " TLogVAR rv
         if rv
             call self.SwitchWindow('win')
         endif
@@ -677,6 +687,7 @@ function! s:prototype.DisplayList(query, ...) dict "{{{3
     elseif self.state == 'help'
         call self.DisplayHelp()
     else
+        " TLogVAR query
         " let ll = len(list)
         let ll = self.llen
         " let x  = len(ll) + 1
@@ -713,15 +724,16 @@ function! s:prototype.DisplayList(query, ...) dict "{{{3
         call add(b:tlibDisplayListMarks, base_pref)
         call self.DisplayListMark(x, base_pref, '*')
         call self.SetOffset()
+        call self.SetStatusline(a:query)
         " TLogVAR self.offset
         " TLogDBG winheight('.')
         " if self.prefidx > winheight(0)
-            " let lt = len(list) - winheight('.') + 1
-            " if self.offset > lt
-            "     exec 'norm! '. lt .'zt'
-            " else
-                exec 'norm! '. self.offset .'zt'
-            " endif
+        " let lt = len(list) - winheight('.') + 1
+        " if self.offset > lt
+        "     exec 'norm! '. lt .'zt'
+        " else
+        exec 'norm! '. self.offset .'zt'
+        " endif
         " else
         "     norm! 1zt
         " endif
@@ -734,18 +746,27 @@ function! s:prototype.DisplayList(query, ...) dict "{{{3
                 exec 'match '. g:tlib_inputlist_higroup .' /\c'. escape(rx0, '/') .'/'
             endif
         endif
-        let query   = a:query
-        let options = [self.matcher.name]
-        if self.sticky
-            call add(options, '#')
-        endif
-        if !empty(options)
-            let query .= printf('%%=[%s] ', join(options, ', '))
-        endif
-        " TLogVAR query
-        let &statusline = query
     endif
     redraw
+endf
+
+
+function! s:prototype.SetStatusline(query) dict "{{{3
+    let query   = a:query
+    let options = [self.matcher.name]
+    if self.sticky
+        call add(options, '#')
+    endif
+    if !empty(options)
+        let sopts = printf('[%s]', join(options, ', '))
+        " let echo  = query . repeat(' ', &columns - len(sopts) - len(query) - 20) . sopts
+        let echo  = query . '  ' . sopts
+        " let query .= '%%='. sopts .' '
+    endif
+    " TLogVAR &l:statusline, query
+    " let &l:statusline = query
+    echo
+    echo echo
 endf
 
 

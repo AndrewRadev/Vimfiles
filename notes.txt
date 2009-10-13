@@ -1,6 +1,8 @@
 Find a way to fix css.vim
 Think of something to make application detection easier for Utl
 
+Do something about the integrated Haskell documentation commands
+
 PHP:
   - Work on symfony plugin.
   - Hack the ctags php parser.
@@ -8,6 +10,9 @@ PHP:
 Snippets: 
   - nested snippets (additional check on <tab>?)
   - wildcard + additional character?
+
+Yaml snippets:
+	- Camelize, snake_case, etc.
 
 Changes made to plugins:
   - snipMate

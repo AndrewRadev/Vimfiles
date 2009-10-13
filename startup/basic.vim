@@ -17,6 +17,7 @@ set lazyredraw
 set linebreak showbreak=+>
 set listchars=eol:.,tab:\|-
 set noswapfile
+set notimeout
 set number
 set ruler
 set shiftwidth=2 shiftround
@@ -26,6 +27,7 @@ set sidescroll=4
 set statusline=%<%f\ %h%m%r%=%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
 set tabstop=2 softtabstop=2
+set ttimeout
 set updatetime=1000
 set wildmenu
 

@@ -1,10 +1,10 @@
 " ttags.vim
-" @Author:      Thomas Link (micathom AT gmail com?subject=[vim])
+" @Author:      Tom Link (micathom AT gmail com?subject=[vim])
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-09-09.
-" @Last Change: 2007-11-11.
-" @Revision:    291
+" @Last Change: 2009-04-11.
+" @Revision:    316
 
 if &cp || exists("loaded_ttags_autoload")
     finish
@@ -91,7 +91,16 @@ endf
 " Arguments:
 "   use_extra: Use extra tags (see |g:tlib_tags_extra|).
 "   constraints: A dictionary of fields and corresponding regexps
+"     kind     :: The tag letter ID ("*" = match all tags)
+"     name     :: A rx matching the tag ("*" = match all tags)
+"     filename :: A rx matching the filename ('.' = match the current 
+"                 file only)
 function! ttags#SelectTags(use_extra, constraints) "{{{3
+    if get(a:constraints, 'filename', '') == '.'
+        let a:constraints.filename = substitute(substitute(expand('%:p'), '[\\/]', '[\\\\/]', 'g'), '^[^:]\+:', '', '')
+        " TLogVAR a:constraints.filename
+    endif
+    " TLogVAR a:use_extra, a:constraints
     let world      = copy(g:ttags_world)
     let world.tags = tlib#tag#Collect(a:constraints, a:use_extra,
                 \ tlib#var#Get('ttags_match_end', 'bg'),
@@ -112,26 +121,13 @@ function! ttags#SelectTags(use_extra, constraints) "{{{3
                 let world.scratch_vertical = 1
             endif
             let world.tlib_UseInputListScratch = ttags#Highlight(world.tags)
-            call s:SetOrigin(world)
-            call tlib#input#ListD(world)
+            let world = tlib#World#New(world)
+            call world.SetOrigin()
+            call tlib#input#ListW(world)
         endif
     else
         call s:NoTags()
     endif
-endf
-
-
-function! s:SetOrigin(world) "{{{3
-    let a:world.origin = {'bufnr': bufnr('%'), 'winnr': winnr(), 'pos': getpos('.')}
-endf
-
-
-function! s:RestoreOrigin(world) "{{{3
-    if a:world.origin.winnr != winnr()
-        exec a:world.origin.winnr .'wincmd w'
-    endif
-    exec 'buffer! '. a:world.origin.bufnr
-    call setpos('.', a:world.origin.pos)
 endf
 
 
@@ -144,7 +140,7 @@ endf
 
 function! s:FormatTag(tag) "{{{3
     let name = tlib#tag#Format(a:tag)
-    return printf('%s: %-20s | %s (%s)', a:tag.kind, name, fnamemodify(a:tag.filename, ":t"), fnamemodify(a:tag.filename, ":p:h"))
+    return printf('%s: %-20s | %s (%s)', a:tag.kind, name, fnamemodify(a:tag.filename, ":t"), pathshorten(fnamemodify(a:tag.filename, ":p:h")))
 endf
 
 
@@ -177,7 +173,7 @@ endf
 
 
 function! s:GetTag(world, id) "{{{3
-    return a:world.tags[a:world.GetBaseIdx(a:id) - 1]
+    return a:world.tags[a:world.GetBaseIdx0(a:id)]
 endf
 
 
@@ -190,11 +186,17 @@ function! s:ShowTag(world, tagline) "{{{3
         let filename = call(rewriter, [filename])
     endif
     call tlib#file#With('edit', 'buffer', [filename], a:world)
-    " TLogVAR tag.cmd
-    exec tag.cmd
+    " TLogVAR tag.cmd, filename, bufname('%')
+    let magic = &magic
+    try
+        set nomagic
+        exec tag.cmd
+    finally
+        let &magic = magic
+    endtry
+    call tlib#buffer#HighlightLine(line('.'))
     norm! zz
     redraw
-    " call tlib#buffer#HighlightLine(line('.'))
 endf
 
 
@@ -209,14 +211,14 @@ endf
 
 function! ttags#GotoTag(world, selected) "{{{3
     if empty(a:selected)
-        call s:RestoreOrigin(a:world)
+        call a:world.RestoreOrigin()
     else
         if a:world.win_wnr != winnr()
             let world = tlib#agent#Suspend(a:world, a:selected)
             exec a:world.win_wnr .'wincmd w'
         endif
         call s:ShowTag(a:world, a:selected[0])
-        call s:SetOrigin(a:world)
+        call a:world.SetOrigin()
     endif
     return a:world
 endf

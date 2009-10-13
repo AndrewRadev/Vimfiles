@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-06-30.
-" @Last Change: 2009-02-15.
-" @Revision:    0.0.31
+" @Last Change: 2009-08-09.
+" @Revision:    0.0.32
 
 if &cp || exists("loaded_tlib_list_autoload")
     finish
@@ -159,9 +159,9 @@ endf
 function! s:UniqValue(value) "{{{3
     if index(s:uniq_values, a:value) == -1
         call add(s:uniq_values, a:value)
-        return true
+        return 1
     else
-        return false
+        return 0
     endif
 endf
 

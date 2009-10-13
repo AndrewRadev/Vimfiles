@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-06-30.
-" @Last Change: 2009-02-25.
-" @Revision:    0.0.65
+" @Last Change: 2009-03-13.
+" @Revision:    0.0.67
 
 if &cp || exists("loaded_tlib_file_autoload")
     finish
@@ -43,7 +43,8 @@ endf
 function! tlib#file#Join(filename_parts, ...) "{{{3
     TVarArg 'strip_slashes'
     if strip_slashes
-        let rx    = tlib#rx#Escape(g:tlib_filename_sep) .'$'
+        " let rx    = tlib#rx#Escape(g:tlib_filename_sep) .'$'
+        let rx    = '[/\\]$'
         let parts = map(copy(a:filename_parts), 'substitute(v:val, rx, "", "")')
         return join(parts, g:tlib_filename_sep)
     else

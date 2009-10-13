@@ -13,12 +13,18 @@ runtime! startup/utl.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
+
 " Align by columns:
 command! -range AlignSpace <line1>,<line2>call lib#AlignSpace()
+
 " Edit file in clipboard:
 command! Eclipboard edit `=@*`
-" Refresh tags database
-command! RefreshTags !ctags -R --sort=foldcase .
+
+" Rebuild tags database:
+command! RebuildTags !ctags -R --sort=foldcase .
+
+" Generic console, override in different filetypes:
+command! Console shell
 
 MapToggle sl list
 MapToggle sh hlsearch
@@ -51,6 +57,10 @@ nmap gN :NERDTree<cr>
 
 let g:NERDTreeHijackNetrw = 0
 
+" Open up FuzzyFinders:
+nmap Qf :FuzzyFinderTextMate<cr>
+nmap Qm :FuzzyFinderMruFile<cr>
+
 " Instead of <C-o>, use <bs> to go back files:
 nnoremap <bs> <C-o>
 
@@ -60,6 +70,7 @@ nnoremap <bs> <C-o>
 inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
+inoremap <C-]> <C-x><C-]>
 set completefunc=syntaxcomplete#Complete
 
 " Indent/Unindent:
@@ -73,10 +84,9 @@ let g:dbext_default_buffer_lines = 30
 let g:snippets_dir = "~/.vim/custom_snippets/"
 let g:snips_author = "Andrew Radev"
 
-" FuzzyFinderTextmate settings:
-let g:fuzzy_ceiling = 100000
+" FuzzyFinderTextMate settings:
+let g:fuzzy_ceiling = 20000
 let g:fuzzy_ignore = "*/.svn/*;.git/*"
-command! Edit FuzzyFinderTextMate
 
 " Proj settings:
 let g:ProjFile = '~/.vimproj'
@@ -95,17 +105,6 @@ let g:autotagCtagsCmd = "ctags --sort=foldcase"
 " TTags options:
 let g:ttags_display = 'quickfix'
 
-" FindFile options:
-let g:FindFileIgnore = [
-      \ '*.o', 
-      \ '*.pyc',
-      \ '*/tmp/*',
-      \ '*.hi',
-      \ '*/.svn/*',
-      \ '.git/*'
-      \ ]
-
 " Settings for Haskell mode:
 let g:haddock_browser = "firefox"
-"let g:haddock_browser_callformat = '%s file://%s &> /dev/null &'
 let g:haddock_docdir = '/usr/share/doc/ghc/libraries/html/'

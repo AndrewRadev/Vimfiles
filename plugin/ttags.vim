@@ -1,24 +1,26 @@
 " ttags.vim -- Tag list browser (List, filter, preview, jump to tags)
-" @Author:      Thomas Link (micathom AT gmail com?subject=[vim])
+" @Author:      Tom Link (micathom AT gmail com?subject=[vim])
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-09-09.
-" @Last Change: 2007-11-11.
-" @Revision:    0.5.146
+" @Last Change: 2009-08-04.
+" @Revision:    162
 " GetLatestVimScripts: 2018 1 ttags.vim
 "
-" TODO:
-" - Open in new window (split, vsplit, tab)
-" - Fix preview
+" TODO: Open in new window (split, vsplit, tab)
+" TODO: Fix preview
 
 if &cp || exists("loaded_ttags")
     finish
 endif
-if !exists('g:loaded_tlib') || g:loaded_tlib < 20
-    echoerr 'tlib >= 0.20 is required'
-    finish
+if !exists('g:loaded_tlib') || g:loaded_tlib < 21
+    runtime plugin/02tlib.vim
+    if !exists('g:loaded_tlib') || g:loaded_tlib < 21
+        echoerr 'tlib >= 0.21 is required'
+        finish
+    endif
 endif
-let loaded_ttags = 5
+let loaded_ttags = 6
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -74,7 +76,15 @@ TLet g:ttags_world = {
 
 
 " :display: TTags[!] [KIND] [TAGS_RX] [FILE_RX]
-" See also |ttags#List()|.
+" See also |ttags#List()| and |ttags#SelectTags()|.
+"
+" Examples:
+" Match tags in the current file: >
+"   TTags * * .
+" Show classes [c]: >
+"   TTags c
+" Show classes beginning with Foo: >
+"   TTags c ^Foo
 command! -nargs=* -bang TTags call ttags#List(!empty('<bang>'), <f-args>)
 
 
@@ -147,4 +157,13 @@ filtering by name is done by |taglist()| right away, which seems faster.
 - When previewing tags, restore the original position when closing the tags list
 - g:ttags_match_front, g:ttags_match_end
 - Require tlib >= 0.20
+
+0.6
+- Use pathshorten()
+- Require tlib >= 0.21
+- FIX: Use ListW()
+- Make sure tlib is loaded even if it is installed in a different 
+rtp-directory.
+- temporarily set nomagic when running the tag command
+- Show tags in the current file: TTags * * .
 

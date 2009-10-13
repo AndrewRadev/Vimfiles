@@ -3,24 +3,24 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-04-10.
-" @Last Change: 2009-02-25.
-" @Revision:    561
+" @Last Change: 2009-08-23.
+" @Revision:    581
 " GetLatestVimScripts: 1863 1 tlib.vim
 "
 " Please see also ../test/tlib.vim for usage examples.
 "
-" TODO:
-" - tlib#input#List(): RightMouse -> Make commands accessible via 
-"   popup-menu
-" - List isn't updated on some occassions (eg tselectfiles + pick file 
-"   per mouse) when resetting the state from an post-process agent
-" - tlib#agent#SwitchLayout(): switch between horizontal and vertical 
-"   layout for the list
-" - tlib#cache#Purge(): delete old cache files (for the moment use find)
-" - tlib#file#Relative(): currently relies on cwd to be set
-" - tlib#input#EditList(): Disable selection by index number
-" - tlib#input#List(): Some kind of command line to edit some 
-"   preferences (sort etc.) on the fly
+" TODO: tlib#input#List(): RightMouse -> Make commands accessible via 
+" popup-menu
+" TODO: List isn't updated on some occassions (eg tselectfiles + pick 
+" file per mouse) when resetting the state from an post-process agent
+" TODO: tlib#agent#SwitchLayout(): switch between horizontal and 
+" vertical layout for the list
+" TODO: tlib#cache#Purge(): delete old cache files (for the moment use 
+" find)
+" TODO: tlib#file#Relative(): currently relies on cwd to be set
+" TODO: tlib#input#EditList(): Disable selection by index number
+" TODO: tlib#input#List(): Some kind of command line to edit some 
+" preferences (sort etc.) on the fly
 
 if &cp || exists("loaded_tlib")
     finish
@@ -29,7 +29,7 @@ if v:version < 700 "{{{2
     echoerr "tlib requires Vim >= 7"
     finish
 endif
-let loaded_tlib = 30
+let loaded_tlib = 32
 let s:save_cpo = &cpo
 set cpo&vim
 
@@ -149,6 +149,9 @@ TLet g:tlib_inputlist_filename_indicators = 0
 "   fuzzy :: match characters
 TLet g:tlib_inputlist_match = 'cnf'
 
+" If non null, display only a short info about the filter.
+TLet g:tlib_inputlist_shortmessage = 0
+
 " Extra tags for |tlib#tag#Retrieve()| (see there). Can also be buffer-local.
 TLet g:tlib_tags_extra = ''
 
@@ -174,7 +177,10 @@ TLet g:tlib_tag_substitute = {
 TLet g:tlib_filename_sep = '/'
 " TLet g:tlib_filename_sep = exists('+shellslash') && !&shellslash ? '\' : '/'   " {{{2
 
-" The cache directory. If empty, use |tlib#dir#MyRuntime|.'/cache'
+" The cache directory. If empty, use |tlib#dir#MyRuntime|.'/cache'.
+" You might want to delete old files from this directory from time to 
+" time with a command like: >
+"   find ~/vimfiles/cache/ -atime +31 -type f -print -delete
 TLet g:tlib_cache = ''
 
 " Where to display the line when using |tlib#buffer#ViewLine|.
@@ -534,3 +540,14 @@ text to an empty buffer.
 -tlib#input#List: For i-type list views, make sure agents are called 
 with the base indices.
 
+0.32
+- tlib#agent#Exit: explicitly return empty value (as a consequence, 
+pressing <esc> when browsing an index-list, returns 0 and not "")
+- tlib#signs
+- tlib#input#List: set local statusline
+
+0.33
+- Don't reset statusline
+- Don't use fnamemodify() to split filenames (for performance reasons)
+- scratch: Set ft after setting up scratch options
+- tlib#map#PumAccept(key)

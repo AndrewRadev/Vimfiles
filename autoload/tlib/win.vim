@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-08-24.
-" @Last Change: 2009-02-15.
-" @Revision:    0.0.47
+" @Last Change: 2009-08-04.
+" @Revision:    0.0.51
 
 if &cp || exists("loaded_tlib_win_autoload")
     finish
@@ -36,13 +36,14 @@ function! tlib#win#GetLayout(...) "{{{3
     let views = {}
     if save_view
         let winnr = winnr()
-        for w in range(1, winnr('$'))
-            call tlib#win#Set(w)
-            let views[w] = winsaveview()
-        endfor
+        windo let views[winnr()] = winsaveview()
+        " for w in range(1, winnr('$'))
+        "     call tlib#win#Set(w)
+        "     let views[w] = winsaveview()
+        " endfor
         call tlib#win#Set(winnr)
     endif
-    return {'winnr': winnr('$'), 'winrestcmd': winrestcmd(), 'views': views, 'cmdheight': &cmdheight}
+    return {'winnr': winnr('$'), 'winrestcmd': winrestcmd(), 'views': views, 'cmdheight': &cmdheight, 'guioptions': &guioptions}
 endf
 
 
@@ -55,6 +56,7 @@ function! tlib#win#SetLayout(layout) "{{{3
             let winnr = winnr()
             " TLogVAR winnr
             for [w, v] in items(a:layout.views)
+                " TLogVAR w, v
                 call tlib#win#Set(w)
                 call winrestview(v)
             endfor

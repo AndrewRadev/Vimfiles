@@ -8,7 +8,6 @@
 " Licence: MIT Licence
 " URL:     http://www.vim.org/scripts/script.php?script_id=1984
 "
-" GetLatestVimScripts: 1984 1 :AutoInstall: fuzzyfinder.vim
 "
 "=============================================================================
 " DOCUMENT: {{{1
