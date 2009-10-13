@@ -17,6 +17,8 @@ autocmd BufEnter *.js set filetype=javascript.jquery
 autocmd BufEnter *.hsc set filetype=haskell
 autocmd BufEnter *.hs compiler ghc
 
+autocmd BufEnter *.tags set filetype=tags
+
 " Maximise on open on Win32:
 if has('win32')
   autocmd GUIEnter * simalt ~x

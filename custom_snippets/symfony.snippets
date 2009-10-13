@@ -1,0 +1,7 @@
+snippet tnew
+	$t = new lime_test(0, new lime_output_color);
+
+snippet tdiag
+	$t->diag('${1:Start test}');
+snippet tis
+	$t->is(${1:'Output'}, ${2:'Expected'}, ${3:'Error!'});

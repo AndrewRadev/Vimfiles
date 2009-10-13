@@ -10,12 +10,20 @@ snippet ec
 	echo '${1:string}'${2};
 snippet inc
 	include '${1:file}';${2}
+snippet inc.
+	include dirname(__FILE__).'${1:file}';${2}
 snippet inc1
 	include_once '${1:file}';${2}
+snippet inc1.
+	include_once dirname(__FILE__).'${1:file}';${2}
 snippet req
 	require '${1:file}';${2}
+snippet req.
+	require dirname(__FILE__).'${1:file}';${2}
 snippet req1
 	require_once '${1:file}';${2}
+snippet req1.
+	require_once dirname(__FILE__).'${1:file}';${2}
 # $GLOBALS['...']
 snippet globals
 	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
@@ -25,7 +33,7 @@ snippet $_ ENV['...']
 	$_ENV['${1:variable}']${2}
 snippet $_ FILES['...']
 	$_FILES['${1:variable}']${2}
-snippet $_ Get['...']
+snippet $_ GET['...']
 	$_GET['${1:variable}']${2}
 snippet $_ POST['...']
 	$_POST['${1:variable}']${2}
