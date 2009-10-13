@@ -1,3 +1,12 @@
+# Inside controllers:
+snippet user
+	$this->getUser()
+snippet cx
+	sfContext::getInstance()
+# Doctrine:
+snippet dtable
+	Doctrine::getTable('${1:Model}')
+# Snippets for lime tests:
 snippet tnew
 	$t = new lime_test(0, new lime_output_color);
 

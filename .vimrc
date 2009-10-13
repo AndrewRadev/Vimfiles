@@ -65,8 +65,8 @@ nmap Qm :FuzzyFinderMruFile<cr>
 nnoremap <bs> <C-o>
 
 " Completion remappings:
-"inoremap <C-j> <C-n> "should learn to use the defaults
-"inoremap <C-k> <C-p>
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
