@@ -435,6 +435,7 @@ Concat	.\plugin\fuzzyfinder.vim	/^function! s:Concat(in)$/;"	f
 connect	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> connect <C-R>=SqlIab_ReplaceConditionally('connect', 'CONNECT')<CR>$/;"	m
 Console	.\ftplugin\haskell.vim	/^command! -buffer Console !ghci % $/;"	c
 Console	ftplugin/ruby.vim	/^command! -buffer Console !irb -r %$/;"	c
+Console	ftplugin/scheme.vim	/^command! Console !mzscheme -i -r %$/;"	c
 constraints	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> constraints <C-R>=SqlIab_ReplaceConditionally('constraints', 'CONSTRAINTS')<CR>$/;"	m
 controller	.\autoload\rails.vim	/^function! s:controller(...)$/;"	f
 controllerEdit	.\autoload\rails.vim	/^function! s:controllerEdit(cmd,...)$/;"	f
