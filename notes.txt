@@ -1,11 +1,12 @@
-Find a way to fix css.vim
 Think of something to make application detection easier for Utl
 
-Do something about the integrated Haskell documentation commands
+FuzzyFinder MRU file ?
 
 PHP:
-  - Work on symfony plugin.
   - Hack the ctags php parser.
+
+Haskell:
+  - Figure out the problems with documentation searches
 
 Snippets: 
   - nested snippets (additional check on <tab>?)

@@ -3,3 +3,5 @@ setlocal softtabstop=2
 setlocal expandtab
 
 compiler ruby
+
+command! -buffer Console !irb -r %

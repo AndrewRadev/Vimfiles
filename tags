@@ -11,7 +11,6 @@
 ,,	.\plugin\LineCommenter.vim	/^nmap <silent>,, :call LineCommenter()<Esc>$/;"	m
 .	.\autoload\repeat.vim	/^nnoremap <silent> .     :<C-U>call <SID>repeat(v:count)<CR>$/;"	m
 <C-G>s	.\plugin\surround.vim	/^    imap        <C-G>s <Plug>Isurround$/;"	m
-<C-G>S	.\plugin\surround.vim	/^    imap        <C-G>S <Plug>ISurround$/;"	m
 <C-R>	.\autoload\repeat.vim	/^nnoremap <silent> <C-R> :<C-U>call <SID>wrap("\\<Lt>C-R>",v:count)<CR>$/;"	m
 <c-r><tab>	.\after\plugin\snipMate.vim	/^ino <silent> <c-r><tab> <c-r>=ShowAvailableSnips()<cr>$/;"	m
 <C-S>	.\plugin\surround.vim	/^        imap     <C-S> <Plug>Isurround$/;"	m
@@ -47,18 +46,12 @@
 <Leader>stw	.\plugin\dbext.vim	/^    nmap <unique> <Leader>stw <Plug>DBSelectFromTableWithWhere$/;"	m
 <Leader>swp	.\plugin\cecutil.vim	/^ map <unique> <Leader>swp <Plug>SaveWinPosn$/;"	m
 <Leader>vA	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vA <plug>EgMapGrepCurrentWord_A$/;"	m
-<Leader>va	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>va <plug>EgMapGrepCurrentWord_a$/;"	m
 <Leader>va	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>va <plug>EgMapGrepSelection_a$/;"	m
-<Leader>vA	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vA <plug>EgMapGrepSelection_A$/;"	m
 <Leader>vo	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vo <plug>EgMapGrepOptions$/;"	m
 <Leader>vr	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vr <plug>EgMapReplaceCurrentWord_r$/;"	m
-<Leader>vR	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vR <plug>EgMapReplaceCurrentWord_R$/;"	m
 <Leader>vR	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vR <plug>EgMapReplaceSelection_R$/;"	m
-<Leader>vr	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vr <plug>EgMapReplaceSelection_r$/;"	m
 <Leader>vv	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vv <plug>EgMapGrepCurrentWord_v$/;"	m
-<Leader>vV	.\plugin\EasyGrep.vim	/^    map <silent> <Leader>vV <plug>EgMapGrepCurrentWord_V$/;"	m
 <Leader>vv	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vv <plug>EgMapGrepSelection_v$/;"	m
-<Leader>vV	.\plugin\EasyGrep.vim	/^    vmap <silent> <Leader>vV <plug>EgMapGrepSelection_V$/;"	m
 <LocalLeader>.	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>. :call Qualify()<cr>$/;"	m
 <LocalLeader>?	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>? :call Haddock()<cr>$/;"	m
 <LocalLeader>?1	.\ftplugin\haskell_doc.vim	/^map <LocalLeader>?1 :call HaskellSearchEngine('hoogle')<cr>$/;"	m
@@ -360,6 +353,7 @@ CamelCase	.\ftplugin\haskell_doc.vim	/^function! CamelCase(shorthand,string)$/;"
 CartesianProduct	.\plugin\fuzzyfinder.vim	/^function! s:CartesianProduct(lists)$/;"	f
 cascade	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> cascade <C-R>=SqlIab_ReplaceConditionally('cascade', 'CASCADE')<CR>$/;"	m
 CC	.\projects\symfony.project.vim	/^command! CC !php symfony cc$/;"	c
+CC	projects/symfony.project.vim	/^command! CC !php symfony cc$/;"	c
 centerView	.\plugin\NERD_tree.vim	/^function! s:centerView()$/;"	f
 changesurround	.\plugin\surround.vim	/^function! s:changesurround() " {{{1$/;"	f
 char	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> char <C-R>=SqlIab_ReplaceConditionally('char', 'CHAR')<CR>$/;"	m
@@ -398,6 +392,7 @@ closeTreeIfOpen	.\plugin\NERD_tree.vim	/^function! s:closeTreeIfOpen()$/;"	f
 closeTreeIfQuitOnOpen	.\plugin\NERD_tree.vim	/^function! s:closeTreeIfQuitOnOpen()$/;"	f
 closeTreeWindow	.\plugin\NERD_tree.vim	/^function! s:closeTreeWindow()$/;"	f
 cluster	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> cluster <C-R>=SqlIab_ReplaceConditionally('cluster', 'CLUSTER')<CR>$/;"	m
+color	syntax/css.vim	/^   let color = s:Xterm2rgb(c)$/;"	v
 column	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> column <C-R>=SqlIab_ReplaceConditionally('column', 'COLUMN')<CR>$/;"	m
 CommandEdit	.\autoload\rails.vim	/^function! s:CommandEdit(cmd,name,prefix,suffix,filter,default,...)$/;"	f
 CommandList	.\autoload\rails.vim	/^function! s:CommandList(A,L,P)$/;"	f
@@ -439,6 +434,7 @@ compress	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> compress <C-R>=S
 Concat	.\plugin\fuzzyfinder.vim	/^function! s:Concat(in)$/;"	f
 connect	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> connect <C-R>=SqlIab_ReplaceConditionally('connect', 'CONNECT')<CR>$/;"	m
 Console	.\ftplugin\haskell.vim	/^command! -buffer Console !ghci % $/;"	c
+Console	ftplugin/ruby.vim	/^command! -buffer Console !irb -r %$/;"	c
 constraints	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> constraints <C-R>=SqlIab_ReplaceConditionally('constraints', 'CONSTRAINTS')<CR>$/;"	m
 controller	.\autoload\rails.vim	/^function! s:controller(...)$/;"	f
 controllerEdit	.\autoload\rails.vim	/^function! s:controllerEdit(cmd,...)$/;"	f
@@ -912,6 +908,8 @@ escape	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> escape <C-R>=SqlIa
 Escape	.\plugin\EasyGrep.vim	/^function! s:Escape(str, lst)$/;"	f
 EscapeFilename	.\plugin\fuzzyfinder.vim	/^function! s:EscapeFilename(fn)$/;"	f
 EscapeFilename	.\plugin\fuzzyfinder_textmate.vim	/^function! s:EscapeFilename(fn)$/;"	f
+EscapeFilename	additional_scripts/fuzzyfinder_textmate.vim	/^function! s:EscapeFilename(fn)$/;"	f
+EscapeFilename	plugin/fuzzyfinder_textmate.vim	/^function! s:EscapeFilename(fn)$/;"	f
 EscapeList	.\plugin\EasyGrep.vim	/^function! s:EscapeList(lst, seperator)$/;"	f
 EscapeSpecial	.\plugin\EasyGrep.vim	/^function! s:EscapeSpecial(str)$/;"	f
 escarg	.\autoload\rails.vim	/^function! s:escarg(p)$/;"	f
@@ -941,6 +939,7 @@ ExtractSnips	.\plugin\snipMate.vim	/^fun! ExtractSnips(dir, ft)$/;"	f
 ExtractSnipsFile	.\plugin\snipMate.vim	/^fun! ExtractSnipsFile(file, ft)$/;"	f
 false	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> false <C-R>=SqlIab_ReplaceConditionally('false', 'FALSE')<CR>$/;"	m
 fetch	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> fetch <C-R>=SqlIab_ReplaceConditionally('fetch', 'FETCH')<CR>$/;"	m
+FGforBG	syntax/css.vim	/^function! s:FGforBG(bg)$/;"	f
 field	.\ftplugin\haskell_doc.vim	/^  let field = substitute(field,'haddock-html: \\(.*\\)libraries.base','\\1','')$/;"	v
 field	.\ftplugin\haskell_doc.vim	/^  let field = substitute(field,'\\\\','\/','g')$/;"	v
 file	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> file <C-R>=SqlIab_ReplaceConditionally('file', 'FILE')<CR>$/;"	m
@@ -1060,13 +1059,21 @@ FuzzyFinderMode.TaggedFile.find_tagged_file	.\plugin\fuzzyfinder.vim	/^function!
 FuzzyFinderMode.TaggedFile.on_complete	.\plugin\fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.on_complete(base)$/;"	f
 FuzzyFinderMode.TaggedFile.on_mode_enter	.\plugin\fuzzyfinder.vim	/^function! g:FuzzyFinderMode.TaggedFile.on_mode_enter()$/;"	f
 FuzzyFinderMode.TextMate.on_open	.\plugin\fuzzyfinder_textmate.vim	/^  function! g:FuzzyFinderMode.TextMate.on_open(expr, mode)$/;"	f
+FuzzyFinderMode.TextMate.on_open	additional_scripts/fuzzyfinder_textmate.vim	/^  function! g:FuzzyFinderMode.TextMate.on_open(expr, mode)$/;"	f
+FuzzyFinderMode.TextMate.on_open	plugin/fuzzyfinder_textmate.vim	/^  function! g:FuzzyFinderMode.TextMate.on_open(expr, mode)$/;"	f
 FuzzyFinderMruCmd	.\plugin\fuzzyfinder.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderMruCmd      call g:FuzzyFinderMode.MruCmd.launch    (<q-args>, len(<q-bang>))$/;"	c
 FuzzyFinderMruFile	.\plugin\fuzzyfinder.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderMruFile     call g:FuzzyFinderMode.MruFile.launch   (<q-args>, len(<q-bang>))$/;"	c
 FuzzyFinderRemoveCache	.\plugin\fuzzyfinder.vim	/^command! -bang -narg=0                  FuzzyFinderRemoveCache for m in s:GetAvailableModes() | call m.empty_cache_if_existed(1) | endfor$/;"	c
 FuzzyFinderTag	.\plugin\fuzzyfinder.vim	/^command! -bang -narg=? -complete=tag    FuzzyFinderTag         call g:FuzzyFinderMode.Tag.launch       (<q-args>, len(<q-bang>))$/;"	c
 FuzzyFinderTaggedFile	.\plugin\fuzzyfinder.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderTaggedFile  call g:FuzzyFinderMode.TaggedFile.launch(<q-args>, len(<q-bang>))$/;"	c
 FuzzyFinderTextMate	.\plugin\fuzzyfinder_textmate.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderTextMate   call FuzzyFinderTextMateLauncher(<q-args>, len(<q-bang>))$/;"	c
+FuzzyFinderTextMate	additional_scripts/fuzzyfinder_textmate.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderTextMate   call FuzzyFinderTextMateLauncher(<q-args>, len(<q-bang>))$/;"	c
+FuzzyFinderTextMate	plugin/fuzzyfinder_textmate.vim	/^command! -bang -narg=? -complete=file   FuzzyFinderTextMate   call FuzzyFinderTextMateLauncher(<q-args>, len(<q-bang>))$/;"	c
 FuzzyFinderTextMateLauncher	.\plugin\fuzzyfinder_textmate.vim	/^  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching)$/;"	f
+FuzzyFinderTextMateLauncher	additional_scripts/fuzzyfinder_textmate.vim	/^  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching) abort$/;"	f
+FuzzyFinderTextMateLauncher	additional_scripts/fuzzyfinder_textmate.vim	/^  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching)$/;"	f
+FuzzyFinderTextMateLauncher	plugin/fuzzyfinder_textmate.vim	/^  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching) abort$/;"	f
+FuzzyFinderTextMateLauncher	plugin/fuzzyfinder_textmate.vim	/^  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching)$/;"	f
 fuzzyglob	.\autoload\rails.vim	/^function! s:fuzzyglob(arg)$/;"	f
 g%	.\plugin\matchit.vim	/^nnoremap <silent> g% :<C-U>call <SID>Match_wrapper('',0,'n') <CR>$/;"	m
 g%	.\plugin\matchit.vim	/^onoremap <silent> g% v:<C-U>call <SID>Match_wrapper('',0,'o') <CR>$/;"	m
@@ -1076,6 +1083,7 @@ g:Align_xstrlen	.\autoload\Align.vim	/^  let g:Align_xstrlen= 1$/;"	v
 g:autoloaded_rails	.\autoload\rails.vim	/^let g:autoloaded_rails = '4.0'$/;"	v
 g:autotagCtagsCmd	.\plugin\autotag.vim	/^   let g:autotagCtagsCmd="ctags"$/;"	v
 g:autotagCtagsCmd	.\projects\symfony.project.vim	/^let g:autotagCtagsCmd = "ctags --sort=foldcase"$/;"	v
+g:autotagCtagsCmd	projects/symfony.project.vim	/^let g:autotagCtagsCmd = "ctags --sort=foldcase"$/;"	v
 g:autotagDisabled	.\plugin\autotag.vim	/^   let g:autotagDisabled=0$/;"	v
 g:autotagExcludeSuffixes	.\plugin\autotag.vim	/^   let g:autotagExcludeSuffixes="tml.xml.text.txt"$/;"	v
 g:autotagTagsFile	.\plugin\autotag.vim	/^   let g:autotagTagsFile="tags"$/;"	v
@@ -1195,6 +1203,8 @@ g:FuzzyFinderOptions	.\plugin\fuzzyfinder.vim	/^let g:FuzzyFinderOptions.TaggedF
 g:FuzzyFinderOptions	.\plugin\fuzzyfinder.vim	/^let g:FuzzyFinderOptions.TaggedFile.smart_bs = 0$/;"	v
 g:FuzzyFinderOptions	.\plugin\fuzzyfinder.vim	/^let g:FuzzyFinderOptions.TaggedFile.switch_order = 80$/;"	v
 g:FuzzyFinderOptions	.\plugin\fuzzyfinder_textmate.vim	/^  let g:FuzzyFinderOptions.TextMate = copy(g:FuzzyFinderOptions.File)$/;"	v
+g:FuzzyFinderOptions	additional_scripts/fuzzyfinder_textmate.vim	/^  let g:FuzzyFinderOptions.TextMate = copy(g:FuzzyFinderOptions.File)$/;"	v
+g:FuzzyFinderOptions	plugin/fuzzyfinder_textmate.vim	/^  let g:FuzzyFinderOptions.TextMate = copy(g:FuzzyFinderOptions.File)$/;"	v
 g:GetLatestVimScripts_allowautoinstall	.\autoload\getscript.vim	/^ let g:GetLatestVimScripts_allowautoinstall= 1$/;"	v
 g:GetLatestVimScripts_mv	.\autoload\getscript.vim	/^   let g:GetLatestVimScripts_mv= "mv"$/;"	v
 g:GetLatestVimScripts_mv	.\autoload\getscript.vim	/^   let g:GetLatestVimScripts_mv= "ren"$/;"	v
@@ -1411,6 +1421,8 @@ GetCommenter	.\plugin\LineCommenter.vim	/^function GetCommenter(StringKey)$/;"	f
 GetComponentNameFromComponentFileName	.\plugin\symfony.vim	/^function! GetComponentNameFromComponentFileName(component_file_name)$/;"	f
 GetCurrentTagFiles	.\plugin\fuzzyfinder.vim	/^function! s:GetCurrentTagFiles()$/;"	f
 GetCurrentTagFiles	.\plugin\fuzzyfinder_textmate.vim	/^function! s:GetCurrentTagFiles()$/;"	f
+GetCurrentTagFiles	additional_scripts/fuzzyfinder_textmate.vim	/^function! s:GetCurrentTagFiles()$/;"	f
+GetCurrentTagFiles	plugin/fuzzyfinder_textmate.vim	/^function! s:GetCurrentTagFiles()$/;"	f
 getCurrentTrack	.\plugin\vimmpc.py	/^    def getCurrentTrack(self):$/;"	m	class:MPC
 GetErrorList	.\plugin\EasyGrep.vim	/^function! s:GetErrorList()$/;"	f
 GetErrorListName	.\plugin\EasyGrep.vim	/^function! s:GetErrorListName()$/;"	f
@@ -1518,8 +1530,12 @@ HiDefaults	.\autoload\rails.vim	/^function! s:HiDefaults()$/;"	f
 highlightCurrent	.\plugin\vimmpc.py	/^    def highlightCurrent(self):$/;"	m	class:MPC
 HighlightError	.\plugin\fuzzyfinder.vim	/^function! s:HighlightError()$/;"	f
 HighlightError	.\plugin\fuzzyfinder_textmate.vim	/^function! s:HighlightError()$/;"	f
+HighlightError	additional_scripts/fuzzyfinder_textmate.vim	/^function! s:HighlightError()$/;"	f
+HighlightError	plugin/fuzzyfinder_textmate.vim	/^function! s:HighlightError()$/;"	f
 HighlightPrompt	.\plugin\fuzzyfinder.vim	/^function! s:HighlightPrompt(prompt, highlight)$/;"	f
 HighlightPrompt	.\plugin\fuzzyfinder_textmate.vim	/^function! s:HighlightPrompt(prompt, highlight)$/;"	f
+HighlightPrompt	additional_scripts/fuzzyfinder_textmate.vim	/^function! s:HighlightPrompt(prompt, highlight)$/;"	f
+HighlightPrompt	plugin/fuzzyfinder_textmate.vim	/^function! s:HighlightPrompt(prompt, highlight)$/;"	f
 HiLink	.\syntax\jquery.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
 HiLink	.\syntax\jquery.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 HiLink	.\syntax\txt.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
@@ -1535,6 +1551,155 @@ HtmlIndentOpen	.\indent\php.vim	/^fun! <SID>HtmlIndentOpen(lnum)$/;"	f
 HtmlIndentOpenAlt	.\indent\php.vim	/^fun! <SID>HtmlIndentOpenAlt(lnum)$/;"	f
 HtmlIndentPush	.\indent\php.vim	/^fun! <SID>HtmlIndentPush(tag)$/;"	f
 HtmlIndentSum	.\indent\php.vim	/^fun! <SID>HtmlIndentSum(lnum, style)$/;"	f
+i	syntax/css.vim	/^      let i = i+1$/;"	v
+i	syntax/css.vim	/^   let i = 1$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#000000', 'black')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#000080', 'navy')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00008B','DarkBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#0000CD','MediumBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#0000ff', 'blue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#006400','DarkGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#008000', 'green')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#008080', 'teal')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#008B8B','DarkCyan')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00BFFF','DeepSkyBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00CED1','DarkTurquoise')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00FA9A','MediumSpringGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00ff00', 'lime')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00FF7F','SpringGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00ffff', 'aqua')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#00FFFF','Cyan')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#191970','MidnightBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#1E90FF','DodgerBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#20B2AA','LightSeaGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#228B22','ForestGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#2E8B57','SeaGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#2F4F4F','DarkSlateGray')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#2F4F4F','DarkSlateGrey')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#32CD32','LimeGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#3CB371','MediumSeaGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#40E0D0','Turquoise')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#4169E1','RoyalBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#4682B4','SteelBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#483D8B','DarkSlateBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#48D1CC','MediumTurquoise')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#4B0082','Indigo')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#556B2F','DarkOliveGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#5F9EA0','CadetBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#6495ED','CornflowerBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#66CDAA','MediumAquaMarine')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#696969','DimGray')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#696969','DimGrey')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#6A5ACD','SlateBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#6B8E23','OliveDrab')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#708090','SlateGray')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#708090','SlateGrey')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#778899','LightSlateGray')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#778899','LightSlateGrey')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#7B68EE','MediumSlateBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#7CFC00','LawnGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#7FFF00','Chartreuse')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#7FFFD4','Aquamarine')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#800000', 'maroon')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#800080', 'purple')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#808000', 'olive')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#808080', 'gray')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#808080','Grey')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#87CEEB','SkyBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#87CEFA','LightSkyBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#8A2BE2','BlueViolet')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#8B0000','DarkRed')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#8B008B','DarkMagenta')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#8B4513','SaddleBrown')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#8FBC8F','DarkSeaGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#90EE90','LightGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#9370D8','MediumPurple')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#9400D3','DarkViolet')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#98FB98','PaleGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#9932CC','DarkOrchid')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#9ACD32','YellowGreen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#A0522D','Sienna')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#A52A2A','Brown')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#A9A9A9','DarkGray')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#A9A9A9','DarkGrey')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#ADD8E6','LightBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#ADFF2F','GreenYellow')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#AFEEEE','PaleTurquoise')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#B0C4DE','LightSteelBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#B0E0E6','PowderBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#B22222','FireBrick')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#B8860B','DarkGoldenRod')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#BA55D3','MediumOrchid')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#BC8F8F','RosyBrown')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#BDB76B','DarkKhaki')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#c0c0c0', 'silver')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#C71585','MediumVioletRed')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#CD5C5C','IndianRed')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#CD853F','Peru')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#D2691E','Chocolate')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#D2B48C','Tan')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#D3D3D3','LightGray')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#D3D3D3','LightGrey')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#D87093','PaleVioletRed')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#D8BFD8','Thistle')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#DA70D6','Orchid')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#DAA520','GoldenRod')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#DC143C','Crimson')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#DCDCDC','Gainsboro')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#DDA0DD','Plum')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#DEB887','BurlyWood')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#E0FFFF','LightCyan')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#E6E6FA','Lavender')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#E9967A','DarkSalmon')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#EE82EE','Violet')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#EEE8AA','PaleGoldenRod')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F08080','LightCoral')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F0E68C','Khaki')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F0F8FF','AliceBlue')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F0FFF0','HoneyDew')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F0FFFF','Azure')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F4A460','SandyBrown')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F5DEB3','Wheat')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F5F5DC','Beige')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F5F5F5','WhiteSmoke')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F5FFFA','MintCream')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#F8F8FF','GhostWhite')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FA8072','Salmon')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FAEBD7','AntiqueWhite')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FAF0E6','Linen')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FAFAD2','LightGoldenRodYellow')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FDF5E6','OldLace')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#ff0000', 'red')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#ff00ff', 'fuchsia')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FF00FF','Magenta')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FF1493','DeepPink')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FF4500','OrangeRed')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FF6347','Tomato')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FF69B4','HotPink')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FF7F50','Coral')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FF8C00','Darkorange')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFA07A','LightSalmon')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#ffA500', 'orange')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFB6C1','LightPink')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFC0CB','Pink')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFD700','Gold')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFDAB9','PeachPuff')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFDEAD','NavajoWhite')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFE4B5','Moccasin')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFE4C4','Bisque')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFE4E1','MistyRose')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFEBCD','BlanchedAlmond')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFEFD5','PapayaWhip')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFF0F5','LavenderBlush')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFF5EE','SeaShell')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFF8DC','Cornsilk')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFFACD','LemonChiffon')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFFAF0','FloralWhite')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFFAFA','Snow')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#ffff00', 'yellow')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFFFE0','LightYellow')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#FFFFF0','Ivory')$/;"	v
+i	syntax/css.vim	/^   let i = s:SetNamedColor('#ffffff', 'white')$/;"	v
 identified	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> identified <C-R>=SqlIab_ReplaceConditionally('identified', 'IDENTIFIED')<CR>$/;"	m
 IDoc	.\ftplugin\haskell_doc.vim	/^command! -nargs=+ IDoc call IDoc(<f-args>)$/;"	c
 IDoc	.\ftplugin\haskell_doc.vim	/^function! IDoc(name,...) $/;"	f
@@ -1586,6 +1751,8 @@ insert	.\plugin\surround.vim	/^function! s:insert(...) " {{{1$/;"	f
 InsertRefs	.\plugin\matchit.vim	/^fun! s:InsertRefs(groupBR, prefix, group, suffix, matchline)$/;"	f
 inspect	.\ruby\fuzzy_file_finder.rb	/^  def inspect #:nodoc:$/;"	f	class:FuzzyFileFinder
 InstantiateTextMateMode	.\plugin\fuzzyfinder_textmate.vim	/^function! InstantiateTextMateMode() "{{{$/;"	f
+InstantiateTextMateMode	additional_scripts/fuzzyfinder_textmate.vim	/^function! InstantiateTextMateMode() "{{{$/;"	f
+InstantiateTextMateMode	plugin/fuzzyfinder_textmate.vim	/^function! InstantiateTextMateMode() "{{{$/;"	f
 int	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> int <C-R>=SqlIab_ReplaceConditionally('int', 'INTEGER')<CR>$/;"	m
 int2vector	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> int2vector <C-R>=SqlIab_ReplaceConditionally('int2vector', 'INT2VECTOR')<CR>$/;"	m
 integer	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> integer <C-R>=SqlIab_ReplaceConditionally('integer', 'INTEGER')<CR>$/;"	m
@@ -1825,11 +1992,15 @@ OnOrOff	.\plugin\EasyGrep.vim	/^function! s:OnOrOff(num)$/;"	f
 openBookmark	.\plugin\NERD_tree.vim	/^function! s:openBookmark(name)$/;"	f
 OpenBuffer	.\plugin\fuzzyfinder.vim	/^function! s:OpenBuffer(nr, mode)$/;"	f
 OpenBuffer	.\plugin\fuzzyfinder_textmate.vim	/^function! s:OpenBuffer(nr, mode)$/;"	f
+OpenBuffer	additional_scripts/fuzzyfinder_textmate.vim	/^function! s:OpenBuffer(nr, mode)$/;"	f
+OpenBuffer	plugin/fuzzyfinder_textmate.vim	/^function! s:OpenBuffer(nr, mode)$/;"	f
 openEntrySplit	.\plugin\NERD_tree.vim	/^function! s:openEntrySplit(vertical, forceKeepWindowOpen)$/;"	f
 openExplorer	.\plugin\NERD_tree.vim	/^function! s:openExplorer()$/;"	f
 OpenFile	.\plugin\fuzzyfinder.vim	/^function! s:OpenFile(path, mode)$/;"	f
 OpenFile	.\plugin\fuzzyfinder_textmate.vim	/^function! s:OpenFile(path, mode)$/;"	f
 OpenFile	.\plugin\proj.vim	/^function! s:OpenFile()$/;"	f
+OpenFile	additional_scripts/fuzzyfinder_textmate.vim	/^function! s:OpenFile(path, mode)$/;"	f
+OpenFile	plugin/fuzzyfinder_textmate.vim	/^function! s:OpenFile(path, mode)$/;"	f
 openInNewTab	.\plugin\NERD_tree.vim	/^function! s:openInNewTab(stayCurrentTab)$/;"	f
 openNodeRecursively	.\plugin\NERD_tree.vim	/^function! s:openNodeRecursively()$/;"	f
 OpenNotes	.\plugin\proj.vim	/^function! s:OpenNotes()$/;"	f
@@ -1915,10 +2086,13 @@ point	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> point <C-R>=SqlIab_
 polygon	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> polygon <C-R>=SqlIab_ReplaceConditionally('polygon', 'POLYGON')<CR>$/;"	m
 pop_command	.\autoload\rails.vim	/^function! s:pop_command()$/;"	f
 PostCreate	.\plugin\EasyGrep.vim	/^function! s:PostCreate(str, sp)$/;"	f
+pow	syntax/css.vim	/^function! s:pow(x, n)$/;"	f
 prephelp	.\autoload\rails.vim	/^function! s:prephelp()$/;"	f
 prev	.\plugin\vimmpc.py	/^    def prev(self):$/;"	m	class:MPC
 Preview	.\autoload\rails.vim	/^function! s:Preview(bang,lnum,arg)$/;"	f
 Preview	.\projects\symfony.project.vim	/^command! Preview Utl ol http:\/\/localhost\/$/;"	c
+Preview	projects/symfony.project.vim	/^command! Preview Utl ol http:\/\/localhost:80\/$/;"	c
+PreviewCSSColorInLine	syntax/css.vim	/^function! s:PreviewCSSColorInLine(where)$/;"	f
 previewNode	.\plugin\NERD_tree.vim	/^function! s:previewNode(openNewWin)$/;"	f
 primary	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> primary <C-R>=SqlIab_ReplaceConditionally('primary', 'PRIMARY')<CR>$/;"	m
 PrintFormat	.\autoload\tlib\string.vim	/^function! s:PrintFormat(format, string) "{{{3$/;"	f
@@ -2045,7 +2219,6 @@ rails#new_app_command	.\autoload\rails.vim	/^function! rails#new_app_command(ban
 rails#pluralize	.\autoload\rails.vim	/^function! rails#pluralize(word)$/;"	f
 rails#singularize	.\autoload\rails.vim	/^function! rails#singularize(word)$/;"	f
 rails#statusline	.\autoload\rails.vim	/^function! rails#statusline(...)$/;"	f
-rails#STATUSLINE	.\autoload\rails.vim	/^function! rails#STATUSLINE(...)$/;"	f
 rails#underscore	.\autoload\rails.vim	/^function! rails#underscore(str)$/;"	f
 RailsBufInit	.\autoload\rails.vim	/^function! RailsBufInit(path)$/;"	f
 RailsFile	.\autoload\rails.vim	/^function! RailsFile()$/;"	f
@@ -2083,7 +2256,9 @@ readfile	.\autoload\rails.vim	/^function! s:readfile(path,...)$/;"	f
 readPlaylist	.\plugin\vimmpc.py	/^    def readPlaylist(self):$/;"	m	class:MPC
 real	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> real <C-R>=SqlIab_ReplaceConditionally('real', 'REAL')<CR>$/;"	m
 RebuildDb	.\projects\symfony.project.vim	/^command! RebuildDb !php symfony doctrine:build-all-reload$/;"	c
+RebuildDb	projects/symfony.project.vim	/^command! RebuildDb !php symfony doctrine:build-all-reload & php symfony doctrine:build-all-reload --env=test -F$/;"	c
 RebuildTags	.\projects\symfony.project.vim	/^command! RebuildTags !ctags -R --exclude=symfony --sort=foldcase .$/;"	c
+RebuildTags	projects/symfony.project.vim	/^command! RebuildTags !ctags -R --exclude=symfony --sort=foldcase .$/;"	c
 ReconfigPaths	.\plugin\symfony.vim	/^function! ReconfigPaths()$/;"	f
 redraw	.\plugin\surround.vim	/^function! s:redraw()$/;"	f
 Ref	.\plugin\matchit.vim	/^fun! s:Ref(string, d, ...)$/;"	f
@@ -2145,6 +2320,7 @@ return	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> return <C-R>=SqlIa
 revealBookmark	.\plugin\NERD_tree.vim	/^function! s:revealBookmark(name)$/;"	f
 revoke	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> revoke <C-R>=SqlIab_ReplaceConditionally('revoke', 'REVOKE')<CR>$/;"	m
 RewriteFormatString	.\autoload\tlib\string.vim	/^function! s:RewriteFormatString(format, pattern, string) "{{{3$/;"	f
+Rgb2xterm	syntax/css.vim	/^function! s:Rgb2xterm(color)$/;"	f
 RM	.\plugin\cecutil.vim	/^com! -bar -nargs=1 RM	call RestoreMark(<q-args>)$/;"	c
 rollback	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> rollback <C-R>=SqlIab_ReplaceConditionally('rollback', 'ROLLBACK')<CR>$/;"	m
 root?	.\ruby\fuzzy_file_finder.rb	/^    def root?$/;"	f	class:FuzzyFileFinder.Directory
@@ -2156,9 +2332,9 @@ rows	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> rows <C-R>=SqlIab_Re
 rquote	.\autoload\rails.vim	/^function! s:rquote(str)$/;"	f
 rule	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> rule <C-R>=SqlIab_ReplaceConditionally('rule', 'RULE')<CR>$/;"	m
 Run	.\projects\symfony.project.vim	/^command! Run !php %$/;"	c
+Run	projects/symfony.project.vim	/^command! Run !php %$/;"	c
 RWP	.\plugin\cecutil.vim	/^com! -bar -nargs=0 RWP	call RestoreWinPosn()$/;"	c
 S	.\plugin\surround.vim	/^            vmap  S    <Plug>VSurround$/;"	m
-s	.\plugin\surround.vim	/^            vmap  s    <Plug>Vsurround$/;"	m
 s	.\test\tlib.vim	/^    let s = printf('%sfoo%sbar%s', c, c, c)$/;"	v
 s:ABBR_TRIM_MARK	.\plugin\fuzzyfinder.vim	/^let s:ABBR_TRIM_MARK = '...'$/;"	v
 s:apps	.\autoload\rails.vim	/^  let s:apps = {}$/;"	v
@@ -2166,13 +2342,16 @@ s:app_prototype	.\autoload\rails.vim	/^let s:app_prototype = {}$/;"	v
 s:app_prototype	.\autoload\rails.vim	/^let s:app_prototype.cache = s:cache_prototype$/;"	v
 s:autoinstall	.\autoload\getscript.vim	/^  let s:autoinstall= $HOME."\/".s:dotvim$/;"	v
 s:autoinstall	.\autoload\getscript.vim	/^let s:autoinstall= ""$/;"	v
+s:b	syntax/css.vim	/^      let s:b = strridx(s:olddef,'matchgroup')$/;"	v
 s:bar	.\test\tlib.vim	/^let s:bar = 4$/;"	v
+s:basic16	syntax/css.vim	/^let s:basic16 = [ [ 0x00, 0x00, 0x00 ], [ 0xCD, 0x00, 0x00 ], [ 0x00, 0xCD, 0x00 ], [ 0xCD, 0xCD, 0x00 ], [ 0x00, 0x00, 0xEE ], [ 0xCD, 0x00, 0xCD ], [ 0x00, 0xCD, 0xCD ], [ 0xE5, 0xE5, 0xE5 ], [ 0x7F, 0x7F, 0x7F ], [ 0xFF, 0x00, 0x00 ], [ 0x00, 0xFF, 0x00 ], [ 0xFF, 0xFF, 0x00 ], [ 0x5C, 0x5C, 0xFF ], [ 0xFF, 0x00, 0xFF ], [ 0x00, 0xFF, 0xFF ], [ 0xFF, 0xFF, 0xFF ] ]$/;"	v
 s:bmru	.\autoload\tlib\buffer.vim	/^let s:bmru = []$/;"	v
 s:Bookmark	.\plugin\NERD_tree.vim	/^let s:Bookmark = {}$/;"	v
 s:buffer_prototype	.\autoload\rails.vim	/^let s:buffer_prototype = {}$/;"	v
 s:C	.\autoload\genutils.vim	/^let s:C = 100$/;"	v
 s:cache_prototype	.\autoload\rails.vim	/^let s:cache_prototype = {'dict': {}}$/;"	v
 s:choices	.\ftplugin\haskell_doc.vim	/^let s:choices=[]$/;"	v
+s:colortable	syntax/css.vim	/^let s:colortable=[]$/;"	v
 s:CommandChoice	.\plugin\EasyGrep.vim	/^let s:CommandChoice = g:EasyGrepCommand < len(s:Commands) ? g:EasyGrepCommand : 0$/;"	v
 s:Commands	.\plugin\EasyGrep.vim	/^let s:Commands = [ "vimgrep", "grep" ]$/;"	v
 s:contents	.\ftplugin\haskell_doc.vim	/^  let s:contents      = join(readfile(s:flagref))$/;"	v
@@ -2397,6 +2576,7 @@ s:utl_trace_buffer	.\plugin\utl.vim	/^let s:utl_trace_buffer = ''$/;"	v
 s:utl_trace_level	.\plugin\utl.vim	/^let s:utl_trace_level = 0$/;"	v
 s:V	.\autoload\genutils.vim	/^let s:V = 5$/;"	v
 s:value	.\autoload\tlib\progressbar.vim	/^let s:value = []$/;"	v
+s:valuerange	syntax/css.vim	/^let s:valuerange = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]$/;"	v
 s:view_types	.\autoload\rails.vim	/^let s:view_types = 'rhtml,erb,rxml,builder,rjs,mab,liquid,haml,dryml,mn'$/;"	v
 s:width	.\autoload\tlib\progressbar.vim	/^let s:width = []$/;"	v
 s:WindowManager	.\plugin\fuzzyfinder.vim	/^let s:WindowManager = { 'buf_nr' : -1 }$/;"	v
@@ -2428,7 +2608,9 @@ SetAppConfig	.\plugin\symfony.vim	/^function! SetAppConfig()$/;"	f
 SetBasePath	.\autoload\rails.vim	/^function! s:SetBasePath()$/;"	f
 SetCurrentExtension	.\plugin\EasyGrep.vim	/^function! s:SetCurrentExtension()$/;"	f
 SetGatewayVariables	.\plugin\EasyGrep.vim	/^function! s:SetGatewayVariables()$/;"	f
+SetMatcher	syntax/css.vim	/^function! s:SetMatcher(clr,pat)$/;"	f
 SetModuleConfig	.\plugin\symfony.vim	/^function! SetModuleConfig()$/;"	f
+SetNamedColor	syntax/css.vim	/^function! s:SetNamedColor(clr,name)$/;"	f
 setopt	.\autoload\rails.vim	/^function! s:setopt(opt,val)$/;"	f
 SetOptDefault	.\plugin\rails.vim	/^function! s:SetOptDefault(opt,val)$/;"	f
 SetProjectConfig	.\plugin\symfony.vim	/^function! SetProjectConfig()$/;"	f
@@ -2508,6 +2690,7 @@ TBrowseOutput	.\plugin\02tlib.vim	/^command! -nargs=1 -complete=command TBrowseO
 test	.\test\tlib.vim	/^let test = tlib#Test#New()$/;"	v
 test1	.\test\tlib.vim	/^let test1 = tlib#Test#New()$/;"	v
 TestAll	.\projects\symfony.project.vim	/^command! TestAll !php symfony test:all$/;"	c
+TestAll	projects/symfony.project.vim	/^command! TestAll !php symfony test:all$/;"	c
 TestArgs	.\test\tlib.vim	/^function! TestArgs(...) "{{{3$/;"	f
 TestArgs1	.\test\tlib.vim	/^function! TestArgs1(...) "{{{3$/;"	f
 TestArgs2	.\test\tlib.vim	/^function! TestArgs2(...) "{{{3$/;"	f
@@ -2921,7 +3104,6 @@ TTagselect	.\plugin\ttags.vim	/^command! -nargs=* -bang TTagselect call ttags#Se
 TVarArg	.\plugin\02tlib.vim	/^command! -nargs=+ TVarArg exec tlib#arg#Let([<args>])$/;"	c
 type	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> type <C-R>=SqlIab_ReplaceConditionally('type', 'TYPE')<CR>$/;"	m
 U	.\autoload\repeat.vim	/^nnoremap <silent> U     :<C-U>call <SID>wrap('U',v:count)<CR>$/;"	m
-u	.\autoload\repeat.vim	/^nnoremap <silent> u     :<C-U>call <SID>wrap('u',v:count)<CR>$/;"	m
 uid	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> uid <C-R>=SqlIab_ReplaceConditionally('uid', 'UID')<CR>$/;"	m
 union	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> union <C-R>=SqlIab_ReplaceConditionally('union', 'UNION')<CR>$/;"	m
 unique	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> unique <C-R>=SqlIab_ReplaceConditionally('unique', 'UNIQUE')<CR>$/;"	m
@@ -3029,11 +3211,9 @@ wrap	.\autoload\repeat.vim	/^function! s:wrap(command,count)$/;"	f
 wrap	.\plugin\surround.vim	/^function! s:wrap(string,char,type,...)$/;"	f
 wrapreg	.\plugin\surround.vim	/^function! s:wrapreg(reg,char,...)$/;"	f
 xid	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> xid <C-R>=SqlIab_ReplaceConditionally('xid', 'XID')<CR>$/;"	m
+Xterm2rgb	syntax/css.vim	/^function! s:Xterm2rgb(color) $/;"	f
 ys	.\plugin\surround.vim	/^    nmap          ys   <Plug>Ysurround$/;"	m
-yS	.\plugin\surround.vim	/^    nmap          yS   <Plug>YSurround$/;"	m
 yss	.\plugin\surround.vim	/^    nmap          yss  <Plug>Yssurround$/;"	m
-ySS	.\plugin\surround.vim	/^    nmap          ySS  <Plug>YSsurround$/;"	m
-ySs	.\plugin\surround.vim	/^    nmap          ySs  <Plug>YSsurround$/;"	m
 ZoomWin	.\plugin\ZoomWinPlugin.vim	/^com! ZoomWin :set lz|silent call ZoomWin#ZoomWin()|set nolz$/;"	c
 ZoomWin	.\plugin\ZoomWinPlugin.vim	/^fun! ZoomWin()$/;"	f
 ZoomWin#CleanupSessionFile	.\autoload\ZoomWin.vim	/^fun! ZoomWin#CleanupSessionFile()$/;"	f

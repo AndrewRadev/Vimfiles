@@ -157,7 +157,7 @@ RUBY
     return result
   endfunction
 
-  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching)
+  function! FuzzyFinderTextMateLauncher(initial_text, partial_matching) abort
     call g:FuzzyFinderMode.TextMate.launch(a:initial_text, a:partial_matching)
   endfunction
 

@@ -14,6 +14,6 @@ command! RebuildTags !ctags -R --exclude=symfony --sort=foldcase .
 command! RebuildDb !php symfony doctrine:build-all-reload & php symfony doctrine:build-all-reload --env=test -F
 command! TestAll !php symfony test:all
 command! Run !php %
-command! Preview Utl ol http://localhost/
+command! Preview Utl ol http://localhost:80/
 
 command! CC !php symfony cc
