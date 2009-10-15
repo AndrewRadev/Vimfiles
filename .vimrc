@@ -24,7 +24,11 @@ command! Eclipboard edit `=@*`
 command! RebuildTags !ctags -R --sort=foldcase .
 
 " Generic console, override in different filetypes:
-command! Console shell
+if has('win32')
+  command! Console !start cmd
+else
+  command! Console !urxvt &
+endif
 
 MapToggle sl list
 MapToggle sh hlsearch

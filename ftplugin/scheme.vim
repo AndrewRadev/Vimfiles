@@ -1,1 +1,1 @@
-command! Console !mzscheme -i -r %
+command! -buffer Console !mzscheme -i -r %

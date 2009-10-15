@@ -635,7 +635,7 @@ function! s:InputHl(prompt, text, hl)
 endfunction
 
 
-" FUNCTIONS: FUZZYFIDNER WINDOW ----------------------------------------- {{{1
+" FUNCTIONS: FUZZYFINDER WINDOW ----------------------------------------- {{{1
 
 function! s:HighlightPrompt(prompt, highlight)
   syntax clear
@@ -1586,26 +1586,26 @@ let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFi
 let g:FuzzyFinderOptions.Base.key_open = '<CR>'
 " [All Mode] This is mapped to select completion item or finish input and
 " open a buffer/file in split new window
-let g:FuzzyFinderOptions.Base.key_open_split = '<C-j>'
+let g:FuzzyFinderOptions.Base.key_open_split = '<C-i>'
 " [All Mode] This is mapped to select completion item or finish input and
 " open a buffer/file in vertical-split new window.
-let g:FuzzyFinderOptions.Base.key_open_vsplit = '<C-k>'
+let g:FuzzyFinderOptions.Base.key_open_vsplit = '<C-s>'
 " [All Mode] This is mapped to select completion item or finish input and
 " open a buffer/file in a new tab page.
-let g:FuzzyFinderOptions.Base.key_open_tab = '<C-]>'
+let g:FuzzyFinderOptions.Base.key_open_tab = '<C-t>'
 " [All Mode] This is mapped to switch to the next mode.
 let g:FuzzyFinderOptions.Base.key_next_mode = '<C-l>'
 " [All Mode] This is mapped to switch to the previous mode.
 let g:FuzzyFinderOptions.Base.key_prev_mode = '<C-o>'
 " [All Mode] This is mapped to temporarily switch whether or not to ignore
 " case.
-let g:FuzzyFinderOptions.Base.key_ignore_case = '<C-t>'
+let g:FuzzyFinderOptions.Base.key_ignore_case = '<C-~>'
 " [All Mode] This is the file name to write information of the MRU, etc. If
 " "" was set, Fuzzyfinder does not write to the file.
 let g:FuzzyFinderOptions.Base.info_file = '~/.vimfuzzyfinder'
 " [All Mode] Fuzzyfinder does not start a completion if a length of entered
 " text is less than this.
-let g:FuzzyFinderOptions.Base.min_length = 0
+let g:FuzzyFinderOptions.Base.min_length = 1
 " [All Mode] This is a dictionary. Each value must be a list. All matchs of a
 " key in entered text is expanded with the value.
 let g:FuzzyFinderOptions.Base.abbrev_map = {}

@@ -19,6 +19,8 @@ autocmd BufEnter *.hs compiler ghc
 
 autocmd BufEnter *.tags set filetype=tags
 
+autocmd BufEnter Result set filetype=dbext_result.txt
+
 " Maximise on open on Win32:
 if has('win32')
   autocmd GUIEnter * simalt ~x

@@ -1,20 +1,24 @@
-Think of something to make application detection easier for Utl
+Think of something to make application detection easier for Utl.
+Think about removing the wildcard -- not used it once.
 
-FuzzyFinder MRU file ?
+Dbext:
+  * Mappings
+  * Window placement
+  * Install perl + CPAN stuff
 
 PHP:
-  - Hack the ctags php parser.
+  * Hack the ctags php parser.
 
 Haskell:
-  - Figure out the problems with documentation searches
+  * Figure out the problems with documentation searches
 
 Snippets: 
-  - nested snippets (additional check on <tab>?)
-  - wildcard + additional character?
+  * nested snippets (additional check on <tab>?)
+  * wildcard + additional character?
 
 Yaml snippets:
-	- Camelize, snake_case, etc.
+	* Camelize, snake_case, etc.
 
 Changes made to plugins:
-  - snipMate
-  - php indenting script
+  * snipMate -- might turn out not so useful after all
+  * php indenting script

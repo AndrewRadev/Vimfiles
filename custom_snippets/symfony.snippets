@@ -3,6 +3,11 @@ snippet user
 	$this->getUser()
 snippet cx
 	sfContext::getInstance()
+# Inside form classes:
+snippet ws
+	$this->widgetSchema['${1:field}'] = new ${2:sfWidgetFormInput}(${3:  });
+snippet vs
+	$this->validatorSchema['${1:field}'] = new ${2:sfValidatorString}(${3:  });
 # Doctrine:
 snippet dtable
 	Doctrine::getTable('${1:Model}')
