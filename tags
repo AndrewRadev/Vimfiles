@@ -277,6 +277,7 @@ b:my_changedtick	.\compiler\ghc.vim	/^  let b:my_changedtick = b:changedtick$/;"
 b:php_noindent_switch	.\indent\php.vim	/^   let b:php_noindent_switch = 1$/;"	v
 BackToForwardSlash	.\plugin\EasyGrep.vim	/^function! s:BackToForwardSlash(arg)$/;"	f
 BackwardsSnippet	.\plugin\snipMate.vim	/^fun! BackwardsSnippet()$/;"	f
+BackwardsSnippet	plugin/snipMate.vim	/^fun! BackwardsSnippet()$/;"	f
 beep	.\plugin\surround.vim	/^function! s:beep()$/;"	f
 begin	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> begin <C-R>=SqlIab_ReplaceConditionally('begin', 'BEGIN')<CR>$/;"	m
 between	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> between <C-R>=SqlIab_ReplaceConditionally('between', 'BETWEEN')<CR>$/;"	m
@@ -370,6 +371,7 @@ CheckLinks	.\plugin\EasyGrep.vim	/^function! s:CheckLinks()$/;"	f
 checkpoint	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> checkpoint <C-R>=SqlIab_ReplaceConditionally('checkpoint', 'CHECKPOINT')<CR>$/;"	m
 Choose	.\plugin\matchit.vim	/^fun! s:Choose(patterns, string, comma, branch, prefix, suffix, ...)$/;"	f
 ChooseSnippet	.\plugin\snipMate.vim	/^fun s:ChooseSnippet(scope, trigger)$/;"	f
+ChooseSnippet	plugin/snipMate.vim	/^fun s:ChooseSnippet(scope, trigger)$/;"	f
 chRoot	.\plugin\NERD_tree.vim	/^function! s:chRoot()$/;"	f
 cid	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> cid <C-R>=SqlIab_ReplaceConditionally('cid', 'CID')<CR>$/;"	m
 cidr	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> cidr <C-R>=SqlIab_ReplaceConditionally('cidr', 'CIDR')<CR>$/;"	m
@@ -825,6 +827,7 @@ decimal	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> decimal <C-R>=Sql
 declare	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> declare <C-R>=SqlIab_ReplaceConditionally('declare', 'DECLARE')<CR>$/;"	m
 default	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> default <C-R>=SqlIab_ReplaceConditionally('default', 'DEFAULT')<CR>$/;"	m
 DefineSnips	.\plugin\snipMate.vim	/^fun s:DefineSnips(dir, aliasft, realft)$/;"	f
+DefineSnips	plugin/snipMate.vim	/^fun s:DefineSnips(dir, aliasft, realft)$/;"	f
 DeHTML	.\ftplugin\haskell_doc.vim	/^function! DeHTML(entry)$/;"	f
 delete	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> delete <C-R>=SqlIab_ReplaceConditionally('delete', 'DELETE')<CR>$/;"	m
 Delete	.\plugin\dbext.vim	/^command! -nargs=+ Delete            :call dbext#DB_execSql("delete " . <q-args>)$/;"	c
@@ -936,7 +939,9 @@ extractafter	.\plugin\surround.vim	/^function! s:extractafter(str)$/;"	f
 extractbefore	.\plugin\surround.vim	/^function! s:extractbefore(str)$/;"	f
 extractdbvar	.\autoload\rails.vim	/^function! s:extractdbvar(str,arg)$/;"	f
 ExtractSnips	.\plugin\snipMate.vim	/^fun! ExtractSnips(dir, ft)$/;"	f
+ExtractSnips	plugin/snipMate.vim	/^fun! ExtractSnips(dir, ft)$/;"	f
 ExtractSnipsFile	.\plugin\snipMate.vim	/^fun! ExtractSnipsFile(file, ft)$/;"	f
+ExtractSnipsFile	plugin/snipMate.vim	/^fun! ExtractSnipsFile(file, ft)$/;"	f
 false	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> false <C-R>=SqlIab_ReplaceConditionally('false', 'FALSE')<CR>$/;"	m
 fetch	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> fetch <C-R>=SqlIab_ReplaceConditionally('fetch', 'FETCH')<CR>$/;"	m
 FGforBG	syntax/css.vim	/^function! s:FGforBG(bg)$/;"	f
@@ -1105,6 +1110,7 @@ g:decho_bufenter	.\plugin\Decho.vim	/^ let g:decho_bufenter= 0$/;"	v
 g:decho_bufname	.\plugin\Decho.vim	/^ let g:decho_bufname= "DBG"$/;"	v
 g:decho_winheight	.\plugin\Decho.vim	/^ let g:decho_winheight= 5$/;"	v
 g:did_ft	.\plugin\snipMate.vim	/^let g:did_ft = {}$/;"	v
+g:did_ft	plugin/snipMate.vim	/^let g:did_ft = {}$/;"	v
 g:did_info_syntax_inits	.\syntax\info.vim	/^  let g:did_info_syntax_inits = 1$/;"	v
 g:DrChipTopLvlMenu	.\plugin\AlignMapsPlugin.vim	/^  let g:DrChipTopLvlMenu= "DrChip."$/;"	v
 g:EasyGrepAllOptionsInExplorer	.\plugin\EasyGrep.vim	/^    let g:EasyGrepAllOptionsInExplorer=0$/;"	v
@@ -1452,7 +1458,9 @@ GetSearchPatternFriendlyName	.\plugin\EasyGrep.vim	/^function! s:GetSearchPatter
 getSelectedBookmark	.\plugin\NERD_tree.vim	/^function! s:getSelectedBookmark()$/;"	f
 GetSidPrefix	.\plugin\fuzzyfinder.vim	/^function! s:GetSidPrefix()$/;"	f
 GetSnippet	.\plugin\snipMate.vim	/^fun s:GetSnippet(word, scope)$/;"	f
+GetSnippet	plugin/snipMate.vim	/^fun s:GetSnippet(word, scope)$/;"	f
 GetSnippets	.\plugin\snipMate.vim	/^fun! GetSnippets(dir, filetypes)$/;"	f
+GetSnippets	plugin/snipMate.vim	/^fun! GetSnippets(dir, filetypes)$/;"	f
 GetSortedAvailableModes	.\plugin\fuzzyfinder.vim	/^function! s:GetSortedAvailableModes()$/;"	f
 GetSuccessTemplateFromAction	.\plugin\symfony.vim	/^function! GetSuccessTemplateFromAction(action_name)$/;"	f
 GetSuccessTemplateFromComponent	.\plugin\symfony.vim	/^function! GetSuccessTemplateFromComponent(component_name)$/;"	f
@@ -1815,6 +1823,7 @@ loaded_genutils	.\plugin\genutils.vim	/^let loaded_genutils = 205$/;"	v
 loaded_matchit	.\plugin\matchit.vim	/^let loaded_matchit = 1$/;"	v
 loaded_nerd_tree	.\plugin\NERD_tree.vim	/^let loaded_nerd_tree = 1$/;"	v
 loaded_snips	.\plugin\snipMate.vim	/^let loaded_snips = 1$/;"	v
+loaded_snips	plugin/snipMate.vim	/^let loaded_snips = 1$/;"	v
 loaded_taglist	.\plugin\taglist.vim	/^            let loaded_taglist = 'no'$/;"	v
 loaded_taglist	.\plugin\taglist.vim	/^        let loaded_taglist = 'no'$/;"	v
 loaded_taglist	.\plugin\taglist.vim	/^    let loaded_taglist = 'fast_load_done'$/;"	v
@@ -1872,6 +1881,7 @@ macaddr	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> macaddr <C-R>=Sql
 MakeQFE	.\autoload\ttags.vim	/^function! s:MakeQFE(tag) "{{{3$/;"	f
 MakeQFL	.\autoload\ttags.vim	/^function! s:MakeQFL(tags) "{{{3$/;"	f
 MakeSnip	.\plugin\snipMate.vim	/^fun! MakeSnip(scope, trigger, content, ...)$/;"	f
+MakeSnip	plugin/snipMate.vim	/^fun! MakeSnip(scope, trigger, content, ...)$/;"	f
 MakeSpace	.\autoload\Align.vim	/^fun! s:MakeSpace(spacecnt)$/;"	f
 makewithruby	.\autoload\rails.vim	/^function! s:makewithruby(arg,bang,...)$/;"	f
 make_pattern	.\ruby\fuzzy_file_finder.rb	/^    def make_pattern(pattern)$/;"	f	class:FuzzyFileFinder
@@ -2101,6 +2111,7 @@ privileges	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> privileges <C-
 procedure	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> procedure <C-R>=SqlIab_ReplaceConditionally('procedure', 'PROCEDURE')<CR>$/;"	m
 process	.\plugin\surround.vim	/^function! s:process(string)$/;"	f
 ProcessFile	.\plugin\snipMate.vim	/^fun s:ProcessFile(file, ft, ...)$/;"	f
+ProcessFile	plugin/snipMate.vim	/^fun s:ProcessFile(file, ft, ...)$/;"	f
 ProcessHaddockIndexes	.\ftplugin\haskell_doc.vim	/^function! ProcessHaddockIndexes(location,files)$/;"	f
 ProcessHaddockIndexes2	.\ftplugin\haskell_doc.vim	/^function! ProcessHaddockIndexes2(location,files)$/;"	f
 ProcessSnippet	.\autoload\snipMate.vim	/^fun s:ProcessSnippet(snip)$/;"	f
@@ -2307,6 +2318,7 @@ rescan!	.\ruby\fuzzy_file_finder.rb	/^  def rescan!$/;"	f	class:FuzzyFileFinder
 reset	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> reset <C-R>=SqlIab_ReplaceConditionally('reset', 'RESET')<CR>$/;"	m
 resetomnicomplete	.\autoload\rails.vim	/^function! s:resetomnicomplete()$/;"	f
 ResetSnippets	.\plugin\snipMate.vim	/^fun! ResetSnippets()$/;"	f
+ResetSnippets	plugin/snipMate.vim	/^fun! ResetSnippets()$/;"	f
 Resolve	.\plugin\matchit.vim	/^fun! s:Resolve(source, target, output)$/;"	f
 resource	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> resource <C-R>=SqlIab_ReplaceConditionally('resource', 'RESOURCE')<CR>$/;"	m
 RestoreMark	.\plugin\cecutil.vim	/^fun! RestoreMark(markname)$/;"	f
@@ -2502,6 +2514,7 @@ s:sid	.\autoload\rails.vim	/^let s:sid = s:sub(maparg("<SID>xx"),'xx$','')$/;"	v
 s:signCount	.\plugin\cuteErrorMarker.vim	/^let s:signCount = 0$/;"	v
 s:signId	.\plugin\cuteErrorMarker.vim	/^let s:signId = 33000$/;"	v
 s:snippets	.\plugin\snipMate.vim	/^let s:snippets = {} | let s:multi_snips = {}$/;"	v
+s:snippets	plugin/snipMate.vim	/^let s:snippets = {} | let s:multi_snips = {}$/;"	v
 s:SortChoice	.\plugin\EasyGrep.vim	/^let s:SortChoice = 0$/;"	v
 s:SortFunctions	.\plugin\EasyGrep.vim	/^let s:SortFunctions = [ "SortName", "SortNameReversed", "SortExtension", "SortExtensionReversed" ]$/;"	v
 s:SortOptions	.\plugin\EasyGrep.vim	/^let s:SortOptions = [ "Name", "Name Reversed", "Extension", "Extension Reversed" ]$/;"	v
@@ -2627,6 +2640,7 @@ ShellEscape	.\plugin\EasyGrep.vim	/^function! s:ShellEscape(item)$/;"	f
 ShellEscapeList	.\plugin\EasyGrep.vim	/^function! s:ShellEscapeList(lst, seperator)$/;"	f
 show	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> show <C-R>=SqlIab_ReplaceConditionally('show', 'SHOW')<CR>$/;"	m
 ShowAvailableSnips	.\plugin\snipMate.vim	/^fun! ShowAvailableSnips()$/;"	f
+ShowAvailableSnips	plugin/snipMate.vim	/^fun! ShowAvailableSnips()$/;"	f
 showDatabase	.\plugin\vimmpc.py	/^    def showDatabase(self):$/;"	m	class:MPC
 showInfo	.\plugin\vimmpc.py	/^    def showInfo(self):$/;"	m	class:MPC
 showMenu	.\plugin\NERD_tree.vim	/^function! s:showMenu()$/;"	f
@@ -2641,6 +2655,7 @@ sname	.\autoload\rails.vim	/^function! s:sname()$/;"	f
 snipMate#expandSnip	.\autoload\snipMate.vim	/^fun snipMate#expandSnip(snip, col)$/;"	f
 snipMate#jumpTabStop	.\autoload\snipMate.vim	/^fun snipMate#jumpTabStop(backwards)$/;"	f
 snippets_dir	.\plugin\snipMate.vim	/^	let snippets_dir = substitute(globpath(&rtp, 'snippets\/'), "\\n", ',', 'g')$/;"	v
+snippets_dir	plugin/snipMate.vim	/^	let snippets_dir = substitute(globpath(&rtp, 'snippets\/'), "\\n", ',', 'g')$/;"	v
 SNR	.\autoload\genutils.vim	/^function! s:SNR()$/;"	f
 some	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> some <C-R>=SqlIab_ReplaceConditionally('some', 'SOME')<CR>$/;"	m
 Sort	.\plugin\EasyGrep.vim	/^function! <sid>Sort()$/;"	f
@@ -3084,6 +3099,7 @@ TreeFileNode._renderToString	.\plugin\NERD_tree.vim	/^function! s:TreeFileNode._
 TRequire	.\plugin\02tlib.vim	/^command! -nargs=+ TRequire let s:require = [<f-args>]$/;"	c
 trigger	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> trigger <C-R>=SqlIab_ReplaceConditionally('trigger', 'TRIGGER')<CR>$/;"	m
 TriggerSnippet	.\plugin\snipMate.vim	/^fun! TriggerSnippet()$/;"	f
+TriggerSnippet	plugin/snipMate.vim	/^fun! TriggerSnippet()$/;"	f
 Trim	.\plugin\EasyGrep.vim	/^function! s:Trim(s)$/;"	f
 TrimLast	.\plugin\fuzzyfinder.vim	/^function! s:TrimLast(str, len)$/;"	f
 true	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> true <C-R>=SqlIab_ReplaceConditionally('true', 'TRUE')<CR>$/;"	m

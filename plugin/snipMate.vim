@@ -153,22 +153,6 @@ fun! TriggerSnippet()
 		endif
 	endfor
 
-	" Modification by Andrew:
-	" If no predefined snippets were found and we actually have a valid word, 
-	" try the wildcard snippet.
-	for scope in [bufnr('%')] + split(&ft, '\.') + ['_']
-		if snippet == '' && trigger !~ '^\W*$'
-			let [_, snippet] = s:GetSnippet('*', scope)
-			let snippet = substitute(snippet, '${\*}', trigger, 'g')
-		endif
-		if snippet != ''
-			let col = col('.') - len(trigger)
-			sil exe 's/\V'.escape(trigger, '/.').'\%#//'
-			return snipMate#expandSnip(snippet, col)
-		endif
-	endfor
-	" End of modification
-
 	if exists('SuperTabKey')
 		call feedkeys(SuperTabKey)
 		return ''

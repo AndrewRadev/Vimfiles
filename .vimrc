@@ -34,8 +34,9 @@ MapToggle sl list
 MapToggle sh hlsearch
 MapToggle sw wrap
 
-" To avoid unexpected behaviour, remove the <s> mapping entirely:
+" Some annoying mappings removed:
 nnoremap s <Nop>
+nnoremap <C-p> <Nop>
 
 " Always move through visual lines:
 nnoremap j gj
@@ -65,8 +66,9 @@ let g:NERDTreeHijackNetrw = 0
 nmap Qf :FuzzyFinderTextMate<cr>
 nmap Qm :FuzzyFinderMruFile<cr>
 
-" Instead of <C-o>, use <bs> to go back files:
+" Use <bs>/<return> to go through history:
 nnoremap <bs> <C-o>
+nnoremap <Return> <C-i>
 
 " Completion remappings:
 inoremap <C-j> <C-n>
@@ -111,4 +113,4 @@ let g:ttags_display = 'quickfix'
 
 " Settings for Haskell mode:
 let g:haddock_browser = "firefox"
-let g:haddock_docdir = '/usr/share/doc/ghc/libraries/html/'
+let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
