@@ -55,12 +55,12 @@ if !exists('*g:textobj_function_vim_select')
     endif
 
     let [__unused__wise, b, e] = range
-    if 1 < e[1] - b[1]  " is ther some code?
+    if 1 < e[1] - b[1]  " is there some code?
       call setpos('.', b)
-      normal! j0
+      normal! j
       let b = getpos('.')
       call setpos('.', e)
-      normal! k$
+      normal! k
       let e = getpos('.')
       return ['V', b, e]
     else

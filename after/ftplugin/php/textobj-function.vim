@@ -28,15 +28,21 @@ if !exists('*g:textobj_function_php_select')
   endfunction
 
   function! s:select_a()
-    if line('.') != '}'
-      normal ][
+    if search('function', 'bcW') == 0
+      return 0
     endif
-    let e = getpos('.')
-    normal [[
-    normal! k$%0k
+
     let b = getpos('.')
 
-    if 1 < e[1] - b[1]  " is ther some code?
+    if search('{', 'cW') == 0
+      return 0
+    endif
+
+    normal! %
+
+    let e = getpos('.')
+
+    if 1 < e[1] - b[1]  " is there some code?
       return ['V', b, e]
     else
       return 0
@@ -44,19 +50,26 @@ if !exists('*g:textobj_function_php_select')
   endfunction
 
   function! s:select_i()
-    if line('.') != '}'
-      normal ][
+    if search('function', 'bcW') == 0
+      return 0
     endif
-    let e = getpos('.')
-    normal [[
+
+    if search('{', 'cW') == 0
+      return 0
+    endif
+
     let b = getpos('.')
 
-    if 1 < e[1] - b[1]  " is ther some code?
+    normal! %
+
+    let e = getpos('.')
+
+    if 1 < e[1] - b[1]  " is there some code?
       call setpos('.', b)
-      normal! j0
+      normal! j
       let b = getpos('.')
       call setpos('.', e)
-      normal! k$
+      normal! k
       let e = getpos('.')
       return ['V', b, e]
     else
