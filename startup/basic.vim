@@ -11,7 +11,6 @@ set expandtab smarttab
 set ffs=unix,dos
 set formatoptions=croqn
 set guioptions=crb
-set ignorecase smartcase
 set incsearch nohlsearch
 set laststatus=2
 set lazyredraw

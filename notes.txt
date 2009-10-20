@@ -1,5 +1,9 @@
 Think of something to make application detection easier for Utl.
-Think about removing the wildcard -- not used it once.
+
+Plugins:
+  * ku
+  * skeleton (remove default behaviour?)
+  * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
 
 Dbext:
   * Mappings
@@ -19,6 +23,7 @@ Snippets:
 Yaml snippets:
 	* Camelize, snake_case, etc.
 
+
+
 Changes made to plugins:
-  * snipMate -- might turn out not so useful after all
   * php indenting script
