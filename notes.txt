@@ -1,5 +1,8 @@
 Think of something to make application detection easier for Utl.
 
+Experimenting with textobjects:
+  * functions for php -- regexes?
+
 Plugins:
   * ku
   * skeleton (remove default behaviour?)
