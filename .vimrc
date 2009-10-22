@@ -17,8 +17,9 @@ command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
 " Align by columns:
 command! -range AlignSpace <line1>,<line2>call lib#AlignSpace()
 
-" Edit file in clipboard:
+" Edit important files quickly:
 command! Eclipboard edit `=@*`
+command! Epasswords edit ~/.passwords
 
 " Rebuild tags database:
 command! RebuildTags !ctags -R --sort=foldcase .
@@ -98,7 +99,7 @@ let g:ProjFile = '~/.vimproj'
 let g:ProjSplitMethod = 'edit '
 
 " EasyGrep options:
-let g:EasyGrepMode              = 0 " Don't track extension
+let g:EasyGrepMode              = 2 " Track extension
 let g:EasyGrepCommand           = 0 " vimgprep
 let g:EasyGrepRecursive         = 1 " -> True
 let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs

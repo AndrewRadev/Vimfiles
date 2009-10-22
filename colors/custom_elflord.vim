@@ -25,7 +25,7 @@ hi Error        term=reverse    ctermbg=Red         ctermfg=White guibg=Red     
 hi Function     term=bold       ctermfg=White       guifg=White
 hi Identifier   term=underline  cterm=bold          ctermfg=Cyan  guifg=#40ffff
 hi Ignore       ctermfg=black   guifg=bg
-hi Normal       cterm=none      guifg=cyan          guibg=black
+hi Normal       cterm=none      guifg=#dddddd       ctermfg=white guibg=black
 hi Operator     ctermfg=Red     guifg=Red
 hi Pmenu        cterm=none      ctermfg=255         ctermbg=235   guibg=#262626 guifg=#ffffff
 hi PmenuSbar    cterm=none      ctermfg=240         ctermbg=240   guibg=#444444

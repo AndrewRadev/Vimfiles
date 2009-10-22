@@ -1,13 +1,20 @@
 Think of something to make application detection easier for Utl.
 Group contents of "plugin" by folders wherever possible.
 
+Colorscheme:
+	* Experiment with "lucius" colorscheme -- merge with custom_elflord or modify and use?
+	* tabline -- pure black? grey? any default content for the unused area (----)?
+
 Experimenting with textobjects:
   * try to generalize the function matchers
+  * C funcs != C++ funcs, apparently...
+  * Haskell funcs? :)
 
 Plugins:
   * ku
   * skeleton (remove default behaviour?)
   * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
+  * ctk for Haskell, C#, C++
 
 Dbext:
   * Mappings

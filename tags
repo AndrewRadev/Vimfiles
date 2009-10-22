@@ -354,7 +354,6 @@ CamelCase	.\ftplugin\haskell_doc.vim	/^function! CamelCase(shorthand,string)$/;"
 CartesianProduct	.\plugin\fuzzyfinder.vim	/^function! s:CartesianProduct(lists)$/;"	f
 cascade	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> cascade <C-R>=SqlIab_ReplaceConditionally('cascade', 'CASCADE')<CR>$/;"	m
 CC	.\projects\symfony.project.vim	/^command! CC !php symfony cc$/;"	c
-CC	projects/symfony.project.vim	/^command! CC !php symfony cc$/;"	c
 centerView	.\plugin\NERD_tree.vim	/^function! s:centerView()$/;"	f
 changesurround	.\plugin\surround.vim	/^function! s:changesurround() " {{{1$/;"	f
 char	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> char <C-R>=SqlIab_ReplaceConditionally('char', 'CHAR')<CR>$/;"	m
@@ -1088,7 +1087,6 @@ g:Align_xstrlen	.\autoload\Align.vim	/^  let g:Align_xstrlen= 1$/;"	v
 g:autoloaded_rails	.\autoload\rails.vim	/^let g:autoloaded_rails = '4.0'$/;"	v
 g:autotagCtagsCmd	.\plugin\autotag.vim	/^   let g:autotagCtagsCmd="ctags"$/;"	v
 g:autotagCtagsCmd	.\projects\symfony.project.vim	/^let g:autotagCtagsCmd = "ctags --sort=foldcase"$/;"	v
-g:autotagCtagsCmd	projects/symfony.project.vim	/^let g:autotagCtagsCmd = "ctags --sort=foldcase"$/;"	v
 g:autotagDisabled	.\plugin\autotag.vim	/^   let g:autotagDisabled=0$/;"	v
 g:autotagExcludeSuffixes	.\plugin\autotag.vim	/^   let g:autotagExcludeSuffixes="tml.xml.text.txt"$/;"	v
 g:autotagTagsFile	.\plugin\autotag.vim	/^   let g:autotagTagsFile="tags"$/;"	v
@@ -2101,7 +2099,6 @@ prephelp	.\autoload\rails.vim	/^function! s:prephelp()$/;"	f
 prev	.\plugin\vimmpc.py	/^    def prev(self):$/;"	m	class:MPC
 Preview	.\autoload\rails.vim	/^function! s:Preview(bang,lnum,arg)$/;"	f
 Preview	.\projects\symfony.project.vim	/^command! Preview Utl ol http:\/\/localhost\/$/;"	c
-Preview	projects/symfony.project.vim	/^command! Preview Utl ol http:\/\/localhost:80\/$/;"	c
 PreviewCSSColorInLine	syntax/css.vim	/^function! s:PreviewCSSColorInLine(where)$/;"	f
 previewNode	.\plugin\NERD_tree.vim	/^function! s:previewNode(openNewWin)$/;"	f
 primary	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> primary <C-R>=SqlIab_ReplaceConditionally('primary', 'PRIMARY')<CR>$/;"	m
@@ -2267,9 +2264,7 @@ readfile	.\autoload\rails.vim	/^function! s:readfile(path,...)$/;"	f
 readPlaylist	.\plugin\vimmpc.py	/^    def readPlaylist(self):$/;"	m	class:MPC
 real	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> real <C-R>=SqlIab_ReplaceConditionally('real', 'REAL')<CR>$/;"	m
 RebuildDb	.\projects\symfony.project.vim	/^command! RebuildDb !php symfony doctrine:build-all-reload$/;"	c
-RebuildDb	projects/symfony.project.vim	/^command! RebuildDb !php symfony doctrine:build-all-reload & php symfony doctrine:build-all-reload --env=test -F$/;"	c
 RebuildTags	.\projects\symfony.project.vim	/^command! RebuildTags !ctags -R --exclude=symfony --sort=foldcase .$/;"	c
-RebuildTags	projects/symfony.project.vim	/^command! RebuildTags !ctags -R --exclude=symfony --sort=foldcase .$/;"	c
 ReconfigPaths	.\plugin\symfony.vim	/^function! ReconfigPaths()$/;"	f
 redraw	.\plugin\surround.vim	/^function! s:redraw()$/;"	f
 Ref	.\plugin\matchit.vim	/^fun! s:Ref(string, d, ...)$/;"	f
@@ -2344,7 +2339,6 @@ rows	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> rows <C-R>=SqlIab_Re
 rquote	.\autoload\rails.vim	/^function! s:rquote(str)$/;"	f
 rule	.\ftplugin\sql_iabbr.vim	/^inoreabbr <silent> <buffer> rule <C-R>=SqlIab_ReplaceConditionally('rule', 'RULE')<CR>$/;"	m
 Run	.\projects\symfony.project.vim	/^command! Run !php %$/;"	c
-Run	projects/symfony.project.vim	/^command! Run !php %$/;"	c
 RWP	.\plugin\cecutil.vim	/^com! -bar -nargs=0 RWP	call RestoreWinPosn()$/;"	c
 S	.\plugin\surround.vim	/^            vmap  S    <Plug>VSurround$/;"	m
 s	.\test\tlib.vim	/^    let s = printf('%sfoo%sbar%s', c, c, c)$/;"	v
@@ -2705,7 +2699,6 @@ TBrowseOutput	.\plugin\02tlib.vim	/^command! -nargs=1 -complete=command TBrowseO
 test	.\test\tlib.vim	/^let test = tlib#Test#New()$/;"	v
 test1	.\test\tlib.vim	/^let test1 = tlib#Test#New()$/;"	v
 TestAll	.\projects\symfony.project.vim	/^command! TestAll !php symfony test:all$/;"	c
-TestAll	projects/symfony.project.vim	/^command! TestAll !php symfony test:all$/;"	c
 TestArgs	.\test\tlib.vim	/^function! TestArgs(...) "{{{3$/;"	f
 TestArgs1	.\test\tlib.vim	/^function! TestArgs1(...) "{{{3$/;"	f
 TestArgs2	.\test\tlib.vim	/^function! TestArgs2(...) "{{{3$/;"	f
