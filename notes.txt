@@ -1,4 +1,5 @@
 Think of something to make application detection easier for Utl.
+Group contents of "plugin" by folders wherever possible.
 
 Experimenting with textobjects:
   * try to generalize the function matchers

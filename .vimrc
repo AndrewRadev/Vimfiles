@@ -66,9 +66,8 @@ let g:NERDTreeHijackNetrw = 0
 nmap Qf :FuzzyFinderTextMate<cr>
 nmap Qm :FuzzyFinderMruFile<cr>
 
-" Use <bs>/<return> to go through history:
+" Use <bs> to go back through jumps:
 nnoremap <bs> <C-o>
-nnoremap <Return> <C-i>
 
 " Completion remappings:
 inoremap <C-j> <C-n>
@@ -96,7 +95,7 @@ let g:fuzzy_ignore = "*/.svn/*;.git/*"
 
 " Proj settings:
 let g:ProjFile = '~/.vimproj'
-let g:ProjSplitMethod = 'edit'
+let g:ProjSplitMethod = 'edit '
 
 " EasyGrep options:
 let g:EasyGrepMode              = 0 " Don't track extension
@@ -117,3 +116,6 @@ let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
 
 " Hack to fix textobj-indent:
 runtime! autoload/textobj/indent.vim
+
+" Speed things up a bit:
+let loaded_matchparen = 1
