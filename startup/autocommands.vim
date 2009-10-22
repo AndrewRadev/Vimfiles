@@ -19,7 +19,9 @@ autocmd BufEnter *.hs compiler ghc
 
 autocmd BufEnter *.tags set filetype=tags
 
+" Custom filetypes:
 autocmd BufEnter Result set filetype=dbext_result.txt
+autocmd BufEnter .passwords set filetype=yaml.passwords
 
 " Maximise on open on Win32:
 if has('win32')
