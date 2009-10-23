@@ -1,14 +1,15 @@
-Think of something to make application detection easier for Utl.
 Group contents of "plugin" by folders wherever possible.
+Screen + <URL:http://www.vim.org/scripts/script.php?script_id=2348>
 
 Colorscheme:
-	* Experiment with "lucius" colorscheme -- merge with custom_elflord or modify and use?
+	* Experiment with colorschemes
 	* tabline -- pure black? grey? any default content for the unused area (----)?
 
 Experimenting with textobjects:
   * try to generalize the function matchers
   * C funcs != C++ funcs, apparently...
   * Haskell funcs? :)
+  * "between"-textobject (=...;) ?
 
 Plugins:
   * ku
@@ -17,6 +18,7 @@ Plugins:
   * ctk for Haskell, C#, C++
   * a.vim again, but only when I start using C/C++
   * autocomplpop again?
+  * consider compview... or just find a way to integrate [I with the quickfix window
 
 Dbext:
   * Mappings

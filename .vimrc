@@ -120,3 +120,6 @@ runtime! autoload/textobj/indent.vim
 
 " Speed things up a bit:
 let loaded_matchparen = 1
+
+" Hmm...
+nmap <Space> :
