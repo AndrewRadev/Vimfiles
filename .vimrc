@@ -18,7 +18,7 @@ command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
 command! -range AlignSpace <line1>,<line2>call lib#AlignSpace()
 
 " Edit important files quickly:
-command! Eclipboard edit `=@*`
+command! Eclipboard ClipBrd
 command! Epasswords edit ~/.passwords
 
 " Rebuild tags database:
