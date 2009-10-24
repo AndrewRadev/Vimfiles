@@ -1,5 +1,5 @@
 " Tagfiles:
-set tags=tags
+set tags=./tags,tags
 set tags+=symfony.tags
 
 " Custom snippets:

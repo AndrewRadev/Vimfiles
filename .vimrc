@@ -22,7 +22,7 @@ command! Eclipboard edit `=@*`
 command! Epasswords edit ~/.passwords
 
 " Rebuild tags database:
-command! RebuildTags !ctags -R --sort=foldcase .
+command! RebuildTags !ctags -R .
 
 " Generic console, override in different filetypes:
 if has('win32')
@@ -105,9 +105,6 @@ let g:EasyGrepRecursive         = 1 " -> True
 let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
 let g:EasyGrepExtraWarnings     = 1 " -> True
 
-" AutoTags options:
-let g:autotagCtagsCmd = "ctags --sort=foldcase"
-
 " TTags options:
 let g:ttags_display = 'quickfix'
 
@@ -118,5 +115,8 @@ let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
 " Hack to fix textobj-indent:
 runtime! autoload/textobj/indent.vim
 
-" Speed things up a bit:
-let loaded_matchparen = 1
+" Omnicppcomplete options:
+let OmniCpp_NamespaceSearch     = 1 " -> True
+let OmniCpp_ShowPrototypeInAbbr = 1 " -> True
+let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert
+let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
