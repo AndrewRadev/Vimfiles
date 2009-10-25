@@ -1123,7 +1123,7 @@ Rake	autoload/rails.vim	/^function! s:Rake(bang,lnum,arg)$/;"	f
 RebuildDb	projects/symfony.project.vim	/^command! RebuildDb silent$/;"	c
 RebuildExe	projects/sdl.cpp.project.vim	/^command! RebuildExe !g++ -o %:r % -lSDL$/;"	c
 RebuildTags	projects/sdl.cpp.project.vim	/^command! RebuildTags !ctags -R .$/;"	c
-RebuildTags	projects/symfony.project.vim	/^command! RebuildTags silent !ctags -R --exclude=symfony,tmp --sort=foldcase --languages=php .$/;"	c
+RebuildTags	projects/symfony.project.vim	/^command! RebuildTags silent !ctags -R --exclude=symfony,tmp --languages=php .$/;"	c
 ReconfigPaths	plugin/symfony.vim	/^function! ReconfigPaths()$/;"	f
 Ref	plugin/matchit.vim	/^fun! s:Ref(string, d, ...)$/;"	f
 Refresh	autoload/rails.vim	/^function! s:Refresh(bang)$/;"	f
