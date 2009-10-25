@@ -1,5 +1,7 @@
 Think of something to make application detection easier for Utl.
 Group contents of "plugin" by folders wherever possible.
+Think about RunView in vim for Doctrine queries
+Expand surround.vim with if() {..}, function wrapping, etc...
 
 Colorscheme:
 	* Experiment with "lucius" colorscheme -- merge with custom_elflord or modify and use?
@@ -16,7 +18,6 @@ Plugins:
   * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
   * ctk for Haskell, C#, C++
   * a.vim again, but only when I start using C/C++
-  * autocomplpop again?
 
 Dbext:
   * Mappings
@@ -30,6 +31,7 @@ Haskell:
   * Figure out the problems with documentation searches
 
 Snippets: 
+  * Add sql snippets
   * nested snippets (additional check on <tab>?)
   * wildcard + additional character?
 

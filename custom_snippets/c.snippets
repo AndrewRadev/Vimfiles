@@ -7,7 +7,7 @@ snippet main
 	}
 # #include <...>
 snippet inc
-	#include <${1:stdlib}.h>${2}
+	#include <${1:stdlib.h}>${2}
 # #include "..."
 snippet Inc
 	#include "${1:`Filename("$1.h")`}"${2}
@@ -36,7 +36,7 @@ snippet once
 	#endif /* end of include guard: $1 */
 # If Condition
 snippet if
-	if (${1:/* condition */}) {
+	if ( ${1:/* condition */} ) {
 		${2:/* code */}
 	}
 snippet else
@@ -50,20 +50,20 @@ snippet t
 snippet do
 	do {
 		${2:/* code */}
-	} while (${1:/* condition */});
+	} while ( ${1:/* condition */} );
 # While Loop
 snippet wh
-	while (${1:/* condition */}) {
+	while ( ${1:/* condition */} ) {
 		${2:/* code */}
 	}
 # For Loop
 snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for ( ${2:i} = 0; $2 < ${1:count}; $2${3:++} ) {
 		${4:/* code */}
 	}
 # Custom For Loop
 snippet forr
-	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
+	for ( ${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++} ) {
 		${5:/* code */}
 	}
 # Function
@@ -96,11 +96,9 @@ snippet tde
 # unfortunately version this isn't as nice as TextMates's, given the lack of a
 # dynamic `...`
 snippet pr
-	printf("${1:%s}\n"${2});${3}
+	printf( "${1:%s}\n"${2} );${3}
 # fprintf (again, this isn't as nice as TextMate's version, but it works)
 snippet fpr
-	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}
+	fprintf( ${1:stderr}, "${2:%s}\n"${3} );${4}
 snippet .
 	[${1}]${2}
-snippet 0
-	NULL${1}

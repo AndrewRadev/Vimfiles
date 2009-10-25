@@ -84,7 +84,7 @@ nmap <Tab> >>
 nmap <S-Tab> <<
 
 " Dbext settings:
-let g:dbext_default_buffer_lines = 30
+let g:dbext_default_buffer_lines = 20
 
 " Snippet settings:
 let g:snippets_dir = "~/.vim/custom_snippets/"
@@ -92,7 +92,7 @@ let g:snips_author = "Andrew Radev"
 
 " FuzzyFinderTextMate settings:
 let g:fuzzy_ceiling = 20000
-let g:fuzzy_ignore = "*/.svn/*;.git/*"
+let g:fuzzy_ignore = "*/.svn/*;.git/*;*/tmp/*"
 
 " Proj settings:
 let g:ProjFile = '~/.vimproj'
@@ -120,3 +120,5 @@ let OmniCpp_NamespaceSearch     = 1 " -> True
 let OmniCpp_ShowPrototypeInAbbr = 1 " -> True
 let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert
 let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
+let OmniCpp_MayCompleteDot      = 0 " Don't automatically complete
+let OmniCpp_MayCompleteArrow    = 0 " Don't automatically complete

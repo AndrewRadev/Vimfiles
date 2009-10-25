@@ -8,4 +8,4 @@ set makeprg=g++\ %\ -lSDL
 "let g:autotagCtagsCmd = "ctags "
 
 command! RebuildTags !ctags -R .
-command! RebuildExe !g++ -o %:r %
+command! RebuildExe !g++ -o %:r % -lSDL
