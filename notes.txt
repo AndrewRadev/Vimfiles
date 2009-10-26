@@ -1,5 +1,7 @@
 Group contents of "plugin" by folders wherever possible.
 Screen + <URL:http://www.vim.org/scripts/script.php?script_id=2348>
+Think about RunView in vim for Doctrine queries
+Expand surround.vim with if() {..}, function wrapping, etc...
 
 Colorscheme:
 	* Experiment with colorschemes
@@ -17,7 +19,6 @@ Plugins:
   * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
   * ctk for Haskell, C#, C++
   * a.vim again, but only when I start using C/C++
-  * autocomplpop again?
   * consider compview... or just find a way to integrate [I with the quickfix window
 
 Dbext:
@@ -32,6 +33,7 @@ Haskell:
   * Figure out the problems with documentation searches
 
 Snippets: 
+  * Add sql snippets
   * nested snippets (additional check on <tab>?)
   * wildcard + additional character?
 

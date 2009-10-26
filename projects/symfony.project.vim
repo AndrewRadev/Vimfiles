@@ -1,5 +1,5 @@
 " Tagfiles:
-set tags=tags
+set tags=./tags,tags
 set tags+=symfony.tags
 
 " Custom snippets:
@@ -12,7 +12,7 @@ autocmd BufEnter Base*.class.php set readonly
 " Autotag settings:
 let g:autotagCtagsCmd = "ctags --sort=foldcase"
 
-command! RebuildTags silent !ctags -R --exclude=symfony,tmp --sort=foldcase --languages=php .
+command! RebuildTags silent !ctags -R --exclude=symfony,tmp --languages=php .
 command! RebuildDb silent
       \ !php symfony doctrine:build-all-reload 
       \ & php symfony doctrine:build-all-reload --env=test -F

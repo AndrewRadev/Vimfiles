@@ -6,6 +6,9 @@ autocmd BufReadPost *
 
 autocmd FileType text setlocal textwidth=98
 
+autocmd BufEnter *.cpp compiler gcc
+autocmd BufEnter *.c compiler gcc
+
 autocmd BufEnter *.php set filetype=php.html.javascript
 autocmd BufEnter *.php compiler php
 
