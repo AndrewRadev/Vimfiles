@@ -5,7 +5,6 @@ Expand surround.vim with if() {..}, function wrapping, etc...
 
 Colorscheme:
 	* Experiment with colorschemes
-	* tabline -- pure black? grey? any default content for the unused area (----)?
 
 Experimenting with textobjects:
   * try to generalize the function matchers

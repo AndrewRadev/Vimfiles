@@ -1,5 +1,5 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
-!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
@@ -276,7 +276,6 @@ BufSyntax	autoload/rails.vim	/^function! s:BufSyntax()$/;"	f
 BuildContextStack	autoload/omni/cpp/namespaces.vim	/^function! s:BuildContextStack(namespaces, szCurrentScope)$/;"	f
 BuildPatternList	plugin/EasyGrep.vim	/^function! s:BuildPatternList(...)$/;"	f
 BuildTabStops	autoload/snipMate.vim	/^fun s:BuildTabStops(snip, lnum, col, indent)$/;"	f
-CC	projects/symfony.project.vim	/^command! CC silent !php symfony cc$/;"	c
 Call	plugin/dbext.vim	/^command! -nargs=+ Call              :call dbext#DB_execSql("call " . <q-args>)$/;"	c
 CamelCase	ftplugin/haskell_doc.vim	/^function! CamelCase(shorthand,string)$/;"	f
 CanUseOmnicompletion	autoload/omni/cpp/maycomplete.vim	/^function! s:CanUseOmnicompletion()$/;"	f
@@ -1084,7 +1083,6 @@ PlaceErrorMarkersHook	plugin/cuteErrorMarker.vim	/^fun! PlaceErrorMarkersHook() 
 Pos	additional_scripts/cream-statusline-prototype.vim	/^function! s:Pos(...)$/;"	f
 PostCreate	plugin/EasyGrep.vim	/^function! s:PostCreate(str, sp)$/;"	f
 Preview	autoload/rails.vim	/^function! s:Preview(bang,lnum,arg)$/;"	f
-Preview	projects/symfony.project.vim	/^command! Preview Utl ol http:\/\/localhost:80\/$/;"	c
 PrintFormat	autoload/tlib/string.vim	/^function! s:PrintFormat(format, string) "{{{3$/;"	f
 ProcessFile	plugin/snipMate.vim	/^fun s:ProcessFile(file, ft, ...)$/;"	f
 ProcessHaddockIndexes	ftplugin/haskell_doc.vim	/^function! ProcessHaddockIndexes(location,files)$/;"	f
@@ -1120,10 +1118,8 @@ RailsNamedRoutes	autoload/rails.vim	/^function! RailsNamedRoutes()$/;"	f
 RailsRevision	autoload/rails.vim	/^function! RailsRevision()$/;"	f
 RailsRoot	autoload/rails.vim	/^function! RailsRoot()$/;"	f
 Rake	autoload/rails.vim	/^function! s:Rake(bang,lnum,arg)$/;"	f
-RebuildDb	projects/symfony.project.vim	/^command! RebuildDb silent$/;"	c
 RebuildExe	projects/sdl.cpp.project.vim	/^command! RebuildExe !g++ -o %:r % -lSDL$/;"	c
 RebuildTags	projects/sdl.cpp.project.vim	/^command! RebuildTags !ctags -R .$/;"	c
-RebuildTags	projects/symfony.project.vim	/^command! RebuildTags silent !ctags -R --exclude=symfony,tmp --languages=php .$/;"	c
 ReconfigPaths	plugin/symfony.vim	/^function! ReconfigPaths()$/;"	f
 Ref	plugin/matchit.vim	/^fun! s:Ref(string, d, ...)$/;"	f
 Refresh	autoload/rails.vim	/^function! s:Refresh(bang)$/;"	f
@@ -1157,7 +1153,6 @@ RestoreVariable	plugin/EasyGrep.vim	/^function! s:RestoreVariable(var, ...)$/;"	
 RestoreWinPosn	plugin/cecutil.vim	/^fun! RestoreWinPosn(...)$/;"	f
 RestoreWindowSettings2	autoload/genutils.vim	/^function! s:RestoreWindowSettings2(id)$/;"	f
 RewriteFormatString	autoload/tlib/string.vim	/^function! s:RewriteFormatString(format, pattern, string) "{{{3$/;"	f
-Run	projects/symfony.project.vim	/^command! Run !php %$/;"	c
 S	plugin/surround.vim	/^            vmap  S    <Plug>VSurround$/;"	m
 SM	plugin/cecutil.vim	/^com! -bar -nargs=1 SM	call SaveMark(<q-args>)$/;"	c
 SNR	autoload/genutils.vim	/^function! s:SNR()$/;"	f
@@ -1223,7 +1218,6 @@ TagList_Start	plugin/taglist.vim	/^function! TagList_Start()$/;"	f
 TagList_WrapUp	plugin/taglist.vim	/^function! TagList_WrapUp()$/;"	f
 TagList_title	plugin/taglist.vim	/^    let TagList_title = "__Tag_List__"$/;"	v
 TagPopupList	autoload/omni/cpp/complete.vim	/^function! s:TagPopupList(szTypeName, szBase)$/;"	f
-TestAll	projects/symfony.project.vim	/^command! TestAll !php symfony test:all$/;"	c
 TheCWord	autoload/rails.vim	/^function! s:TheCWord()$/;"	f
 Tlist	plugin/taglist.vim	/^    command! -nargs=0 -bar Tlist TlistToggle$/;"	c
 TlistAddFiles	plugin/taglist.vim	/^    command! -nargs=+ -complete=file TlistAddFiles$/;"	c
@@ -1956,12 +1950,10 @@ g:ST_WIN_CMD	autoload/genutils.vim	/^let g:ST_WIN_CMD = 0 | let g:ST_WIN_SH = 1 
 g:__CUTEERRORMARKER_VIM__	plugin/cuteErrorMarker.vim	/^let g:__CUTEERRORMARKER_VIM__ = 1$/;"	v
 g:autoloaded_rails	autoload/rails.vim	/^let g:autoloaded_rails = '4.0'$/;"	v
 g:autotagCtagsCmd	plugin/autotag.vim	/^   let g:autotagCtagsCmd="ctags"$/;"	v
-g:autotagCtagsCmd	projects/symfony.project.vim	/^let g:autotagCtagsCmd = "ctags --sort=foldcase"$/;"	v
 g:autotagDisabled	plugin/autotag.vim	/^   let g:autotagDisabled=0$/;"	v
 g:autotagExcludeSuffixes	plugin/autotag.vim	/^   let g:autotagExcludeSuffixes="tml.xml.text.txt"$/;"	v
 g:autotagTagsFile	plugin/autotag.vim	/^   let g:autotagTagsFile="tags"$/;"	v
 g:autotagVerbosityLevel	plugin/autotag.vim	/^   let g:autotagVerbosityLevel=0$/;"	v
-g:colors_name	colors/custom_elflord.vim	/^let g:colors_name = "custom_elflord"$/;"	v
 g:colors_name	colors/leo.vim	/^let g:colors_name = "leo256"$/;"	v
 g:dbext_dbi_debug	autoload/dbext_dbi.vim	/^   let g:dbext_dbi_debug = 0$/;"	v
 g:dbext_dbi_max_rows	autoload/dbext_dbi.vim	/^   let g:dbext_dbi_max_rows = 300$/;"	v

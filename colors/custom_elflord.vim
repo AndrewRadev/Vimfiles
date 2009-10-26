@@ -35,21 +35,47 @@ hi PreProc      term=underline  ctermfg=LightBlue   guifg=#ff80ff
 hi Repeat       term=underline  ctermfg=White       guifg=white
 hi Special      term=bold       ctermfg=DarkMagenta guifg=Red
 hi Statement    term=bold       ctermfg=Yellow      gui=bold      guifg=#aa4444
-hi StatusLine   cterm=bold      ctermfg=16          ctermbg=White guibg=#000000 guifg=White
-hi StatusLineNC cterm=none      ctermfg=16          ctermbg=Gray  guibg=#000000 guifg=Gray
-hi Folded       cterm=none      ctermfg=16          ctermbg=111   guifg=#000000 guibg=#87afd7
-hi Todo         term=standout   ctermbg=Yellow      ctermfg=Black guifg=Blue    guibg=Yellow
+
+" Status Line
+" -----------
+" status line for current window
+hi StatusLine       guifg=#e0e0e0           guibg=#363946           gui=bold
+hi StatusLine       ctermfg=254             ctermbg=237             cterm=bold
+" status line for non-current windows
+hi StatusLineNC     guifg=#767986           guibg=#363946           gui=none
+hi StatusLineNC     ctermfg=244             ctermbg=237             cterm=none
+
+" Tab Lines
+" ---------
+" tab pages line, not active tab page label
+hi TabLine          guifg=#b6bf98           guibg=#363946           gui=none
+hi TabLine          ctermfg=244             ctermbg=236             cterm=none
+" tab pages line, where there are no labels
+hi TabLineFill      guifg=#cfcfaf           guibg=#363946           gui=none
+hi TabLineFill      ctermfg=187             ctermbg=236             cterm=none
+" tab pages line, active tab page label
+hi TabLineSel       guifg=#efefef           guibg=#414658           gui=bold
+hi TabLineSel       ctermfg=254             ctermbg=236             cterm=bold
+
+" Folds
+" -----
+" line used for closed folds
+hi Folded           guifg=#91d6f8           guibg=#363946           gui=none
+hi Folded           ctermfg=117             ctermbg=238             cterm=none
+" column on side used to indicated open and closed folds
+hi FoldColumn       guifg=#91d6f8           guibg=#363946           gui=none
+hi FoldColumn       ctermfg=117             ctermbg=238             cterm=none
+
+hi Todo             guifg=#efef8f           guibg=NONE              gui=underline
+hi Todo             ctermfg=228             ctermbg=NONE            cterm=underline
+
 hi Type         term=underline  ctermfg=LightGreen  guifg=#60ff60 gui=bold
 hi VertSplit    cterm=none      ctermfg=254         guifg=#ffffff gui=none
-hi WildMenu     cterm=none      ctermfg=16          ctermbg=11
+hi WildMenu         guifg=#cae682           guibg=#363946           gui=bold,underline
+hi WildMenu         ctermfg=16              ctermbg=186             cterm=bold
 hi SignColumn   cterm=none      ctermbg=none ctermfg=White        guibg=#000000
 
-hi ShowMarksHLo cterm=None ctermfg=Magenta gui=None guifg=Magenta
-hi ShowMarksHLu cterm=None ctermfg=Red gui=None guifg=Red
-hi ShowMarksHLl cterm=None ctermfg=LightBlue gui=None guifg=LightBlue
-hi ShowMarksHLm cterm=None ctermfg=Red gui=None guifg=Red
-
-hi NonText cterm=NONE ctermfg=NONE
+"hi NonText cterm=NONE ctermfg=NONE
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
