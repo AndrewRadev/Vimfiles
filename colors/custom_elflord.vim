@@ -22,8 +22,8 @@ hi DiffDelete   cterm=none      ctermfg=238         ctermbg=244   guibg=#808080 
 hi DiffText     cterm=bold      ctermfg=255         ctermbg=196   guifg=#ffffff
 hi Directory    cterm=none      ctermfg=Green       guifg=Green
 hi Error        term=reverse    ctermbg=Red         ctermfg=White guibg=Red     guifg=White
-hi Function     term=bold       ctermfg=White       guifg=White
-hi Identifier   term=underline  cterm=bold          ctermfg=Cyan  guifg=#40ffff
+hi Function     term=bold       ctermfg=Cyan        guifg=Cyan
+hi Identifier   term=underline  ctermfg=Cyan        guifg=#40ffff
 hi Ignore       ctermfg=black   guifg=bg
 hi Normal       cterm=none      guifg=#dddddd       ctermfg=white guibg=black
 hi Operator     ctermfg=Red     guifg=Red
@@ -39,11 +39,11 @@ hi Statement    term=bold       ctermfg=Yellow      gui=bold      guifg=#aa4444
 " Status Line
 " -----------
 " status line for current window
-hi StatusLine       guifg=#e0e0e0           guibg=#363946           gui=bold
-hi StatusLine       ctermfg=254             ctermbg=237             cterm=bold
+"hi StatusLine       guifg=#e0e0e0           guibg=#363946           gui=bold
+"hi StatusLine       ctermfg=254             ctermbg=237             cterm=bold
 " status line for non-current windows
-hi StatusLineNC     guifg=#767986           guibg=#363946           gui=none
-hi StatusLineNC     ctermfg=244             ctermbg=237             cterm=none
+"hi StatusLineNC     guifg=#767986           guibg=#363946           gui=none
+"hi StatusLineNC     ctermfg=244             ctermbg=237             cterm=none
 
 " Tab Lines
 " ---------
@@ -71,8 +71,8 @@ hi Todo             ctermfg=228             ctermbg=NONE            cterm=underl
 
 hi Type         term=underline  ctermfg=LightGreen  guifg=#60ff60 gui=bold
 hi VertSplit    cterm=none      ctermfg=254         guifg=#ffffff gui=none
-hi WildMenu         guifg=#cae682           guibg=#363946           gui=bold,underline
-hi WildMenu         ctermfg=16              ctermbg=186             cterm=bold
+"hi WildMenu         guifg=#cae682           guibg=#363946           gui=bold,underline
+"hi WildMenu         ctermfg=16              ctermbg=186             cterm=bold
 hi SignColumn   cterm=none      ctermbg=none ctermfg=White        guibg=#000000
 
 "hi NonText cterm=NONE ctermfg=NONE

@@ -122,3 +122,9 @@ let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert
 let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
 let OmniCpp_MayCompleteDot      = 0 " Don't automatically complete
 let OmniCpp_MayCompleteArrow    = 0 " Don't automatically complete
+
+" Autocomplete options:
+let g:acp_enableAtStartup       = 0   " Disable for now
+let g:acp_ignorecaseOption      = 0   " Don't ignore case, that's annoying
+let g:acp_completeOption        = '.' " Speed up?
+let g:acp_behaviorKeywordLength = 3   " Speed up?
