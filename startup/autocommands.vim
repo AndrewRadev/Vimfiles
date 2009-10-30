@@ -23,6 +23,9 @@ autocmd BufEnter *.hs compiler ghc
 
 autocmd BufEnter *.tags set filetype=tags
 
+autocmd BufRead,BufNewFile *.mkd set filetype=mkd
+autocmd BufRead,BufNewFile *.markdown set filetype=mkd
+
 " Custom filetypes:
 autocmd BufEnter Result set filetype=dbext_result.txt
 autocmd BufEnter .passwords set filetype=yaml.passwords
