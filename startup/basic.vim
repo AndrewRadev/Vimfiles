@@ -33,8 +33,9 @@ set wildmenu
 
 if has("win32")
   set backupdir=c:/tmp
-  set guifont=Andale_Mono:h12,DejaVu_Sans_Mono:h12
+  set guifont=Inconsolata:h15,Andale_Mono:h12,DejaVu_Sans_Mono:h12
 else
   set backupdir=~/.backup
-  set guifont=Andale\ Mono\ 13
+"  set guifont=Andale\ Mono\ 13
+  set guifont=Inconsolata\ 15
 endif
