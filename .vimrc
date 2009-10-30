@@ -72,7 +72,7 @@ nnoremap <bs> <C-o>
 
 " Completion remappings:
 inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
@@ -128,3 +128,10 @@ let g:acp_enableAtStartup       = 0   " Disable for now
 let g:acp_ignorecaseOption      = 0   " Don't ignore case, that's annoying
 let g:acp_completeOption        = '.' " Speed up?
 let g:acp_behaviorKeywordLength = 3   " Speed up?
+
+" Smartword mappings:
+map w  <Plug>(smartword-w)
+map b  <Plug>(smartword-b)
+map e  <Plug>(smartword-e)
+map ge <Plug>(smartword-ge)
+noremap cw cw

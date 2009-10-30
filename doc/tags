@@ -93,6 +93,10 @@
 :TlistUndebug	taglist.txt	/*:TlistUndebug*
 :TlistUnlock	taglist.txt	/*:TlistUnlock*
 :TlistUpdate	taglist.txt	/*:TlistUpdate*
+<Plug>(smartword-b)	smartword.txt	/*<Plug>(smartword-b)*
+<Plug>(smartword-e)	smartword.txt	/*<Plug>(smartword-e)*
+<Plug>(smartword-ge)	smartword.txt	/*<Plug>(smartword-ge)*
+<Plug>(smartword-w)	smartword.txt	/*<Plug>(smartword-w)*
 <Plug>(textobj-function-a)	textobj-function.txt	/*<Plug>(textobj-function-a)*
 <Plug>(textobj-function-i)	textobj-function.txt	/*<Plug>(textobj-function-i)*
 <Plug>(textobj-indent-a)	textobj-indent.txt	/*<Plug>(textobj-indent-a)*
@@ -775,6 +779,15 @@ rails-tabs	rails.txt	/*rails-tabs*
 rails-template-types	rails.txt	/*rails-template-types*
 rails-vim-integration	rails.txt	/*rails-vim-integration*
 rails.txt	rails.txt	/*rails.txt*
+smartword	smartword.txt	/*smartword*
+smartword-bugs	smartword.txt	/*smartword-bugs*
+smartword-changelog	smartword.txt	/*smartword-changelog*
+smartword-contents	smartword.txt	/*smartword-contents*
+smartword-examples	smartword.txt	/*smartword-examples*
+smartword-interface	smartword.txt	/*smartword-interface*
+smartword-introduction	smartword.txt	/*smartword-introduction*
+smartword-mappings	smartword.txt	/*smartword-mappings*
+smartword.txt	smartword.txt	/*smartword.txt*
 snipMate	snipMate.txt	/*snipMate*
 snipMate-$#	snipMate.txt	/*snipMate-$#*
 snipMate-${#:}	snipMate.txt	/*snipMate-${#:}*
