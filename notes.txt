@@ -15,7 +15,6 @@ Experimenting with textobjects:
 Plugins:
   * ku
   * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
-  * a.vim again, but only when I start using C/C++
   * consider compview... or just find a way to integrate [I with the quickfix window
 
 Dbext:
