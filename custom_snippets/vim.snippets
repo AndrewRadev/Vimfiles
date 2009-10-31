@@ -30,3 +30,9 @@ snippet ife
 	else
 		${3}
 	endif
+snippet skeleton C# OpenTK Mono project
+	runtime projects/opentk.project.vim
+
+	set makeprg=gmcs\ -o:bin/${1:prog}.exe\ -r:System.dll\ -r:System.Drawing.dll\ -r:/home/andrew/lib/OpenTK.dll\ /nologo\ /noconfig\ *.cs
+
+	command! Run :!mono $1.exe &

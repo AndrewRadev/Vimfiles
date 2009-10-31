@@ -29,5 +29,5 @@ CompilerSet errorformat=
 	\%-G%.%#
 
 " default make
-CompilerSet makeprg=gmcs\ %
+"CompilerSet makeprg=gmcs\ %
 "CompilerSet makeprg=make

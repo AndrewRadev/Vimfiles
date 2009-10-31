@@ -1,0 +1,33 @@
+snippet class
+	public class ${1:ClassName}
+	{
+		${2:// class body}
+	}
+snippet foreach
+	foreach (${1:item} in ${2:collection}) {
+		${3:// code...}
+	}${4}
+snippet fun
+	${1:public }${2:void} ${3:FunctionName}(${4}) {
+		${5:// code...}
+	}
+snippet try
+	try {
+		${1:// code...}
+	} catch (${2:Exception}) {
+		${3:// code...}
+	}
+snippet tryf
+	try {
+		${1:// code...}
+	} finally {
+		${2:// code...}
+	}
+snippet trycf
+	try {
+		${1:// code...}
+	} catch (${2:Exception}) {
+		${3:// code...}
+	} finally {
+		${4:// code...}
+	}
