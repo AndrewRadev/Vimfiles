@@ -22,6 +22,9 @@ Dbext:
   * Window placement
   * Install perl + CPAN stuff
 
+C#:
+  * Use csc.vim make methods
+
 PHP:
   * Hack the ctags php parser.
 
@@ -30,6 +33,7 @@ Haskell:
 
 Snippets: 
   * Snippets and acp -- completing breaks $x references
+  * C snippets should NOT be included in cpp ones!
   * Add sql snippets
   * nested snippets (additional check on <tab>?)
   * wildcard + additional character?

@@ -39,6 +39,8 @@ snippet if
 	if (${1:/* condition */}) {
 		${2:/* code */}
 	}
+snippet if=
+	if (${1:/* condition */}) ${2:/* code */};
 snippet else
 	else {
 		${1}
@@ -58,9 +60,11 @@ snippet wh
 	}
 # For Loop
 snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
 		${4:/* code */}
 	}
+snippet for=
+	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) ${4:/* code */};
 # Custom For Loop
 snippet forr
 	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {

@@ -13,7 +13,7 @@ snippet f
 		${3:" code}
 	endfunction
 snippet for
-	for ${1:needle} in ${2:haystack}
+	for ${1:item} in ${2:collection}
 		${3:" code}
 	endfor
 snippet wh
@@ -30,6 +30,9 @@ snippet ife
 	else
 		${3}
 	endif
+#
+# Skeletons:
+#
 snippet skeleton C# OpenTK Mono project
 	runtime projects/opentk.project.vim
 

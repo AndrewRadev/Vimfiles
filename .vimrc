@@ -10,6 +10,8 @@ colo custom_elflord
 runtime! startup/basic.vim
 runtime! startup/autocommands.vim
 runtime! startup/utl.vim
+runtime! startup/completion.vim
+runtime! startup/smartword.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
@@ -120,18 +122,11 @@ let OmniCpp_NamespaceSearch     = 1 " -> True
 let OmniCpp_ShowPrototypeInAbbr = 1 " -> True
 let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert
 let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
-let OmniCpp_MayCompleteDot      = 0 " Don't automatically complete
-let OmniCpp_MayCompleteArrow    = 0 " Don't automatically complete
+let OmniCpp_MayCompleteDot      = 1 " Automatically complete
+let OmniCpp_MayCompleteArrow    = 1 " Automatically complete
 
 " Autocomplete options:
-let g:acp_enableAtStartup       = 0   " Disable for now
+let g:acp_enableAtStartup       = 1   " Enable
 let g:acp_ignorecaseOption      = 0   " Don't ignore case, that's annoying
 let g:acp_completeOption        = '.' " Speed up?
 let g:acp_behaviorKeywordLength = 3   " Speed up?
-
-" Smartword mappings:
-map w  <Plug>(smartword-w)
-map b  <Plug>(smartword-b)
-map e  <Plug>(smartword-e)
-map ge <Plug>(smartword-ge)
-noremap cw cw

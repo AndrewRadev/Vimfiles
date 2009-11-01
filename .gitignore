@@ -3,3 +3,6 @@ additional_scripts*
 
 # Don't ignore my notes, gonna need them across machines:
 !notes.txt
+
+# Ignore tags files, just remember to rebuild them every once in a while:
+tags
