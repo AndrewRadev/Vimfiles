@@ -134,20 +134,6 @@ snippet div
 	<div id="${1:name}">
 		${2}
 	</div>
-# Embed QT Movie
-snippet movie
-	<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
-	 codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-		<param name="src" value="$1"`Close()`>
-		<param name="controller" value="$4"`Close()`>
-		<param name="autoplay" value="$5"`Close()`>
-		<embed src="${1:movie.mov}"
-			width="${2:320}" height="${3:240}"
-			controller="${4:true}" autoplay="${5:true}"
-			scale="tofit" cache="true"
-			pluginspage="http://www.apple.com/quicktime/download/"
-		`Close()[1:]`>
-	</object>${6}
 snippet fieldset
 	<fieldset id="$1">
 		<legend>${1:name}</legend>
@@ -188,6 +174,30 @@ snippet table
 	</table>${4}
 snippet textarea
 	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
-# Wildcard snippet:
-snippet *
-	<${*}>${1}</${*}>${2}
+# Embed Movie
+snippet movie QuickTime
+	<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
+	 codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+		<param name="src" value="$1"`Close()`>
+		<param name="controller" value="$4"`Close()`>
+		<param name="autoplay" value="$5"`Close()`>
+		<embed src="${1:movie.mov}"
+			width="${2:320}" height="${3:240}"
+			controller="${4:true}" autoplay="${5:true}"
+			scale="tofit" cache="true"
+			pluginspage="http://www.apple.com/quicktime/download/"
+		`Close()[1:]`>
+	</object>${6}
+snippet movie swf
+	<object width="$2" height="$3" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+	 codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0">
+		<param name="src" value="$1"`Close()`>
+		<param name="controller" value="$4"`Close()`>
+		<param name="autoplay" value="$5"`Close()`>
+		<embed src="${1:movie.swf}"
+			width="${2:320}" height="${3:240}"
+			controller="${4:true}" autoplay="${5:true}"
+			scale="tofit" cache="true"
+			pluginspage="http://www.macromedia.com/go/getflashplayer"
+		`Close()[1:]`>
+	</object>${6}

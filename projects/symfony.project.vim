@@ -7,14 +7,17 @@ autocmd BufEnter *.php set filetype=php.html.javascript.symfony
 " Base* classes should never be modified:
 autocmd BufEnter Base*.class.php set readonly
 
-" Dbext profile goes here -- expand snip with "dbext<tab>":
+command! RebuildTags silent !start ctags -R --exclude=symfony,tmp --languages=php .
 
-command! RebuildTags silent !ctags -R --exclude=symfony,tmp --languages=php .
-command! RebuildDb silent
-      \ !php symfony doctrine:build-all-reload 
-      \ & php symfony doctrine:build-all-reload --env=test -F
-command! TestAll !php symfony test:all
-command! Run !php %
+command! RebuildAll   !php symfony doctrine:build-all-reload
+command! RebuildDb    !php symfony doctrine:build-db
+command! RebuildModel !php symfony doctrine:build-model
+command! TestAll      !php symfony test:all
+command! Run          !php %
+
 command! Preview Utl ol http://localhost:80/
 
 command! CC silent !php symfony cc
+command! Sql tabedit data/sql/scratch.sql | normal \slt
+
+runtime! macros/symfony_tasks.vim

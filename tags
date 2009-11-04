@@ -334,7 +334,6 @@ Complete_server	autoload/rails.vim	/^function! s:Complete_server(A,L,P)$/;"	f
 Complete_set	autoload/rails.vim	/^function! s:Complete_set(A,L,P)$/;"	f
 Concat	plugin/fuzzyfinder.vim	/^function! s:Concat(in)$/;"	f
 Console	ftplugin/haskell.vim	/^command! -buffer Console !ghci % $/;"	c
-Console	ftplugin/ruby.vim	/^command! -buffer Console !irb -r %$/;"	c
 Console	ftplugin/scheme.vim	/^command! -buffer Console !mzscheme -i -r %$/;"	c
 ConvertWildcardToRegexp	plugin/fuzzyfinder.vim	/^function! s:ConvertWildcardToRegexp(expr)$/;"	f
 Count	autoload/snipMate.vim	/^fun s:Count(haystack, needle)$/;"	f
