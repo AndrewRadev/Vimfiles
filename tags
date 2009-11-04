@@ -1042,11 +1042,17 @@ NewProjectTemplate	.\autoload\rails.vim	/^function! s:NewProjectTemplate(proj,rr
 NextAlternate	.\plugin\a.vim	/^function! NextAlternate(bang)$/;"	f
 NoTags	.\autoload\ttags.vim	/^function! s:NoTags() "{{{3$/;"	f
 OmniCpp_LocalSearchDecl	.\startup\completion.vim	/^let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position$/;"	v
+OmniCpp_LocalSearchDecl	startup/completion.vim	/^let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position$/;"	v
 OmniCpp_MayCompleteArrow	.\startup\completion.vim	/^let OmniCpp_MayCompleteArrow    = 1 " Automatically complete$/;"	v
+OmniCpp_MayCompleteArrow	startup/completion.vim	/^let OmniCpp_MayCompleteArrow    = 1 " Automatically complete$/;"	v
 OmniCpp_MayCompleteDot	.\startup\completion.vim	/^let OmniCpp_MayCompleteDot      = 1 " Automatically complete$/;"	v
+OmniCpp_MayCompleteDot	startup/completion.vim	/^let OmniCpp_MayCompleteDot      = 1 " Automatically complete$/;"	v
 OmniCpp_NamespaceSearch	.\startup\completion.vim	/^let OmniCpp_NamespaceSearch     = 1 " -> True$/;"	v
+OmniCpp_NamespaceSearch	startup/completion.vim	/^let OmniCpp_NamespaceSearch     = 1 " -> True$/;"	v
 OmniCpp_SelectFirstItem	.\startup\completion.vim	/^let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert$/;"	v
+OmniCpp_SelectFirstItem	startup/completion.vim	/^let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert$/;"	v
 OmniCpp_ShowPrototypeInAbbr	.\startup\completion.vim	/^let OmniCpp_ShowPrototypeInAbbr = 1 " -> True$/;"	v
+OmniCpp_ShowPrototypeInAbbr	startup/completion.vim	/^let OmniCpp_ShowPrototypeInAbbr = 1 " -> True$/;"	v
 OnCmdCR	.\plugin\fuzzyfinder.vim	/^function! s:OnCmdCR()$/;"	f
 OnOrOff	.\plugin\EasyGrep.vim	/^function! s:OnOrOff(num)$/;"	f
 OpenBuffer	.\plugin\fuzzyfinder.vim	/^function! s:OpenBuffer(nr, mode)$/;"	f
@@ -1970,10 +1976,16 @@ g:NERDTreeStatusline	.\plugin\NERD_tree.vim	/^    let g:NERDTreeStatusline = "%{
 g:Projects	.\plugin\proj.vim	/^let g:Projects = s:LoadProjects()$/;"	v
 g:ST_WIN_CMD	.\autoload\genutils.vim	/^let g:ST_WIN_CMD = 0 | let g:ST_WIN_SH = 1 | let g:ST_UNIX = 2$/;"	v
 g:__CUTEERRORMARKER_VIM__	.\plugin\cuteErrorMarker.vim	/^let g:__CUTEERRORMARKER_VIM__ = 1$/;"	v
+g:acp_behaviorFileLength	startup/completion.vim	/^let g:acp_behaviorFileLength    = 2   " Speed up?$/;"	v
 g:acp_behaviorKeywordLength	.\startup\completion.vim	/^let g:acp_behaviorKeywordLength = 3   " Speed up?$/;"	v
+g:acp_behaviorKeywordLength	startup/completion.vim	/^let g:acp_behaviorKeywordLength = 3   " Speed up?$/;"	v
 g:acp_completeOption	.\startup\completion.vim	/^let g:acp_completeOption        = '.' " Speed up?$/;"	v
+g:acp_completeOption	startup/completion.vim	/^let g:acp_completeOption        = '.' " Speed up?$/;"	v
 g:acp_enableAtStartup	.\startup\completion.vim	/^let g:acp_enableAtStartup       = 1   " Enable$/;"	v
+g:acp_enableAtStartup	startup/completion.vim	/^let g:acp_enableAtStartup       = 1   " Enable$/;"	v
 g:acp_ignorecaseOption	.\startup\completion.vim	/^let g:acp_ignorecaseOption      = 0   " Don't ignore case, that's annoying$/;"	v
+g:acp_ignorecaseOption	startup/completion.vim	/^let g:acp_ignorecaseOption      = 0   " Don't ignore case, that's annoying$/;"	v
+g:acp_mappingDriven	startup/completion.vim	/^let g:acp_mappingDriven         = 1$/;"	v
 g:all_tasks	.\macros\symfony_tasks.vim	/^let g:all_tasks = [$/;"	v
 g:alternateNoDefaultAlternate	.\plugin\a.vim	/^   let g:alternateNoDefaultAlternate = 0$/;"	v
 g:alternateRelativeFiles	.\plugin\a.vim	/^   let g:alternateRelativeFiles = 0$/;"	v
