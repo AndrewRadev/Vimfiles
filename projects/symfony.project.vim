@@ -4,8 +4,8 @@ set tags+=~/tags/symfony.tags
 
 " Custom snippets:
 autocmd BufEnter *.php set filetype=php.html.javascript.symfony
-" Base* classes should never be modified:
-autocmd BufEnter Base*.class.php set readonly
+" Base classes should never be modified:
+autocmd BufEnter base/Base*.class.php set readonly
 
 command! RebuildTags silent !start ctags -R --exclude=symfony,tmp --languages=php .
 

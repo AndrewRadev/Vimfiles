@@ -103,6 +103,7 @@
 <Plug>(textobj-indent-i)	textobj-indent.txt	/*<Plug>(textobj-indent-i)*
 <Plug>(textobj-indent-same-a)	textobj-indent.txt	/*<Plug>(textobj-indent-same-a)*
 <Plug>(textobj-indent-same-i)	textobj-indent.txt	/*<Plug>(textobj-indent-same-i)*
+<Space>	space.txt	/*<Space>*
 AND	dbext.txt	/*AND*
 Align-copyright	Align.txt	/*Align-copyright*
 DBI	dbext.txt	/*DBI*
@@ -809,6 +810,15 @@ snipMate.txt	snipMate.txt	/*snipMate.txt*
 snippet	snipMate.txt	/*snippet*
 snippet-syntax	snipMate.txt	/*snippet-syntax*
 snippets	snipMate.txt	/*snippets*
+space-configuration	space.txt	/*space-configuration*
+space-hooks	space.txt	/*space-hooks*
+space-intro	space.txt	/*space-intro*
+space-license	space.txt	/*space-license*
+space-statusline	space.txt	/*space-statusline*
+space-toc	space.txt	/*space-toc*
+space-usage	space.txt	/*space-usage*
+space.txt	space.txt	/*space.txt*
+space.vim	space.txt	/*space.vim*
 sqlanywhere	dbext.txt	/*sqlanywhere*
 sqlite	dbext.txt	/*sqlite*
 sqlsrv	dbext.txt	/*sqlsrv*

@@ -16,6 +16,7 @@ Plugins:
   * ku
   * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
   * consider compview... or just find a way to integrate [I with the quickfix window
+  * template plugin seems pretty useful...
 
 Dbext:
   * Mappings
