@@ -82,8 +82,11 @@ inoremap <C-]> <C-x><C-]>
 set completefunc=syntaxcomplete#Complete
 
 " Indent/Unindent:
-nmap <Tab> >>
-nmap <S-Tab> <<
+"nmap <Tab> >>
+"nmap <S-Tab> <<
+
+" Try <Tab> with folds:
+nmap <Tab> zA
 
 " Dbext settings:
 let g:dbext_default_buffer_lines = 20
@@ -117,16 +120,5 @@ let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
 " Hack to fix textobj-indent:
 runtime! autoload/textobj/indent.vim
 
-" Omnicppcomplete options:
-let OmniCpp_NamespaceSearch     = 1 " -> True
-let OmniCpp_ShowPrototypeInAbbr = 1 " -> True
-let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert
-let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
-let OmniCpp_MayCompleteDot      = 1 " Automatically complete
-let OmniCpp_MayCompleteArrow    = 1 " Automatically complete
-
-" Autocomplete options:
-let g:acp_enableAtStartup       = 1   " Enable
-let g:acp_ignorecaseOption      = 0   " Don't ignore case, that's annoying
-let g:acp_completeOption        = '.' " Speed up?
-let g:acp_behaviorKeywordLength = 3   " Speed up?
+" Open all occurences of word under cursor in quickfix:
+noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
