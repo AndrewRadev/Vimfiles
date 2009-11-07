@@ -94,9 +94,9 @@ hi def link vorgLogdate       String
 hi def link vorgLink          vorgHL 
 
 "Settings
-set smartindent
-set tabstop=2
-set shiftwidth=2
+setlocal smartindent
+setlocal tabstop=2
+setlocal shiftwidth=2
 
 
 " Shortcuts
@@ -165,8 +165,8 @@ function! VorgFoldExpr(lnum)
     return '='
 endfunction
 
-set foldmethod=expr
-set foldexpr=VorgFoldExpr(v:lnum) 
+setlocal foldmethod=expr
+setlocal foldexpr=VorgFoldExpr(v:lnum) 
 nmap <TAB> za
 nmap <S-TAB> zA
 
@@ -179,15 +179,15 @@ ab dd <C-R>=strftime("%Y-%m-%d")<CR>
 ab dt <C-R>=strftime("%Y-%m-%d @ %H:%M")<CR>
 
 " Shift lines up and down
-nnoremap <C-j> mz:m+<CR>`z
-nnoremap <C-k> mz:m-2<CR>`z
-inoremap <C-j> <Esc>:m+<CR>gi
-inoremap <C-k> <Esc>:m-2<CR>gi
-vnoremap <C-j> :m'>+<CR>gv=`<my`>mzgv`yo`z
-vnoremap <C-k> :m'<-2<CR>gv=`>my`<mzgv`yo`z
+nnoremap <buffer> <C-j> mz:m+<CR>`z
+nnoremap <buffer> <C-k> mz:m-2<CR>`z
+inoremap <buffer> <C-j> <Esc>:m+<CR>gi
+inoremap <buffer> <C-k> <Esc>:m-2<CR>gi
+vnoremap <buffer> <C-j> :m'>+<CR>gv=`<my`>mzgv`yo`z
+vnoremap <buffer> <C-k> :m'<-2<CR>gv=`>my`<mzgv`yo`z
 
-nnoremap <C-o> :/[-\*]\ *\[\ \].*@
-nnoremap <C-t> :/-.*(.*.*)<LEFT><LEFT><LEFT>
+nnoremap <buffer> <C-o> :/[-\*]\ *\[\ \].*@
+nnoremap <buffer> <C-t> :/-.*(.*.*)<LEFT><LEFT><LEFT>
 
 hi Folded cterm=bold
 
@@ -225,5 +225,3 @@ if exists("*Gather")==0
 	nnoremap <silent> <Leader>q :call CloseScratch()<CR>
 
 endif
-
-
