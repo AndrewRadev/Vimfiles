@@ -21,3 +21,4 @@ command! CC !php symfony cc
 command! Sql tabedit data/sql/scratch.sql | normal \slt
 
 runtime! macros/symfony_tasks.vim
+runtime! macros/symfony_navigation.vim
