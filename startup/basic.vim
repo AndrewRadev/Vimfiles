@@ -3,7 +3,7 @@ set autowrite
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cmdheight=1
-set complete=.
+set complete=.,w,b
 set completeopt=menuone,longest
 set diffopt=filler,vertical
 set encoding=utf-8
@@ -29,6 +29,9 @@ set tabstop=2 softtabstop=2
 set ttimeout
 set updatetime=1000
 set wildmenu
+
+let mapleader="_"
+let maplocalleader="_"
 
 if has("win32")
   set backupdir=c:/tmp

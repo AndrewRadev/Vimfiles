@@ -122,3 +122,5 @@ runtime! autoload/textobj/indent.vim
 
 " Open all occurences of word under cursor in quickfix:
 noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
+
+source ~/.local_vimrc
