@@ -3,6 +3,9 @@ Screen + <URL:http://www.vim.org/scripts/script.php?script_id=2348>
 Think about RunView in vim for Doctrine queries
 Expand surround.vim with if() {..}, function wrapping, etc...
 
+Fix vorg's settings (should not be global!)
+Use tab for completion, <Return> is annoying
+
 Colorscheme:
 	* Experiment with colorschemes
 
