@@ -1,0 +1,81 @@
+*hoogle.txt*    Plugin for local hoogle search
+
+                            Hoogle.Vim Plugin ~
+
+    |hoogle|
+            What is Hoogle
+    |hooglecommands|
+            |:Hoogle|
+            |:HoogleClose|
+            |:HoogleLine|
+
+    |hoogleconfiguration|
+            |g:hoogle_search_count|
+            |g:hoogle_search_buf_name|
+
+    |hooglesuggestions|
+
+==============================================================================
+*hoogle*
+What is Hoogle ?~
+    Hoogle is a search engine dedicated to haskell's libraries. It can work
+    online using http://www.haskell.org/hoogle, in the #haskell irc channel
+    on freenode. It can also be used offline using this package :
+    http://hackage.haskell.org/cgi-bin/hackage-scripts/package/hoogle
+
+    This plugin is intented to be used with the offline version of hoogle
+    and provide a quick windows for hoogle lookup.
+
+==============================================================================
+*hooglecommands*   List of hoogle related command
+                                                             *:Hoogle* *Hoogle*
+ :Hoogle <search>
+            Search with hoogle installed on the local machine. Results are
+        stored in a scratch buffer of 10 lines by default.
+
+        Examples : >
+        ==========
+            :Hoogle foldr
+<       Will search all foldr named function on hoogle. >
+
+            :Hoogle (a -> b) -> [a] -> [b]
+<       The type will be searched with hoogle, and normally, the map function
+        should arrise
+                                                   *:HoogleClose* *HoogleClose*
+ :HoogleClose
+        Quickly close the hoogle search windows. Cursor stay at it's current
+        position
+
+                                                     *:HoogleLine* *HoogleLine*
+ :HoogleLine
+        Search on hoogle the line on which the cursor is currently into, then
+        it delete the current line.
+==============================================================================
+*hoogleconfiguration*  Variables controlling hoogle configuration
+
+
+                                  *hoogle_search_count* *g:hoogle_search_count*
+ g:hoogle_search_count                                      
+        Define it with the number of max results to get,
+        default is 10.
+        To override this number, put the following line in your .vimrc: >
+    	:let g:hoogle_search_count = 20 " set number to 20
+<
+                                        
+                            *hoogle_search_buf_name* *g:hoogle_search_buf_name*
+g:hoogle_search_buf_name
+        Let you customize the name of the scratch buffer used to display
+        Hoogle's results. Default name is 'HoogleSearch'. If you want to
+        change this name, add following line in your .vimrc : >
+        :let g:hoogle_search_buf_name = 'MyFavoriteHoogleName'
+<
+==============================================================================
+*hooglesuggestions*
+  To be used efficiently, you may consider add some mapping, like this : >
+    au BufNewFile,BufRead *.hs map <buffer> <F1> :Hoogle 
+    au BufNewFile,BufRead *.hs map <buffer> <C-F1> :HoogleClose<CR>
+    au BufNewFile,BufRead *.hs map <buffer> <S-F1> :HoogleLine<CR>
+<
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
+

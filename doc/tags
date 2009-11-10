@@ -57,6 +57,9 @@
 :GHCReload	haskellmode.txt	/*:GHCReload*
 :GHCStaticOptions	haskellmode.txt	/*:GHCStaticOptions*
 :GHCi	haskellmode.txt	/*:GHCi*
+:Hoogle	Hoogle.txt	/*:Hoogle*
+:HoogleClose	Hoogle.txt	/*:HoogleClose*
+:HoogleLine	Hoogle.txt	/*:HoogleLine*
 :HpasteIndex	haskellmode.txt	/*:HpasteIndex*
 :HpastePostNew	haskellmode.txt	/*:HpastePostNew*
 :IDoc	haskellmode.txt	/*:IDoc*
@@ -159,6 +162,9 @@ EasyGrep_OptionsSummary	EasyGrep.txt	/*EasyGrep_OptionsSummary*
 ExtractSnips()	snipMate.txt	/*ExtractSnips()*
 ExtractSnipsFile()	snipMate.txt	/*ExtractSnipsFile()*
 Filename()	snipMate.txt	/*Filename()*
+Hoogle	Hoogle.txt	/*Hoogle*
+HoogleClose	Hoogle.txt	/*HoogleClose*
+HoogleLine	Hoogle.txt	/*HoogleLine*
 MatchError	matchit.txt	/*MatchError*
 NERDTree	NERD_tree.txt	/*NERDTree*
 NERDTree-?	NERD_tree.txt	/*NERDTree-?*
@@ -505,6 +511,8 @@ g:haddock_browser	haskellmode.txt	/*g:haddock_browser*
 g:haddock_browser_callformat	haskellmode.txt	/*g:haddock_browser_callformat*
 g:haddock_docdir	haskellmode.txt	/*g:haddock_docdir*
 g:haddock_indexfiledir	haskellmode.txt	/*g:haddock_indexfiledir*
+g:hoogle_search_buf_name	Hoogle.txt	/*g:hoogle_search_buf_name*
+g:hoogle_search_count	Hoogle.txt	/*g:hoogle_search_count*
 g:loaded_rails	rails.txt	/*g:loaded_rails*
 g:rails_abbreviations	rails.txt	/*g:rails_abbreviations*
 g:rails_ctags_arguments	rails.txt	/*g:rails_ctags_arguments*
@@ -580,6 +588,13 @@ haskellmode-settings-fine	haskellmode.txt	/*haskellmode-settings-fine*
 haskellmode-settings-main	haskellmode.txt	/*haskellmode-settings-main*
 haskellmode-user-completion	haskellmode.txt	/*haskellmode-user-completion*
 haskellmode.txt	haskellmode.txt	/*haskellmode.txt*
+hoogle	Hoogle.txt	/*hoogle*
+hoogle.txt	Hoogle.txt	/*hoogle.txt*
+hoogle_search_buf_name	Hoogle.txt	/*hoogle_search_buf_name*
+hoogle_search_count	Hoogle.txt	/*hoogle_search_count*
+hooglecommands	Hoogle.txt	/*hooglecommands*
+hoogleconfiguration	Hoogle.txt	/*hoogleconfiguration*
+hooglesuggestions	Hoogle.txt	/*hooglesuggestions*
 hpaste	haskellmode.txt	/*hpaste*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
 i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
