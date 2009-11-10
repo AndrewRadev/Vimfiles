@@ -1,4 +1,3 @@
-Group contents of "plugin" by folders wherever possible.
 Expand surround.vim with if() {..}, function wrapping, etc...
 
 Colorscheme:
@@ -13,7 +12,6 @@ Experimenting with textobjects:
 Plugins:
   * ku
   * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
-  * consider compview... or just find a way to integrate [I with the quickfix window
   * template plugin seems pretty useful...
 
 Dbext:
@@ -32,6 +30,7 @@ Haskell:
 
 Snippets: 
   * Snippets and acp -- completing breaks $x references
+  * Snippets with some keys -- "e" for instance -- breaks badly
   * C snippets should NOT be included in cpp ones!
   * Add sql snippets
   * nested snippets (additional check on <tab>?)

@@ -57,7 +57,7 @@ fun! HaskellFold( lineNum ) "{{{
 endfunction "}}}
 
 augroup HaskellFold
-    au BufNewFile,BufRead,BufCreate *.hs set foldexpr=HaskellFold(v:lnum)
-    au BufNewFile,BufRead,BufCreate *.hs set foldmethod=expr
+    au BufNewFile,BufRead,BufCreate *.hs setlocal foldexpr=HaskellFold(v:lnum)
+    au BufNewFile,BufRead,BufCreate *.hs setlocal foldmethod=expr
 augroup END
 
