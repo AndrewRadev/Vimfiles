@@ -23,6 +23,7 @@ autocmd BufEnter *.hs compiler ghc
 
 autocmd BufEnter *.tags set filetype=tags
 
+autocmd BufRead,BufNewFile *.vorg set filetype=vorg.txt
 autocmd BufRead,BufNewFile *.mkd set filetype=mkd
 autocmd BufRead,BufNewFile *.markdown set filetype=mkd
 

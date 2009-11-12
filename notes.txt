@@ -1,8 +1,7 @@
 Group contents of "plugin" by folders wherever possible.
 Expand surround.vim with if() {..}, function wrapping, etc...
 
-Fix vorg's settings (should not be global!)
-Use tab for completion, <Return> is annoying
+Find a way to use tab for completion, <Return> is annoying
 
 Colorscheme:
 	* Experiment with colorschemes
@@ -47,3 +46,4 @@ Yaml snippets:
 
 Changes made to plugins:
   * php indenting script
+  * Vorg
