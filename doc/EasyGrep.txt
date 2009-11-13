@@ -7,7 +7,7 @@ Author:      Dan Price   vim@danprice.fastmail.net       *EasyGrep_Author*
 
 Goal:        To be an easy to use, powerful find and     |EasyGrep_Motivation|
              replace tool for users of all skill levels.
-Version:     0.95                                        |EasyGrep_History|
+Version:     0.96                                        |EasyGrep_History|
 
 License:     Public domain, no restrictions whatsoever   |EasyGrep_License|
 Contribute:  Please report any bugs or suggestions       |EasyGrep_Bugs|
@@ -183,6 +183,12 @@ e.g.
     Search for the specified arg, add to existing file list, as in
     <Leader>va.  When an ! is added, search like <Leader>vA
 
+    The Above commands can additionally accept command switches:
+    -r   Perform a recursive search
+    -R   Perform a recursive search
+    -i   Perform a case-insensitive search
+    -I   Perform a case-sensitive search
+
 :Replace [target] [replacement]
 :Replace /[target]/[replacement]/
     Perform a global search and replace.  The function searches
@@ -239,11 +245,14 @@ Options Summary                                      *EasyGrep_OptionsSummary*
 ------------------------------------------------------------------------------
 |EasyGrepJumpToMatch|                 Jump to first match
 ------------------------------------------------------------------------------
+|EasyGrepSearchCurrentBufferDir|      Whether to search current buffers dir
+                                      in addition to working dir
+------------------------------------------------------------------------------
 |EasyGrepInvertWholeWord|             Invert the meaning of whole word for vv
                                       and vV keymaps
 ------------------------------------------------------------------------------
-|EasyGrepFileAssociationsInExplorer|  Whether to use include file associations
-                                      when sizing the options explorer
+|EasyGrepFileAssociationsInExplorer|  Whether to show the file associations
+                                      list in the options explorer
 ------------------------------------------------------------------------------
 |EasyGrepReplaceWindowMode|           Controls whether to use tabs or splits 
                                       when replacing in files
@@ -276,7 +285,7 @@ associated with one another.  When set to an empty string "", no file read
 will be attempted.
 
 This file has a simple syntax used to logically link different files types.
-The default configuration is shown below:
+A simple configuration is shown below:
 
      C=*.c *.h
      C++=*.cpp *.hpp *.cxx *.hxx *.cc <C>
@@ -290,27 +299,27 @@ group links to all files that are in the C group.
 
 
 *EasyGrepMode*
-Specifies the mode in which to start
+Specifies the mode in which to start.
 0 - All files
 1 - Open Buffers
 2 - Track the current extension
 
 Note: I find option 2 to be the most powerful, but option 0 is activated by
 default because it is the most intuitive for users who haven't take the
-time to understand how the script works.  See |EasyGrep_OperationModes|
+time to understand how the script works.  See |EasyGrep_OperationModes|.
 
 *EasyGrepCommand* 
-Specifies the grep command to use
+Specifies the grep command to use.
 
 0 - vimgrep
 1 - grep (follows grepprg)
 
 *EasyGrepRecursive* 
-Specifies that recursive search be activated on start
+Specifies that recursive search be activated on start.
 
 *EasyGrepIgnoreCase* 
 Specifies the case sensitivity of searches.  Note that this can be further
-overrided for vimgrep searches with \c and \C
+overrided for vimgrep searches with \c and \C.
 
 *EasyGrepHidden* 
 Specifies that hidden files search be activated on start.  Note that hidden
@@ -318,36 +327,39 @@ implies the unix meaning of those files that are prepended with a '.', and not
 the Windows meaning of those files with a hidden attribute.
 
 *EasyGrepAllOptionsInExplorer* 
-Specifies that all options be included in the explorer window
+Specifies that all options be included in the explorer window.
 
 Note: settting this option is very useful when you want to try out and
-learn all of the options available in this script
+learn all of the options available in this script.
 
 *EasyGrepWindow*
-Specifies the window to use for matches
+Specifies the window to use for matches.
 0 - quickfix
 1 - location list
 
 *EasyGrepOpenWindowOnMatch*
-Specifies whether to open the with matches after a search
+Specifies whether to open the with matches after a search.
 
 *EasyGrepEveryMatch*
 Specifies that multiple matches on the same line be treated as different
-matches, like the g option to vimgrep
+matches, like the g option to vimgrep.
 
 *EasyGrepJumpToMatch*
-Specifies that jump to first match be activated, like the j option to vimgrep
+Specifies that jump to first match be activated, like the j option to vimgrep.
+
+*EasyGrepSearchCurrentBufferDir*
+Setting this option causes EasyGrep to search the current buffer's
+directory in addition to the current working directory.
 
 *EasyGrepInvertWholeWord*
-Specifies that the whole word search keys
-should be inverted from their default meaning.  For example, when this
-option is activated, <Leader>vv matches whole word, while <Leader>vV
-matches everything that includes the word.  Note that this affects both
-keymappings and commands.
+Specifies that the whole word search keys should be inverted from their
+default meaning.  For example, when this option is activated, <Leader>vv
+matches whole word, while <Leader>vV matches everything that includes the
+word.  Note that this affects both keymappings and commands.
 
 *EasyGrepFileAssociationsInExplorer*
-Specifies whether to include the file associations when sizing the explorer
-window
+Specifies whether to show the file associations list in the options explorer
+window.
 
 *EasyGrepOptionPrefix*
 Specifies the prefix that is used when building keymaps for setting options
@@ -373,7 +385,7 @@ Note: Option 1 has the possibility of running out of vertical space to
 split more windows.  Actions are taken to make this a non-issue, but this
 option can often be more clunky than other options.
 Note: As a result of the limitation above, option 0 is the only mode that
-won't require saving the files during a replace
+won't require saving the files during a replace.
 
 *EasyGrepReplaceAllPerFile*
 Specifies that selecting 'a' (for all) will apply the replacements on a per
@@ -389,7 +401,7 @@ some users.
 ==============================================================================
 
 ------------------------------------------------------------------------------
-Provide a broader set of file associations.  Contributions are welcome!
+Show search progress?
 ------------------------------------------------------------------------------
 Allow entries in the file associations list to be regular expressions
 ------------------------------------------------------------------------------
@@ -419,16 +431,32 @@ individually decide per line
 Cursorline doesn't always follow to the line at which the replacement is going
 to happen
 ------------------------------------------------------------------------------
-Some warning messages are cleared when I don't want them to be e.g. current
-directory doesn't match current file's directory warning is cleared by the no
-matches found message
+Successive warning messages can hide a previous message
 ------------------------------------------------------------------------------
+ReplaceUndo opens a window even if it is already open?
+------------------------------------------------------------------------------
+Report that a swap file can't be opened
+------------------------------------------------------------------------------
+Don't warn when the current file will actually be searched because recursion
+is on and it is below the current directory
+------------------------------------------------------------------------------
+
 
 
 ==============================================================================
   History                                                   *EasyGrep_History*
 ==============================================================================
 
+  0.96
+      Feature: Expanded upon the list of file associations
+      Feature: Expanded searches to the current buffer's directory
+      in addition to the current working directory
+      Feature: Added command line arguments to :Grep and :Replace for
+      recursive searches and case sensitivity
+      Feature: Added toggle for window replace mode
+      Feature: Added toggle for showing file associations list in options
+      explorer
+      Bugfix: Case insensitivity would fail in replacing some patterns
   0.95
       Feature: Added search and replace on visual selections
       Feature: Improved Grepping for items that can be interpreted as regular

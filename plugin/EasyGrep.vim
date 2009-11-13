@@ -9,13 +9,13 @@
 " License:       Public domain, no restrictions whatsoever
 " Documentation: type ":help EasyGrep"
 "
-" Version:       See g:EasyGrepVersion for version number.
+" Version:       0.96 -- Programs can inspect g:EasyGrepVersion
 
 " Initialization {{{
 if exists("g:EasyGrepVersion") || &cp || !has("quickfix")
     finish
 endif
-let g:EasyGrepVersion = "0.95"
+let g:EasyGrepVersion = ".96"
 " Check for Vim version 700 or greater {{{
 if v:version < 700
     echo "Sorry, EasyGrep ".g:EasyGrepVersion."\nONLY runs with Vim 7.0 and greater."
@@ -84,7 +84,7 @@ function! s:GetBufferIdList()
     let bufoutput = s:GetBuffersOutput()
 
     let bufids = []
-    for i in split(bufoutput, '\n')
+    for i in split(bufoutput, "\n")
         let s1 = 0
         while i[s1] == ' '
             let s1 += 1
@@ -104,7 +104,7 @@ function! s:GetBufferNamesList()
     let bufoutput = s:GetBuffersOutput()
 
     let bufNames = []
-    for i in split(bufoutput, '\n')
+    for i in split(bufoutput, "\n")
         let s1 = stridx(i, '"') + 1
         let s2 = stridx(i, '"', s1) - 1
         let str = i[s1 : s2]
@@ -172,13 +172,24 @@ endfunction
 "}}}
 " GetSavedName {{{
 function! s:GetSavedName(var)
-    return "s:saved_".a:var
+    let var = a:var
+    if match(var, "g:") == 0
+        let var = substitute(var, "g:", "g_", "")
+    endif
+    return "s:saved_".var
 endfunction
 " }}}
 " SaveVariable {{{
 function! s:SaveVariable(var)
+    if empty(a:var)
+        return
+    endif
     let savedName = s:GetSavedName(a:var)
-    execute "let ".savedName." = &".a:var
+    if match(a:var, "g:") == 0
+        execute "let ".savedName." = ".a:var
+    else
+        execute "let ".savedName." = &".a:var
+    endif
 endfunction
 " }}}
 " RestoreVariable {{{
@@ -187,7 +198,11 @@ function! s:RestoreVariable(var, ...)
     let doUnlet = a:0 == 1
     let savedName = s:GetSavedName(a:var)
     if exists(savedName)
-        execute "let &".a:var." = ".savedName
+        if match(a:var, "g:") == 0
+            execute "let ".a:var." = ".savedName
+        else
+            execute "let &".a:var." = ".savedName
+        endif
         if doUnlet
             unlet savedName
         endif
@@ -283,6 +298,10 @@ if !exists("g:EasyGrepJumpToMatch")
     let g:EasyGrepJumpToMatch=1
 endif
 
+if !exists("g:EasyGrepSearchCurrentBufferDir")
+    let g:EasyGrepSearchCurrentBufferDir=1
+endif
+
 if !exists("g:EasyGrepInvertWholeWord")
     let g:EasyGrepInvertWholeWord=0
 endif
@@ -309,7 +328,7 @@ endfunction
 " }}}
 
 if !exists("g:EasyGrepFileAssociationsInExplorer")
-    let g:EasyGrepFileAssociationsInExplorer=1
+    let g:EasyGrepFileAssociationsInExplorer=0
 endif
 
 if !exists("g:EasyGrepOptionPrefix")
@@ -318,10 +337,11 @@ if !exists("g:EasyGrepOptionPrefix")
     " If you want a mnemonic for it, think of (y)our own
 endif
 
+let s:NumReplaceModeOptions = 3
 if !exists("g:EasyGrepReplaceWindowMode")
     let g:EasyGrepReplaceWindowMode=0
 else
-    if g:EasyGrepReplaceWindowMode > 2
+    if g:EasyGrepReplaceWindowMode >= s:NumReplaceModeOptions
         call s:Error("Invalid value for g:EasyGrepReplaceWindowMode")
         let g:EasyGrepReplaceWindowMode = 0
     endif
@@ -343,7 +363,15 @@ let s:OptionsExplorerOpen = 0
 
 let s:FilesToGrep="*"
 let s:TrackedExt = "*"
+let s:LastSeenBuffer = ""
 
+function! s:GetReplaceWindowModeString(mode)
+    if(a:mode < 0 || a:mode >= s:NumReplaceModeOptions)
+        return "invalid"
+    endif
+    let ReplaceWindowModeStrings = [ "New Tab", "Split Windows", "autowriteall" ]
+    return ReplaceWindowModeStrings[a:mode]
+endfunction
 let s:SortOptions = [ "Name", "Name Reversed", "Extension", "Extension Reversed" ]
 let s:SortFunctions = [ "SortName", "SortNameReversed", "SortExtension", "SortExtensionReversed" ]
 let s:SortChoice = 0
@@ -428,7 +456,9 @@ function! s:OpenOptionsExplorer()
     nnoremap <buffer> <silent> !    :call <sid>ToggleWholeWord()<cr>
     nnoremap <buffer> <silent> e    :call <sid>EchoFilesSearched()<cr>
     nnoremap <buffer> <silent> s    :call <sid>Sort()<cr>
+    nnoremap <buffer> <silent> m    :call <sid>ToggleReplaceWindowMode()<cr>
     nnoremap <buffer> <silent> ?    :call <sid>EchoOptionsSet()<cr>
+    nnoremap <buffer> <silent> *    :call <sid>ToggleFileAssociationsInExplorer()<cr>
     nnoremap <buffer> <silent> /    :call <sid>ToggleOptionsDisplay()<cr>
     nnoremap <buffer> <silent> <cr> :call <sid>Select()<cr>
     nnoremap <buffer> <silent> :    :call <sid>Echo("Type q to quit")<cr>
@@ -450,7 +480,7 @@ function! <sid>EchoFilesSearched()
         for p in patternList
             let s = glob(p)
             if !empty(s)
-                let fileList = split(s, '\n')
+                let fileList = split(s, "\n")
                 for f in fileList
                     if filereadable(f)
                         let str .= f."\n"
@@ -481,13 +511,13 @@ function! <sid>EchoOptionsSet()
             \ "g:EasyGrepHidden",
             \ "g:EasyGrepAllOptionsInExplorer",
             \ "g:EasyGrepWindow",
+            \ "g:EasyGrepReplaceWindowMode",
             \ "g:EasyGrepOpenWindowOnMatch",
             \ "g:EasyGrepEveryMatch",
             \ "g:EasyGrepJumpToMatch",
             \ "g:EasyGrepInvertWholeWord",
             \ "g:EasyGrepFileAssociationsInExplorer",
             \ "g:EasyGrepOptionPrefix",
-            \ "g:EasyGrepReplaceWindowMode",
             \ "g:EasyGrepReplaceAllPerFile"
             \ ]
 
@@ -620,7 +650,7 @@ function! s:ActivateChoice(choice)
     if choice == s:allChoicePos
         let str = "Activated (All)"
     else
-        let e = isActivated ? "Activated" : "Deactivated" 
+        let e = isActivated ? "Activated" : "Deactivated"
 
         let keyName = s:Dict[choice][0]
         let str = e." (".keyName.")"
@@ -754,6 +784,18 @@ function! <sid>ToggleWholeWord()
     call s:Echo("Set invert the meaning of whole word to (".s:OnOrOff(g:EasyGrepInvertWholeWord).")")
 endfunction
 "}}}
+" ToggleReplaceWindowMode {{{
+function! <sid>ToggleReplaceWindowMode()
+    let g:EasyGrepReplaceWindowMode += 1
+    if g:EasyGrepReplaceWindowMode == s:NumReplaceModeOptions
+        let g:EasyGrepReplaceWindowMode = 0
+    endif
+
+    call s:UpdateOptions()
+
+    call s:Echo("Set replace window mode to (".s:GetReplaceWindowModeString(g:EasyGrepReplaceWindowMode).")")
+endfunction
+" }}}
 " ToggleOptionsDisplay {{{
 function! <sid>ToggleOptionsDisplay()
     let g:EasyGrepAllOptionsInExplorer = !g:EasyGrepAllOptionsInExplorer
@@ -773,6 +815,24 @@ function! <sid>ToggleOptionsDisplay()
     endif
 
     call s:Echo("Showing ". (g:EasyGrepAllOptionsInExplorer ? "more" : "fewer")." options")
+endfunction
+"}}}
+" ToggleFileAssociationsInExplorer {{{
+function! <sid>ToggleFileAssociationsInExplorer()
+    let g:EasyGrepFileAssociationsInExplorer = !g:EasyGrepFileAssociationsInExplorer
+
+    call s:FillWindow()
+    call s:UpdateOptions()
+
+    if g:EasyGrepFileAssociationsInExplorer
+        execute "resize +".len(s:Dict)
+    else
+        let newSize = len(s:Options) + s:NumSpecialOptions + 1
+        execute "resize ".newSize
+    endif
+    normal zb
+
+    call s:Echo("Set file associations in explorer to (".s:OnOrOff(g:EasyGrepFileAssociationsInExplorer).")")
 endfunction
 "}}}
 " Quit {{{
@@ -805,7 +865,12 @@ endfunction
 " }}}
 " UpdateAll {{{
 function! s:UpdateAll()
-    call s:UpdateRange(0, len(s:Dict))
+    if g:EasyGrepFileAssociationsInExplorer
+        let numItems = len(s:Dict)
+    else
+        let numItems = s:NumSpecialOptions
+    endif
+    call s:UpdateRange(0, numItems)
 endfunction
 " }}}
 " UpdateChoice {{{
@@ -847,8 +912,13 @@ function! s:FillWindow()
 
     setlocal modifiable
 
+    if g:EasyGrepFileAssociationsInExplorer
+        let numItems = len(s:Dict)
+    else
+        let numItems = s:NumSpecialOptions
+    endif
+
     let i = 0
-    let numItems = len(s:Dict)
     while i < numItems
         call append(s:firstPatternLine, "")
         let i += 1
@@ -963,9 +1033,39 @@ function! s:BuildPatternList(...)
         endif
         let s:FilesToGrep = s:PostCreate(str, sp)
     endif
+
+    if !s:IsModeBuffers() && g:EasyGrepSearchCurrentBufferDir
+        call s:ApplyBufferDir(sp)
+    endif
+
     let s:FilesToGrep = s:Trim(s:FilesToGrep)
 endfunction
 " }}}
+" ApplyBufferDir {{{
+function! s:ApplyBufferDir(...)
+    if empty(s:FilesToGrep)
+        return
+    endif
+    if a:0 > 0
+        let sp = a:1
+    else
+        let sp = " "
+    endif
+
+    let currentBufferDir = fnamemodify(expand(s:LastSeenBuffer), ":p:h")
+    if currentBufferDir != getcwd()
+        let patternList = split(s:FilesToGrep, sp)
+
+        " Clear trailing newline because one will be added below
+        " without this, a double newline is here
+        let s:FilesToGrep = strpart(s:FilesToGrep, 0, strlen(s:FilesToGrep)-1)
+
+        for p in patternList
+            let s:FilesToGrep = s:FilesToGrep.sp.currentBufferDir."/".p
+        endfor
+    endif
+endfunction
+"}}}
 " PostCreate {{{
 function! s:PostCreate(str, sp)
     if empty(a:str)
@@ -1058,9 +1158,10 @@ function! s:HasFilesThatMatch()
     let saveFilesToGrep = s:FilesToGrep
 
     call s:BuildPatternList("\n")
-    let patternList = split(s:FilesToGrep, '\n')
+    let patternList = split(s:FilesToGrep, "\n")
     for p in patternList
-        let fileList = split(glob(p), '\n')
+        let p = s:Trim(p)
+        let fileList = split(glob(p), "\n")
         for f in fileList
             if filereadable(f)
                 let s:FilesToGrep = saveFilesToGrep
@@ -1125,18 +1226,20 @@ function! s:CreateOptions()
     if g:EasyGrepAllOptionsInExplorer
         call add(s:Options, "\"c: change grep command (".s:Commands[s:CommandChoice].")")
         call add(s:Options, "\"w: window to use (".s:GetErrorListName().")")
+        call add(s:Options, "\"m: replace window mode (".s:GetReplaceWindowModeString(g:EasyGrepReplaceWindowMode).")")
         call add(s:Options, "\"o: open window on match (".s:OnOrOff(g:EasyGrepOpenWindowOnMatch).")")
         call add(s:Options, "\"g: seperate multiple matches (".s:OnOrOff(g:EasyGrepEveryMatch).")")
         call add(s:Options, "\"p: jump to match (".s:OnOrOff(g:EasyGrepJumpToMatch).")")
         call add(s:Options, "\"!: invert the meaning of whole word (".s:OnOrOff(g:EasyGrepInvertWholeWord).")")
         call add(s:Options, "\"s: change sorting (".s:SortOptions[s:SortChoice].")")
+        call add(s:Options, "\"*: show file associations list (".s:OnOrOff(g:EasyGrepFileAssociationsInExplorer).")")
         call add(s:Options, "")
         call add(s:Options, "\"a: activate 'All' mode")
         call add(s:Options, "\"b: activate 'Buffers' mode")
         call add(s:Options, "\"t: activate 'TrackExt' mode")
         call add(s:Options, "\"u: activate 'User' mode")
         call add(s:Options, "")
-        call add(s:Options, "\"?: Echo options that are set")
+        call add(s:Options, "\"?: echo options that are set")
     endif
     call add(s:Options, "\"/: show ". (g:EasyGrepAllOptionsInExplorer ? "fewer" : "more")." options")
     call add(s:Options, "")
@@ -1296,33 +1399,40 @@ function! s:SetCurrentExtension()
     if !empty(&buftype)
         return
     endif
-    let ext = fnamemodify(bufname("%"), ":e")
+    let fname = bufname("%")
+    if empty(fname)
+        return
+    endif
+    let s:LastSeenBuffer = fname
+    let ext = fnamemodify(fname, ":e")
     if !empty(ext)
-        let temp = "*.".ext
-        if s:IsModeBuffers()
-            let s:TrackedExt = temp
-            " Note: this has a very, very, very, small issue (is it even an
-            " issue?) where if you're working with C++ files, and you switch to
-            " buffers mode, and then edit a file of another type, like .c (which
-            " should be in the C++ list), and then switch back to tracked mode,
-            " you will lose the C++ association and have to go back to a C++
-            " file before being able to search them.
-            " This is so small of an issue that it's almost a non-issue, so I'm
-            " not going to bother fixing it
-        else
-            let tempList = split(s:FilesToGrep)
+        let ext = "*.".ext
+    else
+        let ext = fnamemodify(fname, ":p:t")
+        if(empty(ext))
+            return
+        endif
+    endif
+    if !s:IsModeTracked()
+        " Always save the extension when not in tracked mode
+        let s:TrackedExt = ext
 
-            " Always save the extension when not in tracked mode
-            if !s:IsModeTracked()
-                let s:TrackedExt = temp
-            else
-                " When in tracked mode, change the tracked extension if it isn't
-                " already in the list of files to be grepped
-                if index(tempList, temp) == -1
-                    let s:TrackedExt = temp
-                    call s:BuildPatternList()
-                endif
-            endif
+        " Note: this has a very, very, very, small issue (is it even an
+        " issue?) where if you're working with C++ files, and you switch to
+        " buffers mode, and then edit a file of another type, like .c (which
+        " should be in the C++ list), and then switch back to tracked mode,
+        " you will lose the C++ association and have to go back to a C++
+        " file before being able to search them.
+        " This is so small of an issue that it's almost a non-issue, so I'm
+        " not going to bother fixing it
+    else
+        let tempList = split(s:FilesToGrep)
+
+        " When in tracked mode, change the tracked extension if it isn't
+        " already in the list of files to be grepped
+        if index(tempList, ext) == -1
+            let s:TrackedExt = ext
+            call s:BuildPatternList()
         endif
     endif
 endfunction
@@ -1353,7 +1463,7 @@ function! s:CompareCurrentFileCurrentDirectory()
             return 0
         endif
         let fileDir = fnamemodify(currFile, ":p:h")
-        if !empty(fileDir)
+        if !empty(fileDir) && !g:EasyGrepSearchCurrentBufferDir
             let cwd = getcwd()
             if fileDir != cwd
                 call s:Warning("current file not searched, its directory [".fileDir."] doesn't match the working directory [".cwd."]")
@@ -1388,8 +1498,10 @@ function! s:CreateOptionMappings()
     exe "nmap <silent> ".p."!  :call <sid>ToggleWholeWord()<cr>"
     exe "nmap <silent> ".p."e  :call <sid>EchoFilesSearched()<cr>"
     exe "nmap <silent> ".p."s  :call <sid>Sort()<cr>"
+    exe "nmap <silent> ".p."m  :call <sid>ToggleReplaceWindowMode()<cr>"
     exe "nmap <silent> ".p."/  :call <sid>ToggleOptionsDisplay()<cr>"
     exe "nmap <silent> ".p."?  :call <sid>EchoOptionsSet()<cr>"
+    exe "nmap <silent> ".p."*  :call <sid>ToggleFileAssociationsInExplorer()<cr>"
 endfunction
 "}}}
 " GrepOptions {{{
@@ -1426,11 +1538,93 @@ function! <sid>GrepSelection(add, whole)
     return s:ClearGatewayVariables()
 endfunction
 " }}}
-" GrepInput {{{
-function! s:GrepInput(word, add, bang, count)
+" ParseCommandLine {{{
+function! s:ParseCommandLine(argv)
+    let opts = {}
+    let opts["recursive"] = 0
+    let opts["case-insensitive"] = g:EasyGrepIgnoreCase
+    let opts["case-sensitive"] = 0
+    let opts["count"] = 0
+    let opts["pattern"] = ""
+    let opts["failedparse"] = ""
+
+    if empty(a:argv)
+        return opts
+    endif
+
+    let nextiscount = 0
+    let tokens = split(a:argv)
+    let numtokens = len(tokens)
+    let j = 0
+    while j < numtokens
+        let tok = tokens[j]
+        if tok[0] == '-'
+            let i = 1
+            let end = len(tok)
+            while i < end
+                let c = tok[i]
+                if c == '-'
+                    " ignore
+                elseif c ==# 'R' || c==# 'r'
+                    let opts["recursive"] = 1
+                elseif c ==# 'i'
+                    let opts["case-insensitive"] = 1
+                elseif c ==# 'I'
+                    let opts["case-sensitive"] = 1
+                " TODO: add count
+                "elseif c == 'm'
+                    "let opts["case-insensitive"] = 1
+                else
+                    let opts["failedparse"] = "Invalid option (".c.")"
+                endif
+                let i += 1
+            endwhile
+        else
+            if empty(opts["pattern"])
+                let opts["pattern"] = tok
+            else
+                let opts["pattern"] .= " ".tok
+            endif
+        endif
+        let j += 1
+    endwhile
+
+    if empty(opts["pattern"])
+        let opts["failedparse"] = "missing pattern"
+    endif
+
+    return opts
+endfunction
+" }}}
+" SetCommandLineOptions {{{
+function! s:SetCommandLineOptions(opts)
+    let opts = a:opts
+    call s:SaveVariable("g:EasyGrepRecursive")
+    let g:EasyGrepRecursive = g:EasyGrepRecursive || opts["recursive"]
+
+    call s:SaveVariable("g:EasyGrepIgnoreCase")
+    let g:EasyGrepIgnoreCase = (g:EasyGrepIgnoreCase || opts["case-insensitive"]) && !opts["case-sensitive"]
+endfunction
+" }}}
+" RestoreCommandLineOptions {{{
+function! s:RestoreCommandLineOptions(opts)
+    let opts = a:opts
+    call s:RestoreVariable("g:EasyGrepRecursive")
+    call s:RestoreVariable("g:EasyGrepIgnoreCase")
+endfunction
+" }}}
+" GrepCommandLine {{{
+function! s:GrepCommandLine(argv, add, bang)
     call s:SetGatewayVariables()
-    call s:SetGatewayVariables()
-    call s:DoGrep( a:word , a:add, a:bang == "!" ? 1 : 0, a:count>0 ? a:count : "", 0)
+    let opts = s:ParseCommandLine(a:argv)
+    if !empty(opts["failedparse"])
+        let errorstring="Invalid command: ".opts["failedparse"]
+        echo errorstring
+    else
+        call s:SetCommandLineOptions(opts)
+        call s:DoGrep(opts["pattern"], a:add, a:bang == "!" ? 1 : 0, opts["count"]>0 ? opts["count"] : "", 0)
+        call s:RestoreCommandLineOptions(opts)
+    endif
     return s:ClearGatewayVariables()
 endfunction
 " }}}
@@ -1930,7 +2124,13 @@ function! s:DoReplace(target, replacement, whole, escapeArgs)
             endif
 
             if doit
-                exe 's/'.target.'/'.replacement.'/'.opts
+                if g:EasyGrepIgnoreCase
+                    let case = '\c'
+                else
+                    let case = ''
+                endif
+
+                exe 's/'.case.target.'/'.replacement.'/'.opts
                 let s:actionList[i] = doit
             endif
 
@@ -1969,8 +2169,8 @@ endfunction
 " }}}
 
 " Commands {{{
-command! -count -bang -nargs=1 Grep :call s:GrepInput( <f-args> , "", "<bang>", "<count>")
-command! -count -bang -nargs=1 GrepAdd :call s:GrepInput( <f-args>, "add", "<bang>", "<count>")
+command! -bang -nargs=+ Grep :call s:GrepCommandLine( <q-args> , "", "<bang>")
+command! -bang -nargs=+ GrepAdd :call s:GrepCommandLine( <q-args>, "add", "<bang>")
 command! GrepOptions :call <sid>GrepOptions()
 
 command! -bang -nargs=+ Replace :call s:Replace("<bang>", <q-args>)

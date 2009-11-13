@@ -3,7 +3,7 @@ set autowrite
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cmdheight=1
-set complete=.,w,b
+set complete=.,w,b,k
 set completeopt=menuone,longest
 set diffopt=filler,vertical
 set encoding=utf-8
