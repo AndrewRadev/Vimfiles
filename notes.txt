@@ -28,6 +28,7 @@ PHP:
   * Hack the ctags php parser.
 
 Haskell:
+  * Experiment with SHIM
   * Figure out the problems with documentation searches
 
 Snippets: 
