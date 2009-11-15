@@ -63,6 +63,8 @@ nmap K 4k
 nmap gn :NERDTreeToggle<cr>
 nmap gN :NERDTree<cr>
 
+command! FindInTree call FindInNERDTree()
+
 let g:NERDTreeHijackNetrw = 0
 
 " Open up FuzzyFinders:
@@ -123,9 +125,4 @@ runtime! autoload/textobj/indent.vim
 " Open all occurences of word under cursor in quickfix:
 noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
 
-" Delete entire row with "D":
-noremap D 0D
-
 source ~/.local_vimrc
-
-

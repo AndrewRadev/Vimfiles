@@ -22,6 +22,7 @@ else
   let g:utl_cfg_hdl_mt_image_png     = ':!gliv "%p" &> /dev/null &'
   let g:utl_cfg_hdl_mt_image_jpeg    = ':!gliv "%p" &> /dev/null &'
   let g:utl_cfg_hdl_mt_image_gif     = ':!gliv "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_bmp     = ':!gliv "%p" &> /dev/null &'
   " Video:
   let g:utl_cfg_hdl_mt_video_x_msvideo = ':!smplayer "%p" &> /dev/null &'
 endif
