@@ -23,3 +23,11 @@ command! Sql tabedit data/sql/scratch.sql | normal _slt
 
 runtime! macros/symfony_tasks.vim
 runtime! macros/symfony_navigation.vim
+
+command! Reformat silent! call Reformat()
+
+function! Reformat()
+  %s/\(\S\) {/\1\r{/g
+  %s/} /}\r/g
+  normal! '1G=G'
+endfunction
