@@ -34,12 +34,3 @@ endfunction
 function! lib#Capitalize(word)
   return substitute(a:word, '^\w', '\U\0', 'g')
 endfunction
-
-" Function to use in statusline to see the current super-space plugin motion
-function! lib#SlSpace()
-    if exists("*GetSpaceMovement")
-        return "[" . GetSpaceMovement() . "]"
-    else
-        return ""
-    endif
-endfunction

@@ -16,9 +16,6 @@ runtime! startup/smartword.vim
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
 
-" Align by columns:
-command! -range AlignSpace <line1>,<line2>call lib#AlignSpace()
-
 " Edit important files quickly:
 command! Eclipboard ClipBrd
 command! Epasswords edit ~/.passwords
@@ -39,7 +36,7 @@ MapToggle sw wrap
 
 " Some annoying mappings removed:
 nnoremap s <Nop>
-nnoremap <C-p> <Nop>
+"nnoremap <C-p> <Nop>
 
 " Always move through visual lines:
 nnoremap j gj
@@ -59,7 +56,7 @@ nmap gl <C-w>l
 nmap J 4j
 nmap K 4k
 
-" Toggling the NERD tree:
+" NERD tree:
 nmap gn :NERDTreeToggle<cr>
 nmap gN :NERDTree<cr>
 
@@ -83,11 +80,7 @@ inoremap <C-f> <C-x><C-f>
 inoremap <C-]> <C-x><C-]>
 set completefunc=syntaxcomplete#Complete
 
-" Indent/Unindent:
-"nmap <Tab> >>
-"nmap <S-Tab> <<
-
-" Try <Tab> with folds:
+" <Tab> with folds:
 nmap <Tab> zA
 
 " Dbext settings:
@@ -124,5 +117,8 @@ runtime! autoload/textobj/indent.vim
 
 " Open all occurences of word under cursor in quickfix:
 noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
+
+" Yankring:
+nnoremap <C-p> :YRShow<cr>
 
 source ~/.local_vimrc

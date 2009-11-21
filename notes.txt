@@ -1,9 +1,5 @@
+Fix Yankring -- probably clashes with something else
 Expand surround.vim with if() {..}, function wrapping, etc...
-
-Find a way to use tab for completion, <Return> is annoying
-
-Colorscheme:
-	* Experiment with colorschemes
 
 Experimenting with textobjects:
   * try to generalize the function matchers
@@ -21,9 +17,6 @@ Dbext:
   * Window placement
   * Install perl + CPAN stuff
 
-C#:
-  * Use csc.vim make methods
-
 PHP:
   * Hack the ctags php parser.
 
@@ -37,12 +30,9 @@ Snippets:
   * C snippets should NOT be included in cpp ones!
   * Add sql snippets
   * nested snippets (additional check on <tab>?)
-  * wildcard + additional character?
 
 Yaml snippets:
 	* Camelize, snake_case, etc.
-
-
 
 Changes made to plugins:
   * php indenting script
