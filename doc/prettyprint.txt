@@ -1,0 +1,157 @@
+*prettyprint.txt*	Prettyprint vim variables.
+
+Version: 0.3.0
+Author : thinca <thinca+vim@gmail.com>
+License: Creative Commons Attribution 2.1 Japan License
+         <http://creativecommons.org/licenses/by/2.1/jp/deed.en>
+
+==============================================================================
+CONTENTS					*prettyprint-contents*
+
+INTRODUCTION			|prettyprint-introduction|
+INTERFACE			|prettyprint-interface|
+  COMMANDS			  |prettyprint-commands|
+  FUNCTIONS			  |prettyprint-functions|
+OPTIONS				|prettyprint-options|
+FORMAT RULES			|prettyprint-format-rules|
+LIMITATION			|prettyprint-limitation|
+CHANGELOG			|prettyprint-changelog|
+
+
+==============================================================================
+INTRODUCTION					*prettyprint-introduction*
+
+*prettyprint* is a Vim plugin to prettyprint vim variable for debug.
+
+
+
+==============================================================================
+INTERFACE					*prettyprint-interface*
+
+------------------------------------------------------------------------------
+COMMANDS					*prettyprint-commands*
+
+:PrettyPrint {expr} [, ...]			*:PrettyPrint*
+			The command version of |PrettyPrint()|.  When two or
+			more values are passed, it is necessary to delimit
+			each value by the comma.
+
+:PP {expr} [, ...]				*:PP*
+			This is a short version of |:PrettyPrint|.
+
+------------------------------------------------------------------------------
+FUNCTIONS					*prettyprint-functions*
+
+PrettyPrint({expr} [, ...])			*PrettyPrint()*
+			Return {expr} converted to a formatted String.  When
+			two or more values are passed, it is delimited by
+			"\n".
+
+PP({expr} [, ...])				*PP()*
+			This is a short version of |PrettyPrint()|.
+
+
+
+==============================================================================
+OPTIONS						*prettyprint-options*
+
+g:prettyprint_indent				*g:prettyprint_indent*
+	Width of indent.  If the type of value is String, |eval()| is applied.
+	The default value is "&l:shiftwidth".
+
+g:prettyprint_width				*g:prettyprint_width*
+	Width by return.  If the type of value is String, |eval()| is applied.
+	The default value is "&columns".
+
+
+
+==============================================================================
+FORMAT RULES					*prettyprint-format-rules*
+
+String
+	|strtrans()| and |string()| are sequentially used.
+
+Number
+Float
+	|string()| is used.
+
+List
+	List is displayed by same style as |string()|.  If the limit of
+	width is exceeded, it is displayed by the following styles.
+>
+	[
+	  element1,
+	  element2,
+	  element3
+	]
+<
+	If nested element is appear, it is displayed by the following styles.
+>
+	[nested element {number}]
+<
+	The {number} is count from top level.
+>
+	let x = [10]
+	let x += [x]
+	PP x  " => [10, [nested element 0]]
+<
+Dictionary
+	Dictionary is displayed by same style as |string()|.  If the limit of
+	width is exceeded, it is displayed by the following styles.
+>
+	{
+	  'key1': value1,
+	  'key2': value2,
+	  'key3': value3
+	}
+<
+	The keys are sorted by |sort()|.
+	If nested element is appear, it is displayed by same style as List,
+	but it use brace instead of bracket.
+
+Funcref
+	Normally, |string()| is used.  If 'verbose' is one, the definition of
+	function is displayed by using |:function|.  If 'verbose' is two or
+	more, in addition, the file which the function was defined at last is
+	displayed by |:function-verbose|.
+
+
+
+==============================================================================
+LIMITATION					*prettyprint-limitation*
+
+- String and key of Dictionary are displayed by |strtrans()|.
+
+- In internal, the recursive call is used.  This is subject to the limitation
+  of it. See 'maxfuncdepth'.
+
+
+
+==============================================================================
+CHANGELOG					*prettyprint-changelog*
+
+0.3.0	2009-11-20
+	- Changed the treatment of options.
+	  - Applies the eval() function if the type of value is String.
+	- Improved the return algorithm.
+
+
+0.2.2	2009-08-03
+	- Fixed a bug that doesn't work if the values with different type is
+	  passed at a time.
+
+0.2.1	2009-07-09
+	- Fixed a bug that doesn't work if |Funcref| was put on other than the
+	  dictionary.
+
+0.2.0	2009-06-25
+	- Fix typos in this document.
+	- Rename the plugin name.
+	  - dumper.vim -> prettyprint.vim
+
+0.1.0	2009-06-24
+	- Initial version.
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
