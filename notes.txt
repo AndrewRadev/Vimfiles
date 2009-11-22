@@ -25,7 +25,6 @@ Haskell:
 
 Snippets: 
   * Snippets and acp -- completing breaks $x references
-  * Snippets with some keys -- "e" for instance -- breaks badly
   * C snippets should NOT be included in cpp ones!
   * Add sql snippets
   * nested snippets (additional check on <tab>?)
