@@ -1,4 +1,3 @@
-Fix Yankring -- probably clashes with something else
 Expand surround.vim with if() {..}, function wrapping, etc...
 
 Experimenting with textobjects:

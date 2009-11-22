@@ -119,6 +119,6 @@ runtime! autoload/textobj/indent.vim
 noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
 
 " Yankring:
-nnoremap <C-p> :YRShow<cr>
+nnoremap <C-\> :YRShow<cr>
 
 source ~/.local_vimrc
