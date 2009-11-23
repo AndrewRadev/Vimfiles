@@ -1,9 +1,28 @@
-command! Ejavascript exe "edit web/js/".CurrentAppName()."/".CurrentModuleName().".js"
+command! Ejavascript exe
+      \ 'edit web/js/'.
+      \ symfony#CurrentAppName().
+      \ '/'.
+      \ symfony#CurrentModuleName().'.js'
 
-function! CurrentModuleName()
-  return substitute(expand('%:p'), '^.*[/\\]modules[/\\]\(.\{-}\)/.*$', '\1', '')
-endfunction
+command! Estylesheet exe
+      \ 'edit web/css/'.
+      \ symfony#CurrentAppName().
+      \ '/'.
+      \ symfony#CurrentModuleName().'.css'
 
-function! CurrentAppName()
-  return substitute(expand('%:p'), '^.*[/\\]apps[/\\]\(.\{-}\)/.*$', '\1', '')
-endfunction
+command! Eview exe
+      \ 'edit apps/'.
+      \ symfony#CurrentAppName().
+      \ '/modules/'.
+      \ symfony#CurrentModuleName().
+      \ '/templates/'.
+      \ symfony#CurrentActionName().'Success.php'
+
+" TODO:
+command! Econtroller exe
+      \ 'edit apps/'.
+      \ symfony#CurrentAppName().
+      \ '/modules/'.
+      \ symfony#CurrentModuleName().
+      \ '/actions/actions.class.php' |
+      \ call search('execute'.lib#Capitalize(symfony#CurrentActionName()), 'cw')

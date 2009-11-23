@@ -1,7 +1,7 @@
 set autoindent
 set autowrite
 set backspace=indent,eol,start
-set clipboard=unnamed
+"set clipboard=unnamed
 set cmdheight=1
 set complete=.,w,b,k
 set completeopt=menuone,longest
@@ -23,7 +23,7 @@ set shiftwidth=2 shiftround
 set shortmess=aTI
 set showcmd
 set sidescroll=4
-set statusline=%<%f\ %h%m%r%=[%{&ft}]%{lib#SlSpace()}%-14.([%l/%L],%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%=[%{&ft}]%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
 set tabstop=2 softtabstop=2
 set ttimeout

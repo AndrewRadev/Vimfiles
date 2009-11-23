@@ -1,10 +1,5 @@
 Expand surround.vim with if() {..}, function wrapping, etc...
 
-Find a way to use tab for completion, <Return> is annoying
-
-Colorscheme:
-	* Experiment with colorschemes
-
 Experimenting with textobjects:
   * try to generalize the function matchers
   * C funcs != C++ funcs, apparently...
@@ -21,9 +16,6 @@ Dbext:
   * Window placement
   * Install perl + CPAN stuff
 
-C#:
-  * Use csc.vim make methods
-
 PHP:
   * Hack the ctags php parser.
 
@@ -33,16 +25,12 @@ Haskell:
 
 Snippets: 
   * Snippets and acp -- completing breaks $x references
-  * Snippets with some keys -- "e" for instance -- breaks badly
   * C snippets should NOT be included in cpp ones!
   * Add sql snippets
   * nested snippets (additional check on <tab>?)
-  * wildcard + additional character?
 
 Yaml snippets:
 	* Camelize, snake_case, etc.
-
-
 
 Changes made to plugins:
   * php indenting script
