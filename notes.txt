@@ -47,3 +47,4 @@ Yaml snippets:
 Changes made to plugins:
   * php indenting script
   * Vorg
+  * SHIM -- finish if has('win32')
