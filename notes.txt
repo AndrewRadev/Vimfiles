@@ -1,5 +1,9 @@
 Expand surround.vim with if() {..}, function wrapping, etc...
 
+Symfony
+  * Econtroller <app> <module>
+  * Econtroller <module>
+
 Experimenting with textobjects:
   * try to generalize the function matchers
   * C funcs != C++ funcs, apparently...
