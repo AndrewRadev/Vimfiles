@@ -7,7 +7,7 @@ autocmd BufEnter *.php set filetype=php.html.javascript.symfony
 " Base classes should never be modified:
 autocmd BufEnter base/Base*.class.php set readonly
 
-command! RebuildTags !ctags -R --exclude=symfony,tmp --languages=php .
+command! RebuildTags !ctags -R --exclude="*/symfony/*" --exclude="*/tmp/*" --languages=php .
 
 command! RebuildAll     !php symfony doctrine:build-all-reload
 command! RebuildAllTest !php symfony doctrine:build-all-reload --env=test

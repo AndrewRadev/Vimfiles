@@ -18,11 +18,15 @@ command! Eview exe
       \ '/templates/'.
       \ symfony#CurrentActionName().'Success.php'
 
-" TODO:
-command! Econtroller exe
-      \ 'edit apps/'.
-      \ symfony#CurrentAppName().
-      \ '/modules/'.
-      \ symfony#CurrentModuleName().
-      \ '/actions/actions.class.php' |
-      \ call search('execute'.lib#Capitalize(symfony#CurrentActionName()), 'cw')
+command! Econtroller call Econtroller()
+function! Econtroller()
+  let function_name = 'execute'.lib#Capitalize(symfony#CurrentActionName())
+
+  exe
+        \ 'edit apps/'.
+        \ symfony#CurrentAppName().
+        \ '/modules/'.
+        \ symfony#CurrentModuleName().
+        \ '/actions/actions.class.php'
+  call search(function_name, 'cw')
+endfunction
