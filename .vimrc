@@ -121,4 +121,7 @@ noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<c
 " Yankring:
 nnoremap <C-\> :YRShow<cr>
 
+" Alignment mappings:
+vmap <Leader>a=> :Align =><cr>
+
 source ~/.local_vimrc

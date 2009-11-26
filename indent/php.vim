@@ -85,20 +85,20 @@ function GetPhpIndent()
 	endif
 
 	" Indent successive '->'s:
-	let arrow_index = match(line, '->')
-	if arrow_index != -1
-		if line !~ ';\s*$'
-			if !exists('b:indent_before_arrow')
-				let b:indent_before_arrow = ind
-			endif
-
-			return arrow_index
-		elseif exists('b:indent_before_arrow')
-			let ind = b:indent_before_arrow
-			unlet('b:indent_before_arrow')
-			return ind
-		endif
-	endif
+"	let arrow_index = match(line, '->')
+"	if arrow_index != -1
+"		if line !~ ';\s*$'
+"			if !exists('b:indent_before_arrow')
+"				let b:indent_before_arrow = ind
+"			endif
+"
+"			return arrow_index
+"		elseif exists('b:indent_before_arrow')
+"			let ind = b:indent_before_arrow
+"			unlet('b:indent_before_arrow')
+"			return ind
+"		endif
+"	endif
 
    if exists("b:php_noindent_switch") " version 1 behavior, diy switch/case,etc
       " Indent blocks enclosed by {} or ()

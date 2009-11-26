@@ -34,6 +34,7 @@ let mapleader="_"
 let maplocalleader="_"
 
 if has("win32")
+  set clipboard=unnamed
   set backupdir=c:/tmp
   set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
 "  set guifont=Andale_Mono:h12,DejaVu_Sans_Mono:h12

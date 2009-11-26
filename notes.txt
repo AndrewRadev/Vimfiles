@@ -3,6 +3,7 @@ Expand surround.vim with if() {..}, function wrapping, etc...
 Symfony
   * Econtroller <app> <module>
   * Econtroller <module>
+  * Eview/Econtroller should work with components
 
 Experimenting with textobjects:
   * try to generalize the function matchers
