@@ -1,7 +1,6 @@
 Symfony
-  * Econtroller <app> <module>
-  * Econtroller <module>
   * Eview/Econtroller should work with components
+  * Errors when unable to work correctly
 
 Dbext:
   * Mappings

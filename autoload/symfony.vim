@@ -10,6 +10,10 @@ let s:capture_group = '\(.\{-}\)'
 let s:anything = '.*'
 
 function! symfony#CurrentModuleName()
+  if exists('b:current_module_name')
+    return b:current_module_name
+  endif
+
   let rx = '^'
 
   let rx .= s:anything
@@ -21,12 +25,20 @@ function! symfony#CurrentModuleName()
   let rx .= s:anything
   let rx .= '$'
 
+  if match(result, rx) == -1
+    echoerr 'Couldn''t find app name'
+  endif
+
   let result = substitute(expand('%:p'), rx, '\1', '')
 
   return result
 endfunction
 
 function! symfony#CurrentAppName()
+  if exists('b:current_app_name')
+    return b:current_app_name
+  endif
+
   let rx = '^'
 
   let rx .= s:anything
@@ -37,6 +49,10 @@ function! symfony#CurrentAppName()
 
   let rx .= s:anything
   let rx .= '$'
+
+  if match(result, rx) == -1
+    echoerr 'Couldn''t find app name'
+  endif
 
   let result = substitute(expand('%:p'), rx, '\1', '')
 
@@ -59,11 +75,15 @@ function! symfony#CurrentActionName()
     let rx .= s:anything
     let rx .= '$'
 
+    if match(path, rx) == -1
+      echoerr 'Couldn''t find action' | return
+    endif
+
     return substitute(path, rx, '\1', '')
   else " we're in an action
     let function_line = search('function', 'b')
     if function_line == 0
-      throw "Didn't find a function"
+      echoerr 'Couldn''t find action' | return
     else
       let rx = '^'
 
@@ -77,6 +97,10 @@ function! symfony#CurrentActionName()
 
       let rx .= s:anything
       let rx .= '$'
+
+      if match(getline(function_line), rx) == -1
+        echoerr 'Couldn''t find action' | return
+      endif
 
       let result = substitute(getline(function_line), rx, '\l\1', '')
 
