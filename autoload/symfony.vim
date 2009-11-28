@@ -84,4 +84,3 @@ function! symfony#CurrentActionName()
     endif
   endif
 endfunction
-

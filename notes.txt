@@ -1,20 +1,7 @@
-Expand surround.vim with if() {..}, function wrapping, etc...
-
 Symfony
   * Econtroller <app> <module>
   * Econtroller <module>
   * Eview/Econtroller should work with components
-
-Experimenting with textobjects:
-  * try to generalize the function matchers
-  * C funcs != C++ funcs, apparently...
-  * Haskell funcs? :)
-  * "between"-textobject (=...;) ?
-
-Plugins:
-  * ku
-  * submode ... "Space-*" mode? <Space>-mru,file,window?,g+-?,tags?
-  * template plugin seems pretty useful...
 
 Dbext:
   * Mappings
@@ -26,7 +13,6 @@ PHP:
 
 Haskell:
   * Experiment with SHIM
-  * Figure out the problems with documentation searches
 
 Snippets: 
   * Snippets and acp -- completing breaks $x references

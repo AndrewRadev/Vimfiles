@@ -73,12 +73,15 @@ nnoremap <bs> <C-o>
 
 " Completion remappings:
 inoremap <C-j> <C-n>
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <C-k> <C-p>
 inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
 inoremap <C-]> <C-x><C-]>
 set completefunc=syntaxcomplete#Complete
+
+" For digraphs:
+inoremap <C-n> <C-k>
 
 " <Tab> with folds:
 nmap <Tab> zA
@@ -112,14 +115,11 @@ let g:ttags_display = 'quickfix'
 let g:haddock_browser = "firefox"
 let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
 
-" Hack to fix textobj-indent:
-runtime! autoload/textobj/indent.vim
-
 " Open all occurences of word under cursor in quickfix:
 noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
 
 " Yankring:
-nnoremap <C-\> :YRShow<cr>
+nnoremap <Leader>yr :YRShow<cr>
 
 " Alignment mappings:
 vmap <Leader>a=> :Align =><cr>

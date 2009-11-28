@@ -1,7 +1,7 @@
 set autoindent
+set autoread
 set autowrite
 set backspace=indent,eol,start
-"set clipboard=unnamed
 set cmdheight=1
 set complete=.,w,b,k
 set completeopt=menuone,longest
@@ -37,9 +37,7 @@ if has("win32")
   set clipboard=unnamed
   set backupdir=c:/tmp
   set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
-"  set guifont=Andale_Mono:h12,DejaVu_Sans_Mono:h12
 else
   set guifont=Terminus\ 14
   set backupdir=~/.backup
-"  set guifont=Andale\ Mono\ 13
 endif
