@@ -37,3 +37,34 @@ function! Econtroller(...)
         \ '/actions/actions.class.php'
   call search(function_name, 'cw')
 endfunction
+
+command! -nargs=? Emodel  call Elib('model',  '',           <f-args>)
+command! -nargs=? Etable  call Elib('model',  'Table',      <f-args>)
+command! -nargs=? Eform   call Elib('form',   'Form',       <f-args>)
+command! -nargs=? Efilter call Elib('filter', 'FormFilter', <f-args>)
+function! Elib(dir, suffix, ...)
+  if a:0 == 0
+    let b:model_name = symfony#CurrentModelName()
+  else
+    let b:model_name = a:1
+  endif
+
+  exe
+        \ "edit lib/".
+        \ a:dir.
+        \ "/doctrine/".
+        \ b:model_name.
+        \ a:suffix.
+        \ ".class.php"
+endfunction
+
+command! -nargs=* Eschema call Eschema(<f-args>)
+function! Eschema(...)
+  if a:0 == 1 " Then we're given a prefix for the schema file
+    let prefix = a:1.'_'
+  else
+    let prefix = ''
+  endif
+
+  exe "edit config/doctrine/".prefix."schema.yml"
+endfunction

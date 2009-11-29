@@ -1,6 +1,6 @@
 Symfony
   * Eview/Econtroller should work with components
-  * Errors when unable to work correctly
+  * Everything should be context-aware
 
 Dbext:
   * Mappings

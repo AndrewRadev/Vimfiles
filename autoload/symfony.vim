@@ -25,8 +25,8 @@ function! symfony#CurrentModuleName()
   let rx .= s:anything
   let rx .= '$'
 
-  if match(result, rx) == -1
-    echoerr 'Couldn''t find app name'
+  if match(expand('%:p'), rx) == -1
+    throw 'Couldn''t find app name'
   endif
 
   let result = substitute(expand('%:p'), rx, '\1', '')
@@ -50,8 +50,8 @@ function! symfony#CurrentAppName()
   let rx .= s:anything
   let rx .= '$'
 
-  if match(result, rx) == -1
-    echoerr 'Couldn''t find app name'
+  if match(expand('%:p'), rx) == -1
+    throw 'Couldn''t find app name'
   endif
 
   let result = substitute(expand('%:p'), rx, '\1', '')
@@ -76,14 +76,14 @@ function! symfony#CurrentActionName()
     let rx .= '$'
 
     if match(path, rx) == -1
-      echoerr 'Couldn''t find action' | return
+      throw 'Couldn''t find action' | return
     endif
 
     return substitute(path, rx, '\1', '')
   else " we're in an action
     let function_line = search('function', 'b')
     if function_line == 0
-      echoerr 'Couldn''t find action' | return
+      throw 'Couldn''t find action' | return
     else
       let rx = '^'
 
@@ -99,7 +99,7 @@ function! symfony#CurrentActionName()
       let rx .= '$'
 
       if match(getline(function_line), rx) == -1
-        echoerr 'Couldn''t find action' | return
+        throw 'Couldn''t find action' | return
       endif
 
       let result = substitute(getline(function_line), rx, '\l\1', '')
@@ -107,4 +107,22 @@ function! symfony#CurrentActionName()
       return result
     endif
   endif
+endfunction
+
+function! symfony#CurrentModelName()
+  let rx = '^'
+
+  let rx .= s:capture_group
+	let rx .= '\(Table\|FormFilter\|Form\)\{,1}'
+
+  let rx .= '\.class\.php'
+  let rx .= '$'
+
+  if match(expand('%:t'), rx) == -1
+    throw 'Couldn''t find model name'
+  endif
+
+  let result = substitute(expand('%:t'), rx, '\1', '')
+
+  return result
 endfunction
