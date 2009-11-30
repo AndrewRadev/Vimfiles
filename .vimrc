@@ -12,6 +12,7 @@ runtime! startup/autocommands.vim
 runtime! startup/utl.vim
 runtime! startup/completion.vim
 runtime! startup/smartword.vim
+runtime! startup/search.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
@@ -78,6 +79,7 @@ inoremap <C-o> <C-x><C-o>
 inoremap <C-u> <C-x><C-u>
 inoremap <C-f> <C-x><C-f>
 inoremap <C-]> <C-x><C-]>
+inoremap <C-l> <C-x><C-l>
 set completefunc=syntaxcomplete#Complete
 
 " For digraphs:
