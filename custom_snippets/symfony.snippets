@@ -5,12 +5,12 @@ snippet cx
 	sfContext::getInstance()
 # Inside form classes:
 snippet ws
-	$this->widgetSchema['${1:field}'] = new ${2:sfWidgetFormInput}(${3:  });
+	$this->widgetSchema['${1:field}']${2}
 snippet vs
-	$this->validatorSchema['${1:field}'] = new ${2:sfValidatorString}(${3:  });
+	$this->validatorSchema['${1:field}']${2}
 # Doctrine:
 snippet dtable
-	Doctrine::getTable('${1:Model}')
+	Doctrine::getTable('${1:Model}')${2}
 # Snippets for lime tests:
 snippet tnew
 	$t = new lime_test(0, new lime_output_color);
