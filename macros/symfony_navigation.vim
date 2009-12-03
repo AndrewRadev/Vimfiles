@@ -35,6 +35,7 @@ function! Econtroller(...)
         \ '/modules/'.
         \ symfony#CurrentModuleName().
         \ '/actions/actions.class.php'
+  call cursor(0, 0)
   call search(function_name, 'cw')
 endfunction
 

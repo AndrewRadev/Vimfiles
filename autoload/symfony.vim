@@ -76,14 +76,14 @@ function! symfony#CurrentActionName()
     let rx .= '$'
 
     if match(path, rx) == -1
-      throw 'Couldn''t find action' | return
+      return 'index' " A default value
     endif
 
     return substitute(path, rx, '\1', '')
   else " we're in an action
     let function_line = search('function', 'b')
     if function_line == 0
-      throw 'Couldn''t find action' | return
+      return 'index' " A default value
     else
       let rx = '^'
 
@@ -99,7 +99,7 @@ function! symfony#CurrentActionName()
       let rx .= '$'
 
       if match(getline(function_line), rx) == -1
-        throw 'Couldn''t find action' | return
+        return 'index' " A default value
       endif
 
       let result = substitute(getline(function_line), rx, '\l\1', '')
