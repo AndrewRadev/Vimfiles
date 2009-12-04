@@ -1,6 +1,7 @@
 Symfony
   * Eview/Econtroller should work with components
   * Everything should be context-aware
+  * Erouting with argument
 
 Dbext:
   * Mappings
