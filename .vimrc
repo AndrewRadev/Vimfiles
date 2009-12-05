@@ -83,6 +83,12 @@ inoremap <C-]> <C-x><C-]>
 inoremap <C-l> <C-x><C-l>
 set completefunc=syntaxcomplete#Complete
 
+" Moving lines:
+noremap  <C-j> mz:m+<cr>`z
+noremap  <C-k> mz:m-2<cr>`z
+vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
 " For digraphs:
 inoremap <C-n> <C-k>
 
