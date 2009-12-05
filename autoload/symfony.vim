@@ -13,6 +13,7 @@ function! symfony#CurrentModuleName()
   if exists('b:current_module_name')
     return b:current_module_name
   endif
+  let path = expand('%:p')
 
   let rx = '^'
 
@@ -25,13 +26,14 @@ function! symfony#CurrentModuleName()
   let rx .= s:anything
   let rx .= '$'
 
-  if match(expand('%:p'), rx) == -1
-    throw 'Couldn''t find app name'
+  if match(path, rx) == -1
+    let b:current_module_name = input("Enter module name: ", "", "customlist,symfony#CompleteModule")
+  else
+    let b:current_module_name = substitute(path, rx, '\1', '')
   endif
+  let g:module_dict[b:current_module_name] = 1
 
-  let result = substitute(expand('%:p'), rx, '\1', '')
-
-  return result
+  return b:current_module_name
 endfunction
 
 function! symfony#CurrentAppName()
@@ -51,12 +53,13 @@ function! symfony#CurrentAppName()
   let rx .= '$'
 
   if match(expand('%:p'), rx) == -1
-    throw 'Couldn''t find app name'
+    let b:current_app_name = input("Enter app name: ", "", "customlist,symfony#CompleteApp")
+  else
+    let b:current_app_name = substitute(expand('%:p'), rx, '\1', '')
   endif
+  let g:app_dict[b:current_app_name] = 1
 
-  let result = substitute(expand('%:p'), rx, '\1', '')
-
-  return result
+  return b:current_app_name
 endfunction
 
 function! symfony#CurrentActionName()
@@ -110,7 +113,16 @@ function! symfony#CurrentActionName()
 endfunction
 
 function! symfony#CurrentModelName()
+  let path = expand('%:p')
   let rx = '^'
+
+  let rx .= s:anything
+  let rx .= 'lib'
+  let rx .= s:PS
+  let rx .= s:anything
+  let rx .= s:PS
+  let rx .= 'doctrine'
+  let rx .= s:PS
 
   let rx .= s:capture_group
 	let rx .= '\(Table\|FormFilter\|Form\)\{,1}'
@@ -118,11 +130,24 @@ function! symfony#CurrentModelName()
   let rx .= '\.class\.php'
   let rx .= '$'
 
-  if match(expand('%:t'), rx) == -1
-    throw 'Couldn''t find model name'
+  if match(path, rx) == -1
+    let b:current_model_name = input("Enter model name: ", "", "customlist,symfony#CompleteModel")
+  else
+    let b:current_model_name = substitute(path, rx, '\1', '')
   endif
+  let g:model_dict[b:current_model_name] = 1
 
-  let result = substitute(expand('%:t'), rx, '\1', '')
+  return b:current_model_name
+endfunction
 
-  return result
+function! symfony#CompleteApp(A, L, P)
+  return keys(filter(copy(g:app_dict), "v:key =~'^".a:A."'"))
+endfunction
+
+function! symfony#CompleteModule(A, L, P)
+  return keys(filter(copy(g:module_dict), "v:key =~'^".a:A."'"))
+endfunction
+
+function! symfony#CompleteModel(A, L, P)
+  return keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'"))
 endfunction

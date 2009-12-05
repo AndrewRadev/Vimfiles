@@ -1,3 +1,7 @@
+let g:app_dict    = {}
+let g:module_dict = {}
+let g:model_dict  = {}
+
 command! Ejavascript exe
       \ 'edit web/js/'.
       \ symfony#CurrentAppName().
@@ -18,13 +22,11 @@ command! Eview exe
       \ '/templates/'.
       \ symfony#CurrentActionName().'Success.php'
 
-command! -nargs=* Econtroller call Econtroller(<f-args>)
+command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call Econtroller(<f-args>)
 function! Econtroller(...)
-  if (a:0 == 2) " Then we're given an app and a controller
-    let b:current_app_name    = a:1
-    let b:current_module_name = a:2
-  elseif (a:0 == 1) " Then we're given just a controller
+  if (a:0 == 1) " Then we're given a controller
     let b:current_module_name = a:1
+    let g:module_dict[b:current_module_name] = 1
   endif
 
   let function_name = 'execute'.lib#Capitalize(symfony#CurrentActionName())
@@ -39,10 +41,10 @@ function! Econtroller(...)
   call search(function_name, 'cw')
 endfunction
 
-command! -nargs=? Emodel  call Elib('model',  '',           <f-args>)
-command! -nargs=? Etable  call Elib('model',  'Table',      <f-args>)
-command! -nargs=? Eform   call Elib('form',   'Form',       <f-args>)
-command! -nargs=? Efilter call Elib('filter', 'FormFilter', <f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Emodel  call Elib('model',  '',           <f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Etable  call Elib('model',  'Table',      <f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Eform   call Elib('form',   'Form',       <f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Efilter call Elib('filter', 'FormFilter', <f-args>)
 function! Elib(dir, suffix, ...)
   if a:0 == 0
     let b:model_name = symfony#CurrentModelName()
