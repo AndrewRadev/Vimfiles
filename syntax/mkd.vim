@@ -16,6 +16,8 @@ if version < 600
 else
   runtime! syntax/html.vim
   unlet b:current_syntax
+  runtime! syntax/txt.vim
+  unlet b:current_syntax
 endif
 
 if version < 600

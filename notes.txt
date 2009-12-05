@@ -1,7 +1,6 @@
 Symfony
   * Eview/Econtroller should work with components
   * Everything should be context-aware
-  * Erouting with argument
 
 Dbext:
   * Mappings
@@ -24,6 +23,7 @@ Yaml snippets:
 	* Camelize, snake_case, etc.
 
 Changes made to plugins:
+  * Markdown syntax -- added txt syntax
   * php indenting script
   * Vorg
   * SHIM -- finish if has('win32')
