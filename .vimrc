@@ -126,4 +126,8 @@ nnoremap <Leader>yr :YRShow<cr>
 " Alignment mappings:
 vmap <Leader>a=> :Align =><cr>
 
+" Simpler tag searches:
+command! -nargs=1 Function TTags f <args>
+command! -nargs=1 Class    TTags c <args>
+
 source ~/.local_vimrc

@@ -72,14 +72,15 @@ function! Eschema(...)
   exe "edit config/doctrine/".prefix."schema.yml"
 endfunction
 
-command! -nargs=* Erouting call Erouting(<f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteApp Erouting call Erouting(<f-args>)
 function! Erouting(...)
+  if a:0 == 1
+    let b:current_app_name = a:1
+    let g:app_dict[b:current_app_name] = 1
+  endif
+
   exe
-      \ 'edit apps/'.
-      \ (a:0 > 0 ? (a:1) : symfony#CurrentAppName()).
-      \ '/config/routing.yml'
-endfunction
-command! Erouting exe
       \ 'edit apps/'.
       \ symfony#CurrentAppName().
       \ '/config/routing.yml'
+endfunction
