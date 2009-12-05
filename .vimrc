@@ -10,10 +10,10 @@ colo custom_elflord
 runtime! startup/basic.vim
 runtime! startup/autocommands.vim
 runtime! startup/utl.vim
-runtime! startup/completion.vim
 runtime! startup/smartword.vim
 runtime! startup/search.vim
 runtime! startup/visual_search.vim
+runtime! startup/plugins.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
@@ -58,18 +58,6 @@ nmap gl <C-w>l
 nmap J 4j
 nmap K 4k
 
-" NERD tree:
-nmap gn :NERDTreeToggle<cr>
-nmap gN :NERDTree<cr>
-
-command! FindInTree call FindInNERDTree()
-
-let g:NERDTreeHijackNetrw = 0
-
-" Open up FuzzyFinders:
-nmap Qf :FuzzyFinderTextMate<cr>
-nmap Qm :FuzzyFinderMruFile<cr>
-
 " Use <bs> to go back through jumps:
 nnoremap <bs> <C-o>
 
@@ -95,40 +83,8 @@ inoremap <C-n> <C-k>
 " <Tab> with folds:
 nmap <Tab> zA
 
-" Dbext settings:
-let g:dbext_default_buffer_lines = 20
-
-" Snippet settings:
-let g:snippets_dir = "~/.vim/custom_snippets/"
-let g:snips_author = "Andrew Radev"
-
-" FuzzyFinderTextMate settings:
-let g:fuzzy_ceiling = 20000
-let g:fuzzy_ignore = "*/.svn/*;.git/*;*/tmp/*"
-
-" Proj settings:
-let g:ProjFile = '~/.vimproj'
-let g:ProjSplitMethod = 'edit '
-
-" EasyGrep options:
-let g:EasyGrepMode              = 2 " Track extension
-let g:EasyGrepCommand           = 0 " vimgprep
-let g:EasyGrepRecursive         = 1 " -> True
-let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
-let g:EasyGrepExtraWarnings     = 1 " -> True
-
-" TTags options:
-let g:ttags_display = 'quickfix'
-
-" Settings for Haskell mode:
-let g:haddock_browser = "firefox"
-let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
-
 " Open all occurences of word under cursor in quickfix:
 noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
-
-" Yankring:
-nnoremap <Leader>yr :YRShow<cr>
 
 " Alignment mappings:
 vmap <Leader>a=> :Align =><cr>
