@@ -14,5 +14,5 @@ function! VisualSearch(direction) range
   let @" = l:saved_reg
 endfunction
 
-vnoremap * :call VisualSearch('f')<CR>
-vnoremap # :call VisualSearch('b')<CR>
+xnoremap * :call VisualSearch('f')<CR>
+xnoremap # :call VisualSearch('b')<CR>
