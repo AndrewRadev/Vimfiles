@@ -1,4 +1,9 @@
+Think of a general outline (indentation?) and some specific ones here and there:
+  * "::" in Haskell?
+  * "def" in Python and Ruby?
+
 Symfony
+  * Use glob() to locate modules, models, apps
   * Eview/Econtroller should work with components
   * Everything should be context-aware
 
