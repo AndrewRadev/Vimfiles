@@ -3,8 +3,8 @@
 " @Website:     http://members.a1.net/t.link/
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-05-01.
-" @Last Change: 2009-08-23.
-" @Revision:    0.1.738
+" @Last Change: 2009-10-25.
+" @Revision:    0.1.740
 
 " :filedoc:
 " A prototype used by |tlib#input#List|.
@@ -672,7 +672,7 @@ function! s:prototype.Resize(hsize, vsize) dict "{{{3
 endf
 
 
-" :def: function! s:prototype.DisplayList(query, ?list)
+" function! s:prototype.DisplayList(query, ?list)
 " :nodoc:
 function! s:prototype.DisplayList(query, ...) dict "{{{3
     " TLogVAR a:query

@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-06-30.
-" @Last Change: 2009-08-17.
-" @Revision:    0.0.283
+" @Last Change: 2009-12-07.
+" @Revision:    0.0.287
 
 if &cp || exists("loaded_tlib_buffer_autoload")
     finish
@@ -21,6 +21,7 @@ endf
 
 
 function! tlib#buffer#DisableMRU() "{{{3
+    call tlib#autocmdgroup#Init()
     autocmd! TLib BufEnter
 endf
 
@@ -180,6 +181,7 @@ endf
 function! tlib#buffer#HighlightLine(line) "{{{3
     " exec '3match MatchParen /^\%'. a:line .'l.*/'
     exec '3match Search /^\%'. a:line .'l.*/'
+    call tlib#autocmdgroup#Init()
     autocmd TLib CursorHold,CursorHoldI,CursorMoved,CursorMovedI * 3match none
 endf
 

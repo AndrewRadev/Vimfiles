@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-07-18.
-" @Last Change: 2009-08-04.
-" @Revision:    0.0.144
+" @Last Change: 2009-10-24.
+" @Revision:    0.0.145
 
 if &cp || exists("loaded_tlib_scratch_autoload")
     finish
@@ -66,6 +66,7 @@ function! tlib#scratch#UseScratch(...) "{{{3
     setlocal foldmethod=manual
     setlocal foldcolumn=0
     setlocal modifiable
+    setlocal nospell
     if &ft != '*'
         let &ft = ft
     endif

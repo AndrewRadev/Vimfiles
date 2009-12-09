@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-04-10.
-" @Last Change: 2009-08-23.
-" @Revision:    581
+" @Last Change: 2009-12-07.
+" @Revision:    588
 " GetLatestVimScripts: 1863 1 tlib.vim
 "
 " Please see also ../test/tlib.vim for usage examples.
@@ -29,9 +29,13 @@ if v:version < 700 "{{{2
     echoerr "tlib requires Vim >= 7"
     finish
 endif
-let loaded_tlib = 32
+let loaded_tlib = 34
 let s:save_cpo = &cpo
 set cpo&vim
+
+
+" Init~ {{{1
+" call tlib#autocmdgroup#Init()
 
 
 " Commands~ {{{1
@@ -551,3 +555,8 @@ pressing <esc> when browsing an index-list, returns 0 and not "")
 - Don't use fnamemodify() to split filenames (for performance reasons)
 - scratch: Set ft after setting up scratch options
 - tlib#map#PumAccept(key)
+
+0.34
+- tlib#buffer#HighlightLine(line): call tlib#autocmdgroup#Init() 
+(reported by Sergey Khorev)
+

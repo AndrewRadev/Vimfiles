@@ -71,7 +71,7 @@ Contents~
         prototype.Super
         prototype.Methods
         tlib#World#New .......................... |tlib#World#New()|
-        prototype.DisplayList
+        prototype.Reset
         tlib#agent#Exit ......................... |tlib#agent#Exit()|
         tlib#agent#CopyItems .................... |tlib#agent#CopyItems()|
         tlib#agent#PageUp ....................... |tlib#agent#PageUp()|
@@ -182,6 +182,7 @@ Contents~
         tlib#normal#WithRegister ................ |tlib#normal#WithRegister()|
         tlib#notify#Echo ........................ |tlib#notify#Echo()|
         tlib#notify#TrimMessage ................. |tlib#notify#TrimMessage()|
+        tlib#paragraph#Delete ................... |tlib#paragraph#Delete()|
         tlib#progressbar#Init ................... |tlib#progressbar#Init()|
         tlib#progressbar#Display ................ |tlib#progressbar#Display()|
         tlib#progressbar#Restore ................ |tlib#progressbar#Restore()|
@@ -536,7 +537,7 @@ Inherits from |tlib#Object#New|.
 tlib#World#New(...)
 
 
-prototype.DisplayList
+prototype.Reset
 
 
 ========================================================================
@@ -1137,6 +1138,19 @@ tlib#notify#TrimMessage(message)
     The echoed line is too long if it is wider than the width of the 
     window, minus cmdline space taken up by the ruler and showcmd 
     features.
+
+
+========================================================================
+autoload/tlib/paragraph.vim~
+
+                                                    *tlib#paragraph#Delete()*
+tlib#paragraph#Delete(?register="")
+    Almost the same as dap but behaves differently when the cursor is on a 
+    blank line or when the paragraph's last line is the last line in the 
+    file.
+    
+    This function assumes that a paragraph is a block of text followed by 
+    blank lines or the end of file.
 
 
 ========================================================================
