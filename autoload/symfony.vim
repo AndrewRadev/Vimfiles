@@ -3,7 +3,28 @@
 " Description: Functions to use in symfony projects. Mostly helpful in
 " commands to navigate across the project. All the functions assume the
 " default directory structure of a symfony project.
-" Last Modified: November 22, 2009
+" Last Modified: December 12, 2009
+
+function! symfony#LoadData()
+  let g:app_dict    = {}
+  let g:module_dict = {}
+  let g:model_dict  = {}
+
+  for path in split(glob('apps/*'))
+    let app = substitute(path, '^.*/\(.*\)$', '\1', '')
+    let g:app_dict[app] = 1
+  endfor
+
+  for path in split(glob('apps/*/modules/*'))
+    let module = substitute(path, '^.*/\(.*\)$', '\1', '')
+    let g:module_dict[module] = 1
+  endfor
+
+  for path in split(glob('lib/model/doctrine/*Table.class.php'))
+    let model = substitute(path, '^.*/\(.*\)Table\.class\.php$', '\1', '')
+    let g:model_dict[model] = 1
+  endfor
+endfunction
 
 let s:PS = has('win32') ? '\\' : '/'
 let s:capture_group = '\(.\{-}\)'

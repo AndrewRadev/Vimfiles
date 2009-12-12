@@ -1,6 +1,4 @@
-let g:app_dict    = {}
-let g:module_dict = {}
-let g:model_dict  = {}
+call symfony#LoadData()
 
 command! Ejavascript exe
       \ 'edit web/js/'.
