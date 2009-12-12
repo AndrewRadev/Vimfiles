@@ -2,6 +2,7 @@ set autoindent
 set autoread
 set autowrite
 set backspace=indent,eol,start
+set clipboard=unnamed
 set cmdheight=1
 set complete=.,w,b,k
 set completeopt=menuone,longest
@@ -34,7 +35,6 @@ let mapleader="_"
 let maplocalleader="_"
 
 if has("win32")
-  set clipboard=unnamed
   set backupdir=c:/tmp
   set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
 else
