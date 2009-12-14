@@ -15,6 +15,7 @@ set guioptions=crb
 set incsearch nohlsearch
 set laststatus=2
 set linebreak showbreak=+>
+"set list
 set listchars=eol:.,tab:\|-
 set noswapfile
 set notimeout
