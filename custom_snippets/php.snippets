@@ -177,6 +177,10 @@ snippet if
 	if (${1:/* condition */}) {
 		${2:// code...}
 	}
+snippet if=
+	<?php if (${1:/* condition */}): ?>
+	${2:<!-- code -->}
+	<?php endif; ?>
 snippet ife
 	if (${1:/* condition */}) {
 		${2:// code...}
@@ -184,6 +188,12 @@ snippet ife
 		${3:// code...}
 	}
 	${4}
+snippet ife=
+	<?php if (${1:/* condition */}): ?>
+	${2:<!-- code -->}
+	<?php else: ?>
+	${3:<!-- code -->}
+	<?php endif; ?>
 snippet else
 	else {
 		${1:// code...}
