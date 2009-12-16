@@ -27,7 +27,7 @@ set showcmd
 set sidescroll=4
 set statusline=%<%f\ %h%m%r%=[%{&ft}]%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
-set tabstop=8 softtabstop=2
+set tabstop=2 softtabstop=2
 set ttimeout
 set updatetime=1000
 set wildmenu

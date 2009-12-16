@@ -11,6 +11,7 @@ acp-contact	acp.jax	/*acp-contact*
 acp-installation	acp.jax	/*acp-installation*
 acp-introduction	acp.jax	/*acp-introduction*
 acp-options	acp.jax	/*acp-options*
+acp-perl-omni	acp.jax	/*acp-perl-omni*
 acp-snipMate	acp.jax	/*acp-snipMate*
 acp-usage	acp.jax	/*acp-usage*
 acp.txt	acp.jax	/*acp.txt*
@@ -28,6 +29,7 @@ g:acp_behaviorHtmlOmniLength	acp.jax	/*g:acp_behaviorHtmlOmniLength*
 g:acp_behaviorKeywordCommand	acp.jax	/*g:acp_behaviorKeywordCommand*
 g:acp_behaviorKeywordIgnores	acp.jax	/*g:acp_behaviorKeywordIgnores*
 g:acp_behaviorKeywordLength	acp.jax	/*g:acp_behaviorKeywordLength*
+g:acp_behaviorPerlOmniLength	acp.jax	/*g:acp_behaviorPerlOmniLength*
 g:acp_behaviorPythonOmniLength	acp.jax	/*g:acp_behaviorPythonOmniLength*
 g:acp_behaviorRubyOmniMethodLength	acp.jax	/*g:acp_behaviorRubyOmniMethodLength*
 g:acp_behaviorRubyOmniSymbolLength	acp.jax	/*g:acp_behaviorRubyOmniSymbolLength*
