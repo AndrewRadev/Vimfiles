@@ -14,6 +14,7 @@ runtime! startup/smartword.vim
 runtime! startup/search.vim
 runtime! startup/visual_search.vim
 runtime! startup/plugins.vim
+runtime! startup/commands.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
@@ -88,9 +89,5 @@ noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<c
 
 " Alignment mappings:
 vmap <Leader>a=> :Align =><cr>
-
-" Simpler tag searches:
-command! -nargs=1 Function TTags f <args>
-command! -nargs=1 Class    TTags c <args>
 
 source ~/.local_vimrc

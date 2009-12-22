@@ -5,30 +5,45 @@
 " default directory structure of a symfony project.
 " Last Modified: December 12, 2009
 
+let s:PS = has('win32') ? '\\' : '/'
+let s:capture_group = '\(.\{-}\)'
+let s:anything = '.*'
+
 function! symfony#LoadData()
   let g:app_dict    = {}
   let g:module_dict = {}
   let g:model_dict  = {}
 
+  " Regular expression for apps and modules:
+  let rx = '^'
+  let rx .= s:anything
+  let rx .= s:PS
+  let rx .= s:capture_group
+  let rx .= '$'
+
   for path in split(glob('apps/*'))
-    let app = substitute(path, '^.*/\(.*\)$', '\1', '')
+    let app = substitute(path, rx, '\1', '')
     let g:app_dict[app] = 1
   endfor
 
   for path in split(glob('apps/*/modules/*'))
-    let module = substitute(path, '^.*/\(.*\)$', '\1', '')
+    let module = substitute(path, rx, '\1', '')
     let g:module_dict[module] = 1
   endfor
 
+  " Regular expression for models:
+  let rx = '^'
+  let rx .= s:anything
+  let rx .= s:PS
+  let rx .= s:capture_group
+  let rx .= 'Table\.class\.php'
+  let rx .= '$'
+
   for path in split(glob('lib/model/doctrine/*Table.class.php'))
-    let model = substitute(path, '^.*/\(.*\)Table\.class\.php$', '\1', '')
+    let model = substitute(path, rx, '\1', '')
     let g:model_dict[model] = 1
   endfor
 endfunction
-
-let s:PS = has('win32') ? '\\' : '/'
-let s:capture_group = '\(.\{-}\)'
-let s:anything = '.*'
 
 function! symfony#CurrentModuleName()
   if exists('b:current_module_name')
