@@ -6,6 +6,7 @@ set clipboard=unnamed
 set cmdheight=1
 set complete=.,w,b,k
 set completeopt=menuone,longest
+set cscopetag
 set diffopt=filler,vertical
 set encoding=utf-8
 set expandtab smarttab
@@ -29,6 +30,7 @@ set statusline=%<%f\ %h%m%r%=[%{&ft}]%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
 set tabstop=2 softtabstop=2
 set ttimeout
+set ttimeoutlen=300
 set updatetime=1000
 set wildmenu
 
