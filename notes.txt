@@ -13,6 +13,7 @@ Dbext:
 
 PHP:
   * Hack the ctags php parser.
+  * Experiment with refactoring -- look through TRag
 
 Haskell:
   * Experiment with SHIM
