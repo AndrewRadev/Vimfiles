@@ -41,7 +41,7 @@ function! FindInNERDTree(...)
 
   if l:root.path.compareTo(l:path) == 0
     return l:root.findNode(l:path)
-  elseif l:path.str() !~ '^' . l:root.path.str()
+  elseif stridx(l:path.str(), l:root.path.str()) != 0
     echo "Not in the current NERD tree!"
     return 0
   else
