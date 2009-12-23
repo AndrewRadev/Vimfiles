@@ -5,12 +5,14 @@ command! Ejavascript exe
       \ symfony#CurrentAppName().
       \ '/'.
       \ symfony#CurrentModuleName().'.js'
+      \ | call FindInNERDTree()
 
 command! Estylesheet exe
       \ 'edit web/css/'.
       \ symfony#CurrentAppName().
       \ '/'.
       \ symfony#CurrentModuleName().'.css'
+      \ | call FindInNERDTree()
 
 command! Eview exe
       \ 'edit apps/'.
@@ -19,6 +21,7 @@ command! Eview exe
       \ symfony#CurrentModuleName().
       \ '/templates/'.
       \ symfony#CurrentActionName().'Success.php'
+      \ | call FindInNERDTree()
 
 command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call Econtroller(<f-args>)
 function! Econtroller(...)
@@ -37,6 +40,7 @@ function! Econtroller(...)
         \ '/actions/actions.class.php'
   call cursor(0, 0)
   call search(function_name, 'cw')
+  call FindInNERDTree()
 endfunction
 
 command! -nargs=? -complete=customlist,symfony#CompleteModel Emodel  call Elib('model',  '',           <f-args>)
@@ -57,6 +61,7 @@ function! Elib(dir, suffix, ...)
         \ b:model_name.
         \ a:suffix.
         \ ".class.php"
+  call FindInNERDTree()
 endfunction
 
 command! -nargs=* Eschema call Eschema(<f-args>)
@@ -68,6 +73,7 @@ function! Eschema(...)
   endif
 
   exe "edit config/doctrine/".prefix."schema.yml"
+  call FindInNERDTree()
 endfunction
 
 command! -nargs=? -complete=customlist,symfony#CompleteApp Erouting call Erouting(<f-args>)
@@ -81,4 +87,5 @@ function! Erouting(...)
       \ 'edit apps/'.
       \ symfony#CurrentAppName().
       \ '/config/routing.yml'
+  call FindInNERDTree()
 endfunction
