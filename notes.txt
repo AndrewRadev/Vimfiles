@@ -4,6 +4,8 @@ Think of a general outline (indentation?) and some specific ones here and there:
 
 Symfony
   * Eview/Econtroller should work with components
+  * <gf> should work with partials and components
+  * ES<something> --> split | E<something>
   * Everything should be context-aware
   * handle partials with different extensions, e.g. ".xml.php"
   * Glob for schema files
@@ -20,6 +22,7 @@ Dbext:
   * Install perl + CPAN stuff
 
 PHP:
+  * <gf> should work with <dirname(__FILE__)>
   * Hack the ctags php parser.
   * ".xml.php" -- XML PHP templates? Or at least set to xml syntax
 
