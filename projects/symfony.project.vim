@@ -23,5 +23,6 @@ command! Sql tabedit data/sql/scratch.sql | normal _slt
 
 nmap gs :exe "Utl ol http://www.symfony-project.org/api/search/1_2?search=".expand('<cword>')<cr>
 
-runtime! scripts/symfony_tasks.vim
-runtime! scripts/symfony_navigation.vim
+runtime! scripts/symfony/tasks.vim
+runtime! scripts/symfony/navigation.vim
+runtime! scripts/symfony/includeexpr.vim

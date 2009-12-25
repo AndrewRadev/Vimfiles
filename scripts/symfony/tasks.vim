@@ -14,7 +14,6 @@ let g:main_tasks = [
       \ "test",
       \ ]
 
-
 let g:all_tasks = [
       \ "app:routes",
       \ "cache:clear",

@@ -1,37 +1,45 @@
-" When editing a file, always jump to the last known cursor position.
-autocmd BufReadPost *
-	\ if line("'\"") > 1 && line("'\"") <= line("$") |
-	\   exe "normal! g`\"" |
-	\ endif
+" Custom autocommands group:
+augroup custom
 
-autocmd FileType text setlocal textwidth=98
+  " Clear all custom autocommands:
+  autocmd!
 
-autocmd BufEnter *.cpp compiler gcc
-autocmd BufEnter *.c compiler gcc
+  " When editing a file, always jump to the last known cursor position.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
 
-autocmd BufEnter *.php set filetype=php.html.javascript
-autocmd BufEnter *.php compiler php
+  autocmd FileType text setlocal textwidth=98
 
-autocmd BufEnter *.html set filetype=html.javascript
-autocmd BufEnter *.html compiler tidy
+  autocmd BufEnter *.cpp compiler gcc
+  autocmd BufEnter *.c compiler gcc
 
-autocmd BufEnter *.js set filetype=javascript.jquery
-autocmd BufEnter *.js compiler jsl
+  autocmd BufEnter *.php set filetype=php.html.javascript
+  autocmd BufEnter *.php compiler php
 
-autocmd BufEnter *.hsc set filetype=haskell
-autocmd BufEnter *.hs compiler ghc
+  autocmd BufEnter *.html set filetype=html.javascript
+  autocmd BufEnter *.html compiler tidy
 
-autocmd BufEnter *.tags set filetype=tags
+  autocmd BufEnter *.js set filetype=javascript.jquery
+  autocmd BufEnter *.js compiler jsl
 
-autocmd BufRead,BufNewFile *.vorg set filetype=vorg.txt
-autocmd BufRead,BufNewFile *.mkd set filetype=mkd
-autocmd BufRead,BufNewFile *.markdown set filetype=mkd
+  autocmd BufEnter *.hsc set filetype=haskell
+  autocmd BufEnter *.hs compiler ghc
 
-" Custom filetypes:
-autocmd BufEnter Result set filetype=dbext_result.txt
-autocmd BufEnter .passwords set filetype=yaml.passwords
+  autocmd BufEnter *.tags set filetype=tags
 
-" Maximise on open on Win32:
-if has('win32')
-  autocmd GUIEnter * simalt ~x
-endif
+  autocmd BufRead,BufNewFile *.vorg set filetype=vorg.txt
+  autocmd BufRead,BufNewFile *.mkd set filetype=mkd
+  autocmd BufRead,BufNewFile *.markdown set filetype=mkd
+
+  " Custom filetypes:
+  autocmd BufEnter Result set filetype=dbext_result.txt
+  autocmd BufEnter .passwords set filetype=yaml.passwords
+
+  " Maximise on open on Win32:
+  if has('win32')
+    autocmd GUIEnter * simalt ~x
+  endif
+
+augroup end

@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: December 06, 2009
+" Last Modified: December 25, 2009
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -32,4 +32,24 @@ function! lib#UrlEncode(string)
   let code = '\=printf("%%%02X",char2nr(submatch(1)))'
   let url  = substitute(a:string,pat,code,'g')
   return url
+endfunction
+
+" Checks to see if {needle} is in {haystack}.
+function! lib#InString(haystack, needle)
+  return (stridx(a:haystack, a:needle) != -1)
+endfunction
+
+" Extract a regex match from a string.
+function! lib#ExtractRx(expr, pat, sub)
+  let rx = a:pat
+
+  if stridx(a:pat, '^') != 0
+    let rx = '^.*'.rx
+  endif
+
+  if strridx(a:pat, '$') + 1 != strlen(a:pat)
+    let rx = rx.'.*$'
+  endif
+
+  return substitute(a:expr, rx, a:sub, '')
 endfunction

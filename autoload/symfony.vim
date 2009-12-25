@@ -3,7 +3,7 @@
 " Description: Functions to use in symfony projects. Mostly helpful in
 " commands to navigate across the project. All the functions assume the
 " default directory structure of a symfony project.
-" Last Modified: December 12, 2009
+" Last Modified: December 25, 2009
 
 let s:PS = has('win32') ? '\\' : '/'
 let s:capture_group = '\(.\{-}\)'
@@ -15,32 +15,28 @@ function! symfony#LoadData()
   let g:model_dict  = {}
 
   " Regular expression for apps and modules:
-  let rx = '^'
-  let rx .= s:anything
-  let rx .= s:PS
+  let rx = s:PS
   let rx .= s:capture_group
   let rx .= '$'
 
   for path in split(glob('apps/*'))
-    let app = substitute(path, rx, '\1', '')
+    let app = lib#ExtractRx(path, rx, '\1')
     let g:app_dict[app] = 1
   endfor
 
   for path in split(glob('apps/*/modules/*'))
-    let module = substitute(path, rx, '\1', '')
+    let module = lib#ExtractRx(path, rx, '\1')
     let g:module_dict[module] = 1
   endfor
 
   " Regular expression for models:
-  let rx = '^'
-  let rx .= s:anything
-  let rx .= s:PS
+  let rx = s:PS
   let rx .= s:capture_group
   let rx .= 'Table\.class\.php'
   let rx .= '$'
 
   for path in split(glob('lib/model/doctrine/*Table.class.php'))
-    let model = substitute(path, rx, '\1', '')
+    let model = lib#ExtractRx(path, rx, '\1')
     let g:model_dict[model] = 1
   endfor
 endfunction
@@ -51,21 +47,15 @@ function! symfony#CurrentModuleName()
   endif
   let path = expand('%:p')
 
-  let rx = '^'
-
-  let rx .= s:anything
-  let rx .= 'modules'
+  let rx = 'modules'
   let rx .= s:PS
   let rx .= s:capture_group
   let rx .= s:PS
 
-  let rx .= s:anything
-  let rx .= '$'
-
   if match(path, rx) == -1
     let b:current_module_name = input("Enter module name: ", "", "customlist,symfony#CompleteModule")
   else
-    let b:current_module_name = substitute(path, rx, '\1', '')
+    let b:current_module_name = lib#ExtractRx(path, rx, '\1')
   endif
   let g:module_dict[b:current_module_name] = 1
 
@@ -77,21 +67,15 @@ function! symfony#CurrentAppName()
     return b:current_app_name
   endif
 
-  let rx = '^'
-
-  let rx .= s:anything
-  let rx .= 'apps'
+  let rx = 'apps'
   let rx .= s:PS
   let rx .= s:capture_group
   let rx .= s:PS
 
-  let rx .= s:anything
-  let rx .= '$'
-
   if match(expand('%:p'), rx) == -1
     let b:current_app_name = input("Enter app name: ", "", "customlist,symfony#CompleteApp")
   else
-    let b:current_app_name = substitute(expand('%:p'), rx, '\1', '')
+    let b:current_app_name = lib#ExtractRx(expand('%:p'), rx, '\1')
   endif
   let g:app_dict[b:current_app_name] = 1
 
@@ -102,46 +86,35 @@ function! symfony#CurrentActionName()
   let path = expand('%:p')
 
   if path =~# 'templates' " we're in a view
-    let rx = '^'
-
-    let rx .= s:anything
-    let rx .= s:PS
+    let rx = s:PS
     let rx .= 'templates'
     let rx .= s:PS
     let rx .= s:capture_group
-    let rx .= 'Success\.php'
-
-    let rx .= s:anything
+    let rx .= 'Success\..*php'
     let rx .= '$'
 
     if match(path, rx) == -1
       return 'index' " A default value
     endif
 
-    return substitute(path, rx, '\1', '')
+    return lib#ExtractRx(path, rx, '\1')
   else " we're in an action
     let function_line = search('function', 'b')
     if function_line == 0
       return 'index' " A default value
     else
-      let rx = '^'
-
-      let rx .= s:anything
-      let rx .= 'function'
+      let rx = 'function'
       let rx .= '\s\+'
       let rx .= 'execute'
       let rx .= s:capture_group
       let rx .= '\s*'
       let rx .= '('
 
-      let rx .= s:anything
-      let rx .= '$'
-
       if match(getline(function_line), rx) == -1
         return 'index' " A default value
       endif
 
-      let result = substitute(getline(function_line), rx, '\l\1', '')
+      let result = lib#ExtractRx(getline(function_line), rx, '\l\1')
 
       return result
     endif
@@ -150,10 +123,8 @@ endfunction
 
 function! symfony#CurrentModelName()
   let path = expand('%:p')
-  let rx = '^'
 
-  let rx .= s:anything
-  let rx .= 'lib'
+  let rx = 'lib'
   let rx .= s:PS
   let rx .= s:anything
   let rx .= s:PS
@@ -169,7 +140,7 @@ function! symfony#CurrentModelName()
   if match(path, rx) == -1
     let b:current_model_name = input("Enter model name: ", "", "customlist,symfony#CompleteModel")
   else
-    let b:current_model_name = substitute(path, rx, '\1', '')
+    let b:current_model_name = lib#ExtractRx(path, rx, '\1')
   endif
   let g:model_dict[b:current_model_name] = 1
 
@@ -177,13 +148,13 @@ function! symfony#CurrentModelName()
 endfunction
 
 function! symfony#CompleteApp(A, L, P)
-  return keys(filter(copy(g:app_dict), "v:key =~'^".a:A."'"))
+  return sort(keys(filter(copy(g:app_dict), "v:key =~'^".a:A."'")))
 endfunction
 
 function! symfony#CompleteModule(A, L, P)
-  return keys(filter(copy(g:module_dict), "v:key =~'^".a:A."'"))
+  return sort(keys(filter(copy(g:module_dict), "v:key =~'^".a:A."'")))
 endfunction
 
 function! symfony#CompleteModel(A, L, P)
-  return keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'"))
+  return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
 endfunction
