@@ -82,12 +82,15 @@ vnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 inoremap <C-n> <C-k>
 
 " <Tab> with folds:
-nmap <Tab> zA
+noremap <Tab> zA
 
 " Open all occurences of word under cursor in quickfix:
 noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
 
 " Alignment mappings:
-vmap <Leader>a=> :Align =><cr>
+vnoremap <Leader>a=> :Align =><cr>
+
+" Easy split:
+noremap <Leader><Leader> :split \| 
 
 source ~/.local_vimrc
