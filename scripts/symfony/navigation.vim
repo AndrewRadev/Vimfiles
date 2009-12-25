@@ -24,7 +24,7 @@ command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call E
 function! Econtroller(...)
   if (a:0 == 1) " Then we're given a controller
     let b:current_module_name = a:1
-    let g:module_dict[b:current_module_name] = 1
+    let g:module_dict[b:current_module_name] = 1 " Add to completion
   endif
 
   let function_name = 'execute'.lib#Capitalize(symfony#CurrentActionName())
@@ -59,7 +59,7 @@ function! Elib(dir, suffix, ...)
         \ ".class.php"
 endfunction
 
-command! -nargs=* Eschema call Eschema(<f-args>)
+command! -nargs=* -complete=customlist,symfony#CompleteSchema Eschema call Eschema(<f-args>)
 function! Eschema(...)
   if a:0 == 1 " Then we're given a prefix for the schema file
     let prefix = a:1.'_'

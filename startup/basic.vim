@@ -16,7 +16,6 @@ set guioptions=crb
 set incsearch nohlsearch
 set laststatus=2
 set linebreak showbreak=+>
-"set list
 set listchars=eol:.,tab:\|-
 set noswapfile
 set notimeout
@@ -30,7 +29,7 @@ set statusline=%<%f\ %h%m%r%=[%{&ft}]%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
 set tabstop=2 softtabstop=2
 set ttimeout
-set ttimeoutlen=300
+set ttimeoutlen=200
 set updatetime=1000
 set wildmenu
 

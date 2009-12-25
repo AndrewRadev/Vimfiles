@@ -13,6 +13,7 @@ function! symfony#LoadData()
   let g:app_dict    = {}
   let g:module_dict = {}
   let g:model_dict  = {}
+  let g:schema_dict = {}
 
   " Regular expression for apps and modules:
   let rx = s:PS
@@ -38,6 +39,14 @@ function! symfony#LoadData()
   for path in split(glob('lib/model/doctrine/*Table.class.php'))
     let model = lib#ExtractRx(path, rx, '\1')
     let g:model_dict[model] = 1
+  endfor
+
+  " Regular expression for schema files:
+  let rx = s:PS.s:capture_group.'_schema.yml$'
+
+  for path in split(glob('config/doctrine/*_schema.yml'))
+    let schema = lib#ExtractRx(path, rx, '\1')
+    let g:schema_dict[schema] = 1
   endfor
 endfunction
 
@@ -157,4 +166,8 @@ endfunction
 
 function! symfony#CompleteModel(A, L, P)
   return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
+endfunction
+
+function! symfony#CompleteSchema(A, L, P)
+  return sort(keys(filter(copy(g:schema_dict), "v:key =~'^".a:A."'")))
 endfunction

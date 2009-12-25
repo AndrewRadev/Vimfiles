@@ -1,6 +1,6 @@
 " Requires: Utl
 if !exists("loaded_utl")
-    finish
+  finish
 endif
 
 call NERDTreeAddKeyMap({

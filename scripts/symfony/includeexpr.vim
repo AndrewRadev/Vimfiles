@@ -33,6 +33,8 @@ function! SymfonyIncludeExpr(fname)
 
     let [module, template] = match
     return 'apps/'.symfony#CurrentAppName().'/modules/'.module.'/templates/_'.template.'.php'
+  elseif exists('*PhpIncludeExpr')
+    return PhpIncludeExpr(a:fname)
   else
     return a:fname
   endif
