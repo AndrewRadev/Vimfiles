@@ -3,9 +3,7 @@ Think of a general outline (indentation?) and some specific ones here and there:
   * "def" in Python and Ruby?
 
 Symfony
-  * Eview/Econtroller should work with components
-  * <gf> with "use_(stylesheet|javascript)"
-  * Eview: templates with different extensions, e.g. ".xml.php"
+  * Eview: templates with different extensions, e.g. ".xml.php" (glob)
   * Glob for fixtures (by convention, <number>_<capture>.yml)
   * Glob for js/css recursively (ignore ".min." ?)
   * Glob for models recursively (prefix with dir?)

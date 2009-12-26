@@ -12,15 +12,25 @@ command! Estylesheet exe
       \ '/'.
       \ symfony#CurrentModuleName().'.css'
 
-command! Eview exe
+command! Eview call Eview()
+function! Eview()
+  if expand('%:t') == 'actions.class.php'
+    let filename = symfony#CurrentActionName().'Success.php'
+  else " It's a component
+    let filename = '_'.symfony#CurrentActionName().'.php'
+  endif
+
+  exe
       \ 'edit apps/'.
       \ symfony#CurrentAppName().
       \ '/modules/'.
       \ symfony#CurrentModuleName().
       \ '/templates/'.
-      \ symfony#CurrentActionName().'Success.php'
+      \ filename
+endfunction
 
 command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call Econtroller(<f-args>)
+command! -nargs=* -complete=customlist,symfony#CompleteModule Ecomponent  call Ecomponent(<f-args>)
 function! Econtroller(...)
   if (a:0 == 1) " Then we're given a controller
     let b:current_module_name = a:1
@@ -35,6 +45,23 @@ function! Econtroller(...)
         \ '/modules/'.
         \ symfony#CurrentModuleName().
         \ '/actions/actions.class.php'
+  call cursor(0, 0)
+  call search(function_name, 'cw')
+endfunction
+function! Ecomponent(...)
+  if (a:0 == 1) " Then we're given a component
+    let b:current_module_name = a:1
+    let g:module_dict[b:current_module_name] = 1 " Add to completion
+  endif
+
+  let function_name = 'execute'.lib#Capitalize(symfony#CurrentActionName())
+
+  exe
+        \ 'edit apps/'.
+        \ symfony#CurrentAppName().
+        \ '/modules/'.
+        \ symfony#CurrentModuleName().
+        \ '/actions/components.class.php'
   call cursor(0, 0)
   call search(function_name, 'cw')
 endfunction

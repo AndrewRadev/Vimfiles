@@ -33,6 +33,28 @@ function! SymfonyIncludeExpr(fname)
 
     let [module, template] = match
     return 'apps/'.symfony#CurrentAppName().'/modules/'.module.'/templates/_'.template.'.php'
+  elseif lib#InString(line, 'use_stylesheet') " Follow an included css:
+    let rx = 'use_stylesheet('
+    let rx .= quoted_capture
+    let rx .= ')'
+
+    let fname = 'web/css/'.lib#ExtractRx(line, rx, '\1')
+    if fnamemodify(fname, ':e') == ''
+      let fname = fname.'.css'
+    endif
+
+    return fname
+  elseif lib#InString(line, 'use_javascript') " Follow an included css:
+    let rx = 'use_javascript('
+    let rx .= quoted_capture
+    let rx .= ')'
+
+    let fname = 'web/js/'.lib#ExtractRx(line, rx, '\1')
+    if fnamemodify(fname, ':e') == ''
+      let fname = fname.'.js'
+    endif
+
+    return fname
   elseif exists('*PhpIncludeExpr')
     return PhpIncludeExpr(a:fname)
   else

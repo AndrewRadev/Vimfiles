@@ -94,13 +94,16 @@ endfunction
 function! symfony#CurrentActionName()
   let path = expand('%:p')
 
-  if path =~# 'templates' " we're in a view
+  if path =~# 'templates' " we're in a view or a component
     let rx = s:PS
     let rx .= 'templates'
     let rx .= s:PS
-    let rx .= s:capture_group
-    let rx .= 'Success\..*php'
-    let rx .= '$'
+
+    if path =~# 'Success\..*php$' " then it's a view
+      let rx .= s:capture_group.'Success\..*php$'
+    else
+      let rx .= '_'.s:capture_group.'\..*php$'
+    endif
 
     if match(path, rx) == -1
       return 'index' " A default value
