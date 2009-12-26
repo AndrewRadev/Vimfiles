@@ -19,7 +19,7 @@ let g:fuzzy_ignore = "*/.svn/*;.git/*;*/tmp/*"
 let g:dbext_default_buffer_lines = 20
 
 " Snippet settings:
-let g:snippets_dir = "~/.vim/custom_snippets/"
+let g:snippets_dir = expand("~/.vim/custom_snippets/")
 let g:snips_author = "Andrew Radev"
 
 " Proj settings:

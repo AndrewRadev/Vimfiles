@@ -15,13 +15,10 @@ augroup custom
   autocmd BufEnter *.cpp compiler gcc
   autocmd BufEnter *.c compiler gcc
 
-  autocmd BufEnter *.php set filetype=php.html.javascript
   autocmd BufEnter *.php compiler php
 
-  autocmd BufEnter *.html set filetype=html.javascript
   autocmd BufEnter *.html compiler tidy
 
-  autocmd BufEnter *.js set filetype=javascript.jquery
   autocmd BufEnter *.js compiler jsl
 
   autocmd BufEnter *.hsc set filetype=haskell

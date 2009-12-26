@@ -7,11 +7,10 @@ Symfony
   * <gf> with "use_(stylesheet|javascript)"
   * Eview: templates with different extensions, e.g. ".xml.php"
   * Glob for fixtures (by convention, <number>_<capture>.yml)
-  * Glob for models recursively (prefix with dir?)
   * Glob for js/css recursively (ignore ".min." ?)
-  * Think about a different way to build tags -- js and php separately?
-  * automatically infer app in Econtroller whenever possible
+  * Glob for models recursively (prefix with dir?)
   * allow for a <bang> to always ask for parameters
+  * automatically infer app in Econtroller whenever possible
 
 Dbext:
   * Mappings

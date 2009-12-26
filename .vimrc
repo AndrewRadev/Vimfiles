@@ -26,6 +26,9 @@ command! Epasswords edit ~/.passwords
 " Rebuild tags database:
 command! RebuildTags !ctags -R .
 
+" Refresh snippets
+command! RefreshSnips runtime after/plugin/snippets.vim
+
 " Generic console, override in different filetypes:
 if has('win32')
   command! Console !start cmd
