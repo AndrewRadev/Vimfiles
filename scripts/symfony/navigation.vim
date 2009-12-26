@@ -16,7 +16,7 @@ command! Eview call Eview()
 function! Eview()
   if expand('%:t') == 'actions.class.php'
     let filename = symfony#CurrentActionName().'Success.php'
-  else " It's a component
+  else " it's a component
     let filename = '_'.symfony#CurrentActionName().'.php'
   endif
 
@@ -29,8 +29,8 @@ function! Eview()
       \ filename
 endfunction
 
-command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call Econtroller(<f-args>)
-command! -nargs=* -complete=customlist,symfony#CompleteModule Ecomponent  call Ecomponent(<f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModule Econtroller call Econtroller(<f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModule Ecomponent  call Ecomponent(<f-args>)
 function! Econtroller(...)
   if (a:0 == 1) " Then we're given a controller
     let b:current_module_name = a:1
@@ -86,7 +86,7 @@ function! Elib(dir, suffix, ...)
         \ ".class.php"
 endfunction
 
-command! -nargs=* -complete=customlist,symfony#CompleteSchema Eschema call Eschema(<f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteSchema Eschema call Eschema(<f-args>)
 function! Eschema(...)
   if a:0 == 1 " Then we're given a prefix for the schema file
     let prefix = a:1.'_'
@@ -95,6 +95,17 @@ function! Eschema(...)
   endif
 
   exe "edit config/doctrine/".prefix."schema.yml"
+endfunction
+
+command! -nargs=1 -complete=customlist,symfony#CompleteFixture Efixture call Efixture(<f-args>)
+function! Efixture(name)
+  if exists('g:fixture_dict[a:name]')
+    let fixture = g:fixture_dict[a:name]
+  else
+    let fixture = a:name
+  endif
+
+  exe 'edit data/fixtures/'.fixture
 endfunction
 
 command! -nargs=? -complete=customlist,symfony#CompleteApp Erouting call Erouting(<f-args>)

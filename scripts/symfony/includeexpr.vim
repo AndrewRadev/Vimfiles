@@ -44,7 +44,7 @@ function! SymfonyIncludeExpr(fname)
     endif
 
     return fname
-  elseif lib#InString(line, 'use_javascript') " Follow an included css:
+  elseif lib#InString(line, 'use_javascript') " Follow an included js:
     let rx = 'use_javascript('
     let rx .= quoted_capture
     let rx .= ')'
@@ -55,7 +55,7 @@ function! SymfonyIncludeExpr(fname)
     endif
 
     return fname
-  elseif exists('*PhpIncludeExpr')
+  elseif exists('*PhpIncludeExpr') " Fall back to a default
     return PhpIncludeExpr(a:fname)
   else
     return a:fname

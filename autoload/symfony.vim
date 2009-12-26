@@ -10,10 +10,11 @@ let s:capture_group = '\(.\{-}\)'
 let s:anything = '.*'
 
 function! symfony#LoadData()
-  let g:app_dict    = {}
-  let g:module_dict = {}
-  let g:model_dict  = {}
-  let g:schema_dict = {}
+  let g:app_dict     = {}
+  let g:module_dict  = {}
+  let g:model_dict   = {}
+  let g:schema_dict  = {}
+  let g:fixture_dict = {}
 
   " Regular expression for apps and modules:
   let rx = s:PS
@@ -47,6 +48,15 @@ function! symfony#LoadData()
   for path in split(glob('config/doctrine/*_schema.yml'))
     let schema = lib#ExtractRx(path, rx, '\1')
     let g:schema_dict[schema] = 1
+  endfor
+
+  " Regular expression for fixtures:
+  let rx = s:PS.s:capture_group.'$'
+
+  for path in split(glob('data/fixtures/*.yml'))
+    let fixture = lib#ExtractRx(path, rx, '\1')
+    let fixture_key = lib#ExtractRx(fixture, '^\d\+_'.s:capture_group.'\.yml$', '\1')
+    let g:fixture_dict[fixture_key] = fixture
   endfor
 endfunction
 
@@ -173,4 +183,8 @@ endfunction
 
 function! symfony#CompleteSchema(A, L, P)
   return sort(keys(filter(copy(g:schema_dict), "v:key =~'^".a:A."'")))
+endfunction
+
+function! symfony#CompleteFixture(A, L, P)
+  return sort(keys(filter(copy(g:fixture_dict), "v:key =~'^".a:A."'")))
 endfunction
