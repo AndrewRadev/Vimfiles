@@ -3,4 +3,4 @@ command! -nargs=1 Function TTags f <args>
 command! -nargs=1 Class    TTags c <args>
 
 " Clear up garbage:
-command! CleanGarbage %s/\s\{-}$//g
+command! CleanGarbage %s/\s\+$//e

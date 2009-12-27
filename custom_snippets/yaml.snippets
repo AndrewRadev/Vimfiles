@@ -1,8 +1,6 @@
 snippet hasone
 	${1:Class}:
 		foreignType: one
-		onDelete:    CASCADE
-		onUpdate:    CASCADE
 snippet hasmany
 	${1:Classes}:
 		class:			 ${2:Class}
@@ -10,8 +8,6 @@ snippet hasmany
 		foreignType: one
 		local:       id
 		foreign:     ${3:foreign}_id
-		onDelete:    CASCADE
-		onUpdate:    CASCADE
 snippet habtm
 	${1:RelatedClasses}:
 		class:       ${2:RelatedClass}
@@ -20,18 +16,19 @@ snippet habtm
 		local:       ${3:local}_id
 		foreign:     ${3:foreign}_id
 		refClass:    ${4:ThisClass}Has$2
-		onDelete:    CASCADE
-		onUpdate:    CASCADE
 snippet join
-	${1:Class}Has${2:Item}:
+	${1:Class}${2:Item}:
+		options: { symfony: { form: false, filter: false } }
 		columns:
-			${3:class}_id:	{ type: integer(4), notnull: true, primary: true }
-			${4:item}_id:		{ type: integer(4), notnull: true, primary: true }
+			${3:class}_id: { type: integer(4), notnull: true, primary: true }
+			${4:item}_id: { type: integer(4), notnull: true, primary: true }
 		relations:
-			$1:		{ class: $1, local: $3_id, foreign: id }
-			$2:		{ class: $2, local: $4_id, foreign: id }
+			$1: { class: $1, local: $3_id, foreign: id }
+			$2: { class: $2, local: $4_id, foreign: id }
 snippet id
 	id: { type: integer(4), primary: true, autoincrement: true }
+snippet nof
+	options: { symfony: { form: false, filter: false } }
 snippet header
 	options:
 		type:    INNODB

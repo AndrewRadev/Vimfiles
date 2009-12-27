@@ -5,9 +5,7 @@ Think of a general outline (indentation?) and some specific ones here and there:
 Symfony
   * Glob for js/css recursively (ignore ".min." ?)
   * Glob for models recursively (prefix with dir?)
-  * allow for a <bang> to always ask for parameters
   * automatically infer app in Econtroller whenever possible
-  * Eview: templates with different extensions, e.g. ".xml.php" (glob)
 
 Dbext:
   * Mappings

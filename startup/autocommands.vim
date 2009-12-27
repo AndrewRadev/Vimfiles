@@ -1,8 +1,10 @@
 " Custom autocommands group:
 augroup custom
-
   " Clear all custom autocommands:
   autocmd!
+
+  " Clean all useless whitespace:
+  "autocmd BufWrite * CleanGarbage
 
   " When editing a file, always jump to the last known cursor position.
   autocmd BufReadPost *
@@ -38,5 +40,4 @@ augroup custom
   if has('win32')
     autocmd GUIEnter * simalt ~x
   endif
-
 augroup end

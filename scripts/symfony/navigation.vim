@@ -12,12 +12,17 @@ command! Estylesheet exe
       \ '/'.
       \ symfony#CurrentModuleName().'.css'
 
-command! Eview call Eview()
-function! Eview()
+command! -nargs=? Eview call Eview(<f-args>)
+function! Eview(...)
   if expand('%:t') == 'actions.class.php'
     let filename = symfony#CurrentActionName().'Success.php'
   else " it's a component
     let filename = '_'.symfony#CurrentActionName().'.php'
+  endif
+
+  if a:0 == 1 " Then we're given a format specifier:
+    let format = a:1
+    let filename = fnamemodify(filename, ':r').'.'.format.'.php'
   endif
 
   exe
@@ -29,12 +34,17 @@ function! Eview()
       \ filename
 endfunction
 
-command! -nargs=? -complete=customlist,symfony#CompleteModule Econtroller call Econtroller(<f-args>)
-command! -nargs=? -complete=customlist,symfony#CompleteModule Ecomponent  call Ecomponent(<f-args>)
-function! Econtroller(...)
+command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call Econtroller('action', <f-args>)
+command! -nargs=* -complete=customlist,symfony#CompleteModule Ecomponent  call Econtroller('component', <f-args>)
+function! Econtroller(type, ...)
   if (a:0 == 1) " Then we're given a controller
     let b:current_module_name = a:1
     let g:module_dict[b:current_module_name] = 1 " Add to completion
+  elseif (a:0 == 2) " Then we're given a controller and an app
+    let b:current_module_name = a:1
+    let b:current_app_name = a:2
+    let g:module_dict[b:current_module_name] = 1 " Add to completion
+    let g:app_dict[b:current_app_name] = 1 " Add to completion
   endif
 
   let function_name = 'execute'.lib#Capitalize(symfony#CurrentActionName())
@@ -44,7 +54,7 @@ function! Econtroller(...)
         \ symfony#CurrentAppName().
         \ '/modules/'.
         \ symfony#CurrentModuleName().
-        \ '/actions/actions.class.php'
+        \ '/actions/'.a:type.'s.class.php'
   call cursor(0, 0)
   call search(function_name, 'cw')
 endfunction

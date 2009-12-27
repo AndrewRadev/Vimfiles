@@ -174,7 +174,11 @@ function! symfony#CompleteApp(A, L, P)
 endfunction
 
 function! symfony#CompleteModule(A, L, P)
-  return sort(keys(filter(copy(g:module_dict), "v:key =~'^".a:A."'")))
+	if len(split(substitute(a:L, a:A.'$', '', ''))) == 2
+		return sort(keys(filter(copy(g:app_dict), "v:key =~'^".a:A."'")))
+	else
+		return sort(keys(filter(copy(g:module_dict), "v:key =~'^".a:A."'")))
+	endif
 endfunction
 
 function! symfony#CompleteModel(A, L, P)
