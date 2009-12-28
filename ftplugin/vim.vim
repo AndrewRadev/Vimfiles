@@ -5,3 +5,5 @@ setlocal foldmethod=indent
 " - mappings, 
 " - variables with a scope prefix
 setlocal iskeyword+=:,#,<,>
+
+command! -buffer Outline call lib#Outline('\<function\>')

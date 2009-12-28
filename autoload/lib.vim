@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: December 25, 2009
+" Last Modified: December 28, 2009
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -52,4 +52,15 @@ function! lib#ExtractRx(expr, pat, sub)
   endif
 
   return substitute(a:expr, rx, a:sub, '')
+endfunction
+
+" Create an outline of buffer by folding according to pattern
+function! lib#Outline(pattern)
+  if exists('b:outlined') " Un-outline it 
+    FoldEndFolding
+    unlet b:outlined
+  else
+    exe "FoldMatching ".a:pattern." -1"
+    let b:outlined = 1
+  endif
 endfunction

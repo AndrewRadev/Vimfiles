@@ -76,24 +76,30 @@ inoremap <C-l> <C-x><C-l>
 set completefunc=syntaxcomplete#Complete
 
 " Moving lines:
-noremap  <C-j> mz:m+<cr>`z
-noremap  <C-k> mz:m-2<cr>`z
-vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-vnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap  <C-j> mz:m+<cr>`z
+nnoremap  <C-k> mz:m-2<cr>`z
+xnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+xnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Goto file or edit file:
+nnoremap gF :exe "edit ".eval(&includeexpr)<cr>
+
+" Indent some additional html tags:
+let g:html_indent_tags = 'p\|li'
 
 " For digraphs:
 inoremap <C-n> <C-k>
 
 " <Tab> with folds:
-noremap <Tab> zA
+nnoremap <Tab> zA
 
 " Open all occurences of word under cursor in quickfix:
-noremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
+nnoremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<cr>
 
 " Alignment mappings:
-vnoremap <Leader>a=> :Align =><cr>
+xnoremap <Leader>a=> :Align =><cr>
 
 " Easy split:
-noremap <Leader><Leader> :split \| 
+nnoremap <Leader><Leader> :split \| 
 
 source ~/.local_vimrc
