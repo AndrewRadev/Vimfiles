@@ -1,10 +1,18 @@
 call symfony#LoadData()
 
-command! Ejavascript exe
-      \ 'edit web/js/'.
-      \ symfony#CurrentAppName().
-      \ '/'.
-      \ symfony#CurrentModuleName().'.js'
+command! -nargs=? -complete=customlist,symfony#CompleteJs Ejavascript call Ejavascript(<f-args>)
+function! Ejavascript(...)
+  if a:0 == 1 " Then we're given a filename
+    let fname = fnamemodify(a:1, ':r').'.js'
+    exe "edit ".fname
+  else
+    exe
+          \ 'edit web/js/'.
+          \ symfony#CurrentAppName().
+          \ '/'.
+          \ symfony#CurrentModuleName().'.js'
+  endif
+endfunction
 
 command! Estylesheet exe
       \ 'edit web/css/'.

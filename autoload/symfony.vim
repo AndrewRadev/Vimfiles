@@ -15,6 +15,7 @@ function! symfony#LoadData()
   let g:model_dict   = {}
   let g:schema_dict  = {}
   let g:fixture_dict = {}
+  let g:js_dict      = {}
 
   " Regular expression for apps and modules:
   let rx = s:PS
@@ -57,6 +58,11 @@ function! symfony#LoadData()
     let fixture = lib#ExtractRx(path, rx, '\1')
     let fixture_key = lib#ExtractRx(fixture, '^\d\+_'.s:capture_group.'\.yml$', '\1')
     let g:fixture_dict[fixture_key] = fixture
+  endfor
+
+  for path in split(glob('web/js/**/*.js'))
+    let fname = substitute(path, 'web/js/'.s:capture_group.'.js', '\1', '')
+    let g:js_dict[fname] = 1
   endfor
 endfunction
 
@@ -191,4 +197,8 @@ endfunction
 
 function! symfony#CompleteFixture(A, L, P)
   return sort(keys(filter(copy(g:fixture_dict), "v:key =~'^".a:A."'")))
+endfunction
+
+function! symfony#CompleteJs(A, L, P)
+  return sort(keys(filter(copy(g:js_dict), "v:key =~'^".a:A."'")))
 endfunction

@@ -3,7 +3,7 @@ Think of a general outline (indentation?) and some specific ones here and there:
   * "def" in Python and Ruby?
 
 Symfony
-  * Glob for js/css recursively (ignore ".min." ?)
+  * Move globbing to completion function
   * Glob for models recursively (prefix with dir?)
   * automatically infer app in Econtroller whenever possible
 
