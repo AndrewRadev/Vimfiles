@@ -82,7 +82,6 @@ function! symfony#CurrentModuleName()
   else
     let b:current_module_name = lib#ExtractRx(path, rx, '\1')
   endif
-  let g:module_dict[b:current_module_name] = 1
 
   return b:current_module_name
 endfunction
@@ -102,7 +101,6 @@ function! symfony#CurrentAppName()
   else
     let b:current_app_name = lib#ExtractRx(expand('%:p'), rx, '\1')
   endif
-  let g:app_dict[b:current_app_name] = 1
 
   return b:current_app_name
 endfunction
@@ -152,6 +150,11 @@ endfunction
 function! symfony#CurrentModelName()
   let path = expand('%:p')
 
+  if match(path, 'test'.s:PS.'unit') != -1 " Then we're in a unit test
+    let b:current_model_name = lib#Capitalize(lib#ExtractRx(path, s:PS.s:capture_group.'Test.php$', '\1'))
+    return b:current_model_name
+  endif
+
   let rx = 'lib'
   let rx .= s:PS
   let rx .= s:anything
@@ -166,11 +169,10 @@ function! symfony#CurrentModelName()
   let rx .= '$'
 
   if match(path, rx) == -1
-    let b:current_model_name = input("Enter model name: ", "", "customlist,symfony#CompleteModel")
+    let b:current_model_name = lib#Capitalize(input("Enter model name: ", "", "customlist,symfony#CompleteModel"))
   else
     let b:current_model_name = lib#ExtractRx(path, rx, '\1')
   endif
-  let g:model_dict[b:current_model_name] = 1
 
   return b:current_model_name
 endfunction
@@ -188,6 +190,10 @@ function! symfony#CompleteModule(A, L, P)
 endfunction
 
 function! symfony#CompleteModel(A, L, P)
+  return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
+endfunction
+
+function! symfony#CompleteTest(A, L, P)
   return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
 endfunction
 

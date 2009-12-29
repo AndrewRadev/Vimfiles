@@ -104,6 +104,15 @@ function! Elib(dir, suffix, ...)
         \ ".class.php"
 endfunction
 
+command! -nargs=? -complete=customlist,symfony#CompleteTest Etest call Etest(<f-args>)
+function! Etest(...)
+  if a:0 == 1 " Then we're given a test name
+    exe "edit test/unit/".lib#Lowercase(a:1)."Test.php"
+  else " Edit a test according to current model name
+    exe "edit test/unit/".lib#Lowercase(symfony#CurrentModelName())."Test.php"
+  endif
+endfunction
+
 command! -nargs=? -complete=customlist,symfony#CompleteSchema Eschema call Eschema(<f-args>)
 function! Eschema(...)
   if a:0 == 1 " Then we're given a prefix for the schema file

@@ -25,6 +25,12 @@ function! lib#Capitalize(word)
   return substitute(a:word, '^\w', '\U\0', 'g')
 endfunction
 
+" Lowercase first letter of argument:
+" Word -> word
+function! lib#Lowercase(word)
+  return substitute(a:word, '^\w', '\l\0', 'g')
+endfunction
+
 " Encode the given string for use as part of an url
 " Ripped directly from haskellmode.vim
 function! lib#UrlEncode(string)

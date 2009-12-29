@@ -5,7 +5,7 @@ snippet php
 snippet php=
 	<?php echo ${1:'debug'} ?>
 snippet debug
-	print_r($${1:'var'}); die;
+	var_dump($${1:'var'}); die;
 snippet ec
 	echo '${1:string}'${2};
 snippet inc
@@ -224,7 +224,8 @@ snippet for
 		${4: // code...}
 	}
 snippet foreach
-	foreach ($${1:variable} as $${2:key}) {
+	foreach ($${1:variable} as $${2:value})
+	{
 		${3:// code...}
 	}${4}
 snippet foreach=
@@ -234,6 +235,9 @@ snippet foreach=
 
 	<?php } ?>${4}
 snippet fun
+	/**
+	 * @todo Write description
+	 */
 	${1:public }function ${2:FunctionName}(${3})
 	{
 		${4:// code...}
