@@ -2,8 +2,7 @@
 nmap gn :NERDTreeToggle<cr>
 nmap gN :NERDTree<cr>
 
-command! FindInTree call FindInNERDTree()
-nmap <Leader>f :call FindInNERDTree()<cr>
+nmap <Leader>f :NERDTreeFind<cr>
 
 let g:NERDTreeHijackNetrw = 0
 
