@@ -4,7 +4,7 @@ command! -nargs=? -complete=customlist,symfony#CompleteJs Ejavascript call Ejava
 function! Ejavascript(...)
   if a:0 == 1 " Then we're given a filename
     let fname = fnamemodify(a:1, ':r').'.js'
-    exe "edit ".fname
+    exe "edit web/js/".fname
   else
     exe
           \ 'edit web/js/'.

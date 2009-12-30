@@ -10,7 +10,7 @@ set cscopetag
 set diffopt=filler,vertical
 set encoding=utf-8
 set expandtab smarttab
-set ffs=unix,dos
+set ffs=unix
 set formatoptions=croqn
 set guioptions=crb
 set incsearch nohlsearch

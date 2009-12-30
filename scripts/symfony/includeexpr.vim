@@ -36,7 +36,7 @@ function! SymfonyIncludeExpr(fname)
   elseif lib#InString(line, 'use_stylesheet') " Follow an included css:
     let rx = 'use_stylesheet('
     let rx .= quoted_capture
-    let rx .= ')'
+    let rx .= '[,)]'
 
     let fname = 'web/css/'.lib#ExtractRx(line, rx, '\1')
     if fnamemodify(fname, ':e') == ''
@@ -47,7 +47,7 @@ function! SymfonyIncludeExpr(fname)
   elseif lib#InString(line, 'use_javascript') " Follow an included js:
     let rx = 'use_javascript('
     let rx .= quoted_capture
-    let rx .= ')'
+    let rx .= '[,)]'
 
     let fname = 'web/js/'.lib#ExtractRx(line, rx, '\1')
     if fnamemodify(fname, ':e') == ''

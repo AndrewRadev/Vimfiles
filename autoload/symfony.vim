@@ -3,7 +3,7 @@
 " Description: Functions to use in symfony projects. Mostly helpful in
 " commands to navigate across the project. All the functions assume the
 " default directory structure of a symfony project.
-" Last Modified: December 25, 2009
+" Last Modified: December 29, 2009
 
 let s:PS = has('win32') ? '\\' : '/'
 let s:capture_group = '\(.\{-}\)'

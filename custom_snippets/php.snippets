@@ -174,7 +174,8 @@ snippet do
 		${2:// code... }
 	} while (${1:/* condition */});
 snippet if
-	if (${1:/* condition */}) {
+	if (${1:/* condition */})
+	{
 		${2:// code...}
 	}
 snippet if=
@@ -182,9 +183,12 @@ snippet if=
 	${2:<!-- code -->}
 	<?php endif; ?>
 snippet ife
-	if (${1:/* condition */}) {
+	if (${1:/* condition */})
+	{
 		${2:// code...}
-	} else {
+	}
+	else
+	{
 		${3:// code...}
 	}
 	${4}
@@ -195,11 +199,13 @@ snippet ife=
 	${3:<!-- code -->}
 	<?php endif; ?>
 snippet else
-	else {
+	else
+	{
 		${1:// code...}
 	}
 snippet elseif
-	elseif (${1:/* condition */}) {
+	elseif (${1:/* condition */})
+	{
 		${2:// code...}
 	}
 # Tertiary conditional
