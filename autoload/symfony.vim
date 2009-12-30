@@ -10,59 +10,29 @@ let s:capture_group = '\(.\{-}\)'
 let s:anything = '.*'
 
 function! symfony#LoadData()
-  let g:app_dict     = {}
-  let g:module_dict  = {}
-  let g:model_dict   = {}
-  let g:schema_dict  = {}
-  let g:fixture_dict = {}
-  let g:js_dict      = {}
+  let g:sf_fixture_dict = {}
+  let g:sf_js_dict      = {}
+  let g:sf_css_dict     = {}
 
-  " Regular expression for apps and modules:
-  let rx = s:PS
-  let rx .= s:capture_group
-  let rx .= '$'
-
-  for path in split(glob('apps/*'))
-    let app = lib#ExtractRx(path, rx, '\1')
-    let g:app_dict[app] = 1
-  endfor
-
-  for path in split(glob('apps/*/modules/*'))
-    let module = lib#ExtractRx(path, rx, '\1')
-    let g:module_dict[module] = 1
-  endfor
-
-  " Regular expression for models:
-  let rx = s:PS
-  let rx .= s:capture_group
-  let rx .= 'Table\.class\.php'
-  let rx .= '$'
-
-  for path in split(glob('lib/model/doctrine/*Table.class.php'))
-    let model = lib#ExtractRx(path, rx, '\1')
-    let g:model_dict[model] = 1
-  endfor
-
-  " Regular expression for schema files:
-  let rx = s:PS.s:capture_group.'_schema.yml$'
-
-  for path in split(glob('config/doctrine/*_schema.yml'))
-    let schema = lib#ExtractRx(path, rx, '\1')
-    let g:schema_dict[schema] = 1
-  endfor
-
-  " Regular expression for fixtures:
+  " Fixtures:
   let rx = s:PS.s:capture_group.'$'
 
   for path in split(glob('data/fixtures/*.yml'))
     let fixture = lib#ExtractRx(path, rx, '\1')
     let fixture_key = lib#ExtractRx(fixture, '^\d\+_'.s:capture_group.'\.yml$', '\1')
-    let g:fixture_dict[fixture_key] = fixture
+    let g:sf_fixture_dict[fixture_key] = fixture
   endfor
 
+  " Javascript files:
   for path in split(glob('web/js/**/*.js'))
     let fname = substitute(path, 'web/js/'.s:capture_group.'.js', '\1', '')
-    let g:js_dict[fname] = 1
+    let g:sf_js_dict[fname] = 1
+  endfor
+
+  " CSS files:
+  for path in split(glob('web/css/**/*.css'))
+    let fname = substitute(path, 'web/css/'.s:capture_group.'.css', '\1', '')
+    let g:sf_css_dict[fname] = 1
   endfor
 endfunction
 
@@ -70,12 +40,23 @@ function! symfony#CurrentModuleName()
   if exists('b:current_module_name')
     return b:current_module_name
   endif
+
   let path = expand('%:p')
 
-  let rx = 'modules'
-  let rx .= s:PS
-  let rx .= s:capture_group
-  let rx .= s:PS
+  if path =~# 'test'.s:PS.'functional' " we're in a functional test
+    let rx = 'test'
+    let rx .= s:PS
+    let rx .= 'functional'
+    let rx .= s:anything
+    let rx .= s:PS
+    let rx .= s:capture_group
+    let rx .= 'ActionsTest\.php$'
+  else " we're somewhere in a specific application
+    let rx = 'modules'
+    let rx .= s:PS
+    let rx .= s:capture_group
+    let rx .= s:PS
+  endif
 
   if match(path, rx) == -1
     let b:current_module_name = input("Enter module name: ", "", "customlist,symfony#CompleteModule")
@@ -91,10 +72,18 @@ function! symfony#CurrentAppName()
     return b:current_app_name
   endif
 
-  let rx = 'apps'
-  let rx .= s:PS
-  let rx .= s:capture_group
-  let rx .= s:PS
+  let path = expand('%:p')
+
+  if path =~# 'test'.s:PS.'functional' " we're in a functional test
+    let rx = 'test'.s:PS.'functional'.s:PS
+    let rx .= s:capture_group
+    let rx .= s:PS
+  else " we're somewhere in a specific application
+    let rx = 'apps'
+    let rx .= s:PS
+    let rx .= s:capture_group
+    let rx .= s:PS
+  endif
 
   if match(expand('%:p'), rx) == -1
     let b:current_app_name = input("Enter app name: ", "", "customlist,symfony#CompleteApp")
@@ -178,33 +167,82 @@ function! symfony#CurrentModelName()
 endfunction
 
 function! symfony#CompleteApp(A, L, P)
-  return sort(keys(filter(copy(g:app_dict), "v:key =~'^".a:A."'")))
+  let rx = s:PS
+  let rx .= s:capture_group
+  let rx .= '$'
+
+  let app_dict = {}
+  for path in split(glob('apps/*'))
+    let app = lib#ExtractRx(path, rx, '\1')
+    let app_dict[app] = 1
+  endfor
+
+  return sort(keys(filter(app_dict, "v:key =~'^".a:A."'")))
 endfunction
 
 function! symfony#CompleteModule(A, L, P)
+  let rx = s:PS
+  let rx .= s:capture_group
+  let rx .= '$'
+
 	if len(split(substitute(a:L, a:A.'$', '', ''))) == 2
-		return sort(keys(filter(copy(g:app_dict), "v:key =~'^".a:A."'")))
+    let app_dict = {}
+    for path in split(glob('apps/*'))
+      let app = lib#ExtractRx(path, rx, '\1')
+      let app_dict[app] = 1
+    endfor
+
+		return sort(keys(filter(copy(app_dict), "v:key =~'^".a:A."'")))
 	else
-		return sort(keys(filter(copy(g:module_dict), "v:key =~'^".a:A."'")))
+    let module_dict = {}
+    for path in split(glob('apps/*/modules/*'))
+      let module = lib#ExtractRx(path, rx, '\1')
+      let module_dict[module] = 1
+    endfor
+
+		return sort(keys(filter(module_dict, "v:key =~'^".a:A."'")))
 	endif
 endfunction
 
 function! symfony#CompleteModel(A, L, P)
-  return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
+  let rx = s:PS
+  let rx .= s:capture_group
+  let rx .= 'Table\.class\.php'
+  let rx .= '$'
+
+  let model_dict = {}
+  for path in split(glob('lib/model/doctrine/*Table.class.php'))
+    let model = lib#ExtractRx(path, rx, '\1')
+    let model_dict[model] = 1
+  endfor
+
+  return sort(keys(filter(model_dict, "v:key =~'^".a:A."'")))
 endfunction
 
 function! symfony#CompleteUnitTest(A, L, P)
-  return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
+  return symfony#CompleteModel(a:A, a:L, a:P)
 endfunction
 
 function! symfony#CompleteSchema(A, L, P)
-  return sort(keys(filter(copy(g:schema_dict), "v:key =~'^".a:A."'")))
+  let rx = s:PS.s:capture_group.'_schema.yml$'
+
+  let schema_dict = {}
+  for path in split(glob('config/doctrine/*_schema.yml'))
+    let schema = lib#ExtractRx(path, rx, '\1')
+    let schema_dict[schema] = 1
+  endfor
+
+  return sort(keys(filter(schema_dict, "v:key =~'^".a:A."'")))
 endfunction
 
 function! symfony#CompleteFixture(A, L, P)
-  return sort(keys(filter(copy(g:fixture_dict), "v:key =~'^".a:A."'")))
+  return sort(keys(filter(copy(g:sf_fixture_dict), "v:key =~'^".a:A."'")))
 endfunction
 
 function! symfony#CompleteJs(A, L, P)
-  return sort(keys(filter(copy(g:js_dict), "v:key =~'^".a:A."'")))
+  return sort(keys(filter(copy(g:sf_js_dict), "v:key =~'^".a:A."'")))
+endfunction
+
+function! symfony#CompleteCss(A, L, P)
+  return sort(keys(filter(copy(g:sf_css_dict), "v:key =~'^".a:A."'")))
 endfunction

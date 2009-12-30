@@ -14,11 +14,19 @@ function! s:Ejavascript(...)
   endif
 endfunction
 
-command! Estylesheet exe
-      \ 'edit web/css/'.
-      \ symfony#CurrentAppName().
-      \ '/'.
-      \ symfony#CurrentModuleName().'.css'
+command! -nargs=? -complete=customlist,symfony#CompleteCss Estylesheet call s:Estylesheet(<f-args>)
+function! s:Estylesheet(...)
+  if a:0 == 1 " Then we're given a filename
+    let fname = fnamemodify(a:1, ':r').'.css'
+    exe "edit web/css/".fname
+  else
+    exe
+          \ 'edit web/css/'.
+          \ symfony#CurrentAppName().
+          \ '/'.
+          \ symfony#CurrentModuleName().'.css'
+  endif
+endfunction
 
 command! -nargs=? Eview call s:Eview(<f-args>)
 function! s:Eview(...)
@@ -47,12 +55,9 @@ command! -nargs=* -complete=customlist,symfony#CompleteModule Ecomponent  call s
 function! s:Econtroller(type, ...)
   if (a:0 == 1) " Then we're given a controller
     let b:current_module_name = a:1
-    let g:module_dict[b:current_module_name] = 1 " Add to completion
   elseif (a:0 == 2) " Then we're given a controller and an app
     let b:current_module_name = a:1
     let b:current_app_name = a:2
-    let g:module_dict[b:current_module_name] = 1 " Add to completion
-    let g:app_dict[b:current_app_name] = 1 " Add to completion
   endif
 
   let function_name = 'execute'.lib#Capitalize(symfony#CurrentActionName())
@@ -69,7 +74,6 @@ endfunction
 function! s:Ecomponent(...)
   if (a:0 == 1) " Then we're given a component
     let b:current_module_name = a:1
-    let g:module_dict[b:current_module_name] = 1 " Add to completion
   endif
 
   let function_name = 'execute'.lib#Capitalize(symfony#CurrentActionName())
@@ -113,6 +117,21 @@ function! s:Eunit(...)
   endif
 endfunction
 
+command! -nargs=* -complete=customlist,symfony#CompleteModule Efunctional call s:Efunctional(<f-args>)
+function! s:Efunctional(...)
+  if (a:0 == 1) " Then we're given a controller
+    let b:current_module_name = a:1
+  elseif (a:0 == 2) " Then we're given a controller and an app
+    let b:current_module_name = a:1
+    let b:current_app_name = a:2
+  endif
+
+  exe
+        \ "edit test/functional/".
+        \ symfony#CurrentAppName()."/".
+        \ symfony#CurrentModuleName()."ActionsTest.php"
+endfunction
+
 command! -nargs=? -complete=customlist,symfony#CompleteSchema Eschema call s:Eschema(<f-args>)
 function! s:Eschema(...)
   if a:0 == 1 " Then we're given a prefix for the schema file
@@ -127,7 +146,7 @@ endfunction
 command! -nargs=1 -complete=customlist,symfony#CompleteFixture Efixture call s:Efixture(<f-args>)
 function! s:Efixture(name)
   if exists('g:fixture_dict[a:name]')
-    let fixture = g:fixture_dict[a:name]
+    let fixture = g:sf_fixture_dict[a:name]
   else
     let fixture = a:name
   endif
@@ -139,7 +158,6 @@ command! -nargs=? -complete=customlist,symfony#CompleteApp Erouting call s:Erout
 function! s:Erouting(...)
   if a:0 == 1
     let b:current_app_name = a:1
-    let g:app_dict[b:current_app_name] = 1
   endif
 
   exe
