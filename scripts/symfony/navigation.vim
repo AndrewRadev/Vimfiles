@@ -1,7 +1,7 @@
 call symfony#LoadData()
 
-command! -nargs=? -complete=customlist,symfony#CompleteJs Ejavascript call Ejavascript(<f-args>)
-function! Ejavascript(...)
+command! -nargs=? -complete=customlist,symfony#CompleteJs Ejavascript call s:Ejavascript(<f-args>)
+function! s:Ejavascript(...)
   if a:0 == 1 " Then we're given a filename
     let fname = fnamemodify(a:1, ':r').'.js'
     exe "edit web/js/".fname
@@ -20,8 +20,8 @@ command! Estylesheet exe
       \ '/'.
       \ symfony#CurrentModuleName().'.css'
 
-command! -nargs=? Eview call Eview(<f-args>)
-function! Eview(...)
+command! -nargs=? Eview call s:Eview(<f-args>)
+function! s:Eview(...)
   if expand('%:t') == 'actions.class.php'
     let filename = symfony#CurrentActionName().'Success.php'
   else " it's a component
@@ -42,9 +42,9 @@ function! Eview(...)
       \ filename
 endfunction
 
-command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call Econtroller('action', <f-args>)
-command! -nargs=* -complete=customlist,symfony#CompleteModule Ecomponent  call Econtroller('component', <f-args>)
-function! Econtroller(type, ...)
+command! -nargs=* -complete=customlist,symfony#CompleteModule Econtroller call s:Econtroller('action', <f-args>)
+command! -nargs=* -complete=customlist,symfony#CompleteModule Ecomponent  call s:Econtroller('component', <f-args>)
+function! s:Econtroller(type, ...)
   if (a:0 == 1) " Then we're given a controller
     let b:current_module_name = a:1
     let g:module_dict[b:current_module_name] = 1 " Add to completion
@@ -66,7 +66,7 @@ function! Econtroller(type, ...)
   call cursor(0, 0)
   call search(function_name, 'cw')
 endfunction
-function! Ecomponent(...)
+function! s:Ecomponent(...)
   if (a:0 == 1) " Then we're given a component
     let b:current_module_name = a:1
     let g:module_dict[b:current_module_name] = 1 " Add to completion
@@ -84,11 +84,11 @@ function! Ecomponent(...)
   call search(function_name, 'cw')
 endfunction
 
-command! -nargs=? -complete=customlist,symfony#CompleteModel Emodel  call Elib('model',  '',           <f-args>)
-command! -nargs=? -complete=customlist,symfony#CompleteModel Etable  call Elib('model',  'Table',      <f-args>)
-command! -nargs=? -complete=customlist,symfony#CompleteModel Eform   call Elib('form',   'Form',       <f-args>)
-command! -nargs=? -complete=customlist,symfony#CompleteModel Efilter call Elib('filter', 'FormFilter', <f-args>)
-function! Elib(dir, suffix, ...)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Emodel  call s:Elib('model',  '',           <f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Etable  call s:Elib('model',  'Table',      <f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Eform   call s:Elib('form',   'Form',       <f-args>)
+command! -nargs=? -complete=customlist,symfony#CompleteModel Efilter call s:Elib('filter', 'FormFilter', <f-args>)
+function! s:Elib(dir, suffix, ...)
   if a:0 == 0
     let b:model_name = symfony#CurrentModelName()
   else
@@ -104,8 +104,8 @@ function! Elib(dir, suffix, ...)
         \ ".class.php"
 endfunction
 
-command! -nargs=? -complete=customlist,symfony#CompleteUnitTest Eunit call Eunit(<f-args>)
-function! Eunit(...)
+command! -nargs=? -complete=customlist,symfony#CompleteUnitTest Eunit call s:Eunit(<f-args>)
+function! s:Eunit(...)
   if a:0 == 1 " Then we're given a test name
     exe "edit test/unit/".lib#Lowercase(a:1)."Test.php"
   else " Edit a test according to current model name
@@ -113,8 +113,8 @@ function! Eunit(...)
   endif
 endfunction
 
-command! -nargs=? -complete=customlist,symfony#CompleteSchema Eschema call Eschema(<f-args>)
-function! Eschema(...)
+command! -nargs=? -complete=customlist,symfony#CompleteSchema Eschema call s:Eschema(<f-args>)
+function! s:Eschema(...)
   if a:0 == 1 " Then we're given a prefix for the schema file
     let prefix = a:1.'_'
   else
@@ -124,8 +124,8 @@ function! Eschema(...)
   exe "edit config/doctrine/".prefix."schema.yml"
 endfunction
 
-command! -nargs=1 -complete=customlist,symfony#CompleteFixture Efixture call Efixture(<f-args>)
-function! Efixture(name)
+command! -nargs=1 -complete=customlist,symfony#CompleteFixture Efixture call s:Efixture(<f-args>)
+function! s:Efixture(name)
   if exists('g:fixture_dict[a:name]')
     let fixture = g:fixture_dict[a:name]
   else
@@ -135,8 +135,8 @@ function! Efixture(name)
   exe 'edit data/fixtures/'.fixture
 endfunction
 
-command! -nargs=? -complete=customlist,symfony#CompleteApp Erouting call Erouting(<f-args>)
-function! Erouting(...)
+command! -nargs=? -complete=customlist,symfony#CompleteApp Erouting call s:Erouting(<f-args>)
+function! s:Erouting(...)
   if a:0 == 1
     let b:current_app_name = a:1
     let g:app_dict[b:current_app_name] = 1
