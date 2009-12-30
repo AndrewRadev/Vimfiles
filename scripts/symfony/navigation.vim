@@ -104,8 +104,8 @@ function! Elib(dir, suffix, ...)
         \ ".class.php"
 endfunction
 
-command! -nargs=? -complete=customlist,symfony#CompleteTest Etest call Etest(<f-args>)
-function! Etest(...)
+command! -nargs=? -complete=customlist,symfony#CompleteUnitTest Eunit call Eunit(<f-args>)
+function! Eunit(...)
   if a:0 == 1 " Then we're given a test name
     exe "edit test/unit/".lib#Lowercase(a:1)."Test.php"
   else " Edit a test according to current model name

@@ -193,7 +193,7 @@ function! symfony#CompleteModel(A, L, P)
   return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
 endfunction
 
-function! symfony#CompleteTest(A, L, P)
+function! symfony#CompleteUnitTest(A, L, P)
   return sort(keys(filter(copy(g:model_dict), "v:key =~'^".a:A."'")))
 endfunction
 

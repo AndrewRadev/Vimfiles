@@ -25,6 +25,7 @@ let g:snips_author = "Andrew Radev"
 " Proj settings:
 let g:ProjFile = '~/.vimproj'
 let g:ProjSplitMethod = 'edit '
+let g:ProjFileBrowser = 'NERDTree | wincmd l'
 
 " EasyGrep options:
 let g:EasyGrepMode              = 2 " Track extension

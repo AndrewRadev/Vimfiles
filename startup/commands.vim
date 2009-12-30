@@ -10,3 +10,6 @@ endfunction
 
 " Clear up garbage:
 command! CleanGarbage %s/\s\+$//e
+
+" Fix dos-style line endings:
+command! FixEol %s/$//e
