@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: December 28, 2009
+" Last Modified: January 01, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -20,13 +20,26 @@ function! lib#MapToggle(key, opt)
 endfunction
 
 " Capitalize first letter of argument:
-" word -> Word
+" foo -> Foo
 function! lib#Capitalize(word)
   return substitute(a:word, '^\w', '\U\0', 'g')
 endfunction
 
+" CamelCase underscored word:
+" foo_bar_baz -> fooBarBaz
+function! lib#CamelCase(word)
+  return substitute(a:word, '_\(.\)', '\U\1', 'g')
+endfunction
+
+" Underscore CamelCased word:
+" FooBarBaz -> foo_bar_baz
+function! lib#Underscore(word)
+  let result = lib#Lowercase(a:word)
+  return substitute(result, '\([A-Z]\)', '_\l\1', 'g')
+endfunction
+
 " Lowercase first letter of argument:
-" Word -> word
+" Foo -> foo
 function! lib#Lowercase(word)
   return substitute(a:word, '^\w', '\l\0', 'g')
 endfunction
