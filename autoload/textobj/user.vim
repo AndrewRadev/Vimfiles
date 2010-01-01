@@ -148,31 +148,31 @@ function! textobj#user#define(pat0, pat1, pat2, guideline)  "{{{2
     for lhs in lhss
       if function_name == 'move-to-next'
         execute 'nnoremap' s:mapargs_single_move(lhs, pat0, '', 'n')
-        execute 'vnoremap' s:mapargs_single_move(lhs, pat0, '', 'v')
+        execute 'xnoremap' s:mapargs_single_move(lhs, pat0, '', 'v')
         execute 'onoremap' s:mapargs_single_move(lhs, pat0, '', 'o')
       elseif function_name == 'move-to-next-end'
         execute 'nnoremap' s:mapargs_single_move(lhs, pat0, 'e', 'n')
-        execute 'vnoremap' s:mapargs_single_move(lhs, pat0, 'e', 'v')
+        execute 'xnoremap' s:mapargs_single_move(lhs, pat0, 'e', 'v')
         execute 'onoremap' s:mapargs_single_move(lhs, pat0, 'e', 'o')
       elseif function_name == 'move-to-prev'
         execute 'nnoremap' s:mapargs_single_move(lhs, pat0, 'b', 'n')
-        execute 'vnoremap' s:mapargs_single_move(lhs, pat0, 'b', 'v')
+        execute 'xnoremap' s:mapargs_single_move(lhs, pat0, 'b', 'v')
         execute 'onoremap' s:mapargs_single_move(lhs, pat0, 'b', 'o')
       elseif function_name == 'move-to-prev-end'
         execute 'nnoremap' s:mapargs_single_move(lhs, pat0, 'be', 'n')
-        execute 'vnoremap' s:mapargs_single_move(lhs, pat0, 'be', 'v')
+        execute 'xnoremap' s:mapargs_single_move(lhs, pat0, 'be', 'v')
         execute 'onoremap' s:mapargs_single_move(lhs, pat0, 'be', 'o')
       elseif function_name == 'select-next' || function_name == 'select'
-        execute 'vnoremap' s:mapargs_single_select(lhs, pat0, '', 'v')
+        execute 'xnoremap' s:mapargs_single_select(lhs, pat0, '', 'v')
         execute 'onoremap' s:mapargs_single_select(lhs, pat0, '', 'o')
       elseif function_name == 'select-prev'
-        execute 'vnoremap' s:mapargs_single_select(lhs, pat0, 'b', 'v')
+        execute 'xnoremap' s:mapargs_single_select(lhs, pat0, 'b', 'v')
         execute 'onoremap' s:mapargs_single_select(lhs, pat0, 'b', 'o')
       elseif function_name == 'select-pair-all'
-        execute 'vnoremap' s:mapargs_pair_select(lhs, pat1, pat2, 'a', 'v')
+        execute 'xnoremap' s:mapargs_pair_select(lhs, pat1, pat2, 'a', 'v')
         execute 'onoremap' s:mapargs_pair_select(lhs, pat1, pat2, 'a', 'o')
       elseif function_name == 'select-pair-inner'
-        execute 'vnoremap' s:mapargs_pair_select(lhs, pat1, pat2, 'i', 'v')
+        execute 'xnoremap' s:mapargs_pair_select(lhs, pat1, pat2, 'i', 'v')
         execute 'onoremap' s:mapargs_pair_select(lhs, pat1, pat2, 'i', 'o')
       else
         throw 'Unknown function name: ' . string(function_name)
@@ -466,11 +466,11 @@ endfunction
 
 
 function! s:noremap(forced_p, lhs, rhs)
-  call s:_map(['nnoremap', 'vnoremap', 'onoremap'], a:forced_p, a:lhs, a:rhs)
+  call s:_map(['nnoremap', 'xnoremap', 'onoremap'], a:forced_p, a:lhs, a:rhs)
 endfunction
 
 function! s:objnoremap(forced_p, lhs, rhs)
-  call s:_map(['vnoremap', 'onoremap'], a:forced_p, a:lhs, a:rhs)
+  call s:_map(['xnoremap', 'onoremap'], a:forced_p, a:lhs, a:rhs)
 endfunction
 
 

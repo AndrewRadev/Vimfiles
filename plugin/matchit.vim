@@ -49,8 +49,8 @@ set cpo&vim
 
 nnoremap <silent> %  :<C-U>call <SID>Match_wrapper('',1,'n') <CR>
 nnoremap <silent> g% :<C-U>call <SID>Match_wrapper('',0,'n') <CR>
-vnoremap <silent> %  :<C-U>call <SID>Match_wrapper('',1,'v') <CR>m'gv``
-vnoremap <silent> g% :<C-U>call <SID>Match_wrapper('',0,'v') <CR>m'gv``
+xnoremap <silent> %  :<C-U>call <SID>Match_wrapper('',1,'v') <CR>m'gv``
+xnoremap <silent> g% :<C-U>call <SID>Match_wrapper('',0,'v') <CR>m'gv``
 onoremap <silent> %  v:<C-U>call <SID>Match_wrapper('',1,'o') <CR>
 onoremap <silent> g% v:<C-U>call <SID>Match_wrapper('',0,'o') <CR>
 
@@ -59,8 +59,8 @@ nnoremap <silent> [% :<C-U>call <SID>MultiMatch("bW", "n") <CR>
 nnoremap <silent> ]% :<C-U>call <SID>MultiMatch("W",  "n") <CR>
 vmap [% <Esc>[%m'gv``
 vmap ]% <Esc>]%m'gv``
-" vnoremap <silent> [% :<C-U>call <SID>MultiMatch("bW", "v") <CR>m'gv``
-" vnoremap <silent> ]% :<C-U>call <SID>MultiMatch("W",  "v") <CR>m'gv``
+" xnoremap <silent> [% :<C-U>call <SID>MultiMatch("bW", "v") <CR>m'gv``
+" xnoremap <silent> ]% :<C-U>call <SID>MultiMatch("W",  "v") <CR>m'gv``
 onoremap <silent> [% v:<C-U>call <SID>MultiMatch("bW", "o") <CR>
 onoremap <silent> ]% v:<C-U>call <SID>MultiMatch("W",  "o") <CR>
 

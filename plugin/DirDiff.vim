@@ -429,7 +429,7 @@ function! <SID>DirDiff(srcA, srcB)
 "    nnoremap <buffer> n :call <SID>DirDiffNext()<CR>
 "    nnoremap <buffer> p :call <SID>DirDiffPrev()<CR>
     nnoremap <buffer> s :. call <SID>DirDiffSync()<CR>
-    vnoremap <buffer> s :call <SID>DirDiffSync()<CR>
+    xnoremap <buffer> s :call <SID>DirDiffSync()<CR>
     nnoremap <buffer> u :call <SID>DirDiffUpdate()<CR>
     nnoremap <buffer> x :call <SID>ChangeExcludes()<CR>
     nnoremap <buffer> a :call <SID>ChangeArguments()<CR>
