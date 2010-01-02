@@ -8,6 +8,15 @@ function! s:CompleteClass(A, L, P)
   return sort(map(filter(taglist('^'.a:A), 'v:val["kind"] == "c"'), 'v:val["name"]'))
 endfunction
 
+" Change fonts on the GUI:
+if has("win32")
+  command! FontDejaVu   set guifont=DejaVu_Sans_Mono:h12
+  command! FontTerminus set guifont=Terminus:h15
+else
+  command! FontAndale   set guifont=Andale\ Mono\ 13
+  command! FontTerminus set guifont=Terminus\ 14
+endif
+
 " Clear up garbage:
 command! CleanGarbage %s/\s\+$//e
 
