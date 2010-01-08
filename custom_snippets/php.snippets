@@ -235,11 +235,11 @@ snippet foreach
 		${3:// code...}
 	}${4}
 snippet foreach=
-	<?php foreach ($${1:variable} as $${2:key}) { ?>
+	<?php foreach ($${1:variable} as $${2:key}): ?>
 
 	${3:<!-- html -->}
 
-	<?php } ?>${4}
+	<?php endforeach; ?>${4}
 snippet fun
 	/**
 	 * @todo Write description
