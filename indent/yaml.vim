@@ -16,7 +16,7 @@ function! GetYamlIndent()
   let prev_line    = getline(v:lnum - 1) " last line
   let ind          = indent(v:lnum - 1)
 
-  if prev_line =~ ':\s*$'
+  if prev_line =~ ':\s*$' || prev_line =~ ':\s*[|>]\s*$'
     return ind + &sw
   else
     return ind
