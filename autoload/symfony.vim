@@ -25,13 +25,13 @@ function! symfony#LoadData()
 
   " Javascript files:
   for path in split(glob('web/js/**/*.js'))
-    let fname = substitute(path, 'web/js/'.s:capture_group.'.js', '\1', '')
+    let fname = substitute(path, lib#RxPath('web', 'js').s:PS.s:capture_group.'.js', '\1', '')
     let g:sf_js_dict[fname] = 1
   endfor
 
   " CSS files:
   for path in split(glob('web/css/**/*.css'))
-    let fname = substitute(path, 'web/css/'.s:capture_group.'.css', '\1', '')
+    let fname = substitute(path, lib#RxPath('web', 'css').s:PS.s:capture_group.'.css', '\1', '')
     let g:sf_css_dict[fname] = 1
   endfor
 endfunction
@@ -44,17 +44,10 @@ function! symfony#CurrentModuleName()
   let path = expand('%:p')
 
   if path =~# 'test'.s:PS.'functional' " we're in a functional test
-    let rx = 'test'
-    let rx .= s:PS
-    let rx .= 'functional'
-    let rx .= s:anything
-    let rx .= s:PS
-    let rx .= s:capture_group
+    let rx = lib#RxPath('test', 'functional', s:anything, s:capture_group)
     let rx .= 'ActionsTest\.php$'
   else " we're somewhere in a specific application
-    let rx = 'modules'
-    let rx .= s:PS
-    let rx .= s:capture_group
+    let rx = lib#RxPath('modules', s:capture_group)
     let rx .= s:PS
   endif
 
@@ -75,14 +68,10 @@ function! symfony#CurrentAppName()
   let path = expand('%:p')
 
   if path =~# 'test'.s:PS.'functional' " we're in a functional test
-    let rx = 'test'.s:PS.'functional'.s:PS
-    let rx .= s:capture_group
+    let rx = lib#RxPath('test', 'functional', s:capture_group)
     let rx .= s:PS
   else " we're somewhere in a specific application
-    let rx = 'apps'
-    let rx .= s:PS
-    let rx .= s:capture_group
-    let rx .= s:PS
+    let rx = lib#RxPath('apps', s:capture_group).s:PS
   endif
 
   if match(expand('%:p'), rx) == -1
@@ -98,9 +87,7 @@ function! symfony#CurrentActionName()
   let path = expand('%:p')
 
   if path =~# 'templates' " we're in a view or a component
-    let rx = s:PS
-    let rx .= 'templates'
-    let rx .= s:PS
+    let rx = lib#Wrap(s:PS, 'templates')
 
     if path =~# 'Success\..*php$' " then it's a view
       let rx .= s:capture_group.'Success\..*php$'
@@ -144,16 +131,8 @@ function! symfony#CurrentModelName()
     return b:current_model_name
   endif
 
-  let rx = 'lib'
-  let rx .= s:PS
-  let rx .= s:anything
-  let rx .= s:PS
-  let rx .= 'doctrine'
-  let rx .= s:PS
-
-  let rx .= s:capture_group
+  let rx = lib#RxPath('lib', s:anything, 'doctrine', s:capture_group)
 	let rx .= '\(Table\|FormFilter\|Form\)\{,1}'
-
   let rx .= '\.class\.php'
   let rx .= '$'
 
@@ -167,9 +146,7 @@ function! symfony#CurrentModelName()
 endfunction
 
 function! symfony#CompleteApp(A, L, P)
-  let rx = s:PS
-  let rx .= s:capture_group
-  let rx .= '$'
+  let rx = s:PS.s:capture_group.'$'
 
   let app_dict = {}
   for path in split(glob('apps/*'))
@@ -181,9 +158,7 @@ function! symfony#CompleteApp(A, L, P)
 endfunction
 
 function! symfony#CompleteModule(A, L, P)
-  let rx = s:PS
-  let rx .= s:capture_group
-  let rx .= '$'
+  let rx = s:PS.s:capture_group.'$'
 
 	if len(split(substitute(a:L, a:A.'$', '', ''))) == 2
     let app_dict = {}

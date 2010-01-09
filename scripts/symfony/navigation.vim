@@ -145,7 +145,7 @@ endfunction
 
 command! -nargs=1 -complete=customlist,symfony#CompleteFixture Efixture call s:Efixture(<f-args>)
 function! s:Efixture(name)
-  if exists('g:fixture_dict[a:name]')
+  if exists('g:sf_fixture_dict[a:name]')
     let fixture = g:sf_fixture_dict[a:name]
   else
     let fixture = a:name

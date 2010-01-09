@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: January 01, 2010
+" Last Modified: January 09, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -53,9 +53,28 @@ function! lib#UrlEncode(string)
   return url
 endfunction
 
+" Join the list of items given with the current path separator, escaping the
+" backslash in Windows for use in regular expressions.
+function! lib#RxPath(...)
+  let ps = has('win32') ? '\\' : '/'
+  return join(a:000, ps)
+endfunction
+
 " Checks to see if {needle} is in {haystack}.
 function! lib#InString(haystack, needle)
   return (stridx(a:haystack, a:needle) != -1)
+endfunction
+
+" Wraps a string with another string if string is not empty, in which case
+" returns the empty string
+" ('/', 'foo') ->  '/foo/'
+" ('/', '') ->  ''
+function! lib#Wrap(surrounding, string)
+  if a:string == ''
+    return ''
+  else
+    return a:surrounding.a:string.a:surrounding
+  endif
 endfunction
 
 " Extract a regex match from a string.
