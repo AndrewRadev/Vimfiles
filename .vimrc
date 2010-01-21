@@ -76,10 +76,20 @@ inoremap <C-l> <C-x><C-l>
 set completefunc=syntaxcomplete#Complete
 
 " Moving lines:
-nnoremap  <C-j> mz:m+<cr>`z
-nnoremap  <C-k> mz:m-2<cr>`z
+nnoremap <C-j> mz:m+<cr>`z
+nnoremap <C-k> mz:m-2<cr>`z
 xnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
 xnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+xnoremap <silent> <expr> p <sid>Repl()
 
 " Goto file or edit file:
 nnoremap gF :exe "edit ".eval(&includeexpr)<cr>

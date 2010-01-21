@@ -294,6 +294,7 @@ PrettyPrint()	prettyprint.txt	/*PrettyPrint()*
 Proj	proj.txt	/*Proj*
 Proj-commands	proj.txt	/*Proj-commands*
 Proj-global-options	proj.txt	/*Proj-global-options*
+Proj-mappings	proj.txt	/*Proj-mappings*
 Proj-sample	proj.txt	/*Proj-sample*
 Proj-settings	proj.txt	/*Proj-settings*
 Proj-syntax	proj.txt	/*Proj-syntax*
@@ -559,6 +560,17 @@ decho_winheight	Decho.txt	/*decho_winheight*
 dfunc	Decho.txt	/*dfunc*
 dret	Decho.txt	/*dret*
 ds	surround.txt	/*ds*
+fontsize	fontsize.txt	/*fontsize*
+fontsize-changelog	fontsize.txt	/*fontsize-changelog*
+fontsize-changelog-0.1.0	fontsize.txt	/*fontsize-changelog-0.1.0*
+fontsize-changelog-0.2.0	fontsize.txt	/*fontsize-changelog-0.2.0*
+fontsize-credits	fontsize.txt	/*fontsize-credits*
+fontsize-customization	fontsize.txt	/*fontsize-customization*
+fontsize-distribution	fontsize.txt	/*fontsize-distribution*
+fontsize-installation	fontsize.txt	/*fontsize-installation*
+fontsize-intro	fontsize.txt	/*fontsize-intro*
+fontsize-todo	fontsize.txt	/*fontsize-todo*
+fontsize.txt	fontsize.txt	/*fontsize.txt*
 g%	matchit.txt	/*g%*
 g:acp_behavior	acp.txt	/*g:acp_behavior*
 g:acp_behavior-command	acp.txt	/*g:acp_behavior-command*
