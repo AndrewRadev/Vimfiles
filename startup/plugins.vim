@@ -38,7 +38,8 @@ let g:ttags_display = 'quickfix'
 
 " Settings for Haskell mode:
 let g:haddock_browser = "firefox"
-let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
+"let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
+let g:haddock_docdir = "/usr/share/doc/ghc/html/libraries/"
 
 " Yankring:
 nnoremap <Leader>yr :YRShow<cr>
