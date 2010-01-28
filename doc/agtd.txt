@@ -1,0 +1,141 @@
+*agtd.txt* Plugin for AGTD files
+*agtd* *agtd-plugin* 
+Version AGTD v0.1 ALPHA, for Vim version 7, 2010-01-19
+
+
+                      Almighty GTD Vim Plugin
+                          User Manual
+
+                    By Francisco Garcia Rodriguez
+                    <vim_agtd@francisco-garcia.net>
+
+        Contents:
+
+                1. Intro........................|agtd-intro|
+                2. Getting started..............|agtd-getstarted|
+                3. Todo.........................|agtd-todo|
+
+Please, be aware that this is a highly young experimental project that I write
+in my free time. I might reconsider some concepts, I might change the notation
+and many things might change. You must be prepared to notice some glitches
+until this goes more stable. I suppose future updates might not be compatible
+until I feel I got it right. See|agtd-todo| for things that I still have
+planned
+
+
+==============================================================================
+1. Intro                                                *agtd-intro*
+
+Tired of trying thousand of tools to organize my life, and inspired in the
+idea of ONE BIG TEXT FILE from Danny O'Brien, I decided that the world needed
+yet another GTD tool. The "Almighty" part is a reference to the idea of having
+all type of notes about your tasks in one single file.
+
+The whole idea of this GTD implementation relies in some custom notation
+marks, the|Folding|capabilities of VIM and its power to work quickly with
+text. I wanted something portable to collect, edit, search and structure
+lightning fast my notes. This is the result so far:
+
+    * Organize project tree with notes, links and tasks
+    * Move tasks from the project tree to the TODO list inserting project label
+    * Neatly collect and display all tasks related with a project
+    * Ease project tasks/notes finding
+    * Build a calendar with all the dates in the text file
+
+I strongly recommend the UTL script as a side companion. It will enhance your
+notes allowing you to open different links with just a short keystroke.
+
+This script is my idea of how GTD should be done with VIM. Any comments, bug
+reports, patches, fixes and suggestions are welcome.
+
+If you like it, please, rate it in the Vim website to let me know that out
+there there are people who find this useful. Otherwise I will consider this
+just an scrapbook to learn Vim scripting.
+
+
+=============================================================================
+2. Getting started                                      *agtd-getStarted*
+
+You should have some knowledge of GTD in order to make the best use of this
+script, but it is not a must.
+
+If you follow a simple notation and some basic structure pattern, AGTD will
+provide you with some handy tools to organize your tasks along a nice syntax
+highlight. I like my notes to be Christmas tree like, so be warned!
+
+Along this script you should have an example file named "sample-todo.txt".
+It might help to play with it while reading its comments.
+
+You must define your own main sections for your notes. Nothing is really
+mandatory, but this is how mine usually looks like.
+
+# NOW
+# LATER
+
+For this most of the content should be simple tasks lines with context,
+project and date marks for the current days (NOW) or rest of the week (LATER)
+
+    @net p:finances:phone Check internet trial charges S::02-12
+
+The parts
+
+    @word       The context of a task (work, net, city, phone...)
+    p:sub:path  A project reference label in a task
+    X::02-25    A date mark. The "X" represent one single uppercase letter to
+                add some information about the date. I usually use 'S' for
+                start, 'F' for finish and 'W' for the latest date I should
+                wait for something 
+    <tab>       Any internal indentation bellow a task to add extra notes or
+                explanations will be folded.
+
+# PROJECTS
+
+I usually use the PROJECTS section to organize all my projects and type all
+steps I need to take. Here I specify the projects names in uppercase, some
+comment lines and UTL links to related stuff.
+
+    TITLE       A (sub)project title (4 spaces indentation)
+    ;           Comment
+    <url:...>   Any link: web site, file, calendar, server...
+    m::<char>   Auto-marks. Set a jump mark that you can use as -> '<char>
+
+Since the contents are structured according the project, I don't type the
+project label here. When I decide it is time to work on it I use the
+command ":GInsert" to move it to my current list of stuff to do. The function
+will also insert a project label based on the line position within the tree.
+
+# LISTS
+
+This is just a bunch of lists that I need to review, as shopping, program
+checks, books to read...
+
+# CALENDAR
+
+All those day events that do not fit within any specific task
+
+Once you start exploring the example file, you can play with some basic
+functions:
+
+:GSearch    Search for a project (auto-completes with existing projects!)
+:GCalendar  Display a sorted list of events (tasks + calendar section)
+:GInsert    Insert and label line from PROJECTS section
+:GGo        Go to the project tree branch where the task was taken
+
+
+==============================================================================
+3. TODO                                                 *agtd-todo*
+
+- Improve this documentation
+- Better integration with the UTL script
+- Regarding the calendar part
+    - Export to iCal file
+    - Import iCal files
+    - Sync with Google
+    - Improve Calendar 
+        - month/folding
+        - display range
+        - search pattern
+- Ease encrypted comments with gnupg: Define a mark/zone and decrypt in the
+  status line 
+
+vim:tw=78:ts=8:ft=help:norl:fdm=marker:fen

@@ -362,6 +362,12 @@ acp-snipMate	acp.txt	/*acp-snipMate*
 acp-thanks	acp.txt	/*acp-thanks*
 acp-usage	acp.txt	/*acp-usage*
 acp.txt	acp.txt	/*acp.txt*
+agtd	agtd.txt	/*agtd*
+agtd-getStarted	agtd.txt	/*agtd-getStarted*
+agtd-intro	agtd.txt	/*agtd-intro*
+agtd-plugin	agtd.txt	/*agtd-plugin*
+agtd-todo	agtd.txt	/*agtd-todo*
+agtd.txt	agtd.txt	/*agtd.txt*
 align	Align.txt	/*align*
 align-align	Align.txt	/*align-align*
 align-codepoint	Align.txt	/*align-codepoint*
