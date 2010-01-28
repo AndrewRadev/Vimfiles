@@ -25,13 +25,13 @@ cnoremap  <Home>
 cnoremap  <End>
 cnoremap  <Left>
 cnoremap  <Right>
-cnoremap  <C-\>eCopyText()
-cnoremap  <C-\>eBackwardsPositionCursor()
-cnoremap  <C-\>eKillLine()
+cnoremap  <C-\>eCopyText()<cr>
+cnoremap  <C-\>eBackwardsPositionCursor()<cr>
+cnoremap  <C-\>eKillLine()<cr>
 cnoremap  
 cnoremap  <S-Left>
 cnoremap  <S-Right>
-cnoremap  <C-\>eReverse_Search_History()
+cnoremap  <C-\>eReverse_Search_History()<cr>
 cnoremap  <Home>BufferMessage 
 
 
