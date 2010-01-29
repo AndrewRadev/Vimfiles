@@ -161,7 +161,8 @@ syntax match	cCommentStartError display "/\*"me=e-1 contained
 syn keyword	cOperator	sizeof
 
 " Other operators, ripped from php syntax
-syn match cOperator "[-=+%^&|*!~?:]" contained display
+"syn match cOperator "[-=+%^&|*!~?:]" contained display
+syn match cOperator "[-=+%^&|*!~]" contained display
 syn match cOperator "[-+*/%^&|]="  contained display
 syn match cOperator "&&\|\<and\>" contained display
 syn match cOperator "||\|\<x\=or\>" contained display
