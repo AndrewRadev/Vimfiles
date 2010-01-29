@@ -1,6 +1,13 @@
 " Simpler tag searches:
-command! -nargs=1 -complete=customlist,s:CompleteFunction Function TTags f <args>
-command! -nargs=1 -complete=customlist,s:CompleteClass    Class    TTags c <args>
+command! -nargs=1 -complete=customlist,s:CompleteFunction Function call s:Tag('f', <f-args>)
+command! -nargs=1 -complete=customlist,s:CompleteClass    Class    call s:Tag('c', <f-args>)
+function! s:Tag(type, tag)
+  exec "TTags ".a:type." ".a:tag
+  if len(getqflist()) == 1
+    cfirst
+    cclose
+  endif
+endfunction
 function! s:CompleteFunction(A, L, P)
   return sort(map(filter(taglist('^'.a:A), 'v:val["kind"] == "f"'), 'v:val["name"]'))
 endfunction
