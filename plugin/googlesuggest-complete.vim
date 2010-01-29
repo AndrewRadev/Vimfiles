@@ -1,26 +1,26 @@
 "=============================================================================
 " File: googlesuggest-complete.vim
 " Author: Yasuhiro Matsumoto <mattn.jp@gmail.com>
-" Last Change: 28-Jan-2010.
-" Version: 0.1
+" Last Change: 29-Jan-2010.
+" Version: 0.2
 " WebPage: http://github.com/mattn/googlesuggest-complete-vim
 " Usage:
 "
 "   Lesson1:
 "
 "     takasu<c-x><c-u>
-"           ┌────────┐
-"     takasu│高杉晋作========│
-"           │高須クリニック  │
-"           │高須            │
-"           │高鈴            │
-"           │高鷲スノーパーク│
-"           │高杉さと美      │
-"           │高杉良          │
-"           │高須光聖        │
-"           │高須克弥        │
-"           │高須 ブログ     │
-"           └────────┘
+"           +----------------+
+"     takasu|高杉晋作========|
+"           |高須クリニック  |
+"           |高須            |
+"           |高鈴            |
+"           |高鷲スノーパーク|
+"           |高杉さと美      |
+"           |高杉良          |
+"           |高須光聖        |
+"           |高須克弥        |
+"           |高須 ブログ     |
+"           +----------------+
 "     * perhaps, you can see the candidates above.
 "
 "   Lesson2:
@@ -49,7 +49,7 @@
 "
 
 if !exists('g:googlesuggest_language')
-  let g:googlesuggest_language = 'en'
+  let g:googlesuggest_language = 'ja'
 endif
 
 function! s:nr2byte(nr)
@@ -163,7 +163,7 @@ function! GoogleSuggest(findstart, base)
     " find months matching with "a:base"
     let res = []
     let g:hoge =  a:base
-    let str = s:do_http('http://google.com/complete/search', {"output" : "json", "q" : a:base, "hl" : g:googlesuggest_language}, {}, {}, 0)
+    let str = s:do_http('http://google.com/complete/search', {"output" : "json", "q" : a:base, "hl" : g:googlesuggest_language, "ie" : "UTF8", "oe" : "UTF8" }, {}, {}, 0)
     let str = iconv(str, "utf-8", &encoding)
     let str = substitute(str, '\\u\(\x\x\x\x\)', '\=s:nr2enc_char("0x".submatch(1))', 'g')
     let str = substitute(str, '^window\.google\.ac\.h', '', '')

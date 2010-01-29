@@ -1,5 +1,5 @@
 " ------------------------------------------------------------------------------
-" File:		plugin/gtd.vim - Almighty GTD File
+" File:		plugin/agtd.vim - Almighty GTD File
 "
 " Author:	    Francisco Garcia Rodriguez <contact@francisco-garcia.net>
 "
@@ -10,24 +10,31 @@
 "		useful, but WITHOUT ANY WARRANTY; without even the implied
 "		warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 "
-" Version:	0.1 Alpha
+" Version:	0.2 Alpha
 "
 " Files:	
-"		plugin/gtd.vim
-"		syntax/gtd.vim
-"		ftdetect/gtd.vim
+"		doc/agtd.vim
+"		plugin/agtd.vim
+"		syntax/agtd.vim
+"		ftplugin/agtd.vim
 "
 " History:
+"   0.2  Bug fixing and clutter clean-up
+"           Calendar displays colors
+"           Variable naming matches better plug-in name
+"           Task insertions works when there is an http:// address
+"           Common environment values pushed into a ftplugin
+"           UTL Schema prototype for ssh links
 "   0.1  Initial version
 " ------------------------------------------------------------------------------
 
-if exists("loaded_gtd") 
+if exists("loaded_agtd") 
     finish
 endif
-let loaded_gtd = "0.1"
+let loaded_agtd = "0.1"
 
-let s:gtd_dateRegx    = '\u::\d\d-\d\d\(-\d\d\)\?'
-let s:gtd_ProjectRegx = '^\s\+\u\+'
+let s:agtd_dateRegx    = '\u::\d\d-\d\d\(-\d\d\)\?'
+let s:agtd_ProjectRegx = '^\s\+\u\+'
 
 
 " Move task at TOP
@@ -55,7 +62,7 @@ function Gtd_insertTask()
     endif
 
     " Get project label as in p:pro:sub1:sub2
-    if match (line,'p:\w*') == -1
+    if match (line,' p:\w*') == -1
         " Line has no label 
         let lastCol = 0
         let project = ""
@@ -64,7 +71,7 @@ function Gtd_insertTask()
             " Last project name is in column 4
 
             " Get project name looking backwards
-            let pos = search(s:gtd_ProjectRegx, 'b', 1)
+            let pos = search(s:agtd_ProjectRegx, 'b', 1)
             if pos == 0
                 let v:errmsg = "Could not build project name"
                 echohl ErrorMsg | echo v:errmsg | echohl None
@@ -226,11 +233,11 @@ function s:Gtd_getDateLines()
     call cursor (1,1)
 
     " Search tasks with dates
-    let pos = search(s:gtd_dateRegx) 
+    let pos = search(s:agtd_dateRegx) 
     while pos != 0
         call cursor (pos)
         let line = getline ('.')
-        let date = matchstr (line,s:gtd_dateRegx)
+        let date = matchstr (line,s:agtd_dateRegx)
         let date = strpart (date, 3)
         if strlen (date) == 5
             let date = strftime("%Y")."-".date
@@ -240,7 +247,7 @@ function s:Gtd_getDateLines()
         let line = substitute (line, '^\s\+', "", "")
         let line = date."    ".line
         call add (datesList, line)
-        let pos = search(s:gtd_dateRegx, 'W') 
+        let pos = search(s:agtd_dateRegx, 'W') 
     endwhile
     call setpos ('.', startPos)
     return datesList
@@ -259,7 +266,7 @@ function Gtd_displayCalendar()
     set bufhidden=hide
     set noswf
     set nobuflisted
-    set filetype=gtd
+    set filetype=agtd
     set fdm=indent
     set foldminlines=0
 
@@ -267,7 +274,7 @@ function Gtd_displayCalendar()
     let thisMonth = "XX"
     for line in sort (datesList)
         " Remove date and following empty spaces
-        let line = substitute (line, s:gtd_dateRegx.'\s*', "", "")
+        let line = substitute (line, s:agtd_dateRegx.'\s*', "", "")
 
         " Insert month if different from the previous one
         let month = matchstr(line, '-\d\d-')
@@ -319,6 +326,13 @@ function Gtd_buildICalFile()
     echo "END:VCALENDAR"
 endfunction
 
+" Utl SSH Scheme
+fu! Utl_AddressScheme_ssh(auri, fragment, dispMode)
+    let add = split(a:auri,':')[-1]
+    echo add
+    exe "!sh -c \"ssh ".add."\""
+    return []
+endf
 
 " Almighty GTD Vim script commands
 command -nargs=1 -complete=customlist,Gtd_getProjectList GSearch call Gtd_searchProject("<args>")
