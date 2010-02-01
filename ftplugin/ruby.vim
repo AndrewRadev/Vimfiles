@@ -6,3 +6,4 @@ setlocal expandtab
 compiler ruby
 
 command! -buffer Console !irb -r %
+command! -buffer Run !ruby %

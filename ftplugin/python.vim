@@ -3,4 +3,4 @@ setlocal softtabstop=4
 setlocal shiftwidth=4
 setlocal expandtab
 
-command! Run !python %
+command! -buffer Run !python %

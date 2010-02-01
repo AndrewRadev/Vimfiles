@@ -25,3 +25,5 @@ function! PhpIncludeExpr(fname)
   " Catchall case:
   return a:fname
 endfunction
+
+command! -buffer Run !php %
