@@ -1,14 +1,22 @@
 " Vim syntax file
 " Language:    jQuery
 " Maintainer:  Bruno Michel <brmichel@free.fr>
-" Last Change: 2009 Oct 10
-" Version:     0.3
+" Last Change: Feb 2nd, 2010
+" Version:     0.4
 " URL:         http://jquery.com/
 
-if exists("b:current_syntax") && b:current_syntax =~ "jquery"
+if version < 600
+  syntax clear
+elseif exists("b:current_syntax")
   finish
 endif
 
+if !exists("main_syntax")
+  let main_syntax = 'javascript'
+endif
+
+ru! syntax/javascript.vim
+unlet b:current_syntax
 
 syn match   jQuery          /jQuery\|\$/
 
@@ -16,18 +24,18 @@ syn match   jQuery          /jQuery\|\$/
 syn match   jFunc           /\.\w\+(/ contains=@jFunctions
 
 syn cluster jFunctions      contains=jCore,jAttributes,jTraversing,jManipulation,jCSS,jEvents,jAjax,jUtilities,jEffects
-syn keyword jCore           contained each size length selector context eq get index
-syn keyword jCore           contained data removeData queue dequeue
+syn keyword jCore           contained each size length selector context eq get index toArray
+syn keyword jCore           contained data removeData clearQueue queue dequeue
 syn keyword jCore           contained extend noConflict
 syn keyword jAttributes     contained attr removeAttr addClass removeClass toggleClass html text val
-syn keyword jTraversing     contained eq filter is map not slice
-syn keyword jTraversing     contained add children closest contents find next nextAll parent parents prev prevAll siblings
+syn keyword jTraversing     contained eq filter has is map not slice
+syn keyword jTraversing     contained add children closest contents find next nextAll nextUntil parent parents parentsUntil prev prevAll prevUntil siblings
 syn keyword jTraversing     contained andSelf end
 syn keyword jManipulation   contained append appendTo preprend prependTo
 syn keyword jManipulation   contained after before insertAfter insertBefore
-syn keyword jManipulation   contained wrap wrapAll wrapInner
+syn keyword jManipulation   contained unwrap wrap wrapAll wrapInner
 syn keyword jManipulation   contained replaceWith replaceAll
-syn keyword jManipulation   contained empty remove
+syn keyword jManipulation   contained detach empty remove
 syn keyword jManipulation   contained clone
 syn keyword jCSS            contained css
 syn keyword jCSS            contained offset offsetParent position scrollTop scrollLeft
@@ -36,18 +44,18 @@ syn keyword jEvents         contained ready
 syn keyword jEvents         contained bind one trigger triggerHandler unbind
 syn keyword jEvents         contained live die
 syn keyword jEvents         contained hover toggle
-syn keyword jEvents         contained blur change click dblclick error focus keydown keypress keyup load
+syn keyword jEvents         contained blur change click dblclick error focus focusin focusout keydown keypress keyup load
 syn keyword jEvents         contained mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup resize scroll select submit unload
 syn keyword jEffects        contained show hide toggle
 syn keyword jEffects        contained slideDown slideUp slideToggle
 syn keyword jEffects        contained fadeIn fadeOut fadeTo
-syn keyword jEffects        contained animate stop
+syn keyword jEffects        contained animate stop delay
 syn keyword jAjax           contained ajax load get getJSON getScript post
 syn keyword jAjax           contained ajaxComplete ajaxError ajaxSend ajaxStart ajaxStop ajaxSuccess
 syn keyword jAjax           contained ajaxSetup serialize serializeArray
 syn keyword jUtilities      contained support browser boxModel
-syn keyword jUtilities      contained extend grep makeArray map inArray merge unique
-syn keyword jUtilities      contained isArray isFunction
+syn keyword jUtilities      contained extend grep makeArray map inArray merge noop proxy unique
+syn keyword jUtilities      contained isArray isEmptyObject isFunction isPlainObject
 syn keyword jUtilities      contained trim param
 
 
@@ -103,4 +111,4 @@ if version >= 508 || !exists("did_lisp_syntax_inits")
 endif
 
 
-let b:current_syntax = 'javascript.jquery'
+let b:current_syntax = 'jquery'

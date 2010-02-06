@@ -4,7 +4,7 @@ augroup custom
   autocmd!
 
   " Clean all useless whitespace:
-  "autocmd BufWrite * CleanGarbage
+  autocmd BufWritePre * CleanGarbage
 
   " When editing a file, always jump to the last known cursor position.
   autocmd BufReadPost *
@@ -16,6 +16,7 @@ augroup custom
 
   autocmd BufEnter *.cpp compiler gcc
   autocmd BufEnter *.c compiler gcc
+  autocmd BufEnter *.c setlocal tags+=~/tags/unix.tags
 
   autocmd BufEnter *.php compiler php
 
@@ -31,6 +32,8 @@ augroup custom
   autocmd BufRead,BufNewFile *.vorg set filetype=vorg.txt
   autocmd BufRead,BufNewFile *.mkd set filetype=mkd
   autocmd BufRead,BufNewFile *.markdown set filetype=mkd
+
+  autocmd BufRead,BufNewFile jquery.*.js set filetype=jquery
 
   " Custom filetypes:
   autocmd BufEnter Result set filetype=dbext_result.txt
