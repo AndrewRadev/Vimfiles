@@ -224,3 +224,15 @@ endfunction
 function! symfony#CompleteCss(A, L, P)
   return sort(keys(filter(copy(g:sf_css_dict), "v:key =~'^".a:A."'")))
 endfunction
+
+function! symfony#CompleteConfig(A, L, P)
+  let rx = s:PS.s:capture_group.'\.yml$'
+
+  let config_dict = {}
+  for path in split(glob('apps/*/config/*.yml'))
+    let config = lib#ExtractRx(path, rx, '\1')
+    let config_dict[config] = 1
+  endfor
+
+  return sort(keys(filter(config_dict, "v:key =~'^".a:A."'")))
+endfunction

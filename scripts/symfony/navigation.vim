@@ -1,5 +1,18 @@
 call symfony#LoadData()
 
+command! -nargs=+ -complete=customlist,symfony#CompleteConfig Config call s:Config(<f-args>)
+function! s:Config(...)
+  if a:0 == 2 " Then we're given an app name
+    let b:current_app_name = a:2
+  endif
+
+  exe
+        \ 'edit apps/'.
+        \ symfony#CurrentAppName().
+        \ '/config/'.
+        \ a:1.'.yml'
+endfunction
+
 command! -nargs=? -complete=customlist,symfony#CompleteJs Javascript call s:Javascript(<f-args>)
 function! s:Javascript(...)
   if a:0 == 1 " Then we're given a filename
@@ -53,9 +66,9 @@ endfunction
 command! -nargs=* -complete=customlist,symfony#CompleteModule Controller call s:Controller('action', <f-args>)
 command! -nargs=* -complete=customlist,symfony#CompleteModule Component  call s:Controller('component', <f-args>)
 function! s:Controller(type, ...)
-  if (a:0 == 1) " Then we're given a controller
+  if a:0 == 1 " Then we're given a controller
     let b:current_module_name = a:1
-  elseif (a:0 == 2) " Then we're given a controller and an app
+  elseif a:0 == 2 " Then we're given a controller and an app
     let b:current_module_name = a:1
     let b:current_app_name = a:2
   endif
