@@ -34,6 +34,7 @@ augroup custom
   autocmd BufRead,BufNewFile *.markdown set filetype=mkd
 
   autocmd BufRead,BufNewFile jquery.*.js set filetype=jquery
+  autocmd BufRead,BufNewFile httpd*.conf set filetype=apache
 
   " Custom filetypes:
   autocmd BufEnter Result set filetype=dbext_result.txt
