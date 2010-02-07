@@ -4,10 +4,10 @@ command! -nargs=? -complete=customlist,symfony#CompleteJs Javascript call s:Java
 function! s:Javascript(...)
   if a:0 == 1 " Then we're given a filename
     let fname = fnamemodify(a:1, ':r').'.js'
-    exe "edit web/js/".fname
+    exe 'edit '.g:sf_config['sf_web_dir'].'/js/'.fname
   else
     exe
-          \ 'edit web/js/'.
+          \ 'edit '.g:sf_config['sf_web_dir'].'/js/'.
           \ symfony#CurrentAppName().
           \ '/'.
           \ symfony#CurrentModuleName().'.js'
@@ -18,10 +18,10 @@ command! -nargs=? -complete=customlist,symfony#CompleteCss Stylesheet call s:Sty
 function! s:Stylesheet(...)
   if a:0 == 1 " Then we're given a filename
     let fname = fnamemodify(a:1, ':r').'.css'
-    exe "edit web/css/".fname
+    exe 'edit '.g:sf_config['sf_web_dir'].'/css/'.fname
   else
     exe
-          \ 'edit web/css/'.
+          \ 'edit '.g:sf_config['sf_web_dir'].'/css/'.
           \ symfony#CurrentAppName().
           \ '/'.
           \ symfony#CurrentModuleName().'.css'

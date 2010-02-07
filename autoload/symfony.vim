@@ -9,6 +9,9 @@ let s:PS = has('win32') ? '\\' : '/'
 let s:capture_group = '\(.\{-}\)'
 let s:anything = '.*'
 
+let g:sf_config = {}
+let g:sf_config['sf_web_dir'] = 'web'
+
 function! symfony#LoadData()
   let g:sf_fixture_dict = {}
   let g:sf_js_dict      = {}
@@ -24,14 +27,14 @@ function! symfony#LoadData()
   endfor
 
   " Javascript files:
-  for path in split(glob('web/js/**/*.js'))
-    let fname = substitute(path, lib#RxPath('web', 'js').s:PS.s:capture_group.'.js', '\1', '')
+  for path in split(glob(g:sf_config['sf_web_dir'].'/js/**/*.js'))
+    let fname = substitute(path, lib#RxPath(g:sf_config['sf_web_dir'], 'js').s:PS.s:capture_group.'.js', '\1', '')
     let g:sf_js_dict[fname] = 1
   endfor
 
   " CSS files:
-  for path in split(glob('web/css/**/*.css'))
-    let fname = substitute(path, lib#RxPath('web', 'css').s:PS.s:capture_group.'.css', '\1', '')
+  for path in split(glob(g:sf_config['sf_web_dir'].'/css/**/*.css'))
+    let fname = substitute(path, lib#RxPath(g:sf_config['sf_web_dir'], 'css').s:PS.s:capture_group.'.css', '\1', '')
     let g:sf_css_dict[fname] = 1
   endfor
 endfunction
