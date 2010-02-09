@@ -1,0 +1,21 @@
+*actions*  run commmand in background
+                    Author: Marc Weber, marco-oweber@gmx.de
+
+-----------------------------------------------------------------------
+HOWTO~
+
+Example usage adding an action running make: >
+  call bg#Run("make", 1, funcref#Function('exec "cfile ".ARGS[1]'))
+< you can use a list and ask Vim to do proper quoting: >
+  call bg#Run(["make","-f","linuxMakefile"], 1, funcref#Function('exec "cfile ".ARGS[1]'))
+< or >
+  fun MyFunction(exitStatus, outFile)
+  endfun
+  call bg#Run(["ctags","-R","."], funcref#Function('MyFunction'))
+< 
+  There is also a shortcut to load the result into quickfix: >
+  call bg#RunQF(cmd,'c',errorFormat)
+<
+
+TODO: add python implementation for Windows users again? See section after
+finish
