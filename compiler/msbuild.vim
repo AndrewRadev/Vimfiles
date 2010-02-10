@@ -2,7 +2,7 @@
 " Compiler:	msbuild C#
 " Maintainer:	Red Forks (redforks@gmail.com)
 " Last Change:	2005 Dec 25
-" 
+"
 " Note: Add Follow line to your .csproj file's common PropertyGroup
 " <GenerateFullPaths>True</GenerateFullPaths>
 

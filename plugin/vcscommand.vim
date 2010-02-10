@@ -93,7 +93,7 @@
 "                  VCS scratch buffers associated with the original file.
 "
 " VCSInfo          Displays extended information about the current file in a
-"                  new scratch buffer. 
+"                  new scratch buffer.
 "
 " VCSLock          Locks the current file in order to prevent other users from
 "                  concurrently modifying it.  The exact semantics of this
@@ -273,7 +273,7 @@
 "   mapping to quit a VCS scratch buffer:
 "
 "   augroup VCSCommand
-"     au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr> 
+"     au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
 "   augroup END
 "
 "   The following hooks are available:
@@ -351,7 +351,7 @@ unlet! s:vimDiffRestoreCmd
 " original buffer currently reflected in vimdiff windows
 unlet! s:vimDiffSourceBuffer
 
-" 
+"
 unlet! s:vimDiffScratchList
 
 " Section: Utility functions {{{1
@@ -576,7 +576,7 @@ endfunction
 
 function! s:MarkOrigBufferForSetup(buffer)
 	checktime
-	if a:buffer > 0 
+	if a:buffer > 0
 		let origBuffer = VCSCommandGetOriginalBuffer(a:buffer)
 		" This should never not work, but I'm paranoid
 		if origBuffer != a:buffer
@@ -665,7 +665,7 @@ function! s:VimDiffRestore(vimDiffBuff)
 							endif
 
 							unlet s:vimDiffRestoreCmd
-						endif 
+						endif
 						" All buffers are gone.
 						unlet s:vimDiffSourceBuffer
 						unlet s:vimDiffScratchList
@@ -767,7 +767,7 @@ endfunction
 
 function! s:VCSFinishCommitWithBuffer()
 	setlocal nomodified
-	let currentBuffer = bufnr('%') 
+	let currentBuffer = bufnr('%')
 	let logMessageList = getbufline('%', 1, '$')
 	call filter(logMessageList, 'v:val !~ ''^\s*VCS:''')
 	let resultBuffer = s:VCSFinishCommit(logMessageList, b:VCSCommandOriginalBuffer)
@@ -905,7 +905,7 @@ function! s:VCSVimDiff(...)
 					wincmd W
 					execute 'buffer' originalBuffer
 					" Store info for later original buffer restore
-					let s:vimDiffRestoreCmd = 
+					let s:vimDiffRestoreCmd =
 								\    'call setbufvar('.originalBuffer.', ''&diff'', '.getbufvar(originalBuffer, '&diff').')'
 								\ . '|call setbufvar('.originalBuffer.', ''&foldcolumn'', '.getbufvar(originalBuffer, '&foldcolumn').')'
 								\ . '|call setbufvar('.originalBuffer.', ''&foldenable'', '.getbufvar(originalBuffer, '&foldenable').')'
@@ -1068,7 +1068,7 @@ function! VCSCommandDoCommand(cmd, cmdName, statusText, options)
 	endif
 
 	let originalBuffer = VCSCommandGetOriginalBuffer(bufnr('%'))
-	if originalBuffer == -1 
+	if originalBuffer == -1
 		throw 'Original buffer no longer exists, aborting.'
 	endif
 
@@ -1323,7 +1323,7 @@ function! s:CloseAllResultBuffers()
 	let buffnr = 1
 	let buffmaxnr = bufnr('$')
 	while buffnr <= buffmaxnr
-		if getbufvar(buffnr, 'VCSCommandOriginalBuffer') != "" 
+		if getbufvar(buffnr, 'VCSCommandOriginalBuffer') != ""
 			execute 'bw' buffnr
 		endif
 		let buffnr = buffnr + 1

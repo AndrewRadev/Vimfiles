@@ -5,7 +5,7 @@
 " Version: 2.5.1
 " Licence: This program is free software; you can redistribute it and/or
 "          modify it under the terms of the GNU General Public License.
-"          See http://www.gnu.org/copyleft/gpl.txt 
+"          See http://www.gnu.org/copyleft/gpl.txt
 " Acknowledgements:
 "     - The genutils#GetNextWinnrInStack() function is based on the WinStackMv()
 "       function posted by Charles E. Campbell, Jr. on vim mailing list on Jul
@@ -202,7 +202,7 @@
 " -----------------------
 " Useful function to debug passing arguments to functions. See exactly what
 "   you would receive on the other side.
-" Ex: :exec 'call genutils#DebugShowArgs('. genutils#CreateArgString("a 'b' c", ' ') . ')' 
+" Ex: :exec 'call genutils#DebugShowArgs('. genutils#CreateArgString("a 'b' c", ' ') . ')'
 "
 " void    genutils#DebugShowArgs(...)
 " -----------------------
@@ -360,7 +360,7 @@
 " Turns off those options that are set by diff to the current window.
 "   Also removes the 'hor' option from scrollopt (which is a global option).
 " Better alternative would be to close the window and reopen the buffer in a
-"   new window. 
+"   new window.
 "
 " void    genutils#CleanDiffOptions()
 " -----------------------
@@ -467,7 +467,7 @@
 " void    genutils#SaveHardPosition(String id)
 " -----------------------
 " Restore the cursor position using the information saved by the previous call
-"   to genutils#SaveHardPosition. 
+"   to genutils#SaveHardPosition.
 "
 " void    genutils#RestoreHardPosition(String id)
 " -----------------------
@@ -562,7 +562,7 @@
 " -----------------------
 " This function centers the current word in the space without changing the
 "   column position of the next word. Doesn't work for tabs.
-" 
+"
 " void    genutils#CenterWordInSpace()
 " -----------------------
 " -----------------------
@@ -631,7 +631,7 @@
 "   string, so something like: 'a\b\\\\c\\d' would become 'ab\\c\d'.
 "
 " String  genutils#DeEscape(String str)
-" ----------------------- 
+" -----------------------
 " This function creates a pattern that avoids the given protected characters'
 "   from getting treated as separators, when used with split(). The argument
 "   goes directly into the [] atom, so make sure you pass in a valid string.
@@ -641,7 +641,7 @@
 "   let paths = split(&path, genutils#CrUnProtectedCharsPattern(','))
 "
 " String  genutils#CrUnProtectedCharsPattern(String chars, [boolean capture = false])
-" ----------------------- 
+" -----------------------
 " genutils#Escape the passed in shell command with quotes and backslashes such
 "   a way that the arguments reach the command literally (avoids shell
 "   interpretations). See the function header for the kind of escapings that
@@ -783,19 +783,19 @@
 "     >>>>t.vim<<<<
 "       au VimEnter * call LoadSettings()
 "       au VimLeavePre * call SaveSettings()
-"       
+"
 "       function! LoadSettings()
 "         let s:tVar = genutils#GetPersistentVar("T", "tVar", "defVal")
 "       endfunction
-"       
+"
 "       function! SaveSettings()
 "         call genutils#PutPersistentVar("T", "tVar", s:tVar)
 "       endfunction
-"       
+"
 "       function! SetVar(val)
 "         let s:tVar = a:val
 "       endfunction
-"       
+"
 "       function! GetVar()
 "         return s:tVar
 "       endfunction
@@ -851,7 +851,7 @@
 " Same as genutils#AddToFCShellPre except that the function is called after
 "   the event is processed, so this is like a fictitious FileChangedShellPost
 "   event.
-" 
+"
 " void    genutils#DefFCShellInstall()
 " -----------------------
 " Uninstall the default autocommand handler that was previously installed
@@ -951,7 +951,7 @@
 "       bufwinnr(genutils#FindBufferForName(fileName))
 "   - QSort(), QSort2(), BinInsertSort() and BinInsertSort2() functions are
 "     now deprecated in favor of sort() function.
-"       
+"
 "
 " Sample Usages Or Tips:
 "   - Add the following commands to create simple sort commands.

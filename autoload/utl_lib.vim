@@ -36,7 +36,7 @@ function! utl_lib#Postinstall()
   if ! exists("g:utl_vim")
     echo "Info: No previously installed Utl version found (variable g:utl_vim)"
     echo "      does not exist). Nothing to do at all."
-    if exists("g:utl_rc_vim") 
+    if exists("g:utl_rc_vim")
       echo "\n"
       echo "Warning: But file  ".g:utl_rc_vim." still exists"
       echo "         You should remove it from the plugin directory"
@@ -53,7 +53,7 @@ function! utl_lib#Postinstall()
   endif
 
   "--- 2. Delete obsolete Utl 2.0 files
-  if exists("g:utl_arr_vim") 
+  if exists("g:utl_arr_vim")
     if filereadable(g:utl_arr_vim)
       if delete(g:utl_arr_vim)==0
         echo "Info: obsolete Utl 2.0 file ".g:utl_arr_vim." deleted successfully"

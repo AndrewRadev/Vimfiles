@@ -125,7 +125,7 @@ function! tlib#agent#Input(world, selected) "{{{3
 endf
 
 
-" Suspend (see |tlib#agent#Suspend|) the input loop and jump back to the 
+" Suspend (see |tlib#agent#Suspend|) the input loop and jump back to the
 " original position in the parent window.
 function! tlib#agent#SuspendToParentWindow(world, selected) "{{{3
     let world = a:world
@@ -148,8 +148,8 @@ function! tlib#agent#SuspendToParentWindow(world, selected) "{{{3
 endf
 
 
-" Suspend lets you temporarily leave the input loop of 
-" |tlib#input#List|. You can resume editing the list by pressing <c-z>, 
+" Suspend lets you temporarily leave the input loop of
+" |tlib#input#List|. You can resume editing the list by pressing <c-z>,
 " <m-z>. <space>, <c-LeftMouse> or <MiddleMouse> in the suspended window.
 " <cr> and <LeftMouse> will immediatly select the item under the cursor.
 " < will select the item but the window will remain opened.
@@ -161,8 +161,8 @@ function! tlib#agent#Suspend(world, selected) "{{{3
         " TLogVAR br, a:world.bufnr, a:world.scratch
         " TLogDBG bufnr('%')
         let b:tlib_suspend = {
-                    \ '<m-z>': 0, '<c-z>': 0, '<space>': 0, 
-                    \ '<cr>': 1, 
+                    \ '<m-z>': 0, '<c-z>': 0, '<space>': 0,
+                    \ '<cr>': 1,
                     \ '<LeftMouse>': 1, '<c-LeftMouse>': 0, '<MiddleMouse>': 0,
                     \ '<': 2}
         for [m, pick] in items(b:tlib_suspend)
@@ -441,7 +441,7 @@ function! tlib#agent#PreviewLine(world, selected) "{{{3
 endf
 
 
-" If not called from the scratch, we assume/guess that we don't have to 
+" If not called from the scratch, we assume/guess that we don't have to
 " suspend the input-evaluation loop.
 function! tlib#agent#GotoLine(world, selected) "{{{3
     if !empty(a:selected)
@@ -464,7 +464,7 @@ function! tlib#agent#GotoLine(world, selected) "{{{3
             exec a:world.win_wnr .'wincmd w'
         endif
         call tlib#buffer#ViewLine(l, 1)
-        
+
     endif
     return a:world
 endf

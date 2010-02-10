@@ -31,7 +31,7 @@ endfunc
 " Get code without comments and with empty strings
 " szSingleLine must not have carriage return
 function! omni#cpp#utils#GetCodeFromLine(szSingleLine)
-    " We set all strings to empty strings, it's safer for 
+    " We set all strings to empty strings, it's safer for
     " the next of the process
     let szResult = substitute(a:szSingleLine, '".*"', '""', 'g')
 
@@ -63,7 +63,7 @@ function! s:RemoveCComments(szLine)
     return result
 endfunc
 
-" Get a c++ code from current buffer from [lineStart, colStart] to 
+" Get a c++ code from current buffer from [lineStart, colStart] to
 " [lineEnd, colEnd] without c++ and c comments, without end of line
 " and with empty strings if any
 " @return a string
@@ -182,7 +182,7 @@ endfunc
 " where value is the group number of the parenthesis
 " eg: (void*)(MyClass*)
 "      group1  group0
-" if a parenthesis is unresolved the group id is -1      
+" if a parenthesis is unresolved the group id is -1
 " @return a copy of a:tokens with parenthesis group
 function! omni#cpp#utils#BuildParenthesisGroups(tokens)
     let tokens = copy(a:tokens)
@@ -223,7 +223,7 @@ function! omni#cpp#utils#GetCastType(tokens)
     let tokens = omni#cpp#utils#SimplifyParenthesis(omni#cpp#utils#BuildParenthesisGroups(a:tokens))
 
     if tokens[0].value == '('
-        return 'itemCast' 
+        return 'itemCast'
     elseif index(['static_cast', 'dynamic_cast', 'reinterpret_cast', 'const_cast'], tokens[0].value)>=0
         return 'itemCppCast'
     else
@@ -232,7 +232,7 @@ function! omni#cpp#utils#GetCastType(tokens)
                 return 'itemThis'
             endif
         endfor
-        return 'itemVariable' 
+        return 'itemVariable'
     endif
 endfunc
 
@@ -456,7 +456,7 @@ endfunc
 "   -   the tag with the same scope
 "   -   {} otherwise
 function! s:GetTagOfSameScope(listTags, szScopeToMatch)
-    for tagItem in a:listTags 
+    for tagItem in a:listTags
         let szScopeOfTag = omni#cpp#utils#ExtractScope(tagItem)
         if szScopeOfTag == a:szScopeToMatch
             return tagItem

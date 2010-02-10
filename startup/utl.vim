@@ -15,14 +15,14 @@ else
   let g:utl_cfg_hdl_mt_application_zip     = ':!squeeze "%p" &> /dev/null &'
   let g:utl_cfg_hdl_mt_application_x_gzip  = ':!squeeze "%p" &> /dev/null &'
   let g:utl_cfg_hdl_mt_application_x_bzip2 = ':!squeeze "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_application_excel   = ':!soffice "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_application_doc     = ':!soffice "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_application_odt     = ':!soffice "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_application_excel   = ':!ooffice "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_application_doc     = ':!ooffice "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_application_odt     = ':!ooffice "%p" &> /dev/null &'
   " Images:
-  let g:utl_cfg_hdl_mt_image_png     = ':!gliv "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_image_jpeg    = ':!gliv "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_image_gif     = ':!gliv "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_image_bmp     = ':!gliv "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_png  = ':!gliv "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_jpeg = ':!gliv "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_gif  = ':!gliv "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_bmp  = ':!gliv "%p" &> /dev/null &'
   " Video:
   let g:utl_cfg_hdl_mt_video_x_msvideo = ':!smplayer "%p" &> /dev/null &'
 endif

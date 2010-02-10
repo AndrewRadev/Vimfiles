@@ -32,14 +32,14 @@ TLet g:trag_keyword_chars = {}
 
 " 0 ... use the built-in search.
 " 1 ... use vimgrep.
-" 2 ... use vimgrep but set 'ei' to all; this means special file 
+" 2 ... use vimgrep but set 'ei' to all; this means special file
 "       encodings won't be detected
-" Please not, this is only in effect with simple searches (as for 0.3 
-" all searches are simple). For more complex multi-line patterns, the 
+" Please not, this is only in effect with simple searches (as for 0.3
+" all searches are simple). For more complex multi-line patterns, the
 " built-in search will be used (some day in the future).
 TLet g:trag_search_mode = 2
 
-" If no project files are defined, evaluate this expression as 
+" If no project files are defined, evaluate this expression as
 " fallback-strategy.
 TLet g:trag_get_files = 'split(glob("*"), "\n")'
 TLet g:trag_get_files_java = 'split(glob("**/*.java"), "\n")'
@@ -50,7 +50,7 @@ TLet g:trag_get_files_cpp = 'split(glob("**/*.[ch]"), "\n")'
 " TLet g:trag_sign = has('signs') ? '>' : ''
 " if !empty(g:trag_sign)
 "     exec 'sign define TRag text='. g:trag_sign .' texthl=Special'
-" 
+"
 "     " Clear all trag-related signs.
 "     command! TRagClearSigns call tlib#signs#ClearAll('TRag')
 " endif
@@ -76,8 +76,8 @@ endf
 
 
 " :display: :TRagDefKind KIND FILETYPE /REGEXP_FORMAT/
-" The regexp argument is no real regexp but a format string. % thus have 
-" to be escaped with % (see |printf()| for details). The REGEXP_FORMAT 
+" The regexp argument is no real regexp but a format string. % thus have
+" to be escaped with % (see |printf()| for details). The REGEXP_FORMAT
 " should contain at least one %s.
 " Examples: >
 "   TRagDefKind v * /\C\<%s\>\s*=[^=~<>]/
@@ -95,7 +95,7 @@ command! -nargs=+ TRagKeyword if len([<f-args>]) == 2
 
 
 " :display: TRagDefFiletype FILETYPE EXTENSION ... FILENAME ...
-" In order to recognize files based on their extension, you have to 
+" In order to recognize files based on their extension, you have to
 " declare filetypes first.
 " If a file has no extension, the whole filename is used.
 " Examples: >
@@ -235,19 +235,19 @@ TLet g:trag_qfl_world = {
 " :display: :TRag[!] KIND [REGEXP]
 " Run |:TRagsearch| and instantly display the result with |:TRagcw|.
 " See |trag#Grep()| for help on the arguments.
-" If the kind rx doesn't contain %s (e.g. todo), you can skip the 
+" If the kind rx doesn't contain %s (e.g. todo), you can skip the
 " regexp.
 "
 " Examples: >
 "     " Find any matches
 "     TRag . foo
-" 
+"
 "     " Find variable definitions (word on the left-hand): foo = 1
 "     TRag l foo
-" 
+"
 "     " Find variable __or__ function/method definitions
 "     TRag d,l foo
-" 
+"
 "     " Find function calls like: foo(a, b)
 "     TRag f foo
 "
@@ -274,13 +274,13 @@ command! -nargs=? Traglw call trag#LocList()
 
 
 " :display: :TRagsearch[!] KIND REGEXP
-" Scan the files registered in your tag files for REGEXP. Generate a 
-" quickfix list. With [!], append to the given list. The quickfix list 
+" Scan the files registered in your tag files for REGEXP. Generate a
+" quickfix list. With [!], append to the given list. The quickfix list
 " can be viewed with commands like |:cw| or |:TRagcw|.
 "
-" The REGEXP has to match a single line. This uses |readfile()| and the 
+" The REGEXP has to match a single line. This uses |readfile()| and the
 " scans the lines. This is an alternative to |:vimgrep|.
-" If you choose your identifiers wisely, this should guide you well 
+" If you choose your identifiers wisely, this should guide you well
 " through your sources.
 " See |trag#Grep()| for help on the arguments.
 command! -nargs=1 -bang -bar TRagsearch call trag#Grep(<q-args>, empty("<bang>"))
@@ -302,11 +302,11 @@ command! -nargs=+ -bang -bar -complete=file Traggrep TRaggrep<bang> <args>
 
 
 " :doc:
-" The following variables provide alternatives to collecting 
+" The following variables provide alternatives to collecting
 " your project's file list on the basis of you tags files.
 "
-" These variables are tested in the order as listed here. If the value 
-" of a variable is non-empty, this one will be used instead of the other 
+" These variables are tested in the order as listed here. If the value
+" of a variable is non-empty, this one will be used instead of the other
 " methods.
 "
 " The tags file is used as a last ressort.
@@ -314,27 +314,27 @@ command! -nargs=+ -bang -bar -complete=file Traggrep TRaggrep<bang> <args>
 " 1. A list of files. Can be buffer local.
 TLet g:trag_files = []
 
-" 2. A glob pattern -- this should be an absolute path and may contain ** 
+" 2. A glob pattern -- this should be an absolute path and may contain **
 " (see |glob()| and |wildcards|). Can be buffer local.
 TLet g:trag_glob = ''
 
 " 3. Filetype-specific project files.
 TLet g:trag_project_ruby = 'Manifest.txt'
 
-" 4. The name of a file containing the projects file list. This file could be 
+" 4. The name of a file containing the projects file list. This file could be
 " generated via make. Can be buffer local.
 TLet g:trag_project = ''
 
-" 5. The name of a git repository that includes all files of interest. 
-" If the value is "*", trag will search from the current directory 
+" 5. The name of a git repository that includes all files of interest.
+" If the value is "*", trag will search from the current directory
 " (|getcwd()|) upwards for a .git directory.
 " If the value is "finddir", use |finddir()| to find a .git directory.
 " Can be buffer local.
 TLet g:trag_git = ''
 
 " :display: :TRagsetfiles [FILELIST]
-" The file list is set only once per buffer. If the list of the project 
-" files has changed, you have to run this command on order to reset the 
+" The file list is set only once per buffer. If the list of the project
+" files has changed, you have to run this command on order to reset the
 " per-buffer list.
 "
 " If no filelist is given, collect the files in your tags files.
@@ -366,48 +366,48 @@ CHANGES:
 - Initial release
 
 0.2
-- Quite a few things have changed and I haven't had the time yet to test 
-these changes thorougly. There is a chance that nested patterns thus 
+- Quite a few things have changed and I haven't had the time yet to test
+these changes thorougly. There is a chance that nested patterns thus
 don't work as described (please report).
-- Enable search for more than one kinds at once (as comma-separated 
+- Enable search for more than one kinds at once (as comma-separated
 list)
-- Enabled <c-e>: Run ex-command on selected lines (e.g. for refactoring 
+- Enabled <c-e>: Run ex-command on selected lines (e.g. for refactoring
 purposes)
-- Enabled <c-s>, <c-v>, <c-t>: Open selected lines in (vertically) split 
+- Enabled <c-s>, <c-v>, <c-t>: Open selected lines in (vertically) split
 windows or tabs.
 - Renamed vV kinds to lL (~ let)
-- New kind: r/R (right hand side arguemnt of an assignment/let, i.e. 
+- New kind: r/R (right hand side arguemnt of an assignment/let, i.e.
 value)
 - New kind: fuzzy (typo-tolerant search)
 - INCOMPATIBLE CHANGE: Renamed "mode" to "kind"
-- TRag now has some idea of negation. E.g., "TRag !i,w call" will search 
-for the word "call" but ignore matches in comments (if defined for the 
+- TRag now has some idea of negation. E.g., "TRag !i,w call" will search
+for the word "call" but ignore matches in comments (if defined for the
     current filetype)
-- Alternative methods to define project files: g:trag_files, 
+- Alternative methods to define project files: g:trag_files,
 g:trag_glob, g:trag_project.
 - Improved support for ruby, vim
 - TRagKeyword, trag#CWord(): Customize keyword rx.
 - g:trag_get_files
-- [bg]:trag_project_{&filetype}: Name of the filetype-specific project 
+- [bg]:trag_project_{&filetype}: Name of the filetype-specific project
 files catalog (overrides [bg]:trag_project if defined)
-- trag#Edit() will now initally select files with the same "basename 
-root" (^\w\+) as the current buffer (the command is thus slightly more 
+- trag#Edit() will now initally select files with the same "basename
+root" (^\w\+) as the current buffer (the command is thus slightly more
 useful and can be used as an ad-hoc alternative file switcher)
 - FIX: Match a line only once
 - FIX: Caching of regexps
 
 0.3
-- Use vimgrep with set ei=all as default search mode (can be configured 
-via g:trag_search_mode); by default trag now is a wrapper around vimgrep 
-that does the handling of project-related file-sets and regexp builing 
+- Use vimgrep with set ei=all as default search mode (can be configured
+via g:trag_search_mode); by default trag now is a wrapper around vimgrep
+that does the handling of project-related file-sets and regexp builing
 for you.
 - FIX: ruby/f regexp
 
 0.4
 - trag_proj* variables were renamed to trag_project*.
-- Traggrep: Arguments have changed for conformity with grep commands (an 
+- Traggrep: Arguments have changed for conformity with grep commands (an
 implicit .-argument is prepended)
-- Make sure tlib is loaded even if it is installed in a different 
+- Make sure tlib is loaded even if it is installed in a different
 rtp-directory.
 - Post-process lines (strip whitespace) collected by vimgrep
 - tlib#Edit(): for list input, set pick_last_item=0, show_empty=1
@@ -419,7 +419,7 @@ rtp-directory.
 - Java, Ruby: x ... find subclasses (extends/implements)
 - Experimental rename command for refactoring (general, java)
 - NEW: [bg]:trag_get_files_{&filetype}
-- Traggrep: If the second argument (glob pattern) is missing, the 
+- Traggrep: If the second argument (glob pattern) is missing, the
 default file list will be used.
 
 0.6

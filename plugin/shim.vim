@@ -210,7 +210,7 @@ class Ghci
 			if(@quickfix)
 				VIM::command("cex " + text.inspect) unless text =~ /<interactive>/
 			end
-			
+
 			window.cursor = [ @buffer.count, @buffer[@buffer.count].length ] unless window.nil?
 
 			if(@buffer.number != VIM::Window.current.buffer.number && !window.nil?)

@@ -10,7 +10,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-" Print text in the echo area. Temporarily disable 'ruler' and 'showcmd' 
+" Print text in the echo area. Temporarily disable 'ruler' and 'showcmd'
 " in order to prevent |press-enter| messages.
 function! tlib#notify#Echo(text, ...) "{{{3
     TVarArg 'style'
@@ -34,26 +34,26 @@ endf
 
 
 " Contributed by Erik Falor:
-" If the line containing the message is too long, echoing it will cause 
-" a 'Hit ENTER' prompt to appear.  This function cleans up the line so 
+" If the line containing the message is too long, echoing it will cause
+" a 'Hit ENTER' prompt to appear.  This function cleans up the line so
 " that doesn't happen.
-" The echoed line is too long if it is wider than the width of the 
-" window, minus cmdline space taken up by the ruler and showcmd 
+" The echoed line is too long if it is wider than the width of the
+" window, minus cmdline space taken up by the ruler and showcmd
 " features.
 function! tlib#notify#TrimMessage(message) "{{{3
     let filler = '...'
 
-    " If length of message with tabs converted into spaces + length of 
-    " line number + 2 (for the ': ' that follows the line number) is 
+    " If length of message with tabs converted into spaces + length of
+    " line number + 2 (for the ': ' that follows the line number) is
     " greater than the width of the screen, truncate in the middle
     let to_fill = &columns
     " TLogVAR to_fill
 
-    " Account for space used by elements in the command-line to avoid 
+    " Account for space used by elements in the command-line to avoid
     " 'Hit ENTER' prompts.
     " If showcmd is on, it will take up 12 columns.
-    " If the ruler is enabled, but not displayed in the statusline, it 
-    " will in its default form take 17 columns.  If the user defines a 
+    " If the ruler is enabled, but not displayed in the statusline, it
+    " will in its default form take 17 columns.  If the user defines a
     " custom &rulerformat, they will need to specify how wide it is.
     if has('cmdline_info')
         if &showcmd
@@ -89,7 +89,7 @@ function! tlib#notify#TrimMessage(message) "{{{3
     " TLogDBG strlen(a:message)
     if strlen(a:message) > to_fill
         let front = to_fill / 2 - 1
-        let back  = front 
+        let back  = front
         if to_fill % 2 == 0 | let back -= 1 | endif
         return strpart(a:message, 0, front) . filler .
                     \strpart(a:message, strlen(a:message) - back)

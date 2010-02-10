@@ -12,7 +12,7 @@ set cpo&vim
 
 let s:prototype = tlib#Filter_cnf#New({'_class': ['Filter_cnfd'], 'name': 'cnfd'}) "{{{2
 
-" The same as |tlib#FilterCNF#New()| but a dot is expanded to '\.\{-}'. 
+" The same as |tlib#FilterCNF#New()| but a dot is expanded to '\.\{-}'.
 " As a consequence, patterns cannot match dots.
 " The pattern is a '/\V' very no-'/magic' regexp pattern.
 function! tlib#Filter_cnfd#New(...) "{{{3

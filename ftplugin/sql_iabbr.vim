@@ -2,7 +2,7 @@
 " Language:	  SQL
 " Maintainer:	  Michael Brailsford <brailsmt at yahoo dot com>
 " Contributions:
-"		  Hari Krishna Dara <hari_vim at yahoo dot com> 
+"		  Hari Krishna Dara <hari_vim at yahoo dot com>
 "		  Zak Beck <zak dot beck at e-peopleserve dot com>
 " Last Change:	  13-Nov-2002 @ 15:56
 " Revision:	  1.5.0

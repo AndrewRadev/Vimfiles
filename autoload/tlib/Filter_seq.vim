@@ -12,8 +12,8 @@ set cpo&vim
 
 let s:prototype = tlib#Filter_cnf#New({'_class': ['Filter_seq'], 'name': 'seq'}) "{{{2
 
-" The search pattern for |tlib#input#List()| is interpreted as a 
-" disjunction of 'magic' regular expressions with the exception of a dot 
+" The search pattern for |tlib#input#List()| is interpreted as a
+" disjunction of 'magic' regular expressions with the exception of a dot
 " ".", which is interpreted as ".\{-}".
 " The pattern is a '/magic' regexp pattern.
 function! tlib#Filter_seq#New(...) "{{{3

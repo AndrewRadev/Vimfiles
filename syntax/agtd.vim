@@ -29,7 +29,7 @@ hi TASK guifg=lightgreen
 hi PROJECT guifg=lightred
 hi LIST guifg=magenta
 hi MARK guifg=lightcyan
-hi PROTOCOL guifg=lightmagenta 
+hi PROTOCOL guifg=lightmagenta
 hi URL guifg=lightcyan gui=underline
 hi USERNAME guifg=lightblue
 hi DATE guifg=lightred

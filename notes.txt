@@ -1,3 +1,5 @@
+ccimpl.vim needs to be able to generate skeletons for existing cpp files as well.
+Need to learn how to use bg.vim
 Think of a general outline (indentation?) and some specific ones here and there:
   * "::" in Haskell?
   * "def" in Python and Ruby?
@@ -19,7 +21,7 @@ PHP:
 Haskell:
   * Experiment with SHIM
 
-Snippets: 
+Snippets:
   * Snippets and acp -- completing breaks $x references
   * C snippets should NOT be included in cpp ones!
   * Add sql snippets
@@ -29,6 +31,7 @@ Yaml snippets:
 	* Camelize, snake_case, etc.
 
 Changes made to plugins:
+  * ccimpl.vim -- minor change from vsplit to split
   * FindInNERDTree.vim -- line 44, changed rx matching to stridx() call
   * Markdown syntax -- added txt syntax
   * php indenting script

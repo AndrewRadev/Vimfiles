@@ -148,7 +148,7 @@ endfunction
 " Function: s:svnFunctions.Diff(argList) {{{2
 function! s:svnFunctions.Diff(argList)
 	if len(a:argList) == 0
-		let revOptions = [] 
+		let revOptions = []
 		let caption = ''
 	elseif len(a:argList) <= 2 && match(a:argList, '^-') == -1
 		let revOptions = ['-r' . join(a:argList, ':')]

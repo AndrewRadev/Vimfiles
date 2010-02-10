@@ -15,25 +15,25 @@ let current_compiler = "ghc"
 
 let s:scriptname = "ghc.vim"
 
-if (!exists("g:ghc") || !executable(g:ghc)) 
-  if !executable('ghc') 
+if (!exists("g:ghc") || !executable(g:ghc))
+  if !executable('ghc')
     echoerr s:scriptname.": can't find ghc. please set g:ghc, or extend $PATH"
     finish
   else
     let g:ghc = 'ghc'
   endif
-endif    
+endif
 let ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\n','','')
 if (!exists("b:ghc_staticoptions"))
   let b:ghc_staticoptions = ''
 endif
 
-" set makeprg (for quickfix mode) 
+" set makeprg (for quickfix mode)
 execute 'setlocal makeprg=' . g:ghc . '\ ' . escape(b:ghc_staticoptions,' ') .'\ -e\ :q\ %'
 "execute 'setlocal makeprg=' . g:ghc .'\ -e\ :q\ %'
 "execute 'setlocal makeprg=' . g:ghc .'\ --make\ %'
 
-" quickfix mode: 
+" quickfix mode:
 " fetch file/line-info from error message
 " TODO: how to distinguish multiline errors from warnings?
 "       (both have the same header, and errors have no common id-tag)

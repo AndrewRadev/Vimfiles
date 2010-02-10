@@ -12,7 +12,7 @@ set cpo&vim
 
 let s:prototype = tlib#Object#New({'_class': ['Filter_cnf'], 'name': 'cnf'}) "{{{2
 
-" The search pattern for |tlib#input#List()| is in conjunctive normal 
+" The search pattern for |tlib#input#List()| is in conjunctive normal
 " form: (P1 OR P2 ...) AND (P3 OR P4 ...) ...
 " The pattern is a '/\V' very no-'/magic' regexp pattern.
 "

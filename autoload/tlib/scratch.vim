@@ -13,7 +13,7 @@ let loaded_tlib_scratch_autoload = 1
 
 
 " :def: function! tlib#scratch#UseScratch(?keyargs={})
-" Display a scratch buffer (a buffer with no file). See :TScratch for an 
+" Display a scratch buffer (a buffer with no file). See :TScratch for an
 " example.
 " Return the scratch's buffer number.
 function! tlib#scratch#UseScratch(...) "{{{3
@@ -76,7 +76,7 @@ endf
 
 
 " Close a scratch buffer as defined in keyargs (usually a World).
-" Return 1 if the scratch buffer is closed (or if it already was 
+" Return 1 if the scratch buffer is closed (or if it already was
 " closed).
 function! tlib#scratch#CloseScratch(keyargs, ...) "{{{3
     TVarArg ['reset_scratch', 1]
@@ -91,7 +91,7 @@ function! tlib#scratch#CloseScratch(keyargs, ...) "{{{3
                 " TLogDBG winnr()
                 let wb = tlib#win#Set(wn)
                 wincmd c
-                " exec wb 
+                " exec wb
                 " redraw
                 " TLogVAR winnr()
             endif

@@ -15,7 +15,7 @@ function! ghc#ShowType(addTypeDecl)
   endif
   let [_,symb,qual,unqual] = namsym
   let name  = qual=='' ? unqual : qual.'.'.unqual
-  let pname = ( symb ? '('.name.')' : name ) 
+  let pname = ( symb ? '('.name.')' : name )
   call ghc#HaveTypes()
   if !has_key(b:ghc_types,name)
     redraw
@@ -32,7 +32,7 @@ function! ghc#ShowType(addTypeDecl)
 endfunction
 
 function! ghc#TypeBalloon()
-  if exists("b:current_compiler") && b:current_compiler=="ghc" 
+  if exists("b:current_compiler") && b:current_compiler=="ghc"
     let [line] = getbufline(v:beval_bufnr,v:beval_lnum)
     let namsym = haskellmode#GetNameSymbol(line,v:beval_col,0)
     if namsym==[]
@@ -43,9 +43,9 @@ function! ghc#TypeBalloon()
     let pname = name " ( symb ? '('.name.')' : name )
     silent call ghc#HaveTypes()
     if has("balloon_multiline")
-      return (has_key(b:ghc_types,pname) ? split(b:ghc_types[pname],' -- ') : '') 
+      return (has_key(b:ghc_types,pname) ? split(b:ghc_types[pname],' -- ') : '')
     else
-      return (has_key(b:ghc_types,pname) ? b:ghc_types[pname] : '') 
+      return (has_key(b:ghc_types,pname) ? b:ghc_types[pname] : '')
     endif
   else
     return ''
@@ -62,7 +62,7 @@ function! ghc#ShowInfo()
   let [_,symb,qual,unqual] = namsym
   let name = qual=='' ? unqual : (qual.'.'.unqual)
   let output = ghc#Info(name)
-  pclose | new 
+  pclose | new
   setlocal previewwindow
   setlocal buftype=nofile
   setlocal noswapfile
@@ -138,7 +138,7 @@ endfunction
 function! ghc#BrowseMultiple(imports,modules)
   redraw
   echo "browsing modules " a:modules
-  let command = ":browse " . join( a:modules, " \n :browse ") 
+  let command = ":browse " . join( a:modules, " \n :browse ")
   let command = substitute(command,'\(:browse \(\S*\)\)','putStrLn "-- \2" \n \1','g')
   let output = system(g:ghc . ' ' . b:ghc_staticoptions . ' -v0 --interactive ' . expand("%") , command )
   return ghc#Process(a:imports,output)
@@ -229,14 +229,14 @@ function! ghc#Process(imports,output)
       let id   = substitute(id, '^(\(.*\))$', '\1', '')
       let type = substitute( type, '\s\+', " ", "g" )
       " using :browse *<current>, we get both unqualified and qualified ids
-      if current_module " || has_key(imports[0],module) 
+      if current_module " || has_key(imports[0],module)
         if has_key(b:ghc_types,id) && !(matchstr(b:ghc_types[id],escape(type,'[].'))==type)
           let b:ghc_types[id] .= ' -- '.type
         else
           let b:ghc_types[id] = type
         endif
       endif
-      if 0 " has_key(imports[1],module) 
+      if 0 " has_key(imports[1],module)
         let qualid = module.'.'.id
         let b:ghc_types[qualid] = type
       endif
@@ -261,7 +261,7 @@ endfunction
 
 " use ghci :browse index for insert mode omnicompletion (CTRL-X CTRL-O)
 function! ghc#CompleteImports(findstart, base)
-  if a:findstart 
+  if a:findstart
     let namsym   = haskellmode#GetNameSymbol(getline('.'),col('.'),-1) " insert-mode: we're 1 beyond the text
     if namsym==[]
       redraw
@@ -274,7 +274,7 @@ function! ghc#CompleteImports(findstart, base)
     let res = []
     let l   = len(a:base)-1
     call ghc#HaveTypes()
-    for key in keys(b:ghc_types) 
+    for key in keys(b:ghc_types)
       if key[0 : l]==a:base
         let res += [{"word":key,"menu":":: ".b:ghc_types[key],"dup":1}]
       endif
@@ -329,9 +329,9 @@ function! ghc#MkImportsExplicit()
 endfunction
 function! ghc#CreateTagfile()
   redraw
-  echo "creating tags file" 
+  echo "creating tags file"
   let output = system(g:ghc . ' ' . b:ghc_staticoptions . ' -e ":ctags" ' . expand("%"))
-  " for ghcs older than 6.6, you would need to call another program 
+  " for ghcs older than 6.6, you would need to call another program
   " here, such as hasktags
   echo output
 endfunction

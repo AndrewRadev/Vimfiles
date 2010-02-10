@@ -32,8 +32,8 @@ endf
 
 
 " :def: function! tlib#cmd#UseVertical(?rx='')
-" Look at the history whether the command was called with vertical. If 
-" an rx is provided check first if the last entry in the history matches 
+" Look at the history whether the command was called with vertical. If
+" an rx is provided check first if the last entry in the history matches
 " this rx.
 function! tlib#cmd#UseVertical(...) "{{{3
     TVarArg ['rx']

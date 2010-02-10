@@ -4,7 +4,7 @@
 let utl__file_rc =    expand("<sfile>")	    " Do not remove this line
 
 " Hints							    id=hints
-" 
+"
 " - Choose a template variable and uncomment it or create a new one.
 "   Then issue the command  :so %  to activate it. You can check whether
 "   a variable is defined with the command   :let utl_cfg_<name>
@@ -25,7 +25,7 @@ let utl__file_rc =    expand("<sfile>")	    " Do not remove this line
 
 " id=schemeHandlerHttp---------------------------------------------------------[
 "
-" Allowed conversion specifiers are: 
+" Allowed conversion specifiers are:
 " %u - URL	    (without fragment, e.g. 'http://www.vim.org/download.php'
 " %f - fragment	    (what comes after the '#', if any)
 " %d - display mode (e.g. 'edit', 'tabedit', 'split' etc. Probably only relevant
@@ -58,7 +58,7 @@ if !exists("g:utl_cfg_hdl_scm_http_system")
 
   if has("win32")
     let g:utl_cfg_hdl_scm_http_system = 'silent !cmd /q /c start "dummy title" "%u"'
-    "let g:utl_cfg_hdl_scm_http_system = 'silent !start C:\Program Files\Internet Explorer\iexplore.exe %u#%f' 
+    "let g:utl_cfg_hdl_scm_http_system = 'silent !start C:\Program Files\Internet Explorer\iexplore.exe %u#%f'
     "let g:utl_cfg_hdl_scm_http_system = 'silent !start C:\Program Files\Mozilla Firefox\firefox.exe %u#%f'
 
   elseif has("unix")
@@ -112,7 +112,7 @@ let g:utl_cfg_hdl_scm_http__wget="call Utl_if_hdl_scm_http__wget('%u')"
 "]
 
 " id=schemeHandlerScp--------------------------------------------------------------[
-" Allowed conversion specifiers are: 
+" Allowed conversion specifiers are:
 " %u - URL	    (without fragment, e.g. 'scp://www.someServer.de/someFile.txt'
 " %f - fragment	    (what comes after the '#', if any)
 " %d - display mode (e.g. 'edit', 'tabedit', 'split' etc. Probably only relevant
@@ -129,7 +129,7 @@ endif
 "]
 
 " id=schemeHandlerMailto-----------------------------------------------------------[
-" Allowed conversion specifiers are: 
+" Allowed conversion specifiers are:
 " %u - will be replaced with the mailto URL
 "
 if !exists("g:utl_cfg_hdl_scm_mailto")
@@ -142,10 +142,10 @@ if !exists("g:utl_cfg_hdl_scm_mailto")
   " Windows
   "	 Outlook
   "let g:utl_cfg_hdl_scm_mailto = 'silent !start C:\Programme\Microsoft Office\Office11\OUTLOOK.EXE /c ipm.note /m %u'
-  "let g:utl_cfg_hdl_scm_mailto = 'silent !start C:\Program Files\Microsoft Office\Office10\OUTLOOK.exe /c ipm.note /m %u' 
+  "let g:utl_cfg_hdl_scm_mailto = 'silent !start C:\Program Files\Microsoft Office\Office10\OUTLOOK.exe /c ipm.note /m %u'
   "
   " Unix
-  "let g:utl_cfg_hdl_scm_mailto = "!xterm -e mutt '%u'" 
+  "let g:utl_cfg_hdl_scm_mailto = "!xterm -e mutt '%u'"
   "let g:utl_cfg_hdl_scm_mailto = "silent !kmail '%u' &"
   "}
 
@@ -153,11 +153,11 @@ endif
 
 
 " id=schemeHandlerMail---------------------------------------------------------[
-" Allowed conversion specifiers are: 
+" Allowed conversion specifiers are:
 " %a - main folder	    Example:
 " %p - folder path	    Given the URL
 " %d - date		      <url:mail://myfolder/Inbox?date=12.04.2008 15:04&from=foo&subject=bar>
-" %f - from		    the specifiers will be converted as 
+" %f - from		    the specifiers will be converted as
 " %s - subject		      %a=myfolder, %p=Inbox, %d=12.04.2008 15:04, %f=foo, %s=bar
 
 " Windows
@@ -242,7 +242,7 @@ endif
 "if !exists("g:utl_cfg_hdl_mt_text_html")
 "	     let g:utl_cfg_hdl_mt_text_html = 'VIM'
 "		Windows
-"	     let g:utl_cfg_hdl_mt_text_html = 'silent !start C:\Program Files\Internet Explorer\iexplore.exe %P' 
+"	     let g:utl_cfg_hdl_mt_text_html = 'silent !start C:\Program Files\Internet Explorer\iexplore.exe %P'
 "		KDE
 "	     let g:utl_cfg_hdl_mt_text_html = ':silent !konqueror %p#%f &'
 "endif
@@ -350,7 +350,7 @@ endif
 " id=Utl_if_hdl_mt_application_pdf_acrobat_setup-------------------------------[
 "
 " To make acrobat work with fragments you need to provide the variable
-" g:utl_cfg_hdl_mt_application_pdf_acrobat_exe_path. 
+" g:utl_cfg_hdl_mt_application_pdf_acrobat_exe_path.
 "
 " Modify and uncomment one of the samples below, then do  :so %
 " Windows:
@@ -360,11 +360,11 @@ endif
 "     let g:utl_cfg_hdl_mt_application_pdf_acrobat_exe_path = "C:\Program Files\Adobe\Reader 8.0\Reader\AcroRd32.exe"
 "     let g:utl_cfg_hdl_mt_application_pdf_acrobat_exe_path = 'C:\Programme\Adobe\Reader 8.0\Reader\AcroRd32.exe'
 " Full path not needed if Acrobat Reader in path
-" Unix: 
+" Unix:
 " Probably Acrobat Reader is in the path, with program's name `acroread'.
 " But most certainly the command line options used below will not fit,
 " see <url:#r=ar_switches>, and have to be fixed. Please send me proper
-" setup for Linux, Solaris etc. I'm also interested in xpdf instead 
+" setup for Linux, Solaris etc. I'm also interested in xpdf instead
 " of Acrobat Reader (function Utl_if_hdl_mt_application_pdf_xpdf).
 "   ?? let g:utl_cfg_hdl_mt_application_pdf_acrobat_exe_path = "acroread - ?? "
 "
@@ -379,7 +379,7 @@ endif
 "    <url:vimscript:call Utl_utilCopyExtract(g:utl__file, g:utl__file_if_hdl_mt_application_msword__word, '=== FILE_WORD_VBS' )>
 "    (This will (re-)create that file by cutting it out from the bottom of this file.)
 "
-" 2. Provide the variable g:utl_cfg_hdl_mt_application_msword__word_exe_path. 
+" 2. Provide the variable g:utl_cfg_hdl_mt_application_msword__word_exe_path.
 "    Modify and uncomment one of the samples below, then do  :so %
 "    Windows:
 "    Normally you should get the path by executing in a dos box:
@@ -398,16 +398,16 @@ endif
 "   Option utl_opt_verbose switches on tracing. This is useful to figure out
 "   what's going on, to learn about Utl or to see why things don't work as
 "   expected.
-"   
+"
 "let utl_opt_verbose=0	    " Tracing off (default)
-"let utl_opt_verbose=1	    " Tracing on 
+"let utl_opt_verbose=1	    " Tracing on
 
 " ]
 
 "id=utl_opt_highlight_urls-----------------------------------------------------[
 "   Option utl_opt_highlight_urls controls if URLs are highlighted or not.
 "   Note that only embedded URLs like <url:http://www.vim.org> are highlighted.
-"   
+"
 "   Note: Change of the value will only take effect a) after you restart your
 "   Vim session or b) by :call Utl_setHighl() and subsequent reedit (:e) of the
 "   current file. Perform the latter by simply executing this URL:

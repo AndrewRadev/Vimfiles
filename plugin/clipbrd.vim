@@ -6,7 +6,7 @@
 " Version: 2.0.1
 " Licence: This program is free software; you can redistribute it and/or
 "          modify it under the terms of the GNU General Public License.
-"          See http://www.gnu.org/copyleft/gpl.txt 
+"          See http://www.gnu.org/copyleft/gpl.txt
 " Download From:
 "     http://www.vim.org/script.php?script_id=1014
 " Usage:
@@ -38,9 +38,9 @@
 "       nmap <unique> <silent> <Your Map> <Plug>ClipBrdOpen
 "   - If you want to change the default register from "*" to something else,
 "     put the following in your vimrc:
-"       let g:clipbrdDefaultReg = '+' 
+"       let g:clipbrdDefaultReg = '+'
 "     The default register is significant only the first time you invoke the
-"     ClipBrd without specifying any register.  
+"     ClipBrd without specifying any register.
 "   - You can optionally create a program shortcut with the following as the
 "     command:
 "

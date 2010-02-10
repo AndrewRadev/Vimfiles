@@ -1,14 +1,14 @@
-" renamer.vim 
+" renamer.vim
 " Maintainer:	John Orr (john undersc0re orr yah00 c0m)
 " Version:	    1.1
 " Last Change:	09 February 2010
 
 " Introduction: {{{1
 " Basic Usage:
-" Show a list of file names in a directory, rename then in the vim 
+" Show a list of file names in a directory, rename then in the vim
 " buffer using vim editing commands, then have vim rename them on disk
 
-" Description: 
+" Description:
 " Renaming a single file is easily done via an operating system file explorer,
 " the vim file explorer (netrw.vim), or the command line.  When you want to
 " rename a bunch of files, especially when you want to do a common text
@@ -16,7 +16,7 @@
 " the files in the current directory, and lets you edit their names in the vim
 " buffer.  When you're ready, issue the command ":Ren" to perform the mass
 " rename.  The intention is to rename files in the same directory, but
-" relative paths can be specified to move files around - provided the 
+" relative paths can be specified to move files around - provided the
 " destination directories exist.
 
 " Install Details:
@@ -31,18 +31,18 @@
 " in Windows XP, if you are confident working with the registry, do as
 " follows (NOTE - THESE INSTRUCTIONS CAME FROM THE WEB AND WORKED FOR
 " ME, BUT I CAN'T GUARANTEE THEY ARE 100% SAFE):
-" - Run the Registry Editor (REGEDIT.EXE). 
-" - Open My Computer\HKEY_CLASSES_ROOT\Directory and click on the 
-"   sub-item 'shell'. 
-" - Select New from the Edit menu, and then select Key. 
-" - Here, type VimRenamer and press Enter. 
+" - Run the Registry Editor (REGEDIT.EXE).
+" - Open My Computer\HKEY_CLASSES_ROOT\Directory and click on the
+"   sub-item 'shell'.
+" - Select New from the Edit menu, and then select Key.
+" - Here, type VimRenamer and press Enter.
 " - Double-click on the (default) value in the right pane, and type the name
 "   to see in the meny, eg Rename Files with Vim Renamer, and press Enter.
-" - Highlight the new key in the left pane, select New from the Edit menu, 
-"   and then select Key again. 
-" - Type the word Command for the name of this new key, and press Enter. 
-" - Double-click on the (default) value in the right pane, and type the full 
-"   path and filename to vim, along with the command as per the following 
+" - Highlight the new key in the left pane, select New from the Edit menu,
+"   and then select Key again.
+" - Type the word Command for the name of this new key, and press Enter.
+" - Double-click on the (default) value in the right pane, and type the full
+"   path and filename to vim, along with the command as per the following
 "   example line:
 "   "C:\Program Files\vim\vim70\gvim.exe" -c "cd %1|Renamer"
 "   Change the path as required, press Enter when done.
@@ -62,7 +62,7 @@
 " - Rationalise the code so directories and files use the same arrays indexed
 "   by type of file.
 " - Refactor to make functions smaller
-" - 
+" -
 " - Make a suggestion!
 "
 " Changelog:   {{{1
@@ -90,14 +90,14 @@ let loaded_renamer = 1
 
 " User configurable variables {{{1
 " The following variables can be set in your .vimrc/_vimrc file to override
-" those in this file, such that upgrades to the script won't require you to 
+" those in this file, such that upgrades to the script won't require you to
 " re-edit these variables.
- 
+
 " g:RenamerOriginalFileWindowEnabled {{{2
 " Controls whether the window showing the original files is enabled or not
 " It can be toggled with <Shift-T>
 if !exists('g:RenamerOriginalFileWindowEnabled')
-  let g:RenamerOriginalFileWindowEnabled = 0 
+  let g:RenamerOriginalFileWindowEnabled = 0
 endif
 
 " g:RenamerShowLinkTargets {{{2
@@ -113,7 +113,7 @@ endif
 
 " g:RenamerSupportColonWToRename {{{2
 if !exists('g:RenamerSupportColonWToRename')
-  let g:RenamerSupportColonWToRename = 0 
+  let g:RenamerSupportColonWToRename = 0
 endif
 
 " Highlight links
@@ -161,8 +161,8 @@ endif
 
 
 " Keyboard mappings {{{1
-" 
-" All mappings are defined only when the script starts, and are 
+"
+" All mappings are defined only when the script starts, and are
 " specific to the buffer.  Change them in the code if you want.
 "
 " A template to defined a mapping to start this plugin is:
@@ -213,7 +213,7 @@ function! <SID>StartRenamer(needNewWindow, startLine, ...) "{{{1
     setlocal scrollbind
   endif
 
-  " Process optional parameters to this function and 
+  " Process optional parameters to this function and
   " set the directory to process
   if a:1 != ''
     let b:renamerDirectory = s:Path(a:1)
@@ -266,7 +266,7 @@ function! <SID>StartRenamer(needNewWindow, startLine, ...) "{{{1
   " e) display text (eg including link resolutions) vs pure filenames
   " f) syntax highlighting issues, eg only applying a highlight to one
   "    specific line
-  " ...however... some of these things could be rationalised using 
+  " ...however... some of these things could be rationalised using
   " multi-dimensional arrays.
   let pathfileList = sort(split(pathfiles, "\n"), 1) " List including full pathnames
   let filenameList = sort(split(filenames, "\n"), 1) " List of just filenames
@@ -276,7 +276,7 @@ function! <SID>StartRenamer(needNewWindow, startLine, ...) "{{{1
   let writeableFilenamesIsLink = []                  " Boolean, whether it's a link or not (affects syntax highlighting)
   let writeableFilenamesPath = []                    " Full path and name of each writeable file
   let writeableDirectories = []                      " Repeated for directories...
-  let writeableDirectoriesEntryNums = []             
+  let writeableDirectoriesEntryNums = []
   let writeableDirectoriesIsLink = []
   let writeableDirectoriesPath = []
   let b:renamerNonWriteableEntries = []
@@ -470,15 +470,15 @@ function! <SID>StartRenamer(needNewWindow, startLine, ...) "{{{1
   if g:RenamerOriginalFileWindowEnabled
     call <SID>CreateOriginalFileWindow(a:needNewWindow, b:renamerMaxWidth, b:renamerEntryDisplayText)
   endif
-  
+
   " Restore things
   let &report=oldRep
-  let &sc = save_sc 
-  
+  let &sc = save_sc
+
 endfunction
 
 function! <SID>CreateOriginalFileWindow(needNewWindow, maxWidth, entryDisplayText) "{{{1
-  
+
   let currentLine = line('.')
   call cursor(1,1)
 
@@ -486,7 +486,7 @@ function! <SID>CreateOriginalFileWindow(needNewWindow, maxWidth, entryDisplayTex
     " Create a new window to the left
     lefta vnew
     setlocal modifiable
-    
+
     " Set the header text
     let headerText = [ s:hashes.'ORIGINAL' ,
                      \ s:hashes.' FILES' ,
@@ -503,7 +503,7 @@ function! <SID>CreateOriginalFileWindow(needNewWindow, maxWidth, entryDisplayTex
       let i += 1
     endwhile
   else
-    " Go to the existing window, make it modifiable, and 
+    " Go to the existing window, make it modifiable, and
     " delete the existing file entries
     wincmd h
     setlocal modifiable
@@ -536,7 +536,7 @@ function! <SID>CreateOriginalFileWindow(needNewWindow, maxWidth, entryDisplayTex
     " yet so we can't do "lefta <SIZE>vnew".
     " So register it to be done on the VIMEnter event.  Seems to work.
     augroup Renamer
-      " In case user is changing the gui size via a startup command, delay the 
+      " In case user is changing the gui size via a startup command, delay the
       " resize as long as possible, until &columns will hopeuflly have its
       " final value
       exec 'autocmd VIMEnter <buffer> exec "vertical resize ".min([&columns/2, '.width.'])|wincmd l|cursor('.currentLine.',1)'
@@ -598,7 +598,7 @@ function! <SID>PerformRename() "{{{1
   "    This should be okay, but basic sequential processing would give
   "    a remains unchanged and b is deleted!!
   " So - first check that all destination files are unique.
-  " If yes, then for all files that are changing, rename them to 
+  " If yes, then for all files that are changing, rename them to
   " <fileIndex>_GOING_TO_<newName>
   " Then finally rename them to <newName>.
 
@@ -659,7 +659,7 @@ function! <SID>PerformRename() "{{{1
       endif
     endif
   endfor
-  
+
   let &report=oldRep
   let &sc = save_sc
 
@@ -680,7 +680,7 @@ function! <SID>ChangeDirectory() "{{{1
       let b:renamerDirectory = b:renamerDirectory.'/'.line
     endif
 
-    " We must also change the current directory, else it can happen 
+    " We must also change the current directory, else it can happen
     " that we are trying to rename the directory we're currently in,
     " which is never going to work
     exec 'cd '.b:renamerDirectory
@@ -753,7 +753,7 @@ function! <SID>DeleteEntry() "{{{1
         let errcode = delete(entryPath)
         if errcode != 0
           " Failed - error message
-          echoe "Unable to delete directory '".entryPath."' - this script is limited to only delete empty directories" 
+          echoe "Unable to delete directory '".entryPath."' - this script is limited to only delete empty directories"
           return
         endif
       endif
@@ -776,7 +776,7 @@ endfunction
 
 function! <SID>ToggleOriginalFilesWindow() "{{{1
   " Toggle the original files window
-  if g:RenamerOriginalFileWindowEnabled == 0 
+  if g:RenamerOriginalFileWindowEnabled == 0
     let g:RenamerOriginalFileWindowEnabled = 2 " 2 => create the window as well
     call <SID>CreateOriginalFileWindow(0, b:renamerMaxWidth, b:renamerEntryDisplayText)
   else
@@ -825,7 +825,7 @@ function! s:GetHighlightString(group)
   for mode in ['term', 'cterm', 'gui']
     for what in ['fg', 'bg']
       let attr = synIDattr(synid, what, mode)
-      if attr != '' && attr != -1 
+      if attr != '' && attr != -1
         let result .= ' ' . mode . what . '=' . attr
       endif
     endfor

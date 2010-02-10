@@ -28,7 +28,7 @@ function! omni#cpp#tokenizer#Tokenize(szCode)
     let result = []
 
     " The regexp to find a token, a token is a keyword, word or
-    " c++ operator or punctuator. To work properly we have to put 
+    " c++ operator or punctuator. To work properly we have to put
     " spaces and tabs to our regexp.
     let reTokenSearch = '\(\w\+\)\|\s\+\|'.s:reComment.'\|'.s:reCppOperatorOrPunctuator
     " eg: 'using namespace std;'

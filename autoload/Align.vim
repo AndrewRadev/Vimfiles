@@ -857,7 +857,7 @@ endfun
 
 " ---------------------------------------------------------------------
 " Align#AlignReplaceQuotedSpaces: {{{1
-fun! Align#AlignReplaceQuotedSpaces() 
+fun! Align#AlignReplaceQuotedSpaces()
 "  call Dfunc("AlignReplaceQuotedSpaces()")
 
   let l:line          = getline(line("."))
@@ -875,7 +875,7 @@ fun! Align#AlignReplaceQuotedSpaces()
 "  "call Decho("in replace spaces.  line=" . line('.'))
   while (1)
     let l:startQuotePos = match(l:line, l:quoteRe, l:startingPos)
-    if (l:startQuotePos < 0) 
+    if (l:startQuotePos < 0)
 "      "call Decho("No more quotes to the end of line")
       break
     endif
@@ -991,14 +991,14 @@ fun! s:Strlen(x)
    let ret= strlen(substitute(a:x,'.','c','g'))
 
   elseif g:Align_xstrlen == 2
-   " number of spacing codepoints (Latin a + combining circumflex is one spacing 
+   " number of spacing codepoints (Latin a + combining circumflex is one spacing
    " codepoint; a hard tab is one; wide and narrow CJK are one each; etc.)
    " (comment from TM, solution from TM)
-   let ret=strlen(substitute(a:x, '.\Z', 'x', 'g')) 
+   let ret=strlen(substitute(a:x, '.\Z', 'x', 'g'))
 
   elseif g:Align_xstrlen == 3
-   " virtual length (counting, for instance, tabs as anything between 1 and 
-   " 'tabstop', wide CJK as 2 rather than 1, Arabic alif as zero when immediately 
+   " virtual length (counting, for instance, tabs as anything between 1 and
+   " 'tabstop', wide CJK as 2 rather than 1, Arabic alif as zero when immediately
    " preceded by lam, one otherwise, etc.)
    " (comment from TM, solution from me)
    let modkeep= &l:mod

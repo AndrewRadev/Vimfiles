@@ -1,5 +1,5 @@
 " ------------------------------------------------------------------------------
-" File:		plugin/utl.vim - Universal Text Linking - 
+" File:		plugin/utl.vim - Universal Text Linking -
 "			  URL based Hyperlinking for plain text
 " Author:	Stefan Bittner <stb@bf-consulting.de>
 " Maintainer:	Stefan Bittner <stb@bf-consulting.de>
@@ -36,7 +36,7 @@
 " 3.0a  ALPHA 2008-07-31
 "		New :  Generic media type handler, Mail protocol, Copy Link/
 "		Filename support, Foot-References [], Transparent editing of
-"		share files, Tracing, Enhanced scheme handler interface,  
+"		share files, Tracing, Enhanced scheme handler interface,
 "		Changed : User Interface with command :Utl, variable naming.
 "		Bug fixes.
 " ------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ command -complete=custom,s:completeArgs -range -nargs=* Utl call Utl(<f-args>)
 " Based on the command line provided by user input so far it returns a \n
 " separated line of items, which Vim then uses for presenting completion
 " suggestions to the user.
-" Also works if abbreviations ( see #r=cmd_abbreviations ) appear in cmdLine 
+" Also works if abbreviations ( see #r=cmd_abbreviations ) appear in cmdLine
 fu! s:completeArgs(dummy_argLead, cmdLine, dummy_cursorPos)
 
     " Split cmdLine to figure out how many arguments have been provided by user
@@ -88,11 +88,11 @@ fu! s:completeArgs(dummy_argLead, cmdLine, dummy_cursorPos)
     if len(utlArgs)==2
 	if utlArgs[1]=='openLink' || utlArgs[1]=='copyFileName' || utlArgs[1]=='copyLink'
 	    if len(utlArgs)==2
-		return "underCursor\nvisual\ncurrentFile\n_your_URL_here"   
+		return "underCursor\nvisual\ncurrentFile\n_your_URL_here"
 	    endif
 	elseif utlArgs[1]=='help'
 	    if len(utlArgs)==2
-		return "manual\ncommands" 
+		return "manual\ncommands"
 	    endif
 	endif
 	" config
@@ -125,7 +125,7 @@ endfun
 "    :Utl	        currentFile	vsplit
 "    :Utl	        <my_url>	tabedit
 "    :Utl				view
-"    :Utl				read	
+"    :Utl				read
 "
 "    :Utl copyLink	[underCursor]
 "    :Utl               visual
@@ -167,7 +167,7 @@ let s:d32={ 'n': 'native', 'b': 'backSlash', 'bs': 'backSlash', 's': 'slash' }
 "	can be abbreviated.
 " Returns: Last arg converted into long arg
 "
-" Collaboration: 
+" Collaboration:
 "
 " Example: s:abbr2longArg('copyFileName', 'underCursor', 's')
 "	returns 'slash'
@@ -195,7 +195,7 @@ endfu
 " itself
 fu! s:utilLookup(dict,key)
     if has_key(a:dict, a:key)
-	return a:dict[a:key] 
+	return a:dict[a:key]
     endif
     return a:key
 endfu
@@ -337,10 +337,10 @@ fu! s:Utl_goUrl(dispMode)
     if url == ''
 	let v:errmsg = "No URL under Cursor"
 	echohl ErrorMsg | echo v:errmsg | echohl None
-    else 
+    else
 	call s:Utl_processUrl(url, a:dispMode)
     endif
-    call Utl_trace("- end processing.",1,-1) 
+    call Utl_trace("- end processing.",1,-1)
 endfu
 
 "-------------------------------------------------------------------------------
@@ -349,17 +349,17 @@ endfu
 " Returns: URL under cursor if any, else ''
 "
 fu! Utl_getUrlUnderCursor()
-    call Utl_trace("- start getting URL under cursor",1,1) 
+    call Utl_trace("- start getting URL under cursor",1,1)
 
     let line = getline('.')
     let icurs = col('.') - 1	" `Index-Cursor'
 
-    call Utl_trace("- first try: checking for URL with embedding like <url:xxx> in current line...",1,1) 
+    call Utl_trace("- first try: checking for URL with embedding like <url:xxx> in current line...",1,1)
     let url = s:Utl_extractUrlByPattern(line, icurs, '')
 
     if url=='<undef>'
 	call Utl_trace("- ...no",1,-1)
-	call Utl_trace("- retry: checking for embedded URL spanning over range of max 5 lines...",1,1) 
+	call Utl_trace("- retry: checking for embedded URL spanning over range of max 5 lines...",1,1)
 	let lineno = line('.')
 	" (lineno-1/2 can be negative -> getline gives empty string -> ok)
 	let line = getline(lineno-2) . "\n" . getline(lineno-1) . "\n" .
@@ -374,12 +374,12 @@ fu! Utl_getUrlUnderCursor()
 
     if url=='<undef>'
 	call Utl_trace("- ...no", 1, -1)
-	call Utl_trace("- retry: checking if [ ] style reference...", 1, 1) 
+	call Utl_trace("- retry: checking if [ ] style reference...", 1, 1)
 	if stridx(line, '[') != -1
 	    let isfname_save = &isfname | let &isfname = s:isuriref " ([)
 	    let pat = '\(\(\[[A-Z0-9_]\{-}\]\)\(#\f*\)*\)'	    " &isfname here in \f
 	    let url = s:Utl_extractUrlByPattern(line, icurs, pat)
-	    let &isfname = isfname_save				    " (]) 
+	    let &isfname = isfname_save				    " (])
 	    " remove trailing punctuation characters if any
 	    if url!='<undef>'
 		call Utl_trace("- removing trailing punctuation chars from URL if any")
@@ -390,21 +390,21 @@ fu! Utl_getUrlUnderCursor()
 
     if url=='<undef>'
 	call Utl_trace("- ...no", 1,-1)
-	call Utl_trace("- retry: checking for unembedded URL under cursor...", 1,1) 
+	call Utl_trace("- retry: checking for unembedded URL under cursor...", 1,1)
 	" Take <cfile> as URL. But adapt isfname to match all allowed URI Reference characters
 	let isfname_save = &isfname | let &isfname = s:isuriref " ([)
 	let url = expand("<cfile>")
-	let &isfname = isfname_save				" (]) 
+	let &isfname = isfname_save				" (])
     endif
 
 
     if url!=''
-	call Utl_trace("- ...yes, URL found: `".url."'", 1,-1) 
+	call Utl_trace("- ...yes, URL found: `".url."'", 1,-1)
     else
 	call Utl_trace("- ...no", 1,-1)
     endif
 
-    call Utl_trace("- end getting URL under cursor.",1,-1) 
+    call Utl_trace("- end getting URL under cursor.",1,-1)
     return url
 endfu
 
@@ -432,7 +432,7 @@ endfu
 "
 "   :echo s:Utl_extractUrlByPattern('Another embedding here <foo bar>', 27, '')
 "   returns `foo bar'
-"	
+"
 " Details:
 " - The URL embedding (or if embedding at all) depends on the context: HTML
 "   has different embedding than a txt file.
@@ -447,10 +447,10 @@ endfu
 "
 fu! s:Utl_extractUrlByPattern(linestr, icurs, pat)
     let pat = a:pat
-    call Utl_trace("- start extracting URL by pattern `".pat."'",1,1) 
+    call Utl_trace("- start extracting URL by pattern `".pat."'",1,1)
 
     if pat == ''
-	call Utl_trace("- pattern is <undef>, determine based on file type") 
+	call Utl_trace("- pattern is <undef>, determine based on file type")
 
 	if &ft == 'html'
 	    let embedType = 'html'
@@ -461,7 +461,7 @@ fu! s:Utl_extractUrlByPattern(linestr, icurs, pat)
 	" (pat has to have the Url in first \(...\) because ({) )
 	if  embedType == 'html'
 	    call Utl_trace("- file type is 'html'")
-	    " Html-Pattern: 
+	    " Html-Pattern:
 	    " - can have other attributes in <A>, like
 	    "   <A TITLE="foo" HREF="#bar">  (before and/or behind HREF)
 	    " - can have Whitespace embedding the `=' like
@@ -479,7 +479,7 @@ fu! s:Utl_extractUrlByPattern(linestr, icurs, pat)
 	    let pat = '<\%(URL:\|LNK:\|\)\([^<]\{-}\)>'
 
 	endif
-	call Utl_trace("- will use pattern `".pat."'") 
+	call Utl_trace("- will use pattern `".pat."'")
 
     endif
 
@@ -490,7 +490,7 @@ fu! s:Utl_extractUrlByPattern(linestr, icurs, pat)
     " <a href= <A HREF= ...)
     let saveIgnorecase = &ignorecase |  set ignorecase	    " ([)
 
-    call Utl_trace("- now try to extract URL from given string using this pattern") 
+    call Utl_trace("- now try to extract URL from given string using this pattern")
     while 1
 	" (A so called literal \n here (and elsewhere), see
 	" <URL:vimhelp:expr-==#^since a string>.
@@ -519,7 +519,7 @@ fu! s:Utl_extractUrlByPattern(linestr, icurs, pat)
     endwhile
 
     let &ignorecase = saveIgnorecase	    " (])
-    call Utl_trace("- end extracting URL by pattern, returning URL=`".curl."'",1,-1) 
+    call Utl_trace("- end extracting URL by pattern, returning URL=`".curl."'",1,-1)
     return curl
 endfu
 
@@ -559,7 +559,7 @@ fu! s:Utl_setHighl()
 	  au BufWinEnter * syn case match
 	augroup END
 
-    else 
+    else
 	augroup utl_highl
 	  au!
 	augroup END
@@ -596,7 +596,7 @@ call s:Utl_setHighl()
 "   collapsed. Other Whitespace is left as is (CR019, CR052).
 "   See also <URL:http://www.ietf.org/rfc/rfc2396.txt> under
 "   chapter E, Recommendations.
-" 
+"
 " Examples:
 "   call s:Utl_processUrl('file:///path/to/file.txt', 'edit')
 "
@@ -610,14 +610,14 @@ call s:Utl_setHighl()
 "		" the local file may be the return receipt in this case
 "
 fu! s:Utl_processUrl(uriref, dispMode)
-    call Utl_trace("- start processing URL `".a:uriref."' in processing mode `".a:dispMode."'",1,1) 
+    call Utl_trace("- start processing URL `".a:uriref."' in processing mode `".a:dispMode."'",1,1)
 
     let urirefpu = a:uriref	" uriref with newline whitespace sequences purged
     " check if newline contained. Collapse \s*\n\s
     if match(a:uriref, "\n") != -1
 	let urirefpu = substitute(a:uriref, "\\s*\n\\s*", "", "g")
 	call Utl_trace("- URL contains new line characters. Remove them.")
-	call Utl_trace("  now URL= `".urirefpu."'") 
+	call Utl_trace("  now URL= `".urirefpu."'")
     endif
 
     let uri = UriRef_getUri(urirefpu)
@@ -633,7 +633,7 @@ fu! s:Utl_processUrl(uriref, dispMode)
     "	 file-component will always be discarded).
     "
     if uri == ''
-	call Utl_trace("- is a same document reference. Go directly to fragment processing (in mode 'rel')") 
+	call Utl_trace("- is a same document reference. Go directly to fragment processing (in mode 'rel')")
 	    " m=go
 	normal m'
 	call s:Utl_processFragmentText( fragment, 'rel' )
@@ -654,23 +654,23 @@ fu! s:Utl_processUrl(uriref, dispMode)
 	let absuri = s:Utl_checkHeuristicAbsUrl(uri)
 	if absuri != ''
 	    let scheme = UtlUri_scheme(absuri)
-	    call Utl_trace("yes,") | call Utl_trace("  absolute URL constructed by heuristic is `".absuri."'") 
+	    call Utl_trace("yes,") | call Utl_trace("  absolute URL constructed by heuristic is `".absuri."'")
 	else
-	    call Utl_trace("no") 
+	    call Utl_trace("no")
 	endif
     endif
     if scheme == '<undef>'
 	let curPath = Utl_utilBack2FwdSlashes( expand("%:p") )
 	if stridx(curPath, '://') != -1	    " id=url_buffer (e.g. by netrw)
 	    call Utl_trace("- buffer's name looks like an absolute URL (has substring ://)")
-	    call Utl_trace("  so take it as base URL.") 
+	    call Utl_trace("  so take it as base URL.")
 	    let base = curPath
 	else
-	    call Utl_trace("- try to construct a `file://' base URL from current buffer... ",0) 
+	    call Utl_trace("- try to construct a `file://' base URL from current buffer... ",0)
 	    " No corresponding resource to curPath known.   (id=nobase)
 	    " i.e. curPath was not retrieved through Utl.
 	    " Now just make the usual heuristic of `file://localhost/'-Url;
-	    " assume, that the curPath is the resource itsself. If then the 
+	    " assume, that the curPath is the resource itsself. If then the
 	    " retrieve with the so generated Url is not possible, nothing
 	    " severe happens.
 	    if curPath == ''
@@ -684,7 +684,7 @@ fu! s:Utl_processUrl(uriref, dispMode)
 	    let base = 'file://' . curPath
 	    call Utl_trace("done,")
 	endif
-	call Utl_trace("  base URL is `".base."'") 
+	call Utl_trace("  base URL is `".base."'")
 	let scheme = UtlUri_scheme(base)
 	call Utl_trace("- construct absolute URL from combining base URL and relative URL")
 	let absuri = UtlUri_abs(uri,base)
@@ -710,7 +710,7 @@ fu! s:Utl_processUrl(uriref, dispMode)
     normal m'
 
     let cbfunc = 'Utl_AddressScheme_' . scheme
-    call Utl_trace("- constructing call back function name from scheme: `".cbfunc."'") 
+    call Utl_trace("- constructing call back function name from scheme: `".cbfunc."'")
     if !exists('*'.cbfunc)
 	let v:errmsg = "Sorry, scheme `".scheme.":' not implemented"
 	echohl ErrorMsg | echo v:errmsg | echohl None
@@ -719,9 +719,9 @@ fu! s:Utl_processUrl(uriref, dispMode)
 	return
     endif
     call Utl_trace("- calling call back function with arguments:")
-    call Utl_trace("  arg 1 - absolute URL=`".absuri."'") 
-    call Utl_trace("  arg 2 - fragment    =`".fragment."'") 
-    call Utl_trace("  arg 3 - display Mode=`".a:dispMode."'") 
+    call Utl_trace("  arg 1 - absolute URL=`".absuri."'")
+    call Utl_trace("  arg 2 - fragment    =`".fragment."'")
+    call Utl_trace("  arg 3 - display Mode=`".a:dispMode."'")
     exe 'let ret  = ' cbfunc . '("'.absuri.'", "'.fragment.'", "'.a:dispMode.'")'
     call Utl_trace("- call back function `".cbfunc."' returned list:`". join(ret,',') ."'")
     exe "normal \<C-L>"	| " Redraw seems necessary for non GUI Vim under Unix'es
@@ -736,16 +736,16 @@ fu! s:Utl_processUrl(uriref, dispMode)
     let localPath = ret[0]
     let fragMode = get(ret, 1, 'abs')
     call Utl_trace("- first list element (local path): `".localPath."'")
-    call Utl_trace("- second list element (fragment mode) or default: `".fragMode."'") 
+    call Utl_trace("- second list element (fragment mode) or default: `".fragMode."'")
 
     " Assertion
-    if stridx(localPath, '\') != -1 
+    if stridx(localPath, '\') != -1
 	echohl ErrorMsg
-	call input("Internal Error: localPath `".localPath."' contains backslashes <RETURN>") 
+	call input("Internal Error: localPath `".localPath."' contains backslashes <RETURN>")
 	echohl None
     endif
 
-    call Utl_trace("- assertion: a local path corresponds to URL") 
+    call Utl_trace("- assertion: a local path corresponds to URL")
     call Utl_trace("- end scheme handler processing",1,-1)
 
     let dispMode = a:dispMode
@@ -846,7 +846,7 @@ fu! s:Utl_processUrl(uriref, dispMode)
 	    if escCmd != cmd
 		call Utl_trace("- escape characters, command changes to: `".escCmd."'")
 	    endif
-	    call Utl_trace("- execute command with :exe") 
+	    call Utl_trace("- execute command with :exe")
 	    exe escCmd
 	    call Utl_trace("- end media type handler processing",1,-1)
 	    call Utl_trace("- end processing URL",1,-1)
@@ -930,7 +930,7 @@ fu! s:Utl_escapeCmdLineSpecialChars(fileName)
 endfu
 
 "-------------------------------------------------------------------------------
-" Description: 
+" Description:
 " Display file `localPath' in a Vim window as determined by `dispMode'
 " There is special treatment if `localPath' already loaded in a buffer and
 " there is special treatment if current buffer cannot be abandoned.
@@ -941,7 +941,7 @@ endfu
 "    Resembles XML-XLink's `show' attribut. Value is taken directly as Vim
 "    command. Examples: 'view', 'edit', 'sview', 'split', 'read', 'tabe'
 "
-" - localPath specification: 
+" - localPath specification:
 "   . May contain any characters that the OS allows (# % $ ' ')
 "     Note: No percent escaping here, localPath is a file name not an URL.
 "     For instance %20.txt is taken as literal file name.
@@ -997,7 +997,7 @@ fu! s:Utl_displayFile(localPath, dispMode)
 
 	"--- Try load file or create new buffer. Then check if buffer actually
 	"   loaded - might fail for if E325 (swap file exists) and user abort
-	" 
+	"
 	let cmd = dispMode.' '.escLocalPath
 	call Utl_trace("- trying to load/display file with command: `".cmd."'\n")   " CR054_extra_nl
 	exe cmd
@@ -1016,7 +1016,7 @@ fu! s:Utl_displayFile(localPath, dispMode)
 endfu
 
 "----------------------------------------------------------id=utl_checkmtype----
-" Possibly determines the media type (= mime type) for arg `path', e.g. 
+" Possibly determines the media type (= mime type) for arg `path', e.g.
 " pic.jpeg -> 'image/jpeg' and returns it. Returns an empty string if media
 " type cannot be determined or is uninteresting to be determined. Uninteresting
 " means: Only those media types are defined here which are of potential
@@ -1038,7 +1038,7 @@ fu! s:Utl_checkMediaType(path)
     if isdirectory(a:path)
 	return "text/directory"
     endif
-  
+
     let ext = fnamemodify(a:path, ":e")
 
     let mt = ''
@@ -1074,7 +1074,7 @@ fu! s:Utl_checkMediaType(path)
 	let mt = 'audio/mpeg'
     elseif ext==?'png'
 	let mt = 'image/png'
-    elseif ext==?'jpeg' || ext==?'jpg' || ext==?'jpe'  || ext==?'jfif' 
+    elseif ext==?'jpeg' || ext==?'jpg' || ext==?'jpe'  || ext==?'jfif'
 	let mt = 'image/jpeg'
     elseif ext==?'tiff' || ext==?'tif'
 	let mt = 'image/tiff'
@@ -1092,7 +1092,7 @@ fu! s:Utl_checkMediaType(path)
 	let mt = 'image/x-fig'
 
     endif
-    return mt 
+    return mt
 
 endfu
 
@@ -1119,7 +1119,7 @@ endfu
 "	    Start position for tp=, line=-nnn is end of buffer.
 "   'rel' = relative: Start positioning the cursor from current position.
 "
-" Details: 
+" Details:
 " - `fragment' will be URI-Unescaped before processing (e.g. 'tn=A%3aB' ->
 "   'tn=A:B')
 " - Interpretation of `fragment' depends on the filetype. But currently,
@@ -1135,51 +1135,51 @@ endfu
 " - For 'abs' search does not find pattern starting at begin of file
 "
 fu! s:Utl_processFragmentText(fragment, fragMode)
-    call Utl_trace("- start processing fragment `".a:fragment."' in mode `".a:fragMode."'",1,1) 
+    call Utl_trace("- start processing fragment `".a:fragment."' in mode `".a:fragMode."'",1,1)
 
     if a:fragment == '<undef>' || a:fragment == ''
-	call Utl_trace("- have no or empty fragment") 
+	call Utl_trace("- have no or empty fragment")
 	if a:fragMode=='abs'
-	    call Utl_trace("- since mode is `abs' position cursor to begin of buffer") 
+	    call Utl_trace("- since mode is `abs' position cursor to begin of buffer")
 	    call cursor(1,1)
 	else
-	    call Utl_trace("- since mode is `rel' do nothing") 
+	    call Utl_trace("- since mode is `rel' do nothing")
 	endif
-	call Utl_trace("- end processing fragment",1,-1) 
+	call Utl_trace("- end processing fragment",1,-1)
 	return
     endif
 
     let ufrag = UtlUri_unescape(a:fragment)
     if ufrag != a:fragment
-        call Utl_trace("- unescaped URL to: `".ufrag."'") 
+        call Utl_trace("- unescaped URL to: `".ufrag."'")
     endif
 
     if ufrag =~ '^line=[-+]\=[0-9]*$'
-	call Utl_trace("- is a `line=' fragment") 
+	call Utl_trace("- is a `line=' fragment")
 
 	let sign = substitute(ufrag, '^line=\([-+]\)\=\([0-9]*\)$', '\1', '')
 	let num =  substitute(ufrag, '^line=\([-+]\)\=\([0-9]*\)$', '\2', '')
 
 	if a:fragMode=='abs'
 	    if sign == '-'
-		call Utl_trace("- negative sign in mode 'abs': position cursor up ".num." lines from end of buffer") 
+		call Utl_trace("- negative sign in mode 'abs': position cursor up ".num." lines from end of buffer")
 		call cursor( line('$') - num + 1, 1 )
 	    else
-		call Utl_trace("- positive sign in mode 'abs': position cursor to line ".num) 
+		call Utl_trace("- positive sign in mode 'abs': position cursor to line ".num)
 		call cursor(num,1)
 	    endif
 
 	else
 	    if sign == '-'
-		call Utl_trace("- negative sign in mode 'rel': position cursor up ".num." lines from current position") 
+		call Utl_trace("- negative sign in mode 'rel': position cursor up ".num." lines from current position")
 		call cursor( line('.') - num , 1 )
 	    else
-		call Utl_trace("- positive sign in mode 'rel': position cursor down ".num." lines from current position") 
+		call Utl_trace("- positive sign in mode 'rel': position cursor down ".num." lines from current position")
 		call cursor( line('.') + num , 1 )
 	    endif
 
 	endif
-	call Utl_trace("- end processing fragment",1,-1) 
+	call Utl_trace("- end processing fragment",1,-1)
 	return
     endif
 
@@ -1191,35 +1191,35 @@ fu! s:Utl_processFragmentText(fragment, fragMode)
     let fragMode = a:fragMode
     let sfwd=1
     if ufrag =~ '^r='
-	call Utl_trace("- is an ID reference. Construct file type dependent search pattern") 
+	call Utl_trace("- is an ID reference. Construct file type dependent search pattern")
 	" ( \w\@! is normally the same as \> , i.e. match end of word,
 	"   but is not the same in help windows, where 'iskeyword' is
 	"   set to include non word characters. \w\@! is independent of
 	"   settings )
 	let val = substitute(ufrag, '^r=\(.*\)$', '\1', '')
 	if &ft == 'html'
-	    call Utl_trace("- file type is 'html' - search for NAME=") 
+	    call Utl_trace("- file type is 'html' - search for NAME=")
 	    let cmd = '/\c\MNAME=\.\=' . val . '\w\@!' . "\r"
 	else
-	    call Utl_trace("- file type is not 'html' - search for id=") 
+	    call Utl_trace("- file type is not 'html' - search for id=")
 	    let cmd = '/\c\Mid=' . val . '\w\@!' . "\r"
 	endif
 	if fragMode=='rel'
-	    call Utl_trace("- search will be with 'wrapscan' (since ID reference anywhere in text)") 
+	    call Utl_trace("- search will be with 'wrapscan' (since ID reference anywhere in text)")
 	    let opt_wrapscan='wrapscan'
 	endif
 
     elseif ufrag =~ '^tp='  " text previous
-	call Utl_trace("- is a `tp=' (Text Previous) fragment: search backwards") 
+	call Utl_trace("- is a `tp=' (Text Previous) fragment: search backwards")
 	let cmd = substitute(ufrag, '^tp=\(.*\)$', '?\\c\\M\1\r', '')
 	let sfwd=0
 
     elseif ufrag =~ '^tn='  " tn= or naked. text next
-	call Utl_trace("- is a `tn=' (Text Next) fragment: search forward") 
+	call Utl_trace("- is a `tn=' (Text Next) fragment: search forward")
 	let cmd = substitute(ufrag, '^tn=\(.*\)$', '/\\c\\M\1\r', '')
 
     else
-	call Utl_trace("- is a naked fragment. Is treated like `tn=' (Text Next) fragment: search forward") 
+	call Utl_trace("- is a naked fragment. Is treated like `tn=' (Text Next) fragment: search forward")
 	let cmd = '/\c\M' . ufrag . "\r"	" Note: \c\M vs \\c\\M at <#tp=substitute>
     endif
 
@@ -1227,25 +1227,25 @@ fu! s:Utl_processFragmentText(fragment, fragMode)
     " Initialize Cursor before actual search (CR051)
     if fragMode=='abs'
 	if sfwd==1
-	    call Utl_trace("- forward search in mode 'abs': starting search at begin of buffer") 
+	    call Utl_trace("- forward search in mode 'abs': starting search at begin of buffer")
 	    call cursor(1,1)
 	else
-	    call Utl_trace("- backward search in mode 'abs': starting search at end of buffer") 
+	    call Utl_trace("- backward search in mode 'abs': starting search at end of buffer")
 	    call cursor( line('$'), col('$') )
 	endif
     else
 	if sfwd==1
-	    call Utl_trace("- forward search in mode 'rel': starting search at end of current line") 
+	    call Utl_trace("- forward search in mode 'rel': starting search at end of current line")
 	    call cursor( line('.'), col('$') )
 	else
-	    call Utl_trace("- forward search in mode 'rel': starting search at begin of current line") 
+	    call Utl_trace("- forward search in mode 'rel': starting search at begin of current line")
 	    call cursor( line('.'), 1)
 	endif
     endif
 
-    if ! exists('opt_wrapscan') 
+    if ! exists('opt_wrapscan')
 	let opt_wrapscan = 'nowrapscan'
-	call Utl_trace("- search will be with 'nowrapscan' (avoid false hit if mode='rel')") 
+	call Utl_trace("- search will be with 'nowrapscan' (avoid false hit if mode='rel')")
     endif
 
     " Do text search (id=fragTextSearch)
@@ -1254,7 +1254,7 @@ fu! s:Utl_processFragmentText(fragment, fragMode)
     let saveWrapscan = &wrapscan | exe 'set '.opt_wrapscan  | "---[
     " (keepjumps because before jump mark is set before link execution (s. #r=_setj ).
     "  Call cursor() for line= fragments do not change jumps either.)
-    call Utl_trace("- execute search command: `".cmd."'") 
+    call Utl_trace("- execute search command: `".cmd."'")
     let v:errmsg = ""
     silent! exe "keepjumps normal " . cmd
     if v:errmsg != ""
@@ -1263,9 +1263,9 @@ fu! s:Utl_processFragmentText(fragment, fragMode)
     endif
 
     let &wrapscan = saveWrapscan		    "---]
-    call Utl_trace("- restored previous value for 'wrapscan'") 
+    call Utl_trace("- restored previous value for 'wrapscan'")
 
-    call Utl_trace("- end processing fragment",1,-1) 
+    call Utl_trace("- end processing fragment",1,-1)
 endfu
 
 " Utility functions [
@@ -1323,8 +1323,8 @@ fu! Utl_utilExpandConvSpec(str, convSpecDict)
 endfu
 
 "-------------------------------------------------------------------------------
-" Print tracing messages (with :echo) to see what's going on. 
-" Only prints if global variable utl_opt_verbose is not 0. 
+" Print tracing messages (with :echo) to see what's going on.
+" Only prints if global variable utl_opt_verbose is not 0.
 " Currently works only in on/off-manner. Might be extended to distinguish
 " trace levels (as Vim's 'verbose' option does, see <url:vimhelp:'verbose'>)
 "
@@ -1354,7 +1354,7 @@ fu! Utl_trace(msg, ...)
     endif
 
     " If negative, do it before printing
-    if incrLevel < 0  
+    if incrLevel < 0
 	let s:utl_trace_level += incrLevel
 	" Assertion
 	if s:utl_trace_level < 0
@@ -1364,7 +1364,7 @@ fu! Utl_trace(msg, ...)
 	    let s:utl_trace_level = 0
 	endif
 	"echo "                                DBG (changed,before) utl_trace_level=`".s:utl_trace_level."'"
-    endif 
+    endif
 
     " echohl ErrorMsg
     " echo "Error: internal error: s:utl_trace_level < 0: `".s:utl_trace_level."'"
@@ -1390,10 +1390,10 @@ fu! Utl_trace(msg, ...)
     endif
 
     " If positive, do it after printing
-    if incrLevel > 0  
+    if incrLevel > 0
 	let s:utl_trace_level += incrLevel
 	"echo "                                DBG (changed,after) utl_trace_level=`".s:utl_trace_level."'"
-    endif 
+    endif
 
 endfu
 
@@ -1403,9 +1403,9 @@ endfu
 " Details :
 " - a:outFile  gets some additional header lines.
 " - a:mark  is anchored at the beginning of the line (^ search)
-" - a:mark  is taken literally (search with \M - nomagic for it) 
+" - a:mark  is taken literally (search with \M - nomagic for it)
 "
-" Collaboration: 
+" Collaboration:
 " - Shows result to user by prompting hit-any-key
 " - Except for use of utl_trace function pure utility function.
 "
@@ -1485,7 +1485,7 @@ fu! Utl_if_hdl_scm_http__wget(url)
     " media type handling If no suffix then assume 'html' (ok for
     " http://www.vim.org -> index.html). But is not generally ok
     " (example: http://www.vim.org/download.php).
-    " TODO: 
+    " TODO:
     " Should determine media type from HTTP Header, e.g.
     " wget --save-headers -> Content-Type: text/html)
     let suffix = fnamemodify( UtlUri_path(a:url), ":e")
@@ -1496,14 +1496,14 @@ fu! Utl_if_hdl_scm_http__wget(url)
     let tmpFile = Utl_utilBack2FwdSlashes( tempname() ) .'.'.suffix
     call Utl_trace("- tmpFile name with best guess suffix: ".tmpFile)
 
-    if ! executable('wget') 
+    if ! executable('wget')
 	call Utl_trace("- Vim variable g:utl_cfg_hdl_scm_mail does not exist")
 	echohl WarningMsg
 	let v:errmsg="No executable `wget' found."
 	call input( v:errmsg . " Entering Setup now. <RETURN>")
 	echohl None
 	Utl openLink config:#r=utl_if_hdl_scm_http_wget_setup split
-	call Utl_trace("- end execution of Utl_AddressScheme_mail",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mail",1,-1)
 	return
     endif
 
@@ -1522,7 +1522,7 @@ endfu
 " '%p','%d','%f','%s')". See also #r=utl_cfg_hdl_scm_mail__outlook
 "
 " Args:	    ...
-" Ret:	    - 
+" Ret:	    -
 "
 " Setup:    See <url:config:#r=utl_if_hdl_scm_mail__outlook_setup>
 
@@ -1572,7 +1572,7 @@ fu! Utl_if_hdl_mt_application_pdf_acrobat(path,fragment)
 	if ufrag =~ '^page='
 	    let fval = substitute(ufrag, '^page=', '', '')
 	    let switches = '/a page='.fval
-	else 
+	else
 	    echohl ErrorMsg
 	    echo "Unsupported fragment `#".ufrag."' Valid only `#page='"
 	    echohl None
@@ -1608,7 +1608,7 @@ endfu
 " Arg:	    path     - file to be displayed in Acrobat (full path)
 "	    fragment - fragment (without #) or empty string if no fragment
 "
-" Ret:	    - 
+" Ret:	    -
 "
 " Setup:    See <config:#r=Utl_if_hdl_mt_application_msword__word_setup>
 "
@@ -1742,7 +1742,7 @@ dateMax = Left(dateMax, Len(dateMax) -3 )
 ' Have a look in you Outlook; its the name of the column which shows and sorts
 ' by date.
 '
-'   
+'
 ' [id=received]	Change to actual column name in your Outlook
 '               +---------------------------------+
 '	        v                                 v
@@ -1755,7 +1755,7 @@ item.Display
 === FILE_WORD_VBS {{{
 ' usage: utl_if_hdl_mt_application_msword__word.vbs <.doc file> <string_to_search>
 ' description: Position cursor in Word document <.doc file> at string
-'	<string_to_search> 
+'	<string_to_search>
 ' Collaboration: Word being started or running. Document subject to fragment
 '	addressing active or being opened and activated.
 ' hist:
@@ -1773,7 +1773,7 @@ fragment = WScript.Arguments(1)
 ' Wait for WORD in case it just starts up
 countTries = 0
 maxTries = 50
-Do While countTries < maxTries 
+Do While countTries < maxTries
     countTries = countTries+1
     On Error Resume Next
 	Set o = GetObject(, "Word.Application")
@@ -1791,7 +1791,7 @@ Loop
 countTries = 0
 maxTries = 20
 docFound = FALSE
-Do While countTries < maxTries 
+Do While countTries < maxTries
 
     countTries = countTries+1
 
@@ -1812,7 +1812,7 @@ Loop
 
 If docFound=FALSE then
     WScript.Echo("Document not found")
-End If 
+End If
 
 ' TODO: Exit If docFound=FALSE
 ' assertion: document active

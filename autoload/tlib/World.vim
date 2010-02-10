@@ -21,7 +21,7 @@ let s:prototype = tlib#Object#New({
             \ '_class': 'World',
             \ 'name': 'world',
             \ 'allow_suspend': 1,
-            \ 'base': [], 
+            \ 'base': [],
             \ 'bufnr': -1,
             \ 'display_format': '',
             \ 'filetype': '',
@@ -54,12 +54,12 @@ let s:prototype = tlib#Object#New({
             \ 'scratch_vertical': 0,
             \ 'sel_idx': [],
             \ 'show_empty': 0,
-            \ 'state': 'display', 
+            \ 'state': 'display',
             \ 'state_handlers': [],
             \ 'sticky': 0,
             \ 'timeout': 0,
             \ 'timeout_resolution': 2,
-            \ 'type': '', 
+            \ 'type': '',
             \ 'win_wnr': -1,
             \ })
             " \ 'handlers': [],
@@ -209,7 +209,7 @@ endf
 
 " :nodoc:
 function! s:prototype.GetRx(filter) dict "{{{3
-    return '\('. join(filter(copy(a:filter), 'v:val[0] != "!"'), '\|') .'\)' 
+    return '\('. join(filter(copy(a:filter), 'v:val[0] != "!"'), '\|') .'\)'
 endf
 
 
@@ -253,7 +253,7 @@ function! s:prototype.GetListIdx(baseidx) dict "{{{3
         let baseidx = a:baseidx
     " else
     "     let baseidx = 0 + self.index_table[a:baseidx - 1]
-    "     " TLogVAR a:baseidx, baseidx, self.index_table 
+    "     " TLogVAR a:baseidx, baseidx, self.index_table
     " endif
     let rv = index(self.table, baseidx)
     " TLogVAR rv, self.table
@@ -877,11 +877,11 @@ function! s:prototype.RestoreOrigin(...) dict "{{{3
     endif
     " TLogVAR self.win_wnr, self.bufnr, self.cursor, &splitbelow
     " TLogDBG "RestoreOrigin0 ". string(tlib#win#List())
-    " If &splitbelow or &splitright is false, we cannot rely on 
-    " self.win_wnr to be our source buffer since, e.g, opening a buffer 
+    " If &splitbelow or &splitright is false, we cannot rely on
+    " self.win_wnr to be our source buffer since, e.g, opening a buffer
     " in a split window changes the whole layout.
     " Possible solutions:
-    " - Restrict buffer switching to cases when the number of windows 
+    " - Restrict buffer switching to cases when the number of windows
     "   hasn't changed.
     " - Guess the right window, which we try to do here.
     if &splitbelow == 0 || &splitright == 0

@@ -4,8 +4,8 @@
 " Maintainer:  Christian Brabandt <cb@256bit.org>
 " Version:     0.7.2
 " Copyright:   (c) 2009 by Christian Brabandt
-"              The VIM LICENSE applies to histwin.vim 
-"              (see |copyright|) except use "histwin.vim" 
+"              The VIM LICENSE applies to histwin.vim
+"              (see |copyright|) except use "histwin.vim"
 "              instead of "Vim".
 "              No warranty, express or implied.
 "    *** ***   Use At-Your-Own-Risk!   *** ***
@@ -23,7 +23,7 @@ set cpo&vim
 " if you set g:undobrowse_help to 0 e.g.
 " put in your .vimrc
 " :let g:undo_tree_help=0
-let s:undo_help=(exists("g:undo_tree_help") ? g:undo_tree_help : 
+let s:undo_help=(exists("g:undo_tree_help") ? g:undo_tree_help :
 			\(exists("s:undo_help") ? s:undo_help : 1) )"}}}
 
 " Functions:
@@ -43,7 +43,7 @@ fun! s:Init()
 		let s:orig_buffer = bufnr('')
 	endif
 	"let s:orig_buffer = bufname('')
-endfun 
+endfun
 
 fun! s:ReturnHistList(winnr)
     exe a:winnr . ' wincmd w'
@@ -54,7 +54,7 @@ fun! s:ReturnHistList(winnr)
 	" First item contains the header
 	let templist=split(a, '\n')[1:]
 	" include the starting point as the first change.
-	" unfortunately, there does not seem to exist an 
+	" unfortunately, there does not seem to exist an
 	" easy way to obtain the state of the first change,
 	" so we will be inserting a dummy entry and need to
 	" check later, if this is called.
@@ -74,7 +74,7 @@ fun! s:ReturnHistList(winnr)
 	   call add(histlist, {'change': change, 'number': nr, 'time': time})
 	endfor
 	return histlist
-endfun 
+endfun
 
 fun! s:HistWin()
 	let undo_buf=bufwinnr('^'.s:undo_winname.'$')
@@ -90,7 +90,7 @@ fun! s:HistWin()
 	endif
 	exe bufwinnr(s:orig_buffer) . ' wincmd w'
 	return undo_buf
-endfun 
+endfun
 
 fun! s:PrintUndoTree(winnr)
 	let bufname  = (empty(bufname(s:orig_buffer)) ? '[No Name]' : fnamemodify(bufname(s:orig_buffer),':t'))
@@ -112,9 +112,9 @@ fun! s:PrintUndoTree(winnr)
 	for line in histlist
 		let tag = get(tagdict, i-1, '')
 		let tag = (empty(tag) ? tag : '/'.tag.'/')
-		call append('$', 
-		\ printf("%0*d) %8s %s", 
-		\ strlen(len(histlist)), i, line['time'], 
+		call append('$',
+		\ printf("%0*d) %8s %s",
+		\ strlen(len(histlist)), i, line['time'],
 		\ tag ))
 		let i+=1
 	endfor
@@ -122,7 +122,7 @@ fun! s:PrintUndoTree(winnr)
 	call s:HilightLines(s:GetCurrentState(changenr,histlist)+1)
 	setl nomodifiable
 	let ret=setpos('.', save_cursor)
-endfun 
+endfun
 
 fun! s:HilightLines(changenr)
 	" check for availability of matchadd()/clearmatches()
@@ -138,10 +138,10 @@ fun! s:HilightLines(changenr)
 	if hlexists("Ignore")		| 	call matchadd('Ignore', '/$')						|	endif
 	if hlexists("Ignore")		| 	call matchadd('Ignore', '/\ze.*/$')					|	endif
 	if hlexists("Underlined")	| 	call matchadd('Underlined', '^\d\+)\s\+\zs\S\+')	|	endif
-	if a:changenr 
+	if a:changenr
 		if hlexists("PmenuSel") | 	call matchadd('PmenuSel', '^0*'.a:changenr.')[^/]*')| endif
 	endif
-endfun 
+endfun
 
 fun! s:PrintHelp(...)
 	if a:1
@@ -156,7 +156,7 @@ fun! s:PrintHelp(...)
 		put =\"\\" I\t Toggle help screen\"
 	endif
 	put =''
-endfun 
+endfun
 
 fun! s:DiffUndoBranch(change)
 	let prevchangenr=<sid>UndoBranch(a:change)
@@ -170,7 +170,7 @@ fun! s:DiffUndoBranch(change)
 	diffthis
 	exe bufwinnr(s:orig_buffer) . 'wincmd w'
 	diffthis
-endfun 
+endfun
 
 fun! s:GetCurrentState(changenr,histlist)
 	let i=0
@@ -187,7 +187,7 @@ fun! s:ReplayUndoBranch(change)
 	exe bufwinnr(s:orig_buffer) . ' wincmd w'
 	let end=b:undo_list[a:change-1]['number']
 	exe ':u ' . b:undo_list[a:change-1]['change']
-	exe 'normal ' . end . 'u' 
+	exe 'normal ' . end . 'u'
 	redraw
 	let start=1
 	while start <= end
@@ -196,17 +196,17 @@ fun! s:ReplayUndoBranch(change)
 	sleep 100m
 	let start+=1
 	endw
-endfun 
+endfun
 
 fun! s:ReturnBranch()
 	return matchstr(getline('.'), '^\d\+\ze')+0
-endfun 
+endfun
 
 fun! s:ToggleHelpScreen()
 	let s:undo_help=!s:undo_help
 	exe bufwinnr(s:orig_buffer) . ' wincmd w'
 	call s:PrintUndoTree(s:HistWin())
-endfun 
+endfun
 
 fun! s:UndoBranchTag(change)
 	let tagdict=getbufvar(s:orig_buffer, 'undo_tagdict')
@@ -216,7 +216,7 @@ fun! s:UndoBranchTag(change)
 	let tagdict[a:change-1] = tag
 	call setbufvar('#', 'undo_tagdict', tagdict)
 	call s:PrintUndoTree(s:HistWin())
-endfun 
+endfun
 
 fun! s:UndoBranch(change)
 	exe bufwinnr(s:orig_buffer) . 'wincmd w'
@@ -232,7 +232,7 @@ fun! s:UndoBranch(change)
 			exe cmd
 	endif
 	return cur_changenr
-endfun 
+endfun
 
 fun! s:MapKeys()
 	"noremap <script> <buffer> <expr> <CR> s:UndoBranch(s:ReturnBranch())
@@ -243,7 +243,7 @@ fun! s:MapKeys()
 	noremap <script> <buffer> <C-L> :<C-U>silent                                      :call histwin#UndoBrowse()<CR>
 	noremap <script> <buffer> R     :<C-U>silent                                      :call <sid>ReplayUndoBranch(<sid>ReturnBranch())<CR>
 	noremap <script> <buffer> Q     :<C-U>q<CR>
-endfun 
+endfun
 
 fun! histwin#UndoBrowse()
 	if &ul != -1
@@ -254,7 +254,7 @@ fun! histwin#UndoBrowse()
 	else
 		echoerr "Undo has been disabled. Check your undolevel setting!"
 	endif
-endfun 
+endfun
 
 " Restore:
 let &cpo=s:cpo

@@ -12,7 +12,7 @@ set cpo&vim
 
 let s:prototype = tlib#Filter_cnf#New({'_class': ['Filter_fuzzy'], 'name': 'fuzzy'}) "{{{2
 
-" Support for "fuzzy" pattern matching in |tlib#input#List()|. 
+" Support for "fuzzy" pattern matching in |tlib#input#List()|.
 " Characters are interpreted as if connected with '.\{-}'.
 function! tlib#Filter_fuzzy#New(...) "{{{3
     let object = s:prototype.New(a:0 >= 1 ? a:1 : {})

@@ -18,19 +18,19 @@ let loaded_tlib_input_autoload = 1
 " Functions related to tlib#input#List(type, ...) "{{{2
 
 " :def: function! tlib#input#List(type. ?query='', ?list=[], ?handlers=[], ?default="", ?timeout=0)
-" Select a single or multiple items from a list. Return either the list 
+" Select a single or multiple items from a list. Return either the list
 " of selected elements or its indexes.
 "
-" By default, typing numbers will select an item by its index. See 
+" By default, typing numbers will select an item by its index. See
 " |g:tlib_numeric_chars| to find out how to change this.
 "
-" The item is automatically selected if the numbers typed equals the 
-" number of digits of the list length. I.e. if a list contains 20 items, 
-" typing 1 will first highlight item 1 but it won't select/use it 
-" because 1 is an ambiguous input in this context. If you press enter, 
-" the first item will be selected. If you press another digit (e.g. 0), 
-" item 10 will be selected. Another way to select item 1 would be to 
-" type 01. If the list contains only 9 items, typing 1 would select the 
+" The item is automatically selected if the numbers typed equals the
+" number of digits of the list length. I.e. if a list contains 20 items,
+" typing 1 will first highlight item 1 but it won't select/use it
+" because 1 is an ambiguous input in this context. If you press enter,
+" the first item will be selected. If you press another digit (e.g. 0),
+" item 10 will be selected. Another way to select item 1 would be to
+" type 01. If the list contains only 9 items, typing 1 would select the
 " first item right away.
 "
 " type can be:
@@ -88,9 +88,9 @@ function! tlib#input#List(type, ...) "{{{3
         let world.return_agent     = tlib#list#Find(handlers, 'has_key(v:val, "return_agent")', '', 'v:val.return_agent')
         let world.resize           = tlib#list#Find(handlers, 'has_key(v:val, "resize")', '', 'v:val.resize')
         let world.show_empty       = tlib#list#Find(handlers, 'has_key(v:val, "show_empty")', 0, 'v:val.show_empty')
-        let world.pick_last_item   = tlib#list#Find(handlers, 'has_key(v:val, "pick_last_item")', 
+        let world.pick_last_item   = tlib#list#Find(handlers, 'has_key(v:val, "pick_last_item")',
                     \ tlib#var#Get('tlib_pick_last_item', 'bg'), 'v:val.pick_last_item')
-        let world.numeric_chars    = tlib#list#Find(handlers, 'has_key(v:val, "numeric_chars")', 
+        let world.numeric_chars    = tlib#list#Find(handlers, 'has_key(v:val, "numeric_chars")',
                     \ tlib#var#Get('tlib_numeric_chars', 'bg'), 'v:val.numeric_chars')
         let world.key_handlers     = filter(copy(handlers), 'has_key(v:val, "key")')
         let filter                 = tlib#list#Find(handlers, 'has_key(v:val, "filter")', '', 'v:val.filter')
@@ -104,7 +104,7 @@ function! tlib#input#List(type, ...) "{{{3
 endf
 
 
-" A wrapper for |tlib#input#ListW()| that builds |tlib#World#New| from 
+" A wrapper for |tlib#input#ListW()| that builds |tlib#World#New| from
 " dict.
 function! tlib#input#ListD(dict) "{{{3
     return tlib#input#ListW(tlib#World#New(a:dict))
@@ -113,7 +113,7 @@ endf
 
 " :def: function! tlib#input#ListW(world, ?command='')
 " The second argument, command is meant for internal use only.
-" The same as |tlib#input#List| but the arguments are packed into world 
+" The same as |tlib#input#List| but the arguments are packed into world
 " (an instance of tlib#World as returned by |tlib#World#New|).
 function! tlib#input#ListW(world, ...) "{{{3
     TVarArg 'cmd'
@@ -584,7 +584,7 @@ endf
 
 
 " :def: function! tlib#input#CommandSelect(command, ?keyargs={})
-" Take a command, view the output, and let the user select an item from 
+" Take a command, view the output, and let the user select an item from
 " its output.
 "
 " EXAMPLE: >
@@ -616,10 +616,10 @@ endf
 
 " :def: function! tlib#input#Edit(name, value, callback, ?cb_args=[])
 "
-" Edit a value (asynchronously) in a scratch buffer. Use name for 
+" Edit a value (asynchronously) in a scratch buffer. Use name for
 " identification. Call callback when done (or on cancel).
 " In the scratch buffer:
-" Press <c-s> or <c-w><cr> to enter the new value, <c-w>c to cancel 
+" Press <c-s> or <c-w><cr> to enter the new value, <c-w>c to cancel
 " editing.
 " EXAMPLES: >
 "   fun! FooContinue(success, text)
@@ -646,7 +646,7 @@ function! tlib#input#Edit(name, value, callback, ...) "{{{3
     map <buffer> <c-w><cr> :call <SID>EditCallback(1)<cr>
     " :nodoc:
     imap <buffer> <c-w><cr> <c-o>call <SID>EditCallback(1)<cr>
-    
+
     call tlib#normal#WithRegister('gg"tdG', 't')
     norm
     call append(1, split(a:value, "\<c-j>", 1))

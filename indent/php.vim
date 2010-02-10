@@ -1,14 +1,14 @@
 " Vim indent file
 " Language:	Php
-" Authors:	Miles Lott <milos@groupwhere.org>, Johannes Zellner <johannes@zellner.org>, Pim Snel <pim@lingewoud.nl> 
+" Authors:	Miles Lott <milos@groupwhere.org>, Johannes Zellner <johannes@zellner.org>, Pim Snel <pim@lingewoud.nl>
 " URL:		http://lingewoud.nl/downloads.php
-" Last Change:	23 feb 2004 
+" Last Change:	23 feb 2004
 " Version:	0.3
-" Notes:  	This is a combination of the PHP indent file of Miles Lott with 
-"         	the HTML indent file of Johannes Zellner. Usefull for editing 
-"         	php-files with html parts in it. 
-"         	
-" Changelog: 
+" Notes:  	This is a combination of the PHP indent file of Miles Lott with
+"         	the HTML indent file of Johannes Zellner. Usefull for editing
+"         	php-files with html parts in it.
+"
+" Changelog:
 " 			 0.3 - 25 mar 2004
 " 			 - fixed wrong indention when a php-tag is opened and closed on
 " 			   one single line.
@@ -22,7 +22,7 @@
 "            0.1 - 27 mar 2003
 "            - initial creation of html-enhanced php indent-file
 
-" Options: 
+" Options:
 let php_noindent_switch = 0    " set this to '1' to not try to indent switch/case statements
 
 if exists("b:did_indent")
@@ -72,11 +72,11 @@ function GetPhpIndent()
 
    let ind = indent(lnum) + (&sw * ind)
 
-   " Indent after php open tags 
+   " Indent after php open tags
    " if line =~ '<?php' && line !~ '?>' && cline !~ '^\s*[?>]'
       " let ind = ind + &sw
    " endif
-   
+
    " Indent block comments properly:
    if line =~ '^\s*/\*'
       return ind + 1

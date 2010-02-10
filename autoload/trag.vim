@@ -11,7 +11,7 @@ if &cp || exists("loaded_trag_autoload")
 endif
 let loaded_trag_autoload = 1
 
-    
+
 let s:grep_rx = ''
 
 
@@ -193,7 +193,7 @@ function! trag#FindGitRepos() "{{{3
 endf
 
 
-" Edit a file from the project catalog. See |g:trag_project| and 
+" Edit a file from the project catalog. See |g:trag_project| and
 " |:TRagfile|.
 function! trag#Edit() "{{{3
     let w = tlib#World#New(copy(g:trag_edit_world))
@@ -214,11 +214,11 @@ endf
 " Test j trag
 " Test n tragfoo
 
-" TODO: If the use of regular expressions alone doesn't meet your 
-" demands, you can define the functions trag#Process_{kind}_{filesuffix} 
-" or trag#Process_{kind}, which will be run on every line with the 
-" arguments: match, line, quicklist, filename, lineno. This function 
-" returns [match, line]. If match != -1, the line will be added to the 
+" TODO: If the use of regular expressions alone doesn't meet your
+" demands, you can define the functions trag#Process_{kind}_{filesuffix}
+" or trag#Process_{kind}, which will be run on every line with the
+" arguments: match, line, quicklist, filename, lineno. This function
+" returns [match, line]. If match != -1, the line will be added to the
 " quickfix list.
 " If such a function is defined, it will be called for every line.
 
@@ -227,14 +227,14 @@ endf
 "   KIND REGEXP
 "   KIND1,KIND2 REGEXP
 "
-" If the variables [bg]:trag_rxf_{kind}_{&filetype} or 
-" [bg]:trag_rxf_{kind} exist, these will be taken as format string (see 
+" If the variables [bg]:trag_rxf_{kind}_{&filetype} or
+" [bg]:trag_rxf_{kind} exist, these will be taken as format string (see
 " |printf()|) to format REGEXP.
 "
 " EXAMPLE:
-" trag#Grep('v foo') will find by default take g:trag_rxf_v and find 
-" lines that looks like "\<foo\>\s*=[^=~]", which most likely is a 
-" variable definition in many programming languages. I.e. it will find 
+" trag#Grep('v foo') will find by default take g:trag_rxf_v and find
+" lines that looks like "\<foo\>\s*=[^=~]", which most likely is a
+" variable definition in many programming languages. I.e. it will find
 " lines like: >
 "   foo = 1
 " < but not: >
@@ -301,8 +301,8 @@ function! trag#Grep(args, ...) "{{{3
             "         endif
             "     endfor
             " endfor
-            " When we don't have to process every line, we slurp the file 
-            " into a buffer and use search(), which should be faster than 
+            " When we don't have to process every line, we slurp the file
+            " into a buffer and use search(), which should be faster than
             " running match() on every line.
             if empty(prcacc)
                 if search_mode == 0 || !empty(rxneg)
@@ -564,7 +564,7 @@ function! trag#AgentEditQFE(world, selected, ...) "{{{3
         endfor
     endif
     return a:world
-endf 
+endf
 
 
 function! trag#AgentPreviewQFE(world, selected) "{{{3

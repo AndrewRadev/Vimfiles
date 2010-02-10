@@ -14,27 +14,22 @@ augroup custom
 
   autocmd FileType text setlocal textwidth=98
 
-  autocmd BufEnter *.cpp compiler gcc
-  autocmd BufEnter *.c compiler gcc
   autocmd BufEnter *.c setlocal tags+=~/tags/unix.tags
 
-  autocmd BufEnter *.php compiler php
-
+  autocmd BufEnter *.c    compiler gcc
+  autocmd BufEnter *.cpp  compiler gcc
+  autocmd BufEnter *.php  compiler php
   autocmd BufEnter *.html compiler tidy
+  autocmd BufEnter *.js   compiler jsl
+  autocmd BufEnter *.hs   compiler ghc
 
-  autocmd BufEnter *.js compiler jsl
-
-  autocmd BufEnter *.hsc set filetype=haskell
-  autocmd BufEnter *.hs compiler ghc
-
-  autocmd BufEnter *.tags set filetype=tags
-
-  autocmd BufRead,BufNewFile *.vorg set filetype=vorg.txt
-  autocmd BufRead,BufNewFile *.mkd set filetype=mkd
-  autocmd BufRead,BufNewFile *.markdown set filetype=mkd
-
-  autocmd BufRead,BufNewFile jquery.*.js set filetype=jquery
-  autocmd BufRead,BufNewFile httpd*.conf set filetype=apache
+  autocmd BufEnter *.hsc        set filetype=haskell
+  autocmd BufEnter *.tags       set filetype=tags
+  autocmd BufEnter *.vorg       set filetype=vorg.txt
+  autocmd BufEnter *.mkd        set filetype=mkd
+  autocmd BufEnter *.markdown   set filetype=mkd
+  autocmd BufEnter jquery.*.js  set filetype=jquery
+  autocmd BufEnter httpd-*.conf set filetype=apache
 
   " Custom filetypes:
   autocmd BufEnter Result set filetype=dbext_result.txt

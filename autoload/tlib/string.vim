@@ -13,7 +13,7 @@ let loaded_tlib_string_autoload = 1
 
 
 " :def: function! tlib#string#RemoveBackslashes(text, ?chars=' ')
-" Remove backslashes from text (but only in front of the characters in 
+" Remove backslashes from text (but only in front of the characters in
 " chars).
 function! tlib#string#RemoveBackslashes(text, ...) "{{{3
     exec tlib#arg#Get(1, 'chars', ' ')

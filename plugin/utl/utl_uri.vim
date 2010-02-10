@@ -17,7 +17,7 @@
 " NOTE: The distinction between URI and URI-Reference won't be hold out
 "   (is that correct english? %-\ ). It should be clear from the context.
 "   The fragment goes sometimes with the URI, sometimes not.
-" 
+"
 " Usage:
 "
 "   " Parse an URI
@@ -39,7 +39,7 @@
 "   let uriRebuilt = UtlUri_build_2(absUriRef, fragment)
 "
 "   let unesc = UtlUri_unescape('a%20b%3f')    " -> unesc==`a b?'
-"   
+"
 " Details:
 "   Authority, query and fragment can have the <undef> value (literally!)
 "   (similar to undef-value in Perl). That's distinguished from
@@ -70,7 +70,7 @@ fu! s:UtlUri_parse(uri, idx)
     "
     " ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
     "  12            3  4          5       6  7        8 9
-    " 
+    "
     " scheme    = \2
     " authority = \4
     " path      = \5
@@ -103,7 +103,7 @@ endfu
 fu! UtlUri_authority(uri)
     if  s:UtlUri_parse(a:uri, 3) == s:UtlUri_parse(a:uri, 4)
 	return '<undef>'
-    else 
+    else
 	return s:UtlUri_parse(a:uri, 4)
     endif
 endfu
@@ -117,7 +117,7 @@ endfu
 fu! UtlUri_query(uri)
     if  s:UtlUri_parse(a:uri, 6) == s:UtlUri_parse(a:uri, 7)
 	return '<undef>'
-    else 
+    else
 	return s:UtlUri_parse(a:uri, 7)
     endif
 endfu
@@ -126,7 +126,7 @@ endfu
 fu! UtlUri_fragment(uri)
     if  s:UtlUri_parse(a:uri, 8) == s:UtlUri_parse(a:uri, 9)
 	return '<undef>'
-    else 
+    else
 	return s:UtlUri_parse(a:uri, 9)
     endif
 endfu
@@ -150,7 +150,7 @@ fu! UtlUri_build(scheme, authority, path, query, fragment)
 	let result = result . '//' . a:authority
     endif
 
-    let result = result . a:path 
+    let result = result . a:path
 
     if a:query != '<undef>'
 	let result = result . '?' . a:query
@@ -218,7 +218,7 @@ fu! UtlUri_abs(uri, base)
     if path[0] == '/'
 	return UtlUri_build(scheme, authority, path, query, fragment)
     endif
-	
+
     " see <URL:http://www.ietf.org/rfc/rfc2396.txt#needs to be merged>
 
     "	    step a)
@@ -232,8 +232,8 @@ fu! UtlUri_abs(uri, base)
     " file lead to different buffers, which in turn is a problem for Utl.
     " Have to substitute twice since adjacent ./ segments, e.g. a/././b
     " not substituted else (despite 'g' flag). Another Vim-Bug?
-    let new_path = substitute( new_path, '/\./', '/', 'g') 
-    let new_path = substitute( new_path, '/\./', '/', 'g') 
+    let new_path = substitute( new_path, '/\./', '/', 'g')
+    let new_path = substitute( new_path, '/\./', '/', 'g')
 
     return UtlUri_build(scheme, authority, new_path, query, fragment)
 
@@ -266,9 +266,9 @@ endfu
 
 
 "------------------------------------------------------------------------------
-" Unescape unsafe characters in given string, 
+" Unescape unsafe characters in given string,
 " e.g. transform `10%25%20is%20enough' to `10% is enough'.
-" 
+"
 " - typically string is an uri component (path or fragment)
 "
 " (see <URL:http://www.ietf.org/rfc/rfc2396.txt#2. URI Characters and Escape Sequences>)
@@ -283,7 +283,7 @@ fu! UtlUri_unescape(esc)
 	    return unesc . esc
 	endif
 	let chr = nr2char( "0x". esc[ibeg+1] . esc[ibeg+2] )
-	let unesc = unesc . strpart(esc, 0, ibeg) . chr 
+	let unesc = unesc . strpart(esc, 0, ibeg) . chr
 	let esc = strpart(esc, ibeg+3, 9999)
 
     endwhile

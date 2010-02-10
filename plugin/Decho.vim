@@ -89,7 +89,7 @@ au Filetype Decho nmap <silent> <buffer> <F1> :setlocal noro ma<cr>
 "        writes messages to a small window (g:decho_winheight lines)
 "        on the bottom of the screen
 fun! Decho(...)
- 
+
   " make sure that SaveWinPosn() and RestoreWinPosn() are available
   if !exists("g:loaded_cecutil")
    runtime plugin/cecutil.vim
@@ -111,7 +111,7 @@ fun! Decho(...)
 	let eakeep= &ea
 	set ei=BufEnter,WinEnter,WinLeave,ShellCmdPost,FocusGained noea
    endif
- 
+
    " As needed, create/switch-to the DBG buffer
    if !bufexists(g:decho_bufname) && bufnr("*/".g:decho_bufname."$") == -1
     " if requested DBG-buffer doesn't exist, create a new one
@@ -119,13 +119,13 @@ fun! Decho(...)
 	exe "keepjumps silent! bot ".g:decho_winheight."new ".fnameescape(g:decho_bufname)
     setlocal noswf
 	keepjumps silent! %d
- 
+
    elseif bufwinnr(g:decho_bufname) > 0
     " if requested DBG-buffer exists in a window,
     " go to that window (by window number)
     exe "keepjumps ".bufwinnr(g:decho_bufname)."wincmd W"
     exe "res ".g:decho_winheight
- 
+
    else
     " user must have closed the DBG-buffer window.
     " create a new one at the bottom of the screen.
@@ -133,10 +133,10 @@ fun! Decho(...)
     setlocal noswf
     exe "keepjumps b ".bufnr(g:decho_bufname)
    endif
- 
+
    set ft=Decho
    setlocal noswapfile noro nobl fo=n2croql
- 
+
    "  make sure DBG window is on the bottom
    wincmd J
   endif
@@ -235,7 +235,7 @@ fun! Decho(...)
    keepjumps $
    keepjumps let res= append("$",smsg)
    setlocal nomod
- 
+
    " Put cursor at bottom of DBG window, then return to original window
    exe "res ".g:decho_winheight
    keepjumps norm! G
@@ -247,7 +247,7 @@ fun! Decho(...)
    if exists("swp")
     call RestoreWinPosn(swp)
    endif
- 
+
    if g:decho_bufenter
     let &ei= eikeep
 	let &ea= eakeep
@@ -478,7 +478,7 @@ if has("clientserver") && executable("gvim")
     if g:dechomode == s:DECHOREM
     	let g:dechomode= s:DECHOWIN
     endif
- 
+
    elseif a:mode == 1
     " turn remote debugging on
     if g:dechomode != s:DECHOREM
@@ -511,11 +511,11 @@ if has("clientserver") && executable("gvim")
       endtry
      endwhile
     endif
- 
+
    else
     echohl Warning | echomsg "DechoRemote(".a:mode.") not supported" | echohl None
    endif
- 
+
  endfun
 endif
 
@@ -524,7 +524,7 @@ endif
 "  by the user;   DechoVarOn [varname]
 fun! s:DechoVarOn(...)
   let g:dechomode= s:DECHOVAR
-  
+
   if a:0 > 0
    let g:dechofile= a:1
    if a:2 =~ '^g:'
@@ -553,7 +553,7 @@ endfun
 if v:version >= 700
  fun! s:DechoTab(mode,...)
  "  call Dfunc("DechoTab(mode=".a:mode.") a:0=".a:0)
- 
+
    if a:mode
     let g:dechomode = s:DECHOTAB
 	let g:dechofile = (a:0 > 0)? a:1 : ""
@@ -579,7 +579,7 @@ if v:version >= 700
    else
     let g:dechomode= s:DECHOWIN
    endif
- 
+
  "  call Dret("DechoTab")
  endfun
 endif

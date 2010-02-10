@@ -304,7 +304,7 @@ function! s:GetTypeInfoOfVariable(contextStack, szVariable, bSearchDecl)
 
         if result != {} && result.value==''
             " result.value==''
-            " eg: 
+            " eg:
             " struct
             " {
             " }gVariable;
@@ -396,7 +396,7 @@ function! s:SearchTypeInfoOfDecl(szVariable)
     let origPos = originalPos[1:2]
     let curPos = origPos
     let stopPos = origPos
-    
+
     while curPos !=[0,0]
         " We go to the start of the current scope
         let curPos = searchpairpos('{', '', '}', 'bW', g:omni#cpp#utils#expIgnoreComments)
@@ -550,7 +550,7 @@ function! s:ResolveCast(tokens, startChar, endChar)
 
     let countItem=0
     let startIndex = -1
-    let endIndex = -1 
+    let endIndex = -1
     let i = 0
     for token in tokens
         if startIndex==-1
@@ -602,7 +602,7 @@ function! s:LocalSearchDecl(name)
     let lastfoldenable = &foldenable
     let &foldenable = 0
 
-    " We add \C (noignorecase) to 
+    " We add \C (noignorecase) to
     " avoid bug when, for example, if we have a declaration like this : "A a;"
     let varname = "\\C\\<" . a:name . "\\>"
 

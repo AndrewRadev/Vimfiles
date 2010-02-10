@@ -2,7 +2,7 @@
 " utility functions for haskellmode plugins
 "
 " (Claus Reinke; last modified: 23/04/2009)
-" 
+"
 " part of haskell plugins: http://projects.haskell.org/haskellmode-vim
 " please send patches to <claus.reinke@talk21.com>
 
@@ -17,7 +17,7 @@ function! haskellmode#GetNameSymbol(line,col,off)
   "let [line]  = getbufline(a:buf,a:lnum)
   let line    = a:line
 
-  " find the beginning of unqualified id or qualified id component 
+  " find the beginning of unqualified id or qualified id component
   let start   = (a:col - 1) + a:off
   if line[start] =~ name
     let pattern = name
@@ -40,7 +40,7 @@ function! haskellmode#GetNameSymbol(line,col,off)
   let end   = posB>-1 ? posB : idPos
 
   " special case: symbolic ids starting with .
-  if id[0]=='.' && posA==-1 
+  if id[0]=='.' && posA==-1
     let start = idPos-1
     let end   = posB==-1 ? start : end
   endif
@@ -88,7 +88,7 @@ function! haskellmode#GatherImports()
     endif
     let i+=1
   endwhile
-  if !has_key(imports[1],'Prelude') 
+  if !has_key(imports[1],'Prelude')
     let imports[0]['Prelude'] = {'lines':[],'hiding':[],'explicit':[],'modules':[]}
     let imports[1]['Prelude'] = {'lines':[],'hiding':[],'explicit':[],'modules':[]}
   endif
@@ -120,7 +120,7 @@ endfunction
 
 function! haskellmode#MergeImport(entry,line,hiding,explicit,module)
   let lines    = a:entry['lines'] + [ a:line ]
-  let hiding   = a:explicit==[] ? haskellmode#ListIntersect(a:entry['hiding'], a:hiding) 
+  let hiding   = a:explicit==[] ? haskellmode#ListIntersect(a:entry['hiding'], a:hiding)
                               \ : haskellmode#ListWithout(a:entry['hiding'],a:explicit)
   let explicit = haskellmode#ListUnion(a:entry['explicit'], a:explicit)
   let modules  = haskellmode#ListUnion(a:entry['modules'], [ a:module ])

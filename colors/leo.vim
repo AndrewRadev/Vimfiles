@@ -94,7 +94,7 @@ hi Question     cterm=none    ctermfg=40
 hi Search       cterm=none    ctermfg=16    ctermbg=248   guifg=#000000 guibg=#a8a8a8
 hi SpecialKey   cterm=none    ctermfg=245   guifg=#8a8a8a
 hi StatusLine   cterm=bold    ctermfg=255   ctermbg=19    guifg=#0000ff guibg=#ffffff
-hi StatusLineNC cterm=none    ctermfg=252   ctermbg=17    guifg=#00005f guibg=#d0d0d0 
+hi StatusLineNC cterm=none    ctermfg=252   ctermbg=17    guifg=#00005f guibg=#d0d0d0
 hi Title        cterm=none    ctermfg=33
 hi VertSplit    cterm=none    ctermfg=254   guifg=#000000
 hi Visual       cterm=reverse ctermbg=none
@@ -119,7 +119,7 @@ if v:version >= 700
   hi SpellCap     cterm=none    ctermfg=16    ctermbg=196
   hi SpellLocal   cterm=none    ctermfg=16    ctermbg=196
   hi SpellRare    cterm=none    ctermfg=16    ctermbg=196
-  
+
   " No need for GUI colors :)
   hi TabLine      cterm=none  ctermfg=252   ctermbg=17
   hi TabLineSel   cterm=none  ctermfg=255   ctermbg=21

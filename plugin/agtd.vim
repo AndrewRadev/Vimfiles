@@ -12,7 +12,7 @@
 "
 " Version:	0.2 Alpha
 "
-" Files:	
+" Files:
 "		doc/agtd.vim
 "		plugin/agtd.vim
 "		syntax/agtd.vim
@@ -28,7 +28,7 @@
 "   0.1  Initial version
 " ------------------------------------------------------------------------------
 
-if exists("loaded_agtd") 
+if exists("loaded_agtd")
     finish
 endif
 let loaded_agtd = "0.1"
@@ -63,7 +63,7 @@ function Gtd_insertTask()
 
     " Get project label as in p:pro:sub1:sub2
     if match (line,' p:\w*') == -1
-        " Line has no label 
+        " Line has no label
         let lastCol = 0
         let project = ""
         let col = 0
@@ -83,7 +83,7 @@ function Gtd_insertTask()
             let line = getline (pos)
             let col = match(line,'\u\+')
 
-            if col != lastCol 
+            if col != lastCol
                 " Project names in the same column are siblings, not an ancestor
                 let project = ":" . tolower(matchstr(line,'\u\+')) . project
                 let lastCol = col
@@ -105,7 +105,7 @@ endfunction
 " Go to PROJECT line
 "
 " Parse the current line to find a p:project label and decompose it to find
-" the rest of the tasks related with such project. 
+" the rest of the tasks related with such project.
 "
 " If there are different subprojects (p:xxx:yy:z) the function will actually
 " start jumping step by step, deeper into the hierarchy until the end or the
@@ -189,8 +189,8 @@ endfunction
 "
 " Locate first appearence of project name, jump to it and unfold
 function Gtd_searchProject(pro)
-    let line_no = search ('^\s\+'.a:pro) 
-    call cursor (line_no) 
+    let line_no = search ('^\s\+'.a:pro)
+    call cursor (line_no)
     exe line_no."foldopen"
     exe line_no."foldopen"
     exe line_no."foldopen"
@@ -200,7 +200,7 @@ function Gtd_searchProject(pro)
 endfunction
 
 
-" List of projects 
+" List of projects
 "
 " Custom function for auto-completion. Auto-complete with project names within
 " current buffer.
@@ -209,7 +209,7 @@ function Gtd_getProjectList(ArgLead, CmdLine, CursorPos)
     let proName = '^\s\+'.a:ArgLead.'\u\+'
     let startPos = getpos ('.')
     call cursor (1,1)
-    let pos = search(proName) 
+    let pos = search(proName)
     while pos != 0
         call cursor (pos)
         let line = getline (pos)
@@ -219,7 +219,7 @@ function Gtd_getProjectList(ArgLead, CmdLine, CursorPos)
             call add(proList, pro)
         endif
 
-        let pos = search(proName, 'W') 
+        let pos = search(proName, 'W')
     endwhile
     call setpos ('.', startPos)
     return proList
@@ -233,7 +233,7 @@ function s:Gtd_getDateLines()
     call cursor (1,1)
 
     " Search tasks with dates
-    let pos = search(s:agtd_dateRegx) 
+    let pos = search(s:agtd_dateRegx)
     while pos != 0
         call cursor (pos)
         let line = getline ('.')
@@ -247,7 +247,7 @@ function s:Gtd_getDateLines()
         let line = substitute (line, '^\s\+', "", "")
         let line = date."    ".line
         call add (datesList, line)
-        let pos = search(s:agtd_dateRegx, 'W') 
+        let pos = search(s:agtd_dateRegx, 'W')
     endwhile
     call setpos ('.', startPos)
     return datesList
@@ -293,12 +293,12 @@ function Gtd_displayCalendar()
 endfunction
 
 
-" Build an iCalendar file 
+" Build an iCalendar file
 "
 " Search in the current buffer all timestamps and build an iCalendarfile
 " according RFC-5545. All the comments will be plain events, since the current
 " notation will not recognize time-frames.
-" 
+"
 " NOTES:
 "   * The generated UID is random. If you generate and import the output
 "   several times, you will get the same event repeated in your calendar
@@ -311,7 +311,7 @@ function Gtd_buildICalFile()
     echo "BEGIN:VCALENDAR"
     echo "PRODID:-//DIGITAL-LUMBERJACK/AGTD Vim Calendar File 0.1//EN"
     echo "VERSION:2.0"
-    
+
     for line in sort (datesList)
         let stamp = substitute(line, "-", "", "g")
         let stamp = matchstr(line, "\d\{8}")
@@ -338,7 +338,7 @@ endf
 command -nargs=1 -complete=customlist,Gtd_getProjectList GSearch call Gtd_searchProject("<args>")
 command GCalendar call Gtd_displayCalendar()
 command GInsert call Gtd_insertTask()
-command GGo call Gtd_getProject() 
+command GGo call Gtd_getProject()
 "command Gsort .sort /\s\{8}/
 
 finish

@@ -40,7 +40,7 @@
 "
 "   3. Arg: display Mode (dispMode)
 "   Most handlers will ignore this argument. Exception for instance handlers
-"   which actually display the retrieved or determined file like 
+"   which actually display the retrieved or determined file like
 "   Utl_AddressScheme_foot. If your function is smart it might, if applicable,
 "   support the special dispMode values copyFileName (see examples in this file).
 "
@@ -71,48 +71,48 @@
 "
 "     Details :
 "     ° File name should be a pathname to (an existing) local file or directory.
-"       Note : the 
+"       Note : the
 "     ° File name's path separator should be slash (not backslash).
 "     ° It does not hurt if file is already displayed (an example for this is
 "       vimhelp scheme).
 "
 "   * 2nd list element = fragment Mode (fragMode). Allowed values:
 "     `abs', 'rel'. Defaults to `abs' if no 2nd list element.
-"     `abs': Fragment will be addressed to beginning of file. 
+"     `abs': Fragment will be addressed to beginning of file.
 "     `rel': Fragment will be addressed relative to current cursor position
 "            (example: Vimhelp scheme).
 
-" 
+"
 " Specification of 'scheme handler variable interface'	(id=spec_ihsv)
 " ----------------------------------------------------
-" 
+"
 " - Variable naming: utl_cfg_hdl_scm_<scheme>
-" 
+"
 " - Variables executed by :exe  (see <vimhelp::exe>).
 "   This implies that the variable has to a valid ex command. (to execute more
 "   than one line of ex commands a function can be called).
-" 
+"
 " - Should handle the actual link, e.g. download the file.
 "   But it can do whatever it wants :-)
-" 
+"
 " - Input data: scheme specific conversion specifiers should appear in the
 "   variable. They will be replaced by Utl.vim when executing an URL, e.g %u
 "   will be replaced by the actual URL. The available conversion specifiers are
 "   defined at <url:../plugin/utl_rc.vim#r=utl_cfg_hdl_scm_http> for http etc.
-" 
+"
 " - Output data: an optional global list, which is the same as that of the
 "   handler itself, see <url:../plugin/utl_scm.vim#r=scm_ret_list>. Since the
 "   variable's value can be any ex command (and, for instance, not always a
 "   function) a global variable is used:
 "       g:utl_hdl_scm_ret_list
 "   This variable will be initialized to an empty list [] by Utl.vim before
-"   executing the contents of the variable. 
-" 
+"   executing the contents of the variable.
+"
 " - Exception handling: Normally nothing needs to be done in the variable code.
 "   Utl.vim checks for v:shell_error and v:errmsg after execution. There are
 "   situation where setting v:errmsg makes sense. The variable might want to
 "   issue the error message (Utl.vim does not).
-" 
+"
 
 
 if exists("loaded_utl_scm") || &cp || v:version < 700
@@ -131,12 +131,12 @@ let s:utl_esccmdspecial = '%#'  " keep equal to utl.vim#__esc
 " - If `auri' gives a query, then the file is executed (it should be an
 "   executable program) with the query expression passed as arguments
 "   arguments. The program's output is written to a (tempname constructed)
-"   result file.  
-"   
+"   result file.
+"
 " - else, the local file itself is the result file and is returned.
-" 
+"
 fu! Utl_AddressScheme_file(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_file",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_file",1,1)
 
     " authority: can be a
     " - windows drive, e.g. `c:'
@@ -174,15 +174,15 @@ fu! Utl_AddressScheme_file(auri, fragment, dispMode)
     endif
 
     if a:dispMode =~ '^copyFileName'
-	call Utl_trace("- mode is `copyFileName to clipboard': so quit after filename is known now") 
-	call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1) 
+	call Utl_trace("- mode is `copyFileName to clipboard': so quit after filename is known now")
+	call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1)
 	return [path]
     endif
 
     " If Query defined, then execute the Path	    (id=filequery)
     let query = UtlUri_query(a:auri)
     if query != '<undef>'   " (N.B. empty query is not undef)
-	call Utl_trace("- URL contains query expression (".query.") - so try to execute path") 
+	call Utl_trace("- URL contains query expression (".query.") - so try to execute path")
 
 	" (Should make functions Query_form(), Query_keywords())
 	if match(query, '&') != -1	    " id=query_form
@@ -199,7 +199,7 @@ fu! Utl_AddressScheme_file(auri, fragment, dispMode)
 	" If redirection char '>' at the end:
 	" Supply a temp file for redirection and execute the program
 	" synchronously to wait for its output
-	if strlen(query)!=0 && stridx(query, '>') == strlen(query)-1 
+	if strlen(query)!=0 && stridx(query, '>') == strlen(query)-1
 	    call Utl_trace("- query with > character at end: assume output to a temp file and use it as local path")
 	    let cacheFile = Utl_utilBack2FwdSlashes( tempname() )
 	    let cmd = "!".path." ".query." ".cacheFile
@@ -215,26 +215,26 @@ fu! Utl_AddressScheme_file(auri, fragment, dispMode)
 	    call Utl_trace("- trying to execute command `".cmd."'")
 	    exe cmd
 	endif
-	
+
 	if v:shell_error
 	    let v:errmsg = 'Shell Error from execute searchable Resource'
 	    echohl ErrorMsg | echo v:errmsg | echohl None
 	    if cacheFile != ''
 		call delete(cacheFile)
 	    endif
-	    call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1) 
+	    call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1)
 	    return []
 	endif
-	call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1)
 	if cacheFile == ''
 	    return []
-	else 
+	else
 	    return [cacheFile]
 	endif
 
     endif
 
-    call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_file",1,-1)
     return [path]
 endfu
 
@@ -242,10 +242,10 @@ endfu
 "-------------------------------------------------------------------------------
 "
 fu! Utl_AddressScheme_ftp(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_ftp",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_ftp",1,1)
     call Utl_trace("- delegating to http scheme handler")
     let ret = Utl_AddressScheme_http(a:auri, a:fragment, a:dispMode)
-    call Utl_trace("- end execution of Utl_AddressScheme_ftp",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_ftp",1,-1)
     return ret
 endfu
 
@@ -253,21 +253,21 @@ endfu
 "-------------------------------------------------------------------------------
 "
 fu! Utl_AddressScheme_https(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_https",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_https",1,1)
     call Utl_trace("- delegating to http scheme handler")
     let ret = Utl_AddressScheme_http(a:auri, a:fragment, a:dispMode)
-    call Utl_trace("- end execution of Utl_AddressScheme_https",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_https",1,-1)
     return ret
 endfu
 
 "-------------------------------------------------------------------------------
 "
 fu! Utl_AddressScheme_http(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_http",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_http",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName to clipboard' not possible for scheme `http:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1)
 	return []
     endif
 
@@ -277,7 +277,7 @@ fu! Utl_AddressScheme_http(auri, fragment, dispMode)
 	call input("No scheme handler variable g:utl_cfg_hdl_scm_http defined yet. Entering Setup now. <RETURN>")
 	echohl None
 	Utl openLink config:#r=utl_cfg_hdl_scm_http split " (recursion, setup)
-	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1)
 	return []
     endif
     call Utl_trace("- Vim variable g:utl_cfg_hdl_scm_http exists, value=`".g:utl_cfg_hdl_scm_http."'")
@@ -289,7 +289,7 @@ fu! Utl_AddressScheme_http(auri, fragment, dispMode)
 	echo "The content of your Vim variable `".g:utl_cfg_hdl_scm_http."' is invalid and has to be fixed!"
 	echo "Reason: `".errmsg."'"
 	echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1)
 	return []
     endif
 
@@ -306,11 +306,11 @@ fu! Utl_AddressScheme_http(auri, fragment, dispMode)
 	call Utl_trace("- execution of scm handler returned with v:shell_error or v:errmsg set")
 	call Utl_trace("  v:shell_error=`".v:shell_error."'")
 	call Utl_trace("  v:errmsg=`".v:errmsg."'")
-	call Utl_trace("- end execution of Utl_AddressScheme_http (not successful)",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_http (not successful)",1,-1)
 	return []
     endif
 
-    call Utl_trace("- end execution of Utl_AddressScheme_http (successful)",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_http (successful)",1,-1)
     return g:utl__hdl_scm_ret_list
 endfu
 
@@ -318,11 +318,11 @@ endfu
 " Retrieve file via scp.
 "
 fu! Utl_AddressScheme_scp(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_scp",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_scp",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName name to clipboard' not possible for scheme `scp:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1)
 	return []
     endif
 
@@ -332,7 +332,7 @@ fu! Utl_AddressScheme_scp(auri, fragment, dispMode)
 	call input("No scheme handler variable g:utl_cfg_hdl_scm_scp defined yet. Entering Setup now. <RETURN>")
 	echohl None
 	Utl openLink config:#r=utl_cfg_hdl_scm_scp split " (recursion, setup)
-	call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1)
 	return []
     endif
     call Utl_trace("- Vim variable g:utl_cfg_hdl_scm_scp exists, value=`".g:utl_cfg_hdl_scm_scp."'")
@@ -344,7 +344,7 @@ fu! Utl_AddressScheme_scp(auri, fragment, dispMode)
 	echo "The content of your Vim variable `".g:utl_cfg_hdl_scm_scp."' is invalid and has to be fixed!"
 	echo "Reason: `".errmsg."'"
 	echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1)
 	return []
     endif
 
@@ -359,11 +359,11 @@ fu! Utl_AddressScheme_scp(auri, fragment, dispMode)
 
     if v:shell_error || v:errmsg!=""
 	call Utl_trace("- execution of scm handler returned with v:shell_error or v:errmsg set")
-	call Utl_trace("- end execution of Utl_AddressScheme_scp (not successful)",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_scp (not successful)",1,-1)
 	return []
     endif
 
-    call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_scp",1,-1)
     return g:utl__hdl_scm_ret_list
 
 endfu
@@ -378,11 +378,11 @@ endfu
 " the return receipt, e.g. 'mail sent succesfully'.
 "
 fu! Utl_AddressScheme_mailto(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_mailto",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_mailto",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName name to clipboard' not possible for scheme `http:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_http",1,-1)
 	return []
     endif
 
@@ -392,7 +392,7 @@ fu! Utl_AddressScheme_mailto(auri, fragment, dispMode)
 	call input("No scheme handler variable g:utl_cfg_hdl_scm_mailto defined yet. Entering Setup now. <RETURN>")
 	echohl None
 	Utl openLink config:#r=utl_cfg_hdl_scm_mailto split " (recursion, setup)
-	call Utl_trace("- end execution of Utl_AddressScheme_mailto",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mailto",1,-1)
 	return []
     endif
     call Utl_trace("- Vim variable g:utl_cfg_hdl_scm_mailto exists, value=`".g:utl_cfg_hdl_scm_mailto."'")
@@ -404,7 +404,7 @@ fu! Utl_AddressScheme_mailto(auri, fragment, dispMode)
 	echo "The content of your Vim variable `".g:utl_cfg_hdl_scm_mailto."' is invalid and has to be fixed!"
 	echo "Reason: `".errmsg."'"
 	echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_mailto",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mailto",1,-1)
 	return []
     endif
 
@@ -419,11 +419,11 @@ fu! Utl_AddressScheme_mailto(auri, fragment, dispMode)
 
     if v:shell_error || v:errmsg!=""
 	call Utl_trace("- execution of scm handler returned with v:shell_error or v:errmsg set")
-	call Utl_trace("- end execution of Utl_AddressScheme_mailto (not successful)",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mailto (not successful)",1,-1)
 	return []
     endif
 
-    call Utl_trace("- end execution of Utl_AddressScheme_mailto",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_mailto",1,-1)
     return g:utl__hdl_scm_ret_list
 endfu
 
@@ -436,11 +436,11 @@ endfu
 " Possible enhancement: Support sections, i.e. <URL:man:fopen(3)#r+>
 "
 fu! Utl_AddressScheme_man(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_man",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_man",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName name to clipboard' not possible for scheme `man:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_man",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_man",1,-1)
 	return []
     endif
 
@@ -448,7 +448,7 @@ fu! Utl_AddressScheme_man(auri, fragment, dispMode)
     if v:errmsg =~ '^Sorry, no man entry for'
 	return []
     endif
-    call Utl_trace("- end execution of Utl_AddressScheme_man",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_man",1,-1)
     return [Utl_utilBack2FwdSlashes( expand("%:p") ), 'rel']
 endfu
 
@@ -460,15 +460,15 @@ endfu
 "   [1]	    or
 "   [1]:
 " where only whitespace can appear in front in the same line. If the reference
-" has a fragment, e.g. [1]#string or even an empty fragment, e.g. [1]# 
+" has a fragment, e.g. [1]#string or even an empty fragment, e.g. [1]#
 " the value of the footnote is tried to derefence, i.e. automatic forwarding.
 "
 fu! Utl_AddressScheme_foot(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_foot",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_foot",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName name to clipboard' not possible for scheme `foot:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_foot",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_foot",1,-1)
 	return []
     endif
 
@@ -510,7 +510,7 @@ fu! Utl_AddressScheme_foot(auri, fragment, dispMode)
 	call Utl_trace("  by trying to position one character past referent")
 	" This should exactly fail in case there is no one additional non white character
 	let l=search(reftPat.'.', 'ce', reftLine)
-	if l == 0 
+	if l == 0
 	    let v:errmsg = "Cannot dereference footnote: Empty footnote"
 	    echohl ErrorMsg | echo v:errmsg | echohl None
 	    return []
@@ -531,17 +531,17 @@ fu! Utl_AddressScheme_foot(auri, fragment, dispMode)
 	call Utl_trace("- combine URL / URL-reference under cursor with fragment of [] reference")
 	let uri = UriRef_getUri(uriRef)
 	let fragmentOfReferent = UriRef_getFragment(uriRef)
-	if fragmentOfReferent != '<undef>' 
+	if fragmentOfReferent != '<undef>'
 	    call Utl_trace("- discard non empty fragment `".fragmentOfReferent."' of referent")
 	endif
 	call Utl('openLink', UtlUri_build_2(uri, a:fragment), a:dispMode)
 	endif
 
-	call Utl_trace("- end execution of Utl_AddressScheme_foot",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_foot",1,-1)
 	return []
     endif
 
-    call Utl_trace("- end execution of Utl_AddressScheme_foot",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_foot",1,-1)
     return [Utl_utilBack2FwdSlashes( expand("%:p") )]
 endfu
 
@@ -550,10 +550,10 @@ endfu
 "	:Gu config:
 "
 fu! Utl_AddressScheme_config(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_config",1,1) 
-    let path = g:utl__file_rc 
+    call Utl_trace("- start execution of Utl_AddressScheme_config",1,1)
+    let path = g:utl__file_rc
     call Utl_trace("- set local path to equal utl variable g:utl__file_scm: `".path."'")
-    call Utl_trace("- end execution of Utl_AddressScheme_config",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_config",1,-1)
     return [ Utl_utilBack2FwdSlashes(path) ]
 endfu
 
@@ -562,11 +562,11 @@ endfu
 "	<URL:vimscript:set ts=4>
 "
 fu! Utl_AddressScheme_vimscript(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_vimscript",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_vimscript",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName name to clipboard' not possible for scheme `vimscript:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_vimscript",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_vimscript",1,-1)
 	return []
     endif
 
@@ -575,16 +575,16 @@ fu! Utl_AddressScheme_vimscript(auri, fragment, dispMode)
     "echo "                                DBG utl_opt_verbose=`".g:utl_opt_verbose."'"
     exe exCmd
     "echo "                                DBG (after) utl_opt_verbose=`".g:utl_opt_verbose."'"
-    call Utl_trace("- end execution of Utl_AddressScheme_vimscript (successful)",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_vimscript (successful)",1,-1)
     return  []
 endfu
 
 fu! Utl_AddressScheme_vimtip(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_vimtip",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_vimtip",1,1)
     let url = "http://vim.sf.net/tips/tip.php?tip_id=". UtlUri_unescape( UtlUri_opaque(a:auri) )
     call Utl_trace("- delegating to http scheme handler with URL `".url."'")
     let ret = Utl_AddressScheme_http(url, a:fragment, a:dispMode)
-    call Utl_trace("- end execution of Utl_AddressScheme_vimtip",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_vimtip",1,-1)
     return ret
 endfu
 
@@ -592,11 +592,11 @@ endfu
 " A non standard scheme for getting Vim help
 "
 fu! Utl_AddressScheme_vimhelp(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_vimhelp",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_vimhelp",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName name to clipboard' not possible for scheme `vimhelp:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_vimhelp",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_vimhelp",1,-1)
 	return []
     endif
 
@@ -604,10 +604,10 @@ fu! Utl_AddressScheme_vimhelp(auri, fragment, dispMode)
     call Utl_trace("- executing Vim Ex-command: `:".exCmd."'\n")	    " CR054_extra_nl
     exe exCmd
     if v:errmsg =~ '^Sorry, no help for'
-	call Utl_trace("- end execution of Utl_AddressScheme_vimhelp",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_vimhelp",1,-1)
 	return []
     endif
-    call Utl_trace("- end execution of Utl_AddressScheme_vimhelp (successful)",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_vimhelp (successful)",1,-1)
     return [ Utl_utilBack2FwdSlashes( expand("%:p") ), 'rel' ]
 endfu
 
@@ -626,11 +626,11 @@ endfu
 "   <url:mail://archive/Inbox?24.07.2007 13:23>
 "
 fu! Utl_AddressScheme_mail(auri, fragment, dispMode)
-    call Utl_trace("- start execution of Utl_AddressScheme_mail",1,1) 
+    call Utl_trace("- start execution of Utl_AddressScheme_mail",1,1)
 
     if a:dispMode =~ '^copyFileName'
 	echohl ErrorMsg | echo "function `copyFileName name to clipboard' not possible for scheme `mail:'" | echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_mail",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mail",1,-1)
 	return []
     endif
 
@@ -640,7 +640,7 @@ fu! Utl_AddressScheme_mail(auri, fragment, dispMode)
 	call input("No scheme handler variable g:utl_cfg_hdl_scm_mail defined yet. Entering Setup now. <RETURN>")
 	echohl None
 	Utl openLink config:#r=utl_cfg_hdl_scm_mail split
-	call Utl_trace("- end execution of Utl_AddressScheme_mail",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mail",1,-1)
 	return []
     endif
     call Utl_trace("- Vim variable g:utl_cfg_hdl_scm_mail exists, value=`".g:utl_cfg_hdl_scm_mail."'")
@@ -690,7 +690,7 @@ fu! Utl_AddressScheme_mail(auri, fragment, dispMode)
 	echo "The content of your Vim variable g:utl_cfg_hdl_scm_mail=".g:utl_cfg_hdl_scm_mail."' is invalid and has to be fixed!"
 	echo "Reason: `".errmsg."'"
 	echohl None
-	call Utl_trace("- end execution of Utl_AddressScheme_mail (not successful)",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mail (not successful)",1,-1)
 	return []
     endif
 
@@ -704,11 +704,11 @@ fu! Utl_AddressScheme_mail(auri, fragment, dispMode)
 
     if v:shell_error || v:errmsg!=""
 	call Utl_trace("- execution of scm handler returned with v:shell_error or v:errmsg set")
-	call Utl_trace("- end execution of Utl_AddressScheme_mail (not successful)",1,-1) 
+	call Utl_trace("- end execution of Utl_AddressScheme_mail (not successful)",1,-1)
 	return []
     endif
 
-    call Utl_trace("- end execution of Utl_AddressScheme_mail (successful)",1,-1) 
+    call Utl_trace("- end execution of Utl_AddressScheme_mail (successful)",1,-1)
     return g:utl__hdl_scm_ret_list
 endfu
 

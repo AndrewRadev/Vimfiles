@@ -257,7 +257,7 @@ function! s:SearchMembers(resolvedTagItem, szBase)
     " Get type info without the starting '::'
     let szTagName = omni#cpp#utils#ExtractTypeInfoFromTag(a:resolvedTagItem)[2:]
 
-    " Unnamed type case. A tag item representing an unnamed type is a variable 
+    " Unnamed type case. A tag item representing an unnamed type is a variable
     " ('v') a member ('m') or a typedef ('t')
     if index(['v', 't', 'm'], a:resolvedTagItem.kind[0])>=0 && has_key(a:resolvedTagItem, 'typeref')
         " We remove the 'struct:' or 'class:' etc...
@@ -430,7 +430,7 @@ function! s:InitComplete()
             let g:omni#cpp#includes#CACHE_FILE_TIME[szIncludeName] = fTime
             let bNeedUpdate = 1
         endif
-        
+
         if bNeedUpdate
             " We have to update include list and namespace map of this file
             call omni#cpp#includes#GetList(szIncludeName, 1)

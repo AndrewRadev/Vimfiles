@@ -298,7 +298,7 @@ fun! VimOmniComplete(findstart, base)
   if a:findstart
     let start = col('.') - 1
     let line = getline('.')
-    while start > 0 && line[start - 1] =~ '[a-zA-Z-_:#.]' 
+    while start > 0 && line[start - 1] =~ '[a-zA-Z-_:#.]'
       let start -= 1
     endwhile
     let b:context = strpart( getline('.') , 0 , start )
@@ -323,7 +323,7 @@ fun! VimOmniComplete(findstart, base)
         cal add(f_comps,matchstr(line,f_ptn ))
       elseif line =~ v_ptn
         cal add(v_comps,matchstr(line,v_ptn))
-      elseif line =~ c_ptn 
+      elseif line =~ c_ptn
         cal add(c_comps,matchstr(line,c_ptn))
       endif
     endfor
@@ -397,7 +397,7 @@ fun! s:RuntimeVarList()
   redir END
   let list = split(varlist,"\n")
   cal map(list,'matchstr(v:val,''^[a-zA-Z0-9:_#.]\+'')')
-  if b:g_prefix 
+  if b:g_prefix
     cal map(list,'substitute(v:val,''^\([A-Z]\)'',''g:\1'',"")')
   endif
   cal SetCache('vim_runtime_var' . b:g_prefix ,list)
@@ -416,7 +416,7 @@ fun! s:RuntimeFunList()
   let list = split(flist,"\n")
   cal map(list,'substitute(v:val,''^function\s\([a-zA-Z0-9_<>#:]\+\).*'',''\1('',"")')
   cal map(list,'substitute(v:val,''^\(<SNR>\d\+_\)'',''s:'',"")')
-  if b:g_prefix 
+  if b:g_prefix
     cal map(list,'substitute(v:val,''^\([A-Z]\)'',''g:\1'',"")')
   endif
 

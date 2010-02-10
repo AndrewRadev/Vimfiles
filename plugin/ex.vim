@@ -7,7 +7,7 @@
 "
 " I didn't want (or even know if it's possible) to create a normal-command
 " mode in Vim. I thought Emacs-style mappings would be most convenient here.
-" You can feel free to map each function however you see fit though. 
+" You can feel free to map each function however you see fit though.
 "
 " Author: Joel Jackson (boboat3000@hotmail.com)
 " Version: 1.0
@@ -32,7 +32,7 @@ cnoremap  
 cnoremap  <S-Left>
 cnoremap  <S-Right>
 cnoremap  <C-\>eReverse_Search_History()<cr>
-cnoremap  <Home>BufferMessage 
+cnoremap  <Home>BufferMessage
 
 
 function! CopyText()

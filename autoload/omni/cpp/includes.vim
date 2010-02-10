@@ -54,7 +54,7 @@ function! s:GetIncludeListFromCurrentBuffer()
 endfunc
 
 " Get the include list from a file
-function! s:GetIncludeListFromFile(szFilePath, bUpdate) 
+function! s:GetIncludeListFromFile(szFilePath, bUpdate)
     let listIncludes = []
     if a:szFilePath == ''
         return listIncludes
@@ -79,7 +79,7 @@ function! s:GetIncludeListFromFile(szFilePath, bUpdate)
             let szInclusion = szLine[startPos-1:endPos-1]
             let szIncludeFile = substitute(szInclusion, '\('.s:rePreprocIncludePart.'\)\|[<>""]', '', 'g')
             let szResolvedInclude = omni#cpp#utils#ResolveFilePath(szIncludeFile)
-            
+
             " Protection over self inclusion
             if szResolvedInclude != '' && szResolvedInclude != a:szFilePath
                 let includePos = [qf.lnum, qf.col]

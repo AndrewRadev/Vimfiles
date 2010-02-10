@@ -494,7 +494,7 @@ endfunction
 "   double-quote) and just '"'"' otherwise. Embedded double-quotes also need
 "   to be doubled.
 " - For Unix+sh, use single-quotes to sorround the arguments and for embedded
-"   single-quotes, just replace them with '"'"'. 
+"   single-quotes, just replace them with '"'"'.
 function! genutils#EscapeCommand(cmd, args, pipe)
   if type(a:args) == 3
     let args = copy(a:args)
@@ -570,7 +570,7 @@ endfunction
 
 function! genutils#ExpandStr(str)
   let str = substitute(a:str, '"', '\\"', 'g')
-  exec "let str = \"" . str . "\"" 
+  exec "let str = \"" . str . "\""
   return str
 endfunction
 
@@ -671,7 +671,7 @@ function! s:RestoreWindowSettings2(id)
     let winNo = winNo + 1
     let i = i + 2
   endwhile
-  
+
   " Restore the current window.
   call genutils#MoveCursorToWindow(activeWindow)
   "unlet g:savedWindowSettings
@@ -825,7 +825,7 @@ function! genutils#RestoreSoftPosition(id)
   call genutils#RestoreHardPosition(a:id)
   let stLine = b:sp_startline_{a:id}
   if getline('.') !=# stLine
-    if ! search('\V\^'.escape(stLine, "\\").'\$', 'W') 
+    if ! search('\V\^'.escape(stLine, "\\").'\$', 'W')
       call search('\V\^'.escape(stLine, "\\").'\$', 'bW')
     endif
   endif
@@ -929,7 +929,7 @@ function! genutils#RemoveNotifyWindowClose(windowTitle)
     call remove(s:notifyWindow, bufName)
     if len(s:notifyWindow) == 0
       "unlet g:notifyWindow " Debug.
-  
+
       aug NotifyWindowClose
         au!
       aug END
@@ -1080,7 +1080,7 @@ function! genutils#ShiftWordInSpace(dir)
     if getline(".")[col(".") - 1] == " "
       let move1 = 'wf '
     else
-      " If next col is a 
+      " If next col is a
       "if getline(".")[col(".") + 1]
       let move1 = 'f '
     endif
@@ -1225,7 +1225,7 @@ function! genutils#UserFileComplete2(ArgLead, CmdLine, CursorPos, ...)
         \     .ArgTail).'*'
   for nextPath in split(searchPath, genutils#CrUnProtectedCharsPattern(','), 1)
     " Ignore paths if the ArgHead happens to be an absolute path.
-    let nextPath = genutils#PathIsAbsolute(ArgHead) ? '' : 
+    let nextPath = genutils#PathIsAbsolute(ArgHead) ? '' :
           \ genutils#CleanupFileName(nextPath).npathsep
     let matches = split(glob(nextPath.pat), "\n")
     if len(matches) != 0
@@ -1972,7 +1972,7 @@ function! s:Match(expr, pat, start)
   endtry
   return result
 endfunction
- 
+
 " Restore cpo.
 let &cpo = s:save_cpo
 unlet s:save_cpo

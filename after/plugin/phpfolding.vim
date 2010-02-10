@@ -28,9 +28,9 @@
 "
 "       let g:DisableAutoPHPFolding = 1
 "
-"    By default EnableFastPHPFolds is called. Do these mess up your folds, 
+"    By default EnableFastPHPFolds is called. Do these mess up your folds,
 "    you can try to replace EnableFastPHPFolds by EnablePHPFolds. You can
-"    change this in function s:CheckAutocmdEnablePHPFold. 
+"    change this in function s:CheckAutocmdEnablePHPFold.
 "
 " NOTE
 "  It may be that you need to load the plugin from your .vimrc manually, in
@@ -119,8 +119,8 @@ function! s:EnablePHPFolds(...) " {{{
 
 
 	" Move to end of file
-	exec s:fileLineCount	
-	
+	exec s:fileLineCount
+
 	" First pass: Look for Folds, remember opened folds
 	let s:foldingMode = s:MODE_REMEMBER_FOLD_SETTINGS
 	call s:PHPCustomFolds()
@@ -147,7 +147,7 @@ function! s:EnablePHPFolds(...) " {{{
 
 	" Restore cursor
 	exec s:savedCursor
-	
+
 endfunction
 " }}}
 function! s:DisablePHPFolds() " {{{
@@ -170,7 +170,7 @@ function! s:PHPCustomFolds() " {{{
 
 	" Fold class without PhpDoc (class foo {})
 	call s:PHPFoldPureBlock('^\s*\(abstract\s*\)\?class', s:FOLD_WITH_PHPDOC)
-	
+
 	" Fold define()'s with their PhpDoc
 	call s:PHPFoldProperties('^\s*define\s*(', ";", s:FOLD_WITH_PHPDOC)
 
@@ -320,7 +320,7 @@ function! s:PHPFoldProperties(startPattern, endPattern, ...) " {{{
 
 		" Goto fold start (remember we're searching upwards)
 		exec s:lineStart
-		
+
 	endwhile
 
 	if s:foldingMode != s:MODE_REMEMBER_FOLD_SETTINGS
@@ -351,7 +351,7 @@ function! s:HandleFold() " {{{
 			let s:foldsOpenedList{s:openFoldListItems} = s:lineStart
 			let s:openFoldListItems = s:openFoldListItems + 1
 		endif
-		
+
 	elseif s:foldingMode == s:MODE_CREATE_FOLDS
 		" Correct lineStop if needed (the script might have mistaken lines
 		"   beyond the file's scope for trailing empty lines)
@@ -478,7 +478,7 @@ function! s:FindPureBlockEnd(startPair, endPair, searchStartPairFirst, ...) " {{
 		" Then be greedy with extra 'trailing' empty line(s)
 		let s:counter = 0
 		while s:counter < s:searchEmptyLinesPostfixing
-			let linestr = getline(line + 1)		
+			let linestr = getline(line + 1)
 			if (matchstr(linestr, '^\s*$') == linestr)
 				let line = line + 1
 			endif
@@ -497,7 +497,7 @@ function! s:FindPatternEnd(endPattern) " {{{
 		" Then be greedy with extra 'trailing' empty line(s)
 		let s:counter = 0
 		while s:counter < s:searchEmptyLinesPostfixing
-			let linestr = getline(line + 1)		
+			let linestr = getline(line + 1)
 			if (matchstr(linestr, '^\s*$') == linestr)
 				let line = line + 1
 			endif
@@ -553,7 +553,7 @@ function! PHPFoldText() " {{{
 		endwhile
 		let lineString = getline(currentLine)
 	endif
-	
+
 	" Some common replaces...
 	" if currentLine != v:foldend
 		let lineString = substitute(lineString, '/\*\|\*/\d\=', '', 'g')
@@ -572,7 +572,7 @@ function! PHPFoldText() " {{{
 	" Append an (a) if there is PhpDoc in the fold (a for API)
 	if currentLine != v:foldstart
 		let lineString = lineString . " " . g:phpDocIncludedPostfix . " "
-	endif	
+	endif
 
 	" Return the foldtext
 	return "+--".lines." lines: " . lineString

@@ -39,7 +39,7 @@ fun! bg#Run(cmd, outToTmpFile, onFinish)
   " thread safe way
   if has('clientserver')
     " force usage of /bin/sh
-    let cmd .= '; '.s:vim.' --servername '.S(v:servername)[0].' --remote-send \<esc\>:debug\ call\ funcref#Call\('.S(string(a:onFinish))[0].',\[$?'.escapedFile.'\]\)\<cr\>' 
+    let cmd .= '; '.s:vim.' --servername '.S(v:servername)[0].' --remote-send \<esc\>:debug\ call\ funcref#Call\('.S(string(a:onFinish))[0].',\[$?'.escapedFile.'\]\)\<cr\>'
     echom cmd
     call system('/bin/sh',cmd.'&')
   else
@@ -94,7 +94,7 @@ finish
   fun! s:CallVimUsingSh(vim,vimcmd)
     " intentionally no quoting to pass $$ and $?
     let S = function('tovl#runtaskinbackground#EscapeShArg')
-    return S(a:vim)." --servername ".S(v:servername).' --remote-send \<esc\>:'.a:vimcmd.'\<cr\>' 
+    return S(a:vim)." --servername ".S(v:servername).' --remote-send \<esc\>:'.a:vimcmd.'\<cr\>'
   endfun
 
   if exists('g:pythonthreadclassinitialized') || !has('python')

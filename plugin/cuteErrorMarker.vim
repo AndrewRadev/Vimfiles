@@ -84,7 +84,7 @@ endif
 
 let s:path = globpath( &rtp, 'signs/err' . s:ext )
 if s:path == ''
-    echom "Cute Error Marker can't find icons, plugin not loaded" 
+    echom "Cute Error Marker can't find icons, plugin not loaded"
     finish
 endif
 

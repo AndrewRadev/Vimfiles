@@ -1,9 +1,9 @@
 "
 " use haddock docs and index files
-" show documentation, complete & qualify identifiers 
+" show documentation, complete & qualify identifiers
 "
 " (Claus Reinke; last modified: 30/04/2009)
-" 
+"
 " part of haskell plugins: http://projects.haskell.org/haskellmode-vim
 " please send patches to <claus.reinke@talk21.com>
 
@@ -18,7 +18,7 @@
 "
 " all the following use the haddock index (g:haddock_index)
 "
-" _? opens haddocks for unqualified name under cursor, 
+" _? opens haddocks for unqualified name under cursor,
 "    suggesting alternative full qualifications in popup menu
 "
 " _. fully qualifies unqualified name under cursor,
@@ -30,7 +30,7 @@
 "    (this currently adds one statement per call, instead of
 "     merging into existing import statements, but it's a start;-)
 "
-" CTRL-X CTRL-U (user-defined insert mode completion) 
+" CTRL-X CTRL-U (user-defined insert mode completion)
 "   suggests completions of unqualified names in popup menu
 
 let s:scriptname = "haskell_doc.vim"
@@ -48,7 +48,7 @@ if exists("g:haddock_index")
   finish
 endif
 
-" initialise nested dictionary, to be populated 
+" initialise nested dictionary, to be populated
 " - from haddock index files via :DocIndex
 " - from previous cached version via :ImportDocIndex
 let g:haddock_index = {}
@@ -66,14 +66,14 @@ if !exists("g:haddock_browser")
   echoerr s:scriptname." WARNING: please set g:haddock_browser!"
 endif
 
-if (!exists("g:ghc") || !executable(g:ghc)) 
-  if !executable('ghc') 
+if (!exists("g:ghc") || !executable(g:ghc))
+  if !executable('ghc')
     echoerr s:scriptname." can't find ghc. please set g:ghc, or extend $PATH"
     finish
   else
     let g:ghc = 'ghc'
   endif
-endif    
+endif
 
 if (!exists("g:ghc_pkg") || !executable(g:ghc_pkg))
   let g:ghc_pkg = substitute(g:ghc,'\(.*\)ghc','\1ghc-pkg','')
@@ -103,7 +103,7 @@ if !exists('s:docdir') || !isdirectory(s:docdir)
   let location1a = s:ghc_libdir . '/doc/html/'
   let location1b = s:ghc_libdir . '/doc/'
   let s:ghc_version = substitute(system(g:ghc . ' --numeric-version'),'\n','','')
-  let location2 = '/usr/share/doc/ghc-' . s:ghc_version . '/html/' 
+  let location2 = '/usr/share/doc/ghc-' . s:ghc_version . '/html/'
   if isdirectory(location1a)
     let s:docdir = location1a
   elseif isdirectory(location1b)
@@ -123,7 +123,7 @@ let s:libraries         = s:docdir . 'libraries/'
 let s:guide             = s:docdir . 'users_guide/'
 let s:index             = 'index.html'
 if exists("g:haddock_indexfiledir") && filewritable(g:haddock_indexfiledir)
-  let s:haddock_indexfiledir = g:haddock_indexfiledir 
+  let s:haddock_indexfiledir = g:haddock_indexfiledir
 elseif filewritable(s:libraries)
   let s:haddock_indexfiledir = s:libraries
 elseif filewritable($HOME)
@@ -135,15 +135,15 @@ endif
 let s:haddock_indexfile = s:haddock_indexfiledir . 'haddock_index.vim'
 
 " different browser setups require different call formats;
-" you might want to call the browser synchronously or 
+" you might want to call the browser synchronously or
 " asynchronously, and the latter is os-dependent;
 "
-" by default, the browser is started in the background when on 
+" by default, the browser is started in the background when on
 " windows or if running in a gui, and in the foreground otherwise
 " (eg, console-mode for remote sessions, with text-mode browsers).
 "
-" you can override these defaults in your vimrc, via a format 
-" string including 2 %s parameters (the first being the browser 
+" you can override these defaults in your vimrc, via a format
+" string including 2 %s parameters (the first being the browser
 " to call, the second being the url).
 if !exists("g:haddock_browser_callformat")
   if has("win32") || has("win64")
@@ -181,13 +181,13 @@ function! DocBrowser(url)
   endif
   " start browser to open url, according to specified format
   let url = a:url=~'^\(file://\|http://\)' ? a:url : 'file://'.a:url
-  silent exe '!'.printf(g:haddock_browser_callformat,g:haddock_browser,escape(url,'#%')) 
+  silent exe '!'.printf(g:haddock_browser_callformat,g:haddock_browser,escape(url,'#%'))
 endfunction
 
 "Doc/Doct are an old interface for documentation lookup
 "(that is the reason they are not documented!-)
 "
-"These uses are still fine at the moment, and are the reason 
+"These uses are still fine at the moment, and are the reason
 "that this command still exists at all
 "
 " :Doc -top
@@ -204,7 +204,7 @@ endfunction
 command! -nargs=+ Doc  call Doc('v',<f-args>)
 command! -nargs=+ Doct call Doc('t',<f-args>)
 
-function! Doc(kind,qualname,...) 
+function! Doc(kind,qualname,...)
   let suffix   = '.html'
   let relative = '#'.a:kind.'%3A'
 
@@ -251,7 +251,7 @@ endfunction
 "  1. :IDoc length
 "  2. click on one of the choices, or select by number (starting from 0)
 command! -nargs=+ IDoc call IDoc(<f-args>)
-function! IDoc(name,...) 
+function! IDoc(name,...)
   let choices = HaddockIndexLookup(a:name)
   if choices=={} | return | endif
   if a:0==0
@@ -266,8 +266,8 @@ endfunction
 
 let s:flagref = s:guide . 'flag-reference.html'
 if filereadable(s:flagref)
-  " extract the generated fragment ids for the 
-  " flag reference sections 
+  " extract the generated fragment ids for the
+  " flag reference sections
   let s:headerPat     = '.\{-}<h3 class="title"><a name="\([^"]*\)"><\/a>\([^<]*\)<\/h3>\(.*\)'
   let s:flagheaders   = []
   let s:flagheaderids = {}
@@ -281,7 +281,7 @@ if filereadable(s:flagref)
   endwhile
   command! -nargs=1 -complete=customlist,CompleteFlagHeaders FlagReference call FlagReference(<f-args>)
   function! FlagReference(section)
-    let relativeUrl = a:section==""||!exists("s:flagheaderids['".a:section."']") ? 
+    let relativeUrl = a:section==""||!exists("s:flagheaderids['".a:section."']") ?
                     \ "" : "#".s:flagheaderids[a:section]
     call DocBrowser(s:flagref.relativeUrl)
   endfunction
@@ -343,7 +343,7 @@ function! ProcessHaddockIndexes(location,files)
 
   redraw
   echo 'populating g:haddock_index from haddock index files in ' a:location
-  for f in a:files  
+  for f in a:files
     echo f[len(a:location):]
     let contents = join(readfile(f))
     let ml = matchlist(contents,entryPat)
@@ -373,14 +373,14 @@ function! ProcessHaddockIndexes2(location,files)
 
   " redraw
   echo 'populating g:haddock_index from haddock index files in ' a:location
-  for f in a:files  
+  for f in a:files
     echo f[len(a:location):]
     let isEntry = 0
     let isLink  = ''
     let link    = {}
     let entry   = ''
     for line in readfile(f)
-      if line=~'CLASS="indexentry' 
+      if line=~'CLASS="indexentry'
         if (link!={}) && (entry!='')
           if has_key(g:haddock_index,DeHTML(entry))
             let dict = extend(g:haddock_index[DeHTML(entry)],deepcopy(link))
@@ -391,8 +391,8 @@ function! ProcessHaddockIndexes2(location,files)
           let link  = {}
           let entry = ''
         endif
-        let isEntry=1 
-        continue 
+        let isEntry=1
+        continue
       endif
       if isEntry==1
         let ml = matchlist(line,entryPat)
@@ -404,17 +404,17 @@ function! ProcessHaddockIndexes2(location,files)
       endif
       if isLink!=''
         let ml = matchlist(line,entryPat)
-        if ml!=[] 
-          let [_,module;x] = ml 
+        if ml!=[]
+          let [_,module;x] = ml
           let [_,kind;x]   = matchlist(isLink,kindPat)
           let last         = a:location[strlen(a:location)-1]
           let link[module."[".kind."]"] = a:location . (last=='/'?'':'/') . isLink
-          let isLink='' 
-          continue 
+          let isLink=''
+          continue
         endif
       endif
     endfor
-    if link!={} 
+    if link!={}
       if has_key(g:haddock_index,DeHTML(entry))
         let dict = extend(g:haddock_index[DeHTML(entry)],deepcopy(link))
       else
@@ -443,7 +443,7 @@ function! ImportDocIndex()
     let i=0
     while i<len(lines)
       let [key,dict] = [lines[i],lines[i+1]]
-      sandbox let g:haddock_index[key] = eval(dict) 
+      sandbox let g:haddock_index[key] = eval(dict)
       let i+=2
     endwhile
     return 1
@@ -520,7 +520,7 @@ function! Haddock()
   if dict=={} | return | endif
   " for qualified items, narrow results to possible imports that provide qualifier
   let filteredKeys = filter(copy(keys(dict))
-                         \ ,'match(asm,substitute(v:val,''\[.\]'','''',''''))!=-1') 
+                         \ ,'match(asm,substitute(v:val,''\[.\]'','''',''''))!=-1')
   let keys = (qual!='') ?  filteredKeys : keys(dict)
   if (keys==[]) && (qual!='')
     echoerr qual.'.'.unqual.' not found in imports'
@@ -545,7 +545,7 @@ function! Haddock()
 endfunction
 
 if !exists("g:haskell_search_engines")
-  let g:haskell_search_engines = 
+  let g:haskell_search_engines =
     \ {'hoogle':'http://www.haskell.org/hoogle/?hoogle=%s'
     \ ,'hayoo!':'http://holumbus.fh-wedel.de/hayoo/hayoo.html?query=%s'
     \ }
@@ -614,20 +614,20 @@ function! CompleteAux(al,cl,cp)
   return res
 endfunction
 
-" CamelCase shorthand matching: 
+" CamelCase shorthand matching:
 " favour upper-case letters and module qualifier separators (.) for disambiguation
 function! CamelCase(shorthand,string)
   let s1 = a:shorthand
   let s2 = a:string
   let notFirst = 0 " don't elide before first pattern letter
-  while ((s1!="")&&(s2!="")) 
+  while ((s1!="")&&(s2!=""))
     let head1 = s1[0]
     let head2 = s2[0]
-    let elide = notFirst && ( ((head1=~'[A-Z]') && (head2!~'[A-Z.]')) 
-              \             ||((head1=='.') && (head2!='.')) ) 
+    let elide = notFirst && ( ((head1=~'[A-Z]') && (head2!~'[A-Z.]'))
+              \             ||((head1=='.') && (head2!='.')) )
     if elide
       let s2=s2[1:]
-    elseif (head1==head2) 
+    elseif (head1==head2)
       let s1=s1[1:]
       let s2=s2[1:]
     else
@@ -640,7 +640,7 @@ endfunction
 
 " use haddock name index for insert mode completion (CTRL-X CTRL-U)
 function! CompleteHaddock(findstart, base)
-  if a:findstart 
+  if a:findstart
     let namsym   = haskellmode#GetNameSymbol(getline('.'),col('.'),-1) " insert-mode: we're 1 beyond the text
     if namsym==[]
       redraw
@@ -653,7 +653,7 @@ function! CompleteHaddock(findstart, base)
     let res  = []
     let l    = len(a:base)-1
     let qual = a:base =~ '^[A-Z][a-zA-Z0-9_'']*\(\.[A-Z][a-zA-Z0-9_'']*\)*\(\.[a-zA-Z0-9_'']*\)\?$'
-    call HaveIndex() 
+    call HaveIndex()
     for key in keys(g:haddock_index)
       let keylist = map(deepcopy(keys(g:haddock_index[key])),'substitute(v:val,"\\[.\\]","","")')
       if (key[0 : l]==a:base)

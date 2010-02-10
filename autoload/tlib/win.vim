@@ -28,7 +28,7 @@ function! tlib#win#Set(winnr) "{{{3
     endif
     return ''
 endf
- 
+
 
 " :def: function! tlib#win#GetLayout(?save_view=0)
 function! tlib#win#GetLayout(...) "{{{3
@@ -82,7 +82,7 @@ endf
 
 
 " " :def: function! tlib#win#GetLayout1(?save_view=0)
-" " Contrary to |tlib#win#GetLayout|, this version doesn't use 
+" " Contrary to |tlib#win#GetLayout|, this version doesn't use
 " " |winrestcmd()|. It can also save windows views.
 " function! tlib#win#GetLayout1(...) "{{{3
 "     TVarArg ['save_view', 0]
@@ -99,8 +99,8 @@ endf
 "     call tlib#win#Set(winnr)
 "     return acc
 " endf
-" 
-" 
+"
+"
 " " Reset layout from the value of |tlib#win#GetLayout1|.
 " function! tlib#win#SetLayout1(layout) "{{{3
 "     if len(a:layout) != winnr('$')

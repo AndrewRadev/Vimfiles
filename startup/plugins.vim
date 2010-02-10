@@ -12,7 +12,7 @@ nmap Qm :FuzzyFinderMruFile<cr>
 
 " FuzzyFinderTextMate settings:
 let g:fuzzy_ceiling = 20000
-let g:fuzzy_ignore = "*/.svn/*;.git/*;*/tmp/*"
+let g:fuzzy_ignore  = "*/.svn/*;.git/*;*/tmp/*"
 
 " Dbext settings:
 let g:dbext_default_buffer_lines = 20
@@ -22,13 +22,13 @@ let g:snippets_dir = expand("~/.vim/custom_snippets/")
 let g:snips_author = "Andrew Radev"
 
 " Proj settings:
-let g:ProjFile = '~/.vimproj'
+let g:ProjFile        = '~/.vimproj'
 let g:ProjSplitMethod = 'edit '
 let g:ProjFileBrowser = 'NERDTree | wincmd l'
 
 " EasyGrep options:
 let g:EasyGrepMode              = 2 " Track extension
-let g:EasyGrepCommand           = 0 " vimgprep
+let g:EasyGrepCommand           = 0 " vimgrep
 let g:EasyGrepRecursive         = 1 " -> True
 let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
 let g:EasyGrepExtraWarnings     = 1 " -> True
@@ -38,11 +38,7 @@ let g:ttags_display = 'quickfix'
 
 " Settings for Haskell mode:
 let g:haddock_browser = "firefox"
-"let g:haddock_docdir = "/usr/share/doc/ghc/libraries/html/"
-let g:haddock_docdir = "/usr/share/doc/ghc/html/libraries/"
-
-" Yankring:
-nnoremap <Leader>yr :YRShow<cr>
+let g:haddock_docdir  = "/usr/share/doc/ghc/html/libraries/"
 
 " Omnicppcomplete options:
 let OmniCpp_NamespaceSearch     = 1 " -> True

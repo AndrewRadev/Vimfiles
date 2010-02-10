@@ -93,7 +93,7 @@ endf
 "   constraints: A dictionary of fields and corresponding regexps
 "     kind     :: The tag letter ID ("*" = match all tags)
 "     name     :: A rx matching the tag ("*" = match all tags)
-"     filename :: A rx matching the filename ('.' = match the current 
+"     filename :: A rx matching the filename ('.' = match the current
 "                 file only)
 function! ttags#SelectTags(use_extra, constraints) "{{{3
     if get(a:constraints, 'filename', '') == '.'

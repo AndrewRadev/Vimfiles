@@ -9,17 +9,17 @@
 "
 " Please see also ../test/tlib.vim for usage examples.
 "
-" TODO: tlib#input#List(): RightMouse -> Make commands accessible via 
+" TODO: tlib#input#List(): RightMouse -> Make commands accessible via
 " popup-menu
-" TODO: List isn't updated on some occassions (eg tselectfiles + pick 
+" TODO: List isn't updated on some occassions (eg tselectfiles + pick
 " file per mouse) when resetting the state from an post-process agent
-" TODO: tlib#agent#SwitchLayout(): switch between horizontal and 
+" TODO: tlib#agent#SwitchLayout(): switch between horizontal and
 " vertical layout for the list
-" TODO: tlib#cache#Purge(): delete old cache files (for the moment use 
+" TODO: tlib#cache#Purge(): delete old cache files (for the moment use
 " find)
 " TODO: tlib#file#Relative(): currently relies on cwd to be set
 " TODO: tlib#input#EditList(): Disable selection by index number
-" TODO: tlib#input#List(): Some kind of command line to edit some 
+" TODO: tlib#input#List(): Some kind of command line to edit some
 " preferences (sort etc.) on the fly
 
 if &cp || exists("loaded_tlib")
@@ -43,8 +43,8 @@ set cpo&vim
 " :display: TRequire NAME [VERSION [FILE]]
 " Make a certain vim file is loaded.
 "
-" Conventions: If FILE isn't defined, plugin/NAME.vim is loaded. The 
-" file must provide a variable loaded_{NAME} that represents the version 
+" Conventions: If FILE isn't defined, plugin/NAME.vim is loaded. The
+" file must provide a variable loaded_{NAME} that represents the version
 " number.
 command! -nargs=+ TRequire let s:require = [<f-args>]
             \ | if !exists('loaded_'. get(s:require, 0))
@@ -99,13 +99,13 @@ command! -nargs=+ TKeyArg exec tlib#arg#Key([<args>])
 
 
 " :display: TBrowseOutput COMMAND
-" Ever wondered how to effciently browse the output of a command 
-" without redirecting it to a file? This command takes a command as 
-" argument and presents the output via |tlib#input#List()| so that you 
-" can easily search for a keyword (e.g. the name of a variable or 
+" Ever wondered how to effciently browse the output of a command
+" without redirecting it to a file? This command takes a command as
+" argument and presents the output via |tlib#input#List()| so that you
+" can easily search for a keyword (e.g. the name of a variable or
 " function) and the like.
 "
-" If you press enter, the selected line will be copied to the command 
+" If you press enter, the selected line will be copied to the command
 " line. Press ESC to cancel browsing.
 "
 " EXAMPLES: >
@@ -116,11 +116,11 @@ command! -nargs=1 -complete=command TBrowseOutput call tlib#cmd#BrowseOutput(<q-
 
 " Variables~ {{{1
 
-" When 1, automatically select a the last remaining item after applying 
+" When 1, automatically select a the last remaining item after applying
 " any filters.
 TLet g:tlib_pick_last_item = 1
 
-" If a list is bigger than this value, don't try to be smart when 
+" If a list is bigger than this value, don't try to be smart when
 " selecting an item. Be slightly faster instead.
 TLet g:tlib_sortprefs_threshold = 200
 
@@ -137,14 +137,14 @@ TLet g:tlib_inputlist_width_filename = '&co / 3'
 " The highlight group to use for showing matches in the input list window.
 TLet g:tlib_inputlist_higroup = 'IncSearch'
 
-" If a list contains more items, don't do an incremental "live search", 
-" but use |input()| the quere the user for a filter. This is useful on 
+" If a list contains more items, don't do an incremental "live search",
+" but use |input()| the quere the user for a filter. This is useful on
 " slower machines or with very long lists.
 TLet g:tlib_inputlist_livesearch_threshold = 500
 
-" If true, show some indicators about the status of a filename (eg 
+" If true, show some indicators about the status of a filename (eg
 " buflisted(), bufloaded() etc.).
-" This is disabled by default because vim checks also for the file on 
+" This is disabled by default because vim checks also for the file on
 " disk when doing this.
 TLet g:tlib_inputlist_filename_indicators = 0
 
@@ -159,7 +159,7 @@ TLet g:tlib_inputlist_shortmessage = 0
 " Extra tags for |tlib#tag#Retrieve()| (see there). Can also be buffer-local.
 TLet g:tlib_tags_extra = ''
 
-" Filter the tag description through |substitute()| for these filetypes. 
+" Filter the tag description through |substitute()| for these filetypes.
 " This applies only if the tag cmd field (see |taglist()|) is used.
 " :nodefault:
 TLet g:tlib_tag_substitute = {
@@ -172,7 +172,7 @@ TLet g:tlib_tag_substitute = {
             \ ],
             \ }
 
-" " Alternative rx for keywords, in case 'iskeyword' is inadequate for 
+" " Alternative rx for keywords, in case 'iskeyword' is inadequate for
 " " the purposes of tlib but you don't want to change it's value.
 " TLet g:tlib_keyword_rx = {
 "             \ 'vim': '\(\w\|#\)',
@@ -182,7 +182,7 @@ TLet g:tlib_filename_sep = '/'
 " TLet g:tlib_filename_sep = exists('+shellslash') && !&shellslash ? '\' : '/'   " {{{2
 
 " The cache directory. If empty, use |tlib#dir#MyRuntime|.'/cache'.
-" You might want to delete old files from this directory from time to 
+" You might want to delete old files from this directory from time to
 " time with a command like: >
 "   find ~/vimfiles/cache/ -atime +31 -type f -print -delete
 TLet g:tlib_cache = ''
@@ -198,12 +198,12 @@ TLet g:tlib_inputlist_and = ' '
 TLet g:tlib_inputlist_or  = '|'
 TLet g:tlib_inputlist_not = '-'
 
-" When editing a list with |tlib#input#List|, typing these numeric chars 
-" (as returned by getchar()) will select an item based on its index, not 
-" based on its name. I.e. in the default setting, typing a "4" will 
+" When editing a list with |tlib#input#List|, typing these numeric chars
+" (as returned by getchar()) will select an item based on its index, not
+" based on its name. I.e. in the default setting, typing a "4" will
 " select the fourth item, not the item called "4".
-" In order to make keys 0-9 filter the items in the list and make 
-" <m-[0-9]> select an item by its index, remove the keys 48 to 57 from 
+" In order to make keys 0-9 filter the items in the list and make
+" <m-[0-9]> select an item by its index, remove the keys 48 to 57 from
 " this dictionary.
 " Format: [KEY] = BASE ... the number is calculated as KEY - BASE.
 " :nodefault:
@@ -247,7 +247,7 @@ TLet g:tlib_keyagents_InputList_s = {
             \ 27:            'tlib#agent#Exit',
             \ 26:            'tlib#agent#Suspend',
             \ 250:           'tlib#agent#Suspend',
-            \ 15:            'tlib#agent#SuspendToParentWindow',  
+            \ 15:            'tlib#agent#SuspendToParentWindow',
             \ 63:            'tlib#agent#Help',
             \ "\<F1>":       'tlib#agent#Help',
             \ "\<bs>":       'tlib#agent#ReduceFilter',
@@ -307,7 +307,7 @@ Initial release
 0.2
 - More list convenience functions
 - tlib#EditList()
-- tlib#InputList(): properly handle duplicate items; it type contains 
+- tlib#InputList(): properly handle duplicate items; it type contains
 'i', the list index + 1 is returned, not the element
 
 0.3
@@ -317,7 +317,7 @@ Initial release
 0.4
 - tlib#InputList(): Up/Down keys wrap around list
 - tlib#InputList(): FIX: Problem when reducing the filter & using AND
-- tlib#InputList(): Made <a-numeric> work (can be configured via 
+- tlib#InputList(): Made <a-numeric> work (can be configured via
 - tlib#InputList(): special display_format: "filename"
 - tlib#Object: experimental support for some kind of OOP
 - tlib#World: Extracted some functions from tlib.vim to tlib/World.vim
@@ -334,7 +334,7 @@ Initial release
 
 0.6
 - tlib#InputList(): Disabled <c-space> map
-- tlib#InputList(): try to be smart about user itentions only if a 
+- tlib#InputList(): try to be smart about user itentions only if a
 list's length is < g:tlib_sortprefs_threshold (default: 200)
 - tlib#Object: Super() method
 - tlib#MyRuntimeDir()
@@ -344,12 +344,12 @@ list's length is < g:tlib_sortprefs_threshold (default: 200)
 
 0.7
 - tlib#InputList(): <c-z> ... Suspend/Resume input
-- tlib#InputList(): <c-q> ... Input text on the command line (useful on 
+- tlib#InputList(): <c-q> ... Input text on the command line (useful on
 slow systems when working with very large lists)
-- tlib#InputList(): AND-pattern starting with '!' will work as 'exclude 
+- tlib#InputList(): AND-pattern starting with '!' will work as 'exclude
 matches'
 - tlib#InputList(): FIX <c-bs> pop OR-patterns properly
-- tlib#InputList(): display_format == filename: don't add '/' to 
+- tlib#InputList(): display_format == filename: don't add '/' to
 directory names (avoid filesystem access)
 
 0.8
@@ -357,21 +357,21 @@ directory names (avoid filesystem access)
 - Some re-arranging
 
 0.9
-- Re-arrangements & modularization (this means many function names have 
-changed, on the other hand only those functions are loaded that are 
+- Re-arrangements & modularization (this means many function names have
+changed, on the other hand only those functions are loaded that are
 actually needed)
 - tlib#input#List(): Added maps with m-modifiers for <c-q>, <c-z>, <c-a>
 - tlib#input#List(): Make sure &fdm is manual
-- tlib#input#List(): When exiting the list view, consume the next 5 
+- tlib#input#List(): When exiting the list view, consume the next 5
 characters in the queue (if any)
 - tlib#input#EditList(): Now has cut, copy, paste functionality.
 - Added documentation and examples
 
 0.10
-- tlib#input#List(): (v)split type of commands leave the original window 
+- tlib#input#List(): (v)split type of commands leave the original window
 untouched (you may use <c-w> to replace its contents)
 - tlib#file#With(): Check whether an existing buffer is loaded.
-- Scratch related functions went to tlib/scratch.vim so that they are 
+- Scratch related functions went to tlib/scratch.vim so that they are
 accessible from other scripts.
 - Configure the list window height via g:tlib_inputlist_pct (1..100%)
 
@@ -382,24 +382,24 @@ NEW:
     - tlib#rx#Escape(text, ?magic='m')
     - tlib#buffer#GetList(?show_hidden=0)
     - tlib#dir#CD(), tlib#dir#Push(), tlib#dir#Pop()
-    - tlib#input#ListW: A slightly remodeled version of tlib#input#List 
+    - tlib#input#ListW: A slightly remodeled version of tlib#input#List
     that takes a World as second argument.
-    - Added some documentation doc/tlib.txt (most of it is automatically 
+    - Added some documentation doc/tlib.txt (most of it is automatically
     compiled from the source files)
 CHANGES:
-    - tlib#input#List(): The default keys for AND, NOT have changed to 
-    be more Google-like (space, minus); the keys can be configured via 
+    - tlib#input#List(): The default keys for AND, NOT have changed to
+    be more Google-like (space, minus); the keys can be configured via
     global variables.
 IMPROVEMENTS:
-    - In file listings, indicate if a file is loaded, listed, modified 
+    - In file listings, indicate if a file is loaded, listed, modified
     etc.
     - tlib#input#List(): Highlight the filter pattern
-    - tlib#input#List(): <c-up/down> scrolls g:tlib_scroll_lines 
+    - tlib#input#List(): <c-up/down> scrolls g:tlib_scroll_lines
     (default=10) lines
 FIXES:
-    - tlib#input#List(): Centering line, clear match, clear & restore 
+    - tlib#input#List(): Centering line, clear match, clear & restore
     the search register
-    - tlib#input#List(): Ensure the window layout doesn't change (if the 
+    - tlib#input#List(): Ensure the window layout doesn't change (if the
     number of windows hasn't changed)
     - tlib#arg#Ex(): Don't escape backslashes by default
 
@@ -410,12 +410,12 @@ CHANGES:
     - Renamed tlib#win#SetWin() to tlib#win#Set()
 IMPROVEMENTS:
     - tlib#input#List(): <left>, <right> keys work in some lists
-    - tlib#input#List(): If an index_table is provided this will be used 
+    - tlib#input#List(): If an index_table is provided this will be used
     instead of the item's list index.
 FIXES:
-    - tlib#input#List(): Problem with scrolling, when the list was 
+    - tlib#input#List(): Problem with scrolling, when the list was
     shorter than the window (eg when using a vertical window).
-    - tlib#cache#Filename(): Don't rewrite name as relative filename if 
+    - tlib#cache#Filename(): Don't rewrite name as relative filename if
     explicitly given as argument. Avoid double (back)slashes.
     - TLet: simplified
 
@@ -455,8 +455,8 @@ NEW:
     - tlib/time.vim
     - g:tlib_inputlist_livesearch_threshold
 CHANGES:
-    - tlib#input#ListD(), World: Don't redisplay the list while typing 
-    new letters; calculate filter regexps only once before filtering the 
+    - tlib#input#ListD(), World: Don't redisplay the list while typing
+    new letters; calculate filter regexps only once before filtering the
     list.
     - World.vim: Minor changes to how filenames are handled.
 
@@ -465,11 +465,11 @@ NEW:
     - tag.vim
 FIX:
     - dir.vim: Use plain dir name in tlib#dir#Ensure()
-    - tlib#input#List(): An initial filter argument creates [[filter]] 
+    - tlib#input#List(): An initial filter argument creates [[filter]]
     and not as before [[''], [filter]].
-    - tlib#input#List(): When type was "si" and the item was picked by 
+    - tlib#input#List(): When type was "si" and the item was picked by
     filter, the wrong index was returned.
-    - tlib#input#List(): Don't check if chars are typed when displaying 
+    - tlib#input#List(): Don't check if chars are typed when displaying
     the list for the first time.
 
 0.20
@@ -497,7 +497,7 @@ FIX:
 - Maintain buffer MRU if required
 
 0.25
-- NEW: tlib#notify#TrimMessage(): trim message to prevent "Press ENTER" 
+- NEW: tlib#notify#TrimMessage(): trim message to prevent "Press ENTER"
 messages (contributed by Erik Falor)
 - NEW: tlib#notify#Echo()
 - FIX: World.CloseScratch(): Set window
@@ -509,26 +509,26 @@ messages (contributed by Erik Falor)
 
 0.27
 - FIX: Cosmetic bug, wrong packaging (thanks Nathan Neff)
-- Meaning of World#filter_format changed; new World#filter_options 
+- Meaning of World#filter_format changed; new World#filter_options
 - Filtering didn't work as advertised
 - tlib#string#Count()
 
 0.28
 - tlib#input#List():
--- Improved handling of sticky lists; <cr> and <Leftmouse> resume a 
+-- Improved handling of sticky lists; <cr> and <Leftmouse> resume a
 suspended list and immediately selects the item under the cursor
--- Experimental "seq" matching style: the conjunctions are sequentially 
-ordered, they are combined with "OR" (disjunctions), the regexp is 
+-- Experimental "seq" matching style: the conjunctions are sequentially
+ordered, they are combined with "OR" (disjunctions), the regexp is
 'magic', and "." is expanded to '.\{-}'
--- Experimental "cnfd" matching style: Same as cnf but with an "elastic" 
+-- Experimental "cnfd" matching style: Same as cnf but with an "elastic"
 dot "." that matches '\.\{-}'
 -- Filtering acts as if &ic=1 && $sc=1
 -- Weighting is done by the filter
 - tlib#agent#Input(): Consume <esc> when aborting input()
-- INCOMPATIBLE CHANGE: Changed eligible values of g:tlib_inputlist_match 
+- INCOMPATIBLE CHANGE: Changed eligible values of g:tlib_inputlist_match
 to "cnf", "cnfd", "seq" and "fuzzy"
 - NEW: tlib#buffer#KeepCursorPosition()
-- tlib#buffer#InsertText(): Take care of the extra line when appending 
+- tlib#buffer#InsertText(): Take care of the extra line when appending
 text to an empty buffer.
 
 0.29
@@ -541,11 +541,11 @@ text to an empty buffer.
 
 0.31
 - :TRequire command
--tlib#input#List: For i-type list views, make sure agents are called 
+-tlib#input#List: For i-type list views, make sure agents are called
 with the base indices.
 
 0.32
-- tlib#agent#Exit: explicitly return empty value (as a consequence, 
+- tlib#agent#Exit: explicitly return empty value (as a consequence,
 pressing <esc> when browsing an index-list, returns 0 and not "")
 - tlib#signs
 - tlib#input#List: set local statusline
@@ -557,6 +557,6 @@ pressing <esc> when browsing an index-list, returns 0 and not "")
 - tlib#map#PumAccept(key)
 
 0.34
-- tlib#buffer#HighlightLine(line): call tlib#autocmdgroup#Init() 
+- tlib#buffer#HighlightLine(line): call tlib#autocmdgroup#Init()
 (reported by Sergey Khorev)
 

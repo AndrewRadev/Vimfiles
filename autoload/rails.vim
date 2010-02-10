@@ -4082,15 +4082,15 @@ function! s:BufAbbreviations()
       Rabbrev co[ cookies
       Rabbrev fl[ flash
       Rabbrev rr( render
-      Rabbrev ra( render :action\ =>\ 
-      Rabbrev rc( render :controller\ =>\ 
-      Rabbrev rf( render :file\ =>\ 
-      Rabbrev ri( render :inline\ =>\ 
-      Rabbrev rj( render :json\ =>\ 
-      Rabbrev rl( render :layout\ =>\ 
-      Rabbrev rp( render :partial\ =>\ 
-      Rabbrev rt( render :text\ =>\ 
-      Rabbrev rx( render :xml\ =>\ 
+      Rabbrev ra( render :action\ =>\
+      Rabbrev rc( render :controller\ =>\
+      Rabbrev rf( render :file\ =>\
+      Rabbrev ri( render :inline\ =>\
+      Rabbrev rj( render :json\ =>\
+      Rabbrev rl( render :layout\ =>\
+      Rabbrev rp( render :partial\ =>\
+      Rabbrev rt( render :text\ =>\
+      Rabbrev rx( render :xml\ =>\
     endif
     if t =~ '^\%(view\|helper\)\>'
       Rabbrev dotiw distance_of_time_in_words
@@ -4098,8 +4098,8 @@ function! s:BufAbbreviations()
     endif
     if t =~ '^controller\>'
       Rabbrev re(  redirect_to
-      Rabbrev rea( redirect_to :action\ =>\ 
-      Rabbrev rec( redirect_to :controller\ =>\ 
+      Rabbrev rea( redirect_to :action\ =>\
+      Rabbrev rec( redirect_to :controller\ =>\
       Rabbrev rst( respond_to
     endif
     if t =~ '^model-arb\>' || t =~ '^model$'
@@ -4137,13 +4137,13 @@ function! s:BufAbbreviations()
       Rabbrev asre( assert_response
       Rabbrev art(  assert_redirected_to
     endif
-    Rabbrev :a    :action\ =>\ 
+    Rabbrev :a    :action\ =>\
     " hax
-    Rabbrev :c    :co________\ =>\ 
+    Rabbrev :c    :co________\ =>\
     inoreabbrev <buffer> <silent> :c <C-R>=<SID>TheCWord()<CR>
-    Rabbrev :i    :id\ =>\ 
-    Rabbrev :o    :object\ =>\ 
-    Rabbrev :p    :partial\ =>\ 
+    Rabbrev :i    :id\ =>\
+    Rabbrev :o    :object\ =>\
+    Rabbrev :p    :partial\ =>\
     Rabbrev logd( logger.debug
     Rabbrev logi( logger.info
     Rabbrev logw( logger.warn

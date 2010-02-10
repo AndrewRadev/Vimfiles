@@ -52,7 +52,7 @@ function! s:CompareBufferNrByMRU(a, b) "{{{3
 endf
 
 
-" Set the buffer to buffer and return a command as string that can be 
+" Set the buffer to buffer and return a command as string that can be
 " evaluated by |:execute| in order to restore the original view.
 function! tlib#buffer#Set(buffer) "{{{3
     let lazyredraw = &lazyredraw
@@ -265,7 +265,7 @@ function! tlib#buffer#InsertText(text, ...) "{{{3
 		if &fo =~# '[or]'
             " FIXME: Is the simple version sufficient?
             " VERSION 1
-			" " This doesn't work because it's not guaranteed that the 
+			" " This doesn't work because it's not guaranteed that the
 			" " cursor is set.
 			" let cline = getline('.')
 			" norm! a

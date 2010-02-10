@@ -4,8 +4,8 @@
 " Maintainer:  Christian Brabandt <cb@256bit.org>
 " Version:     0.7.2
 " Copyright:   (c) 2009 by Christian Brabandt
-"              The VIM LICENSE applies to histwin.vim 
-"              (see |copyright|) except use "histwin.vim" 
+"              The VIM LICENSE applies to histwin.vim
+"              (see |copyright|) except use "histwin.vim"
 "              instead of "Vim".
 "              No warranty, express or implied.
 "    *** ***   Use At-Your-Own-Risk!   *** ***
@@ -33,7 +33,7 @@ endif
 
 " ChangeLog:
 " 0.7.2   - make sure, when switching to a different undo-branch, the undo-tree will be reloaded
-"         - check 'undolevel' settings  
+"         - check 'undolevel' settings
 " 0.7.1   - fixed a problem with mapping the keys which broke the Undo-Tree keys
 "           (I guess I don't fully understand, when to use s: and <sid>)
 " 0.7     - created autoloadPlugin (patch by Charles Campbell) Thanks!
@@ -50,7 +50,7 @@ endif
 " 0.5     - add missing endif (which made version 0.4 unusuable)
 " 0.4     - Allow diffing with selected branch
 "         - highlight current version
-"         - Fix annoying bug, that displays 
+"         - Fix annoying bug, that displays
 "           --No lines in buffer--
 " 0.3     - Use changenr() to determine undobranch
 "         - <C-L> updates view

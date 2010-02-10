@@ -3,24 +3,24 @@
 " Maintainer:   Ingo Karkat <ingo@karkat.de>
 "
 " DEPENDENCIES:
-"  - jsl (http://www.javascriptlint.com). 
+"  - jsl (http://www.javascriptlint.com).
 "
 " CONFIGURATION:
 "   The optional jsl configuration must either reside in this script's directory
-"   as 'jsl.conf', or its filespec can be specified in g:jsl_config. 
+"   as 'jsl.conf', or its filespec can be specified in g:jsl_config.
 "
 " USAGE:
 "   :make [{jsl-args}]
 "
 " Copyright: (C) 2009 by Ingo Karkat
-"   The VIM LICENSE applies to this script; see ':help copyright'. 
+"   The VIM LICENSE applies to this script; see ':help copyright'.
 "
-" REVISION	DATE		REMARKS 
-"   1.00.003	11-May-2009	Tested on Linux; published version. 
+" REVISION	DATE		REMARKS
+"   1.00.003	11-May-2009	Tested on Linux; published version.
 "	002	21-Mar-2009	Doing jsl config file detection and filtering of
 "				empty error output lines inside the script;
 "				removed wrapper script. This compiler plugin now
-"				also works on Unix. 
+"				also works on Unix.
 "	001	20-Mar-2009	file creation
 
 if exists('current_compiler')
@@ -46,7 +46,7 @@ endfunction
 execute 'CompilerSet makeprg=jsl\ -nologo\ -nofilelisting\ -nosummary' .  escape(s:JslConfig(), ' "\') . '\ $*\ -process\ $*\ \"%\"'
 unlet s:scriptDir
 
-" sample output: 
+" sample output:
 "C:\TEMP\jsl\jsl-test.js(9): warning: test for equality (==) mistyped as assignment (=)?
 "    if (x = y) {
 ".............^
@@ -63,7 +63,7 @@ unlet s:scriptDir
 " this away by having the multiline pattern end with "%-Z" (i.e. match an empty
 " line), the error column somehow is counted as a non-virtual column, which is
 " wrong. So we let the pattern end with the "pointer line", and filter away the
-" empty line in a separate "%-G" pattern. 
+" empty line in a separate "%-G" pattern.
 "CompilerSet errorformat=%A%f(%l):\ %m,%-Z,%-C%p^,%-C%.%#
 CompilerSet errorformat=%A%f(%l):\ %m,%-Z%p^,%-C%.%#,%-G
 

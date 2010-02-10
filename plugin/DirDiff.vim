@@ -22,7 +22,7 @@
 "
 " USAGE:
 "   Put this file in your ~/.vim/plugin
-" 
+"
 "   Doing the following will generate a diff window.
 "
 "       :DirDiff <A:Src Directory> <B:Src Directory>
@@ -61,11 +61,11 @@
 "   'a' - Sets additional arguments for diff, eg. -w to ignore white space,
 "         etc.
 "   'q' - Quit DirDiff
-"    
+"
 "   The following comamnds can be used in the Vim diff mode
 "   \dg - Diff get: maps to :diffget<CR>
 "   \dp - Diff put: maps to :diffput<CR>
-"   \dj - Diff next: (think j for down) 
+"   \dj - Diff next: (think j for down)
 "   \dk - Diff previous: (think k for up)
 "
 "   You can set the following DirDiff variables.  You can add the following
@@ -112,7 +112,7 @@
 "
 " CREDITS:
 "
-"   Please mail any comment/suggestion/patch to 
+"   Please mail any comment/suggestion/patch to
 "   William Lee <wl1012@yahoo.com>
 "
 " LICENSE:
@@ -168,10 +168,10 @@
 "         exclude and ignore pattern.
 "  0.91 - Clean up delete routine.
 "       - Added interactive mode.
-"       - Added multiple entries of exclude and ignore pattern.  
+"       - Added multiple entries of exclude and ignore pattern.
 "       - Custom configuration through global variables.
 "       - Change exclude and ignore patterns on the fly.
-"        
+"
 "  0.9  - Reorganization of the interface.  Much simplier dialog for
 "         synchronization.  Support for range synchronization option (REALLY
 "         powerful)
@@ -228,7 +228,7 @@ map <unique> <script> <Plug>DirDiffQuit    :call <SID>DirDiffQuit()<CR>
 " eg. in your .vimrc file: let g:DirDiffExcludes = "CVS,*.class,*.o"
 "                          let g:DirDiffIgnore = "Id:"
 "                          " ignore white space in diff
-"                          let g:DirDiffAddArgs = "-w" 
+"                          let g:DirDiffAddArgs = "-w"
 "
 " You can set the pattern that diff excludes.  Defaults to the CVS directory
 if !exists("g:DirDiffExcludes")
@@ -319,7 +319,7 @@ elseif has("win32")
     " Windows is somewhat stupid since "del" can only remove the files, not
     " the directory.  The command "rd" would remove files recursively, but it
     " doesn't really work on a file (!).  where is the deltree command???
-     
+
     let s:DirDiffDeleteDirCmd = "rd"
     " rd is by default prompting, we need to handle this in a different way
     let s:DirDiffDeleteDirFlags = "/s"
@@ -437,7 +437,7 @@ function! <SID>DirDiff(srcA, srcB)
     nnoremap <buffer> q :call <SID>DirDiffQuit()<CR>
 
     nnoremap <buffer> o    :call <SID>DirDiffOpen()<CR>
-    nnoremap <buffer> <CR>  :call <SID>DirDiffOpen()<CR>  
+    nnoremap <buffer> <CR>  :call <SID>DirDiffOpen()<CR>
     nnoremap <buffer> <2-Leftmouse> :call <SID>DirDiffOpen()<CR>
     call <SID>SetupSyntax()
 
@@ -447,7 +447,7 @@ endfunction
 
 " Set up syntax highlighing for the diff window
 function! <SID>SetupSyntax()
-  if has("syntax") && exists("g:syntax_on") 
+  if has("syntax") && exists("g:syntax_on")
       "&& !has("syntax_items")
     syn match DirDiffSrcA               "\[A\]"
     syn match DirDiffSrcB               "\[B\]"
@@ -682,7 +682,7 @@ function! <SID>DirDiffSyncHelper(AB, line)
             let fileFrom = fileB
             let fileTo = fileA
         endif
-    else 
+    else
         echo "There is no diff here!"
         " Error
         return 1
@@ -912,7 +912,7 @@ function! <SID>AreDiffWinsOpened()
 endfunction
 
 " The given line begins with the "Only in"
-function! <SID>IsOnly(line)	
+function! <SID>IsOnly(line)
     return (match(a:line, "^ *" . s:DirDiffDiffOnlyLine . "\\|^==> " . s:DirDiffDiffOnlyLine ) == 0)
 endfunction
 
@@ -1032,27 +1032,27 @@ function! <SID>GetDiffStrings()
     "echo "First line: " . getline(1)
     "echo "tmp1: " . tmp1
     "echo "tmp1rx: " . tmp1rx
-	let s:DirDiffDiffOnlyLine = substitute( getline(1), tmp1rx . ".*$", "", '') 
+	let s:DirDiffDiffOnlyLine = substitute( getline(1), tmp1rx . ".*$", "", '')
     "echo "DirDiff Only: " . s:DirDiffDiffOnlyLine
-	
+
 	q
 
 	" Now let's get the Differ string
     "echo "Getting the diff in GetDiffStrings"
-	
+
 	silent exe "!echo testdifferent > \"" . tmp2 . s:sep . "test" . "\""
 	silent exe "!diff -r --brief \"" . tmp1 . "\" \"" . tmp2 . "\" > \"" . tmpdiff . "\""
-	
+
 	silent exe "split ". tmpdiff
-	let s:DirDiffDifferLine = substitute( getline(1), tmp1rx . ".*$", "", '') 
+	let s:DirDiffDifferLine = substitute( getline(1), tmp1rx . ".*$", "", '')
     " Note that the diff on cygwin may output '/' instead of '\' for the
     " separator, so we need to accomodate for both cases
     let andrx = "^.*" . tmp1rx . "[\\\/]test\\(.*\\)" . tmp2rx . "[\\\/]test.*$"
     let endrx = "^.*" . tmp1rx . "[\\\/]test.*" . tmp2rx . "[\\\/]test\\(.*$\\)"
     "echo "andrx : " . andrx
     "echo "endrx : " . endrx
-	let s:DirDiffDifferAndLine = substitute( getline(1), andrx , "\\1", '') 
-    let s:DirDiffDifferEndLine = substitute( getline(1), endrx, "\\1", '') 
+	let s:DirDiffDifferAndLine = substitute( getline(1), andrx , "\\1", '')
+    let s:DirDiffDifferEndLine = substitute( getline(1), endrx, "\\1", '')
 
 	"echo "s:DirDiffDifferLine = " . s:DirDiffDifferLine
 	"echo "s:DirDiffDifferAndLine = " . s:DirDiffDifferAndLine

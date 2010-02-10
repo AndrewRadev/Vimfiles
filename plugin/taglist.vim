@@ -212,7 +212,7 @@ if !exists('loaded_taglist')
     if !exists('Tlist_Auto_Highlight_Tag')
         let Tlist_Auto_Highlight_Tag = 1
     endif
-    
+
     " Automatically highlight the current tag on entering a buffer
     if !exists('Tlist_Highlight_Tag_On_BufEnter')
         let Tlist_Highlight_Tag_On_BufEnter = 1
@@ -350,7 +350,7 @@ let loaded_taglist = 'available'
 " Variable name format:
 "
 "       s:tlist_def_{vim_ftype}_settings
-" 
+"
 " vim_ftype - Filetype detected by Vim
 "
 " Value format:
@@ -670,7 +670,7 @@ function! s:Tlist_Log_Msg(msg)
             if len > 3000
                 let s:tlist_msg = strpart(s:tlist_msg, len - 3000)
             endif
-            let s:tlist_msg = s:tlist_msg . strftime('%H:%M:%S') . ': ' . 
+            let s:tlist_msg = s:tlist_msg . strftime('%H:%M:%S') . ': ' .
                         \ a:msg . "\n"
         endif
     endif
@@ -2419,7 +2419,7 @@ function! s:Tlist_Process_File(filename, ftype)
         let s:tlist_{fidx}_tag_count = tidx
     endif
 
-    call s:Tlist_Log_Msg('Processed ' . s:tlist_{fidx}_tag_count . 
+    call s:Tlist_Log_Msg('Processed ' . s:tlist_{fidx}_tag_count .
                 \ ' tags in ' . a:filename)
 
     return fidx

@@ -13,22 +13,22 @@ let loaded_tlib_tag_autoload = 1
 
 
 " :def: function! tlib#tag#Retrieve(rx, ?extra_tags=0)
-" Get all tags matching rx. Basically, this function simply calls 
-" |taglist()|, but when extra_tags is true, the list of the tag files 
+" Get all tags matching rx. Basically, this function simply calls
+" |taglist()|, but when extra_tags is true, the list of the tag files
 " (see 'tags') is temporarily expanded with |g:tlib_tags_extra|.
 "
 " Example use:
-" If want to include tags for, eg, JDK, normal tags use can become slow. 
+" If want to include tags for, eg, JDK, normal tags use can become slow.
 " You could proceed as follows:
-"     1. Create a tags file for the JDK sources. When creating the tags 
-"     file, make sure to include inheritance information and the like 
+"     1. Create a tags file for the JDK sources. When creating the tags
+"     file, make sure to include inheritance information and the like
 "     (command-line options like --fields=+iaSm --extra=+q should be ok).
-"     In this example, we want tags only for public methods (there are 
+"     In this example, we want tags only for public methods (there are
 "     most likely better ways to do this): >
 "          ctags -R --fields=+iaSm --extra=+q ${JAVA_HOME}/src
 "          head -n 6 tags > tags0
 "          grep access:public tags >> tags0
-" <    2. Say 'tags' included project specific tags files. In 
+" <    2. Say 'tags' included project specific tags files. In
 "      ~/vimfiles/after/ftplugin/java.vim insert: >
 "          let b:tlib_tags_extra = $JAVA_HOME .'/tags0'
 " <    3. When this function is invoked as >
@@ -59,9 +59,9 @@ function! tlib#tag#Retrieve(rx, ...) "{{{3
 endf
 
 
-" Retrieve tags that meet the the constraints (a dictionnary of fields and 
-" regexp, with the exception of the kind field that is a list of chars). 
-" For the use of the optional use_extra argument see 
+" Retrieve tags that meet the the constraints (a dictionnary of fields and
+" regexp, with the exception of the kind field that is a list of chars).
+" For the use of the optional use_extra argument see
 " |tlib#tag#Retrieve()|.
 " :def: function! tlib#tag#Collect(constraints, ?use_extra=1, ?match_front=1)
 function! tlib#tag#Collect(constraints, ...) "{{{3

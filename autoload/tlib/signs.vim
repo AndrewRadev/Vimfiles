@@ -60,8 +60,8 @@ endf
 " endf
 
 
-" Add signs for all locations in LIST. LIST must confirm with the 
-" quickfix list format (see |getqflist()|; only the fields lnum and 
+" Add signs for all locations in LIST. LIST must confirm with the
+" quickfix list format (see |getqflist()|; only the fields lnum and
 " bufnr are required).
 "
 " list:: a quickfix or location list

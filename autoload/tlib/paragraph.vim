@@ -11,11 +11,11 @@ set cpo&vim
 
 
 " :def: function! tlib#paragraph#Delete(?register="")
-" Almost the same as dap but behaves differently when the cursor is on a 
-" blank line or when the paragraph's last line is the last line in the 
+" Almost the same as dap but behaves differently when the cursor is on a
+" blank line or when the paragraph's last line is the last line in the
 " file.
 "
-" This function assumes that a paragraph is a block of text followed by 
+" This function assumes that a paragraph is a block of text followed by
 " blank lines or the end of file.
 function! tlib#paragraph#Delete(...) "{{{3
     TVarArg 'register'
@@ -36,7 +36,7 @@ function! tlib#paragraph#Delete(...) "{{{3
         exec 'silent norm! '. prefix .'dG'
     elseif hastext
         silent norm! dap
-    else 
+    else
         silent norm! {j0dap
     endif
 endf

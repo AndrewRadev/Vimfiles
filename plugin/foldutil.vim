@@ -15,7 +15,7 @@
 "     with misc. things, such as examples, bug reports and other feedback.
 " Licence: This program is free software; you can redistribute it and/or
 "          modify it under the terms of the GNU General Public License.
-"          See http://www.gnu.org/copyleft/gpl.txt 
+"          See http://www.gnu.org/copyleft/gpl.txt
 " Download From:
 "     http://www.vim.org/script.php?script_id=158
 " Description:
@@ -34,7 +34,7 @@
 "
 "   The first set of commands use pattern matching criteria (using the
 "   built-in =~ operator, see help on |expr-=~|).
-"   
+"
 "     FoldMatching - All arguments are optional. The first argument specifies
 "                    the begin pattern and an optional second argument can be
 "                    passed to specify an end pattern (for block mode) and
@@ -44,7 +44,7 @@
 "                    as context.
 "         Syntax:
 "           [range]FoldMatching[!] [pattern] [endPattern] [context]
-" 
+"
 "         Ex:
 "           FoldMatching
 "             Uses current search pattern and creates folds in non-block mode
@@ -62,7 +62,7 @@
 "     FoldNonMatching - This is just an alias for "FoldMatching" with a bang.
 "
 "   The following commands use line number as match criteria
-"   
+"
 "     FoldShowLines - Pass a comma-separated list of line numbers and an
 "                     optional number of context lines to show/hide. All the
 "                     rest of the lines (excluding those in context) will be
@@ -71,7 +71,7 @@
 "                     can give a range too.
 "         Syntax:
 "           [range]FoldShowLines[!] {lineNumbers} [endLineNumbers] [context]
-"   
+"
 "         Ex:
 "           FoldShowLines 10,50,100 3
 "             Creates four folds exposing the lines 10, 50 and 100 with a
@@ -88,7 +88,7 @@
 "
 "   The following command takes a highlight group as a match criteria, and
 "     uses it to show/hide lines.
-"   
+"
 "     FoldShowHiGroup - Pass a highlight group name and an optional number of
 "                     context lines to be shown. All the rest of the lines
 "                     (excluding those in context) will be folded away. You
@@ -97,7 +97,7 @@
 "                     range too.
 "         Syntax:
 "           [range]FoldShowHiGroup[!] {HiGroup} [endHiGroup] [context]
-"   
+"
 "         Ex:
 "           FoldShowHiGroup Todo
 "             Folds away all the lines except those that have a TODO item
@@ -107,7 +107,7 @@
 "             In HTML this reveals just the lines containing special characters.
 "           FoldShowHiGroup! Comment 0
 "             This will fold away all the comment lines in any language.
-"   
+"
 "   The following is purely for convenience to reduce the number of commands
 "   to be executed (you need to create separate folds).
 "
@@ -118,10 +118,10 @@
 "                     'foldopen' setting.
 "         Syntax:
 "           [range]FoldShowRange
-"   
+"
 "         Ex:
 "           50,500FoldShowRange
-"   
+"
 "       The defaults for pattern and context are current search pattern
 "         (extracted from / register) and 1 respectively.
 "       The outline mode additionally modifies the 'foldtext' such that the
@@ -134,10 +134,10 @@
 "         lines in addition to the matched line, set it to something like:
 "             "getline(v:foldstart).' <'.(v:foldend-v:foldstart+1).' lines>'").
 "
-"       Ex: 
-"         - Open a vim script and try: 
+"       Ex:
+"         - Open a vim script and try:
 "             FoldNonMatching \<function\> -1
-"         - Open a java class and try: 
+"         - Open a java class and try:
 "             FoldNonMatching public\|private\|protected -1
 "         - Open files with diff/patch output for several files and try:
 "             FoldMatching diff -1

@@ -348,7 +348,7 @@ function! s:GetNamespaceAliasMap()
     let stopPos = s:GetStopPositionForLocalSearch()
     let stopLine = stopPos[0]
     let curPos = origPos
-    let lastLine = 0 
+    let lastLine = 0
     let nextStopLine = origPos[0]
     let szReAlias = '\Cnamespace\s\+\w\+\s\+='
     while curPos !=[0,0]
@@ -469,7 +469,7 @@ function! omni#cpp#namespaces#GetUsingNamespaces()
 
     let stopLine = stopPos[0]
     let curPos = origPos
-    let lastLine = 0 
+    let lastLine = 0
     let nextStopLine = origPos[0]
     while curPos !=[0,0]
         let curPos = searchpos('\C}\|\(using\s\+namespace\)', 'bW',stopLine)
@@ -529,14 +529,14 @@ endfunc
 function! s:ResolveNamespace(namespace, mapCurrentContexts)
     let result = {'kind':0, 'value': ''}
 
-    " If the namespace is already resolved we add it in the list of 
+    " If the namespace is already resolved we add it in the list of
     " current contexts
     if match(a:namespace, '^::')>=0
         let result.kind = 1
         let result.value = a:namespace
         return result
     elseif match(a:namespace, '\w\+::\w\+')>=0
-        let mapCurrentContextsTmp = copy(a:mapCurrentContexts) 
+        let mapCurrentContextsTmp = copy(a:mapCurrentContexts)
         let resolvedItem = {}
         for nsTmp in  split(a:namespace, '::')
             let resolvedItem = s:ResolveNamespace(nsTmp, mapCurrentContextsTmp)
@@ -767,7 +767,7 @@ function! s:GetClassScopeAtCursor()
                 endif
             endif
         endfor
-        
+
         if len(listTmp)
             if len(listClassScope)
                 let bResolved = 1
@@ -798,7 +798,7 @@ function! s:GetClassScopeAtCursor()
             let szClassScope .= join(listClassScope, '::')
         else
             let szClassScope = join(listClassScope, '::')
-            
+
             " The class scope is not resolved, we have to check using
             " namespace declarations and search the class scope in each
             " namespace

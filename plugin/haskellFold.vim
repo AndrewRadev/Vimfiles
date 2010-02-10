@@ -35,7 +35,7 @@ fun! HaskellFold( lineNum ) "{{{
     let line = getline( a:lineNum )
 
     " Beginning of comment
-    if line =~ '^\s*--' 
+    if line =~ '^\s*--'
         return 2
     endif
 

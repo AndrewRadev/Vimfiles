@@ -12,7 +12,7 @@ function! SymfonyIncludeExpr(fname)
     let match = split(lib#ExtractRx(line, rx, '\1'), '/')
     if len(match) == 2
       let [module, template] = match
-      if module == 'global' 
+      if module == 'global'
         let module_path = ''
       else
         let module_path = '/modules/'.module

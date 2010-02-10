@@ -19,21 +19,21 @@ let s:id_counter = 0
 let s:prototype  = {'_class': ['object'], '_super': [], '_id': 0} "{{{2
 
 " :def: function! tlib#Object#New(?fields={})
-" This function creates a prototype that provides some kind of 
+" This function creates a prototype that provides some kind of
 " inheritance mechanism and a way to call parent/super's methods.
 "
-" The usage demonstrated in the following example works best, when every 
+" The usage demonstrated in the following example works best, when every
 " class/prototype is defined in a file of its own.
 "
-" The reason for why there is a dedicated constructor function is that 
-" this layout facilitates the use of templates and that methods are 
+" The reason for why there is a dedicated constructor function is that
+" this layout facilitates the use of templates and that methods are
 " hidden from the user. Other solutions are possible.
 "
 " EXAMPLES: >
 "     let s:prototype = tlib#Object#New({
 "                 \ '_class': ['FooBar'],
-"                 \ 'foo': 1, 
-"                 \ 'bar': 2, 
+"                 \ 'foo': 1,
+"                 \ 'bar': 2,
 "                 \ })
 "     " Constructor
 "     function! FooBar(...)

@@ -32,23 +32,23 @@
 " The following commands only apply to files under CVS source control.
 "
 " CVSEdit          Performs "cvs edit" on the current file.
-"   
+"
 " CVSEditors       Performs "cvs editors" on the current file.
-"   
+"
 " CVSUnedit        Performs "cvs unedit" on the current file.
-"   
+"
 " CVSWatch         Takes an argument which must be one of [on|off|add|remove].
 "                  Performs "cvs watch" with the given argument on the current
 "                  file.
-"   
+"
 " CVSWatchers      Performs "cvs watchers" on the current file.
-"   
+"
 " CVSWatchAdd      Alias for "CVSWatch add"
-"   
+"
 " CVSWatchOn       Alias for "CVSWatch on"
-"   
+"
 " CVSWatchOff      Alias for "CVSWatch off"
-"   
+"
 " CVSWatchRemove   Alias for "CVSWatch remove"
 "
 " Mapping documentation: {{{2
@@ -302,7 +302,7 @@ function! s:cvsFunctions.GetBufferInfo()
 
 		" We can still be in a CVS-controlled directory without this being a CVS
 		" file
-		if match(revision, '^New file!$') >= 0 
+		if match(revision, '^New file!$') >= 0
 			let revision='New'
 		elseif match(revision, '^\d\+\.\d\+\%(\.\d\+\.\d\+\)*$') <0
 			return ['Unknown']

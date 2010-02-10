@@ -94,7 +94,7 @@ endfunction
 
 " Create an outline of buffer by folding according to pattern
 function! lib#Outline(pattern)
-  if exists('b:outlined') " Un-outline it 
+  if exists('b:outlined') " Un-outline it
     FoldEndFolding
     unlet b:outlined
   else
