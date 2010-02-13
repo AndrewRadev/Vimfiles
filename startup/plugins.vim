@@ -5,6 +5,11 @@ nmap gN :NERDTree<cr>
 nmap <Leader>f :NERDTreeFind<cr>
 
 let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeIgnore = [
+      \ '\~$',
+      \ '\.o$',
+      \ '\.hi$'
+      \ ]
 
 " Open up FuzzyFinders:
 nmap Qf :FuzzyFinderTextMate<cr>

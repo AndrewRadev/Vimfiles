@@ -397,6 +397,10 @@ acp-thanks	acp.txt	/*acp-thanks*
 acp-usage	acp.txt	/*acp-usage*
 acp.txt	acp.txt	/*acp.txt*
 actions	vim-background-cmd.txt	/*actions*
+afterimage-author	afterimage.txt	/*afterimage-author*
+afterimage-built-ins	afterimage.txt	/*afterimage-built-ins*
+afterimage-customization	afterimage.txt	/*afterimage-customization*
+afterimage.txt	afterimage.txt	/*afterimage.txt*
 agtd	agtd.txt	/*agtd*
 agtd-getStarted	agtd.txt	/*agtd-getStarted*
 agtd-intro	agtd.txt	/*agtd-intro*

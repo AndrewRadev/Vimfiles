@@ -6,3 +6,4 @@ trag.vba: call delete('/home/andrew/.vim/autoload/trag/general.vim')|call delete
 histwin.vba: call delete('/home/andrew/.vim/autoload/histwin.vim')|call delete('/home/andrew/.vim/plugin/histwinPlugin.vim')
 fontsize-0.2.0.vba: call delete('/home/andrew/.vim/plugin/fontsize.vim')|call delete('/home/andrew/.vim/autoload/fontsize.vim')|call delete('/home/andrew/.vim/doc/fontsize.txt')
 agtd.vba: call delete('/home/andrew/.vim/doc/agtd.txt')|call delete('/home/andrew/.vim/plugin/agtd.vim')|call delete('/home/andrew/.vim/syntax/agtd.vim')|call delete('/home/andrew/.vim/ftplugin/agtd.vim')
+vimperator.vba: call delete('/home/andrew/.vim/syntax/vimperator.vim')|call delete('/home/andrew/.vim/ftdetect/vimperator.vim')
