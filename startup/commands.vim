@@ -29,3 +29,6 @@ command! CleanGarbage %s/\s\+$//e
 
 " Fix dos-style line endings:
 command! FixEol %s/$//e
+
+" Vim shell
+command Shell runtime scripts/vimsh/vimsh.vim

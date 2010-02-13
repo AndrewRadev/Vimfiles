@@ -162,6 +162,12 @@
 <Plug>(textobj-function-i)	textobj-function.txt	/*<Plug>(textobj-function-i)*
 AND	dbext.txt	/*AND*
 Align-copyright	Align.txt	/*Align-copyright*
+AnsiEsc	AnsiEsc.txt	/*AnsiEsc*
+AnsiEsc-contents	AnsiEsc.txt	/*AnsiEsc-contents*
+AnsiEsc-copyright	AnsiEsc.txt	/*AnsiEsc-copyright*
+AnsiEsc-history	AnsiEsc.txt	/*AnsiEsc-history*
+AnsiEsc-manual	AnsiEsc.txt	/*AnsiEsc-manual*
+AnsiEsc.txt	AnsiEsc.txt	/*AnsiEsc.txt*
 DBI	dbext.txt	/*DBI*
 Decho.vim	Decho.txt	/*Decho.vim*
 DechoMsgOff	Decho.txt	/*DechoMsgOff*
