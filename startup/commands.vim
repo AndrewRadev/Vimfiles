@@ -25,10 +25,10 @@ else
 endif
 
 " Clear up garbage:
-command! CleanGarbage %s/\s\+$//e
+command! CleanGarbage call lib#InPlace('%s/\s\+$//e')
 
 " Fix dos-style line endings:
-command! FixEol %s/$//e
+command! FixEol call lib#InPlace('%s/$//e')
 
 " Vim shell
 command Shell runtime scripts/vimsh/vimsh.vim

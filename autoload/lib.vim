@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: January 09, 2010
+" Last Modified: February 14, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -101,4 +101,11 @@ function! lib#Outline(pattern)
     exe "FoldMatching ".a:pattern." -1"
     let b:outlined = 1
   endif
+endfunction
+
+" Execute a command, leaving the cursor on the current line
+function! lib#InPlace(command)
+  normal mz
+  exe a:command
+  normal 'z
 endfunction
