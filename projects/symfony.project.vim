@@ -17,7 +17,7 @@ command! RebuildAllTest !php symfony doctrine:build-all-reload --env=test
 command! RebuildDb      !php symfony doctrine:build-db
 command! RebuildModel   !php symfony doctrine:build-model
 command! TestAll        !php symfony test:all
-command! Run            !php %
+command! Migrate        !php symfony doctrine:migrate
 
 command! Preview Utl ol http://localhost:80/
 

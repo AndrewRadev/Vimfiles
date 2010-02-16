@@ -105,7 +105,7 @@ endfunction
 
 " Execute a command, leaving the cursor on the current line
 function! lib#InPlace(command)
-  normal mz
+  let save_cursor = getpos(".")
   exe a:command
-  normal 'z
+  call setpos('.', save_cursor)
 endfunction
