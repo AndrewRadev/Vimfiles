@@ -19,6 +19,19 @@ command! RebuildModel   !php symfony doctrine:build-model
 command! TestAll        !php symfony test:all
 command! Migrate        !php symfony doctrine:migrate
 
+let s:sf_generate_commands = {
+      \ 'migration': 'doctrine:generate-migration'
+      \ }
+
+command! -nargs=* -complete=customlist,s:CompleteGenerate Generate call s:Generate(<f-args>)
+function! s:Generate(what, ...)
+  let l:command = s:sf_generate_commands[a:what]
+  exe "!php symfony ".l:command." ".join(a:000)
+endfunction
+function! s:CompleteGenerate(A, L, P)
+  return sort(keys(filter(copy(s:sf_generate_commands), "v:key =~'^".a:A."'")))
+endfunction
+
 command! Preview Utl ol http://localhost:80/
 
 command! CC !php symfony cc
