@@ -22,6 +22,7 @@ Haskell:
   * Experiment with SHIM
 
 Snippets:
+  * !!! My own snippet system? !!!
   * Snippets and acp -- completing breaks $x references
   * C snippets should NOT be included in cpp ones!
   * Add sql snippets
