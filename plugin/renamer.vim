@@ -379,7 +379,7 @@ function! <SID>StartRenamer(needNewWindow, startLine, ...) "{{{1
   setlocal noswapfile
 
   " Set the buffer name
-  exec "file VimRenamer " . b:renamerDirectoryEscaped
+  exec "file VimRenamer" . b:renamerDirectoryEscaped
 
   " Setup syntax
   if has("syntax")
