@@ -9,3 +9,4 @@ agtd.vba: call delete('/home/andrew/.vim/doc/agtd.txt')|call delete('/home/andre
 vimperator.vba: call delete('/home/andrew/.vim/syntax/vimperator.vim')|call delete('/home/andrew/.vim/ftdetect/vimperator.vim')
 colourscheme_bandit.vba: call delete('/home/andrew/.vim/colors/bandit.vim')|call delete('/home/andrew/.vim/syntax/colours_bandit.vim')|call delete('/home/andrew/.vim/ftplugin/colours_bandit.vim')
 ctags_highlighting.vba: call delete('/home/andrew/.vim/plugin/ctags_highlighting.vim')|call delete('/home/andrew/.vim/mktypes.py')|call delete('/home/andrew/.vim/extra_source/mktypes/setup.py')|call delete('/home/andrew/.vim/doc/ctags_highlighting.txt')
+cabal.vba: call delete('/home/andrew/.vim/ftdetect/cabal.vim')|call delete('/home/andrew/.vim/syntax/cabal.vim')
