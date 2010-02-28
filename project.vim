@@ -1,3 +1,3 @@
 if !has('win32')
-  set shell=git-sh
+  command! GitConsole !git-sh
 endif
