@@ -95,7 +95,7 @@ def CreateCScopeFile(options):
 
 	if options.build_cscopedb:
 		run_cscope = True
-	
+
 	if os.path.exists('cscope.files'):
 		if options.build_cscopedb_if_file_exists:
 			run_cscope = True
@@ -109,7 +109,7 @@ def CreateCScopeFile(options):
 #@print_timing
 def CreateTagsFile(config, languages, options):
 	print "Generating Tags"
-	
+
 	ctags_languages = languages[:]
 	if 'c' in ctags_languages:
 		ctags_languages.append('c++')
@@ -225,7 +225,7 @@ def IsValidKeyword(keyword, iskeyword):
 		if not char in iskeyword:
 			return False
 	return True
-	
+
 #@print_timing
 def CreateTypesFile(config, Parameters, options):
 	outfile = 'types_%s.vim' % Parameters['suffix']
@@ -259,9 +259,9 @@ def CreateTypesFile(config, Parameters, options):
 
 			if not field_trim.match(vimmed_line):
 				ctags_entries.append(vimmed_line)
-	
+
 	p.close()
-	
+
 	# Essentially a uniq() function
 	ctags_entries = dict.fromkeys(ctags_entries).keys()
 	# Sort the list
@@ -270,7 +270,7 @@ def CreateTypesFile(config, Parameters, options):
 	if len(ctags_entries) == 0:
 		print "No tags found"
 		return
-	
+
 	keywordDict = {}
 	for line in ctags_entries:
 		m = field_keyword.match(line)
@@ -281,7 +281,7 @@ def CreateTypesFile(config, Parameters, options):
 
 	if options.check_keywords:
 		iskeyword = GenerateValidKeywordRange(Parameters['iskeyword'])
-	
+
 	matchEntries = []
 	vimtypes_entries = []
 
@@ -298,7 +298,7 @@ def CreateTypesFile(config, Parameters, options):
 	if options.include_locals:
 		UsedTypes.append('ctags_l')
 		vimtypes_entries.append('silent! syn clear ctags_l')
-	
+
 
 	# Specified highest priority first
 	Priority = [
@@ -370,7 +370,7 @@ def CreateTypesFile(config, Parameters, options):
 			keycommand = keycommand + " " + keyword
 		if keycommand != keystarter:
 			vimtypes_entries.append(keycommand)
-	
+
 	# Essentially a uniq() function
 	matchEntries = dict.fromkeys(matchEntries).keys()
 	# Sort the list
@@ -406,7 +406,7 @@ def CreateTypesFile(config, Parameters, options):
 	except IOError:
 		sys.stderr.write("ERROR: Couldn't create %s\n" % (outfile))
 		sys.exit(1)
-	
+
 	try:
 		for line in vimtypes_entries:
 			fh.write(line)
@@ -828,6 +828,6 @@ def GetKindList():
 	}
 	return LanguageKinds
 
-	
+
 if __name__ == "__main__":
 	main()

@@ -167,7 +167,7 @@ function! s:MakeDarker(rgb)
 	let result = printf("#%02x%02x%02x", Red, Green, Blue)
 
 	return result
-	
+
 endfunction
 
 
@@ -205,7 +205,7 @@ hi Ignore ctermfg=DarkGrey guifg=grey20
 " Unless there is a need to change the links at the bottom, don't change anything below this line
 
 let s:colours = {}
-let valid_cterm_colours = 
+let valid_cterm_colours =
 			\ [
 			\     'Black', 'DarkBlue', 'DarkGreen', 'DarkCyan',
 			\     'DarkRed', 'DarkMagenta', 'Brown', 'DarkYellow',

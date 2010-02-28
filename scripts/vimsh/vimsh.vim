@@ -59,7 +59,7 @@ endif
     "   Gdk-ERROR **: X connection to :0.0 broken (explicit kill or server shutdown).
     "
     "       Autocommands
-    "           
+    "
     "           CursorHold doesn't work
     "           And defining a User one causes a stack-overflow
     "           in the regex engine, plus it's still a different
@@ -84,7 +84,7 @@ endif
     "
     "  Being able to use this hackjob workaround depends
     "  on a few things being present.
-    "  
+    "
     "  If I've read the docs right all that client/server stuff
     "  goes through the X server, so this will not work
     "  in pure console mode.  We also need to be compiled

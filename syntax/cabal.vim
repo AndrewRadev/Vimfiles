@@ -8,7 +8,7 @@
 "       Cabal known compiler are highlighted too.
 "
 " V1.2: Added cpp-options which was missing. Feature implemented
-"       by GHC, found with a GHC warning, but undocumented. 
+"       by GHC, found with a GHC warning, but undocumented.
 "       Whatever...
 "
 " v1.1: Fixed operator problems and added ftdetect file
