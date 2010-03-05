@@ -39,8 +39,10 @@ let maplocalleader="_"
 
 if has("win32")
   set backupdir=c:/tmp
-  set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
+"  set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
+  set guifont=DejaVu_Sans_Mono:h12
 else
-  set guifont=Terminus\ 14,Andale\ Mono\ 13
+"  set guifont=Terminus\ 14,Andale\ Mono\ 13
+  set guifont=Andale\ Mono\ 13
   set backupdir=~/.backup
 endif
