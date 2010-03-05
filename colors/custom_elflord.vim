@@ -13,6 +13,8 @@ endif
 
 let g:colors_name = "custom_elflord"
 
+hi lCursor guibg=red
+
 hi Comment      term=bold       ctermfg=DarkCyan    guifg=#80a0ff
 hi Constant     term=underline  ctermfg=Magenta     guifg=Magenta
 hi CursorLine   cterm=underline gui=underline       guibg=Black
