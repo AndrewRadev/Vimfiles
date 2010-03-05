@@ -26,7 +26,7 @@ set shiftwidth=2 shiftround
 set shortmess=aTI
 set showcmd
 set sidescroll=4
-set statusline=%<%f\ %h%m%r%=[%{&ft}]%-14.([%l/%L],%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=[%{&ft}]%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
 set tabstop=2 softtabstop=2
 set ttimeout
