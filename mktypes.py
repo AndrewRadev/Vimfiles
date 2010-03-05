@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #  Author:  A. S. Budden
-## Date::   19th February 2010   ##
-## RevTag:: r384                 ##
+## Date::   2nd March 2010       ##
+## RevTag:: r391                 ##
 
 import os
 import sys
@@ -11,7 +11,7 @@ import fnmatch
 import glob
 import subprocess
 
-revision = "## RevTag:: r384 ##".strip('# ').replace('RevTag::', 'revision')
+revision = "## RevTag:: r391 ##".strip('# ').replace('RevTag::', 'revision')
 
 field_processor = re.compile(
 r'''
@@ -95,7 +95,7 @@ def CreateCScopeFile(options):
 
 	if options.build_cscopedb:
 		run_cscope = True
-
+	
 	if os.path.exists('cscope.files'):
 		if options.build_cscopedb_if_file_exists:
 			run_cscope = True
@@ -109,17 +109,17 @@ def CreateCScopeFile(options):
 #@print_timing
 def CreateTagsFile(config, languages, options):
 	print "Generating Tags"
-
+	
 	ctags_languages = languages[:]
 	if 'c' in ctags_languages:
 		ctags_languages.append('c++')
 
 	ctags_cmd = '%s %s %s %s' % (ctags_exe, config['CTAGS_OPTIONS'], "--languages=" + ",".join(ctags_languages), " ".join(config['CTAGS_FILES']))
 
-#   fh = open('ctags_cmd.txt', 'w')
-#   fh.write(ctags_cmd)
-#   fh.write('\n')
-#   fh.close()
+#	fh = open('ctags_cmd.txt', 'w')
+#	fh.write(ctags_cmd)
+#	fh.write('\n')
+#	fh.close()
 
 	#os.system(ctags_cmd)
 	subprocess.call(ctags_cmd, shell = (os.name != 'nt'))
@@ -161,6 +161,9 @@ def GetLanguageParameters(lang):
 	elif lang == 'php':
 		params['suffix'] = 'php'
 		params['extensions'] = r'php'
+	elif lang == 'c#':
+		params['suffix'] = 'cs'
+		params['extensions'] = 'cs'
 	else:
 		raise AttributeError('Language not recognised %s' % lang)
 	return params
@@ -225,7 +228,7 @@ def IsValidKeyword(keyword, iskeyword):
 		if not char in iskeyword:
 			return False
 	return True
-
+	
 #@print_timing
 def CreateTypesFile(config, Parameters, options):
 	outfile = 'types_%s.vim' % Parameters['suffix']
@@ -259,9 +262,9 @@ def CreateTypesFile(config, Parameters, options):
 
 			if not field_trim.match(vimmed_line):
 				ctags_entries.append(vimmed_line)
-
+	
 	p.close()
-
+	
 	# Essentially a uniq() function
 	ctags_entries = dict.fromkeys(ctags_entries).keys()
 	# Sort the list
@@ -270,7 +273,7 @@ def CreateTypesFile(config, Parameters, options):
 	if len(ctags_entries) == 0:
 		print "No tags found"
 		return
-
+	
 	keywordDict = {}
 	for line in ctags_entries:
 		m = field_keyword.match(line)
@@ -281,23 +284,32 @@ def CreateTypesFile(config, Parameters, options):
 
 	if options.check_keywords:
 		iskeyword = GenerateValidKeywordRange(Parameters['iskeyword'])
-
+	
 	matchEntries = []
 	vimtypes_entries = []
 
-	vimtypes_entries.append('silent! syn clear ctags_c ctags_d ctags_e ctags_f ctags_p ctags_g ctags_m ctags_s ctags_t ctags_u ctags_v')
+	clear_string = 'silent! syn clear '
 
 	patternCharacters = "/@#':"
 	charactersToEscape = '\\' + '~[]*.$^'
-	UsedTypes = [
-			'ctags_c', 'ctags_d', 'ctags_e', 'ctags_f',
-			'ctags_g', 'ctags_k', 'ctags_m', 'ctags_p',
-			'ctags_s', 'ctags_t', 'ctags_u', 'ctags_v'
-			]
+	KindList = GetKindList()[Parameters['suffix']]
 
-	if options.include_locals:
-		UsedTypes.append('ctags_l')
-		vimtypes_entries.append('silent! syn clear ctags_l')
+	if not options.include_locals:
+		remove_list = []
+		for key, value in KindList.iteritems():
+			if value == 'CTagsLocalVariable':
+				remove_list.append(key)
+		for key in remove_list:
+			try:
+				del(KindList[key])
+			except KeyError:
+				pass
+
+	UsedTypes = KindList.keys()
+
+	clear_string += " ".join(UsedTypes)
+
+	vimtypes_entries.append(clear_string)
 
 
 	# Specified highest priority first
@@ -307,9 +319,6 @@ def CreateTypesFile(config, Parameters, options):
 			'ctags_g', 'ctags_k', 'ctags_v',
 			'ctags_u', 'ctags_m', 'ctags_s',
 			]
-
-	if options.include_locals:
-		Priority.append('ctags_l')
 
 	# Reverse the list as highest priority should be last!
 	Priority.reverse()
@@ -370,7 +379,7 @@ def CreateTypesFile(config, Parameters, options):
 			keycommand = keycommand + " " + keyword
 		if keycommand != keystarter:
 			vimtypes_entries.append(keycommand)
-
+	
 	# Essentially a uniq() function
 	matchEntries = dict.fromkeys(matchEntries).keys()
 	# Sort the list
@@ -406,7 +415,7 @@ def CreateTypesFile(config, Parameters, options):
 	except IOError:
 		sys.stderr.write("ERROR: Couldn't create %s\n" % (outfile))
 		sys.exit(1)
-
+	
 	try:
 		for line in vimtypes_entries:
 			fh.write(line)
@@ -499,7 +508,7 @@ def main():
 
 	CreateCScopeFile(options)
 
-	full_language_list = ['c', 'java', 'perl', 'python', 'ruby', 'vhdl', 'php']
+	full_language_list = ['c', 'java', 'perl', 'python', 'ruby', 'vhdl', 'php', 'c#']
 	if len(options.languages) == 0:
 		# Include all languages
 		language_list = full_language_list
@@ -574,7 +583,7 @@ def GetKindList():
 	{
 		'ctags_c': 'CTagsClass',
 		'ctags_d': 'CTagsDefinedName',
-		'ctags_e': 'CTagsEnumerator',
+		'ctags_e': 'CTagsEnumerationValue',
 		'ctags_f': 'CTagsFunction',
 		'ctags_g': 'CTagsEnumerationName',
 		'ctags_k': 'CTagsConstant',
@@ -588,11 +597,11 @@ def GetKindList():
 		'ctags_v': 'CTagsGlobalVariable',
 		'ctags_x': 'CTagsExtern',
 	}
-	LanguageKinds['c#'] = \
+	LanguageKinds['cs'] = \
 	{
 		'ctags_c': 'CTagsClass',
 		'ctags_d': 'CTagsDefinedName',
-		'ctags_e': 'CTagsEnumerator',
+		'ctags_e': 'CTagsEnumerationValue',
 		'ctags_E': 'CTagsEvent',
 		'ctags_f': 'CTagsField',
 		'ctags_g': 'CTagsEnumerationName',
@@ -828,6 +837,6 @@ def GetKindList():
 	}
 	return LanguageKinds
 
-
+	
 if __name__ == "__main__":
 	main()

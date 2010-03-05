@@ -1,3 +1,14 @@
+" Increment the number below for a dynamic #include guard
+let s:autotag_vim_version=1
+
+if exists("g:autotag_vim_version_sourced")
+   if s:autotag_vim_version == g:autotag_vim_version_sourced
+      finish
+   endif
+endif
+
+let g:autotag_vim_version_sourced=s:autotag_vim_version
+
 " This file supplies automatic tag regeneration when saving files
 " There's a problem with ctags when run with -a (append)
 " ctags doesn't remove entries for the supplied source file that no longer exist
@@ -85,7 +96,7 @@ class AutoTag:
             st = os.stat(tagsFile)
             if st:
                size = getattr(st, 'st_size', None)
-               if not size:
+               if size is None:
                   self.__diag("Could not stat tags file %s" % tagsFile)
                   return None
                if AutoTag.__maxTagsFileSize and size > AutoTag.__maxTagsFileSize:
@@ -106,7 +117,7 @@ class AutoTag:
          return
       (base, suff) = os.path.splitext(source)
       if suff in self.excludesuffix:
-         self.__diag("Ignoring excluded file %s (suffix: %s)" % (source, suff))
+         self.__diag("Ignoring excluded suffix %s for file %s" % (source, suff))
          return
       tagsFile = self.findTagFile(source)
       if tagsFile:
@@ -187,4 +198,4 @@ augroup END
 
 endif " has("python")
 
-" vim:sw=3:ts=3
+" vim:shiftwidth=3:ts=3

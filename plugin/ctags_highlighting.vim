@@ -1,15 +1,15 @@
 " ctags_highlighting
 "   Author:  A. S. Budden
-"## Date::   19th February 2010      ##
-"## RevTag:: r387                    ##
+"## Date::   2nd March 2010          ##
+"## RevTag:: r390                    ##
 
 if &cp || exists("g:loaded_ctags_highlighting")
 	finish
 endif
 let g:loaded_ctags_highlighting = 1
 
-let s:CTagsHighlighterVersion = "## RevTag:: r387 ##"
-let s:CTagsHighlighterVersion = substitute(s:CTagsHighlighterVersion, '## RevTag:: r387      ##', '\1', '')
+let s:CTagsHighlighterVersion = "## RevTag:: r390 ##"
+let s:CTagsHighlighterVersion = substitute(s:CTagsHighlighterVersion, '## RevTag:: r390      ##', '\1', '')
 
 if !exists('g:VIMFILESDIR')
 	let g:VIMFILESDIR = fnamemodify(globpath(&rtp, 'mktypes.py'), ':p:h')
@@ -39,14 +39,14 @@ let g:qtTagsFile = escape(globpath(&rtp, 'tags_qt4'), ' \,')
 let g:wxPyTagsFile = escape(globpath(&rtp, 'tags_wxpy'), ' \,')
 
 " Update types & tags - called with a ! recurses
-command! -bang -bar UpdateTypesFile silent call UpdateTypesFile(<bang>0, 0) |
+command! -bang -bar UpdateTypesFile silent call UpdateTypesFile(<bang>0, 0) | 
 			\ let s:SavedTabNr = tabpagenr() |
 			\ let s:SavedWinNr = winnr() |
 			\ silent tabdo windo call ReadTypesAutoDetect() |
 			\ silent exe 'tabn ' . s:SavedTabNr |
 			\ silent exe s:SavedWinNr . "wincmd w"
 
-command! -bang -bar UpdateTypesFileOnly silent call UpdateTypesFile(<bang>0, 1) |
+command! -bang -bar UpdateTypesFileOnly silent call UpdateTypesFile(<bang>0, 1) | 
 			\ let s:SavedTabNr = tabpagenr() |
 			\ let s:SavedWinNr = winnr() |
 			\ silent tabdo windo call ReadTypesAutoDetect() |
@@ -63,18 +63,20 @@ autocmd BufRead,BufNewFile *.pyw    call ReadTypes('py')
 autocmd BufRead,BufNewFile *.rb     call ReadTypes('ruby')
 autocmd BufRead,BufNewFile *.vhd*   call ReadTypes('vhdl')
 autocmd BufRead,BufNewFile *.php    call ReadTypes('php')
+autocmd BufRead,BufNewFile *.cs     call ReadTypes('cs')
 
 command! ReadTypes call ReadTypesAutoDetect()
 
 function! ReadTypesAutoDetect()
 	let extension = expand('%:e')
-	let extensionLookup =
+	let extensionLookup = 
 				\ {
 				\     '[ch]\(pp\)\?' : "c",
 				\     'p[lm]'        : "pl",
 				\     'java'         : "java",
 				\     'pyw\?'        : "py",
 				\     'rb'           : "ruby",
+				\     'cs'           : "cs",
 				\     'php'          : "php",
 				\     'vhdl\?'       : "vhdl",
 				\ }
@@ -257,7 +259,7 @@ func! UpdateTypesFile(recurse, skiptags)
 	let ctags_path = s:FindExePath('ctags')
 
 	let syscmd .= ctags_path
-
+	
 	if exists('b:TypesFileRecurse')
 		if b:TypesFileRecurse == 1
 			let syscmd .= ' -r'
@@ -297,13 +299,13 @@ func! UpdateTypesFile(recurse, skiptags)
 	if exists('b:CheckForCScopeFiles')
 		if b:CheckForCScopeFiles == 1
 			let syscmd .= ' --build-cscopedb-if-cscope-file-exists'
-			let syscmd .= ' --cscope-dir='
+			let syscmd .= ' --cscope-dir=' 
 			let cscope_path = s:FindExePath('extra_source/cscope_win/cscope')
 			let syscmd .= cscope_path
 		endif
 	endif
 
-	let sysoutput = system(sysroot . syscmd)
+	let sysoutput = system(sysroot . syscmd) 
 	echo sysroot . syscmd
 	if sysoutput =~ 'python.*is not recognized as an internal or external command'
 		let sysroot = g:VIMFILESDIR . '/extra_source/mktypes/dist/mktypes.exe'
@@ -326,7 +328,7 @@ func! UpdateTypesFile(recurse, skiptags)
 
 endfunc
 
-let tagnames =
+let tagnames = 
 			\ [
 			\ 		'CTagsAnchor',
 			\ 		'CTagsAutoCommand',
