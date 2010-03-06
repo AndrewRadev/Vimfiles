@@ -110,6 +110,9 @@ nnoremap [gI :execute 'vimgrep '.expand('<cword>').' '.expand('%')\|:copen\|:cc<
 xnoremap <Leader>a=> :Align =><cr>
 
 " Easy split:
-nnoremap <Leader><Leader> :split \| 
+nnoremap <Leader><Leader> :split \|
+
+" Comment in visual mode
+xnoremap ,, :g/./normal ,,<cr>
 
 source ~/.local_vimrc
