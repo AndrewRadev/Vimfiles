@@ -67,19 +67,21 @@ hi TabLineSel       ctermfg=254             ctermbg=236             cterm=bold
 " -----
 " line used for closed folds
 hi Folded           guifg=#91d6f8           guibg=#363946           gui=none
-hi Folded           ctermfg=117             ctermbg=238             cterm=none
+hi Folded           ctermfg=14             ctermbg=238             cterm=none
+"hi Folded           ctermfg=117             ctermbg=238             cterm=none
 " column on side used to indicated open and closed folds
 hi FoldColumn       guifg=#91d6f8           guibg=#363946           gui=none
-hi FoldColumn       ctermfg=117             ctermbg=238             cterm=none
+hi FoldColumn       ctermfg=14             ctermbg=238             cterm=none
+"hi FoldColumn       ctermfg=117             ctermbg=238             cterm=none
 
 hi Todo             guifg=#efef8f           guibg=NONE              gui=underline
 hi Todo             ctermfg=228             ctermbg=NONE            cterm=underline
 
-hi Type         term=underline  ctermfg=LightGreen  guifg=#60ff60 gui=bold
-hi VertSplit    cterm=none      ctermfg=254         guifg=#ffffff gui=none
-"hi WildMenu         guifg=#cae682           guibg=#363946           gui=bold,underline
-"hi WildMenu         ctermfg=16              ctermbg=186             cterm=bold
-hi SignColumn   cterm=none      ctermbg=none ctermfg=White        guibg=#000000
+hi Type       term=underline ctermfg=LightGreen guifg=#60ff60        gui=bold
+hi VertSplit  cterm=none     ctermfg=254        guifg=#ffffff        gui=none
+hi WildMenu   guifg=#ee1111  guibg=none         gui=bold,underline
+hi WildMenu   ctermfg=196    ctermbg=none       cterm=bold,underline
+hi SignColumn cterm=none     ctermbg=none       ctermfg=White        guibg=#000000
 
 "hi NonText cterm=NONE ctermfg=NONE
 
