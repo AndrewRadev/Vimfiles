@@ -79,7 +79,7 @@ hi Todo             ctermfg=228             ctermbg=NONE            cterm=underl
 
 hi Type       term=underline ctermfg=LightGreen guifg=#60ff60        gui=bold
 hi VertSplit  cterm=none     ctermfg=254        guifg=#ffffff        gui=none
-hi WildMenu   guifg=#ee1111  guibg=none         gui=bold,underline
+hi WildMenu   guifg=#ee1111  guibg=#000000         gui=bold,underline
 hi WildMenu   ctermfg=196    ctermbg=none       cterm=bold,underline
 hi SignColumn cterm=none     ctermbg=none       ctermfg=White        guibg=#000000
 
