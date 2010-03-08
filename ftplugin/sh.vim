@@ -1,1 +1,1 @@
-command -buffer Run !bash %
+command! -buffer Run !bash %
