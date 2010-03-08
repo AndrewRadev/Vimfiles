@@ -15,5 +15,7 @@ setlocal suffixesadd=hs,lhs,hsc
 command! -buffer Console !ghci %
 command! -buffer Run !runhaskell %
 
+nmap <buffer> gm :exe ":Search hoogle " . expand("<cword>")<cr>
+
 xnoremap <buffer> <Leader>a: :Align \:\:<cr>
 xnoremap <buffer> <Leader>a- :Align <-<cr>:'<,'>Align -><cr>
