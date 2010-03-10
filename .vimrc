@@ -115,4 +115,6 @@ nnoremap <Leader><Leader> :split \|
 " Comment in visual mode
 xnoremap ,, :g/./normal ,,<cr>
 
-source ~/.local_vimrc
+if filereadable('~/.local_vimrc')
+  source ~/.local_vimrc
+endif
