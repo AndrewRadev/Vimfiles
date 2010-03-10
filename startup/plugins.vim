@@ -11,13 +11,6 @@ let g:NERDTreeIgnore = [
       \ '\.hi$'
       \ ]
 
-let g:user_zen_expandabbr_key = '<c-i>'
-let g:user_zen_settings = {
-      \   'php': {
-      \     'extends': 'html'
-      \   }
-      \ }
-
 " Open up FuzzyFinders:
 nmap Qf :FuzzyFinderTextMate<cr>
 nmap Qm :FuzzyFinderMruFile<cr>
