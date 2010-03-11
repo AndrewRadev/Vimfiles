@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: February 14, 2010
+" Last Modified: March 11, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -44,13 +44,18 @@ function! lib#Lowercase(word)
   return substitute(a:word, '^\w', '\l\0', 'g')
 endfunction
 
-" Encode the given string for use as part of an url
 " Ripped directly from haskellmode.vim
 function! lib#UrlEncode(string)
   let pat  = '\([^[:alnum:]]\)'
   let code = '\=printf("%%%02X",char2nr(submatch(1)))'
   let url  = substitute(a:string,pat,code,'g')
   return url
+endfunction
+
+" Ripped directly from unimpaired.vim
+function! lib#UrlDecode(str)
+  let str = substitute(substitute(substitute(a:str,'%0[Aa]\n$','%0A',''),'%0[Aa]','\n','g'),'+',' ','g')
+  return substitute(str,'%\(\x\x\)','\=nr2char("0x".submatch(1))','g')
 endfunction
 
 " Join the list of items given with the current path separator, escaping the

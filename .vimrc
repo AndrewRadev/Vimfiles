@@ -15,6 +15,7 @@ runtime! startup/search.vim
 runtime! startup/visual_search.vim
 runtime! startup/plugins.vim
 runtime! startup/commands.vim
+runtime! startup/translate.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
