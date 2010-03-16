@@ -33,7 +33,7 @@ let g:ProjFileBrowser = 'NERDTree | wincmd l'
 
 " EasyGrep options:
 let g:EasyGrepMode              = 2 " Track extension
-let g:EasyGrepCommand           = 0 " vimgrep
+let g:EasyGrepCommand           = 1 " grep
 let g:EasyGrepRecursive         = 1 " -> True
 let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
 let g:EasyGrepExtraWarnings     = 1 " -> True
