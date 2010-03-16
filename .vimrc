@@ -82,15 +82,21 @@ nnoremap <C-k> mz:m-2<cr>`z
 xnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
 xnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
+" Get rid of annoying register rewriting when pasting on visually selected
+" text.
 function! RestoreRegister()
   let @" = s:restore_reg
+  let @* = s:restore_reg_star
+  let @+ = s:restore_reg_plus
   return ''
 endfunction
 function! s:Repl()
-  let s:restore_reg = @"
+  let s:restore_reg      = @"
+  let s:restore_reg_star = @*
+  let s:restore_reg_plus = @+
   return "p@=RestoreRegister()\<cr>"
 endfunction
-xnoremap <silent> <expr> p <sid>Repl()
+xnoremap <silent> <expr> p <SID>Repl()
 
 " Goto file or edit file:
 nnoremap gF :exe "edit ".eval(&includeexpr)<cr>
