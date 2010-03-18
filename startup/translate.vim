@@ -1,3 +1,23 @@
+if !has('ruby')
+  finish
+endif
+
+ruby << RUBY
+require 'net/http'
+require 'json'
+require 'cgi'
+
+def google_translate(text, from, to)
+  q        = CGI::escape(text)
+  lang     = CGI::escape("#{from}|#{to}")
+  uri      = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=#{q}&langpair=#{lang}"
+  response = Net::HTTP.get URI.parse(uri)
+
+  data = JSON.parse(response)['responseData']
+  return data['translatedText'] if data
+end
+RUBY
+
 command! -nargs=* -range Translate call Translate(<f-args>)
 function! Translate(...)
   if a:0 == 1 " Default to english
@@ -7,7 +27,7 @@ function! Translate(...)
     let from = a:1
     let to   = a:2
   else
-    echo "You need to enter at least one language"
+    echo "You need to enter at least one language."
     return
   endif
 
@@ -17,26 +37,14 @@ function! Translate(...)
   let result = ''
 
   ruby << RUBY
-    require 'net/http'
-    require 'json'
-    require 'cgi'
-
-    q        = CGI::escape(VIM::evaluate('text'))
-    lang     = CGI::escape("#{VIM::evaluate('from')}|#{VIM::evaluate('to')}")
-    uri      = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=#{q}&langpair=#{lang}"
-    response = Net::HTTP.get URI.parse(uri)
-
-    data = JSON.parse(response)['responseData']
-    result = data['translatedText'] if data
-
-    VIM::command("let result = '#{result}'")
+  result = google_translate(
+  VIM::evaluate('text'),
+  VIM::evaluate('from'),
+  VIM::evaluate('to')
+  )
+  VIM::command("let result = '#{result}'")
 RUBY
 
-  let @z = lib#UrlDecode(result)
+  let @z = result
   normal "zgP
-endfunction
-
-command! -range Delete call Delete()
-function! Delete()
-  normal gvd
 endfunction
