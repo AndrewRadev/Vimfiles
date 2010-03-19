@@ -31,4 +31,4 @@ command! CleanGarbage call lib#InPlace('%s/\s\+$//e')
 command! FixEol call lib#InPlace('%s/$//e')
 
 " Vim shell
-command Shell runtime scripts/vimsh/vimsh.vim
+command! Shell runtime scripts/vimsh/vimsh.vim
