@@ -35,7 +35,7 @@ endfunction
 command! Preview Utl ol http://localhost:80/
 
 command! CC !php symfony cc
-command! Sql tabedit data/sql/scratch.sql | normal _slt
+"command! Sql tabedit data/sql/scratch.sql | normal _slt
 
 runtime! scripts/symfony/tasks.vim
 runtime! scripts/symfony/navigation.vim
