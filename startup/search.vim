@@ -7,7 +7,7 @@ let g:search_engines = {
 
 command! -nargs=* -complete=customlist,WebSearchComplete Search call WebSearch(<f-args>)
 function! WebSearch(engine, ...)
-	let a:query = lib#UrlEncode(join(a:000, " "))
+  let a:query = lib#UrlEncode(join(a:000, " "))
   let query = printf(g:search_engines[a:engine], a:query)
   exe "Utl ol ".query
 endfunction
