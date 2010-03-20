@@ -1,3 +1,3 @@
-nmap <buffer> <Return> \st<Esc>
-nmap <buffer> o \st<Esc>
-nmap <buffer> e \sdt<Esc>
+nmap <buffer> <Return> _st<Esc>
+nmap <buffer> o _st<Esc>
+nmap <buffer> e _sdt<Esc>

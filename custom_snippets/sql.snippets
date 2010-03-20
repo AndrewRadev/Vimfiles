@@ -1,0 +1,20 @@
+snippet select
+	SELECT ${1:*}
+	FROM
+		${2}
+	WHERE
+		${3}
+snippet view
+	CREATE VIEW ${1} AS
+	SELECT
+		${2}
+	FROM
+		${3}
+	WHERE
+		${4}
+snippet create
+	CREATE TABLE ${1}
+	(
+		id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		${2}
+	)

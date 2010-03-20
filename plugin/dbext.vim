@@ -1,11 +1,11 @@
 " dbext.vim - Commn Database Utility
 " Copyright (C) 2002-7, Peter Bagyinszki, David Fishburn
 " ---------------------------------------------------------------
-" Version:       10.00
+" Version:       11.01
 " Maintainer:    David Fishburn <dfishburn dot vim at gmail dot com>
 " Authors:       Peter Bagyinszki <petike1 at dpg dot hu>
 "                David Fishburn <dfishburn dot vim at gmail dot com>
-" Last Modified: 2009 Jan 17
+" Last Modified: 2009 Aug 27
 " Based On:      sqlplus.vim (author: Jamis Buck)
 " Created:       2002-05-24
 " Homepage:      http://vim.sourceforge.net/script.php?script_id=356
@@ -15,7 +15,7 @@
 "
 " SourceForge:  $Revision: 1.38 $
 "
-" Help:         :h dbext.txt
+" Help:         :h dbext.txt 
 "
 " This program is free software; you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
@@ -38,10 +38,14 @@ if v:version < 700
     echomsg "dbext: Version 4.00 or higher requires Vim7.  Version 3.50 can stil be used with Vim6."
     finish
 endif
-let g:loaded_dbext = 1000
+let g:loaded_dbext = 1101
 
 if !exists('g:dbext_default_menu_mode')
     let g:dbext_default_menu_mode = 3
+endif
+
+if !exists('g:dbext_rows_affected')
+    let g:dbext_rows_affected = 0
 endif
 
 " Commands {{{
@@ -54,15 +58,16 @@ command! -nargs=0 DBRollback        :call dbext#DB_rollback()
 command! -nargs=0 DBListConnections :call dbext#DB_getListConnections()
 command! -range -nargs=0 DBExecRangeSQL <line1>,<line2>call dbext#DB_execRangeSql()
 command! -nargs=+ Call              :call dbext#DB_execSql("call " . <q-args>)
-command! -nargs=+ Select            :call dbext#DB_execSql("select " . <q-args>)
-command! -nargs=+ Update            :call dbext#DB_execSql("update " . <q-args>)
-command! -nargs=+ Insert            :call dbext#DB_execSql("insert " . <q-args>)
-command! -nargs=+ Delete            :call dbext#DB_execSql("delete " . <q-args>)
-command! -nargs=+ Drop              :call dbext#DB_execSql("drop " . <q-args>)
-command! -nargs=+ Alter             :call dbext#DB_execSql("alter " . <q-args>)
+command! -nargs=+ -complete=customlist,dbext#DB_completeTables Select            :call dbext#DB_execSql("select " . <q-args>)
+command! -nargs=+ -complete=customlist,dbext#DB_completeTables Update            :call dbext#DB_execSql("update " . <q-args>)
+command! -nargs=+ -complete=customlist,dbext#DB_completeTables Insert            :call dbext#DB_execSql("insert " . <q-args>)
+command! -nargs=+ -complete=customlist,dbext#DB_completeTables Delete            :call dbext#DB_execSql("delete " . <q-args>)
+command! -nargs=+ -complete=customlist,dbext#DB_completeTables Drop              :call dbext#DB_execSql("drop " . <q-args>)
+command! -nargs=+ -complete=customlist,dbext#DB_completeTables Alter             :call dbext#DB_execSql("alter " . <q-args>)
 command! -nargs=+ Create            :call dbext#DB_execSql("create " . <q-args>)
 command! -nargs=1 DBSetOption       :call dbext#DB_setMultipleOptions(<q-args>)
 command! -nargs=? DBGetOption       :echo DB_listOption(<q-args>)
+" command! -nargs=* -complete=customlist,dbext#DB_completeSettings DBSetOption :call dbext#DB_setMultipleOptions(<q-args>)
 command! -nargs=* -complete=customlist,dbext#DB_completeSettings DBSetOption :call dbext#DB_setMultipleOptions(<q-args>)
 command! -nargs=* -complete=customlist,dbext#DB_completeSettings DBGetOption :echo DB_listOption(<q-args>)
 command! -range -nargs=0 -bang DBVarRangeAssign <line1>,<line2>call dbext#DB_sqlVarRangeAssignment(<bang>0)
@@ -167,7 +172,7 @@ if !exists(':DBListView')
                 \ :call dbext#DB_getListView(<f-args>)
     nmap <unique> <script> <Plug>DBListView
                 \ :DBListView<CR>
-endif
+endif 
 if !exists(':DBCompleteTables')
     command! -nargs=0 -bang DBCompleteTables
                 \ :call DB_DictionaryCreate( <bang>0, 'Table' )
@@ -322,8 +327,8 @@ endif
 if !hasmapto('<Plug>DBOrientationToggle') && !hasmapto('<Leader>so', 'n')
     nmap <unique> <Leader>so <Plug>DBOrientationToggle
 endif
-if !hasmapto('<Plug>DBVarRangeAssign')
-    if !hasmapto('<Leader>saa', 'n')
+if !hasmapto('DBVarRangeAssign')
+    if !hasmapto('<Leader>sas', 'n')
         nmap <unique> <silent> <Leader>sas :1,$DBVarRangeAssign<CR>
     endif
     if !hasmapto('<Leader>sal', 'n')
@@ -402,7 +407,7 @@ if has("gui_running") && has("menu") && g:dbext_default_menu_mode != 0
 endif
 "}}}
 function! s:DB_checkModeline()
-    " Users can preset connection string options using Vim's modeline
+    " Users can preset connection string options using Vim's modeline 
     " features.
     " For example, in a SQL file you could have the following:
     "      -- dbext:profile=ASA_generic,user=bob
@@ -429,30 +434,30 @@ function! s:DB_checkModeline()
     return rc
 endfunction
 
-function! DB_getDictionaryName( which )
+function! DB_getDictionaryName( which ) 
     return dbext#DB_getDictionaryName( a:which )
-endfunction
-function! DB_DictionaryCreate( drop_dict, which )
-   return dbext#DB_DictionaryCreate( a:drop_dict, a:which )
+endfunction 
+function! DB_DictionaryCreate( drop_dict, which ) 
+   return dbext#DB_DictionaryCreate( a:drop_dict, a:which ) 
 endfunction
 
-function! DB_listOption(...)
+function! DB_listOption(...) 
     if a:0 == 0
-        return dbext#DB_listOption()
+        return dbext#DB_listOption() 
     elseif a:0 == 1
-        return dbext#DB_listOption(a:1)
+        return dbext#DB_listOption(a:1) 
     endif
 endfunction
 
-function! DB_getListColumn(...)
-    if(a:0 > 0)
+function! DB_getListColumn(...) 
+    if(a:0 > 0) 
         " Strip any leading or trailing spaces
         let table_name = substitute(a:1, '\s*\(.\+\)\s*', '\1', '')
     else
         let table_name = expand("<cword>")
     endif
 
-    if(a:0 > 1)
+    if(a:0 > 1) 
         " Suppress messages to the user, this prevents a echo
         " vim bug that offsets the output
         let silent_mode = a:2
@@ -460,7 +465,7 @@ function! DB_getListColumn(...)
         let silent_mode = 0
     endif
 
-    if(a:0 > 2)
+    if(a:0 > 2) 
         " Separate with newlines
         let use_newline_sep = a:3
     else
@@ -476,7 +481,7 @@ function! DB_getVisualBlock() range
     let vis_cmd = @"
     let @" = save
     return vis_cmd
-endfunction
+endfunction 
 
 "" Get buffer parameter value
 function! DB_execCmd(name, ...)
@@ -499,7 +504,7 @@ function! DB_execCmd(name, ...)
         let result = dbext#DB_execFuncWCheck(a:name, a:1, a:2, a:3, a:4)
     endif
     call dbext#DB_setMultipleOptions('use_result_buffer='.l:prev_use_result_buffer)
-
+    
     return result
 endfunction
 
