@@ -7,5 +7,5 @@ setlocal tags+=~/tags/ruby.tags
 
 compiler ruby
 
-command! -buffer Console !irb -r %
-command! -buffer Run !ruby %
+command! -buffer -nargs=* Console !irb -r % <args>
+command! -buffer -nargs=* Run !ruby % <args>
