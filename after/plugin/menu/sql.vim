@@ -14,10 +14,11 @@ function s:Sql(...)
   exe 'e '.scratch_name
 
   " Open up result buffer
+  let g:dbext_default_buffer_lines = 15
   normal _slt
 
   " Place the menu at the right, 30 cols wide
-  vertical topleft 30new
+  vertical 30new
   let m = g:MenuBuffer.create({ 'rootLabel': 'database' })
   setlocal nowrap
 
