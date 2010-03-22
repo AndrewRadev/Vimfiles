@@ -1,3 +1,3 @@
 iabbr null NULL
 
-command! -buffer Run !./a.out
+command! -buffer -nargs=* Run !./a.out <args>

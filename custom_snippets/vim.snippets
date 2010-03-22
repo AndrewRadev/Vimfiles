@@ -38,7 +38,7 @@ snippet skeleton C# OpenTK Mono project
 
 	set makeprg=gmcs\ -o:bin/${1:prog}.exe\ -r:System.dll\ -r:System.Drawing.dll\ -r:/home/andrew/lib/OpenTK.dll\ /nologo\ /noconfig\ *.cs
 
-	command! Run :!mono $1.exe &
+	command! -nargs=* Run :!mono $1.exe <args> &
 snippet skeleton Symfony project
 	runtime! projects/symfony.project.vim
 

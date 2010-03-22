@@ -33,8 +33,7 @@ Yaml snippets:
 
 Changes made to plugins:
   * ccimpl.vim -- minor change from vsplit to split
-  * FindInNERDTree.vim -- line 44, changed rx matching to stridx() call
   * Markdown syntax -- added txt syntax
   * php indenting script
-  * Vorg
+  * dbext -- perl fix
   * SHIM -- finish if has('win32')
