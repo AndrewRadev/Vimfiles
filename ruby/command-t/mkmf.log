@@ -1,0 +1,10 @@
+have_header: checking for ruby.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I.    -march=x86-64 -mtune=generic -O2 -pipe  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <ruby.h>
+/* end */
+
+--------------------
+

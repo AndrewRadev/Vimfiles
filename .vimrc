@@ -6,16 +6,7 @@ syntax on
 
 colo custom_elflord
 
-" Load settings:
-runtime! startup/basic.vim
-runtime! startup/autocommands.vim
-runtime! startup/utl.vim
-runtime! startup/smartword.vim
-runtime! startup/search.vim
-runtime! startup/visual_search.vim
-runtime! startup/plugins.vim
-runtime! startup/commands.vim
-runtime! startup/translate.vim
+runtime! startup/*.vim
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)

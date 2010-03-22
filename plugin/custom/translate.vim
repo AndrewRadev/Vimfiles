@@ -4,8 +4,14 @@ endif
 
 ruby << RUBY
 require 'net/http'
-require 'json'
 require 'cgi'
+
+begin
+  require 'json'
+rescue LoadError
+  require 'rubygems'
+  require 'json'
+end
 
 def google_translate(text, from, to)
   q        = CGI::escape(text)
@@ -31,20 +37,12 @@ function! Translate(...)
     return
   endif
 
+	" Place last selected text in 'z' register
   normal gv"zd
-  let text = @z
 
-  let result = ''
+	" Replace 'z' register
+  let @z = ruby#call('google_translate', @z, from, to)
 
-  ruby << RUBY
-  result = google_translate(
-  VIM::evaluate('text'),
-  VIM::evaluate('from'),
-  VIM::evaluate('to')
-  )
-  VIM::command("let result = '#{result}'")
-RUBY
-
-  let @z = result
-  normal "zgP
+	" Replace selected text with 'z' register
+  normal "zgp
 endfunction
