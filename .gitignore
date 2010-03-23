@@ -1,6 +1,3 @@
-# Ignore the additional_scripts directory, that's for playing around with only:
-additional_scripts*
-
 # Don't ignore my notes, gonna need them across machines:
 !notes.txt
 
