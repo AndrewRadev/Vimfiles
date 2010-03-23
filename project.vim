@@ -1,3 +1,3 @@
 if !has('win32')
-  command! GitConsole !git-sh
+  command! Gconsole !git-sh
 endif

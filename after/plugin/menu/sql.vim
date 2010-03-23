@@ -6,6 +6,8 @@ function s:Sql(...)
   " Figure out the scratch sql file's name
   if a:0 > 0
     let scratch_name = a:1
+  elseif exists('g:sql_scratch_file_name')
+    let scratch_name = g:sql_scratch_file_name
   else
     let scratch_name = 'scratch.sql'
   endif
