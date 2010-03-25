@@ -3,3 +3,9 @@
 
 # Ignore tags files, just remember to rebuild them every once in a while:
 tags
+
+# Ignore the generated files from command-t
+ruby/command-t/*.o
+ruby/command-t/*.so
+ruby/command-t/Makefile
+ruby/command-t/mkmf.log

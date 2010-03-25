@@ -18,3 +18,11 @@ snippet create
 		id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		${2}
 	)
+snippet delete
+	DELETE FROM ${1}
+	WHERE ${2:1 = 0}
+snippet update
+	UPDATE ${1}
+	SET
+		${2}
+	WHERE ${3}

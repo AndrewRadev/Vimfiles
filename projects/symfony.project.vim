@@ -20,13 +20,15 @@ command! TestAll        !php symfony --color test:all
 command! Migrate        !php symfony --color doctrine:migrate
 
 let s:sf_generate_commands = {
-      \ 'migration': 'doctrine:generate-migration'
+      \ 'migration': 'doctrine:generate-migration',
+      \ 'app':       'generate:app',
+      \ 'module':    'generate:module',
       \ }
 
 command! -nargs=* -complete=customlist,s:CompleteGenerate Generate call s:Generate(<f-args>)
 function! s:Generate(what, ...)
   let l:command = s:sf_generate_commands[a:what]
-  exe "!php symfony --color".l:command." ".join(a:000)
+  exe "!php symfony --color ".l:command." ".join(a:000)
 endfunction
 function! s:CompleteGenerate(A, L, P)
   return sort(keys(filter(copy(s:sf_generate_commands), "v:key =~'^".a:A."'")))
@@ -35,7 +37,6 @@ endfunction
 command! Preview Utl ol http://localhost:80/
 
 command! CC !php symfony --color cc
-"command! Sql tabedit data/sql/scratch.sql | normal _slt
 
 runtime! scripts/symfony/navigation.vim
 runtime! scripts/symfony/includeexpr.vim

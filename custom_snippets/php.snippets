@@ -131,7 +131,7 @@ snippet doc_h
 	 * @copyright ${4:$2}, `strftime('%d %B, %Y')`
 	 * @package ${5:default}
 	 */
-	
+
 	/**
 	 * Define DocBlock
 	 *//
@@ -180,7 +180,7 @@ snippet if
 	}
 snippet if=
 	<?php if (${1:/* condition */}): ?>
-	${2:<!-- code -->}
+		${2:<!-- code -->}
 	<?php endif; ?>
 snippet ife
 	if (${1:/* condition */})
@@ -194,9 +194,9 @@ snippet ife
 	${4}
 snippet ife=
 	<?php if (${1:/* condition */}): ?>
-	${2:<!-- code -->}
+		${2:<!-- code -->}
 	<?php else: ?>
-	${3:<!-- code -->}
+		${3:<!-- code -->}
 	<?php endif; ?>
 snippet else
 	else
@@ -236,9 +236,7 @@ snippet foreach
 	}${4}
 snippet foreach=
 	<?php foreach ($${1:variable} as $${2:key}): ?>
-
-	${3:<!-- html -->}
-
+		${3:<!-- html -->}
 	<?php endforeach; ?>${4}
 snippet fun
 	/**
