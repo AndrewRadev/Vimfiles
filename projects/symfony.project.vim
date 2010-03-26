@@ -2,6 +2,11 @@
 set tags=./tags,tags
 set tags+=~/tags/symfony.tags
 
+" Cscope database:
+if filereadable('./cscope.out')
+  cscope add cscope.out
+endif
+
 " Custom snippets:
 runtime after/plugin/snippets.vim
 call ExtractSnipsFile(expand(g:snippets_dir).'symfony.snippets', 'php')

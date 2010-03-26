@@ -6,6 +6,7 @@ set clipboard=unnamed,html
 set cmdheight=1
 set complete=.,w,b,k
 set completeopt=menuone,longest
+set cscopequickfix=s-,c-,d-,i-,t-,e-
 set cscopetag
 set diffopt=filler,vertical
 set encoding=utf-8
