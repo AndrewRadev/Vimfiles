@@ -10,7 +10,7 @@ call ExtractSnipsFile(expand(g:snippets_dir).'jquery.snippets', 'javascript')
 " Base classes should never be modified:
 autocmd BufEnter base/Base*.class.php set readonly
 
-command! RebuildTags !ctags -R --exclude="symfony" --languages=php .
+command! RebuildTags !ctags -R --exclude="symfony" .
 
 command! RebuildAll     !php symfony --color doctrine:build-all-reload
 command! RebuildAllTest !php symfony --color doctrine:build-all-reload --env=test
