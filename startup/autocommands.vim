@@ -20,6 +20,7 @@ augroup custom
   autocmd BufEnter *.cpp  compiler gcc
   autocmd BufEnter *.php  compiler php
   autocmd BufEnter *.html compiler tidy
+  autocmd BufEnter *.xml  compiler eclim_xmllint
   autocmd BufEnter *.js   compiler jsl
   autocmd BufEnter *.hs   compiler ghc
 
