@@ -32,3 +32,12 @@ snippet skeleton Lime unit test
 	$table = Doctrine::getTable('${1:<modelName>}');
 
 	$t->diag('$1 tests');
+#
+# Migrations:
+#
+snippet addcol
+	$this->addColumn('${1:table}', '${2:col}', '${3:string}', ${4:255}, array(
+		${5:'notnull' => false}
+	));
+snippet dropcol
+	$this->removeColumn('${1:table}', '${2:col}');
