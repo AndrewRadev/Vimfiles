@@ -11,8 +11,9 @@ CONTENTS                                        *command-t-contents*
  7. Options                 |command-t-options|
  8. Author                  |command-t-author|
  9. Website                 |command-t-website|
-10. License                 |command-t-license|
-11. History                 |command-t-history|
+10. Donations               |command-t-donations|
+11. License                 |command-t-license|
+12. History                 |command-t-history|
 
 
 INTRODUCTION                                    *command-t*
@@ -56,12 +57,8 @@ If your VIM lacks support you'll see an error message like this:
 
   E319: Sorry, the command is not available in this version
 
-2. Ruby 1.8.7 or later
-
-The plug-in is developed and tested using Ruby 1.8.7, and makes use of at
-least one method which is not present in Ruby 1.8.6 (String#each_char). Rather
-than target multiple versions which I cannot properly test, I prefer to
-support one known, tested version.
+The plug-in is developed and tested using the version of Ruby that ships with
+Mac OS X (currently Ruby 1.8.7) but it may work on other versions.
 
 3. C compiler
 
@@ -114,7 +111,12 @@ files whose paths contain those letters in the specified order. Letters do not
 need to appear consecutively in a path in order for it to be classified as a
 match.
 
-Once you the desired file has been selected it can be opened by pressing <CR>.
+Once the desired file has been selected it can be opened by pressing <CR>.
+(By default files are opened in the current window, but there are other
+mappings that you can use to open in a vertical or horizontal split, or in
+a new tab.) Note that if you have |'nohidden'| set and there are unsaved
+changes in the current window when you press <CR> then opening in the current
+window would fail; in this case Command-T will open the file in a new split.
 
 The following mappings are active when the prompt has focus:
 
@@ -215,6 +217,13 @@ Following is a list of all available options:
       current directory. Any directories at levels beyond this depth will be
       skipped.
 
+                                                *command-t-max-height*
+  |g:CommandTMaxHeight|                          number (default: 0)
+
+      The maximum height in lines the match window is allowed to expand to.
+      If set to 0, the window will occupy as much of the available space as
+      needed to show matching entries.
+
                                                 *command-t-always-show-dot-files*
   |g:CommandTAlwaysShowDotFiles|                 boolean (default: 0)
 
@@ -253,6 +262,33 @@ Following is a list of all available options:
         :cd ~/.vim
         :CommandT
 
+                                                *command-t-match-window-at-top*
+  |g:CommandTMatchWindowAtTop|                   boolean (default: 0)
+
+      When this settings is off (the default) the match window will appear at
+      the bottom so as to keep it near to the prompt. Turning it on causes the
+      match window to appear at the top instead. This may be preferable if you
+      want the best match (usually the first one) to appear in a fixed location
+      on the screen rather than moving as the number of matches changes during
+      typing.
+
+
+In addition to the options provided by Command-T itself, some of VIM's own
+settings can be used to control behavior:
+
+                                                *command-t-wildignore*
+  |'wildignore'|                                 string (default: '')
+
+      VIM's |'wildignore'| setting is used to determine which files should be
+      excluded from listings. This is a comma-separated list of file glob
+      patterns. It defaults to the empty string, but common settings include
+      "*.o,*.obj" (to exclude object files) or ".git,.svn" (to exclude SCM
+      metadata directories). For example:
+
+        :set wildignore+=*.o,*.obj,.git
+
+      See the |'wildignore'| documentation for more information.
+
 
 AUTHOR                                          *command-t-author*
 
@@ -289,11 +325,20 @@ browser at:
 A copy of each release is also available from the official VIM scripts site
 at:
 
-  http://www.vim.org/scripts/
+  http://www.vim.org/scripts/script.php?script_id=3025
 
 Bug reports should be submitted to the issue tracker at:
 
   https://wincent.com/issues
+
+
+DONATIONS                                       *command-t-donations*
+
+Command-T itself is free software released under the terms of the BSD license.
+If you would like to support further development you can make a donation via
+PayPal to win@wincent.com:
+
+  https://wincent.com/products/command-t/donations
 
 
 LICENSE                                         *command-t-license*
@@ -323,6 +368,34 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 HISTORY                                         *command-t-history*
+
+0.4 (27 March 2010)
+
+- add |g:CommandTMatchWindowAtTop| setting (patch from Zak Johnson)
+- documentation fixes and enhancements
+- internal refactoring and simplification
+
+0.3 (24 March 2010)
+
+- add |g:CommandTMaxHeight| setting for controlling the maximum height of the
+  match window (patch from Lucas de Vries)
+- fix bug where |'list'| setting might be inappropriately set after dismissing
+  Command-T
+- compatibility fix for different behaviour of "autoload" under Ruby 1.9.1
+- avoid "highlight group not found" warning when run under a version of VIM
+  that does not have syntax highlighting support
+- open in split when opening normally would fail due to |'hidden'| and
+  |'modified'| values
+
+0.2 (23 March 2010)
+
+- compatibility fixes for compilation under Ruby 1.9 series
+- compatibility fixes for compilation under Ruby 1.8.5
+- compatibility fixes for Windows and other non-UNIX platforms
+- suppress "mapping already exists" message if <Leader>t mapping is already
+  defined when plug-in is loaded
+- exclude paths based on |'wildignore'| setting rather than a hardcoded
+  regular expression
 
 0.1 (22 March 2010)
 

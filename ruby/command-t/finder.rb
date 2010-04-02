@@ -21,28 +21,31 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-module CommandT
-  module Scanner
-    # Simplistic scanner that wraps 'find . -type f'.
-    class Find < Base
-      def initialize path = Dir.pwd, options = {}
-        @path = path
-        @max_depth = 15
-        @max_depth = options[:max_depth].to_i unless options[:max_depth].nil?
-      end
+require 'command-t/ext' # CommandT::Matcher
+require 'command-t/scanner'
 
-      def paths
-        return @paths unless @paths.nil?
-        begin
-          pwd = Dir.pwd
-          Dir.chdir @path
-          @paths = `find . -type f -maxdepth #{@max_depth} 2> /dev/null`.
-            split("\n").map { |path| path[2..-1] }
-        ensure
-          Dir.chdir pwd
-        end
-        @paths
-      end
-    end # class Find
-  end # module Scanner
-end # module CommandT
+module CommandT
+  # Encapsulates a Scanner instance (which builds up a list of available files
+  # in a directory) and a Matcher instance (which selects from that list based
+  # on a search string).
+  class Finder
+    def initialize path = Dir.pwd, options = {}
+      @scanner = Scanner.new path, options
+      @matcher = Matcher.new @scanner, options
+    end
+
+    # Options:
+    #   :limit (integer): limit the number of returned matches
+    def sorted_matches_for str, options = {}
+      @matcher.sorted_matches_for str, options
+    end
+
+    def flush
+      @scanner.flush
+    end
+
+    def path= path
+      @scanner.path = path
+    end
+  end # class Finder
+end # CommandT

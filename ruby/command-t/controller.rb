@@ -21,23 +21,31 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+require 'command-t/finder'
+require 'command-t/match_window'
+require 'command-t/prompt'
+
 module CommandT
   class Controller
     def initialize
       @prompt = Prompt.new
-      @scanner = CommandT::Base.new nil,
+      @max_height = get_number('g:CommandTMaxHeight') || 0
+      @finder = CommandT::Finder.new nil,
         :max_files              => get_number('g:CommandTMaxFiles'),
         :max_depth              => get_number('g:CommandTMaxDepth'),
         :always_show_dot_files  => get_bool('g:CommandTAlwaysShowDotFiles'),
         :never_show_dot_files   => get_bool('g:CommandTNeverShowDotFiles'),
-        :scan_dot_directories   => get_bool('g:CommandTScanDotDirectories')
+        :scan_dot_directories   => get_bool('g:CommandTScanDotDirectories'),
+        :excludes               => get_string('&wildignore')
     end
 
     def show
-      @scanner.path   = VIM::pwd
+      @finder.path    = VIM::pwd
       @initial_window = $curwin
       @initial_buffer = $curbuf
-      @match_window   = MatchWindow.new :prompt => @prompt
+      @match_window   = MatchWindow.new \
+        :prompt               => @prompt,
+        :match_window_at_top  => get_bool('g:CommandTMatchWindowAtTop')
       @focus          = @prompt
       @prompt.focus
       register_for_key_presses
@@ -52,7 +60,7 @@ module CommandT
     end
 
     def flush
-      @scanner.flush
+      @finder.flush
     end
 
     def key_pressed
@@ -140,6 +148,11 @@ module CommandT
       VIM::evaluate("#{name}").to_i != 0
     end
 
+    def get_string name
+      return nil if VIM::evaluate("exists(\"#{name}\")").to_i == 0
+      VIM::evaluate("#{name}").to_s
+    end
+
     # Backslash-escape space, \, |, %, #, "
     def sanitize_path_string str
       # for details on escaping command-line mode arguments see: :h :
@@ -147,8 +160,16 @@ module CommandT
       str.gsub(/[ \\|%#"]/, '\\\\\0')
     end
 
+    def default_open_command
+      if !get_bool('&hidden') && get_bool('&modified')
+        'sp'
+      else
+        'e'
+      end
+    end
+
     def open_selection selection, options = {}
-      command = options[:command] || 'e'
+      command = options[:command] || default_open_command
       selection = sanitize_path_string selection
       VIM::command "silent #{command} #{selection}"
     end
@@ -195,14 +216,16 @@ module CommandT
     end
 
     # Returns the desired maximum number of matches, based on available
-    # vertical space.
+    # vertical space and the g:CommandTMaxHeight option.
     def match_limit
       limit = VIM::Screen.lines - 5
-      limit < 0 ? 1 : limit
+      limit = 1 if limit < 0
+      limit = [limit, @max_height].min if @max_height > 0
+      limit
     end
 
     def list_matches
-      matches = @scanner.sorted_matches_for @prompt.abbrev, :limit => match_limit
+      matches = @finder.sorted_matches_for @prompt.abbrev, :limit => match_limit
       @match_window.matches = matches
     end
   end # class Controller
