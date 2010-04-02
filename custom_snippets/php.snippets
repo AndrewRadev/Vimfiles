@@ -240,14 +240,20 @@ snippet foreach=
 	<?php endforeach; ?>${4}
 snippet fun
 	/**
-	 * @todo Write description
+	 * ${4:@todo Write description}
 	 */
 	${1:public }function ${2:FunctionName}(${3})
 	{
-		${4:// code...}
+		${5:// code...}
 	}
 # $... = array (...)
 snippet array
 	$${1:arrayName} = array('${2}' => ${3});${4}
 snippet .
 	[${1}]${2}
+snippet get
+	$_GET['${1}']
+snippet post
+	$_POST['${1}']
+snippet request
+	$_REQUEST['${1}']
