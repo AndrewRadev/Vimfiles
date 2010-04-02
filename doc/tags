@@ -1430,6 +1430,7 @@ utl-vimsHeuristicUrl	utl_usr.txt	/*utl-vimsHeuristicUrl*
 utl-writeUrls	utl_usr.txt	/*utl-writeUrls*
 utl_chgcfgscm	utl_usr.txt	/*utl_chgcfgscm*
 utl_usr.txt	utl_usr.txt	/*utl_usr.txt*
+vS	surround.txt	/*vS*
 v_[%	matchit.txt	/*v_[%*
 v_[e	unimpaired.txt	/*v_[e*
 v_[u	unimpaired.txt	/*v_[u*
@@ -1465,6 +1466,7 @@ vcscommand-ssh-other	vcscommand.txt	/*vcscommand-ssh-other*
 vcscommand-ssh-wrapper	vcscommand.txt	/*vcscommand-ssh-wrapper*
 vcscommand-statusline	vcscommand.txt	/*vcscommand-statusline*
 vcscommand.txt	vcscommand.txt	/*vcscommand.txt*
+vgS	surround.txt	/*vgS*
 vs	surround.txt	/*vs*
 yS	surround.txt	/*yS*
 ySS	surround.txt	/*ySS*
