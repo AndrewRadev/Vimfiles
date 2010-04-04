@@ -61,6 +61,8 @@
 :CVSWatchOn	vcscommand.txt	/*:CVSWatchOn*
 :CVSWatchRemove	vcscommand.txt	/*:CVSWatchRemove*
 :CVSWatchers	vcscommand.txt	/*:CVSWatchers*
+:CommandT	command-t.txt	/*:CommandT*
+:CommandTFlush	command-t.txt	/*:CommandTFlush*
 :DocIndex	haskellmode.txt	/*:DocIndex*
 :DocSettings	haskellmode.txt	/*:DocSettings*
 :ExportDocIndex	haskellmode.txt	/*:ExportDocIndex*
@@ -131,8 +133,6 @@
 <Plug>(textobj-function-i)	textobj-function.txt	/*<Plug>(textobj-function-i)*
 AND	dbext.txt	/*AND*
 Align-copyright	Align.txt	/*Align-copyright*
-CommandT	command-t.txt	/*CommandT*
-CommandTFlush	command-t.txt	/*CommandTFlush*
 DBI	dbext.txt	/*DBI*
 Decho.vim	Decho.txt	/*Decho.vim*
 DechoMsgOff	Decho.txt	/*DechoMsgOff*
