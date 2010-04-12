@@ -39,5 +39,9 @@ snippet addcol
 	$this->addColumn('${1:table}', '${2:col}', '${3:string}', ${4:255}, array(
 		${5:'notnull' => false}
 	));
+snippet changecol
+	$this->changeColumn('${1:table}', '${2:col}', '${3:string}', ${4:255}, array(
+		${5:'notnull' => false}
+	));
 snippet dropcol
 	$this->removeColumn('${1:table}', '${2:col}');

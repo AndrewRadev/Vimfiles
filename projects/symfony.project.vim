@@ -17,8 +17,8 @@ autocmd BufEnter base/Base*.class.php set readonly
 
 command! RebuildTags !ctags -R --exclude="symfony" .
 
-command! RebuildAll     !php symfony --color doctrine:build-all-reload
-command! RebuildAllTest !php symfony --color doctrine:build-all-reload --env=test
+command! RebuildAll     !php symfony --color doctrine:build --all
+command! RebuildAllTest !php symfony --color doctrine:build --all --env=test
 command! RebuildDb      !php symfony --color doctrine:build-db
 command! RebuildModel   !php symfony --color doctrine:build-model
 command! TestAll        !php symfony --color test:all
