@@ -1,3 +1,4 @@
+function! LoadRuby()
 ruby << RUBY
 begin
   require 'dbi'
@@ -21,5 +22,6 @@ def tables
   puts c.tables
 end
 RUBY
+endfunction
 
 command! RubyTables call ruby#call('tables')
