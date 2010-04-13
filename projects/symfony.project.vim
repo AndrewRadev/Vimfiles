@@ -7,6 +7,8 @@ if filereadable('./cscope.out')
   cscope add cscope.out
 endif
 
+command! RebuildCscope !find . -name *.php > cscope.files && cscope -b
+
 " Custom snippets:
 runtime after/plugin/snippets.vim
 call ExtractSnipsFile(expand(g:snippets_dir).'symfony.snippets', 'php')
@@ -17,10 +19,9 @@ autocmd BufEnter base/Base*.class.php set readonly
 
 command! RebuildTags !ctags -R --exclude="symfony" .
 
-command! RebuildAll     !php symfony --color doctrine:build-all-reload
-command! RebuildAllTest !php symfony --color doctrine:build-all-reload --env=test
-command! RebuildDb      !php symfony --color doctrine:build-db
-command! RebuildModel   !php symfony --color doctrine:build-model
+command! RebuildAll     !php symfony --color doctrine:build --all --and-load
+command! RebuildAllTest !php symfony --color doctrine:build --all --env=test
+command! RebuildModel   !php symfony --color doctrine:build --all-classes
 command! TestAll        !php symfony --color test:all
 command! Migrate        !php symfony --color doctrine:migrate
 

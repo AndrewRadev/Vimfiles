@@ -7,6 +7,7 @@ set cmdheight=1
 set complete=.,w,b,k
 set completeopt=menuone,longest
 set cscopequickfix=s-,c-,d-,i-,t-,e-
+set cscopetagorder=1 " Look in tags file first
 set diffopt=filler,vertical
 set encoding=utf-8
 set expandtab smarttab
@@ -18,6 +19,7 @@ set incsearch nohlsearch
 set laststatus=2
 set linebreak showbreak=+>
 set listchars=eol:.,tab:\|-
+set nocscopetag
 set noswapfile
 set notimeout
 set number
