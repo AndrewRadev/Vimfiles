@@ -25,10 +25,9 @@ snippet tis
 snippet skeleton Lime unit test
 	<?php
 
-	include dirname(__FILE__).'/../bootstrap/doctrine.php';
+	include dirname(__FILE__).'/../bootstrap/doctrine_unit.php';
 
-	$t = new lime_test();
-
+	$t     = new lime_test();
 	$table = Doctrine::getTable('${1:<modelName>}');
 
 	$t->diag('$1 tests');
