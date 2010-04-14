@@ -15,6 +15,30 @@ function! s:CompleteClass(A, L, P)
   return sort(map(filter(taglist('^'.a:A), 'v:val["kind"] == "c"'), 'v:val["name"]'))
 endfunction
 
+" Toggle settings:
+command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
+
+MapToggle sl list
+MapToggle sh hlsearch
+MapToggle sw wrap
+
+" Edit important files quickly:
+command! Eclipboard ClipBrd
+command! Epasswords edit ~/.passwords
+
+" Rebuild tags database:
+command! RebuildTags !ctags -R .
+
+" Refresh snippets
+command! RefreshSnips runtime after/plugin/snippets.vim
+
+" Generic console, override in different filetypes:
+if has('win32')
+  command! Console !start cmd
+else
+  command! Console !urxvt &
+endif
+
 " Change fonts on the GUI:
 if has("win32")
   command! FontDejaVu   set guifont=DejaVu_Sans_Mono:h12
