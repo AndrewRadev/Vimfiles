@@ -4,36 +4,58 @@ function! SymfonyIncludeExpr(fname)
   let quoted_capture = '\s*[''"]\(.\{-}\)[''"]\s*'
   let line = getline('.')
 
-  if lib#InString(line, 'include_partial') " Follow a partial include:
-    let rx = 'include_partial('
-    let rx .= quoted_capture
-    let rx .= '[\s,)]' " Might end with different things
+  let partial_patterns = [
+        \ 'include_partial(',
+        \ 'this->renderPartial(',
+        \ 'this->getPartial(',
+        \ 'get_partial(',
+        \ ]
 
-    let match = split(lib#ExtractRx(line, rx, '\1'), '/')
-    if len(match) == 2
-      let [module, template] = match
-      if module == 'global'
-        let module_path = ''
+  for p in partial_patterns
+    if lib#InString(line, p) " Follow a partial include:
+      let rx = p
+      let rx .= quoted_capture
+      let rx .= '[\s,)]' " Might end with different things
+
+      let match = split(lib#ExtractRx(line, rx, '\1'), '/')
+      if len(match) == 2
+        let [module, template] = match
+        if module == 'global'
+          let module_path = ''
+        else
+          let module_path = '/modules/'.module
+        endif
       else
-        let module_path = '/modules/'.module
+        let module_path = '/modules/'.symfony#CurrentModuleName()
+        let template = match[0]
       endif
-    else
-      let module_path = '/modules/'.symfony#CurrentModuleName()
-      let template = match[0]
+      return 'apps/'.symfony#CurrentAppName().module_path.'/templates/_'.template.'.php'
     endif
-    return 'apps/'.symfony#CurrentAppName().module_path.'/templates/_'.template.'.php'
-  elseif lib#InString(line, 'include_component') " Follow a component include:
-    let rx = 'include_component('
-    let rx .= quoted_capture
-    let rx .= ','
-    let rx .= quoted_capture
-    let rx .= '[\s,)]' " Might end with different things
+  endfor
 
-    let match = split(lib#ExtractRx(line, rx, '\1 \2'))
+  let component_patterns = [
+        \ 'include_component(',
+        \ 'this->renderComponent(',
+        \ 'this->getComponent(',
+        \ 'get_component(',
+        \ ]
 
-    let [module, template] = match
-    return 'apps/'.symfony#CurrentAppName().'/modules/'.module.'/templates/_'.template.'.php'
-  elseif lib#InString(line, 'use_stylesheet') " Follow an included css:
+  for c in component_patterns
+    if lib#InString(line, c) " Follow a component include:
+      let rx = c
+      let rx .= quoted_capture
+      let rx .= ','
+      let rx .= quoted_capture
+      let rx .= '[\s,)]' " Might end with different things
+
+      let match = split(lib#ExtractRx(line, rx, '\1 \2'))
+
+      let [module, template] = match
+      return 'apps/'.symfony#CurrentAppName().'/modules/'.module.'/templates/_'.template.'.php'
+    endif
+  endfor
+
+  if lib#InString(line, 'use_stylesheet') " Follow an included css:
     let rx = 'use_stylesheet('
     let rx .= quoted_capture
     let rx .= '[,)]'
