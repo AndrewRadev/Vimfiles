@@ -2,15 +2,17 @@
 " Author: Andrew Radev
 " Description: Functions to use in symfony projects. Mostly helpful in
 " commands to navigate across the project. All the functions assume the
-" default directory structure of a symfony project.
+" default directory structure of a symfony project with the exception of the
+" possibility to configure the web dir via `g:sf_web_dir`
 " Last Modified: December 29, 2009
 
-let s:PS = has('win32') ? '\\' : '/'
+let s:PS            = has('win32') ? '\\' : '/'
 let s:capture_group = '\(.\{-}\)'
-let s:anything = '.*'
+let s:anything      = '.*'
 
-let g:sf_config = {}
-let g:sf_config['sf_web_dir'] = 'web'
+if !exists('g:sf_web_dir')
+  let g:sf_web_dir = 'web'
+endif
 
 function! symfony#LoadData()
   let g:sf_fixture_dict = {}
@@ -21,20 +23,20 @@ function! symfony#LoadData()
   let rx = s:PS.s:capture_group.'$'
 
   for path in split(glob('data/fixtures/*.yml'))
-    let fixture = lib#ExtractRx(path, rx, '\1')
+    let fixture     = lib#ExtractRx(path, rx, '\1')
     let fixture_key = lib#ExtractRx(fixture, '^\d\+_'.s:capture_group.'\.yml$', '\1')
     let g:sf_fixture_dict[fixture_key] = fixture
   endfor
 
   " Javascript files:
-  for path in split(glob(g:sf_config['sf_web_dir'].'/js/**/*.js'))
-    let fname = substitute(path, lib#RxPath(g:sf_config['sf_web_dir'], 'js').s:PS.s:capture_group.'.js', '\1', '')
+  for path in split(glob(g:sf_web_dir.'/js/**/*.js'))
+    let fname = substitute(path, lib#RxPath(g:sf_web_dir, 'js').s:PS.s:capture_group.'.js', '\1', '')
     let g:sf_js_dict[fname] = 1
   endfor
 
   " CSS files:
-  for path in split(glob(g:sf_config['sf_web_dir'].'/css/**/*.css'))
-    let fname = substitute(path, lib#RxPath(g:sf_config['sf_web_dir'], 'css').s:PS.s:capture_group.'.css', '\1', '')
+  for path in split(glob(g:sf_web_dir.'/css/**/*.css'))
+    let fname = substitute(path, lib#RxPath(g:sf_web_dir, 'css').s:PS.s:capture_group.'.css', '\1', '')
     let g:sf_css_dict[fname] = 1
   endfor
 endfunction

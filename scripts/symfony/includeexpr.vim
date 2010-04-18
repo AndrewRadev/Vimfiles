@@ -60,7 +60,7 @@ function! SymfonyIncludeExpr(fname)
     let rx .= quoted_capture
     let rx .= '[,)]'
 
-    let fname = g:sf_config['sf_web_dir'].'/css/'.lib#ExtractRx(line, rx, '\1')
+    let fname = g:sf_web_dir.'/css/'.lib#ExtractRx(line, rx, '\1')
     if fnamemodify(fname, ':e') == ''
       let fname = fname.'.css'
     endif
@@ -71,7 +71,7 @@ function! SymfonyIncludeExpr(fname)
     let rx .= quoted_capture
     let rx .= '[,)]'
 
-    let fname = g:sf_config['sf_web_dir'].'/js/'.lib#ExtractRx(line, rx, '\1')
+    let fname = g:sf_web_dir.'/js/'.lib#ExtractRx(line, rx, '\1')
     if fnamemodify(fname, ':e') == ''
       let fname = fname.'.js'
     endif
