@@ -168,8 +168,6 @@
 'z-index'	css21.txt	/*'z-index'*
 .snippet	snipMate.txt	/*.snippet*
 .snippets	snipMate.txt	/*.snippets*
-/MyProjectDir/	dbext.txt	/*\/MyProjectDir\/*
-/MyProjectDir/	dbext.txt	/*\/MyProjectDir\/*
 :AcpDisable	acp.txt	/*:AcpDisable*
 :AcpEnable	acp.txt	/*:AcpEnable*
 :AcpLock	acp.txt	/*:AcpLock*
@@ -306,6 +304,13 @@ EasyGrep_Options	EasyGrep.txt	/*EasyGrep_Options*
 EasyGrep_OptionsDetail	EasyGrep.txt	/*EasyGrep_OptionsDetail*
 EasyGrep_OptionsExplorer	EasyGrep.txt	/*EasyGrep_OptionsExplorer*
 EasyGrep_OptionsSummary	EasyGrep.txt	/*EasyGrep_OptionsSummary*
+EvalSelection	EvalSelection.txt	/*EvalSelection*
+EvalSelection-ExtKeyBindings	EvalSelection.txt	/*EvalSelection-ExtKeyBindings*
+EvalSelection-Interaction	EvalSelection.txt	/*EvalSelection-Interaction*
+EvalSelection-KeyBindings	EvalSelection.txt	/*EvalSelection-KeyBindings*
+EvalSelection-Language	EvalSelection.txt	/*EvalSelection-Language*
+EvalSelection-Modes	EvalSelection.txt	/*EvalSelection-Modes*
+EvalSelection.txt	EvalSelection.txt	/*EvalSelection.txt*
 ExtractSnips()	snipMate.txt	/*ExtractSnips()*
 ExtractSnipsFile()	snipMate.txt	/*ExtractSnipsFile()*
 Filename()	snipMate.txt	/*Filename()*
