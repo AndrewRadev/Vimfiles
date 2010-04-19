@@ -7,6 +7,7 @@ syntax on
 colo custom_elflord
 
 runtime! startup/*.vim
+runtime! ftplugin/man.vim
 
 " Get rid of annoying register rewriting when pasting on visually selected
 " text.
