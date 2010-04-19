@@ -65,3 +65,5 @@ xnoremap ,, :g/./normal ,,<cr>
 
 " Paste in insert mode
 inoremap <C-p> <Esc>pa
+
+nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>

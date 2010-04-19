@@ -17,13 +17,20 @@ call ExtractSnipsFile(expand(g:snippets_dir).'jquery.snippets', 'javascript')
 " Base classes should never be modified:
 autocmd BufEnter base/Base*.class.php set readonly
 
+let g:symfony_command = '!php symfony --color'
+
+function! SfExec(cmd)
+  exe g:symfony_command.' '.a:cmd
+endfunction
+
 command! RebuildTags !ctags -R --exclude="symfony" .
 
-command! RebuildAll     !php symfony --color doctrine:build --all
-command! RebuildAllTest !php symfony --color doctrine:build --all --env=test
-command! RebuildClasses !php symfony --color doctrine:build --all-classes
-command! TestAll        !php symfony --color test:all
-command! Migrate        !php symfony --color doctrine:migrate
+command! RebuildAll     call SfExec('doctrine:build --all --and-load')
+command! RebuildAllTest call SfExec('doctrine:build --all --env=test')
+command! RebuildClasses call SfExec('doctrine:build --all-classes')
+command! TestAll        call SfExec('test:all')
+command! Migrate        call SfExec('doctrine:migrate')
+command! CC             call SfExec('cc')
 
 let s:sf_generate_commands = {
       \ 'migration': 'doctrine:generate-migration',
@@ -34,15 +41,14 @@ let s:sf_generate_commands = {
 command! -nargs=* -complete=customlist,s:CompleteGenerate Generate call s:Generate(<f-args>)
 function! s:Generate(what, ...)
   let l:command = s:sf_generate_commands[a:what]
-  exe "!php symfony --color ".l:command." ".join(a:000)
+  call SfExec(l:command." ".join(a:000))
 endfunction
 function! s:CompleteGenerate(A, L, P)
   return sort(keys(filter(copy(s:sf_generate_commands), "v:key =~'^".a:A."'")))
 endfunction
 
-command! Preview Utl ol http://localhost:80/
-
-command! CC !php symfony --color cc
+command! Preview Utl ol http://localhost
 
 runtime! scripts/symfony/navigation.vim
 runtime! scripts/symfony/includeexpr.vim
+set includeexpr=SymfonyIncludeExpr(v:fname)
