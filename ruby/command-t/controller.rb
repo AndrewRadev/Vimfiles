@@ -197,6 +197,12 @@ module CommandT
     end
 
     def register_for_key_presses
+      # modified by Andrew:
+
+      VIM::command 'mapclear'
+
+      # end modification by Andrew
+
       # "normal" keys (interpreted literally)
       numbers     = ('0'..'9').to_a.join
       lowercase   = ('a'..'z').to_a.join
