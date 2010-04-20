@@ -65,6 +65,6 @@ let g:sandbox_use_vcscommand   = 1
 let g:sandbox_look_for_updates = 0
 
 " Ruby omnicomplete:
-let g:rubycomplete_buffer_loading    = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails             = 1
+let g:rubycomplete_buffer_loading    = 0
+let g:rubycomplete_classes_in_global = 0
+let g:rubycomplete_rails             = 0
