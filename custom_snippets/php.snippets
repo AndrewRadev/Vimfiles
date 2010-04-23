@@ -236,7 +236,7 @@ snippet foreach
 	}${4}
 snippet foreach=
 	<?php foreach ($${1:variable} as $${2:key}): ?>
-		${3:<!-- html -->}
+		<?php echo $1 ?>
 	<?php endforeach; ?>${4}
 snippet fun
 	/**

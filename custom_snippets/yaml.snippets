@@ -20,8 +20,8 @@ snippet join
 	${1:Class}${2:Item}:
 		options: { symfony: { form: false, filter: false } }
 		columns:
-			${3:class}_id: { type: integer(4), notnull: true, primary: true }
-			${4:item}_id: { type: integer(4), notnull: true, primary: true }
+			${3:class}_id: { type: integer, notnull: true, primary: true }
+			${4:item}_id: { type: integer, notnull: true, primary: true }
 		relations:
 			$1: { class: $1, local: $3_id, foreign: id }
 			$2: { class: $2, local: $4_id, foreign: id }
