@@ -27,7 +27,7 @@ command! RebuildTags !ctags -R --exclude="symfony" .
 
 command! RebuildAll     call SfExec('doctrine:build --all --and-load')
 command! RebuildAllTest call SfExec('doctrine:build --all --env=test')
-command! RebuildModel   call SfExec('doctrine:build --all-classes')
+command! RebuildClasses call SfExec('doctrine:build --all-classes')
 command! TestAll        call SfExec('test:all')
 command! Migrate        call SfExec('doctrine:migrate')
 command! CC             call SfExec('cc')
