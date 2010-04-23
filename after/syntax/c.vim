@@ -6,6 +6,9 @@
 " Version: 0.1
 "
 " Changelog:
+"   0.3 - updates and fixes to cUserFunctionPointer, thanks to 
+"         Alexei <lxmzhv@gmail.com>
+"   0.2 - change [] to operator
 "   0.1 - initial upload, modification from vimscript#1201, Extended c.vim
 
 
@@ -237,11 +240,17 @@ syn match cOperator	"[.!~*&%<>^|=,+-]"
 syn match cOperator	"/[^/*=]"me=e-1
 syn match cOperator	"/$"
 syn match cOperator "&&\|||"
+syn match cOperator	"[][]"
 
-syn match cUserFunction "\<\a\w*\>\(\s\|\n\)*("me=e-1
-syn match cUserFunctionPointer "\<\a\w*\>[^()]*)\(\s\|\n\)*(" contains=cDelimiter
+" Functions
+syn match cUserFunction "\<\h\w*\>\(\s\|\n\)*("me=e-1 contains=cType
+syn match cUserFunctionPointer "(\s*\*\s*\h\w*\s*)\(\s\|\n\)*(" contains=cDelimiter,cOperator
 
-syn match cDelimiter	"[][(){};\\]"
+hi def link cUserFunction cFunction
+hi def link cUserFunctionPointer cFunction
+
+" Delimiters
+syn match cDelimiter	"[(){};\\]"
 
 " Booleans
 syn keyword cBoolean true false TRUE FALSE
@@ -249,8 +258,6 @@ syn keyword cBoolean true false TRUE FALSE
 
 " Links
 hi def link cDelimiter Delimiter
-hi def link cUserFunction Function
-hi def link cUserFunctionPointer Function
 hi def link cAnsiFunction Function
 hi def link cAnsiName Identifier
 hi def link cBoolean Boolean
