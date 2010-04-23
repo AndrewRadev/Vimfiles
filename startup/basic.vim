@@ -22,6 +22,7 @@ set listchars=eol:.,tab:\|-
 set nocscopetag
 set noswapfile
 set notimeout
+set nottybuiltin
 set number
 set ruler
 set shiftwidth=2 shiftround

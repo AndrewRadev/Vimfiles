@@ -199,7 +199,7 @@ module CommandT
     def register_for_key_presses
       # modified by Andrew:
 
-      VIM::command 'mapclear'
+      VIM::command 'mapclear <buffer>'
 
       # end modification by Andrew
 
