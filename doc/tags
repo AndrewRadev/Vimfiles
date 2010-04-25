@@ -498,6 +498,12 @@ afterimage-author	afterimage.txt	/*afterimage-author*
 afterimage-built-ins	afterimage.txt	/*afterimage-built-ins*
 afterimage-customization	afterimage.txt	/*afterimage-customization*
 afterimage.txt	afterimage.txt	/*afterimage.txt*
+agtd	agtd.txt	/*agtd*
+agtd-getStarted	agtd.txt	/*agtd-getStarted*
+agtd-intro	agtd.txt	/*agtd-intro*
+agtd-plugin	agtd.txt	/*agtd-plugin*
+agtd-todo	agtd.txt	/*agtd-todo*
+agtd.txt	agtd.txt	/*agtd.txt*
 align	Align.txt	/*align*
 align-align	Align.txt	/*align-align*
 align-codepoint	Align.txt	/*align-codepoint*
