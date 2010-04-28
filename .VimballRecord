@@ -11,3 +11,4 @@ command-t-0.5.1.vba: call delete('/home/andrew/.vim/ruby/command-t/controller.rb
 sandbox_0.2.vba: call delete('/home/andrew/.vim/plugin/sandbox.vim')
 EvalSelection.vba: call delete('/home/andrew/.vim/doc/EvalSelection.txt')|call delete('/home/andrew/.vim/plugin/EvalSelection.vim')|call delete('/home/andrew/.vim/ruby/EvalSelection.rb')|call delete('/home/andrew/.vim/syntax/EvalSelectionLog.vim')
 agtd.vba: call delete('/home/andrew/.vim/doc/agtd.txt')|call delete('/home/andrew/.vim/plugin/agtd.vim')|call delete('/home/andrew/.vim/syntax/agtd.vim')|call delete('/home/andrew/.vim/ftplugin/agtd.vim')
+NrrwRgn.vba: call delete('/home/andrew/.vim/plugin/NrrwRgn.vim')
