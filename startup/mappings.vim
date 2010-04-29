@@ -52,8 +52,8 @@ xnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
 xnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Easier increment/decrement:
-noremap + <C-a>
-noremap - <C-x>
+nmap + <C-a>
+nmap - <C-x>
 
 " Goto file or edit file:
 nnoremap gF :exe "edit ".eval(&includeexpr)<cr>
