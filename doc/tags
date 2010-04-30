@@ -1268,6 +1268,7 @@ taglist-session	taglist.txt	/*taglist-session*
 taglist-todo	taglist.txt	/*taglist-todo*
 taglist-using	taglist.txt	/*taglist-using*
 taglist.txt	taglist.txt	/*taglist.txt*
+taskpaper	taskpaper.txt	/*taskpaper*
 textobj#user#define()	textobj-user.txt	/*textobj#user#define()*
 textobj#user#move()	textobj-user.txt	/*textobj#user#move()*
 textobj#user#plugin()	textobj-user.txt	/*textobj#user#plugin()*
