@@ -203,6 +203,7 @@
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
 :PP	prettyprint.txt	/*:PP*
 :PrettyPrint	prettyprint.txt	/*:PrettyPrint*
+:SpeedDatingFormat	speeddating.txt	/*:SpeedDatingFormat*
 :TBrowseOutput	tlib.txt	/*:TBrowseOutput*
 :TKeyArg	tlib.txt	/*:TKeyArg*
 :TLet	tlib.txt	/*:TLet*
@@ -253,7 +254,6 @@
 <Plug>(textobj-function-i)	textobj-function.txt	/*<Plug>(textobj-function-i)*
 AND	dbext.txt	/*AND*
 Align-copyright	Align.txt	/*Align-copyright*
-ArrangeColumn	ft_csv.txt	/*ArrangeColumn*
 DBI	dbext.txt	/*DBI*
 Decho.vim	Decho.txt	/*Decho.vim*
 DechoMsgOff	Decho.txt	/*DechoMsgOff*
@@ -267,7 +267,6 @@ DechoTabOff	Decho.txt	/*DechoTabOff*
 DechoTabOn	Decho.txt	/*DechoTabOn*
 DechoVarOff	Decho.txt	/*DechoVarOff*
 DechoVarOn	Decho.txt	/*DechoVarOn*
-DeleteColumn	ft_csv.txt	/*DeleteColumn*
 Dredir	Decho.txt	/*Dredir*
 Dsep	Decho.txt	/*Dsep*
 EasyGrep	EasyGrep.txt	/*EasyGrep*
@@ -316,8 +315,6 @@ EvalSelection.txt	EvalSelection.txt	/*EvalSelection.txt*
 ExtractSnips()	snipMate.txt	/*ExtractSnips()*
 ExtractSnipsFile()	snipMate.txt	/*ExtractSnipsFile()*
 Filename()	snipMate.txt	/*Filename()*
-HiColumn	ft_csv.txt	/*HiColumn*
-InitCSV	ft_csv.txt	/*InitCSV*
 MatchError	matchit.txt	/*MatchError*
 NERDTree	NERD_tree.txt	/*NERDTree*
 NERDTree-?	NERD_tree.txt	/*NERDTree-?*
@@ -378,7 +375,6 @@ NERDTreeOptionSummary	NERD_tree.txt	/*NERDTreeOptionSummary*
 NERDTreeOptions	NERD_tree.txt	/*NERDTreeOptions*
 NERDTreeRender()	NERD_tree.txt	/*NERDTreeRender()*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
-NrColumns	ft_csv.txt	/*NrColumns*
 ODBC	dbext.txt	/*ODBC*
 OmniCpp_DefaultNamespaces	omnicppcomplete.txt	/*OmniCpp_DefaultNamespaces*
 OmniCpp_DisplayMode	omnicppcomplete.txt	/*OmniCpp_DisplayMode*
@@ -407,7 +403,6 @@ ProjRefresh	proj.txt	/*ProjRefresh*
 ProjReload	proj.txt	/*ProjReload*
 ProjVim	proj.txt	/*ProjVim*
 ResetSnippets()	snipMate.txt	/*ResetSnippets()*
-SearchInColumn	ft_csv.txt	/*SearchInColumn*
 Tlist_Get_Tag_Prototype_By_Line()	taglist.txt	/*Tlist_Get_Tag_Prototype_By_Line()*
 Tlist_Get_Tagname_By_Line()	taglist.txt	/*Tlist_Get_Tagname_By_Line()*
 Tlist_Set_App()	taglist.txt	/*Tlist_Set_App()*
@@ -433,7 +428,6 @@ VCSCommandSVNDiffOpt	vcscommand.txt	/*VCSCommandSVNDiffOpt*
 VCSCommandSVNExec	vcscommand.txt	/*VCSCommandSVNExec*
 VCSCommandSplit	vcscommand.txt	/*VCSCommandSplit*
 VCSCommandVCSTypeOverride	vcscommand.txt	/*VCSCommandVCSTypeOverride*
-WhatColumn	ft_csv.txt	/*WhatColumn*
 ZoomWin.txt	ZoomWin.txt	/*ZoomWin.txt*
 [%	matchit.txt	/*[%*
 [<Space>	unimpaired.txt	/*[<Space>*
@@ -646,6 +640,7 @@ command-t-license	command-t.txt	/*command-t-license*
 command-t-mappings	command-t.txt	/*command-t-mappings*
 command-t-options	command-t.txt	/*command-t-options*
 command-t-requirements	command-t.txt	/*command-t-requirements*
+command-t-trouble-shooting	command-t.txt	/*command-t-trouble-shooting*
 command-t-usage	command-t.txt	/*command-t-usage*
 command-t-website	command-t.txt	/*command-t-website*
 command-t-wildignore	command-t.txt	/*command-t-wildignore*
@@ -672,14 +667,6 @@ css-visfm	css21.txt	/*css-visfm*
 css-visfmd	css21.txt	/*css-visfmd*
 css-visfx	css21.txt	/*css-visfx*
 css21.txt	css21.txt	/*css21.txt*
-csv-changelog	ft_csv.txt	/*csv-changelog*
-csv-column	ft_csv.txt	/*csv-column*
-csv-commands	ft_csv.txt	/*csv-commands*
-csv-configuration	ft_csv.txt	/*csv-configuration*
-csv-delimiter	ft_csv.txt	/*csv-delimiter*
-csv-higroup	ft_csv.txt	/*csv-higroup*
-csv-installation	ft_csv.txt	/*csv-installation*
-csv-toc	ft_csv.txt	/*csv-toc*
 cvscommand-changes	vcscommand.txt	/*cvscommand-changes*
 database-extension	dbext.txt	/*database-extension*
 db2	dbext.txt	/*db2*
@@ -762,7 +749,6 @@ fontsize-installation	fontsize.txt	/*fontsize-installation*
 fontsize-intro	fontsize.txt	/*fontsize-intro*
 fontsize-todo	fontsize.txt	/*fontsize-todo*
 fontsize.txt	fontsize.txt	/*fontsize.txt*
-ft_csv.txt	ft_csv.txt	/*ft_csv.txt*
 fugitive	fugitive.txt	/*fugitive*
 fugitive#statusline()	fugitive.txt	/*fugitive#statusline()*
 fugitive-:Gblame	fugitive.txt	/*fugitive-:Gblame*
@@ -1225,6 +1211,19 @@ snipMate.txt	snipMate.txt	/*snipMate.txt*
 snippet	snipMate.txt	/*snippet*
 snippet-syntax	snipMate.txt	/*snippet-syntax*
 snippets	snipMate.txt	/*snippets*
+speeddating	speeddating.txt	/*speeddating*
+speeddating-.	speeddating.txt	/*speeddating-.*
+speeddating-CTRL-A	speeddating.txt	/*speeddating-CTRL-A*
+speeddating-CTRL-X	speeddating.txt	/*speeddating-CTRL-X*
+speeddating-author	speeddating.txt	/*speeddating-author*
+speeddating-caveats	speeddating.txt	/*speeddating-caveats*
+speeddating-d_CTRL-A	speeddating.txt	/*speeddating-d_CTRL-A*
+speeddating-d_CTRL-X	speeddating.txt	/*speeddating-d_CTRL-X*
+speeddating-formats	speeddating.txt	/*speeddating-formats*
+speeddating-maps	speeddating.txt	/*speeddating-maps*
+speeddating-v_CTRL-A	speeddating.txt	/*speeddating-v_CTRL-A*
+speeddating-v_CTRL-X	speeddating.txt	/*speeddating-v_CTRL-X*
+speeddating.vim	speeddating.txt	/*speeddating.vim*
 sqlanywhere	dbext.txt	/*sqlanywhere*
 sqlite	dbext.txt	/*sqlite*
 sqlsrv	dbext.txt	/*sqlsrv*
