@@ -54,6 +54,9 @@ xnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " Easier increment/decrement:
 nmap + <C-a>
 nmap - <C-x>
+" Swapit + speeddating
+nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
+nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
 
 " Goto file or edit file:
 nnoremap gF :exe "edit ".eval(&includeexpr)<cr>

@@ -254,6 +254,7 @@
 <Plug>(textobj-function-i)	textobj-function.txt	/*<Plug>(textobj-function-i)*
 AND	dbext.txt	/*AND*
 Align-copyright	Align.txt	/*Align-copyright*
+ClearSwapList	swapit.txt	/*ClearSwapList*
 DBI	dbext.txt	/*DBI*
 Decho.vim	Decho.txt	/*Decho.vim*
 DechoMsgOff	Decho.txt	/*DechoMsgOff*
@@ -403,6 +404,8 @@ ProjRefresh	proj.txt	/*ProjRefresh*
 ProjReload	proj.txt	/*ProjReload*
 ProjVim	proj.txt	/*ProjVim*
 ResetSnippets()	snipMate.txt	/*ResetSnippets()*
+SwapIdea	swapit.txt	/*SwapIdea*
+SwapList	swapit.txt	/*SwapList*
 Tlist_Get_Tag_Prototype_By_Line()	taglist.txt	/*Tlist_Get_Tag_Prototype_By_Line()*
 Tlist_Get_Tagname_By_Line()	taglist.txt	/*Tlist_Get_Tagname_By_Line()*
 Tlist_Set_App()	taglist.txt	/*Tlist_Set_App()*
@@ -1235,6 +1238,19 @@ surround-mappings	surround.txt	/*surround-mappings*
 surround-replacements	surround.txt	/*surround-replacements*
 surround-targets	surround.txt	/*surround-targets*
 surround.txt	surround.txt	/*surround.txt*
+swapit-annoyances	swapit.txt	/*swapit-annoyances*
+swapit-bugs	swapit.txt	/*swapit-bugs*
+swapit-builtin	swapit.txt	/*swapit-builtin*
+swapit-cleanup	swapit.txt	/*swapit-cleanup*
+swapit-define	swapit.txt	/*swapit-define*
+swapit-filetype	swapit.txt	/*swapit-filetype*
+swapit-html	swapit.txt	/*swapit-html*
+swapit-installation	swapit.txt	/*swapit-installation*
+swapit-intro	swapit.txt	/*swapit-intro*
+swapit-multiword	swapit.txt	/*swapit-multiword*
+swapit-omnicomplete	swapit.txt	/*swapit-omnicomplete*
+swapit-requirements	swapit.txt	/*swapit-requirements*
+swapit-setup	swapit.txt	/*swapit-setup*
 taglist-commands	taglist.txt	/*taglist-commands*
 taglist-debug	taglist.txt	/*taglist-debug*
 taglist-extend	taglist.txt	/*taglist-extend*
