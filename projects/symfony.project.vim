@@ -51,4 +51,7 @@ command! Preview Utl ol http://localhost
 
 runtime! scripts/symfony/navigation.vim
 runtime! scripts/symfony/includeexpr.vim
+runtime! scripts/symfony/detect.vim
+runtime! scripts/symfony/paths.vim
+
 set includeexpr=SymfonyIncludeExpr(v:fname)
