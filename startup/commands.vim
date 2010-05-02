@@ -56,3 +56,15 @@ command! FixEol call lib#InPlace('%s/$//e')
 
 " Vim shell
 command! Shell runtime scripts/vimsh/vimsh.vim
+
+" Cheat sheet shortcut
+command! -nargs=* -complete=custom,s:CheatComplete Cheat new | call s:Cheat(<q-args>)
+function! s:Cheat(args)
+  silent exe "e! ".tempname()
+  silent exe "0r!ch ".a:args
+  set nomodified
+  normal gg
+endfunction
+function! s:CheatComplete(A, L, P)
+  return system('ch list')
+endfunction

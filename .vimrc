@@ -32,9 +32,3 @@ let g:html_indent_tags = 'p\|li'
 let loaded_matchparen = 1
 
 source ~/.local_vimrc
-
-" Autocompletion experiments:
-let g:acp_enableAtStartup = 1
-
-let g:loadedPPIT= 1
-let g:usrPP = {}
