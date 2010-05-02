@@ -41,6 +41,7 @@ function! symfony#LoadData()
   endfor
 endfunction
 
+" Property retrieval functions
 function! symfony#CurrentModuleName()
   if exists('b:current_module_name')
     return b:current_module_name
@@ -150,6 +151,35 @@ function! symfony#CurrentModelName()
   return b:current_model_name
 endfunction
 
+" Path functions
+function! symfony#TablePath(table)
+  let paths = glob('lib/model/**/'.a:table.'Table.class.php')
+  if paths != ''
+    return paths
+  else
+    return 'lib/model/doctrine/'.a:table.'Table.class.php'
+  endif
+endfunction
+
+function! symfony#TemplatePath(module, template)
+  let app = symfony#CurrentAppName()
+
+  if a:template[0] == '_'
+    let template = a:template.'.php'
+  else
+    let template = a:template.'Success.php'
+  endif
+
+  if a:module == 'global'
+    let path = 'apps/'.app.'/templates/'.template
+  else
+    let path = 'apps/'.app.'/modules/'.a:module.'/templates/'.template
+  endif
+
+  return path
+endfunction
+
+" Completion functions
 function! symfony#CompleteApp(A, L, P)
   let rx = s:PS.s:capture_group.'$'
 

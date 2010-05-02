@@ -63,7 +63,7 @@ function! DetectModelName()
   let rx .= '$'
 
   if match(path, rx) != -1
-    return = lib#ExtractRx(path, rx, '\1')
+    return lib#ExtractRx(path, rx, '\1')
   endif
 
   return 0
