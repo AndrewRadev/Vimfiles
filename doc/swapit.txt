@@ -1,0 +1,189 @@
+swapit.txt Extensible Keyword Swapper
+
+Author: Michael Brown <mjbrownie @ NOSPAMMY gmail.com>
+
+            Usage Notes
+
+1. SwapIt Introduction                                  |swapit-intro|
+
+2. Setup                                                |swapit-setup|
+    2.1 Requirements                                    |swapit-requirements|
+    2.2 Installation                                    |swapit-installation|
+    2.3 Bugs                                            |swapit-bugs|
+    2.4 Limitations/Annoyances                          |swapit-annoyances|
+
+3. Swapping
+    3.1 Built in swap lists                             |swapit-builtin|
+    3.2 Defining a swap list                            |swapit-define|
+    3.3 xml/html swaps                                  |swapit-html|
+    3.4 Multi word swaps                                |swapit-multiword|
+
+4. Filetype Swaps                                       |swapit-filetype|
+
+    4.1 Defining a filetype swap list                   |swapit-cleanup|
+
+5. Omnicomplete Swapping                                |swapit-omnicomplete|
+
+================================================================================
+1. SwapIt Introduction                                  *swapit-intro*
+
+    swapit.vim is a plugin designed to make it easier to perform common changes
+    to various filetypes. It's designed to fill a niche where onmnicomplete for
+    a given filetype is not providing any options. It is very easy to define your
+    own lists for your own projects.
+
+    It's most effective if you have a set of keywords between 2 and 10 in size.
+    By default it uses the increment/decrement keystrokes |ctrl-a| |ctrl-x|.
+    Although this can be custom mapped for screen users.
+
+    A simple builtin example:
+
+    setting=false
+
+    moving the cursor over false in normal mode and pressing ctrl-a will result
+    in
+
+    setting=true
+
+    The git repository is here http://github.com/mjbrownie/swapit/tree/master.
+    I'd appreciate any additions.
+
+================================================================================
+2. Setup                                                          *swapit-setup*
+
+2.1 Requirements                                           *swapit-requirements*
+
+    Swapit has been tested on vim 7.0.
+
+    If you are looking to use the xml/html tag complete option you need to have
+    matchit.vim working correctly.
+
+2.2 Installation                                           *swapit-installation*
+
+    Copy the swapit.tar.gz file in your ~/.vim/ directory and extract.
+
+2.3 Bugs                                                           *swapit-bugs*
+
+    This is still a work in progress. There are still some bugs where the swap
+    gets stuck in visual mode and on some line extremities the cursor can jump
+    away from where you want it.
+
+    In some cases having |'selection'| set to  exclusive mode can break things.
+    Try:
+
+    :set selection=inclusive
+
+2.4 Limitations/Annoyances                                   *swapit-annoyances*
+
+    Swapping is based on naive lists so the biggest limitation is when there is
+    the same keyword in more than one list. If this happens then a selection
+    box comes up where you decide which list to use, but its not as smoothe an
+    operation. To combat this issue lists are filetype specific.
+
+    For example if you have the following two lists:
+
+    :SwapList octave do re me fa so la ti
+    :SwapList self me myself I
+
+    trying to swap the keyword 'me' will result in an option list coming up.
+
+    Swap Options:  A . octave (me > fa)  B . self (me > myself)
+    (A), (B):
+
+    It would probably be possible to differentiate lists with some regex but
+    this plugin is probably overkill already.
+
+================================================================================
+
+3 Swapping
+
+    3.1 Built in swap lists                                     *swapit-builtin*
+
+        swapit has a number of obvious lists defined eg. yes/no true/false etc.
+
+    3.2 Defining a swap list                          *SwapList* *swapit-define*
+
+       :SwapList <list_name> <member1> <member2> .. <membern>
+
+       eg. :SwapList roman I II III IV V VI VII VII IX X
+
+    3.3 xml/html swaps                                             *swapit-html*
+
+        One of the most recent and useful features is you can swap xml/html
+        tags.
+
+        If you vim has matchit.vim loaded you can swap. Eg:
+
+        <p> This should be an h1 </p>
+
+        ctrl-a on the p will cycle to...
+
+        <h1> This should be an h1 </h1>
+
+        This behavior is defined by the command SwapXmlMatchit
+
+        which is as follows
+
+        SwapXmlMatchit <swap_list> <swap_list> ...
+
+        ~/.vim/after/ftplugin/html_swapit.vim
+
+        SwapList formats h1 h2 h3 h4 p strong em a
+        SwapList layout div span script style
+        SwapXmlMatchit formats layout
+
+    3.4 Multi word swaps                                      *swapit-multiword*
+
+        swapit can handle multiword swapping by entering into visual mode.
+
+        I wrote it and didn't find a use for it so defining multiword swaps
+        isn't as easy as single word swaps. you could manually define a list.
+
+        ~/.vim/after/ftplugin/{filetype}_swapit.vim
+
+        ClearSwapList
+
+        let g:swap_lists = [
+        \{'name':'hello_world', 'options':
+        \['Hello World!','GoodBye Cruel World!' , 'See You Next Tuesday!']},
+        ...
+        \]
+
+        etc.
+
+================================================================================
+
+4. Filetype Swaps
+
+    4.1 Defining a filetype swap list               *SwapIdea* *swapit-filetype*
+
+        The command
+
+        :SwapIdea
+
+        will open
+
+        ~/.vim/after/ftplugin/{filetype}_swapit.vim
+
+        The filetype file can be used to define custom swaps for
+
+    4.2 Clearing a Swap List                    *ClearSwapList* *swapit-cleanup*
+
+        The ClearSwapList command cleans up existing swap lists. Its useful to
+        put this at the top of an after/ftplugin file.
+
+        ClearSwapList
+
+5. Omnicomplete Swapping                                *swapit-omnicomplete*
+
+    Rather than repeating SwapLists that are similar to omnicomplete patterns
+    it would be more preferable to use the omnicomplete function for the
+    language.
+
+    Swapit is capable of experimental looking up omnicomplete patterns
+    currently only for CSS as of writing. I'd appreciate any ideas and
+    additions in this area.
+
+    Please fork.
+
+    http://github.com/mjbrownie/swapit/tree/master

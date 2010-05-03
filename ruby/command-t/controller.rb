@@ -34,7 +34,9 @@ module CommandT
     end
 
     def show
-      @finder.path    = VIM::pwd
+      # optional parameter will be desired starting directory, or ""
+      @path           = File.expand_path(VIM::evaluate('a:arg'), VIM::pwd)
+      @finder.path    = @path
       @initial_window = $curwin
       @initial_buffer = $curbuf
       @match_window   = MatchWindow.new \
@@ -44,6 +46,9 @@ module CommandT
       @prompt.focus
       register_for_key_presses
       clear # clears prompt and list matches
+    rescue Errno::ENOENT
+      # probably a problem with the optional parameter
+      @match_window.print_no_such_file_or_directory
     end
 
     def hide
@@ -179,6 +184,7 @@ module CommandT
 
     def open_selection selection, options = {}
       command = options[:command] || default_open_command
+      selection = File.expand_path selection, @path
       selection = sanitize_path_string selection
       VIM::command "silent #{command} #{selection}"
     end
@@ -197,12 +203,6 @@ module CommandT
     end
 
     def register_for_key_presses
-      # modified by Andrew:
-
-      VIM::command 'mapclear <buffer>'
-
-      # end modification by Andrew
-
       # "normal" keys (interpreted literally)
       numbers     = ('0'..'9').to_a.join
       lowercase   = ('a'..'z').to_a.join
