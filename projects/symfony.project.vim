@@ -36,6 +36,7 @@ let s:sf_generate_commands = {
       \ 'migration': 'doctrine:generate-migration',
       \ 'app':       'generate:app',
       \ 'module':    'generate:module',
+      \ 'task':      'generate:task',
       \ }
 
 command! -nargs=* -complete=customlist,s:CompleteGenerate Generate call s:Generate(<f-args>)
