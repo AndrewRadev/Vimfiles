@@ -201,6 +201,10 @@
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
+:NR	NarrowRegion.txt	/*:NR*
+:NW	NarrowRegion.txt	/*:NW*
+:NarrowRegion	NarrowRegion.txt	/*:NarrowRegion*
+:NarrowWindow	NarrowRegion.txt	/*:NarrowWindow*
 :PP	prettyprint.txt	/*:PP*
 :PrettyPrint	prettyprint.txt	/*:PrettyPrint*
 :SpeedDatingFormat	speeddating.txt	/*:SpeedDatingFormat*
@@ -246,6 +250,7 @@
 :VCSUnlock	vcscommand.txt	/*:VCSUnlock*
 :VCSUpdate	vcscommand.txt	/*:VCSUpdate*
 :VCSVimDiff	vcscommand.txt	/*:VCSVimDiff*
+:WidenRegion	NarrowRegion.txt	/*:WidenRegion*
 <Plug>(smartword-b)	smartword.txt	/*<Plug>(smartword-b)*
 <Plug>(smartword-e)	smartword.txt	/*<Plug>(smartword-e)*
 <Plug>(smartword-ge)	smartword.txt	/*<Plug>(smartword-ge)*
@@ -376,6 +381,13 @@ NERDTreeOptionSummary	NERD_tree.txt	/*NERDTreeOptionSummary*
 NERDTreeOptions	NERD_tree.txt	/*NERDTreeOptions*
 NERDTreeRender()	NERD_tree.txt	/*NERDTreeRender()*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
+NarrowRegion	NarrowRegion.txt	/*NarrowRegion*
+NrrwRgn-config	NarrowRegion.txt	/*NrrwRgn-config*
+NrrwRgn-feedback	NarrowRegion.txt	/*NrrwRgn-feedback*
+NrrwRgn-history	NarrowRegion.txt	/*NrrwRgn-history*
+NrrwRgn-manual	NarrowRegion.txt	/*NrrwRgn-manual*
+NrrwRgn.txt	NarrowRegion.txt	/*NrrwRgn.txt*
+NrrwRgnPlugin	NarrowRegion.txt	/*NrrwRgnPlugin*
 ODBC	dbext.txt	/*ODBC*
 OmniCpp_DefaultNamespaces	omnicppcomplete.txt	/*OmniCpp_DefaultNamespaces*
 OmniCpp_DisplayMode	omnicppcomplete.txt	/*OmniCpp_DisplayMode*

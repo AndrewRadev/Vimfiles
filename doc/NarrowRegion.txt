@@ -1,0 +1,145 @@
+*NrrwRgn.txt*   A Narrow Region Plugin (similar to Emacs)
+
+Author:  Christian Brabandt <cb@256bit.org>
+Version: 0.6 Tue, 04 May 2010 13:00:49 +0200
+
+Copyright: (c) 2009, 2010 by Christian Brabandt         
+           The VIM LICENSE applies to NrrwRgnPlugin.vim and NrrwRgnPlugin.txt
+           (see |copyright|) except use NrrwRgnPlugin instead of "Vim".
+           NO WARRANTY, EXPRESS OR IMPLIED.  USE AT-YOUR-OWN-RISK.
+
+
+==============================================================================
+1. Contents                                     *NarrowRegion*  *NrrwRgnPlugin*
+
+        1.  Contents.....................................: |NrrwRgnPlugin|
+        2.  NrrwRgn Manual...............................: |NrrwRgn-manual|
+        2.1   NrrwRgn Configuration......................: |NrrwRgn-config|
+        3.  NrrwRgn Feedback.............................: |NrrwRgn-feedback|
+        4.  NrrwRgn History..............................: |NrrwRgn-history|
+
+==============================================================================
+2. NrrwRgn Manual                                       *NrrwRgn-manual*
+
+Functionality
+
+This plugin is based on a discussion in comp.editors (see the thread at
+http://groups.google.com/group/comp.editors/browse_frm/thread/0f562d97f80dde13)
+
+Narrowing means focussing on a region and making the rest inaccessible. You
+simply select the region, call :NarrowRegion and the selected part will open
+in a new scratch buffer. The rest of the file will be protected, so you won't
+accidentally modify that buffer. In the new buffer, you can do a global
+replace, search or anything else to modify that part. When you are finished,
+simply write that buffer (e.g. by |:w|) and your modifications will be put in
+the original buffer making it accessible again.
+
+NrrwRgn allows you to either select a line based selection using an Ex-command
+or you can simply use any visual selected region and press your prefered key
+combination to open that selection in a new buffer.
+
+                                                        *:NarrowRegion* *:NR*
+:[range]NarrowRegion        When [range] is omited, select only the current
+                            line, else use the lines in the range given and 
+                            open it in a new Scratch Window. 
+                            Whenever you are finished modifying that region
+                            simply write the buffer.
+
+:[range]NR                  This is a shortcut for :NarrowRegion
+
+                                                        *:NarrowWindow* *:NW*
+:NarrowWindow               Select only the range that is visible the current
+                            window and open it in a new Scratch Window. 
+                            Whenever you are finished modifying that region
+                            simply write the buffer.
+
+:NW                         This is a shortcut for :NarrowWindow
+
+                                                                *:WidenRegion*
+:WidenRegion                This command is only available in the narrowed 
+                            scratch buffer. If the buffer has been modified,
+                            the contents will be put back on the original
+                            buffer.
+
+You can also start visual mode and have the selected region being narrowed. In
+this mode, NarrowRegion allows you to block select |CTRL-V| , character select
+|v| or linewise select |V| a region. Then press <Leader>nr where <Leader> by
+default is set to '\', unless you have set it to something different (see
+|<Leader>| for information how to change this) and the selected range will
+open in a new scratch buffer. This key combination only works in |Visual-mode|
+
+==============================================================================
+2.1 NrrwRgn Configuration                                    *NrrwRgn-config*
+
+NarrowRegion can be customized by setting some global variables. If you'd
+like to open the narrowed windo as a vertical split buffer, simply set the
+variable g:nrrw_rgn_vert to 1 in your |.vimrc| >
+
+    let g:nrrw_rgn_vert = 1
+< 
+If you'd like to specify a certain width/height for you scratch buffer, then
+set the variable g:nrrw_rgn_wdth in your |.vimrc| . This variable defines the
+width or the nr of columns, if you have also set g:nrrw_rgn_vert. >
+
+    let g:nrrw_rgn_wdth = 30
+
+By default, NarrowRegion highlights your the region that has been selected
+using the WildMenu highlighting (see |hl-WildMenu|). If you'd like to use a
+different highlighting, set the variable g:nrrw_rgn_hl to your preferred
+highlighting Group. For example to have the region highlighted like a search
+result, you could put that in your |.vimrc| >
+
+    let g:nrrw_rgn_hl = 'Search'
+
+If you'd like to change the key combination, that starts the Narrowed Window
+for you selected range, you could put this in your |.vimrc| >
+
+   xmap <F3> <Plug>NrrwrgnDo
+
+This will let <F3> open the Narrow-Window, but only if you have pressed it in
+Visual Mode. It doesn't really make sense to map this combination to any other
+mode, unless you want it to Narrow your last visually selected range.
+
+==============================================================================
+3. NrrwRgn Feedback                                         *NrrwRgn-feedback*
+
+Feedback is always welcome. If you like the plugin, please rate it at the
+vim-page:
+http://www.vim.org/scripts/script.php?script_id=3075
+
+You can also follow the development of the plugin at github:
+http://github.com/chrisbra/NrrwRgn
+
+Please don't hesitate to report any bugs to the maintainer, mentioned in the
+third line of this document.
+
+==============================================================================
+4. NrrwRgn History                                          *NrrwRgn-history*
+	0.6: May 04, 2010       - the previous version had problems
+	                          restoring the orig buffer, this version
+				  fixes it (highlighting and setl ma did not
+				  work correctly)
+        0.5: May 04, 2010       - The mapping that allows for narrowing a
+                                  visually selected range, did not work.
+                                  (Fixed!)
+                                - Make :WidenRegion work as expected (close
+                                  the widened window)
+				  (unreleased)
+        0.4: Apr 28, 2010       - Highlight narrowed region in the original
+                                  buffer
+                                - Save and Restore search-register
+                                - Provide shortcut commands |:NR| 
+                                - Provide command |:NW| and |:NarrowWindow|
+                                - Make plugin autoloadable
+                                - Enable GLVS (see |:GLVS|)
+                                - Provide Documenation (:h NarrowRegion)
+                                - Distribute Plugin as vimball |pi_vimball.txt|
+        0.3: Apr 28, 2010       - Initial upload
+                                - development versions are available at the
+                                  github repository
+                                - put plugin on a public repository 
+                                  (http://github.com/chrisbra/NrrwRgn)
+
+==============================================================================
+Modeline:
+vim:tw=78:ts=8:ft=help
