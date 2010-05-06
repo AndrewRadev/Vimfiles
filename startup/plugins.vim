@@ -68,3 +68,6 @@ let g:sandbox_look_for_updates = 0
 let g:rubycomplete_buffer_loading    = 0
 let g:rubycomplete_classes_in_global = 0
 let g:rubycomplete_rails             = 0
+
+" Avoid opening webpages in links:
+let g:netrw_http_cmd	= "wget -q -O"
