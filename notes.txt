@@ -1,27 +1,3 @@
-ccimpl.vim needs to be able to generate skeletons for existing cpp files as well.
-
-Symfony
-  * Glob for models recursively (prefix with dir?)
-  * automatically infer app in Econtroller whenever possible
-
-Dbext:
-  * Mappings
-  * Window placement
-  * Install perl + CPAN stuff
-
-PHP:
-  * Hack the ctags php parser.
-  * Experiment with refactoring -- Cscope
-
-Snippets:
-  * !!! My own snippet system? !!!
-  * Snippets and acp -- completing breaks $x references
-  * C snippets should NOT be included in cpp ones!
-  * nested snippets (additional check on <tab>?)
-
-Yaml snippets:
-	* Camelize, snake_case, etc.
-
 Changes made to plugins:
   * ccimpl.vim -- minor change from vsplit to split
   * Markdown syntax -- added txt syntax
