@@ -68,3 +68,5 @@ endfunction
 function! s:CheatComplete(A, L, P)
   return system('ch list')
 endfunction
+
+command! SynId echo synIDattr(synID(line('.'), col('.'), 1), 'name')

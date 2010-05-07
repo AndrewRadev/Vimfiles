@@ -12,14 +12,7 @@ let g:NERDTreeIgnore = [
       \ ]
 
 " Open up FuzzyFinders:
-nmap Qf :FuzzyFinderTextMate<cr>
-nmap Qm :FuzzyFinderMruFile<cr>
-
 nmap Qt :CommandT<cr>
-
-" FuzzyFinderTextMate settings:
-let g:fuzzy_ceiling = 20000
-let g:fuzzy_ignore  = "*/.svn/*;.git/*;*/tmp/*"
 
 " Dbext settings:
 let g:dbext_default_buffer_lines = 20
