@@ -1,5 +1,6 @@
 Changes made to plugins:
-  * ccimpl.vim -- minor change from vsplit to split
-  * Markdown syntax -- added txt syntax
+  * utl                  -- normal! <C-l>
+  * ccimpl.vim           -- minor change from vsplit to split
+  * Markdown syntax      -- added txt syntax
   * php indenting script
-  * dbext -- perl fix
+  * dbext                -- perl fix
