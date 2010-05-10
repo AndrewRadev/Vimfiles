@@ -15,7 +15,9 @@ let g:NERDTreeIgnore = [
 nmap Qt :CommandT<cr>
 
 " Dbext settings:
-let g:dbext_default_buffer_lines = 20
+let g:dbext_default_buffer_lines  = 20
+let g:dbext_default_replace_title = 1
+let g:dbext_default_history_file  = '~/.dbext_history'
 
 " Snippet settings:
 let g:snippets_dir = expand("~/.vim/custom_snippets/")

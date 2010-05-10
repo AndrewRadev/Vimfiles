@@ -13,6 +13,7 @@ runtime! startup/commands.vim
 runtime! startup/autocommands.vim
 runtime! startup/mappings.vim
 runtime! startup/utl.vim
+runtime! startup/acp.vim
 
 runtime! ftplugin/man.vim
 
