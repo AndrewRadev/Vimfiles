@@ -26,4 +26,4 @@ function! PhpIncludeExpr(fname)
   return a:fname
 endfunction
 
-command! -buffer -nargs=* Run !php % <args>
+command! -buffer -complete=file -nargs=* Run !php % <args>

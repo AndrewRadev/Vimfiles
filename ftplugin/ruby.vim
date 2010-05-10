@@ -8,4 +8,4 @@ setlocal tags+=~/tags/ruby.tags
 compiler ruby
 
 command! -buffer -nargs=* Console !irb -r % <args>
-command! -buffer -nargs=* Run !ruby % <args>
+command! -buffer -complete=file -nargs=* Run !ruby % <args>

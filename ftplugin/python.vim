@@ -6,4 +6,4 @@ setlocal expandtab
 compiler python
 
 command! -buffer -nargs=* Run !python3 % <args>
-command! -buffer -nargs=* Console !python3 -i % <args>
+command! -buffer -complete=file -nargs=* Console !python3 -i % <args>
