@@ -1,1 +1,1 @@
-command! -buffer -nargs=* Run !bash % <args>
+command! -buffer -complete=file -nargs=* Run !bash % <args>

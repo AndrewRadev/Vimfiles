@@ -103,6 +103,35 @@ if exists("hs_highlight_boolean")
   syn keyword hsBoolean True False
 endif
 
+sy keyword hsModuleStartLabel module contained
+sy keyword hsExportModuleLabel module contained
+sy keyword hsModuleWhereLabel where contained
+sy match hsImport		"\<import\>\(.\|[^(]\)*\((.*)\)\?" contains=hsImportLabel,hsImportMod,hsModuleName,hsImportList
+sy keyword hsImportLabel import contained
+sy keyword hsImportMod		as qualified hiding contained
+sy match   hsModuleName  excludenl "\([A-Z]\w*\.\?\)*" contained 
+sy region hsImportListInner start="(" end=")" contained keepend extend contains=hs_OpFunctionName
+sy region  hsImportList matchgroup=hsImportListParens start="("rs=s+1 end=")"re=e-1
+        \ contained 
+        \ keepend extend
+        \ contains=hsType,hsLineComment,hsBlockComment,hs_hlFunctionName,hsImportListInner
+sy region hsExportListInner start="(" end=")" contained keepend extend 
+sy region hsExportListInner start="(" end=")" contained keepend extend contains=hs_OpFunctionName
+sy match hsExportModule "\<module\>\(\s\|\t\|\n\)*.*" contained contains=hsExportModuleLabel,hsModuleName
+sy region hsExportList matchgroup=hsExportListParens start="("rs=s+1 end=")"re=e-1
+        \ contained
+        \ keepend extend
+        \ contains=hsBlockComment,hsLineComment,hsType,hs_hlFunctionName,hsExportListInner,hsExportModule
+
+sy keyword hsFFIForeign foreign contained
+sy keyword hsFFIImportExport import export contained
+sy keyword hsFFICallConvention ccall stdcall contained
+sy keyword hsFFISafety safe unsafe contained
+sy region  hsFFIString		start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=hsSpecialChar
+sy match hsFFI excludenl "\<foreign\>\(.\&[^\"]\)*\"\(.\)*\"\(\s\|\n\)*\(.\)*::"
+  \ keepend
+  \ contains=hsFFIForeign,hsFFIImportExport,hsFFICallConvention,hsFFISafety,hsFFIString,hs_OpFunctionName,hs_hlFunctionName
+
 " hsModule regex MUST match all possible symbols between 'module' and 'where'
 " else overlappings with other syntax elements will break correct hsModule 
 " syntax highliting or evaluation of regex will stall vim.
@@ -117,27 +146,12 @@ endif
 "   7: any symbol non-alphanumeric symbol enclosed in parenthesis. e.g. (*)
 "   8: optional line comment
 "
-"                                                                        |   optional Symbol List               |
-"                             |   1    |            |   2   |           |3.1| 5  6 :  7  :   8           |3.2|            |   4   |
-syn match hsModule excludenl "\<module\>\(\s\|\n\)*\(\<.*\>\)\(\s\|\n\)*\((\(\w\|,\|(\W*)\|--.*\n\|\s\|\n\)*)\)\?\(\s\|\n\)*\<where\>" 
-    \ contains=hsModuleLabel,hsComment,hsModuleName,hsImportList
+"                                                                         |   optional Symbol List                            |
+"                             |   1    |            |   2   |             |3.1| 5  6 :  7  :   8                          |3.2|            |   4   |
+syn match hsModule excludenl "\<module\>\(\s\|\n\)*\(\<.*\>\)\(\s\|\n\)*\((\(\w\|,\|(\W*)\|--.*\n\|\.\|{\|}\|-\|\#\|'\|\s\|\n\)*)\)\?\(\s\|\n\)*\<where\>" 
+    \ contains=hsModuleStartLabel,hsModuleWhereLabel,hsModuleName,hsExportList,hsModuleStart
 
-sy keyword hsModuleLabel module where contained
-sy match hsImport		"\<import\>\(.\|[^(]\)*\((.*)\)\?" contains=hsImportLabel,hsImportMod,hsModuleName,hsImportList
-sy keyword hsImportLabel import contained
-sy keyword hsImportMod		as qualified hiding contained
-sy match   hsModuleName  excludenl "\([A-Z]\w.?\)*" contained 
-sy region hsImportListInner start="(" end=")" contained keepend extend contains=hs_OpFunctionName
-sy region  hsImportList matchgroup=hsImportListParens start="("rs=s+1 end=")"re=e-1
-        \ contained 
-        \ keepend extend
-        \ contains=hsType,hsLineComment,hsBlockComment,hs_hlFunctionName,hsImportListInner
-
-" Comments
-sy keyword hsCommentTodo    TODO FIXME XXX TBD contained
-sy match   hsLineComment      "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=hsCommentTodo,@Spell
-sy region  hsBlockComment     start="{-"  end="-}" contains=hsBlockComment,hsCommentTodo,@Spell
-sy region  hsPragma	       start="{-#" end="#-}"
+"hi hsModule guibg=red
 
 syn match  hsSpecialChar	contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&\\abfnrtv]\|^[A-Z^_\[\\\]]\)"
 syn match  hsSpecialChar	contained "\\\(NUL\|SOH\|STX\|ETX\|EOT\|ENQ\|ACK\|BEL\|BS\|HT\|LF\|VT\|FF\|CR\|SO\|SI\|DLE\|DC1\|DC2\|DC3\|DC4\|NAK\|SYN\|ETB\|CAN\|EM\|SUB\|ESC\|FS\|GS\|RS\|US\|SP\|DEL\)"
@@ -147,6 +161,13 @@ sy match   hsCharacter		"[^a-zA-Z0-9_']'\([^\\]\|\\[^']\+\|\\'\)'"lc=1 contains=
 sy match   hsCharacter		"^'\([^\\]\|\\[^']\+\|\\'\)'" contains=hsSpecialChar,hsSpecialCharError
 sy match   hsNumber		"\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
 sy match   hsFloat		"\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
+
+" Comments
+sy keyword hsCommentTodo    TODO FIXME XXX TBD contained
+sy match   hsLineComment      "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=hsCommentTodo,@Spell
+sy region  hsBlockComment     start="{-"  end="-}" contains=hsBlockComment,hsCommentTodo,@Spell
+sy region  hsPragma	       start="{-#" end="#-}"
+
 
 if exists("hs_highlight_debug")
   " Debugging functions from the standard prelude.
@@ -199,7 +220,9 @@ if version >= 508 || !exists("did_hs_syntax_inits")
 	HiLink hsDelimiter        Delimiter
   endif
 
-  HiLink hsModuleLabel      Structure
+  HiLink hsModuleStartLabel Structure
+  HiLink hsExportModuleLabel Keyword
+  HiLink hsModuleWhereLabel Structure
   HiLink hsModuleName       Normal
 
   HiLink hsImportLabel      Include
@@ -215,6 +238,7 @@ if version >= 508 || !exists("did_hs_syntax_inits")
   HiLink hsSpecialCharError Error
   HiLink hsSpecialChar      SpecialChar
   HiLink hsString           String
+  HiLink hsFFIString        String
   HiLink hsCharacter        Character
   HiLink hsNumber           Number
   HiLink hsFloat            Float
@@ -244,6 +268,11 @@ if version >= 508 || !exists("did_hs_syntax_inits")
   HiLink cCppSkip           cCppOut
   HiLink cCppOut2           cCppOut
   HiLink cCppOut            Comment
+
+  HiLink hsFFIForeign       Keyword
+  HiLink hsFFIImportExport  Structure
+  HiLink hsFFICallConvention Keyword
+  HiLink hsFFISafety         Keyword
 
   delcommand HiLink
 endif

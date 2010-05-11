@@ -12,17 +12,12 @@ let g:NERDTreeIgnore = [
       \ ]
 
 " Open up FuzzyFinders:
-nmap Qf :FuzzyFinderTextMate<cr>
-nmap Qm :FuzzyFinderMruFile<cr>
-
 nmap Qt :CommandT<cr>
 
-" FuzzyFinderTextMate settings:
-let g:fuzzy_ceiling = 20000
-let g:fuzzy_ignore  = "*/.svn/*;.git/*;*/tmp/*"
-
 " Dbext settings:
-let g:dbext_default_buffer_lines = 20
+let g:dbext_default_buffer_lines  = 20
+let g:dbext_default_replace_title = 1
+let g:dbext_default_history_file  = '~/.dbext_history'
 
 " Snippet settings:
 let g:snippets_dir = expand("~/.vim/custom_snippets/")
@@ -68,3 +63,9 @@ let g:sandbox_look_for_updates = 0
 let g:rubycomplete_buffer_loading    = 0
 let g:rubycomplete_classes_in_global = 0
 let g:rubycomplete_rails             = 0
+
+" Avoid opening webpages in links:
+let g:netrw_http_cmd	= "wget -q -O"
+
+" Calendar:
+let g:calendar_monday = 1

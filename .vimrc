@@ -6,7 +6,15 @@ syntax on
 
 colo custom_elflord
 
-runtime! startup/*.vim
+runtime! startup/settings.vim
+runtime! startup/plugins.vim
+runtime! startup/smartword.vim
+runtime! startup/commands.vim
+runtime! startup/autocommands.vim
+runtime! startup/mappings.vim
+runtime! startup/utl.vim
+runtime! startup/acp.vim
+
 runtime! ftplugin/man.vim
 
 " Get rid of annoying register rewriting when pasting on visually selected

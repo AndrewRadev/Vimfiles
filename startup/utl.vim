@@ -19,10 +19,10 @@ else
   let g:utl_cfg_hdl_mt_application_doc     = ':!ooffice "%p" &> /dev/null &'
   let g:utl_cfg_hdl_mt_application_odt     = ':!ooffice "%p" &> /dev/null &'
   " Images:
-  let g:utl_cfg_hdl_mt_image_png  = ':!mirage "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_image_jpeg = ':!mirage "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_image_gif  = ':!mirage "%p" &> /dev/null &'
-  let g:utl_cfg_hdl_mt_image_bmp  = ':!mirage "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_png  = ':!eog "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_jpeg = ':!eog "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_gif  = ':!eog "%p" &> /dev/null &'
+  let g:utl_cfg_hdl_mt_image_bmp  = ':!eog "%p" &> /dev/null &'
   " Video:
   let g:utl_cfg_hdl_mt_video_x_msvideo = ':!smplayer "%p" &> /dev/null &'
 endif

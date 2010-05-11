@@ -14,6 +14,9 @@ runtime after/plugin/snippets.vim
 call ExtractSnipsFile(expand(g:snippets_dir).'symfony.snippets', 'php')
 call ExtractSnipsFile(expand(g:snippets_dir).'jquery.snippets', 'javascript')
 
+call ExtractSnipsFile('_snippets/php.snippets', 'php')
+call ExtractSnipsFile('_snippets/javascript.snippets', 'javascript')
+
 " Base classes should never be modified:
 autocmd BufEnter */base/Base*.class.php set readonly
 
