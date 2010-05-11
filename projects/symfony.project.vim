@@ -15,7 +15,12 @@ call ExtractSnipsFile(expand(g:snippets_dir).'symfony.snippets', 'php')
 call ExtractSnipsFile(expand(g:snippets_dir).'jquery.snippets', 'javascript')
 
 " Base classes should never be modified:
-autocmd BufEnter base/Base*.class.php set readonly
+autocmd BufEnter */base/Base*.class.php set readonly
+
+" Template files tweaks
+"autocmd BufEnter */templates/*.php set ft=php.html
+autocmd BufEnter */templates/*.php set foldmethod=indent
+"autocmd BufEnter */templates/*.php set omnifunc=htmlcomplete#CompleteTags
 
 let g:symfony_command = '!php symfony --color'
 
