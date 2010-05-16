@@ -34,3 +34,5 @@ snippet header
 		type:    INNODB
 		collate: utf8_unicode_ci
 		charset: utf8
+snippet string
+	${1:column}: { type: string(255), notnull: ${2:false} }

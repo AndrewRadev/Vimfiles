@@ -18,7 +18,12 @@ call ExtractSnipsFile('_snippets/php.snippets', 'php')
 call ExtractSnipsFile('_snippets/javascript.snippets', 'javascript')
 
 " Base classes should never be modified:
-autocmd BufEnter base/Base*.class.php set readonly
+autocmd BufEnter */base/Base*.class.php set readonly
+
+" Template files tweaks
+"autocmd BufEnter */templates/*.php set ft=php.html
+autocmd BufEnter */templates/*.php set foldmethod=indent
+"autocmd BufEnter */templates/*.php set omnifunc=htmlcomplete#CompleteTags
 
 let g:symfony_command = '!php symfony --color'
 
@@ -39,6 +44,7 @@ let s:sf_generate_commands = {
       \ 'migration': 'doctrine:generate-migration',
       \ 'app':       'generate:app',
       \ 'module':    'generate:module',
+      \ 'task':      'generate:task',
       \ }
 
 command! -nargs=* -complete=customlist,s:CompleteGenerate Generate call s:Generate(<f-args>)
