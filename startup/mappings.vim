@@ -1,6 +1,10 @@
 " Annoying, remove:
 nnoremap s <Nop>
 
+" <space> for commands, closer than ':'
+nnoremap <space> :
+xnoremap <space> :
+
 " Always move through visual lines:
 nnoremap j gj
 nnoremap k gk
@@ -65,7 +69,7 @@ nnoremap gF :exe "edit ".eval(&includeexpr)<cr>
 xnoremap <Leader>a=> :Align =><cr>
 
 " Easy split:
-nnoremap <Leader><Leader> :split \|
+nnoremap <Leader><Leader> :split \|<Space>
 
 " Comment in visual mode
 xnoremap ,, :g/./normal ,,<cr>
@@ -73,4 +77,5 @@ xnoremap ,, :g/./normal ,,<cr>
 " Paste in insert mode
 inoremap <C-p> <Esc>pa
 
+" Standard 'go to manual' command
 nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
