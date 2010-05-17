@@ -69,4 +69,8 @@ function! s:CheatComplete(A, L, P)
   return system('ch list')
 endfunction
 
+" Rake shortcut
+command! -complete=file -nargs=* Rake !rake <args>
+
+" Easy check of current syntax group
 command! SynId echo synIDattr(synID(line('.'), col('.'), 1), 'name')
