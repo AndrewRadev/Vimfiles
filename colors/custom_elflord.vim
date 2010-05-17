@@ -48,9 +48,9 @@ hi Statement    term=bold       ctermfg=Yellow      gui=bold      guifg=#aa4444
 
 " Try without fading, underline active instead
 hi StatusLine   ctermfg=white ctermbg=none cterm=bold,underline
-hi StatusLine   guifg=white   guibg=none   gui=bold,underline
+hi StatusLine   guifg=white   guibg=#000000   gui=bold,underline
 hi StatusLineNC ctermfg=white ctermbg=none cterm=none
-hi StatusLineNC guifg=white   guibg=none   gui=none
+hi StatusLineNC guifg=white   guibg=#000000   gui=none
 
 " status line for non-current windows
 "hi StatusLineNC     guifg=#767986           guibg=#363946           gui=none
