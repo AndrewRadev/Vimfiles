@@ -260,6 +260,7 @@
 AND	dbext.txt	/*AND*
 Align-copyright	Align.txt	/*Align-copyright*
 ClearSwapList	swapit.txt	/*ClearSwapList*
+ConqueTerm	conque_term.txt	/*ConqueTerm*
 DBI	dbext.txt	/*DBI*
 Decho.vim	Decho.txt	/*Decho.vim*
 DechoMsgOff	Decho.txt	/*DechoMsgOff*
@@ -311,13 +312,6 @@ EasyGrep_Options	EasyGrep.txt	/*EasyGrep_Options*
 EasyGrep_OptionsDetail	EasyGrep.txt	/*EasyGrep_OptionsDetail*
 EasyGrep_OptionsExplorer	EasyGrep.txt	/*EasyGrep_OptionsExplorer*
 EasyGrep_OptionsSummary	EasyGrep.txt	/*EasyGrep_OptionsSummary*
-EvalSelection	EvalSelection.txt	/*EvalSelection*
-EvalSelection-ExtKeyBindings	EvalSelection.txt	/*EvalSelection-ExtKeyBindings*
-EvalSelection-Interaction	EvalSelection.txt	/*EvalSelection-Interaction*
-EvalSelection-KeyBindings	EvalSelection.txt	/*EvalSelection-KeyBindings*
-EvalSelection-Language	EvalSelection.txt	/*EvalSelection-Language*
-EvalSelection-Modes	EvalSelection.txt	/*EvalSelection-Modes*
-EvalSelection.txt	EvalSelection.txt	/*EvalSelection.txt*
 ExtractSnips()	snipMate.txt	/*ExtractSnips()*
 ExtractSnipsFile()	snipMate.txt	/*ExtractSnipsFile()*
 Filename()	snipMate.txt	/*Filename()*
@@ -656,6 +650,13 @@ command-t-wildignore	command-t.txt	/*command-t-wildignore*
 command-t.txt	command-t.txt	/*command-t.txt*
 compiler-ghc	haskellmode.txt	/*compiler-ghc*
 config/rails.vim	rails.txt	/*config\/rails.vim*
+conque_term-bugs	conque_term.txt	/*conque_term-bugs*
+conque_term-changelog	conque_term.txt	/*conque_term-changelog*
+conque_term-contribute	conque_term.txt	/*conque_term-contribute*
+conque_term-requirements	conque_term.txt	/*conque_term-requirements*
+conque_term-settings	conque_term.txt	/*conque_term-settings*
+conque_term-todo	conque_term.txt	/*conque_term-todo*
+conque_term-usage	conque_term.txt	/*conque_term-usage*
 cs	surround.txt	/*cs*
 css	css21.txt	/*css*
 css-about	css21.txt	/*css-about*
