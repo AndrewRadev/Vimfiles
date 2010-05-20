@@ -202,6 +202,7 @@
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
 :NR	NarrowRegion.txt	/*:NR*
+:NRV	NarrowRegion.txt	/*:NRV*
 :NW	NarrowRegion.txt	/*:NW*
 :NarrowRegion	NarrowRegion.txt	/*:NarrowRegion*
 :NarrowWindow	NarrowRegion.txt	/*:NarrowWindow*

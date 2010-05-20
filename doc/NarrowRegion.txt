@@ -1,7 +1,7 @@
 *NrrwRgn.txt*   A Narrow Region Plugin (similar to Emacs)
 
 Author:  Christian Brabandt <cb@256bit.org>
-Version: 0.6 Tue, 04 May 2010 13:00:49 +0200
+Version: 0.9 Thu, 20 May 2010 08:08:50 +0200
 
 Copyright: (c) 2009, 2010 by Christian Brabandt         
            The VIM LICENSE applies to NrrwRgnPlugin.vim and NrrwRgnPlugin.txt
@@ -57,9 +57,14 @@ combination to open that selection in a new buffer.
 
                                                                 *:WidenRegion*
 :WidenRegion                This command is only available in the narrowed 
-                            scratch buffer. If the buffer has been modified,
+                            scratch window. If the buffer has been modified,
                             the contents will be put back on the original
-                            buffer.
+                            buffer. If it isn't modified, closes the scratch
+                            window.
+
+                                                                        *:NRV*
+:NRW                        Opened the narrowed window for the region that was
+                            last selected in visual mode
 
 You can also start visual mode and have the selected region being narrowed. In
 this mode, NarrowRegion allows you to block select |CTRL-V| , character select
@@ -68,6 +73,19 @@ default is set to '\', unless you have set it to something different (see
 |<Leader>| for information how to change this) and the selected range will
 open in a new scratch buffer. This key combination only works in |Visual-mode|
 
+When finished, simply write that Narrowed Region window, from which you want
+to take the modifications in your original file. 
+
+It is possible, to recursively open a Narrowed Window on top of an already
+narrowed window. This sounds a little bit silly, but this makes it possible,
+to have several narrowed windows, which you can use for several different
+things, e.g. If you have 2 different buffers opened and you want to diff a
+certain region of each of those 2 buffers, simply open a Narrowed Window for
+each buffer, and execute |:diffthis| in each narrowed window. 
+
+You can then interactively merge those 2 windows. And when you are finished,
+simply write the narrowed window and the changes will be taken back into the
+original buffer.
 ==============================================================================
 2.1 NrrwRgn Configuration                                    *NrrwRgn-config*
 
@@ -76,26 +94,37 @@ like to open the narrowed windo as a vertical split buffer, simply set the
 variable g:nrrw_rgn_vert to 1 in your |.vimrc| >
 
     let g:nrrw_rgn_vert = 1
-< 
+<
+------------------------------------------------------------------------------
+
 If you'd like to specify a certain width/height for you scratch buffer, then
 set the variable g:nrrw_rgn_wdth in your |.vimrc| . This variable defines the
 width or the nr of columns, if you have also set g:nrrw_rgn_vert. >
 
     let g:nrrw_rgn_wdth = 30
+<
+------------------------------------------------------------------------------
 
-By default, NarrowRegion highlights your the region that has been selected
+By default, NarrowRegion highlights the region that has been selected
 using the WildMenu highlighting (see |hl-WildMenu|). If you'd like to use a
 different highlighting, set the variable g:nrrw_rgn_hl to your preferred
 highlighting Group. For example to have the region highlighted like a search
 result, you could put that in your |.vimrc| >
 
     let g:nrrw_rgn_hl = 'Search'
+<
+If you want to turn off the highlighting (because this can be disturbing, you
+can set the global variable g:nrrw_rgn_nohl to 1 in your |.vimrc| >
+
+    let g:nrrw_rgn_nohl = 1
+<
+------------------------------------------------------------------------------
 
 If you'd like to change the key combination, that starts the Narrowed Window
 for you selected range, you could put this in your |.vimrc| >
 
    xmap <F3> <Plug>NrrwrgnDo
-
+<
 This will let <F3> open the Narrow-Window, but only if you have pressed it in
 Visual Mode. It doesn't really make sense to map this combination to any other
 mode, unless you want it to Narrow your last visually selected range.
@@ -115,31 +144,68 @@ third line of this document.
 
 ==============================================================================
 4. NrrwRgn History                                          *NrrwRgn-history*
-	0.6: May 04, 2010       - the previous version had problems
-	                          restoring the orig buffer, this version
-				  fixes it (highlighting and setl ma did not
-				  work correctly)
-        0.5: May 04, 2010       - The mapping that allows for narrowing a
-                                  visually selected range, did not work.
-                                  (Fixed!)
-                                - Make :WidenRegion work as expected (close
-                                  the widened window)
-				  (unreleased)
-        0.4: Apr 28, 2010       - Highlight narrowed region in the original
-                                  buffer
-                                - Save and Restore search-register
-                                - Provide shortcut commands |:NR| 
-                                - Provide command |:NW| and |:NarrowWindow|
-                                - Make plugin autoloadable
-                                - Enable GLVS (see |:GLVS|)
-                                - Provide Documenation (:h NarrowRegion)
-                                - Distribute Plugin as vimball |pi_vimball.txt|
-        0.3: Apr 28, 2010       - Initial upload
-                                - development versions are available at the
-                                  github repository
-                                - put plugin on a public repository 
-                                  (http://github.com/chrisbra/NrrwRgn)
+
+0.9: May 20, 2010
+
+- It is now possible to Narrow a window recursively. This allows to have
+  several narrowed windows, and allows for example to only diff certain
+  regions (as was suggested in a recent thread at the vim_use mailinglist:
+  http://groups.google.com/group/vim_use/msg/05d7fd9bd1556f0e) therefore, the
+  use for the g:nrrw_rgn_sepwin variable isn't necessary anymore.
+- Small documentation updates
+
+0.8: May 18, 2010
+
+- the g:nrrw_rgn_sepwin variable can be used to force seperate Narrowed
+  Windows, so you could easily diff those windows.
+- make the separating of several windows a little bit safer (look at the
+  bufnr(), so it should work without problems for several buffers)
+- switch from script local variables to buffer local variables, so narrowing
+  for several buffers should work.
+- set 'winfixheight' for narrowed window 
+- Added command :NRV (suggested by Charles Campbell, thanks!)
+- added error handling, in case :NRV is called, without a selected region
+- take care of beeps, when calling :NRV
+- output WarningMsg
+
+0.7: May 17, 2010
+
+- really use the black hole register for deleting the old buffer contents in
+  the narrowed buffer (suggestion by esquifit in
+  http://groups.google.com/group/comp.editors/msg/3eb3e3a7c68597db)
+- make autocommand nesting, so the highlighting will be removed when writing
+  the buffer contents.
+- Use g:nrrw_rgn_nohl variable to disable highlighting (as this can be
+  disturbing).
+
+0.6: May 04, 2010
+
+- the previous version had problems restoring the orig buffer, this version
+  fixes it (highlighting and setl ma did not work correctly)
+
+0.5: May 04, 2010       
+
+- The mapping that allows for narrowing a visually selected range, did not
+  work.  (Fixed!)
+- Make :WidenRegion work as expected (close the widened window) (unreleased)
+
+0.4: Apr 28, 2010       
+
+- Highlight narrowed region in the original buffer
+- Save and Restore search-register
+- Provide shortcut commands |:NR| 
+- Provide command |:NW| and |:NarrowWindow|
+- Make plugin autoloadable
+- Enable GLVS (see |:GLVS|)
+- Provide Documenation (:h NarrowRegion)
+- Distribute Plugin as vimball |pi_vimball.txt|
+
+0.3: Apr 28, 2010       
+
+- Initial upload
+- development versions are available at the github repository
+- put plugin on a public repository (http://github.com/chrisbra/NrrwRgn)
 
 ==============================================================================
 Modeline:
-vim:tw=78:ts=8:ft=help
+vim:tw=78:ts=8:ft=help:et

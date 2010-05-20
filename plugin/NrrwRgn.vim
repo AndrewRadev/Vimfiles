@@ -1,8 +1,8 @@
 " NrrwRgn.vim - Narrow Region plugin for Vim
 " -------------------------------------------------------------
-" Version:	   0.6
+" Version:	   0.9
 " Maintainer:  Christian Brabandt <cb@256bit.org>
-" Last Change: Tue, 04 May 2010 13:00:49 +0200
+" Last Change: Thu, 20 May 2010 08:08:50 +0200
 "
 " Script: http://www.vim.org/scripts/script.php?script_id=3075 
 " Copyright:   (c) 2009, 2010 by Christian Brabandt
@@ -11,7 +11,7 @@
 "			   instead of "Vim".
 "			   No warranty, express or implied.
 "	 *** ***   Use At-Your-Own-Risk!   *** ***
-" GetLatestVimScripts: 3075 6 :AutoInstall: NrrwRgn.vim
+" GetLatestVimScripts: 3075 9 :AutoInstall: NrrwRgn.vim
 "
 " Init: {{{1
 let s:cpo= &cpo
@@ -27,6 +27,7 @@ let g:loaded_nrrw_rgn = 1
 " Define the Command:
 com! -range NarrowRegion :exe ":" . <line1> . ',' . <line2> . "call nrrwrgn#NrrwRgn()"
 com! -range NR	 :exe ":" . <line1> . ',' . <line2> . "call nrrwrgn#NrrwRgn()"
+com! -range NRV  :call nrrwrgn#VisualNrrwRgn(visualmode())
 com! NW	 :exe ":" . line('w0') . ',' . line('w$') . "call nrrwrgn#NrrwRgn()"
 com! NarrowWindow :exe ":" . line('w0') . ',' . line('w$') . "call nrrwrgn#NrrwRgn()"
 
