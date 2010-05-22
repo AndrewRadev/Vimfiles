@@ -36,6 +36,7 @@ set ttimeout
 set ttimeoutlen=200
 set updatetime=1000
 set wildmenu
+set wildmode=list:longest
 
 let mapleader="_"
 let maplocalleader="_"
