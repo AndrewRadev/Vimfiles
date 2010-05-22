@@ -3,7 +3,10 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
 
+setlocal foldmethod=syntax
+
 setlocal tags+=~/tags/ruby.tags
+setlocal tags+=~/tags/gems.tags
 
 compiler ruby
 

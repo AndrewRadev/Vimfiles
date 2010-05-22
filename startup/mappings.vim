@@ -1,9 +1,9 @@
 " Annoying, remove:
 nnoremap s <Nop>
 
-" <space> for commands, closer than ':'
-nnoremap <space> :
-xnoremap <space> :
+" <space> for some commands + capitalization
+nnoremap <space>r :R
+xnoremap <space>r :R
 
 " Always move through visual lines:
 nnoremap j gj

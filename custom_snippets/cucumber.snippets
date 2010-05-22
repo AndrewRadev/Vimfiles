@@ -1,0 +1,11 @@
+snippet feat
+	Feature: ${1}
+		In order ${2:to make a blog}
+		As ${3:an author}
+		I want ${4:to create and manage articles}
+snippet scen
+	Scenario: ${1:Articles list}
+		Given ${2:I have articles titled Foo, Bar}
+		When ${3:I go to the list of articles}
+		Then ${4:I should see "Foo"}
+		And ${5:I should see "Bar"}
