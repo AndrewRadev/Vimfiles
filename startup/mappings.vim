@@ -1,9 +1,12 @@
 " Annoying, remove:
 nnoremap s <Nop>
 
-" <space> for some commands + capitalization
+" <space> for rails-related commands:
 nnoremap <space>r :R
 xnoremap <space>r :R
+" <space> for git-related commands:
+nnoremap <space>g :G
+xnoremap <space>g :G
 
 " Always move through visual lines:
 nnoremap j gj
