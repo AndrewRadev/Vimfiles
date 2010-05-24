@@ -4,7 +4,7 @@ nmap gN :NERDTree<cr>
 
 nmap <Leader>f :NERDTreeFind<cr>
 
-let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeIgnore = [
       \ '\~$',
       \ '\.o$',
