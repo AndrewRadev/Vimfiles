@@ -82,3 +82,16 @@ inoremap <C-p> <Esc>pa
 
 " Standard 'go to manual' command
 nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
+
+" Copying and pasting with the clipboard
+nnoremap y "+y
+xnoremap y "+y
+nnoremap p "+p
+nnoremap P "+P
+xnoremap p "+p
+nnoremap d "+d
+xnoremap d "+d
+nnoremap D "+D
+xnoremap D "+D
+nnoremap x "+x
+xnoremap x "+x
