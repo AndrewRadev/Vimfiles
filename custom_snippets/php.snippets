@@ -1,11 +1,12 @@
-snippet php
-	<?php
-	${1}
-	?>
-snippet php=
-	<?php echo ${1:'debug'} ?>
+snippet -
+	<?php ${1} ?>
+snippet =
+	<?php echo ${1} ?>
 snippet debug
-	var_dump($${1:'var'}); die;
+	echo "<pre>";
+	print_r($${1:'var'});
+	echo "</pre>";
+	die;
 snippet ec
 	echo '${1:string}'${2};
 snippet inc
@@ -24,25 +25,6 @@ snippet req1
 	require_once '${1:file}';${2}
 snippet req1.
 	require_once dirname(__FILE__).'${1:file}';${2}
-# $GLOBALS['...']
-snippet globals
-	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
-snippet $_ COOKIE['...']
-	$_COOKIE['${1:variable}']${2}
-snippet $_ ENV['...']
-	$_ENV['${1:variable}']${2}
-snippet $_ FILES['...']
-	$_FILES['${1:variable}']${2}
-snippet $_ GET['...']
-	$_GET['${1:variable}']${2}
-snippet $_ POST['...']
-	$_POST['${1:variable}']${2}
-snippet $_ REQUEST['...']
-	$_REQUEST['${1:variable}']${2}
-snippet $_ SERVER['...']
-	$_SERVER['${1:variable}']${2}
-snippet $_ SESSION['...']
-	$_SESSION['${1:variable}']${2}
 # Start Docblock
 snippet /*
 	/**
@@ -149,30 +131,14 @@ snippet doc_i
 # class ...
 snippet class
 	/**
-	 * ${1}
+	 * ${2}
 	 **/
-	class ${2:ClassName}
+	class ${1:ClassName}
 	{
-		${3}
-		function ${4:__construct}(${5:argument}) {
-			${6:// code...}
+		function ${3:__construct}(${4:argument}) {
+			${5:// code...}
 		}
 	}
-# define(...)
-snippet def
-	define('${1}'${2});${3}
-# defined(...)
-snippet def?
-	${1}defined('${2}')${3}
-snippet wh
-	while (${1:/* condition */}) {
-		${2:// code...}
-	}
-# do ... while
-snippet do
-	do {
-		${2:// code... }
-	} while (${1:/* condition */});
 snippet if
 	if (${1:/* condition */})
 	{
@@ -181,7 +147,7 @@ snippet if
 snippet if=
 	<?php if (${1:/* condition */}): ?>
 		${2:<!-- code -->}
-	<?php endif; ?>
+	<?php endif ?>
 snippet ife
 	if (${1:/* condition */})
 	{
@@ -198,12 +164,12 @@ snippet ife=
 	<?php else: ?>
 		${3:<!-- code -->}
 	<?php endif; ?>
-snippet else
+snippet e
 	else
 	{
 		${1:// code...}
 	}
-snippet elseif
+snippet eif
 	elseif (${1:/* condition */})
 	{
 		${2:// code...}
@@ -229,15 +195,15 @@ snippet for
 	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
 		${4: // code...}
 	}
-snippet foreach
+snippet each
 	foreach ($${1:variable} as $${2:value})
 	{
 		${3:// code...}
 	}${4}
-snippet foreach=
+snippet each=
 	<?php foreach ($${1:variable} as $${2:key}): ?>
-		<?php echo $2 ?>
-	<?php endforeach; ?>${4}
+		<?php echo $$2 ?>
+	<?php endforeach ?>${4}
 snippet fun
 	/**
 	 * ${4:@todo Write description}
@@ -246,11 +212,8 @@ snippet fun
 	{
 		${5:// code...}
 	}
-# $... = array (...)
-snippet array
-	$${1:arrayName} = array('${2}' => ${3});${4}
 snippet .
-	[${1}]${2}
+	['${1}']${2}
 snippet get
 	$_GET['${1}']
 snippet post
