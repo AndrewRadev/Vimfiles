@@ -77,9 +77,6 @@ nnoremap <Leader><Leader> :split \|<Space>
 " Comment in visual mode
 xnoremap ,, :g/./normal ,,<cr>
 
-" Paste in insert mode
-inoremap <C-p> <Esc>pa
-
 " Standard 'go to manual' command
 nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
 
@@ -95,3 +92,6 @@ nnoremap D "+D
 xnoremap D "+D
 nnoremap x "+x
 xnoremap x "+x
+
+" Paste in insert mode
+imap <C-p> <Esc>pa
