@@ -1,6 +1,10 @@
 " Annoying, remove:
 nnoremap s <Nop>
 
+" Easily mark a single line in character-wise visual mode
+"xnoremap v <esc>0v$
+nnoremap vv 0v$
+
 " <space> for rails-related commands:
 nnoremap <space>r :R
 xnoremap <space>r :R
