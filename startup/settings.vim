@@ -38,6 +38,9 @@ set updatetime=1000
 set wildmenu
 set wildmode=list:longest
 
+set keymap=custom_bg_phonetic
+set iminsert=0
+
 let mapleader="_"
 let maplocalleader="_"
 
