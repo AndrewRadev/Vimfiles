@@ -38,8 +38,10 @@ set updatetime=1000
 set wildmenu
 set wildmode=list:longest
 
+" Use vim-based Bulgarian keymaps
 set keymap=custom_bg_phonetic
 set iminsert=0
+set imsearch=-1
 
 let mapleader="_"
 let maplocalleader="_"
