@@ -71,3 +71,6 @@ command! -complete=file -nargs=* Rake !rake <args>
 
 " Easy check of current syntax group
 command! SynId echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+
+" Use 'helptags' with the bundle directory as well
+command! Helptags helptags doc | helptags bundle/*/doc

@@ -1,5 +1,7 @@
 set nocompatible
 
+call pathogen#runtime_append_all_bundles()
+
 filetype plugin on
 filetype indent on
 syntax on
