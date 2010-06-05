@@ -28,8 +28,6 @@ augroup custom
   autocmd BufEnter *.hsc        set filetype=haskell
   autocmd BufEnter *.tags       set filetype=tags
   autocmd BufEnter *.vorg       set filetype=vorg.txt
-  autocmd BufEnter *.mkd        set filetype=mkd
-  autocmd BufEnter *.markdown   set filetype=mkd
   autocmd BufEnter jquery.*.js  set filetype=jquery
   autocmd BufEnter httpd*.conf  set filetype=apache
 
