@@ -73,4 +73,10 @@ command! -complete=file -nargs=* Rake !rake <args>
 command! SynId echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 
 " Use 'helptags' with the bundle directory as well
-command! Helptags helptags doc | helptags bundle/*/doc
+command! Helptags call s:Helptags()
+function! s:Helptags()
+  helptags doc
+  for dir in split(glob('bundle/*/doc'), '\_s')
+    exe 'helptags '.dir
+  endfor
+endfunction
