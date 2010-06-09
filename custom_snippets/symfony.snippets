@@ -1,3 +1,5 @@
+snippet find
+	$${1:object} = table('`lib#Capitalize('$1')`')->find(${2:$request['id']});
 # Inside controllers:
 snippet user
 	$this->getUser()
@@ -18,7 +20,11 @@ snippet tnew
 snippet tdiag
 	$t->diag('${1:Start test}');
 snippet tis
-	$t->is(${1:'Output'}, ${2:'Expected'}, ${3:'Should be true'});
+	$t->is(
+	  ${1:'Output'},
+	  ${2:'Expected'},
+	  ${3:'Should be true'}
+	);
 # Helpers:
 snippet part
 	<?php include_partial('${1}', array(

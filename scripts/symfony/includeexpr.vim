@@ -79,6 +79,9 @@ function! SymfonyIncludeExpr(fname)
   elseif line =~ '::getTable('
     let table = s:ExtractRx(line, '::getTable('.quoted_capture.')', '\1')
     return symfony#TablePath(table)
+  elseif line =~ 'table(' " Same as above, useful shortcut
+    let table = s:ExtractRx(line, 'table('.quoted_capture.')', '\1')
+    return symfony#TablePath(table)
   elseif exists('*PhpIncludeExpr') " Fall back to a default
     return PhpIncludeExpr(a:fname)
   else
