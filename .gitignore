@@ -5,7 +5,7 @@
 tags
 
 # Ignore the generated files from command-t
-ruby/command-t/*.o
-ruby/command-t/*.so
-ruby/command-t/Makefile
-ruby/command-t/mkmf.log
+bundle/command-t/ruby/command-t/*.o
+bundle/command-t/ruby/command-t/*.so
+bundle/command-t/ruby/command-t/Makefile
+bundle/command-t/ruby/command-t/mkmf.log
