@@ -19,7 +19,7 @@ call add(g:acp_behavior.php, {
       \   'repeat'  : 1,
       \ })
 
-" Added the condition that the tags does not contain '?'
+" Added the condition that the tag does not contain '?'
 function AcpMeetsForPhpHtmlTag(context)
   return g:acp_behaviorHtmlOmniLength >= 0 &&
         \ a:context =~ '\(<\|<\/\|<[^?>]\+ \|<[^>]\+=\"\)\k\{' .

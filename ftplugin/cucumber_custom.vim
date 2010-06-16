@@ -1,1 +1,1 @@
-command! -buffer -nargs=* -complete=file Run !cucumber features
+command! -buffer -nargs=* -complete=file Run !cucumber % <args>
