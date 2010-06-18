@@ -46,6 +46,13 @@ endif
 
 syntax sync fromstart "mmhhhh.... is this really ok to do so?
 
+syn match  hsSpecialChar	contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&\\abfnrtv]\|^[A-Z^_\[\\\]]\)"
+syn match  hsSpecialChar	contained "\\\(NUL\|SOH\|STX\|ETX\|EOT\|ENQ\|ACK\|BEL\|BS\|HT\|LF\|VT\|FF\|CR\|SO\|SI\|DLE\|DC1\|DC2\|DC3\|DC4\|NAK\|SYN\|ETB\|CAN\|EM\|SUB\|ESC\|FS\|GS\|RS\|US\|SP\|DEL\)"
+syn match  hsSpecialCharError	contained "\\&\|'''\+"
+sy region  hsString		start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=hsSpecialChar,@Spell
+sy match   hsCharacter		"[^a-zA-Z0-9_']'\([^\\]\|\\[^']\+\|\\'\)'"lc=1 contains=hsSpecialChar,hsSpecialCharError
+sy match   hsCharacter		"^'\([^\\]\|\\[^']\+\|\\'\)'" contains=hsSpecialChar,hsSpecialCharError
+
 " (Qualified) identifiers (no default highlighting)
 syn match ConId "\(\<[A-Z][a-zA-Z0-9_']*\.\)\=\<[A-Z][a-zA-Z0-9_']*\>"
 syn match VarId "\(\<[A-Z][a-zA-Z0-9_']*\.\)\=\<[a-z][a-zA-Z0-9_']*\>"
@@ -62,20 +69,20 @@ syn match hsConSym "`\(\<[A-Z][a-zA-Z0-9_']*\.\)\=[A-Z][a-zA-Z0-9_']*`"
 syn match hsDelimiter  "(\|)\|\[\|\]\|,\|;\|_\|{\|}"
 
 sy region hsInnerParen start="(" end=")" contained contains=hsInnerParen,hsConSym,hsType,hsVarSym
-sy region hs_InfixOpFunctionName start="^(" end=")\s*[^:`]\(\W\&\S\&[^'`()[\]{}@]\)\+"re=s
+sy region hs_InfixOpFunctionName start="^(" end=")\s*[^:`]\(\W\&\S\&[^'\"`()[\]{}@]\)\+"re=s
     \ contained keepend contains=hsInnerParen,hs_HlInfixOp
 
 sy match hs_hlFunctionName "[a-z_]\(\S\&[^,\(\)\[\]]\)*" contained 
 sy match hs_FunctionName "^[a-z_]\(\S\&[^,\(\)\[\]]\)*" contained contains=hs_hlFunctionName
 sy match hs_HighliteInfixFunctionName "`[a-z_][^`]*`" contained
-sy match hs_InfixFunctionName "^\S[^=]*`[a-z_][^`]*`"me=e-1 contained contains=hs_HighliteInfixFunctionName,hsType,hsConSym,hsVarSym
-sy match hs_HlInfixOp "\(\W\&\S\&[^`(){}'[\]]\)\+" contained
-sy match hs_InfixOpFunctionName "^\(\w\|[[\]{}]\)\+\s*[^:]=*\(\W\&\S\&[^='`()[\]{}@]\)\+"
-    \ contained contains=hs_HlInfixOp
+sy match hs_InfixFunctionName "^\S[^=]*`[a-z_][^`]*`"me=e-1 contained contains=hs_HighliteInfixFunctionName,hsType,hsConSym,hsVarSym,hsString,hsCharacter
+sy match hs_HlInfixOp "\(\W\&\S\&[^`(){}'[\]]\)\+" contained contains=hsString
+sy match hs_InfixOpFunctionName "^\(\(\w\|[[\]{}]\)\+\|\(\".*\"\)\|\('.*'\)\)\s*[^:]=*\(\W\&\S\&[^='\"`()[\]{}@]\)\+"
+    \ contained contains=hs_HlInfixOp,hsCharacter
 
-sy match hs_OpFunctionName        "(\(\W\&[^(),]\)\+)" contained
-sy region hs_Function start="^[a-z_([{]" end="=\(\s\|\n\|\w\|[([]\)" keepend extend
-        \ contains=hs_OpFunctionName,hs_InfixOpFunctionName,hs_InfixFunctionName,hs_FunctionName,hsType,hsConSym,hsVarSym
+sy match hs_OpFunctionName        "(\(\W\&[^(),\"]\)\+)" contained
+sy region hs_Function start="^["'a-z_([{]" end="=\(\s\|\n\|\w\|[([]\)" keepend extend
+        \ contains=hs_OpFunctionName,hs_InfixOpFunctionName,hs_InfixFunctionName,hs_FunctionName,hsType,hsConSym,hsVarSym,hsString,hsCharacter
 
 sy match hs_DeclareFunction "^[a-z_(]\S*\(\s\|\n\)*::" contains=hs_FunctionName,hs_OpFunctionName
 
@@ -127,7 +134,7 @@ sy keyword hsFFIForeign foreign contained
 sy keyword hsFFIImportExport import export contained
 sy keyword hsFFICallConvention ccall stdcall contained
 sy keyword hsFFISafety safe unsafe contained
-sy region  hsFFIString		start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=hsSpecialChar
+sy region  hsFFIString		start=+"+  skip=+\\\\\|\\"+  end=+"+  contained contains=hsSpecialChar
 sy match hsFFI excludenl "\<foreign\>\(.\&[^\"]\)*\"\(.\)*\"\(\s\|\n\)*\(.\)*::"
   \ keepend
   \ contains=hsFFIForeign,hsFFIImportExport,hsFFICallConvention,hsFFISafety,hsFFIString,hs_OpFunctionName,hs_hlFunctionName
@@ -153,12 +160,6 @@ syn match hsModule excludenl "\<module\>\(\s\|\n\)*\(\<.*\>\)\(\s\|\n\)*\((\(\w\
 
 "hi hsModule guibg=red
 
-syn match  hsSpecialChar	contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&\\abfnrtv]\|^[A-Z^_\[\\\]]\)"
-syn match  hsSpecialChar	contained "\\\(NUL\|SOH\|STX\|ETX\|EOT\|ENQ\|ACK\|BEL\|BS\|HT\|LF\|VT\|FF\|CR\|SO\|SI\|DLE\|DC1\|DC2\|DC3\|DC4\|NAK\|SYN\|ETB\|CAN\|EM\|SUB\|ESC\|FS\|GS\|RS\|US\|SP\|DEL\)"
-syn match  hsSpecialCharError	contained "\\&\|'''\+"
-sy region  hsString		start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=hsSpecialChar,@Spell
-sy match   hsCharacter		"[^a-zA-Z0-9_']'\([^\\]\|\\[^']\+\|\\'\)'"lc=1 contains=hsSpecialChar,hsSpecialCharError
-sy match   hsCharacter		"^'\([^\\]\|\\[^']\+\|\\'\)'" contains=hsSpecialChar,hsSpecialCharError
 sy match   hsNumber		"\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
 sy match   hsFloat		"\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
 
