@@ -47,13 +47,16 @@ snippet backspace
 # ⎋
 snippet escape
 	&#x238B;
-# Some useful urls
-snippet url jQuery
-	http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js
-snippet url jQuery UI
-	http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js
-snippet url Webfont API
-	http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js
+# Some useful javascript urls
+snippet js jQuery
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery${1:.min}.js" type="text/javascript">
+	</script>${2}
+snippet js jQuery UI
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui${1:.min}.js" type="text/javascript">
+	</script>${2}
+snippet js Webfont API
+	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript">
+	</script>${1}
 # Generic Doctype
 snippet doctype HTML 4.01 Strict
 	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""
