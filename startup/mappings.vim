@@ -27,8 +27,10 @@ nmap gk <C-w>k
 nmap gl <C-w>l
 
 " Faster scrolling:
-nmap J 4j
-nmap K 4k
+nmap J 5j
+nmap K 5k
+xmap J 5j
+xmap K 5k
 
 " Use <bs> to go back through jumps:
 nnoremap <bs> <C-o>
