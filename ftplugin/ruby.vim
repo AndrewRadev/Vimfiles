@@ -17,8 +17,10 @@ let b:surround_{char2nr('e')} = "\1collection: \1.each do |\2item: \2| \r end"
 
 command! -buffer -nargs=* Console !irb -r % <args>
 
-if expand('%') =~ '_spec.rb'
-  command! -buffer -complete=file -nargs=* Run !spec --color --format specdoc % <args>
-else
-  command! -buffer -complete=file -nargs=* Run !ruby % <args>
+if !exists('b:erb_loaded')
+  if expand('%') =~ '_spec.rb'
+    command! -buffer -complete=file -nargs=* Run !spec --color --format specdoc % <args>
+  else
+    command! -buffer -complete=file -nargs=* Run !ruby % <args>
+  endif
 endif
