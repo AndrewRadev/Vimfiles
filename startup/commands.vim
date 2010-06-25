@@ -21,6 +21,7 @@ command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
 MapToggle sl list
 MapToggle sh hlsearch
 MapToggle sw wrap
+MapToggle ss spell
 
 " Edit important files quickly:
 command! Eclipboard ClipBrd

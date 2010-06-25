@@ -15,6 +15,8 @@ xnoremap <space>g :G
 " Always move through visual lines:
 nnoremap j gj
 nnoremap k gk
+xnoremap j gj
+xnoremap k gk
 
 " Moving through tabs:
 nmap <C-l> gt
