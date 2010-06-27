@@ -88,3 +88,6 @@ nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
 
 " Paste in insert mode
 imap <C-p> <Esc>pa
+
+" Returns the cursor where it was before the start of the editing
+nmap . .`[
