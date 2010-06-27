@@ -1,10 +1,6 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
-
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = http://github.com/tpope/vim-markdown.git
-[submodule "bundle/template"]
-	path = bundle/template
-	url = http://github.com/thinca/vim-template.git
