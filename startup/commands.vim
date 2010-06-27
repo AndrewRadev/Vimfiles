@@ -80,3 +80,6 @@ function! s:Helptags()
     exe 'helptags '.dir
   endfor
 endfunction
+
+command! W silent exe "!mkdir -p %:p:h" | w | redraw!
+command! Q tabclose
