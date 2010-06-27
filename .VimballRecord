@@ -3,5 +3,4 @@ vimperator.vba: call delete('/home/andrew/.vim/syntax/vimperator.vim')|call dele
 cabal.vba: call delete('/home/andrew/.vim/ftdetect/cabal.vim')|call delete('/home/andrew/.vim/syntax/cabal.vim')
 math.vba: call delete('/home/andrew/.vim/keymap/math.vim')|call delete('/home/andrew/.vim/plugin/mathmenuPlugin.vim')|call delete('/home/andrew/.vim/autoload/mathmenu.vim')|call delete('/home/andrew/.vim/doc/mathmenu.txt')
 sandbox_0.2.vba: call delete('/home/andrew/.vim/plugin/sandbox.vim')
-conque_term_1.0.vba: call delete('/home/andrew/.vim/autoload/conque_term.vim')|call delete('/home/andrew/.vim/doc/conque_term.txt')|call delete('/home/andrew/.vim/plugin/conque_term.vim')|call delete('/home/andrew/.vim/syntax/conque_term.vim')
 NrrwRgn-0.9.vba: call delete('/home/andrew/.vim/plugin/NrrwRgn.vim')|call delete('/home/andrew/.vim/autoload/nrrwrgn.vim')|call delete('/home/andrew/.vim/doc/NarrowRegion.txt')
