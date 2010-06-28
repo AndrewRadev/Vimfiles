@@ -4,3 +4,4 @@ cabal.vba: call delete('/home/andrew/.vim/ftdetect/cabal.vim')|call delete('/hom
 math.vba: call delete('/home/andrew/.vim/keymap/math.vim')|call delete('/home/andrew/.vim/plugin/mathmenuPlugin.vim')|call delete('/home/andrew/.vim/autoload/mathmenu.vim')|call delete('/home/andrew/.vim/doc/mathmenu.txt')
 sandbox_0.2.vba: call delete('/home/andrew/.vim/plugin/sandbox.vim')
 NrrwRgn-0.9.vba: call delete('/home/andrew/.vim/plugin/NrrwRgn.vim')|call delete('/home/andrew/.vim/autoload/nrrwrgn.vim')|call delete('/home/andrew/.vim/doc/NarrowRegion.txt')
+FSwitch-0.9.2.vba: call delete('/home/andrew/.vim/plugin/fswitch.vim')|call delete('/home/andrew/.vim/doc/fswitch.txt')
