@@ -93,3 +93,6 @@ imap <C-p> <Esc>pa
 
 " Returns the cursor where it was before the start of the editing
 nmap . .`[
+
+" See startup/commands.vim
+nnoremap QQ :Q<cr>

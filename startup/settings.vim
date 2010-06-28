@@ -19,11 +19,11 @@ set incsearch nohlsearch
 set laststatus=2
 set linebreak showbreak=+>
 set listchars=eol:.,tab:\|-
+set nobackup
 set nocscopetag
 set noswapfile
 set notimeout
 set nottybuiltin
-set nobackup
 set nowritebackup
 set number
 set ruler
@@ -49,11 +49,7 @@ let mapleader="_"
 let maplocalleader="_"
 
 if has("win32")
-"  set backupdir=c:/tmp
-"  set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
-  set guifont=DejaVu_Sans_Mono:h12
+  set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
 else
-"  set backupdir=~/.backup
-"  set guifont=Terminus\ 14,Andale\ Mono\ 13
-  set guifont=Andale\ Mono\ 13
+  set guifont=Terminus\ 14,Andale\ Mono\ 13
 endif
