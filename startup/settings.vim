@@ -23,6 +23,8 @@ set nocscopetag
 set noswapfile
 set notimeout
 set nottybuiltin
+set nobackup
+set nowritebackup
 set number
 set ruler
 set shiftwidth=2 shiftround
@@ -36,7 +38,7 @@ set ttimeout
 set ttimeoutlen=200
 set updatetime=1000
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:longest,full
 
 " Use vim-based Bulgarian keymaps
 set keymap=custom_bg_phonetic
@@ -47,11 +49,11 @@ let mapleader="_"
 let maplocalleader="_"
 
 if has("win32")
-  set backupdir=c:/tmp
+"  set backupdir=c:/tmp
 "  set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
   set guifont=DejaVu_Sans_Mono:h12
 else
+"  set backupdir=~/.backup
 "  set guifont=Terminus\ 14,Andale\ Mono\ 13
   set guifont=Andale\ Mono\ 13
-  set backupdir=~/.backup
 endif

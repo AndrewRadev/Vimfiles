@@ -5,12 +5,14 @@ nnoremap s <Nop>
 "xnoremap v <esc>0v$
 nnoremap vv _v$h
 
-" <space> for rails-related commands:
+" <space> for easier command typing
 nnoremap <space>r :R
-xnoremap <space>r :R
-" <space> for git-related commands:
 nnoremap <space>g :G
+nnoremap <space>s :S
+
+xnoremap <space>r :R
 xnoremap <space>g :G
+xnoremap <space>s :S
 
 " Always move through visual lines:
 nnoremap j gj
@@ -90,3 +92,6 @@ nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
 
 " Paste in insert mode
 imap <C-p> <Esc>pa
+
+" Returns the cursor where it was before the start of the editing
+nmap . .`[
