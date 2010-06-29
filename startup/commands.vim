@@ -93,3 +93,6 @@ function! s:Q()
     qall
   endtry
 endfunction
+
+command! Note belowright split notes.txt
+command! In   belowright split ~/Dropbox/gtd/in
