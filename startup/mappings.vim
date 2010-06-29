@@ -101,3 +101,7 @@ nmap . .`[
 
 " See startup/commands.vim
 nnoremap QQ :Q<cr>
+
+" Run current file -- filetype-specific
+nnoremap ! :Run<cr>
+xnoremap ! :Run<cr>
