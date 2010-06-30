@@ -81,3 +81,19 @@ function! s:Helptags()
     exe 'helptags '.dir
   endfor
 endfunction
+
+" Create dir and save
+command! W silent exe "!mkdir -p %:p:h" | w | redraw!
+
+" Quit tab, even if it's just one
+command! Q call s:Q()
+function! s:Q()
+  try
+    tabclose
+  catch /E784/
+    qall
+  endtry
+endfunction
+
+command! Note belowright split notes.txt
+command! In   belowright split ~/Dropbox/gtd/in

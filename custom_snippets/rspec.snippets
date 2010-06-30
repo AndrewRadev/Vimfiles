@@ -1,0 +1,22 @@
+snippet be
+	before(:each) do
+	  ${1}
+	end
+snippet ba
+	before(:all) do
+	  ${1}
+	end
+snippet i
+	it "${1:should foo}"
+snippet it
+	it "${1:should foo}" do
+	  ${2}
+	end
+snippet d
+	describe ${1:Object} do
+	  ${2}
+	end
+snippet c
+	context "${1:in a foo condition}" do
+	  ${2}
+	end

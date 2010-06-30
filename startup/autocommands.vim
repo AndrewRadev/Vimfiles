@@ -31,6 +31,9 @@ augroup custom
   autocmd BufEnter jquery.*.js  set filetype=jquery
   autocmd BufEnter httpd*.conf  set filetype=apache
 
+  " For some reason, this doesn't work in ftplugin/man.vim
+  autocmd FileType man set nonu
+
   " Custom filetypes:
   autocmd BufEnter Result     set filetype=dbext_result.txt
   autocmd BufEnter .passwords set filetype=yaml.passwords

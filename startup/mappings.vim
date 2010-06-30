@@ -6,13 +6,18 @@ nnoremap s <Nop>
 nnoremap vv _v$h
 
 " <space> for easier command typing
+" todo: iterate through all
 nnoremap <space>r :R
 nnoremap <space>g :G
 nnoremap <space>s :S
+nnoremap <space>n :N
+nnoremap <space>i :I
 
 xnoremap <space>r :R
 xnoremap <space>g :G
 xnoremap <space>s :S
+xnoremap <space>n :N
+xnoremap <space>i :I
 
 " Always move through visual lines:
 nnoremap j gj
@@ -95,3 +100,10 @@ imap <C-p> <Esc>pa
 
 " Returns the cursor where it was before the start of the editing
 nmap . .`[
+
+" See startup/commands.vim
+nnoremap QQ :Q<cr>
+
+" Run current file -- filetype-specific
+nnoremap ! :Run<cr>
+xnoremap ! :Run<cr>
