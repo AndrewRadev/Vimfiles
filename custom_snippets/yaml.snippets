@@ -35,4 +35,6 @@ snippet header
 		collate: utf8_unicode_ci
 		charset: utf8
 snippet string
-	${1:column}: { type: string(255), notnull: ${2:false} }
+	{ type: string(255), notnull: ${1:false} }
+snippet int
+	{ type: integer, notnull: ${1:false} }

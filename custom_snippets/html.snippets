@@ -1,5 +1,5 @@
 # Comments
-snippet /
+snippet #
 	<!-- ${1} -->
 # Some useful Unicode entities
 # Non-Breaking Space
@@ -128,13 +128,13 @@ snippet head
 		${2}
 	</head>
 snippet title
-	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
+	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
 snippet script
-	<script type="text/javascript" charset="utf-8">
+	<script type="text/javascript">
 		${1}
-	</script>${2}
-snippet scriptsrc
-	<script src="${1}.js" type="text/javascript" charset="utf-8"></script>${2}
+	</script>
+snippet scripts
+	<script src="${1}.js" type="text/javascript"></script>
 snippet style
 	<style type="text/css" media="${1:screen}">
 		${2}
@@ -160,14 +160,17 @@ snippet form
 
 	<p><input type="submit" value="Continue &rarr;"`Close()`></p>
 	</form>
+snippet h
+	<h${1:2}>${2}</h$1>
 snippet h1
 	<h1 id="${1:heading}">${2:$1}</h1>
 snippet input
 	<input type="${1:text/submit/hidden/button}" name="${2:some_name}" value="${3}"`Close()`>${4}
 snippet label
-	<label for="${2:$1}">${1:name}</label><input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}"`Close()`>${7}
+	<label for="${2:$1}">${1:name}</label>
+	<input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}"`Close()`>
 snippet link
-	<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" charset="utf-8"`Close()`>${4}
+	<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" `Close()`>
 snippet mailto
 	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
 snippet meta
@@ -180,6 +183,8 @@ snippet select
 	<select name="${1:some_name}" id="${2:$1}">
 		<option value="${3:option}">${4:$3}</option>
 	</select>${5}
+snippet a
+	<a href="${2:http://google.com}">${1:Google}</a>
 snippet ul
 	<ul>
 	  <li>${1}</li>
