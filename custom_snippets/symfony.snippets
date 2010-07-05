@@ -32,6 +32,12 @@ snippet part
 	)) ?>
 snippet comp
 	<?php include_component('${1}', '${2}'${3}) ?>
+snippet lt
+	<?php echo link_to('${1:Label}', '${2:url}') ?>
+snippet lt;
+	<?php echo link_to('${1:Label}', '${2:url}', array(
+	  ${3:'foo' => 'bar'}
+	)) ?>
 #
 # Skeletons:
 #
