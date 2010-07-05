@@ -55,10 +55,6 @@ let g:acp_enableAtStartup    = 1 " Enable
 let g:acp_ignorecaseOption   = 0 " Don't ignore case, that's annoying
 let g:acp_behaviorFileLength = 2 " Speed up?
 
-" SVN Sandbox plugin:
-let g:sandbox_use_vcscommand   = 1
-let g:sandbox_look_for_updates = 0
-
 " Ruby omnicomplete:
 let g:rubycomplete_buffer_loading    = 0
 let g:rubycomplete_classes_in_global = 0

@@ -1,5 +1,6 @@
 let g:acp_behavior = {
-      \ 'php': []
+      \ 'php': [],
+      \ 'ruby': []
       \ }
 
 call add(g:acp_behavior.php, {
@@ -14,6 +15,17 @@ call add(g:acp_behavior.php, {
       \   'repeat'  : 0,
       \ })
 call add(g:acp_behavior.php, {
+      \   'command' : "\<C-x>\<C-f>",
+      \   'meets'   : 'acp#meetsForFile',
+      \   'repeat'  : 1,
+      \ })
+
+call add(g:acp_behavior.ruby, {
+      \   'command' : "\<C-n>",
+      \   'meets'   : 'acp#meetsForKeyword',
+      \   'repeat'  : 0,
+      \ })
+call add(g:acp_behavior.ruby, {
       \   'command' : "\<C-x>\<C-f>",
       \   'meets'   : 'acp#meetsForFile',
       \   'repeat'  : 1,

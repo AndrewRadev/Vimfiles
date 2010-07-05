@@ -30,7 +30,7 @@ endif
 function! s:IsComment(lineno)
   let line = getline(a:lineno)
 
-  return line =~ '\s*\(\/\/\|#\)'
+  return line =~ '^\s*\(\/\/\|#\)'
 endfunction
 
 let b:textobj_comment_select = function('g:textobj_comment_php_select')
