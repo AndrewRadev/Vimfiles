@@ -16,6 +16,7 @@ runtime! startup/autocommands.vim
 runtime! startup/mappings.vim
 runtime! startup/utl.vim
 runtime! startup/acp.vim
+runtime! startup/cyrillic.vim
 
 runtime! ftplugin/man.vim
 
