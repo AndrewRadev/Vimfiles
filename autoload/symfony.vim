@@ -4,7 +4,7 @@
 " commands to navigate across the project. All the functions assume the
 " default directory structure of a symfony project with the exception of the
 " possibility to configure the web dir via `g:sf_web_dir`
-" Last Modified: December 29, 2009
+" Last Modified: July 09, 2010
 
 let s:PS            = has('win32') ? '\\' : '/'
 let s:capture_group = '\(.\{-}\)'
@@ -159,6 +159,18 @@ function! symfony#TablePath(table)
   else
     return 'lib/model/doctrine/'.a:table.'Table.class.php'
   endif
+endfunction
+
+function symfony#ParsePartialPath(path)
+  let match = split(a:path, '/')
+  if len(match) == 2
+    let [module, template] = match
+  else
+    let module   = symfony#CurrentModuleName()
+    let template = match[0]
+  endif
+
+  return [module, template]
 endfunction
 
 function! symfony#TemplatePath(module, template)

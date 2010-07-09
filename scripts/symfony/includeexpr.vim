@@ -16,19 +16,9 @@ function! SymfonyIncludeExpr(fname)
       let rx .= quoted_capture
       let rx .= '[\s,)]' " Might end with different things
 
-      let match = split(s:ExtractRx(line, rx, '\1'), '/')
-      if len(match) == 2
-        let [module, template] = match
-        if module == 'global'
-          let module_path = ''
-        else
-          let module_path = '/modules/'.module
-        endif
-      else
-        let module_path = '/modules/'.symfony#CurrentModuleName()
-        let template = match[0]
-      endif
-      return 'apps/'.symfony#CurrentAppName().module_path.'/templates/_'.template.'.php'
+      let partial_path = s:ExtractRx(line, rx, '\1')
+      let [module, template] = symfony#ParsePartialPath(partial_path)
+      return symfony#TemplatePath(module, '_'.template)
     endif
   endfor
 
