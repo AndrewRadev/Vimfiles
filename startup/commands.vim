@@ -22,6 +22,7 @@ MapToggle sl list
 MapToggle sh hlsearch
 MapToggle sw wrap
 MapToggle ss spell
+MapToggle sc cursorcolumn
 
 " Edit important files quickly:
 command! Eclipboard ClipBrd

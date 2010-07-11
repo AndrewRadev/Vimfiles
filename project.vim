@@ -3,3 +3,5 @@ if !has('win32')
 endif
 
 let g:SCMDiffCommand = 'git'
+
+e .vimrc

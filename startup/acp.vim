@@ -32,7 +32,7 @@ call add(g:acp_behavior.ruby, {
       \ })
 
 " Added the condition that the tag does not contain '?'
-function AcpMeetsForPhpHtmlTag(context)
+function! AcpMeetsForPhpHtmlTag(context)
   return g:acp_behaviorHtmlOmniLength >= 0 &&
         \ a:context =~ '\(<\|<\/\|<[^?>]\+ \|<[^>]\+=\"\)\k\{' .
         \              g:acp_behaviorHtmlOmniLength . ',}$'
