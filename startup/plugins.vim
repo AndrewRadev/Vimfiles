@@ -69,3 +69,8 @@ cmap <c-j> <Plug>CmdlineCompleteForward
 
 " Calendar:
 let g:calendar_monday = 1
+
+" QuickRun:
+let g:quickrun_config = {
+      \ '*': { 'split': 'rightbelow' }
+      \ }
