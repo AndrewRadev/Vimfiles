@@ -107,3 +107,19 @@ nnoremap QQ :Q<cr>
 " Run current file -- filetype-specific
 nnoremap ! :Run<cr>
 xnoremap ! :Run<cr>
+
+" Yank current file's filename
+nnoremap gy :call <SID>YankFilename(0)<cr>
+nnoremap gY :call <SID>YankFilename(1)<cr>
+function! s:YankFilename(linewise)
+  let @@ = expand('%:p')
+
+  if (a:linewise)
+    let @@ .= "\<nl>"
+  endif
+
+  let @* = @@
+  let @+ = @@
+
+  echo "Yanked filename in clipboard"
+endfunction
