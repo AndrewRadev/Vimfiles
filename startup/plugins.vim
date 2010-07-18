@@ -11,7 +11,7 @@ let g:NERDTreeIgnore = [
       \ '\.hi$'
       \ ]
 
-" Open up FuzzyFinders:
+" Open up fuzzy finder:
 nmap Qt :CommandT<cr>
 
 " Dbext settings:
@@ -56,11 +56,12 @@ let g:acp_ignorecaseOption   = 0 " Don't ignore case, that's annoying
 let g:acp_behaviorFileLength = 2 " Speed up?
 
 " Ruby omnicomplete:
+" TODO: Still slow as hell
 let g:rubycomplete_buffer_loading    = 0
 let g:rubycomplete_classes_in_global = 0
 let g:rubycomplete_rails             = 0
 
-" Avoid opening webpages in links:
+" Avoid opening webpages in 'links':
 let g:netrw_http_cmd	= "wget -q -O"
 
 " Command-line word completion

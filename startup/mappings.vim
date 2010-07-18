@@ -1,5 +1,6 @@
 " Annoying, remove:
 nnoremap s <Nop>
+nnoremap Q <Nop>
 
 " Easily mark a single line in character-wise visual mode
 "xnoremap v <esc>0v$
@@ -114,7 +115,7 @@ nnoremap gY :call <SID>YankFilename(1)<cr>
 function! s:YankFilename(linewise)
   let @@ = expand('%:p')
 
-  if (a:linewise)
+	if (a:linewise) " then add a newline at end
     let @@ .= "\<nl>"
   endif
 

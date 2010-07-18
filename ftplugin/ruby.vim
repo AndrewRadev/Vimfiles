@@ -24,3 +24,10 @@ if !exists('b:erb_loaded')
     command! -buffer -complete=file -nargs=* Run !ruby % <args>
   endif
 endif
+
+if @% =~ 'step_definitions'
+	let b:fswitchdst	= 'feature'
+	let b:fswitchlocs = 'rel:..'
+
+	command! -buffer A FSHere
+endif
