@@ -1,1 +1,1 @@
-au! BufRead,BufNewFile *.cabal set filetype=cabal
+autocmd BufRead,BufNewFile *.cabal set filetype=cabal
