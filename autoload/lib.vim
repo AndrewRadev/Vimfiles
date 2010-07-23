@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: March 11, 2010
+" Last Modified: July 24, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -68,6 +68,17 @@ endfunction
 " Checks to see if {needle} is in {haystack}.
 function! lib#InString(haystack, needle)
   return (stridx(a:haystack, a:needle) != -1)
+endfunction
+
+" Trimming functions. Should be obvious.
+function! lib#Ltrim(s)
+	return substitute(a:s, '^\s\+', '', '')
+endfunction
+function! lib#Rtrim(s)
+	return substitute(a:s, '\s\+$', '', '')
+endfunction
+function! lib#Trim(s)
+  return lib#Rtrim(lib#Ltrim(a:s))
 endfunction
 
 " Wraps a string with another string if string is not empty, in which case

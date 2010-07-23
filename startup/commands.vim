@@ -62,7 +62,11 @@ function! s:CheatComplete(A, L, P)
 endfunction
 
 " Rake shortcut
-command! -complete=file -nargs=* Rake !rake <args>
+command! -complete=custom,s:RakeComplete -nargs=* Rake !rake <args>
+function! s:RakeComplete(A, L, P)
+  let cmd = "rake -T | sed '/(in/d' | sed 's/rake //' | sed 's/\s*#.*$//' | sed 's/\s+$//'"
+  return system(cmd)
+endfunction
 
 " Easy check of current syntax group
 command! SynId echo synIDattr(synID(line('.'), col('.'), 1), 'name')
