@@ -34,13 +34,6 @@ command! RebuildTags !ctags -R .
 " Refresh snippets
 command! RefreshSnips runtime after/plugin/snippets.vim
 
-" Generic console, override in different filetypes:
-if has('win32')
-  command! Console !start cmd
-else
-  command! Console !urxvt &
-endif
-
 " Change fonts on the GUI:
 if has("win32")
   command! FontDejaVu   set guifont=DejaVu_Sans_Mono:h12
@@ -96,5 +89,12 @@ function! s:Q()
   endtry
 endfunction
 
+" Quickly open up some note-files
 command! Note belowright split notes.txt
 command! In   belowright split ~/Dropbox/gtd/in
+
+" Setup the "Run" and "Console" commands for the current filetype
+command! -nargs=* RunCommand
+      \ command! -buffer -complete=file -nargs=* Run <args>
+command! -nargs=* ConsoleCommand
+      \ command! -buffer -complete=file -nargs=* Console <args>

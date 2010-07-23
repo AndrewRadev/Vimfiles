@@ -1,1 +1,1 @@
-command! -buffer -nargs=* Run :!dot -Txlib % <args> &
+RunCommand :!dot -Txlib % <args> &

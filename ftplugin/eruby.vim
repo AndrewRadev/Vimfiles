@@ -5,7 +5,7 @@ let b:surround_{char2nr('I')} = "<% if \1if: \1 %> \r <% end %>"
 let b:surround_{char2nr('W')} = "<% while \1while: \1 do %> \r <% end %>"
 let b:surround_{char2nr('E')} = "<% \1collection: \1.each do |\2item: \2| %> \r <% end %>"
 
-command! -buffer -complete=file -nargs=* Run !erb % <args>
+RunCommand !erb % <args>
 
 " To be sure it's an erb file
 let b:erb_loaded = 1

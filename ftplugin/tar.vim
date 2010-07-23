@@ -1,2 +1,2 @@
-command! Unzip !unzip '%'
+command! Unzip !unzip     '%'
 command! Untar !tar -xvzf '%'

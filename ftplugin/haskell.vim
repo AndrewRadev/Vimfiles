@@ -12,8 +12,8 @@ setlocal include=^import\\s*\\(qualified\\)\\?\\s*
 setlocal includeexpr=substitute(v:fname,'\\.','/','g').'.'
 setlocal suffixesadd=hs,lhs,hsc
 
-command! -buffer -nargs=* Console !ghci % <args>
-command! -buffer -complete=file -nargs=* Run !runhaskell % <args>
+ConsoleCommand !ghci       % <args>
+RunCommand     !runhaskell % <args>
 
 nmap <buffer> gm :exe ":Search hoogle " . expand("<cword>")<cr>
 

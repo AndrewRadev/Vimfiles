@@ -1,4 +1,4 @@
-command! -buffer -nargs=* -complete=file Run !cucumber % <args>
+RunCommand !cucumber % <args>
 
 let b:fswitchdst  = 'rb'
 let b:fswitchlocs = 'step_definitions'

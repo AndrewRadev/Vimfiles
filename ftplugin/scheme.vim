@@ -1,3 +1,3 @@
 setlocal foldmethod=indent
 
-command! -buffer Console !mzscheme -i -r %
+ConsoleCommand !mzscheme -i -r %
