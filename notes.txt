@@ -4,3 +4,4 @@ Changes made to plugins:
   * Markdown syntax      -- added txt syntax
   * php indenting script
   * dbext                -- perl fix
+  * css_folding          -- fillchars=fold:\

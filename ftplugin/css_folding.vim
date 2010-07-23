@@ -17,4 +17,4 @@ endfunction
 setlocal foldtext=CssFoldText()
 setlocal foldmethod=marker
 setlocal foldmarker={,}
-setlocal fillchars=fold:\ 
+"setlocal fillchars=fold:\
