@@ -12,11 +12,36 @@ snippet it
 	it "${1:should foo}" do
 	  ${2}
 	end
-snippet d
+snippet de
 	describe ${1:Object} do
 	  ${2}
 	end
-snippet c
+snippet co
 	context "${1:in a foo condition}" do
 	  ${2}
 	end
+# Equality
+snippet s=
+	should == ${1}
+snippet sn=
+	should_not == ${1}
+snippet sb
+	should be_${1}
+snippet snb
+	should_not be_${1}
+# Collection specs
+snippet sh
+	should have(${1}).${2:things}
+snippet shal
+	should have_at_least(${1}).${2:things}
+snippet sham
+	should have_at_most(${1}).${2:things}
+# Sending messages to mock objects
+snippet sr
+	should_receive(:${1:message})
+snippet snr
+	should_not_receive(:${1:message})
+snippet srt
+	should respond_to(:${1:sym})
+snippet snrt
+	should_not respond_to(:${1:sym})
