@@ -61,11 +61,21 @@ function! s:CheatComplete(A, L, P)
   return system('cheat sheets | cut -b3-')
 endfunction
 
-" Rake shortcut
-command! -complete=custom,s:RakeComplete -nargs=* Rake !rake <args>
+" Rake shortcut (adapted from rails.vim)
+command! -complete=customlist,s:RakeComplete -nargs=* Rake !rake <args>
 function! s:RakeComplete(A, L, P)
-  let cmd = "rake -T | sed '/(in/d' | sed 's/rake //' | sed 's/\s*#.*$//' | sed 's/\s+$//'"
-  return system(cmd)
+  if !exists('b:rake_cache')
+    let lines = split(system("rake -T"),"\n")
+    if v:shell_error != 0
+      return []
+    endif
+    call map(lines,'matchstr(v:val,"^rake\\s\\+\\zs\\S*")')
+    call filter(lines,'v:val != ""')
+
+    let b:rake_cache = sort(lines)
+  endif
+
+  return filter(copy(b:rake_cache), "v:val =~ '^".a:A."'")
 endfunction
 
 " Easy check of current syntax group
