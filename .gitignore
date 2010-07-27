@@ -11,3 +11,6 @@ bundle/command-t/ruby/command-t/*.o
 bundle/command-t/ruby/command-t/*.so
 bundle/command-t/ruby/command-t/Makefile
 bundle/command-t/ruby/command-t/mkmf.log
+
+# Temporarily ignore 'test_output' for rspec syntax tests
+test_output
