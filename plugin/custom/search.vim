@@ -7,11 +7,21 @@ let g:search_engines = {
       \ }
 
 command! -nargs=* -complete=customlist,s:WebSearchComplete Search call s:WebSearch(<f-args>)
+command! -nargs=* -range Google call s:GoogleVisual(<q-args>)
+
+function! s:GoogleVisual(additional_args)
+	" Yank last selected text in 'z' register
+  normal! gv"zy
+
+  call s:WebSearch('google', @z, a:additional_args)
+endfunction
+
 function! s:WebSearch(engine, ...)
   let a:query = lib#UrlEncode(join(a:000, " "))
   let query = printf(g:search_engines[a:engine], a:query)
   exe "Utl ol ".query
 endfunction
+
 function! s:WebSearchComplete(ArgLead, CmdLine, CursorPos)
   return filter(keys(g:search_engines), 'v:val =~ "^'.a:ArgLead.'"')
 endfunction
