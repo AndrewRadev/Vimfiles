@@ -198,6 +198,13 @@ snippet table
 	</table>${4}
 snippet textarea
 	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
+# Generic tag snippets
+snippet s
+	<${1:span}>${2}</$1>
+snippet p
+	<${1:p}>
+		${2}
+	</$1>
 # Embed Movie
 snippet movie QuickTime
 	<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
