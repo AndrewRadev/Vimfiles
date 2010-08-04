@@ -7,7 +7,7 @@ function! javascript#GetIndent()
 
   if pline =~ '{\s*$'
     return indent(plineno) + &shiftwidth
-  elseif line =~ '}\s*$'
+  elseif line =~ '\s*}'
     call search('}', 'bcW')
     let match_lineno = searchpair('{', '', '}', 'bW', 'javascript#NotInCode()')
     return indent(match_lineno)

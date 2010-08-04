@@ -1,10 +1,10 @@
 function foo(bar) {
-  var foo, bar;
+var foo, bar;
 
-  baz();
+baz();
 }
 
 var bla = {
-  one: 1,
-  two: 2
-  };
+one: 1,
+two: 2
+};
