@@ -115,3 +115,9 @@ command! -nargs=* ConsoleCommand
 
 " Should probably be in a project-specific file
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
+
+" Run a test, depends on being in the vimfiles dir
+command! -nargs=1 -complete=custom,s:VimtestComplete Vimtest source test/<args>/run.vim
+function! s:VimtestComplete(A, L, P)
+  return substitute(glob('test/*'), 'test\/', '', '')
+endfunction

@@ -17,3 +17,6 @@ test_output
 
 # Probably too dynamic
 next.txt
+
+# To deal with the attempts at a testing tool
+test/*/output.*
