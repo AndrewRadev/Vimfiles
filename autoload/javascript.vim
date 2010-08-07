@@ -11,6 +11,14 @@ function! javascript#GetIndent()
     call search('}', 'bcW')
     let match_lineno = searchpair('{', '', '}', 'bW', 'javascript#NotInCode()')
     return indent(match_lineno)
+  elseif pline =~ '\s*var .*,\s*$'
+    let b:indent_did_var_definition = 1
+    return indent(plineno) + 4 " len('var ')
+  elseif pline =~ ',\s*$' && exists('b:indent_did_var_definition')
+    return indent(plineno)
+  elseif exists('b:indent_did_var_definition')
+    unlet b:indent_did_var_definition
+    return indent(plineno) - 4 " len('var ')
   end
 
   return indent(plineno)
