@@ -5,3 +5,4 @@ Changes made to plugins:
   * php indenting script
   * dbext                -- perl fix
   * css_folding          -- fillchars=fold:\
+  * rst_table.vim        -- removed mappings, made commands
