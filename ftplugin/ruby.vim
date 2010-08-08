@@ -17,7 +17,7 @@ let b:surround_{char2nr('e')} = "\1collection: \1.each do |\2item: \2| \r end"
 
 ConsoleCommand !irb -r % <args>
 
-if !exists('b:erb_loaded')
+if !exists('b:erb_loaded') && &ft == 'ruby'
   if expand('%') =~ '_spec.rb'
     RunCommand !spec --color --format specdoc % <args>
     command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'lib/\1.rb', '')

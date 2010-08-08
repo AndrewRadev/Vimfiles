@@ -1,0 +1,1 @@
+RunCommand call rake#Run()
