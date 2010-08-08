@@ -61,6 +61,10 @@ let g:rubycomplete_buffer_loading    = 0
 let g:rubycomplete_classes_in_global = 0
 let g:rubycomplete_rails             = 0
 
+" syntax highlighting:
+let ruby_no_expensive = 1
+let ruby_operators = 1
+
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd	= "wget -q -O"
 
