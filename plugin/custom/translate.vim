@@ -2,30 +2,38 @@ if !has('ruby')
   finish
 endif
 
-ruby << RUBY
-require 'net/http'
-require 'cgi'
+function! LoadTranslate()
+  let g:translate_loaded = 1
 
-begin
-  require 'json'
-rescue LoadError
-  require 'rubygems'
-  require 'json'
-end
+  ruby << RUBY
+  require 'net/http'
+  require 'cgi'
 
-def google_translate(text, from, to)
-  q        = CGI::escape(text)
-  lang     = CGI::escape("#{from}|#{to}")
-  uri      = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=#{q}&langpair=#{lang}"
-  response = Net::HTTP.get URI.parse(uri)
+  begin
+    require 'json'
+  rescue LoadError
+    require 'rubygems'
+    require 'json'
+  end
 
-  data = JSON.parse(response)['responseData']
-  return data['translatedText'] if data
-end
+  def google_translate(text, from, to)
+    q        = CGI::escape(text)
+    lang     = CGI::escape("#{from}|#{to}")
+    uri      = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=#{q}&langpair=#{lang}"
+    response = Net::HTTP.get URI.parse(uri)
+
+    data = JSON.parse(response)['responseData']
+    return data['translatedText'] if data
+  end
 RUBY
+endfunction
 
 command! -nargs=* -range Translate call Translate(<f-args>)
 function! Translate(...)
+  if !exists('g:translate_loaded')
+    call LoadTranslate()
+  endif
+
   if a:0 == 1 " Default to english
     let from = 'en'
     let to   = a:1
