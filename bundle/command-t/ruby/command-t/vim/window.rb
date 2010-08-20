@@ -21,14 +21,18 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-module VIM
-  module Screen
-    def self.lines
-      VIM::evaluate('&lines').to_i
-    end
-
-    def self.columns
-      VIM::evaluate('&columns').to_i
-    end
-  end # module Screen
-end # module VIM
+module CommandT
+  module VIM
+    class Window
+      def self.select window
+        return true if $curwin == window
+        initial = $curwin
+        while true do
+          ::VIM::command 'wincmd w'           # cycle through windows
+          return true if $curwin == window    # have selected desired window
+          return false if $curwin == initial  # have already looped through all
+        end
+      end
+    end # class Window
+  end # module VIM
+end # module CommandT

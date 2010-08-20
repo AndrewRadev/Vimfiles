@@ -21,20 +21,23 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-module VIM
-  class Window
-    def select
-      return true if selected?
-      initial = $curwin
-      while true do
-        VIM::command 'wincmd w'             # cycle through windows
-        return true if $curwin == self      # have selected desired window
-        return false if $curwin == initial  # have already looped through all
-      end
+require 'command-t/vim/screen'
+require 'command-t/vim/window'
+
+module CommandT
+  module VIM
+    def self.has_syntax?
+      ::VIM::evaluate('has("syntax")').to_i != 0
     end
 
-    def selected?
-      $curwin == self
+    def self.pwd
+      ::VIM::evaluate 'getcwd()'
     end
-  end # class Window
-end # module VIM
+
+    # Escape a string for safe inclusion in a Vim single-quoted string
+    # (single quotes escaped by doubling, everything else is literal)
+    def self.escape_for_single_quotes str
+      str.gsub "'", "''"
+    end
+  end # module VIM
+end # module CommandT
