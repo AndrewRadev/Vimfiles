@@ -12,3 +12,12 @@ snippet vu
 	validates_uniqueness_of ${1}
 snippet vn
 	validates_numericality_of ${1}
+# Migrations
+snippet addcol
+	add_column :${1:table}, :${2:column}, :${3:type}
+snippet dropcol
+	add_column :${1:table}, :${2:column}
+snippet fact
+	Factory.define(:${1:model}) do |${2:m}|
+		${3}
+	end
