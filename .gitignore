@@ -24,3 +24,5 @@ test/*/output.*
 # Vimball record is machine-specific
 .VimballRecord
 bundle/*/.VimballRecord
+
+.netrwhist
