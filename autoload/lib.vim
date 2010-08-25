@@ -126,33 +126,6 @@ function! lib#InPlace(command)
   call setpos('.', save_cursor)
 endfunction
 
-function! lib#HiArea(syn, from, to)
-  let line_to   = a:to[0] + 1
-  let col_to    = a:to[1] + 1
-  let line_from = a:from[0] - 1
-  let col_from  = a:from[1] - 1
-
-  let line_from = line_from >= 0 ? line_from : 0
-  let col_from  = col_from  >= 0 ? col_from  : 0
-
-  let pattern = ''
-  let pattern .= '\%>'.line_from.'l'
-  let pattern .= '\%<'.line_to.'l'
-  let pattern .= '\%>'.col_from.'c'
-  let pattern .= '\%<'.col_to.'c'
-
-  call matchadd(a:syn, pattern)
-endfunction
-
-function! lib#HiCword(syn)
-  let from = searchpos(expand('<cword>'), 'bWcn')
-  let to   = searchpos(expand('<cword>'), 'eWcn')
-
-  call lib#HiArea(a:syn, from, to)
-
-  return [from, to]
-endfunction
-
 function! lib#SynId()
   return synIDattr(synID(line('.'), col('.'), 1), 'name')
 endfunction
