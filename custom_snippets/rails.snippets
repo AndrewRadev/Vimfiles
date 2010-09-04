@@ -21,3 +21,12 @@ snippet fact
 	Factory.define(:${1:model}) do |${2:m}|
 		${3}
 	end
+# Helpers
+snippet lt
+	link_to "${1:Label}", ${2:home_path}
+snippet lt=
+	<%= link_to "${1:Label}", ${2:home_path} %>
+snippet ltd
+	<% link_to ${1:home_path} do %>
+		${2}
+	<% end %>
