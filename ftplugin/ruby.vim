@@ -3,7 +3,7 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
 
-setlocal foldmethod=syntax
+setlocal foldmethod=indent
 
 setlocal tags+=~/tags/ruby.tags
 setlocal tags+=~/tags/gems.tags
