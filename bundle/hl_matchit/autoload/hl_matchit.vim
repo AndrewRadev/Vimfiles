@@ -17,8 +17,9 @@ function! hl_matchit#HiArea(syn, from, to)
 endfunction
 
 function! hl_matchit#HiCword(syn)
-  let from = searchpos(expand('<cword>'), 'bWcn')
-  let to   = searchpos(expand('<cword>'), 'eWcn')
+  normal! "zyiw
+  let from = searchpos(@z, 'bWcn')
+  let to   = searchpos(@z, 'eWcn')
 
   call hl_matchit#HiArea(a:syn, from, to)
 
