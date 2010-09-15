@@ -1,0 +1,152 @@
+*pyinteractive.rux*         Simple python read-eval-print loop inside Vim
+
+           Copyright (c) 2010 clericJ <py.cleric at gmail.com>
+
+PyInteractive                           *pyinteractive*
+
+Описание                                |pyinteractive-description|
+Использование                           |pyinteractive-usage|
+Авто-дополнение кода                    |pyinteractive-autocompletion|
+Команды                                 |pyinteractive-commands|
+История версий                          |pyinteractive-changelog|
+Благодарность                           |pyinteractive-credits|
+
+==============================================================================
+
+ОПИСАНИЕ                                *pyinteractive-description*
+
+Плагин представляет собой простую реализацию read-eval-print-loop для python,
+В командном окне vim. Для работы плагина требуется чтобы vim был скомпилирован
+с поддержкой python`а (|+python|) версии не ниже 2.5 (версию можно посмотреть
+выполнив команду :py import sys; print(sys.version) ).
+
+==============================================================================
+
+ИСПОЛЬЗОВАНИЕ                           *pyinteractive-usage*
+
+Пример использования:  >
+
+    :PyInteractiveREPL
+    >>> def inc_10(x):
+    ...     return x+10
+    ...
+    >>> inc_10(7)
+    17
+    >>>  import sys
+    >>> sys.ex<tab> # авто-дополнение кода (|pyinteractive-autocompletion|)
+    <built-in function exit>
+
+    <ESC>
+
+    :PyInteractiveEval inc_10(11) +1
+    22
+    :PyInteractiveHistory
+     in[1]: def inc_10(x):
+     in[2]:     return x+10
+     in[3]:
+     in[4]: inc_10(7)
+    out[1]: 17
+     in[5]: import sys
+     in[6]: sys.exit
+    out[2]: <built-in function exit>
+     in[7]: inc_10(11) +1
+    out[3]: 22
+
+==============================================================================
+
+АВТОДОПОЛНЕНИЕ КОДА                     *pyinteractive-autocompletion*
+
+В командах |:PyInteractiveREPL| и :|PyInteractiveEval| вы можете использовать
+<tab> для автодополнения кода.
+
+==============================================================================
+
+КОМАНДЫ                                 *pyinteractive-commands*
+
+  *:PyInteractiveREPL*
+      Открывает сеанс интерактивной консоли python в командном окне vim.
+      Для завершения работы с интерпретатором нажмите <esc>.
+      Состояние интерпретатора сохраняется между сеансами, для примера,
+      если в первый сеанс ввести x=1 то при следующем открытии
+      консоли x всё так же будет равно 1.
+
+  *:PyInteractiveHistory* [options]
+      Вывод истории сессии
+      опции:
+           -r          показать историю без форматирования (raw)
+           -i          вывести только историю ввода (input only)
+           -f <FILE>   записать историю в файл
+
+  *:PyInteractiveEval* {code}
+      Выполнение полученного кода в интерпретаторе. Команда полезна
+      для быстрой проверки результатов, так-же например можно
+      определить её вызов в контекстном меню.
+      Пример:   >
+
+          :PyInteractiveEval def inc(x): return x+1
+          :PyInteractiveEval inc(1)
+          2
+          :PyInteractiveREPL
+          >>> inc(10)
+          11
+
+==============================================================================
+
+БЛАГОДАРНОСТЬ                           *pyinteractive-credits*
+
+Тут я хочу сказать слова благодарности
+ZyX ( http://www.vim.org/account/profile.php?user_id=18939 )
+за помощь в переводе документации и правку кода, спасибо вам.
+
+==============================================================================
+
+ИСТОРИЯ ВЕРСИЙ                          *pyinteractive-changelog*
+
+    ver 0.5.3 (2010-09-07)
+        - Исправлена ошибка автозавершения кода, проявляющаяся в невозможности
+          автозавершения, если перед кодом стояли отступы
+        - Добавлена поддержка vim-addon-manager
+          ( http://www.vim.org/scripts/script.php?script_id=2905 )
+        - Команда PyInteractiveOpen перееимнована в PyInteractiveREPL
+
+    ver 0.5.2 (2010-09-01)
+        - Реализован авто-отступ
+        - Исправлена ошибка совместимости в линукс
+
+    ver 0.5.1 (2010-09-01)
+        - Исправлена ошибка совместимости в линукс
+        - Несколько мелких исправлений в авто-дополнении кода
+
+    ver 0.5 (2010-04-26)
+        - Добавлено авто-дополнение кода в командах |:PyInteractiveEval| и
+          :PyInteractiveOpen
+
+    ver 0.4 (2010-04-23)
+        - Расширена команда вывода истории |:PyInteractiveHistory|,
+          добавлены аргументы -r -i -f <FILE> для управления выводом
+        - Исправлены ошибки с экранированием ввода
+        - Рефакторинг кода
+        - Удалена команда :PyInteractiveRestart, для сброса состояния
+          интерпретатора перезагрузите vim
+
+    ver 0.3 (2010-04-07)
+        - Добавлена команда |:PyInteractiveHistory| для вывода истории
+          текущей сессии интерпретатора
+        - Исправлены ошибки при вводе/выводе
+
+    ver 0.2 (2010-04-04)
+        - Добавлена команда |:PyInteractiveEval|
+        - Добавлена возможность отправки выделенного фрагмента кода в
+          интерпретатор через контекстное меню PopUp.Python.Evaluate,
+          функционал реализован с помощью команды |:PyInteractiveEval|
+
+        - Команда :PyInteractiveReset переименована
+          в :PyInteractiveRestart
+
+    ver 0.1 (2010-04-02)
+        - Реализован базовый функционал через команды :PyInteractiveOpen и
+          :PyInteractiveReset
+
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
+

@@ -121,3 +121,5 @@ command! -nargs=1 -complete=custom,s:VimtestComplete Vimtest source test/<args>/
 function! s:VimtestComplete(A, L, P)
   return substitute(glob('test/*'), 'test\/', '', '')
 endfunction
+
+command! Pyrepl PyInteractiveREPL

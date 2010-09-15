@@ -1,0 +1,147 @@
+*pyinteractive.txt*         Simple python read-eval-print loop inside Vim
+
+           Copyright (c) 2010 clericJ <py.cleric at gmail.com>
+
+PyInteractive                           *pyinteractive*
+
+Description                             |pyinteractive-description|
+Usage                                   |pyinteractive-usage|
+Autocompletion                          |pyinteractive-autocompletion|
+Commands                                |pyinteractive-commands|
+Changelog                               |pyinteractive-changelog|
+Credits                                 |pyinteractive-credits|
+
+==============================================================================
+
+Description                             *pyinteractive-description*
+
+This plugin is a simple realization of read-eval-print loop for Python in Vim
+command window. It requires Python support (see |+python|) and at least
+version 2.5 of Python interpreter (you can check python version by running
+`:py import sys; print(sys.version)').
+
+==============================================================================
+
+Usage                                    *pyinteractive-usage*
+
+Examples:  >
+
+    :PyInteractiveREPL
+    >>> def inc_10(x):
+    ...     return x+10
+    ...
+    >>> inc_10(7)
+    17
+    >>>  import sys
+    >>> sys.ex<tab> # codecompletion (see pyinteractive-autocompletion)
+    <built-in function exit>
+
+    <ESC>
+
+    :PyInteractiveEval inc_10(11) +1
+    22
+    :PyInteractiveHistory
+     in[1]: def inc_10(x):
+     in[2]:     return x+10
+     in[3]:
+     in[4]: inc_10(7)
+    out[1]: 17
+     in[5]: import sys
+     in[6]: sys.exit
+    out[2]: <built-in function exit>
+     in[7]: inc_10(11) +1
+    out[3]: 22
+
+==============================================================================
+
+Autocompletion                          *pyinteractive-autocompletion*
+
+Autocompletion is defined for |:PyInteractiveEval| command and for |input()|
+opened by |:PyInteractiveREPL| command and can be accessed by pressing <tab>
+key (default, see 'wildchar' if you want to change this).
+
+==============================================================================
+
+Commands                                *pyinteractive-commands*
+
+  *:PyInteractiveREPL*
+      Opens an interactive Python console in vim. If you want to finish
+      working with the interpreter, press <esc>. Interpreter states are saved
+      between PyInteractive sessions (but not between vim sessions), so that
+      if you use |:PyInteractiveREPL|, type `x=1' here, close it and then
+      reopen again, variable `x' will still have value `1'.
+
+  *:PyInteractiveHistory* [options]
+      Echoes session history.
+      Possible options:
+           -r          Print history without any formatting (mnemonic: raw)
+           -i          Print only |:PyInteractiveREPL| history (mnemonic:
+                       input)
+           -f {FILE}   Write history to file {FILE}
+
+  *:PyInteractiveEval* {code}
+      Evaluate given code in the interpreter. Command is useful for quickly
+      testing results and for scripting purposes (for example, in context menu).
+      Example: >
+
+          :PyInteractiveEval def inc(x): return x+1
+          :PyInteractiveEval inc(1)
+          2
+          :PyInteractiveREPL
+          >>> inc(10)
+          11
+
+==============================================================================
+
+Credits                                 *pyinteractive-credits*
+
+Thanks ZyX (http://www.vim.org/account/profile.php?user_id=18939)
+for help in translation documentation and patch code.
+
+==============================================================================
+
+Changelog                               *pyinteractive-changelog*
+
+    ver 0.5.3 (2010-09-07)
+        - Fixed autocompletion issue
+        - Added vim-addon-manager support
+          ( http://www.vim.org/scripts/script.php?script_id=2905 )
+        - Command PyInteractiveOpen renamed to PyInteractiveREPL
+
+    ver 0.5.2 (2010-09-01)
+        - Automatic indentation
+        - Fixed Linux compatibility issue
+
+    ver 0.5.1 (2010-09-01)
+        - Fixed Linux compatibility issue
+        - Some bug fixes in code autocompletion
+
+    ver 0.5 (2010-04-26)
+        - Added |:PyInteractiveEval| and :PyInteractiveOpen autocompletion
+
+    ver 0.4 (2010-04-23)
+        - Improved |:PyInteractiveHistory| command: added arguments that
+          change or redirect output
+        - Fixed input escaping
+        - Done some refactoring
+        - Removed :PyInteractiveRestart, now you should restart vim in order
+          to clear interpreter state
+
+    ver 0.3 (2010-04-07)
+        - Added |:PyInteractiveHistory|
+        - Fixed input/output errors
+
+    ver 0.2 (2010-04-04)
+        - Added |:PyInteractiveEval|
+        - Added ability to evaluate selection in the interpreter through
+          PopUp.Python.Evaluate item in context menu that uses
+          |:PyInteractiveEval| as a backend.
+        - Renamed :PyInteractiveReset with :PyInteractiveRestart
+
+    ver 0.1 (2010-04-02)
+        - Initial version: introduced :PyInteractiveOpen and
+          :PyInteractiveReset commands
+
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
+

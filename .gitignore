@@ -4,7 +4,9 @@
 # Ignore all tags files, just remember to rebuild them every once in a while:
 tags
 bundle/*/doc/tags
+bundle/*/doc/tags-*
 doc/tags
+doc/tags-*
 
 # Ignore the generated files from command-t
 bundle/command-t/ruby/command-t/*.o
