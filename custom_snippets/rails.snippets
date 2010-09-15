@@ -16,7 +16,11 @@ snippet vn
 snippet addcol
 	add_column :${1:table}, :${2:column}, :${3:type}
 snippet dropcol
-	add_column :${1:table}, :${2:column}
+	drop_column :${1:table}, :${2:column}
+snippet join
+	create_table :$1s_$2s, :id => false do |t|
+		t.references :${1:foo}, :${2:bar}
+	end
 snippet fact
 	Factory.define(:${1:model}) do |${2:m}|
 		${3}
