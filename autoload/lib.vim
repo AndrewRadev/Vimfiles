@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: August 25, 2010
+" Last Modified: September 16, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -128,4 +128,52 @@ endfunction
 
 function! lib#SynId()
   return synIDattr(synID(line('.'), col('.'), 1), 'name')
+endfunction
+
+" Highlighting custom stuff
+function! lib#HiArea(syn, from, to)
+  let line_to   = a:to[0] + 1
+  let col_to    = a:to[1] + 1
+  let line_from = a:from[0] - 1
+  let col_from  = a:from[1] - 1
+
+  let line_from = line_from >= 0 ? line_from : 0
+  let col_from  = col_from  >= 0 ? col_from  : 0
+
+  let pattern = ''
+  let pattern .= '\%>'.line_from.'l'
+  let pattern .= '\%<'.line_to.'l'
+  let pattern .= '\%>'.col_from.'c'
+  let pattern .= '\%<'.col_to.'c'
+
+  call matchadd(a:syn, pattern)
+endfunction
+
+function! lib#HiCword(syn)
+  normal! "zyiw
+  let from = searchpos(@z, 'bWcn')
+  let to   = searchpos(@z, 'eWcn')
+
+  call lib#HiArea(a:syn, from, to)
+
+  return [from, to]
+endfunction
+
+function! lib#MarkMatches(syn)
+  call clearmatches()
+  let save_cursor = getpos('.')
+
+  let b:match_positions = []
+
+  " Get the first position to highlight
+  let pos = lib#HiCword(a:syn)
+  while index(b:match_positions, pos) == -1
+    call add(b:match_positions, pos)
+    normal %
+
+    " Get the next position
+    let pos = lib#HiCword(a:syn)
+  endwhile
+
+  call setpos('.', save_cursor)
 endfunction
