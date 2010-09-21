@@ -38,7 +38,7 @@ xmap J 5j
 xmap K 5k
 
 " Use <bs> to go back through jumps:
-nnoremap <bs> <C-o>
+"nnoremap <bs> <C-o>
 
 " Completion remappings:
 inoremap <C-j> <C-n>

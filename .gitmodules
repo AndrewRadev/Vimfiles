@@ -7,3 +7,6 @@
 [submodule "bundle/quickrun"]
 	path = bundle/quickrun
 	url = http://github.com/thinca/vim-quickrun.git
+[submodule "bundle/bufsurf"]
+	path = bundle/bufsurf
+	url = http://github.com/ton/vim-bufsurf.git

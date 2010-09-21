@@ -79,3 +79,6 @@ let g:calendar_monday = 1
 let g:quickrun_config = {
       \ '*': { 'split': 'rightbelow' }
       \ }
+
+nnoremap <bs> :BufSurfBack<cr>
+nnoremap <C-i> :BufSurfForward<cr>
