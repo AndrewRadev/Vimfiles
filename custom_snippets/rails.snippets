@@ -34,5 +34,12 @@ snippet ltd
 	<% link_to ${1:home_path} do %>
 		${2}
 	<% end %>
+snippet cf
+	<% content_for(:${1:head}) do %>
+		${2}
+	<% end %>
 snippet part
 	<%= render :partial => "${1}"${2} %>
+# Controllers
+snippet bf
+	before_filter :${1:method}
