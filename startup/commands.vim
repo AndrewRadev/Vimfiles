@@ -123,3 +123,5 @@ function! s:VimtestComplete(A, L, P)
 endfunction
 
 command! Pyrepl PyInteractiveREPL
+
+command! Chmodx !chmod +x '%'
