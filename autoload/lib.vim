@@ -165,6 +165,20 @@ function! lib#HiCword(syn)
   return [from, to]
 endfunction
 
+function! lib#HiCwordOrBrace(syn)
+  normal! v"zy
+
+  if @z =~ '[{\[()\]}]'
+    let [_, line, col, _] = getpos('.')
+    let pos = [line, col]
+
+    call lib#HiArea(a:syn, pos, pos)
+    return [pos, pos]
+  else
+    return lib#HiCword(a:syn)
+  end
+endfunction
+
 function! lib#MarkMatches(syn)
   call clearmatches()
   let save_cursor = getpos('.')
@@ -172,7 +186,7 @@ function! lib#MarkMatches(syn)
   let b:match_positions = []
 
   " Get the first position to highlight
-  let pos = lib#HiCword(a:syn)
+  let pos = lib#HiCwordOrBrace(a:syn)
   while index(b:match_positions, pos) == -1
     call add(b:match_positions, pos)
     normal %
