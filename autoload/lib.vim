@@ -132,10 +132,6 @@ function! lib#InPlace(command)
   call setpos('.', save_cursor)
 endfunction
 
-function! lib#SynId()
-  return synIDattr(synID(line('.'), col('.'), 1), 'name')
-endfunction
-
 " Highlighting custom stuff
 function! lib#HiArea(syn, from, to)
   let line_to   = a:to[0] + 1

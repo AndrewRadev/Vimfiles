@@ -79,7 +79,7 @@ function! s:RakeComplete(A, L, P)
 endfunction
 
 " Easy check of current syntax group
-command! SynId call lib#SynId()
+command! Syn call syntax_attr#SyntaxAttr()
 
 " Use 'helptags' with the bundle directory as well
 command! Helptags call s:Helptags()
