@@ -34,10 +34,17 @@ snippet join
 	create_table :$1s_$2s, :id => false do |t|
 		t.references :${1:foo}, :${2:bar}
 	end
-snippet fact
+# Factory girl
+snippet facdef
 	Factory.define(:${1:model}) do |${2:m}|
 		${3}
 	end
+snippet fac
+	Factory(:${1:model})
+snippet facb
+	Factory.build(:${1:model})
+snippet faca
+	Factory.attributes_for(:${1:model})
 # Helpers
 snippet lt
 	link_to "${1:Label}", ${2:home_path}
@@ -56,3 +63,49 @@ snippet part
 # Controllers
 snippet bf
 	before_filter :${1:method}
+# Basic REST
+snippet defindex
+	def index
+		@${1:model} = ${2:Model}.all
+	end
+snippet defshow
+	def show
+		@${1:model} = ${2:Model}.find(params[:id])
+	end
+snippet defnew
+	def new
+		@${1:model} = ${2:Model}.new
+	end
+snippet defcreate
+	def create
+		@${1:model} = ${2:Model}.new(params[:$1])
+
+		if @$1.save
+			flash[:notice] = '$2 was successfully created.'
+			redirect_to @$1
+		else
+			render :action => 'new'
+		end
+	end
+snippet defedit
+	def edit
+		@${1:model} = ${2:Model}.find(params[:id])
+	end
+snippet defupdate
+	def update
+		@${1:model} = ${2:Model}.find(params[:id])
+
+		if @$1.update_attributes(params[:$1])
+			flash[:notice] = '$2 was successfully updated.'
+			redirect_to @$1
+		else
+			render :action => 'edit'
+		end
+	end
+snippet defdestroy
+	def destroy
+		@${1:model} = ${2:Model}.find(params[:id])
+		@$1.destroy
+
+		redirect_to $1s_url
+	end

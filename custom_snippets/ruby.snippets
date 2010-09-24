@@ -10,12 +10,14 @@ snippet =b
 snippet y
 	:yields: ${1:arguments}
 snippet rb
-	#!/usr/bin/env ruby -wKU
+	#!/usr/bin/env ruby
 
 snippet req
 	require '${1}'${2}
 snippet req.
 	require "#{File.dirname(__FILE__)}/${1}"${2}
+snippet cfile
+	__FILE__
 snippet .
 	 => ${1}
 snippet #
@@ -67,20 +69,11 @@ snippet until
 		${2}
 	end
 snippet cla
-	class ${1:`substitute(Filename(), '^.', '\u&', '')`}
+	class ${1:`lib#CapitalCamelCase(Filename())`}
 		${2}
 	end
-# class .. < DelegateClass .. initialize .. end
-snippet cla-
-	class ${1:`substitute(Filename(), '^.', '\u&', '')`} < DelegateClass(${2:ParentClass})
-		def initialize(${3:args})
-			super(${4:del_obj})
-
-			${5}
-		end
-	end
 snippet mod
-	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
+	module ${1:`lib#CapitalCamelCase(Filename())`}
 		${2}
 	end
 # attr_reader
@@ -157,11 +150,6 @@ snippet deli
 	delete_if { |${1:e}| ${2} }
 snippet fil
 	fill(${1:range}) { |${2:i}| ${3} }
-# flatten_once()
-snippet flao
-	inject(Array.new) { |${1:arr}, ${2:a}| $1.push(*$2)}${3}
-snippet zip
-	zip(${1:enums}) { |${2:row}| ${3} }
 # downto(0) { |n| .. }
 snippet dow
 	downto(${1:0}) { |${2:n}| ${3} }
@@ -256,7 +244,7 @@ snippet :
 snippet ope
 	open(${1:"path/or/url/or/pipe"}, "${2:w}") { |${3:io}| ${4} }
 # path_from_here()
-snippet patfh
+snippet relpath
 	File.join(File.dirname(__FILE__), ${1:'rel/path/here'})${2}
 # unix_filter {}
 snippet unif

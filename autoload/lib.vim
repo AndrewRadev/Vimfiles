@@ -1,7 +1,7 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: September 16, 2010
+" Last Modified: September 24, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -29,6 +29,12 @@ endfunction
 " foo_bar_baz -> fooBarBaz
 function! lib#CamelCase(word)
   return substitute(a:word, '_\(.\)', '\U\1', 'g')
+endfunction
+
+" CamelCase and Capitalize
+" foo_bar_baz -> FooBarBaz
+function! lib#CapitalCamelCase(word)
+  return lib#Capitalize(lib#CamelCase(a:word))
 endfunction
 
 " Underscore CamelCased word:
