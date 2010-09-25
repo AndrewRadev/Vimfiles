@@ -15,3 +15,5 @@ let b:surround_{char2nr('F')} = "function! \1function: \1() \r endfunction"
 command! -buffer Outline call lib#Outline('\<function\>')
 
 nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
+
+RunCommand so %
