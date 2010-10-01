@@ -22,6 +22,7 @@ next.txt
 
 # To deal with the attempts at a testing tool
 test/*/output.*
+bundle/*/test/output.*
 
 # Vimball record is machine-specific
 .VimballRecord
