@@ -29,7 +29,7 @@ function! s:NERDTreeFollowCurrent()
   augroup NERDTreeFollowCurrent
     autocmd!
 
-    autocmd BufRead * call <SID>NERDTreeMaybeReposition(expand('<cfile>'))
+    autocmd BufEnter * call <SID>NERDTreeMaybeReposition(expand('<cfile>'))
   augroup END
 endfunction
 
