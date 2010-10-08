@@ -8,17 +8,15 @@ snippet #
 	<%# ${1} %>${2}
 snippet each
 	<% ${1:@collection}.each do |${2:item}| %>
-	  ${3:<%# content %>}
-	<% end %>${4}
+	  ${3}
+	<% end %>
 snippet if
 	<% if ${1:true} %>
-	  ${3:<%# content %>}
-	<% end %>${4}
+	  ${2}
+	<% end %>
 snippet ife
 	<% if ${1:true} %>
-	  ${3:<%# content %>}
+	  ${2}
 	<% else %>
-	  ${4:<%# content %>}
-	<% end %>
-snippet -end
+	  ${3}
 	<% end %>
