@@ -4,3 +4,9 @@ To use snipMate properly, it's highly suggested that you grep your entire
 plugin dir for `vmap` and `vnoremap` and replace them with `xmap` and
 `xnoremap`, respectively. To find out the reason, just `:help
 Select-mode-mapping`
+
+## Notes
+
+Anything that starts with "custom", like "custom_table", "custom_rspec", etc.,
+consists of my own attempts to write some useful script or plugin. So far, I've
+got nothing complete whatsoever.
