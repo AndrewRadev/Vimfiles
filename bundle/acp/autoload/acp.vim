@@ -197,7 +197,7 @@ function acp#onPopupPost()
           \                                                 : "\<C-p>\<Down>")
   endif
   let s:iBehavs += 1
-  if len(s:behavsCurrent) > s:iBehavs
+  if len(s:behavsCurrent) > s:iBehavs 
     call s:setCompletefunc()
     return printf("\<C-e>%s\<C-r>=acp#onPopupPost()\<CR>",
           \       s:behavsCurrent[s:iBehavs].command)
