@@ -63,17 +63,8 @@ let ruby_operators = 1
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd	= "wget -q -O"
 
-" Command-line word completion
-cmap <c-k> <Plug>CmdlineCompleteBackward
-cmap <c-j> <Plug>CmdlineCompleteForward
-
 " Calendar:
 let g:calendar_monday = 1
-
-" QuickRun:
-let g:quickrun_config = {
-      \ '*': { 'split': 'rightbelow' }
-      \ }
 
 nnoremap <bs> :BufSurfBack<cr>
 nnoremap <C-i> :BufSurfForward<cr>

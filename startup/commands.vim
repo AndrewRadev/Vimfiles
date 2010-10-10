@@ -24,10 +24,6 @@ MapToggle sw wrap
 MapToggle ss spell
 MapToggle sc cursorcolumn
 
-" Edit important files quickly:
-command! Eclipboard ClipBrd
-command! Epasswords edit ~/.passwords
-
 " Rebuild tags database:
 command! RebuildTags !ctags -R .
 
@@ -62,6 +58,7 @@ function! s:CheatComplete(A, L, P)
 endfunction
 
 " Rake shortcut (adapted from rails.vim)
+" Not very good
 command! -complete=customlist,s:RakeComplete -nargs=* Rake !rake <args>
 function! s:RakeComplete(A, L, P)
   if !exists('b:rake_cache')
@@ -103,9 +100,8 @@ function! s:Q()
   endtry
 endfunction
 
-" Quickly open up some note-files
+" Quickly open up note-files
 command! Note belowright split notes.txt
-command! In   belowright split ~/Dropbox/gtd/in
 
 " Setup the "Run" and "Console" commands for the current filetype
 command! -nargs=* RunCommand
@@ -121,7 +117,5 @@ command! -nargs=1 -complete=custom,s:VimtestComplete Vimtest source test/<args>/
 function! s:VimtestComplete(A, L, P)
   return substitute(glob('test/*'), 'test\/', '', '')
 endfunction
-
-command! Pyrepl PyInteractiveREPL
 
 command! Chmodx !chmod +x '%'

@@ -27,7 +27,6 @@ augroup custom
   autocmd BufEnter *access.log* set filetype=httplog
   autocmd BufEnter *.hsc        set filetype=haskell
   autocmd BufEnter *.tags       set filetype=tags
-  autocmd BufEnter *.vorg       set filetype=vorg.txt
   autocmd BufEnter jquery.*.js  set filetype=jquery
   autocmd BufEnter httpd*.conf  set filetype=apache
 
@@ -36,7 +35,6 @@ augroup custom
 
   " Custom filetypes:
   autocmd BufEnter Result     set filetype=dbext_result.txt
-  autocmd BufEnter .passwords set filetype=yaml.passwords
 
   " Maximise on open on Win32:
   if has('win32')

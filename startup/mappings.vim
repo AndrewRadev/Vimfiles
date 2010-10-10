@@ -37,9 +37,6 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
-" Use <bs> to go back through jumps:
-"nnoremap <bs> <C-o>
-
 " Completion remappings:
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
@@ -76,7 +73,7 @@ nmap - <C-x>
 nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
 nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
 
-" Goto file or edit file:
+" Goto file or edit file (not working most times...):
 nnoremap gF :exe "edit ".eval(&includeexpr)<cr>
 
 " Alignment mappings:
