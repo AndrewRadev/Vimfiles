@@ -1,5 +1,5 @@
 # \begin{}...\end{}
-snippet begin
+snippet do
 	\begin{${1:env}}
 		${2}
 	\end{$1}
@@ -113,3 +113,20 @@ snippet section
 	${1:Section}~\ref{${2:sec:}}${3}
 snippet page
 	${1:page}~\pageref{${2}}${3}
+snippet pac
+	\usepackage{${1}}
+snippet /
+	\frac{${1}}{${2}}
+#
+# Skeleton
+#
+snippet skel
+	\documentclass[a4paper, 12pt]{article}
+	\usepackage[utf8]{inputenc}
+	\usepackage[english, bulgarian]{babel}
+
+	\begin{document}
+
+	${1}
+
+	\end{document}
