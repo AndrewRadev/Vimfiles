@@ -82,9 +82,6 @@ xnoremap <Leader>a=> :Align =><cr>
 " Easy split:
 nnoremap <Leader><Leader> :split \|<Space>
 
-" Comment in visual mode
-xnoremap ,, :g/./normal ,,<cr>
-
 " Standard 'go to manual' command
 nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
 
