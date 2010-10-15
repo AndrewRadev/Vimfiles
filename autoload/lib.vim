@@ -1,7 +1,6 @@
 " File: lib.vim
 " Author: Andrew Radev
 " Description: The place for any functions I might decide I need.
-" Last Modified: September 24, 2010
 
 " Function to check if the cursor is currently in a php block. Useful for
 " autocompletion. Ripped directly from phpcomplete.vim
@@ -192,4 +191,19 @@ function! lib#MarkMatches(syn)
   endwhile
 
   call setpos('.', save_cursor)
+endfunction
+
+" The vim includeexpr
+function! lib#VimIncludeExpression(fname)
+	if getline('.') =~ '^runtime'
+		for dir in split(&rtp, ',')
+			let fname = dir.'/'.a:fname
+
+			if(filereadable(fname))
+				return fname
+			endif
+		endfor
+	endif
+
+  return a:fname
 endfunction

@@ -17,3 +17,5 @@ command! -buffer Outline call lib#Outline('\<function\>')
 nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
 
 RunCommand so %
+
+setlocal includeexpr=lib#VimIncludeExpression(v:fname)
