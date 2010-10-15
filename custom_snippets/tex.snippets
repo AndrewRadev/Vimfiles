@@ -74,7 +74,6 @@ snippet cha
 # Section
 snippet sec
 	\section{${1:section name}} % (fold)
-	\label{sec:${2:$1}}
 	${3}
 	% section $2 (end)
 # Sub Section
@@ -116,7 +115,9 @@ snippet page
 snippet pac
 	\usepackage{${1}}
 snippet /
-	\frac{${1}}{${2}}
+	\frac{${1}}{${2}}${3}
+snippet ...
+	\ldots
 #
 # Skeleton
 #
@@ -124,6 +125,7 @@ snippet skel
 	\documentclass[a4paper, 12pt]{article}
 	\usepackage[utf8]{inputenc}
 	\usepackage[english, bulgarian]{babel}
+	\usepackage{amsmath}
 
 	\begin{document}
 
