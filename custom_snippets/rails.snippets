@@ -67,6 +67,11 @@ snippet part
 # Controllers
 snippet bf
 	before_filter :${1:method}
+snippet rt
+	respond_to do |format|
+		format.html
+		format.js
+	end
 # Basic REST
 snippet defindex
 	def index
@@ -112,4 +117,70 @@ snippet defdestroy
 		@$1.destroy
 
 		redirect_to $1s_url
+	end
+# Basic REST specs
+snippet desshow
+	describe "show" do
+		it "should render show template" do
+			get :show, :id => Factory(:${1:model})
+			response.should render_template(:show)
+		end
+	end
+snippet desnew
+	describe "new" do
+		it "should render new template" do
+			get :new
+			response.should render_template(:new)
+		end
+	end
+snippet descreate
+	describe "create" do
+		it "should render new template when ${1:model} is invalid" do
+			${2:Model}.any_instance.stubs(:valid?).returns(false)
+			post :create
+			response.should render_template(:new)
+		end
+
+		it "should redirect to created $1 when it is valid" do
+			post :create, :$1 => Factory.build(:$1).attributes
+			response.should redirect_to($1_path assigns[:$1])
+		end
+
+		it "should create new $1" do
+			proc do
+				post :create, :$1 => Factory.build(:$1).attributes
+			end.should change($2, :count).by(1)
+		end
+	end
+snippet desedit
+	describe "edit" do
+		it "should render edit template" do
+			get :edit, :id => Factory(:${1:model})
+			response.should render_template(:edit)
+		end
+	end
+snippet desupdate
+	describe "update" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+		end
+
+		it "should render edit template when $1 is invalid" do
+			${2:Model}.any_instance.stubs(:valid?).returns(false)
+			put :update, :id => @$1, :$1 => @$1.attributes
+			response.should render_template(:edit)
+		end
+
+		it "should redirect when $1 is valid" do
+			put :update, :id => @$1, :$1 => @$1.attributes
+			response.should redirect_to($1_url assigns[:$1])
+		end
+	end
+snippet desdestroy
+	describe "destroy" do
+		it "should destroy the given ${1:model}" do
+			@$1 = Factory(:$1)
+			delete :destroy, :id => @$1
+			${2:Model}.exists?(@$1.id).should be_false
+		end
 	end
