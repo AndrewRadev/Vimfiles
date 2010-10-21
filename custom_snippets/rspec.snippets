@@ -20,15 +20,27 @@ snippet con
 	context "${1:in a foo condition}" do
 	  ${2}
 	end
+snippet ch
+	expect {
+		${1}
+	}.to change(${2})${3}
 # Equality
 snippet s=
 	should == ${1}
 snippet sn=
 	should_not == ${1}
-snippet sbp
-	${1:target}.should ${2:be_${3:predicate}} ${4}
-snippet snbp
-	${1:target}.should_not ${2:be_${3:predicate}} ${4}
+snippet sb
+	should be ${1}
+snippet snb
+	should_not be ${1}
+snippet se
+	should eq ${1}
+snippet sne
+	should_not eq ${1}
+snippet sbn
+	should be_nil
+snippet snbn
+	should_not be_nil
 # Collection specs
 snippet sh
 	should have(${1}).${2:things}

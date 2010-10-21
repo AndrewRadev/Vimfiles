@@ -24,6 +24,8 @@ augroup custom
   autocmd BufEnter *.js   compiler jsl
   autocmd BufEnter *.hs   compiler ghc
 
+  autocmd BufEnter Gemfile RunCommand !bundle install
+
   autocmd BufEnter *access.log* set filetype=httplog
   autocmd BufEnter *.hsc        set filetype=haskell
   autocmd BufEnter *.tags       set filetype=tags

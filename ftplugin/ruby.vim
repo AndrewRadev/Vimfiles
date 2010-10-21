@@ -14,6 +14,7 @@ compiler ruby
 let b:surround_{char2nr('i')} = "if \1if: \1 \r end"
 let b:surround_{char2nr('w')} = "while \1while: \1 do \r end"
 let b:surround_{char2nr('e')} = "\1collection: \1.each do |\2item: \2| \r end"
+let b:surround_{char2nr('m')} = "module do \r end"
 
 let b:surround_{char2nr(':')} = ":\r"
 
@@ -23,7 +24,7 @@ ConsoleCommand !irb -r % <args>
 
 if !exists('b:erb_loaded') && &ft == 'ruby'
   if expand('%') =~ '_spec.rb'
-    RunCommand !spec --color --format specdoc % <args>
+    RunCommand !rspec --color --format documentation % <args>
     command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'lib/\1.rb', '')
   else
     RunCommand !ruby % <args>
