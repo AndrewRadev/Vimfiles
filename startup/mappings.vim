@@ -113,3 +113,6 @@ function! s:YankFilename(linewise)
 
   echo "Yanked filename in clipboard"
 endfunction
+
+" SimpleFold mapping
+map <Leader>z <Plug>SimpleFold_Foldsearch
