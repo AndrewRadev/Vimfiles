@@ -15,6 +15,7 @@ let b:surround_{char2nr('i')} = "if \1if: \1 \r end"
 let b:surround_{char2nr('w')} = "while \1while: \1 do \r end"
 let b:surround_{char2nr('e')} = "\1collection: \1.each do |\2item: \2| \r end"
 let b:surround_{char2nr('m')} = "module do \r end"
+let b:surround_{char2nr('d')} = "do \r end"
 
 let b:surround_{char2nr(':')} = ":\r"
 
