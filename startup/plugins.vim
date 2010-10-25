@@ -11,6 +11,10 @@ let g:NERDTreeIgnore = [
       \ '\.hi$'
       \ ]
 
+" Don't map over J and K
+let g:NERDTreeMapJumpFirstChild = ''
+let g:NERDTreeMapJumpLastChild  = ''
+
 " Open up fuzzy finder:
 nmap Qt :CommandT<cr>
 
