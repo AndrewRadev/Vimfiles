@@ -5,8 +5,12 @@ snippet do
 	\end{$1}
 # Tabular
 snippet tab
-	\begin{${1:tabular}}{${2:c}}
+	\begin{${1:tabular}}{|${2:c}|}
+	\hline
+
 	${3}
+
+	\hline
 	\end{$1}
 # Align(ed)
 snippet ali
@@ -118,6 +122,8 @@ snippet /
 	\frac{${1}}{${2}}${3}
 snippet ...
 	\ldots
+snippet hr
+	\hline
 #
 # Skeleton
 #

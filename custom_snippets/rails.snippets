@@ -33,7 +33,7 @@ snippet ishaf
 snippet addcol
 	add_column :${1:table}, :${2:column}, :${3:type}
 snippet dropcol
-	drop_column :${1:table}, :${2:column}
+	remove_column :${1:table}, :${2:column}
 snippet join
 	create_table :$1s_$2s, :id => false do |t|
 		t.references :${1:foo}, :${2:bar}
@@ -183,4 +183,10 @@ snippet desdestroy
 			delete :destroy, :id => @$1
 			${2:Model}.exists?(@$1.id).should be_false
 		end
+	end
+# Other skeleton tests
+snippet basicjs
+	it "should be accessible by javascript" do
+		${1}, :format => :js
+		response.should be_success
 	end
