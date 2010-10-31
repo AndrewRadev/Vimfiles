@@ -190,3 +190,8 @@ snippet basicjs
 		${1}, :format => :js
 		response.should be_success
 	end
+snippet isrt
+	it "should render ${1:index} template" do
+		get :$1
+		response.should render_template(:$1)
+	end
