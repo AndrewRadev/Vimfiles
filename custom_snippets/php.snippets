@@ -7,8 +7,6 @@ snippet debug
 	print_r($${1:'var'});
 	echo "</pre>";
 	die;
-snippet ec
-	echo '${1:string}'${2};
 snippet inc
 	include '${1:file}';${2}
 snippet inc.
@@ -30,106 +28,7 @@ snippet /*
 	/**
 	 * ${1}
 	 */
-# Class - post doc
-snippet doc_cp
-	/**
-	 * ${1:undocumented class}
-	 *
-	 * @package ${2:default}
-	 * @author ${3:`g:snips_author`}
-	 */${4}
-# Class Variable - post doc
-snippet doc_vp
-	/**
-	 * ${1:undocumented class variable}
-	 *
-	 * @var ${2:string}
-	 */${3}
-# Class Variable
-snippet doc_v
-	/**
-	 * ${3:undocumented class variable}
-	 *
-	 * @var ${4:string}
-	 */
-	${1:var} $${2};${5}
-# Class
-snippet doc_c
-	/**
-	 * ${3:undocumented class}
-	 *
-	 * @packaged ${4:default}
-	 * @author ${5:`g:snips_author`}
-	 */
-	${1:}class ${2:}
-	{${6}
-	} // END $1class $2
-# Constant Definition - post doc
-snippet doc_dp
-	/**
-	 * ${1:undocumented constant}
-	 */${2}
-# Constant Definition
-snippet doc_d
-	/**
-	 * ${3:undocumented constant}
-	 */
-	define(${1}, ${2});${4}
-# Function - post doc
-snippet doc_fp
-	/**
-	 * ${1:undocumented function}
-	 *
-	 * @return ${2:void}
-	 * @author ${3:`g:snips_author`}
-	 */${4}
-# Function signature
-snippet doc_s
-	/**
-	 * ${4:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author ${6:`g:snips_author`}
-	 */
-	${1}function ${2}(${3});${7}
-# Function
-snippet doc_f
-	/**
-	 * ${4:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author ${6:`g:snips_author`}
-	 */
-	${1}function ${2}(${3})
-	{${7}
-	}
-# Header
-snippet doc_h
-	/**
-	 * ${1}
-	 *
-	 * @author ${2:`g:snips_author`}
-	 * @version ${3:$Id$}
-	 * @copyright ${4:$2}, `strftime('%d %B, %Y')`
-	 * @package ${5:default}
-	 */
-
-	/**
-	 * Define DocBlock
-	 *//
-# Interface
-snippet doc_i
-	/**
-	 * ${2:undocumented class}
-	 *
-	 * @package ${3:default}
-	 * @author ${4:`g:snips_author`}
-	 */
-	interface ${1:}
-	{${5}
-	} // END interface $1
-# class ...
-snippet class
+snippet cla
 	/**
 	 * ${2}
 	 **/

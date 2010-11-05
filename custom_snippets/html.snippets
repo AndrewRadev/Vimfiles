@@ -1,55 +1,8 @@
 # Comments
 snippet !-
 	<!-- ${1} -->
-# Some useful Unicode entities
-# Non-Breaking Space
 snippet nbs
 	&nbsp;
-# ←
-snippet left
-	&#x2190;
-# →
-snippet right
-	&#x2192;
-# ↑
-snippet up
-	&#x2191;
-# ↓
-snippet down
-	&#x2193;
-# ↩
-snippet return
-	&#x21A9;
-# ⇤
-snippet backtab
-	&#x21E4;
-# ⇥
-snippet tab
-	&#x21E5;
-# ⇧
-snippet shift
-	&#x21E7;
-# ⌃
-snippet control
-	&#x2303;
-# ⌅
-snippet enter
-	&#x2305;
-# ⌘
-snippet command
-	&#x2318;
-# ⌥
-snippet option
-	&#x2325;
-# ⌦
-snippet delete
-	&#x2326;
-# ⌫
-snippet backspace
-	&#x232B;
-# ⎋
-snippet escape
-	&#x238B;
 # Some useful javascript urls
 snippet js jQuery
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery${1:.min}.js" type="text/javascript">
@@ -113,11 +66,11 @@ snippet docx
 	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 snippet html
 	<html>
-	${1}
+		${1}
 	</html>
 snippet xhtml
 	<html xmlns="http://www.w3.org/1999/xhtml">
-	${1}
+		${1}
 	</html>
 snippet body
 	<body>
@@ -128,6 +81,7 @@ snippet head
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"`Close()`>
 
 		<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+
 		${2}
 	</head>
 snippet title
@@ -142,10 +96,8 @@ snippet style
 	<style type="text/css" media="${1:screen}">
 		${2}
 	</style>${3}
-snippet base
-	<base href="${1}" target="${2}"`Close()`>
 snippet r
-	<br`Close()[1:]`>
+	<br`Close()`>
 snippet div
 	<div id="${1:name}">
 		${2}
@@ -160,8 +112,7 @@ snippet form
 	<form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8">
 		${3}
 
-
-	<p><input type="submit" value="Continue &rarr;"`Close()`></p>
+		<p><input type="submit" value="Submit"`Close()`></p>
 	</form>
 snippet h
 	<h${1:2}>${2}</h$1>
@@ -174,14 +125,10 @@ snippet label
 	<input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}"`Close()`>
 snippet link
 	<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" `Close()`>
-snippet mailto
-	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
 snippet meta
 	<meta name="${1:name}" content="${2:content}"`Close()`>${3}
 snippet opt
 	<option value="${1:option}">${2:$1}</option>${3}
-snippet optt
-	<option>${1:option}</option>${2}
 snippet select
 	<select name="${1:some_name}" id="${2:$1}">
 		<option value="${3:option}">${4:$3}</option>

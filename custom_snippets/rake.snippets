@@ -1,8 +1,10 @@
 snippet t
-	task :${1:name} do
-		${2}
+	desc "${1:description}"
+	task :${2:name} do
+		${3}
 	end
 snippet t=
-	task :${1:name} => [${2:depends}] do
-		${3}
+	desc "${1:description}"
+	task :${2:name} => [${3:depends}] do
+		${4}
 	end
