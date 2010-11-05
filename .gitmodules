@@ -10,3 +10,6 @@
 [submodule "bundle/bufsurf"]
 	path = bundle/bufsurf
 	url = http://github.com/ton/vim-bufsurf.git
+[submodule "bundle/html5"]
+	path = bundle/html5
+	url = http://github.com/othree/html5.vim.git
