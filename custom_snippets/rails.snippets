@@ -195,3 +195,7 @@ snippet isrt
 		get :$1
 		response.should render_template(:$1)
 	end
+snippet defmr
+	def make_request(opts = {})
+		${1} :${2}, { ${3} }.merge(opts)
+	end
