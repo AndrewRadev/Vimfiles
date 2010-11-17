@@ -116,3 +116,6 @@ endfunction
 
 " SimpleFold mapping
 map <Leader>z <Plug>SimpleFold_Foldsearch
+
+" Temporary VimTree mapping
+noremap ,, :VimTreeToggle<cr>
