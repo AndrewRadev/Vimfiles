@@ -1,3 +1,12 @@
+" Explanation:
+"
+" <div id="foo">Foo, bar, baz</div>
+"
+" Mark it in visual, execute :Split and:
+"
+" <div id="foo">
+"   Foo, bar, baz
+" </div>
 command! -range Split call s:Split()
 function! s:Split()
   normal! gv"zy
