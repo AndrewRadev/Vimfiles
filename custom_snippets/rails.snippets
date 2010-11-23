@@ -119,43 +119,83 @@ snippet defdestroy
 		redirect_to $1s_url
 	end
 # Basic REST specs
+snippet desindex
+	describe "index" do
+		def make_request(opts = {})
+			get :index, {}.merge(opts)
+		end
+
+		it "should render index template" do
+			make_request
+			response.should render_template(:index)
+		end
+
+		it "should load a list of $1s in @$1s" do
+			${1:model}s = [Factory(:$1)]
+			make_request
+			assigns[:$1s].should eq $1s
+		end
+	end
 snippet desshow
 	describe "show" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+		end
+
+		def make_request(opts = {})
+			get :show, { :id => @$1 }.merge(opts)
+		end
+
 		it "should render show template" do
-			get :show, :id => Factory(:${1:model})
+			make_request
 			response.should render_template(:show)
 		end
 	end
 snippet desnew
 	describe "new" do
+		def make_request(opts = {})
+			get :new, {}.merge(opts)
+		end
+
 		it "should render new template" do
-			get :new
+			make_request
 			response.should render_template(:new)
 		end
 	end
 snippet descreate
 	describe "create" do
-		it "should render new template when ${1:model} is invalid" do
+		before(:each) do
+			@attrs = Factory.build(:${1:model}).attributes
+		end
+
+		def make_request(opts = {})
+			post :create, { :$1 => @attrs }.merge(opts)
+		end
+
+		it "should render new template when context is invalid" do
 			${2:Model}.any_instance.stubs(:valid?).returns(false)
-			post :create
+			make_request
 			response.should render_template(:new)
 		end
 
-		it "should redirect to created $1 when it is valid" do
-			post :create, :$1 => Factory.build(:$1).attributes
-			response.should redirect_to($1_path assigns[:$1])
-		end
-
-		it "should create new $1" do
-			proc do
-				post :create, :$1 => Factory.build(:$1).attributes
-			end.should change($2, :count).by(1)
+		it "should redirect to index when context is valid" do
+			${2:Model}.any_instance.stubs(:valid?).returns(true)
+			make_request
+			response.should redirect_to(:action => :index)
 		end
 	end
 snippet desedit
 	describe "edit" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+		end
+
+		def make_request(opts = {})
+			post :edit, { :id => @$1 }.merge(opts)
+		end
+
 		it "should render edit template" do
-			get :edit, :id => Factory(:${1:model})
+			make_request
 			response.should render_template(:edit)
 		end
 	end
@@ -163,31 +203,48 @@ snippet desupdate
 	describe "update" do
 		before(:each) do
 			@${1:model} = Factory(:$1)
+			@attrs = @$1.attributes
+		end
+
+		def make_request(opts = {})
+			put :update, { :id => @$1, $1 => @attrs }.merge(opts)
 		end
 
 		it "should render edit template when $1 is invalid" do
 			${2:Model}.any_instance.stubs(:valid?).returns(false)
-			put :update, :id => @$1, :$1 => @$1.attributes
+			make_request
 			response.should render_template(:edit)
 		end
 
-		it "should redirect when $1 is valid" do
-			put :update, :id => @$1, :$1 => @$1.attributes
-			response.should redirect_to($1_url assigns[:$1])
+		it "should redirect to $1 when it's valid" do
+			make_request
+			response.should redirect_to(assigns[:$1])
 		end
 	end
 snippet desdestroy
 	describe "destroy" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+		end
+
+		def make_request(opts = {})
+			delete :destroy, { :id => @$1 }.merge(opts)
+		end
+
 		it "should destroy the given ${1:model}" do
-			@$1 = Factory(:$1)
-			delete :destroy, :id => @$1
+			make_request
 			${2:Model}.exists?(@$1.id).should be_false
+		end
+
+		it "should redirect to index" do
+			make_request
+			response.should redirect_to(:action => :index)
 		end
 	end
 # Other skeleton tests
 snippet basicjs
 	it "should be accessible by javascript" do
-		${1}, :format => :js
+		make_request, :format => :js
 		response.should be_success
 	end
 snippet isrt
