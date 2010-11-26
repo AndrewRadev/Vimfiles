@@ -4,6 +4,6 @@ endif
 
 let g:SCMDiffCommand = 'git'
 
-let g:NERDTreeFollowCurrent = '1'
+" let g:NERDTreeFollowCurrent = '1'
 
 e .vimrc
