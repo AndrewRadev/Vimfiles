@@ -12,17 +12,14 @@ function! s:Split()
   normal! V"zy
   let text = @z
 
-  " let tag_regex = '\s*' . '\(<.\{-}>\)' . '\(.*\)' . '\(<\/.\{-}>\)'
-  " if text =~ tag_regex
-  "   let text = substitute(text, tag_regex, '\1\n\2\n\3', '')
-  " endif
-
-  for [regex, replacement] in items(s:split_replacements)
+  for [regex, replacement] in s:split_replacements
     if text =~ regex
-      if replacement[0] == '*' && exists(replacement) " then it's a function
+      if replacement[0] == '*' && exists(replacement)
+        " then it's a function
         let Replace = function(strpart(replacement, 1, len(replacement)))
         let text    = call(Replace, [regex, text])
-      else " it's just a replacement string
+      else
+        " it's just a replacement string
         let text = substitute(text, regex, replacement, '')
       endif
 
@@ -30,16 +27,29 @@ function! s:Split()
     end
   endfor
 
-  let @z = text
-  normal! gv"zp
-  normal! gv=
+  if @z != text
+    " then there was some modification, paste the new text
+    let @z = text
+    normal! gv"zp
+    normal! gv=
+  endif
 endfunction
 
-let s:split_replacements = {
-      \ '\(<.\{-}>\)\(.*\)\(<\/.\{-}>\)': '\1\n\2\n\3',
-      \ '{\(.*\)}': '*SplitRubyHashes',
-      \ }
+" Replacements need to be ordered by some priority
+let s:split_replacements = [
+      \ ['\(<.\{-}>\)\(.*\)\(<\/.\{-}>\)', '\1\n\2\n\3'],
+      \ ['{\(.*\)}', '*SplitRubyHashes'],
+      \ ['\v,(([^,]+\s*\=\>\s*[^,]+,?)+)\n', '*SplitRubyOptions'],
+      \ ]
 
+" { :one => 'two', :three => 'four' }
+"
+" becomes:
+"
+" {
+"   :one => 'two',
+"   :three => 'four,
+" }
 function! SplitRubyHashes(regex, text)
   let body     = lib#ExtractRx(a:text, a:regex, '\1')
   let new_body = join(split(body, ','), ",\n")
@@ -47,6 +57,21 @@ function! SplitRubyHashes(regex, text)
   return substitute(a:text, a:regex, "{\n".new_body."\n}", '')
 endfunction
 
+" link_to 'foo', bar_path, :id => 'foo', :class => 'bar'
+"
+" becomes:
+"
+" link_to 'foo', bar_path, {
+"   :id => 'foo',
+"   :class => 'bar'
+" }
+function! SplitRubyOptions(regex, text)
+  let text = substitute(a:text, a:regex, ', {\1}', '')
+
+  return SplitRubyHashes('{\(.*\)}', text)
+endfunction
+
+" Simple join command that ignores all whitespace
 command Join call s:Join()
 function! s:Join()
   normal! j99<kgJ
