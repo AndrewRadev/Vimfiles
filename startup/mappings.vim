@@ -60,11 +60,9 @@ nnoremap <C-n>f :lcs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-n>i :lcs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-n>d :lcs find d <C-R>=expand("<cword>")<CR><CR>
 
-" Moving lines:
-nnoremap <C-j> mz:m+<cr>`z
-nnoremap <C-k> mz:m-2<cr>`z
-xnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-xnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" Splitting and joining code blocks
+nmap <C-j> :Split<CR>
+nmap <C-k> :Join<CR>
 
 " Easier increment/decrement:
 nmap + <C-a>
