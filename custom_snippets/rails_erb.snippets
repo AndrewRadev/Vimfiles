@@ -1,0 +1,17 @@
+# Helpers
+snippet lt
+	<%= link_to '${1:Label}', ${2:root_path} %>
+snippet ltd
+	<%= link_to ${1:root_path} do %>
+		${2}
+	<% end %>
+snippet cf
+	<% content_for :${1:head} do %>
+		${2}
+	<% end %>
+snippet ren
+	<%= render '${1}'${2} %>
+snippet part
+	<%= render :partial => '${1}'${2} %>
+snippet coll
+	<%= render :partial => '${1}', :collection => ${2} %>

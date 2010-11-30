@@ -1,0 +1,153 @@
+# Shoulda macros
+snippet isbt
+	it { should belong_to(${1}) }
+snippet ishm
+	it { should have_many(${1}) }
+snippet ishabtm
+	it { should have_and_belong_to_many(${1}) }
+snippet isvpo
+	it { should validate_presence_of(${1}) }
+snippet isvuo
+	it { should validate_uniqueness_of(${1}) }
+snippet isvno
+	it { should validate_numericality_of(${1}) }
+snippet ishaf
+	it { should have_attached_file(${1}) }
+# Basic REST specs
+snippet desindex
+	describe "index" do
+		def make_request(opts = {})
+			get :index, {}.merge(opts)
+		end
+
+		it "should render index template" do
+			make_request
+			response.should render_template(:index)
+		end
+
+		it "should load a list of $1s in @$1s" do
+			${1:model}s = [Factory(:$1)]
+			make_request
+			assigns[:$1s].should eq $1s
+		end
+	end
+snippet desshow
+	describe "show" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+		end
+
+		def make_request(opts = {})
+			get :show, { :id => @$1 }.merge(opts)
+		end
+
+		it "should render show template" do
+			make_request
+			response.should render_template(:show)
+		end
+	end
+snippet desnew
+	describe "new" do
+		def make_request(opts = {})
+			get :new, {}.merge(opts)
+		end
+
+		it "should render new template" do
+			make_request
+			response.should render_template(:new)
+		end
+	end
+snippet descreate
+	describe "create" do
+		before(:each) do
+			@attrs = Factory.build(:${1:model}).attributes
+		end
+
+		def make_request(opts = {})
+			post :create, { :$1 => @attrs }.merge(opts)
+		end
+
+		it "should render new template when context is invalid" do
+			${2:Model}.any_instance.stubs(:valid?).returns(false)
+			make_request
+			response.should render_template(:new)
+		end
+
+		it "should redirect to index when context is valid" do
+			${2:Model}.any_instance.stubs(:valid?).returns(true)
+			make_request
+			response.should redirect_to(:action => :index)
+		end
+	end
+snippet desedit
+	describe "edit" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+		end
+
+		def make_request(opts = {})
+			post :edit, { :id => @$1 }.merge(opts)
+		end
+
+		it "should render edit template" do
+			make_request
+			response.should render_template(:edit)
+		end
+	end
+snippet desupdate
+	describe "update" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+			@attrs = @$1.attributes
+		end
+
+		def make_request(opts = {})
+			put :update, { :id => @$1, $1 => @attrs }.merge(opts)
+		end
+
+		it "should render edit template when $1 is invalid" do
+			${2:Model}.any_instance.stubs(:valid?).returns(false)
+			make_request
+			response.should render_template(:edit)
+		end
+
+		it "should redirect to $1 when it's valid" do
+			make_request
+			response.should redirect_to(assigns[:$1])
+		end
+	end
+snippet desdestroy
+	describe "destroy" do
+		before(:each) do
+			@${1:model} = Factory(:$1)
+		end
+
+		def make_request(opts = {})
+			delete :destroy, { :id => @$1 }.merge(opts)
+		end
+
+		it "should destroy the given $1" do
+			make_request
+			${2:Model}.exists?(@$1.id).should be_false
+		end
+
+		it "should redirect to index" do
+			make_request
+			response.should redirect_to(:action => :index)
+		end
+	end
+# Other skeleton tests
+snippet basicjs
+	it "should be accessible by javascript" do
+		make_request :format => :js
+		response.should be_success
+	end
+snippet isrt
+	it "should render ${1:index} template" do
+		get :$1
+		response.should render_template(:$1)
+	end
+snippet defmr
+	def make_request(opts = {})
+		${1} :${2}, { ${3} }.merge(opts)
+	end
