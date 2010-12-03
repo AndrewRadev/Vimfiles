@@ -74,7 +74,7 @@ snippet descreate
 		end
 
 		it "should redirect to index when context is valid" do
-			${2:Model}.any_instance.stubs(:valid?).returns(true)
+			$2.any_instance.stubs(:valid?).returns(true)
 			make_request
 			response.should redirect_to(:action => :index)
 		end
@@ -102,7 +102,7 @@ snippet desupdate
 		end
 
 		def make_request(opts = {})
-			put :update, { :id => @$1, $1 => @attrs }.merge(opts)
+			put :update, { :id => @$1, :$1 => @attrs }.merge(opts)
 		end
 
 		it "should render edit template when $1 is invalid" do
