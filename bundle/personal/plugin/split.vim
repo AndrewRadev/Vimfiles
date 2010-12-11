@@ -39,6 +39,7 @@ endfunction
 let s:split_replacements = [
       \ ['\(<.\{-}>\)\(.*\)\(<\/.\{-}>\)', '\1\n\2\n\3'],
       \ ['{\(.*\)}', '*SplitRubyHashes'],
+      \ ['\v((,[^,]+\s+\=\>\s+[^,]+)+)\%\>', '*SplitErbOptions'],
       \ ['\v,(([^,]+\s*\=\>\s*[^,]+,?)+)\n', '*SplitRubyOptions'],
       \ ]
 
@@ -67,6 +68,20 @@ endfunction
 " }
 function! SplitRubyOptions(regex, text)
   let text = substitute(a:text, a:regex, ', {\1}', '')
+
+  return SplitRubyHashes('{\(.*\)}', text)
+endfunction
+
+" <%= link_to 'foo', bar_path, :id => 'foo', :class => 'bar' %>
+"
+" becomes:
+"
+" <%= link_to 'foo', bar_path, {
+"   :id => 'foo',
+"   :class => 'bar'
+" } %>
+function! SplitErbOptions(regex, text)
+  let text = substitute(a:text, a:regex, ', {\1} %>', '')
 
   return SplitRubyHashes('{\(.*\)}', text)
 endfunction
