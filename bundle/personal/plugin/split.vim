@@ -9,6 +9,8 @@
 " </div>
 command! Split call s:Split()
 function! s:Split()
+  let save_cursor = getpos('.')
+
   normal! V"zy
   let text = @z
 
@@ -33,6 +35,8 @@ function! s:Split()
     normal! gv"zp
     normal! gv=
   endif
+
+  call setpos('.', save_cursor)
 endfunction
 
 " Replacements need to be ordered by some priority
@@ -89,5 +93,11 @@ endfunction
 " Simple join command that ignores all whitespace
 command Join call s:Join()
 function! s:Join()
-  normal! j99<kgJ
+  let save_cursor = getpos('.')
+
+  normal! j
+  s/^\s*//
+  exec "normal! i\<bs>"
+
+  call setpos('.', save_cursor)
 endfunction
