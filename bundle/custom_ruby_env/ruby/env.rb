@@ -4,11 +4,8 @@ class Env
   end
 
   def command(name, &block)
-    if @commands[name]
-      raise "Command #{name} already defined"
-    else
-      command!(name, &block)
-    end
+    @commands[name] = block
+    VIM.command("command #{name} ruby $env.exec_command('#{name}')")
   end
 
   def command!(name, &block)
