@@ -7,6 +7,6 @@ Select-mode-mapping`
 
 ## Notes
 
-Anything that starts with "custom", like "custom_table", "custom_rspec", etc.,
+Anything that starts with "personal", like "personal_table", "personal_rspec", etc.,
 consists of my own attempts to write some useful script or plugin. So far, I've
 got nothing complete whatsoever.
