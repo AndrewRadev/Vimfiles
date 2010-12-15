@@ -5,7 +5,13 @@ function! b:RubyDetectSplit()
   let option_regex    = '\v,(([^,]+\s*\=\>\s*[^,]+,?)+)$'
   let if_clause_regex = '\v(.*) (if|unless) (.*)'
 
-  if line =~ hash_regex
+  if line =~ if_clause_regex
+    return {
+          \ 'type':   'ruby_if_clause',
+          \ 'regex':  if_clause_regex,
+          \ 'body':   line
+          \ }
+  elseif line =~ hash_regex
     return {
           \ 'type':   'ruby_hash',
           \ 'regex':  hash_regex,
@@ -15,12 +21,6 @@ function! b:RubyDetectSplit()
     return {
           \ 'type':   'ruby_options',
           \ 'regex':  option_regex,
-          \ 'body':   line
-          \ }
-  elseif line =~ if_clause_regex
-    return {
-          \ 'type':   'ruby_if_clause',
-          \ 'regex':  if_clause_regex,
           \ 'body':   line
           \ }
   end

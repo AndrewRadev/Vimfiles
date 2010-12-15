@@ -1,9 +1,16 @@
 function! b:ErbDetectSplit()
   let line = getline('.')
 
-  let option_regex = '\v((,[^,]+\s+\=\>\s+[^,]+)+)\%\>'
+  let option_regex    = '\v((,[^,]+\s+\=\>\s+[^,]+)+)\%\>'
+  let if_clause_regex = '\v\<\%(.*) (if|unless) (.*)\s*\%\>'
 
-  if line =~ option_regex
+  if line =~ if_clause_regex
+    return {
+          \ 'type':   'erb_if_clause',
+          \ 'regex':  if_clause_regex,
+          \ 'body':   line
+          \ }
+  elseif line =~ option_regex
     return {
           \ 'type':   'erb_options',
           \ 'regex':  option_regex,
@@ -21,6 +28,8 @@ function! b:ErbReplaceSplit(data)
 
   if type == 'erb_options'
     return SplitErbOptions(regex, body)
+  elseif type == 'erb_if_clause'
+    return substitute(body, regex, '<% \2 \3 %>\n<%\1 %>\n<% end %>', '')
   end
 
   return body

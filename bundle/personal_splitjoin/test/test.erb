@@ -10,6 +10,12 @@
 
     <%= link_to 'Google', 'http://google.com', :class => 'google', :id => 'google-link' %>
 
+    <%= foo unless bar? %>
+
+    <% foo = 42 if bar? %>
+
+    <%= link_to 'Google', 'http://google.com', :class => 'google' if show_google? %>
+
     <div class="foo">bar</div>
   </body>
 </html>
