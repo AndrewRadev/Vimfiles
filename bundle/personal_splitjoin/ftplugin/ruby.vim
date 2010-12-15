@@ -1,8 +1,9 @@
 function! b:RubyDetectSplit()
   let line = getline('.')
 
-  let hash_regex = '{\(.*\)}'
-  let option_regex = '\v,(([^,]+\s*\=\>\s*[^,]+,?)+)$'
+  let hash_regex      = '{\(.*\)}'
+  let option_regex    = '\v,(([^,]+\s*\=\>\s*[^,]+,?)+)$'
+  let if_clause_regex = '\v(.*) (if|unless) (.*)'
 
   if line =~ hash_regex
     return {
@@ -14,6 +15,12 @@ function! b:RubyDetectSplit()
     return {
           \ 'type':   'ruby_options',
           \ 'regex':  option_regex,
+          \ 'body':   line
+          \ }
+  elseif line =~ if_clause_regex
+    return {
+          \ 'type':   'ruby_if_clause',
+          \ 'regex':  if_clause_regex,
           \ 'body':   line
           \ }
   end
@@ -30,6 +37,8 @@ function! b:RubyReplaceSplit(data)
     return SplitRubyHashes(regex, body)
   elseif type == 'ruby_options'
     return SplitRubyOptions(regex, body)
+  elseif type == 'ruby_if_clause'
+    return substitute(body, regex, '\2 \3\n\1\nend', '')
   end
 
   return body
