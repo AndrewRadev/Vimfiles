@@ -2,7 +2,7 @@ function! b:RubyDetectSplit()
   let line = getline('.')
 
   let hash_regex      = '{\(.*\)}'
-  let option_regex    = '\v,(([^,]+\s*\=\>\s*[^,]+,?)+)$'
+  let option_regex    = '\v,(([^,]+\s*\=\>\s*[^,]{-1,},?)+)(\s*do.*)?$'
   let if_clause_regex = '\v(.*) (if|unless) (.*)'
 
   if line =~ if_clause_regex
@@ -82,7 +82,7 @@ endfunction
 "   :class => 'bar'
 " }
 function! SplitRubyOptions(regex, text)
-  let text = substitute(a:text, a:regex, ', {\1}', '')
+  let text = substitute(a:text, a:regex, ', {\1}\3', '')
 
   return SplitRubyHashes('{\(.*\)}', text)
 endfunction

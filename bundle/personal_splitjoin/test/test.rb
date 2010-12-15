@@ -12,6 +12,10 @@ class Baz
 
     foo 1, 2, :one => 1, :two => 2, :three => 'three'
 
+    foo 1, 2, :one => 1, :two => 2 do
+      something
+    end
+
     foo 1, 2, :one => 1, :two => 2, :three => 'three' if condition?
 
     foo = "bar" if one.two?

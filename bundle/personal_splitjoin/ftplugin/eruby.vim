@@ -1,7 +1,7 @@
 function! b:ErbDetectSplit()
   let line = getline('.')
 
-  let option_regex    = '\v((,[^,]+\s+\=\>\s+[^,]+)+)\%\>'
+  let option_regex    = '\v((,[^,]+\s+\=\>\s+[^,]{-1,})+)(\s*do)?\s*\%\>'
   let if_clause_regex = '\v\<\%(.*) (if|unless) (.*)\s*\%\>'
 
   if line =~ if_clause_regex
@@ -57,7 +57,7 @@ let b:splitjoin_data = [
 "   :class => 'bar'
 " } %>
 function! SplitErbOptions(regex, text)
-  let text = substitute(a:text, a:regex, ', {\1} %>', '')
+  let text = substitute(a:text, a:regex, ', {\1}\3 %>', '')
 
   return SplitRubyHashes('{\(.*\)}', text)
 endfunction
