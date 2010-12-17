@@ -13,6 +13,11 @@ snippet isvno
 	it { should validate_numericality_of(${1}) }
 snippet ishaf
 	it { should have_attached_file(${1}) }
+# Controller specs
+snippet rsrt
+	response.should render_template(:${1:index})
+snippet rsr
+	response.should redirect_to(${1::action => :index})
 # Basic REST specs
 snippet desindex
 	describe "index" do
