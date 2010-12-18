@@ -39,7 +39,7 @@ function! b:SplitjoinDetectJoin()
   return {}
 endfunction
 
-let b:splitjoin_data = [
+let b:splitjoin_split_data = [
       \ ['b:HtmlDetectSplit', 'b:HtmlReplaceSplit'],
       \ ['b:ErbDetectSplit', 'b:ErbReplaceSplit'],
       \ ]

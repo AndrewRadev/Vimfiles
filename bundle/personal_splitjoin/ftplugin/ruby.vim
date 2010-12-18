@@ -3,7 +3,7 @@ function! b:RubyDetectSplit()
 
   let hash_regex      = '{\(.*\)}'
   let option_regex    = '\v,(([^,]+\s*\=\>\s*[^,]{-1,},?)+)(\s*do.*)?$'
-  let if_clause_regex = '\v(.*) (if|unless) (.*)'
+  let if_clause_regex = '\v(.*\S.*) (if|unless) (.*)'
 
   if line =~ if_clause_regex
     return {
@@ -48,9 +48,60 @@ function! b:SplitjoinDetectJoin()
   return {}
 endfunction
 
-if !exists('b:splitjoin_data') " don't mess up erb
-  let b:splitjoin_data = [
+if !exists('b:splitjoin_split_data') " don't mess up erb
+  let b:splitjoin_split_data = [
         \ ['b:RubyDetectSplit', 'b:RubyReplaceSplit']
+        \ ]
+endif
+
+function! b:RubyDetectJoin()
+  " check if we're in an if statement
+  let line  = getline('.')
+  let pline = getline(line('.') - 1)
+
+  let if_clause_regex = '\v^\s*(if|unless)'
+
+  if line =~ if_clause_regex
+    normal! jj
+
+    if getline('.') =~ 'end'
+      normal! Vkk"zy
+      let body = @z
+
+      return {
+            \ 'type':   'ruby_if_clause',
+            \ 'position': {
+            \    'from': line('.') - 2,
+            \    'to':   line('.')
+            \   },
+            \ 'body':   body
+            \ }
+    endif
+  endif
+
+  return {}
+endfunction
+
+function! b:RubyReplaceJoin(data)
+  let type     = a:data.type
+  let position = a:data.position
+  let body     = a:data.body
+
+  if type == 'ruby_if_clause'
+    let [if_line, body, end_line] = split(body, '\n')
+
+    let if_line = splitjoin#Trim(if_line)
+    let body =    splitjoin#Trim(body)
+
+    let replacement = body.' '.if_line
+
+    return [replacement, position]
+  endif
+endfunction
+
+if !exists('b:splitjoin_join_data') " don't mess up erb
+  let b:splitjoin_join_data = [
+        \ ['b:RubyDetectJoin', 'b:RubyReplaceJoin']
         \ ]
 endif
 
@@ -67,7 +118,7 @@ endif
 "   :three => 'four,
 " }
 function! SplitRubyHashes(regex, text)
-  let body     = lib#ExtractRx(a:text, a:regex, '\1')
+  let body     = splitjoin#ExtractRx(a:text, a:regex, '\1')
   let new_body = join(split(body, ','), ",\n")
 
   return substitute(a:text, a:regex, "{\n".new_body."\n}", '')

@@ -31,8 +31,8 @@ function! b:SplitjoinDetectJoin()
 endfunction
 
 " List of pairs [detection function, replacement function]
-if !exists('b:splitjoin_data') " don't mess up erb
-	let b:splitjoin_data = [
+if !exists('b:splitjoin_split_data') " don't mess up erb
+	let b:splitjoin_split_data = [
 				\ ['b:HtmlDetectSplit', 'b:HtmlReplaceSplit']
 				\ ]
 endif
