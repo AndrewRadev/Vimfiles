@@ -2,7 +2,7 @@ function! b:ErbDetectSplit()
   let line = getline('.')
 
   let option_regex    = '\v((,[^,]+\s+\=\>\s+[^,]{-1,})+)(\s*do)?\s*\%\>'
-  let if_clause_regex = '\v\<\%(.*) (if|unless) (.*)\s*\%\>'
+  let if_clause_regex = '\v\<\%(.*\S.*) (if|unless) (.*)\s*\%\>'
 
   if line =~ if_clause_regex
     return {
@@ -29,7 +29,7 @@ function! b:ErbReplaceSplit(data)
   if type == 'erb_options'
     return SplitErbOptions(regex, body)
   elseif type == 'erb_if_clause'
-    return substitute(body, regex, '<% \2 \3 %>\n<%\1 %>\n<% end %>', '')
+    return substitute(body, regex, '<% \2 \3%>\n<%\1 %>\n<% end %>', '')
   end
 
   return body
@@ -81,9 +81,9 @@ function! b:ErbReplaceJoin(data)
     let [if_line, body, end_line] = split(body, '\n')
 
     let if_line = splitjoin#ExtractRx(if_line, '<%\s*\(.\{-}\)\s*%>', '\1')
-    let body    = splitjoin#ExtractRx(body,    '<%=\s*\(.\{-}\)\s*%>', '\1')
+    let body    = splitjoin#ExtractRx(body,    '\(<%=\?\s*.\{-}\)\s*%>', '\1')
 
-    let replacement = '<%= '.body.' '.if_line.' %>'
+    let replacement = body.' '.if_line.' %>'
 
     return [replacement, position]
   endif
