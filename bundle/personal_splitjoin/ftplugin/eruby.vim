@@ -44,6 +44,55 @@ let b:splitjoin_split_data = [
       \ ['b:ErbDetectSplit', 'b:ErbReplaceSplit'],
       \ ]
 
+function! b:ErbDetectJoin()
+  " check if we're in an if statement
+  let line  = getline('.')
+  let pline = getline(line('.') - 1)
+
+  let if_clause_regex = '\v^\s*\<\%\s*(if|unless)'
+
+  if line =~ if_clause_regex
+    normal! jj
+
+    if getline('.') =~ 'end'
+      normal! Vkk"zy
+      let body = @z
+
+      return {
+            \ 'type':   'erb_if_clause',
+            \ 'position': {
+            \    'from': line('.') - 2,
+            \    'to':   line('.')
+            \   },
+            \ 'body':   body
+            \ }
+    endif
+  endif
+
+  return {}
+endfunction
+
+function! b:ErbReplaceJoin(data)
+  let type     = a:data.type
+  let position = a:data.position
+  let body     = a:data.body
+
+  if type == 'erb_if_clause'
+    let [if_line, body, end_line] = split(body, '\n')
+
+    let if_line = splitjoin#ExtractRx(if_line, '<%\s*\(.\{-}\)\s*%>', '\1')
+    let body    = splitjoin#ExtractRx(body,    '<%=\s*\(.\{-}\)\s*%>', '\1')
+
+    let replacement = '<%= '.body.' '.if_line.' %>'
+
+    return [replacement, position]
+  endif
+endfunction
+
+let b:splitjoin_join_data = [
+      \ ['b:ErbDetectJoin', 'b:ErbReplaceJoin']
+      \ ]
+
 " ---------------------
 " Replacement functions
 " ---------------------
