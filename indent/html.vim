@@ -21,10 +21,11 @@ endif
 setlocal indentexpr=HtmlIndentGet(v:lnum)
 setlocal indentkeys=o,O,*<Return>,<>>,{,}
 
-
-if exists('g:html_indent_tags')
-  unlet g:html_indent_tags
-endif
+" No idea why this was here...
+"
+" if exists('g:html_indent_tags')
+"   unlet g:html_indent_tags
+" endif
 
 " [-- helper function to assemble tag list --]
 fun! <SID>HtmlIndentPush(tag)
