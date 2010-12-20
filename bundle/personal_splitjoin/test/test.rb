@@ -6,6 +6,10 @@ class Bar
   foo 1, 2, :one => 1, :two => 2, :three => 'three'
 end
 
+Bar.new { |b| puts b.to_s; puts 'foo' }
+
+Bar.new { puts self.to_s }
+
 class Baz
   def qux
     return if problem?

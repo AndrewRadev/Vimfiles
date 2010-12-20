@@ -1,7 +1,8 @@
 function! b:RubyDetectSplit()
   let line = getline('.')
 
-  let hash_regex      = '{\(.*\)}'
+  let hash_regex      = '\v\{\s*(([^,]+\s*\=\>\s*[^,]{-1,},?)+)\s*\}'
+  let block_regex     = '\v\{(\s*\|.*\|)?\s*(.*)\}'
   let option_regex    = '\v,(([^,]+\s*\=\>\s*[^,]{-1,},?)+)(\s*do.*)?$'
   let if_clause_regex = '\v(.*\S.*) (if|unless) (.*)'
 
@@ -15,6 +16,12 @@ function! b:RubyDetectSplit()
     return {
           \ 'type':   'ruby_hash',
           \ 'regex':  hash_regex,
+          \ 'body':   line
+          \ }
+  elseif line =~ block_regex
+    return {
+          \ 'type':   'ruby_block',
+          \ 'regex':  block_regex,
           \ 'body':   line
           \ }
   elseif line =~ option_regex
@@ -34,9 +41,11 @@ function! b:RubyReplaceSplit(data)
   let body  = a:data.body
 
   if type == 'ruby_hash'
-    return SplitRubyHashes(regex, body)
+    return SplitRubyHash(regex, body)
   elseif type == 'ruby_options'
     return SplitRubyOptions(regex, body)
+  elseif type == 'ruby_block'
+    return SplitRubyBlock(regex, body)
   elseif type == 'ruby_if_clause'
     return substitute(body, regex, '\2 \3\n\1\nend', '')
   end
@@ -117,7 +126,7 @@ endif
 "   :one => 'two',
 "   :three => 'four,
 " }
-function! SplitRubyHashes(regex, text)
+function! SplitRubyHash(regex, text)
   let body     = splitjoin#ExtractRx(a:text, a:regex, '\1')
   let new_body = join(split(body, ','), ",\n")
 
@@ -135,5 +144,21 @@ endfunction
 function! SplitRubyOptions(regex, text)
   let text = substitute(a:text, a:regex, ', {\1}\3', '')
 
-  return SplitRubyHashes('{\(.*\)}', text)
+  return SplitRubyHash('{\(.*\)}', text)
+endfunction
+
+" Bar.new { |b| puts b.to_s; puts 'foo' }
+"
+" becomes:
+"
+" Bar.new do |b|
+"   puts b.to_s
+"   puts 'foo'
+" end
+function! SplitRubyBlock(regex, text)
+  let body   = splitjoin#ExtractRx(a:text, a:regex, '\2')
+  let body   = join(split(body, '\s*;\s*'), "\n")
+  let result = substitute(a:text, a:regex, 'do\1\n'.body.'\nend', '')
+
+  return result
 endfunction
