@@ -108,5 +108,5 @@ let b:splitjoin_join_data = [
 function! SplitErbOptions(regex, text)
   let text = substitute(a:text, a:regex, ', {\1}\3 %>', '')
 
-  return SplitRubyHashes('{\(.*\)}', text)
+  return SplitRubyHash('{\(.*\)}', text)
 endfunction
