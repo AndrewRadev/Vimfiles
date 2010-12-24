@@ -24,6 +24,9 @@ next.txt
 test/*/output.*
 bundle/*/test/output.*
 
+# Splitjoin code output
+bundle/personal_splitjoin/test/output/*
+
 # Vimball record is machine-specific
 .VimballRecord
 bundle/*/.VimballRecord
