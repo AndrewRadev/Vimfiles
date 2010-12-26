@@ -90,6 +90,12 @@ snippet app
 	if __FILE__ == $PROGRAM_NAME
 		${1}
 	end
+snippet bm
+	Benchmark.bm do |bm|
+		bm.report do
+			${1}
+		end
+	end
 snippet dir
 	Filename.dirname(__FILE__)
 snippet f
