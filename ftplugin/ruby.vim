@@ -24,6 +24,9 @@ let b:surround_indent = 1
 ConsoleCommand !irb -r % <args>
 
 if !exists('b:erb_loaded') && &ft == 'ruby'
+	" fold nicely -- experimental
+	call RubyFold()
+
   if expand('%') =~ '_spec.rb'
     RunCommand !rspec --color --format documentation % <args>
     command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'lib/\1.rb', '')
