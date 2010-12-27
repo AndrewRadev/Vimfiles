@@ -1,6 +1,6 @@
 function! RubyFold()
   let b:foldtexts = {}
-  set foldtext=RubyFoldText()
+  setlocal foldtext=RubyFoldText()
 
   let save_cursor = getpos('.')
 
