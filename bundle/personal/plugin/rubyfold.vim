@@ -23,10 +23,7 @@ function! RubyFold()
       break
     endif
 
-    while getline(line('.') + 1) =~ '^\s*$'
-      let end_line = end_line + 1
-      normal! j
-    endwhile
+    let end_line = s:ConsumeWhitespace(end_line)
 
     exec def_line.','.end_line.'fold'
   endwhile
@@ -42,12 +39,7 @@ function! RubyFold()
 
     let scope_name = lib#ExtractRx(getline('.'), scope_regex, '\1')
 
-    let end_line = scope_line
-
-    while getline(line('.') + 1) =~ '^\s*$'
-      let end_line = end_line + 1
-      normal! j
-    endwhile
+    let end_line = s:ConsumeWhitespace(scope_line)
 
     let b:foldtexts[scope_line] = '           | '.scope_name.' |           '
     exec scope_line.','.end_line.'fold'
@@ -64,4 +56,15 @@ function! RubyFoldText()
   else
     return foldtext()
   endif
+endfunction
+
+function! s:ConsumeWhitespace(line)
+  let line = a:line
+
+  while getline(line('.') + 1) =~ '^\s*$'
+    let line = line + 1
+    normal! j
+  endwhile
+
+  return line
 endfunction
