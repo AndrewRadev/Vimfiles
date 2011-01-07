@@ -12,7 +12,7 @@ set diffopt=filler,vertical
 set encoding=utf-8
 set expandtab smarttab
 set ffs=unix
-set fillchars=stl:-,stlnc:-,vert:\|,fold:-,diff:-
+set fillchars=stl:-,stlnc:-,vert:│,fold:-,diff:-
 set formatoptions=croqn
 set guioptions=crb
 set incsearch nohlsearch
