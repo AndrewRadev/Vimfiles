@@ -16,6 +16,12 @@ function! RubyFold()
       break
     endif
 
+    " ignore def's in comments
+    if getline(def_line) =~ '#.*\<def\>'
+      normal! j
+      continue
+    endif
+
     let ws = lib#ExtractRx(getline('.'), '^\(\s*\)', '\1')
 
     let end_line = search('^'.ws.'end', 'W')
