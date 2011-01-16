@@ -75,3 +75,6 @@ nnoremap <C-i> :BufSurfForward<cr>
 
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command         = 'firefox %URL% &'
+
+" Javascript indent
+let g:SimpleJsIndenter_BriefMode = 1
