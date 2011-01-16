@@ -39,7 +39,7 @@ function! s:Split()
 endfunction
 
 " Simple join command that ignores all whitespace
-command SplitjoinJoin call s:Join()
+command! SplitjoinJoin call s:Join()
 function! s:Join()
   if !exists('b:splitjoin_join_data')
     return
