@@ -65,9 +65,10 @@ function! RubyFoldText()
 endfunction
 
 function! s:ConsumeWhitespace(line)
-  let line = a:line
+  let line      = a:line
+  let last_line = line('$')
 
-  while getline(line('.') + 1) =~ '^\s*$'
+  while getline(line + 1) =~ '^\s*$' && line < last_line
     let line = line + 1
     normal! j
   endwhile
