@@ -7,4 +7,4 @@ augroup project
   autocmd BufEnter Gemfile RunCommand !bundle install
 augroup END
 
-set tags+=~/tags/rails30.tags
+set tags+=~/tags/rails33.tags
