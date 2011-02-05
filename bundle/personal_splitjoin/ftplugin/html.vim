@@ -26,13 +26,20 @@ function! b:HtmlReplaceSplit(data)
   return body
 endfunction
 
-function! b:SplitjoinDetectJoin()
+function! b:HtmlDetectJoin()
   return {}
+endfunction
+
+function! b:HtmlReplaceJoin(data)
 endfunction
 
 " List of pairs [detection function, replacement function]
 if !exists('b:splitjoin_split_data') " don't mess up erb
 	let b:splitjoin_split_data = [
 				\ ['b:HtmlDetectSplit', 'b:HtmlReplaceSplit']
+				\ ]
+
+	let b:splitjoin_join_data = [
+				\ ['b:HtmlDetectJoin', 'b:HtmlReplaceJoin']
 				\ ]
 endif

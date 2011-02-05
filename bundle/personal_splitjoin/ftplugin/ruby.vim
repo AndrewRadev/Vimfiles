@@ -74,6 +74,7 @@ function! b:RubyDetectJoin()
     normal! jj
 
     if getline('.') =~ 'end'
+    " TODO TextForMotion("Vkk")
       normal! Vkk"zy
       let body = @z
 
@@ -87,6 +88,29 @@ function! b:RubyDetectJoin()
             \ }
     endif
   endif
+
+  " check for a do block
+  let do_line_no = search('\<do\>\(\s*\|.*\|\s*\)\?$', 'bcW')
+  if do_line_no > 0
+    let end_line_no = searchpair('\<do\>', '', '\<end\>', 'W')
+
+    call cursor(do_line_no)
+    normal! V
+    call cursor(end_line_no)
+    normal! "yz
+
+    let body = @z
+
+    return {
+          \ 'type':   'ruby_do_block',
+          \ 'position': {
+          \    'from': do_line_no,
+          \    'to':   end_line_no,
+          \   },
+          \ 'body':   body
+          \ }
+  endif
+
 
   return {}
 endfunction
@@ -105,7 +129,17 @@ function! b:RubyReplaceJoin(data)
     let replacement = body.' '.if_line
 
     return [replacement, position]
-  endif
+  elseif type == 'ruby_do_block'
+    let lines = split(body, '\n')
+
+    let do_line  = substitute(lines[0], 'do', '{', '')
+    let end_line = lines[-1] " ignore
+    let body     = join(lines[1:-2], '; ')
+    let body     = splitjoin#Trim(body)
+
+    let replacement = do_line.' '.body.' }'
+
+    return [replacement, position]
 endfunction
 
 if !exists('b:splitjoin_join_data') " don't mess up erb
