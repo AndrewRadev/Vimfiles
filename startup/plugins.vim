@@ -24,8 +24,8 @@ let g:dbext_default_replace_title = 1
 let g:dbext_default_history_file  = '~/.dbext_history'
 
 " Snippet settings:
-let g:snippets_dir = expand("~/.vim/custom_snippets/")
-let g:snips_author = "Andrew Radev"
+let g:snippets_dir = expand('~/.vim/snippets/')
+let g:snips_author = 'Andrew Radev'
 
 " Proj settings:
 let g:ProjFile        = '~/.vimproj'
