@@ -72,14 +72,13 @@ snippet descreate
 			post :create, { :$1 => @attrs }.merge(opts)
 		end
 
-		it "should render new template when context is invalid" do
+		it "should render new template when $1 is invalid" do
 			${2:Model}.any_instance.stubs(:valid?).returns(false)
 			make_request
 			response.should render_template(:new)
 		end
 
-		it "should redirect to index when context is valid" do
-			$2.any_instance.stubs(:valid?).returns(true)
+		it "should redirect to index when $1 is valid" do
 			make_request
 			response.should redirect_to(:action => :index)
 		end

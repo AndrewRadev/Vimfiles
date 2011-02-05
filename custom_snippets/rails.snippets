@@ -61,9 +61,9 @@ snippet defcreate
 
 		if @$1.save
 			flash[:notice] = '$2 was successfully created.'
-			redirect_to @$1
+			redirect_to :action => :index
 		else
-			render :action => 'new'
+			render :action => :new
 		end
 	end
 snippet defedit

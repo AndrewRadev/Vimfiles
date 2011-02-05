@@ -24,6 +24,8 @@ snippet ch
 	expect {
 		${1}
 	}.to change(${2})${3}
+snippet let
+	let(:${1:subject}) { ${2:Subject}.new }
 # Equality
 snippet se
 	should eq ${1}
