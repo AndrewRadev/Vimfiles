@@ -61,24 +61,21 @@ nnoremap <C-n>i :lcs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-n>d :lcs find d <C-R>=expand("<cword>")<CR><CR>
 
 " Splitting and joining code blocks
-nmap <C-j> :SplitjoinSplit<CR>
-nmap <C-k> :SplitjoinJoin<CR>
+nnoremap sj :SplitjoinSplit<CR>
+nnoremap sk :SplitjoinJoin<CR>
 
 " Easier increment/decrement:
 nmap + <C-a>
 nmap - <C-x>
-" Swapit + speeddating
-nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
-nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
-
-" Goto file or edit file (not working most times...):
-nnoremap gF :exe "edit ".eval(&includeexpr)<cr>
 
 " Alignment mappings:
 xnoremap <Leader>a=> :Align =><cr>
 
 " Easy split:
 nnoremap <Leader><Leader> :split \|<Space>
+
+" Easy ZoomWin:
+nnoremap ,, :ZoomWin<cr>
 
 " Standard 'go to manual' command
 nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
@@ -111,12 +108,3 @@ function! s:YankFilename(linewise)
 
   echo "Yanked filename in clipboard"
 endfunction
-
-" Undo tree
-noremap <C-u> :GundoToggle<cr>
-
-" SimpleFold mapping
-map <Leader>z <Plug>SimpleFold_Foldsearch
-
-" Temporary VimTree mapping
-noremap ,, :VimTreeToggle<cr>

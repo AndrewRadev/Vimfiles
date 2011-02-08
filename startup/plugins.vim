@@ -15,9 +15,6 @@ let g:NERDTreeIgnore = [
 let g:NERDTreeMapJumpFirstChild = ''
 let g:NERDTreeMapJumpLastChild  = ''
 
-" Open up fuzzy finder:
-nmap Qt :CommandT<cr>
-
 " Dbext settings:
 let g:dbext_default_buffer_lines  = 20
 let g:dbext_default_replace_title = 1
@@ -66,9 +63,6 @@ let ruby_operators    = 1
 
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd	= "wget -q -O"
-
-" Calendar:
-let g:calendar_monday = 1
 
 nnoremap <bs> :BufSurfBack<cr>
 nnoremap <C-i> :BufSurfForward<cr>

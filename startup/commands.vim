@@ -57,38 +57,11 @@ function! s:CheatComplete(A, L, P)
   return system('cheat sheets | cut -b3-')
 endfunction
 
-" Rake shortcut (adapted from rails.vim)
-" Not very good
-command! -complete=customlist,s:RakeComplete -nargs=* Rake !rake <args>
-function! s:RakeComplete(A, L, P)
-  if !exists('b:rake_cache')
-    let lines = split(system("rake -T"),"\n")
-    if v:shell_error != 0
-      return []
-    endif
-    call map(lines,'matchstr(v:val,"^rake\\s\\+\\zs\\S*")')
-    call filter(lines,'v:val != ""')
-
-    let b:rake_cache = sort(lines)
-  endif
-
-  return filter(copy(b:rake_cache), "v:val =~ '^".a:A."'")
-endfunction
-
 " Easy check of current syntax group
 command! Syn call syntax_attr#SyntaxAttr()
 
 " Use 'helptags' with the bundle directory as well
-command! Helptags call s:Helptags()
-function! s:Helptags()
-  helptags doc
-  for dir in split(glob('bundle/*/doc'), '\_s')
-    exe 'helptags '.dir
-  endfor
-endfunction
-
-" Create dir and save
-command! W silent exe "!mkdir -p %:p:h" | w | redraw!
+command! Helptags call pathogen#helptags()
 
 " Quit tab, even if it's just one
 command! Q call s:Q()
@@ -111,11 +84,5 @@ command! -nargs=* ConsoleCommand
 
 " Should probably be in a project-specific file
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
-
-" Run a test, depends on being in the vimfiles dir
-command! -nargs=1 -complete=custom,s:VimtestComplete Vimtest source test/<args>/run.vim
-function! s:VimtestComplete(A, L, P)
-  return substitute(glob('test/*'), 'test\/', '', '')
-endfunction
 
 command! Chmodx !chmod +x '%'
