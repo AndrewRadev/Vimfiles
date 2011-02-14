@@ -86,3 +86,32 @@ command! -nargs=* ConsoleCommand
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
 
 command! Chmodx !chmod +x '%'
+
+command! -nargs=* ProjInit call s:ProjInit(<f-args>)
+function! s:ProjInit(...)
+  e _project.vim
+  write
+
+  if a:0 > 0
+    let project_name = a:1
+  else
+    let project_name = expand('%:p:h:t')
+  end
+
+  let cwd          = getcwd()
+  let project_file = expand('%:p')
+
+  ProjFile
+
+  normal! Go
+
+  let @z = "[".project_name."]\n"
+  let @z .= "path = ".cwd."\n"
+  let @z .= "vim = ".project_file."\n"
+
+  normal! "zp
+  write
+  ProjReload
+
+  exec "Proj ".project_name
+endfunction
