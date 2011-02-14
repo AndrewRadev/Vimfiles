@@ -116,6 +116,10 @@ snippet dov
 	end
 snippet :
 	:${1:key} => ${2:"value"}${3}
+snippet here
+	<<-EOF
+		${1}
+	EOF
 # Guardfile skeletons
 snippet guardrspec
 	guard 'rspec', :version => 2 do

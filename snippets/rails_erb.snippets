@@ -1,6 +1,10 @@
 # Helpers
+snippet =t
+	<%= t('${1}') %>
 snippet lt
 	<%= link_to '${1:Label}', ${2:root_path} %>
+snippet tlt
+	<%= link_to t('${1:label}'), ${2:root_path} %>
 snippet ltd
 	<%= link_to ${1:root_path} do %>
 		${2}
