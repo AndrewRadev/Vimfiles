@@ -28,13 +28,7 @@ if !exists('b:erb_loaded') && &ft == 'ruby'
 	" fold nicely -- experimental
 	call RubyFold()
 
-  if expand('%') =~ '_spec.rb'
-    RunCommand !rspec --color --format documentation % <args>
-    command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'lib/\1.rb', '')
-  else
-    RunCommand !ruby % <args>
-    command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
-  endif
+  RunCommand !ruby % <args>
 endif
 
 if @% =~ 'step_definitions'
