@@ -7,3 +7,7 @@ command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1
 
 command! -buffer Focus RunCommand exec '!rspec % -c -d -fd --line='.line('.')
 command! -buffer Unfocus RunCommand !rspec % -c -d -fd <args>
+
+" Toggle complementing conditions easily:
+nmap <buffer> - mz:s/should /should_not /e<cr>`z
+nmap <buffer> + mz:s/should_not /should /e<cr>`z
