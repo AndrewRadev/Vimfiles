@@ -68,9 +68,6 @@ nnoremap sk :SplitjoinJoin<CR>
 nmap + <C-a>
 nmap - <C-x>
 
-" Alignment mappings:
-xnoremap <Leader>a=> :Align =><cr>
-
 " Easy split:
 nnoremap <Leader><Leader> :split \|<Space>
 
@@ -108,3 +105,16 @@ function! s:YankFilename(linewise)
 
   echo "Yanked filename in clipboard"
 endfunction
+
+" Tabularize mappings:
+nnoremap <Leader>t= mz:Tabularize/^[^=]*\zs=/<cr>`z
+xnoremap <Leader>t= mz:Tabularize/^[^=]*\zs=/<cr>`z
+
+nnoremap <Leader>t> mz:Tabularize/^[^=>]*\zs=>/<cr>`z
+xnoremap <Leader>t> mz:Tabularize/^[^=>]*\zs=>/<cr>`z
+
+nnoremap <Leader>t, mz:Tabularize/,\zs\s*/l0<cr>`z
+xnoremap <Leader>t, mz:Tabularize/,\zs\s*/l0<cr>`z
+
+nnoremap <Leader>t: mz:Tabularize/:\zs\s*/l0<cr>`z
+xnoremap <Leader>t: mz:Tabularize/:\zs\s*/l0<cr>`z
