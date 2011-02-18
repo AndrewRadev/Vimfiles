@@ -19,3 +19,6 @@
 [submodule "bundle/vim-tree"]
 	path = bundle/vim-tree
 	url = git@github.com:AndrewRadev/vim-tree.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
