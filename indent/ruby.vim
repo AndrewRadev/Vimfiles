@@ -47,6 +47,7 @@ function GetRubyIndent()
         \ || getline(lnum) =~ '\({\|\<do\>\).*|.*|\s*$'
         \ || getline(lnum) =~ '\<do\>\(\s*#.*\)\=$'
         \ || getline(lnum) =~ '\v^(.*\S+.*)\s+\=\s+if'
+        \ || getline(lnum) =~ '\v^(.*\S+.*)\s+\=\s+case'
     let ind = ind + &sw
     let flag = 1
   endif
