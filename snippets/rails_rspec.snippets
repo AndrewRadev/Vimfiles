@@ -29,12 +29,6 @@ snippet desindex
 			make_request
 			response.should render_template(:index)
 		end
-
-		it "should load a list of $1s in @$1s" do
-			${1:model}s = [Factory(:$1)]
-			make_request
-			assigns[:$1s].should eq $1s
-		end
 	end
 snippet desshow
 	describe "show" do

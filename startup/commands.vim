@@ -103,13 +103,14 @@ function! s:ProjInit(...)
 
   ProjFile
 
-  normal! Go
+  let project_body = [
+        \ '',
+        \ '['.project_name.']',
+        \ 'path = '.cwd,
+        \ 'vim = '.project_file,
+        \ ]
 
-  let @z = "[".project_name."]\n"
-  let @z .= "path = ".cwd."\n"
-  let @z .= "vim = ".project_file."\n"
-
-  normal! "zp
+  call append(line('$'), project_body)
   write
   ProjReload
 
