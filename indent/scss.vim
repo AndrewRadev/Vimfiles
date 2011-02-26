@@ -19,12 +19,20 @@ function! GetScssIndent()
   " get current line:
   let line    = getline(v:lnum)
 
-  if pline =~ '{\s*$'
+  let open_brace  = '{\s*\(//.*\)\?$'
+  let close_brace = '}\s*\(//.*\)\?$'
+
+  if line =~ '{.*}'
+    return indent(plineno)
+  elseif pline =~ open_brace && line =~ close_brace
+    return indent(plineno)
+  elseif pline =~ open_brace
     return indent(plineno) + &shiftwidth
-  elseif line =~ '}\s*$'
-    call search('}', 'bcW')
-    let match_lineno = searchpair('{', '', '}', 'bW', 'WithinScssComment')
-    return indent(match_lineno)
+  elseif line =~ close_brace
+    return indent(plineno) - &shiftwidth
+    " call search('}', 'bcW')
+    " let match_lineno = searchpair('{', '', '}', 'bW', 'WithinScssComment')
+    " return indent(match_lineno)
   end
 
   return indent(plineno)
