@@ -1,3 +1,5 @@
+finish
+
 " Explanation:
 "
 " <div id="foo">Foo, bar, baz</div>
