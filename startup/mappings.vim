@@ -37,6 +37,12 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
+" Moving lines up and down:
+nnoremap <C-j> :m+<CR>==
+nnoremap <C-k> :m-2<CR>==
+xnoremap <C-j> :m'>+<CR>gv=gv
+xnoremap <C-k> :m-2<CR>gv=gv
+
 " Completion remappings:
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
