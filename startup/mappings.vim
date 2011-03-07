@@ -113,14 +113,23 @@ function! s:YankFilename(linewise)
 endfunction
 
 " Tabularize mappings:
+
+" one = two
+" three = four
 nnoremap <Leader>t= mz:Tabularize/^[^=]*\zs=/<cr>`z
 xnoremap <Leader>t= mz:Tabularize/^[^=]*\zs=/<cr>`z
 
+" one => two
+" three => four
 nnoremap <Leader>t> mz:Tabularize/^[^=>]*\zs=>/<cr>`z
 xnoremap <Leader>t> mz:Tabularize/^[^=>]*\zs=>/<cr>`z
 
-nnoremap <Leader>t, mz:Tabularize/,\zs\s*/l0<cr>`z
-xnoremap <Leader>t, mz:Tabularize/,\zs\s*/l0<cr>`z
+" one,   two,  three
+" three, four, five
+nnoremap <Leader>t, mz:Tabularize/,\s*\zs\s/l0<cr>`z
+xnoremap <Leader>t, mz:Tabularize/,\s*\zs\s/l0<cr>`z
 
-nnoremap <Leader>t: mz:Tabularize/:\zs\s*/l0<cr>`z
-xnoremap <Leader>t: mz:Tabularize/:\zs\s*/l0<cr>`z
+" one:   two
+" three: four
+nnoremap <Leader>t: mz:Tabularize/:\s*\zs\s/l0<cr>`z
+xnoremap <Leader>t: mz:Tabularize/:\s*\zs\s/l0<cr>`z
