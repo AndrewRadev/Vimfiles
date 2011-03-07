@@ -8,3 +8,9 @@ call ExtractSnipsFile(expand(g:snippets_dir).'jquery.snippets', 'javascript')
 
 call ExtractSnipsFile('_snippets/ruby.snippets', 'ruby')
 call ExtractSnipsFile('_snippets/javascript.snippets', 'javascript')
+
+if filereadable(fnamemodify('gems.tags', ':p'))
+  set tags+=gems.tags
+else
+  set tags+=~/tags/rails33.tags
+endif
