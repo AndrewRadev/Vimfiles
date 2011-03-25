@@ -12,8 +12,8 @@ let g:NERDTreeIgnore = [
       \ ]
 
 " Don't map over J and K
-let g:NERDTreeMapJumpFirstChild = ''
-let g:NERDTreeMapJumpLastChild  = ''
+let g:NERDTreeMapJumpFirstChild = '-'
+let g:NERDTreeMapJumpLastChild  = '-'
 
 " Dbext settings:
 let g:dbext_default_buffer_lines  = 20
