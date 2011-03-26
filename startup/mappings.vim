@@ -92,6 +92,10 @@ nmap . .`[
 " See startup/commands.vim
 nnoremap QQ :Q<cr>
 
+" https://github.com/bjeanes/dot-files/blob/master/vim/vimrc
+" For when you forget to sudo.. Really Write the file.
+command! W write !sudo tee % >/dev/null
+
 " Run current file -- filetype-specific
 nnoremap ! :Run<cr>
 xnoremap ! :Run<cr>
