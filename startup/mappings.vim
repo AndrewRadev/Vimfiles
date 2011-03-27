@@ -80,6 +80,9 @@ nnoremap <Leader><Leader> :split \|<Space>
 " Easy ZoomWin:
 nnoremap ,, :ZoomWin<cr>
 
+" Open new tab more easily:
+nnoremap ,t :tabnew<cr>
+
 " Standard 'go to manual' command
 nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
 
