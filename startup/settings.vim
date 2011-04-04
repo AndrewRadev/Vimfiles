@@ -51,6 +51,11 @@ let maplocalleader="_"
 
 let apache_version = "2.2"
 
+if has('persistent_undo')
+  set undodir=~/.vimundo
+  set undofile
+end
+
 if has("win32")
   set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
 else
