@@ -22,7 +22,8 @@ set listchars=eol:.,tab:\|-
 set nobackup
 set nocscopetag
 set noswapfile
-set notimeout
+set timeout
+set timeoutlen=200
 set nottybuiltin
 set nowritebackup
 set number
