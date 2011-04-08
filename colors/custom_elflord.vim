@@ -38,6 +38,10 @@ hi Repeat       term=underline  ctermfg=White       guifg=white
 hi Special      term=bold       ctermfg=DarkMagenta guifg=Red
 hi Statement    term=bold       ctermfg=Yellow      gui=bold      guifg=#aa4444
 
+" Get visual mode working for my new Mac, temporary
+" (Might be useful having a red visual selection, though, need to consider)
+hi Visual      guibg=#557799  guifg=white    gui=none ctermbg=9 ctermfg=15
+
 " Status Line
 " -----------
 " status line for current window
