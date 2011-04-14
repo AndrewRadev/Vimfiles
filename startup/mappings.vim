@@ -119,24 +119,45 @@ function! s:YankFilename(linewise)
   echo "Yanked filename in clipboard"
 endfunction
 
-" Tabularize mappings:
+" Tabularize mappings
+" For custom Tabularize definitions see after/plugin/tabularize.vim
 
-" one = two
+nnoremap sa :call <SID>TabularizeMapping()<cr>
+function! s:TabularizeMapping()
+  echo "Align >> "
+  let align_type = nr2char(getchar())
+  if align_type     == '='
+    call s:Tabularize('equals')
+  elseif align_type == '>'
+    call s:Tabularize('ruby_hash')
+  elseif align_type == ','
+    call s:Tabularize('commas')
+  elseif align_type == ':'
+    call s:Tabularize('colons')
+  end
+endfunction
+function! s:Tabularize(command)
+  normal! mz
+  exec "Tabularize ".a:command
+  normal! `z
+endfunction
+
+" one   = two
 " three = four
-nnoremap <Leader>t= mz:Tabularize/^[^=]*\zs=/<cr>`z
-xnoremap <Leader>t= mz:Tabularize/^[^=]*\zs=/<cr>`z
+nnoremap <Leader>t= mz:Tabularize equals<cr>`z
+xnoremap <Leader>t= mz:Tabularize equals<cr>`z
 
-" one => two
+" one   => two
 " three => four
-nnoremap <Leader>t> mz:Tabularize/^[^=>]*\zs=>/<cr>`z
-xnoremap <Leader>t> mz:Tabularize/^[^=>]*\zs=>/<cr>`z
+nnoremap <Leader>t> mz:Tabularize ruby_hash<cr>`z
+xnoremap <Leader>t> mz:Tabularize ruby_hash<cr>`z
 
 " one,   two,  three
 " three, four, five
-nnoremap <Leader>t, mz:Tabularize/,\s*\zs\s/l0<cr>`z
-xnoremap <Leader>t, mz:Tabularize/,\s*\zs\s/l0<cr>`z
+nnoremap <Leader>t, mz:Tabularize commas<cr>`z
+xnoremap <Leader>t, mz:Tabularize commas<cr>`z
 
 " one:   two
 " three: four
-nnoremap <Leader>t: mz:Tabularize/:\s*\zs\s/l0<cr>`z
-xnoremap <Leader>t: mz:Tabularize/:\s*\zs\s/l0<cr>`z
+nnoremap <Leader>t: mz:Tabularize colons<cr>`z
+xnoremap <Leader>t: mz:Tabularize colons<cr>`z

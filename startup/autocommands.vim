@@ -4,7 +4,7 @@ augroup custom
   autocmd!
 
   " Clean all useless whitespace:
-  autocmd BufWritePre * CleanGarbage
+  autocmd BufWritePre * CleanWhitespace
 
   " When editing a file, always jump to the last known cursor position.
   autocmd BufReadPost *
