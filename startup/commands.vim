@@ -40,7 +40,8 @@ else
 endif
 
 " Clear up garbage:
-command! CleanGarbage call lib#InPlace('%s/\s\+$//e')
+command! CleanWhitespace call lib#InPlace('%s/\s\+$//e')
+command! CleanAnsiColors call lib#InPlace('%s/\[.\{-}m//ge')
 
 " Fix dos-style line endings:
 command! FixEol call lib#InPlace('%s/$//e')
