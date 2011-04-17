@@ -23,7 +23,7 @@ set nobackup
 set nocscopetag
 set noswapfile
 set timeout
-set timeoutlen=200
+set timeoutlen=1000
 set nottybuiltin
 set nowritebackup
 set number
