@@ -72,3 +72,7 @@ let g:gist_browser_command         = 'firefox %URL% &'
 
 " Javascript indent
 let g:SimpleJsIndenter_BriefMode = 1
+
+" Command-line completion
+cmap <C-j> <Plug>CmdlineCompletionBackward
+cmap <C-k> <Plug>CmdlineCompletionForward
