@@ -82,6 +82,7 @@ nnoremap ,, :ZoomWin<cr>
 
 " Open new tab more easily:
 nnoremap ,t :tabnew<cr>
+nnoremap ,T :tabedit %<cr>gT:quit<cr>
 
 " Standard 'go to manual' command
 nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
