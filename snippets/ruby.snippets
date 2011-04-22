@@ -4,8 +4,10 @@ snippet #!
 
 snippet req
 	require '${1}'${2}
-snippet req.
-	require "#{File.dirname(__FILE__)}/${1}"${2}
+snippet fdname
+	File.expand_path(File.dirname(${1:__FILE__}))
+snippet dname
+	File.dirname(${1:__FILE__})
 snippet cfile
 	__FILE__
 snippet .
@@ -16,6 +18,8 @@ snippet #t
 	# TODO: ${1}
 snippet debug
 	require 'ruby-debug'; debugger
+snippet =
+	#{${1}}
 snippet case
 	case ${1:object}
 	when ${2:condition}
