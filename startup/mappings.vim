@@ -75,7 +75,7 @@ nmap + <C-a>
 nmap - <C-x>
 
 " Easy split:
-nnoremap <Leader><Leader> :split \|<Space>
+nnoremap __ :split \|<Space>
 
 " Easy ZoomWin:
 nnoremap ,, :ZoomWin<cr>
