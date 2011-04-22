@@ -54,8 +54,7 @@ set wildmenu
 set wildmode=list:longest,full
 
 " Timeouts
-set timeout
-set timeoutlen=1000
+set notimeout
 set ttimeout
 set ttimeoutlen=200
 
@@ -64,18 +63,7 @@ set cscopetagorder=1 " Look in tags file first
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 set nocscopetag
 
-" Use vim-based Bulgarian keymaps
-set keymap=custom_bg_phonetic
-set iminsert=0
-set imsearch=-1
-
 let mapleader="_"
 let maplocalleader="_"
 
 let apache_version = "2.2"
-
-if has("win32")
-  set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
-else
-  set guifont=Terminus\ 12,Andale\ Mono\ 11
-endif
