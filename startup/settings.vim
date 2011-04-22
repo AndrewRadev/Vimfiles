@@ -1,46 +1,68 @@
-set autoindent
-set autoread
-set autowrite
-set backspace=indent,eol,start
+" General
 set clipboard=unnamed,html
-set cmdheight=1
-set complete=.,w,b,k
-set completeopt=menuone,longest
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-set cscopetagorder=1 " Look in tags file first
-set diffopt=filler,vertical
-set encoding=utf-8
-set expandtab smarttab
-set ffs=unix
-set fillchars=stl:-,stlnc:-,vert:│,fold:-,diff:-
-set formatoptions=croqn
-set guioptions=crb
 set incsearch nohlsearch
-set laststatus=2
-set linebreak showbreak=+>
-set listchars=eol:.,tab:\|-
-set nobackup
-set nocscopetag
-set noswapfile
-set timeout
-set timeoutlen=1000
 set nottybuiltin
-set nowritebackup
-set number
-set ruler
-set shiftwidth=2 shiftround
 set shortmess=aTI
 set showcmd
 set sidescroll=4
 set splitbelow
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=[%{&ft}]%-14.([%l/%L],%c%V%)\ %P
 set t_Co=256
-set tabstop=2 softtabstop=2
-set ttimeout
-set ttimeoutlen=200
 set updatetime=1000
+
+" Editing
+set complete=.,w,b,k
+set completeopt=menuone,longest
+set formatoptions=croqn
+
+" View formatting
+set number
+set ruler
+set diffopt=filler,vertical
+set fillchars=stl:-,stlnc:-,vert:│,fold:-,diff:-
+set guioptions=crb
+set linebreak showbreak=+>
+set listchars=eol:.,tab:\|-
+set laststatus=2
+
+set statusline=
+set statusline+=%<%f\ %h%m%r             " filename and flags
+set statusline+=%{fugitive#statusline()} " git info
+set statusline+=%=                       " alignment separator
+set statusline+=[%{&ft}]                 " filetype
+set statusline+=%-14.([%l/%L],%c%V%)\ %P " cursor info
+
+" Files
+set autoread autowrite
+set encoding=utf-8
+set ffs=unix
+set nobackup nowritebackup noswapfile
+if has('persistent_undo')
+  set undodir=~/.vimundo
+  set undofile
+end
+
+" Indentation
+set backspace=indent,eol,start
+set autoindent
+set expandtab smarttab
+set tabstop=2 softtabstop=2
+set shiftwidth=2 shiftround
+
+" Command-line
+set cmdheight=1
 set wildmenu
 set wildmode=list:longest,full
+
+" Timeouts
+set timeout
+set timeoutlen=1000
+set ttimeout
+set ttimeoutlen=200
+
+" Cscope
+set cscopetagorder=1 " Look in tags file first
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+set nocscopetag
 
 " Use vim-based Bulgarian keymaps
 set keymap=custom_bg_phonetic
@@ -51,11 +73,6 @@ let mapleader="_"
 let maplocalleader="_"
 
 let apache_version = "2.2"
-
-if has('persistent_undo')
-  set undodir=~/.vimundo
-  set undofile
-end
 
 if has("win32")
   set guifont=Terminus:h15,DejaVu_Sans_Mono:h12
