@@ -92,6 +92,11 @@ imap <C-p> <Esc>pa
 " Returns the cursor where it was before the start of the editing
 nmap . .`[
 
+" Delete surrounding function call
+" TODO doesn't work for method calls
+" TODO relies on braces
+nmap dsf F(bdt(ds(
+
 " See startup/commands.vim
 nnoremap QQ :Q<cr>
 
