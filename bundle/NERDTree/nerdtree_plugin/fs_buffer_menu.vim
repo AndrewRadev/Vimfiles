@@ -7,7 +7,7 @@ let g:loaded_nerdree_buffer_fs_menu = 1
 call NERDTreeAddMenuItem({
       \ 'text':     '(a)dd a childnode',
       \ 'shortcut': 'a',
-      \ 'callback': 'NERDTreeAddNode'
+      \ 'callback': 'NERDTreeAddNodeWithTemporaryBuffer'
       \ })
 call NERDTreeAddMenuItem({
       \ 'text':     '(m)ove the curent node',
@@ -56,7 +56,8 @@ function! s:ExecuteMove(current_node, new_path)
     call current_node.putCursorHere(1, 0)
 
     redraw!
-    echo
+
+    call s:echo('Node moved to '.new_path)
   catch /^NERDTree/
     call s:echoWarning("Node Not Renamed.")
   endtry
@@ -64,28 +65,43 @@ endfunction
 
 "FUNCTION: NERDTreeAddNodeWithTemporaryBuffer(){{{1
 function! NERDTreeAddNodeWithTemporaryBuffer()
-  let curDirNode = g:NERDTreeDirNode.GetSelected()
+  let current_node = g:NERDTreeDirNode.GetSelected()
+  let path         = current_node.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash()
 
-  let newNodeName = input("Add a childnode\n".
-        \ "==========================================================\n".
-        \ "Enter the dir/file name to be created. Dirs end with a '/'\n" .
-        \ "", curDirNode.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash())
+  call <SID>SetupMenuBuffer(current_node, path)
 
-  if newNodeName ==# ''
+  setlocal statusline=Add
+
+  " setup callback
+  nmap <buffer> <cr> :call <SID>ExecuteAdd(b:current_node, getline('.'))<cr>
+  imap <buffer> <cr> <esc>:call <SID>ExecuteAdd(b:current_node, getline('.'))<cr>
+endfunction
+
+"FUNCTION: s:ExecuteAdd(current_node, new_node_name){{{1
+function s:ExecuteAdd(current_node, new_node_name)
+  let current_node  = a:current_node
+  let new_node_name = a:new_node_name
+
+  " close the temporary buffer
+  q!
+
+  if new_node_name ==# ''
     call s:echo("Node Creation Aborted.")
     return
   endif
 
   try
-    let newPath = g:NERDTreePath.Create(newNodeName)
-    let parentNode = b:NERDTreeRoot.findNode(newPath.getParent())
+    let new_path    = g:NERDTreePath.Create(new_node_name)
+    let parent_node = b:NERDTreeRoot.findNode(new_path.getParent())
 
-    let newTreeNode = g:NERDTreeFileNode.New(newPath)
-    if parentNode.isOpen || !empty(parentNode.children)
-      call parentNode.addChild(newTreeNode, 1)
+    let new_tree_node = g:NERDTreeFileNode.New(new_path)
+    if parent_node.isOpen || !empty(parent_node.children)
+      call parent_node.addChild(new_tree_node, 1)
       call NERDTreeRender()
-      call newTreeNode.putCursorHere(1, 0)
+      call new_tree_node.putCursorHere(1, 0)
     endif
+
+    call s:echo('Node created as ' . new_node_name)
   catch /^NERDTree/
     call s:echoWarning("Node Not Created.")
   endtry
