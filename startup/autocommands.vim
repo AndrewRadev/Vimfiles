@@ -22,7 +22,6 @@ augroup custom
   autocmd BufEnter *.html compiler tidy
   autocmd BufEnter *.xml  compiler eclim_xmllint
   autocmd BufEnter *.js   compiler jsl
-  autocmd BufEnter *.hs   compiler ghc
 
   autocmd BufEnter Gemfile RunCommand !bundle install
 
