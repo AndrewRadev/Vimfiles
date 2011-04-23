@@ -14,7 +14,7 @@ runtime! startup/smartword.vim
 runtime! startup/commands.vim
 runtime! startup/autocommands.vim
 runtime! startup/mappings.vim
-runtime! startup/utl.vim
+runtime! startup/external_open.vim
 runtime! startup/acp.vim
 runtime! startup/cyrillic.vim
 
