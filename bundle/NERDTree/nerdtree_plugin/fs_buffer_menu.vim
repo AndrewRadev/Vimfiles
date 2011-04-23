@@ -4,8 +4,13 @@ endif
 let g:loaded_nerdree_buffer_fs_menu = 1
 
 call NERDTreeAddMenuItem({
-      \ 'text': '(M)ove the curent node with temporary buffer',
-      \ 'shortcut': 'M',
+      \ 'text':     '(a)dd a childnode',
+      \ 'shortcut': 'a',
+      \ 'callback': 'NERDTreeAddNode'
+      \ })
+call NERDTreeAddMenuItem({
+      \ 'text':     '(m)ove the curent node',
+      \ 'shortcut': 'm',
       \ 'callback': 'NERDTreeMoveNodeWithTemporaryBuffer'
       \ })
 
