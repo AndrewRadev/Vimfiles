@@ -39,10 +39,6 @@ let g:EasyGrepExtraWarnings     = 1 " -> True
 " TTags options:
 let g:ttags_display = 'quickfix'
 
-" Settings for Haskell mode:
-let g:haddock_browser = "firefox"
-let g:haddock_docdir  = "/usr/share/doc/ghc/html/libraries/"
-
 " Omnicppcomplete options:
 let OmniCpp_NamespaceSearch     = 1 " -> True
 let OmniCpp_ShowPrototypeInAbbr = 1 " -> True
