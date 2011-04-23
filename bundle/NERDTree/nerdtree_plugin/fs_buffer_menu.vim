@@ -1,10 +1,37 @@
-" This NERDTree plugin adds a filesystem manipulation menu exactly like the
-" default one. The difference is that operations that require entering a file
-" path, namely "add", "move" and "copy", use a separate one-line buffer to
-" receive the input, instead of the default vim dialog. This allows you to use
-" vim keybindings to move around the file path.
-"
 " vim: foldmethod=marker
+"
+" This NERDTree plugin adds a filesystem manipulation menu almost exactly like
+" the default one. The difference is that operations that require entering a
+" file path, namely "add", "move" and "copy", use a separate one-line buffer
+" to receive the input, instead of the default vim dialog. This allows you to
+" use vim keybindings to move around the file path.
+"
+" Most of the code here is taken directly from Marty Grenfell's original
+" fs_menu plugin, which can be found here:
+"
+" https://github.com/scrooloose/nerdtree/blob/master/nerdtree_plugin/fs_menu.vim
+"
+" A few minor things have been reformatted, because I liked them better that
+" way.
+"
+" The custom mappings for the special buffer holding the filename are as
+" follows:
+"
+"   - "o" and "O" do nothing in normal mode, to avoid opening up a second line
+"     by accident
+"   - "Escape" (or "Ctrl+[") in normal mode closes the buffer, cancelling the
+"     operation
+"   - "Ctrl+c" closes the buffer in both normal and insert mode, cancelling
+"     the operation
+"   - "Return" in both normal and insert mode executes the operation and
+"     closes the buffer
+"
+" Note that the "Return" key works even when the completion menu is opened --
+" you can't use completion in this buffer (a bit of a problem). To that end,
+" if you're using the Acp plugin, it's automatically disabled for the buffer.
+"
+" If you leave the buffer, it's automatically closed.
+
 if exists("g:loaded_nerdree_buffer_fs_menu")
   finish
 endif
@@ -202,7 +229,8 @@ function! s:SetupMenuBuffer(current_node, path)
   " cancel action
   nmap <buffer> <esc> :q!<cr>
   nmap <buffer> <c-[> :q!<cr>
-  nmap <buffer> <c-c> :q!<cr>
+
+  map <buffer> <c-c> :q!<cr>
   imap <buffer> <c-c> :q!<cr>
 
   " go to the end of the filename, ready to type
