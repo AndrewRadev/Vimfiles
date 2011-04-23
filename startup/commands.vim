@@ -30,21 +30,10 @@ command! RebuildTags !ctags -R .
 " Refresh snippets
 command! RefreshSnips runtime after/plugin/snippets.vim
 
-" Change fonts on the GUI:
-if has("win32")
-  command! FontDejaVu   set guifont=DejaVu_Sans_Mono:h12
-  command! FontTerminus set guifont=Terminus:h15
-else
-  command! FontAndale   set guifont=Andale\ Mono\ 13
-  command! FontTerminus set guifont=Terminus\ 14
-endif
-
 " Clear up garbage:
 command! CleanWhitespace call lib#InPlace('%s/\s\+$//e')
 command! CleanAnsiColors call lib#InPlace('%s/\[.\{-}m//ge')
-
-" Fix dos-style line endings:
-command! FixEol call lib#InPlace('%s/$//e')
+command! CleanEol        call lib#InPlace('%s/$//e')
 
 " Cheat sheet shortcut
 command! -nargs=* -complete=custom,s:CheatComplete Cheat new | call s:Cheat(<q-args>)

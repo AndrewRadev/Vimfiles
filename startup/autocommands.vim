@@ -36,7 +36,7 @@ augroup custom
   autocmd FileType man set nonu
 
   " Custom filetypes:
-  autocmd BufEnter Result     set filetype=dbext_result.txt
+  autocmd BufEnter Result set filetype=dbext_result.txt
 
   " Maximise on open on Win32:
   if has('win32')
