@@ -74,10 +74,10 @@ nnoremap sk :SplitjoinJoin<CR>
 nmap + <C-a>
 nmap - <C-x>
 
-" Easy split:
+" Split and execute any command:
 nnoremap __ :split \|<Space>
 
-" Easy ZoomWin:
+" Zoom current window in and out:
 nnoremap ,, :ZoomWin<cr>
 
 " Open new tab more easily:
