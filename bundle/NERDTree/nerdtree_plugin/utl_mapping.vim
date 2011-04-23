@@ -17,6 +17,11 @@ function! NERDTreeOpenCurrentNodeWithUtl()
 
   let link = currentFile.path.str()
 
+  if has('mac')
+    call system('open '.shellescape(link).' &')
+    return
+  endif
+
   " Convert it to the format Utl expects:
   let link = substitute(link, '\', '/', 'g')
   let link = substitute(link, ' ', '%20', 'g')
