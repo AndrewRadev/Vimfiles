@@ -8,10 +8,14 @@ nnoremap vv _v$h
 
 " <space>x -> :X
 " For easier typing of custom commands
-noremap <space> :call <SID>SpaceMapping()<cr>
-function! s:SpaceMapping()
+nnoremap <space>      :call <SID>SpaceMapping(0)<cr>
+xnoremap <space> :<c-u>call <SID>SpaceMapping(1)<cr>
+function! s:SpaceMapping(visual)
   echo
   let c = nr2char(getchar())
+  if a:visual
+    normal! gv
+  endif
   call feedkeys(':'.toupper(c))
 endfunction
 
@@ -114,7 +118,7 @@ nnoremap gY :call <SID>YankFilename(1)<cr>
 function! s:YankFilename(linewise)
   let @@ = expand('%:p')
 
-	if (a:linewise) " then add a newline at end
+  if (a:linewise) " then add a newline at end
     let @@ .= "\<nl>"
   endif
 
