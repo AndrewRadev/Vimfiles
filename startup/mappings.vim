@@ -131,42 +131,30 @@ endfunction
 " Tabularize mappings
 " For custom Tabularize definitions see after/plugin/tabularize.vim
 
-nnoremap sa :call <SID>TabularizeMapping()<cr>
-function! s:TabularizeMapping()
-  echo "Align >> "
+nnoremap sa      :call <SID>TabularizeMapping(0)<cr>
+xnoremap sa :<c-u>call <SID>TabularizeMapping(1)<cr>
+function! s:TabularizeMapping(visual)
+  echohl ModeMsg | echo "-- ALIGN -- "  | echohl None
   let align_type = nr2char(getchar())
   if align_type     == '='
-    call s:Tabularize('equals')
+    call s:Tabularize('equals', a:visual)
   elseif align_type == '>'
-    call s:Tabularize('ruby_hash')
+    call s:Tabularize('ruby_hash', a:visual)
   elseif align_type == ','
-    call s:Tabularize('commas')
+    call s:Tabularize('commas', a:visual)
   elseif align_type == ':'
-    call s:Tabularize('colons')
+    call s:Tabularize('colons', a:visual)
   end
 endfunction
-function! s:Tabularize(command)
+function! s:Tabularize(command, visual)
   normal! mz
-  exec "Tabularize ".a:command
+
+  let cmd = "Tabularize ".a:command
+  if a:visual
+    let cmd = "'<,'>" . cmd
+  endif
+  exec cmd
+  echo
+
   normal! `z
 endfunction
-
-" one   = two
-" three = four
-nnoremap <Leader>t= mz:Tabularize equals<cr>`z
-xnoremap <Leader>t= mz:Tabularize equals<cr>`z
-
-" one   => two
-" three => four
-nnoremap <Leader>t> mz:Tabularize ruby_hash<cr>`z
-xnoremap <Leader>t> mz:Tabularize ruby_hash<cr>`z
-
-" one,   two,  three
-" three, four, five
-nnoremap <Leader>t, mz:Tabularize commas<cr>`z
-xnoremap <Leader>t, mz:Tabularize commas<cr>`z
-
-" one:   two
-" three: four
-nnoremap <Leader>t: mz:Tabularize colons<cr>`z
-xnoremap <Leader>t: mz:Tabularize colons<cr>`z
