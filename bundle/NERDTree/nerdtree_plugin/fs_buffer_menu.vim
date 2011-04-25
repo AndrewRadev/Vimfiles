@@ -65,7 +65,7 @@ function! NERDTreeMoveNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call <SID>SetupMenuBuffer(current_node, path)
+  call <SID>SetupMenuBuffer(current_node, path, 0)
 
   setlocal statusline=Move
 
@@ -113,7 +113,7 @@ function! NERDTreeAddNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeDirNode.GetSelected()
   let path         = current_node.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash()
 
-  call <SID>SetupMenuBuffer(current_node, path)
+  call <SID>SetupMenuBuffer(current_node, path, 1)
 
   setlocal statusline=Add
 
@@ -157,7 +157,7 @@ function! NERDTreeCopyNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call <SID>SetupMenuBuffer(current_node, path)
+  call <SID>SetupMenuBuffer(current_node, path, 0)
 
   setlocal statusline=Copy
 
@@ -202,8 +202,8 @@ function! s:ExecuteCopy(current_node, new_path)
   redraw
 endfunction
 
-"FUNCTION: s:SetupMenuBuffer(current_node, path){{{1
-function! s:SetupMenuBuffer(current_node, path)
+"FUNCTION: s:SetupMenuBuffer(current_node, path, cursor_at_end){{{1
+function! s:SetupMenuBuffer(current_node, path, cursor_at_end)
   let current_node = a:current_node
   let path         = a:path
 
@@ -233,8 +233,13 @@ function! s:SetupMenuBuffer(current_node, path)
   map <buffer> <c-c> :q!<cr>
   imap <buffer> <c-c> :q!<cr>
 
-  " go to the end of the filename, ready to type
-  call feedkeys('A')
+  if a:cursor_at_end
+    " insert mode at end of path
+    call feedkeys('A')
+  else
+    " go to the beginning of the last path segment
+    normal! $T/
+  end
 endfunction
 
 " FUNCTION: NERDTreeDeleteNode() {{{1
