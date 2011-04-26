@@ -2,8 +2,8 @@
 " FILE: "/home/wlee/.vim/plugin/DirDiff.vim" {{{
 " LAST MODIFICATION: "Mon, 20 Oct 2008 09:04:59 -0500 (wlee)"
 " HEADER MAINTAINED BY: N/A
-" VERSION: 1.1.2
-" (C) 2001-2006 by William Lee, <wl1012@yahoo.com>
+" VERSION: 1.1.3
+" (C) 2001-2010 by William Lee, <wl1012@yahoo.com>
 " }}}
 
 
@@ -22,7 +22,7 @@
 "
 " USAGE:
 "   Put this file in your ~/.vim/plugin
-"
+" 
 "   Doing the following will generate a diff window.
 "
 "       :DirDiff <A:Src Directory> <B:Src Directory>
@@ -61,11 +61,11 @@
 "   'a' - Sets additional arguments for diff, eg. -w to ignore white space,
 "         etc.
 "   'q' - Quit DirDiff
-"
+"    
 "   The following comamnds can be used in the Vim diff mode
 "   \dg - Diff get: maps to :diffget<CR>
 "   \dp - Diff put: maps to :diffput<CR>
-"   \dj - Diff next: (think j for down)
+"   \dj - Diff next: (think j for down) 
 "   \dk - Diff previous: (think k for up)
 "
 "   You can set the following DirDiff variables.  You can add the following
@@ -112,7 +112,7 @@
 "
 " CREDITS:
 "
-"   Please mail any comment/suggestion/patch to
+"   Please mail any comment/suggestion/patch to 
 "   William Lee <wl1012@yahoo.com>
 "
 " LICENSE:
@@ -147,9 +147,12 @@
 "
 "   Florian Delizy for the i18n diff patch
 "   Robert Webb for his sorting function
+"   Wu WeiWei for his Chinese diff patch
 "   Salman Halim, Yosuke Kimura, and others for their suggestions
 "
 " HISTORY:
+"  1.1.3  - Applied the patch to 1.1.2 by Wu WeiWei in order to make diff
+"           that's localized in Chinese work.
 "  1.1.2  - Applied the patch to 1.1.0 instead of 1.0.2. Please do not use
 "           1.1.1
 "  1.1.1  - Make it work with filename with spaces. (Thanks to Atte Kojo)
@@ -168,10 +171,10 @@
 "         exclude and ignore pattern.
 "  0.91 - Clean up delete routine.
 "       - Added interactive mode.
-"       - Added multiple entries of exclude and ignore pattern.
+"       - Added multiple entries of exclude and ignore pattern.  
 "       - Custom configuration through global variables.
 "       - Change exclude and ignore patterns on the fly.
-"
+"        
 "  0.9  - Reorganization of the interface.  Much simplier dialog for
 "         synchronization.  Support for range synchronization option (REALLY
 "         powerful)
@@ -228,7 +231,7 @@ map <unique> <script> <Plug>DirDiffQuit    :call <SID>DirDiffQuit()<CR>
 " eg. in your .vimrc file: let g:DirDiffExcludes = "CVS,*.class,*.o"
 "                          let g:DirDiffIgnore = "Id:"
 "                          " ignore white space in diff
-"                          let g:DirDiffAddArgs = "-w"
+"                          let g:DirDiffAddArgs = "-w" 
 "
 " You can set the pattern that diff excludes.  Defaults to the CVS directory
 if !exists("g:DirDiffExcludes")
@@ -281,6 +284,11 @@ if !exists("g:DirDiffTextOnlyIn")
     let g:DirDiffTextOnlyIn = "Only in "
 endif
 
+" String used for the English equivalent ": ")
+if !exists("g:DirDiffTextOnlyInCenter")
+    let g:DirDiffTextOnlyInCenter = ": "
+endif
+
 " Set some script specific variables:
 "
 let s:DirDiffFirstDiffLine = 6
@@ -319,7 +327,7 @@ elseif has("win32")
     " Windows is somewhat stupid since "del" can only remove the files, not
     " the directory.  The command "rd" would remove files recursively, but it
     " doesn't really work on a file (!).  where is the deltree command???
-
+     
     let s:DirDiffDeleteDirCmd = "rd"
     " rd is by default prompting, we need to handle this in a different way
     let s:DirDiffDeleteDirFlags = "/s"
@@ -429,7 +437,7 @@ function! <SID>DirDiff(srcA, srcB)
 "    nnoremap <buffer> n :call <SID>DirDiffNext()<CR>
 "    nnoremap <buffer> p :call <SID>DirDiffPrev()<CR>
     nnoremap <buffer> s :. call <SID>DirDiffSync()<CR>
-    xnoremap <buffer> s :call <SID>DirDiffSync()<CR>
+    vnoremap <buffer> s :call <SID>DirDiffSync()<CR>
     nnoremap <buffer> u :call <SID>DirDiffUpdate()<CR>
     nnoremap <buffer> x :call <SID>ChangeExcludes()<CR>
     nnoremap <buffer> a :call <SID>ChangeArguments()<CR>
@@ -437,7 +445,7 @@ function! <SID>DirDiff(srcA, srcB)
     nnoremap <buffer> q :call <SID>DirDiffQuit()<CR>
 
     nnoremap <buffer> o    :call <SID>DirDiffOpen()<CR>
-    nnoremap <buffer> <CR>  :call <SID>DirDiffOpen()<CR>
+    nnoremap <buffer> <CR>  :call <SID>DirDiffOpen()<CR>  
     nnoremap <buffer> <2-Leftmouse> :call <SID>DirDiffOpen()<CR>
     call <SID>SetupSyntax()
 
@@ -447,7 +455,7 @@ endfunction
 
 " Set up syntax highlighing for the diff window
 function! <SID>SetupSyntax()
-  if has("syntax") && exists("g:syntax_on")
+  if has("syntax") && exists("g:syntax_on") 
       "&& !has("syntax_items")
     syn match DirDiffSrcA               "\[A\]"
     syn match DirDiffSrcB               "\[B\]"
@@ -682,7 +690,7 @@ function! <SID>DirDiffSyncHelper(AB, line)
             let fileFrom = fileB
             let fileTo = fileA
         endif
-    else
+    else 
         echo "There is no diff here!"
         " Error
         return 1
@@ -778,11 +786,11 @@ endfunction
 
 "Returns the source (A or B) of the "Only" line
 function! <SID>ParseOnlySrc(line)
-    return substitute(a:line, '^.*' . s:DirDiffDiffOnlyLine . '\[\(.\)\].*:.*', '\1', '')
+    return substitute(a:line, '^.*' . s:DirDiffDiffOnlyLine . '\[\(.\)\].*' . s:DirDiffDiffOnlyLineCenter . '.*', '\1', '')
 endfunction
 
 function! <SID>ParseOnlyFile(line)
-    let regex = '^.*' . s:DirDiffDiffOnlyLine . '\[.\]\(.*\): \(.*\)'
+    let regex = '^.*' . s:DirDiffDiffOnlyLine . '\[.\]\(.*\)' . s:DirDiffDiffOnlyLineCenter . '\(.*\)'
     let root = substitute(a:line, regex , '\1', '')
     let file = root . s:sep . substitute(a:line, regex , '\2', '')
     return file
@@ -912,7 +920,7 @@ function! <SID>AreDiffWinsOpened()
 endfunction
 
 " The given line begins with the "Only in"
-function! <SID>IsOnly(line)
+function! <SID>IsOnly(line)	
     return (match(a:line, "^ *" . s:DirDiffDiffOnlyLine . "\\|^==> " . s:DirDiffDiffOnlyLine ) == 0)
 endfunction
 
@@ -1006,6 +1014,7 @@ function! <SID>GetDiffStrings()
     " what's set in the global variables
 
     if (g:DirDiffDynamicDiffText == 0)
+        let s:DirDiffDiffOnlyLineCenter = g:DirDiffTextOnlyInCenter
         let s:DirDiffDiffOnlyLine = g:DirDiffTextOnlyIn
         let s:DirDiffDifferLine = g:DirDiffTextFiles
         let s:DirDiffDifferAndLine = g:DirDiffTextAnd
@@ -1032,27 +1041,29 @@ function! <SID>GetDiffStrings()
     "echo "First line: " . getline(1)
     "echo "tmp1: " . tmp1
     "echo "tmp1rx: " . tmp1rx
-	let s:DirDiffDiffOnlyLine = substitute( getline(1), tmp1rx . ".*$", "", '')
+    let regex = '\(^.*\)' . tmp1rx . '\(.*\)' . "test"
+	let s:DirDiffDiffOnlyLine = substitute( getline(1), regex, '\1', '') 
+	let s:DirDiffDiffOnlyLineCenter = substitute( getline(1), regex, '\2', '') 
     "echo "DirDiff Only: " . s:DirDiffDiffOnlyLine
-
+	
 	q
 
 	" Now let's get the Differ string
     "echo "Getting the diff in GetDiffStrings"
-
+	
 	silent exe "!echo testdifferent > \"" . tmp2 . s:sep . "test" . "\""
 	silent exe "!diff -r --brief \"" . tmp1 . "\" \"" . tmp2 . "\" > \"" . tmpdiff . "\""
-
+	
 	silent exe "split ". tmpdiff
-	let s:DirDiffDifferLine = substitute( getline(1), tmp1rx . ".*$", "", '')
+	let s:DirDiffDifferLine = substitute( getline(1), tmp1rx . ".*$", "", '') 
     " Note that the diff on cygwin may output '/' instead of '\' for the
     " separator, so we need to accomodate for both cases
     let andrx = "^.*" . tmp1rx . "[\\\/]test\\(.*\\)" . tmp2rx . "[\\\/]test.*$"
     let endrx = "^.*" . tmp1rx . "[\\\/]test.*" . tmp2rx . "[\\\/]test\\(.*$\\)"
     "echo "andrx : " . andrx
     "echo "endrx : " . endrx
-	let s:DirDiffDifferAndLine = substitute( getline(1), andrx , "\\1", '')
-    let s:DirDiffDifferEndLine = substitute( getline(1), endrx, "\\1", '')
+	let s:DirDiffDifferAndLine = substitute( getline(1), andrx , "\\1", '') 
+    let s:DirDiffDifferEndLine = substitute( getline(1), endrx, "\\1", '') 
 
 	"echo "s:DirDiffDifferLine = " . s:DirDiffDifferLine
 	"echo "s:DirDiffDifferAndLine = " . s:DirDiffDifferAndLine
@@ -1066,5 +1077,13 @@ function! <SID>GetDiffStrings()
 	call <SID>Delete(tmp1)
 	call <SID>Delete(tmp2)
 	call <SID>Delete(tmpdiff)
+
+	"avoid get diff text again
+	let g:DirDiffTextOnlyInCenter = s:DirDiffDiffOnlyLineCenter
+	let g:DirDiffTextOnlyIn = s:DirDiffDiffOnlyLine
+	let g:DirDiffTextFiles = s:DirDiffDifferLine
+	let g:DirDiffTextAnd = s:DirDiffDifferAndLine
+	let g:DirDiffTextDiffer = s:DirDiffDifferEndLine
+	let g:DirDiffDynamicDiffText = 0
 
 endfunction
