@@ -9,8 +9,17 @@ function! OpenURL(url)
 
   if has('mac')
     silent call system('open '.url)
-    echo "Opening " . url
+  elseif has('unix')
+    if executable('xdg-open')
+      silent call system('xdg-open '.url.' 2>&1 > /dev/null &')
+    else
+      echoerr "You need to install xdg-open to be able to open urls"
+      return
+    end
   else
     echoerr "Don't know how to open an url on this system"
+    return
   end
+
+  echo "Opening ".url
 endfunction
