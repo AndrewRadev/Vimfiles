@@ -56,7 +56,7 @@ function! s:CompleteGenerate(A, L, P)
   return sort(keys(filter(copy(s:sf_generate_commands), "v:key =~'^".a:A."'")))
 endfunction
 
-command! Preview Utl ol http://localhost
+command! Preview Open http://localhost
 
 runtime! scripts/symfony/navigation.vim
 runtime! scripts/symfony/includeexpr.vim

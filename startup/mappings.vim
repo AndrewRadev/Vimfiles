@@ -89,7 +89,7 @@ nnoremap ,t :tabnew<cr>
 nnoremap ,T :tabedit %<cr>gT:quit<cr>
 
 " Standard 'go to manual' command
-nmap gm :exe ":Utl ol http://google.com/search?q=" . expand("<cword>")<cr>
+nmap gm :exe OpenURL('http://google.com/search?q=' . expand("<cword>"))<cr>
 
 " Paste in insert mode
 imap <C-p> <Esc>pa

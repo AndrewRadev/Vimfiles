@@ -19,7 +19,7 @@ let b:surround_{char2nr('F')} = "<?php for (\1for: \1): ?>\r<?php endfor ?>"
 let b:surround_{char2nr('E')} = "<?php foreach (\1foreach: \1): ?>\r<?php endforeach ?>"
 
 " Look up the word under the cursor on php.net:
-nmap <buffer> gm :exe ":Utl ol http://php.net/manual-lookup.php?pattern=" . expand("<cword>")<cr>
+nmap <buffer> gm :call OpenURL('http://php.net/manual-lookup.php?pattern=' . expand("<cword>"))<cr>
 
 command! -buffer Outline call lib#Outline('\<function\>')
 
