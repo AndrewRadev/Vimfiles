@@ -88,14 +88,8 @@ function! s:ExecuteMove(current_node, new_path)
     call current_node.rename(new_path)
     call NERDTreeRender()
 
-    " if the node is open in a buffer, ask the user if they want to close that
-    " buffer
     if bufnum != -1
-      let prompt = "\nNode renamed.\n\n"
-      let prompt .= "The old file is open in buffer ". bufnum . (bufwinnr(bufnum) ==# -1 ? " (hidden)" : "") . '.'
-      let prompt .= "Delete this buffer? (yN)"
-
-      call s:promptToDelBuffer(bufnum, prompt)
+      call s:delBuffer(bufnum)
     endif
 
     call current_node.putCursorHere(1, 0)
@@ -262,18 +256,14 @@ function! NERDTreeDeleteNode()
         let confirmed = choice ==# 'y'
     endif
 
-
     if confirmed
         try
             call currentNode.delete()
             call NERDTreeRender()
 
-            "if the node is open in a buffer, ask the user if they want to
-            "close that buffer
             let bufnum = bufnr(currentNode.path.str())
             if buflisted(bufnum)
-                let prompt = "\nNode deleted.\n\nThe file is open in buffer ". bufnum . (bufwinnr(bufnum) ==# -1 ? " (hidden)" : "") .". Delete this buffer? (yN)"
-                call s:promptToDelBuffer(bufnum, prompt)
+                call s:delBuffer(bufnum)
             endif
 
             redraw
@@ -298,17 +288,11 @@ function! s:echoWarning(msg)
   echohl normal
 endfunction
 
-"FUNCTION: s:promptToDelBuffer(bufnum, msg){{{1
-"prints out the given msg and, if the user responds by pushing 'y' then the
-"buffer with the given bufnum is deleted
+"FUNCTION: s:delBuffer(bufnum)
+"Delete the buffer with the given bufnum.
 "
 "Args:
 "bufnum: the buffer that may be deleted
-"msg: a message that will be echoed to the user asking them if they wish to
-"     del the buffer
-function! s:promptToDelBuffer(bufnum, msg)
-  echo a:msg
-  if nr2char(getchar()) ==# 'y'
-    exec "silent bdelete! " . a:bufnum
-  endif
+function! s:delBuffer(bufnum)
+  exec "silent bdelete! " . a:bufnum
 endfunction
