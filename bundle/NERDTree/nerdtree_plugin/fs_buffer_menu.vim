@@ -238,41 +238,41 @@ endfunction
 
 " FUNCTION: NERDTreeDeleteNode() {{{1
 function! NERDTreeDeleteNode()
-    let currentNode = g:NERDTreeFileNode.GetSelected()
-    let confirmed = 0
+  let currentNode = g:NERDTreeFileNode.GetSelected()
+  let confirmed = 0
 
-    if currentNode.path.isDirectory
-        let choice =input("Delete the current node\n" .
-                         \ "==========================================================\n" .
-                         \ "STOP! To delete this entire directory, type 'yes'\n" .
-                         \ "" . currentNode.path.str() . ": ")
-        let confirmed = choice ==# 'yes'
-    else
-        echo "Delete the current node\n" .
-           \ "==========================================================\n".
-           \ "Are you sure you wish to delete the node:\n" .
-           \ "" . currentNode.path.str() . " (yN):"
-        let choice = nr2char(getchar())
-        let confirmed = choice ==# 'y'
-    endif
+  if currentNode.path.isDirectory
+    let choice =input("Delete the current node\n" .
+          \ "==========================================================\n" .
+          \ "STOP! To delete this entire directory, type 'yes'\n" .
+          \ "" . currentNode.path.str() . ": ")
+    let confirmed = choice ==# 'yes'
+  else
+    echo "Delete the current node\n" .
+          \ "==========================================================\n".
+          \ "Are you sure you wish to delete the node:\n" .
+          \ "" . currentNode.path.str() . " (yN):"
+    let choice = nr2char(getchar())
+    let confirmed = choice ==# 'y'
+  endif
 
-    if confirmed
-        try
-            call currentNode.delete()
-            call NERDTreeRender()
+  if confirmed
+    try
+      call currentNode.delete()
+      call NERDTreeRender()
 
-            let bufnum = bufnr(currentNode.path.str())
-            if buflisted(bufnum)
-                call s:delBuffer(bufnum)
-            endif
+      let bufnum = bufnr(currentNode.path.str())
+      if buflisted(bufnum)
+        call s:delBuffer(bufnum)
+      endif
 
-            redraw
-        catch /^NERDTree/
-            call s:echoWarning("Could not remove node")
-        endtry
-    else
-        call s:echo("delete aborted")
-    endif
+      redraw
+    catch /^NERDTree/
+      call s:echoWarning("Could not remove node")
+    endtry
+  else
+    call s:echo("delete aborted")
+  endif
 endfunction
 
 "FUNCTION: s:echo(msg){{{1
