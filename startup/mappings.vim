@@ -73,6 +73,8 @@ nnoremap <C-n>d :lcs find d <C-R>=expand("<cword>")<CR><CR>
 " Splitting and joining code blocks
 nnoremap sj :SplitjoinSplit<CR>
 nnoremap sk :SplitjoinJoin<CR>
+" Execute normal vim join if in visual mode
+xnoremap sk J
 
 " Easier increment/decrement:
 nmap + <C-a>

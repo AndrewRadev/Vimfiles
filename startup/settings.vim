@@ -13,6 +13,7 @@ set updatetime=1000
 set complete=.,w,b,k
 set completeopt=menuone,longest
 set formatoptions=croqn
+set nojoinspaces
 
 " View formatting
 set number

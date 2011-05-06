@@ -65,7 +65,7 @@ function! NERDTreeMoveNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call <SID>SetupMenuBuffer(current_node, path)
+  call <SID>SetupMenuBuffer(current_node, path, 0)
 
   setlocal statusline=Move
 
@@ -88,14 +88,8 @@ function! s:ExecuteMove(current_node, new_path)
     call current_node.rename(new_path)
     call NERDTreeRender()
 
-    " if the node is open in a buffer, ask the user if they want to close that
-    " buffer
     if bufnum != -1
-      let prompt = "\nNode renamed.\n\n"
-      let prompt .= "The old file is open in buffer ". bufnum . (bufwinnr(bufnum) ==# -1 ? " (hidden)" : "") . '.'
-      let prompt .= "Delete this buffer? (yN)"
-
-      call s:promptToDelBuffer(bufnum, prompt)
+      call s:delBuffer(bufnum)
     endif
 
     call current_node.putCursorHere(1, 0)
@@ -113,7 +107,7 @@ function! NERDTreeAddNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeDirNode.GetSelected()
   let path         = current_node.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash()
 
-  call <SID>SetupMenuBuffer(current_node, path)
+  call <SID>SetupMenuBuffer(current_node, path, 1)
 
   setlocal statusline=Add
 
@@ -157,7 +151,7 @@ function! NERDTreeCopyNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call <SID>SetupMenuBuffer(current_node, path)
+  call <SID>SetupMenuBuffer(current_node, path, 0)
 
   setlocal statusline=Copy
 
@@ -202,8 +196,8 @@ function! s:ExecuteCopy(current_node, new_path)
   redraw
 endfunction
 
-"FUNCTION: s:SetupMenuBuffer(current_node, path){{{1
-function! s:SetupMenuBuffer(current_node, path)
+"FUNCTION: s:SetupMenuBuffer(current_node, path, cursor_at_end){{{1
+function! s:SetupMenuBuffer(current_node, path, cursor_at_end)
   let current_node = a:current_node
   let path         = a:path
 
@@ -233,51 +227,52 @@ function! s:SetupMenuBuffer(current_node, path)
   map <buffer> <c-c> :q!<cr>
   imap <buffer> <c-c> :q!<cr>
 
-  " go to the end of the filename, ready to type
-  call feedkeys('A')
+  if a:cursor_at_end
+    " insert mode at end of path
+    call feedkeys('A')
+  else
+    " go to the beginning of the last path segment
+    normal! $T/
+  end
 endfunction
 
 " FUNCTION: NERDTreeDeleteNode() {{{1
 function! NERDTreeDeleteNode()
-    let currentNode = g:NERDTreeFileNode.GetSelected()
-    let confirmed = 0
+  let currentNode = g:NERDTreeFileNode.GetSelected()
+  let confirmed = 0
 
-    if currentNode.path.isDirectory
-        let choice =input("Delete the current node\n" .
-                         \ "==========================================================\n" .
-                         \ "STOP! To delete this entire directory, type 'yes'\n" .
-                         \ "" . currentNode.path.str() . ": ")
-        let confirmed = choice ==# 'yes'
-    else
-        echo "Delete the current node\n" .
-           \ "==========================================================\n".
-           \ "Are you sure you wish to delete the node:\n" .
-           \ "" . currentNode.path.str() . " (yN):"
-        let choice = nr2char(getchar())
-        let confirmed = choice ==# 'y'
-    endif
+  if currentNode.path.isDirectory
+    let choice =input("Delete the current node\n" .
+          \ "==========================================================\n" .
+          \ "STOP! To delete this entire directory, type 'yes'\n" .
+          \ "" . currentNode.path.str() . ": ")
+    let confirmed = choice ==# 'yes'
+  else
+    echo "Delete the current node\n" .
+          \ "==========================================================\n".
+          \ "Are you sure you wish to delete the node:\n" .
+          \ "" . currentNode.path.str() . " (yN):"
+    let choice = nr2char(getchar())
+    let confirmed = choice ==# 'y'
+  endif
 
+  if confirmed
+    try
+      call currentNode.delete()
+      call NERDTreeRender()
 
-    if confirmed
-        try
-            call currentNode.delete()
-            call NERDTreeRender()
+      let bufnum = bufnr(currentNode.path.str())
+      if buflisted(bufnum)
+        call s:delBuffer(bufnum)
+      endif
 
-            "if the node is open in a buffer, ask the user if they want to
-            "close that buffer
-            let bufnum = bufnr(currentNode.path.str())
-            if buflisted(bufnum)
-                let prompt = "\nNode deleted.\n\nThe file is open in buffer ". bufnum . (bufwinnr(bufnum) ==# -1 ? " (hidden)" : "") .". Delete this buffer? (yN)"
-                call s:promptToDelBuffer(bufnum, prompt)
-            endif
-
-            redraw
-        catch /^NERDTree/
-            call s:echoWarning("Could not remove node")
-        endtry
-    else
-        call s:echo("delete aborted")
-    endif
+      redraw
+    catch /^NERDTree/
+      call s:echoWarning("Could not remove node")
+    endtry
+  else
+    call s:echo("delete aborted")
+  endif
 endfunction
 
 "FUNCTION: s:echo(msg){{{1
@@ -293,17 +288,11 @@ function! s:echoWarning(msg)
   echohl normal
 endfunction
 
-"FUNCTION: s:promptToDelBuffer(bufnum, msg){{{1
-"prints out the given msg and, if the user responds by pushing 'y' then the
-"buffer with the given bufnum is deleted
+"FUNCTION: s:delBuffer(bufnum)
+"Delete the buffer with the given bufnum.
 "
 "Args:
 "bufnum: the buffer that may be deleted
-"msg: a message that will be echoed to the user asking them if they wish to
-"     del the buffer
-function! s:promptToDelBuffer(bufnum, msg)
-  echo a:msg
-  if nr2char(getchar()) ==# 'y'
-    exec "silent bdelete! " . a:bufnum
-  endif
+function! s:delBuffer(bufnum)
+  exec "silent bdelete! " . a:bufnum
 endfunction
