@@ -106,3 +106,17 @@ function! s:ProjInit(...)
 
   exec "Proj ".project_name
 endfunction
+
+" Make filename under cursor relative/absolute
+command! -range Absolutize call <SID>TransformFilenameUnderCursor('p')
+command! -range Relativize call <SID>TransformFilenameUnderCursor('.')
+function! s:TransformFilenameUnderCursor(modifier)
+  let transformation = 'fnamemodify(submatch(0), ":'.a:modifier.'")'
+  let current_mode   = mode()
+
+  if current_mode == 'v' || current_mode == 'V'
+    call lib#InPlace('s/\%V.*\%V/\='.transformation)
+  else
+    call lib#InPlace('s/\f*\%#\f*/\='.transformation)
+  endif
+endfunction
