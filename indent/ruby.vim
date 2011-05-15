@@ -39,11 +39,12 @@ function GetRubyIndent()
   endif
 
   " Add a 'shiftwidth' after lines beginning with:
-  " module, class, dev, if, for, while, until, else, elsif, case, when, {
+  " module, class, dev, if, for, while, until, else, elsif, case, when, {, [
   let ind = indent(lnum)
   let flag = 0
   if getline(lnum) =~ '^\s*\(module\>\|class\>\|def\>\|if\>\|for\>\|while\>\|until\>\|else\>\|elsif\>\|case\>\|when\>\|unless\|begin\|ensure\>\|rescue\>\)'
         \ || getline(lnum) =~ '{\s*$'
+        \ || getline(lnum) =~ '[\s*$'
         \ || getline(lnum) =~ '\({\|\<do\>\).*|.*|\s*$'
         \ || getline(lnum) =~ '\<do\>\(\s*#.*\)\=$'
         \ || getline(lnum) =~ '\v^(.*\S+.*)\s+\=\s+if'
@@ -59,8 +60,8 @@ function GetRubyIndent()
     let ind = ind - &sw
   endif
 
-  " Subtract a 'shiftwidth' on end, else and, elsif, when and }
-  if getline(v:lnum) =~ '^\s*\(end\>\|else\>\|elsif\>\|when\>\|ensure\>\|rescue\>\|}\)'
+  " Subtract a 'shiftwidth' on end, else and, elsif, when, ] and }
+  if getline(v:lnum) =~ '^\s*\(end\>\|else\>\|elsif\>\|when\>\|ensure\>\|rescue\>\|}\|]\)'
     let ind = ind - &sw
   endif
 
