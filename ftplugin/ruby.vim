@@ -25,13 +25,13 @@ let b:surround_indent = 1
 ConsoleCommand !irb -r % <args>
 
 if !exists('b:erb_loaded') && &ft == 'ruby'
-	" fold nicely -- experimental
-	call RubyFold()
+  " fold nicely -- experimental
+  call RubyFold()
 
   RunCommand !ruby % <args>
 endif
 
 if @% =~ 'step_definitions'
-  let b:fswitchdst	= 'feature'
+  let b:fswitchdst      = 'feature'
   let b:fswitchlocs = 'rel:..'
 endif

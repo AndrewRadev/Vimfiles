@@ -6,9 +6,9 @@
 " autocompletion. Ripped directly from phpcomplete.vim
 function! lib#CursorIsInsidePhpMarkup()
   let phpbegin = searchpairpos('<?', '', '?>', 'bWn',
-      \ 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\|comment"')
+        \ 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\|comment"')
   let phpend   = searchpairpos('<?', '', '?>', 'Wn',
-      \ 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\|comment"')
+        \ 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string\|comment"')
   return !(phpbegin == [0,0] && phpend == [0,0])
 endfunction
 
@@ -77,10 +77,10 @@ endfunction
 
 " Trimming functions. Should be obvious.
 function! lib#Ltrim(s)
-	return substitute(a:s, '^\s\+', '', '')
+  return substitute(a:s, '^\s\+', '', '')
 endfunction
 function! lib#Rtrim(s)
-	return substitute(a:s, '\s\+$', '', '')
+  return substitute(a:s, '\s\+$', '', '')
 endfunction
 function! lib#Trim(s)
   return lib#Rtrim(lib#Ltrim(a:s))
@@ -195,15 +195,15 @@ endfunction
 
 " The vim includeexpr
 function! lib#VimIncludeExpression(fname)
-	if getline('.') =~ '^runtime'
-		for dir in split(&rtp, ',')
-			let fname = dir.'/'.a:fname
+  if getline('.') =~ '^runtime'
+    for dir in split(&rtp, ',')
+      let fname = dir.'/'.a:fname
 
-			if(filereadable(fname))
-				return fname
-			endif
-		endfor
-	endif
+      if(filereadable(fname))
+        return fname
+      endif
+    endfor
+  endif
 
   return a:fname
 endfunction

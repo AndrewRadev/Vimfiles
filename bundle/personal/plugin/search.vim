@@ -10,7 +10,7 @@ command! -nargs=* -complete=customlist,s:WebSearchComplete Search call s:WebSear
 command! -nargs=* -range Google call s:GoogleVisual(<q-args>)
 
 function! s:GoogleVisual(additional_args)
-	" Yank last selected text in 'z' register
+  " Yank last selected text in 'z' register
   normal! gv"zy
 
   call s:WebSearch('google', @z, a:additional_args)

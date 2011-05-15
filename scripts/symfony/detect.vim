@@ -58,7 +58,7 @@ function! DetectModelName()
   endif
 
   let rx = lib#RxPath('lib', s:anything, 'doctrine', s:capture_group)
-	let rx .= '\(Table\|FormFilter\|Form\)\{,1}'
+  let rx .= '\(Table\|FormFilter\|Form\)\{,1}'
   let rx .= '\.class\.php'
   let rx .= '$'
 

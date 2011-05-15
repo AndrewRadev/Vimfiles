@@ -45,12 +45,12 @@ function! Translate(...)
     return
   endif
 
-	" Place last selected text in 'z' register
+  " Place last selected text in 'z' register
   normal! gv"zd
 
-	" Replace 'z' register
+  " Replace 'z' register
   let @z = ruby#call('google_translate', @z, from, to)
 
-	" Replace selected text with 'z' register
+  " Replace selected text with 'z' register
   normal! "zgp
 endfunction

@@ -138,7 +138,7 @@ function! symfony#CurrentModelName()
   endif
 
   let rx = lib#RxPath('lib', s:anything, 'doctrine', s:capture_group)
-	let rx .= '\(Table\|FormFilter\|Form\)\{,1}'
+  let rx .= '\(Table\|FormFilter\|Form\)\{,1}'
   let rx .= '\.class\.php'
   let rx .= '$'
 
@@ -207,23 +207,23 @@ endfunction
 function! symfony#CompleteModule(A, L, P)
   let rx = s:PS.s:capture_group.'$'
 
-	if len(split(substitute(a:L, a:A.'$', '', ''))) == 2
+  if len(split(substitute(a:L, a:A.'$', '', ''))) == 2
     let app_dict = {}
     for path in split(glob('apps/*'))
       let app = lib#ExtractRx(path, rx, '\1')
       let app_dict[app] = 1
     endfor
 
-		return sort(keys(filter(copy(app_dict), "v:key =~'^".a:A."'")))
-	else
+    return sort(keys(filter(copy(app_dict), "v:key =~'^".a:A."'")))
+  else
     let module_dict = {}
     for path in split(glob('apps/*/modules/*'))
       let module = lib#ExtractRx(path, rx, '\1')
       let module_dict[module] = 1
     endfor
 
-		return sort(keys(filter(module_dict, "v:key =~'^".a:A."'")))
-	endif
+    return sort(keys(filter(module_dict, "v:key =~'^".a:A."'")))
+  endif
 endfunction
 
 function! symfony#CompleteModel(A, L, P)
