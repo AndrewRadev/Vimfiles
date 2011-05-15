@@ -10,29 +10,9 @@ function! RubyFold()
 
   " fold functions
   normal! gg
-  while 1
-    let def_line = search('\<def\>', 'W')
-    if def_line <= 0
-      break
-    endif
 
-    " ignore def's in comments
-    if getline(def_line) =~ '#.*\<def\>'
-      normal! j
-      continue
-    endif
-
-    let ws = lib#ExtractRx(getline('.'), '^\(\s*\)', '\1')
-
-    let end_line = search('^'.ws.'end', 'W')
-    if end_line <= 0
-      break
-    endif
-
-    let end_line = s:ConsumeWhitespace(end_line)
-
-    exec def_line.','.end_line.'fold'
-  endwhile
+  call s:FoldAreas('\<def\>')
+  " call s:FoldAreas('\<module\>')
 
   " fold public, private, protected scopes
   normal! gg
@@ -52,6 +32,7 @@ function! RubyFold()
   endwhile
 
   call cursor(save_cursor)
+  normal! zM
 endfunction
 
 function! RubyFoldText()
@@ -62,6 +43,33 @@ function! RubyFoldText()
   else
     return foldtext()
   endif
+endfunction
+
+function! s:FoldAreas(pattern)
+  while 1
+    let start_line = search(a:pattern, 'W')
+    if start_line <= 0
+      break
+    endif
+
+    " ignore a:pattern in comments
+    if getline(start_line) =~ '#.*' . a:pattern
+      normal! j
+      continue
+    endif
+
+    let ws = lib#ExtractRx(getline('.'), '^\(\s*\)', '\1')
+
+    let end_line = search('^'.ws.'end', 'W')
+    if end_line <= 0
+      break
+    endif
+
+    let end_line = s:ConsumeWhitespace(end_line)
+
+    exec start_line.','.end_line.'fold'
+    normal! zo
+  endwhile
 endfunction
 
 function! s:ConsumeWhitespace(line)
