@@ -28,10 +28,12 @@ if !exists('b:erb_loaded') && &ft == 'ruby'
   " fold nicely -- experimental
   call RubyFold()
 
+  command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
+
   RunCommand !ruby % <args>
 endif
 
 if @% =~ 'step_definitions'
-  let b:fswitchdst      = 'feature'
+  let b:fswitchdst  = 'feature'
   let b:fswitchlocs = 'rel:..'
 endif
