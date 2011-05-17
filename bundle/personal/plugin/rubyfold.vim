@@ -7,15 +7,13 @@ function! RubyFold()
   " remove all folds for now
   set foldmethod=manual
   normal! zE
-
-  " fold functions
   normal! gg
 
-  call s:FoldAreas('\<def\>')
-  " call s:FoldAreas('\<module\>')
+  " fold functions and modules
+  call s:FoldAreas('\<def\>',    0, line('$'))
+  call s:FoldAreas('\<module\>', 0, line('$'))
 
   " fold public, private, protected scopes
-  normal! gg
   let scope_regex = '\v^\s*(public|private|protected)\s*$'
   while 1
     let scope_line = search(scope_regex, 'W')
@@ -31,7 +29,6 @@ function! RubyFold()
     exec scope_line.','.end_line.'fold'
   endwhile
 
-  call cursor(save_cursor)
   normal! zM
 endfunction
 
@@ -45,9 +42,16 @@ function! RubyFoldText()
   endif
 endfunction
 
-function! s:FoldAreas(pattern)
+function! s:FoldAreas(pattern, from, to)
+  let from = a:from
+  let to   = a:to
+
+  let save_cursor = getpos('.')
+
+  call cursor(from, 0)
+
   while 1
-    let start_line = search(a:pattern, 'W')
+    let start_line = search(a:pattern, 'Wc', to)
     if start_line <= 0
       break
     endif
@@ -60,7 +64,7 @@ function! s:FoldAreas(pattern)
 
     let ws = lib#ExtractRx(getline('.'), '^\(\s*\)', '\1')
 
-    let end_line = search('^'.ws.'end', 'W')
+    let end_line = search('^'.ws.'end', 'W', to)
     if end_line <= 0
       break
     endif
@@ -69,7 +73,13 @@ function! s:FoldAreas(pattern)
 
     exec start_line.','.end_line.'fold'
     normal! zo
+
+    if start_line >= from && end_line <= to
+      call s:FoldAreas(a:pattern, start_line + 1, end_line - 1)
+    endif
   endwhile
+
+  call setpos('.', save_cursor)
 endfunction
 
 function! s:ConsumeWhitespace(line)
