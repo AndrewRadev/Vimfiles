@@ -31,6 +31,8 @@ augroup custom
   autocmd BufEnter jquery.*.js  set filetype=jquery
   autocmd BufEnter httpd*.conf  set filetype=apache
 
+  autocmd User BufEnterRails Rnavcommand factory spec/factories -glob=* -suffix=.rb -default=model()
+
   " For some reason, this doesn't work in ftplugin/man.vim
   autocmd FileType man set nonu
 
