@@ -10,8 +10,13 @@ function! RubyFold()
   normal! gg
 
   " fold functions and modules
-  call s:FoldAreas('\<def\>',    0, line('$'))
-  call s:FoldAreas('\<module\>', 0, line('$'))
+  if &ft =~ 'rspec'
+    call s:FoldAreas('it .* do',       0, line('$'))
+    call s:FoldAreas('describe .* do', 0, line('$'))
+  else
+    call s:FoldAreas('\<def\>',    0, line('$'))
+    call s:FoldAreas('\<module\>', 0, line('$'))
+  endif
 
   " fold public, private, protected scopes
   let scope_regex = '\v^\s*(public|private|protected)\s*$'

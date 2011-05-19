@@ -24,13 +24,15 @@ let b:surround_indent = 1
 
 ConsoleCommand !irb -r % <args>
 
-if !exists('b:erb_loaded') && &ft == 'ruby'
+if !exists('b:erb_loaded')
   " fold nicely -- experimental
   call RubyFold()
 
-  command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
+  if &ft == 'ruby'
+    command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
 
-  RunCommand !ruby % <args>
+    RunCommand !ruby % <args>
+  endif
 endif
 
 if @% =~ 'step_definitions'
