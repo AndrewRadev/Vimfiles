@@ -25,24 +25,22 @@ snippet desindex
 			get :index, {}.merge(opts)
 		end
 
-		it "should render index template" do
+		it "renders the index template" do
 			make_request
-			response.should render_template(:index)
+			response.should render_template :index
 		end
 	end
 snippet desshow
 	describe "show" do
-		before :each do
-			@${1:model} = Factory(:$1)
-		end
+		let(:${1:model}) { Factory(:$1) }
 
 		def make_request(opts = {})
-			get :show, { :id => @$1 }.merge(opts)
+			get :show, { :id => $1 }.merge(opts)
 		end
 
-		it "should render show template" do
+		it "renders the show template" do
 			make_request
-			response.should render_template(:show)
+			response.should render_template :show
 		end
 	end
 snippet desnew
@@ -51,85 +49,77 @@ snippet desnew
 			get :new, {}.merge(opts)
 		end
 
-		it "should render new template" do
+		it "renders the new template" do
 			make_request
-			response.should render_template(:new)
+			response.should render_template :new
 		end
 	end
 snippet descreate
 	describe "create" do
-		before :each do
-			@attrs = Factory.build(:${1:model}).attributes
-		end
+		let(:attrs) { Factory.build(:${1:model}).attributes }
 
 		def make_request(opts = {})
-			post :create, { :$1 => @attrs }.merge(opts)
+			post :create, { :$1 => attrs }.merge(opts)
 		end
 
-		it "should render new template when $1 is invalid" do
+		it "renders the new template when $1 is invalid" do
 			${2:Model}.any_instance.stubs(:valid?).returns(false)
 			make_request
-			response.should render_template(:new)
+			response.should render_template :new
 		end
 
-		it "should redirect to index when $1 is valid" do
+		it "redirects to the index when $1 is valid" do
 			make_request
 			response.should redirect_to(:action => :index)
 		end
 	end
 snippet desedit
 	describe "edit" do
-		before :each do
-			@${1:model} = Factory(:$1)
-		end
+		let(:${1:model}) { Factory(:$1) }
 
 		def make_request(opts = {})
-			post :edit, { :id => @$1 }.merge(opts)
+			post :edit, { :id => $1 }.merge(opts)
 		end
 
-		it "should render edit template" do
+		it "renders the edit template" do
 			make_request
-			response.should render_template(:edit)
+			response.should render_template :edit
 		end
 	end
 snippet desupdate
 	describe "update" do
-		before :each do
-			@${1:model} = Factory(:$1)
-			@attrs = @$1.attributes
-		end
+		let!(:${1:model}) { Factory(:$1) }
+		let(:attrs) { $1.attributes }
 
 		def make_request(opts = {})
-			put :update, { :id => @$1, :$1 => @attrs }.merge(opts)
+			put :update, { :id => $1, :$1 => attrs }.merge(opts)
 		end
 
-		it "should render edit template when $1 is invalid" do
+		it "renders the edit template when $1 is invalid" do
 			${2:Model}.any_instance.stubs(:valid?).returns(false)
 			make_request
 			response.should render_template(:edit)
 		end
 
-		it "should redirect to $1 when it's valid" do
+		it "redirects to $1 when it's valid" do
 			make_request
-			response.should redirect_to(assigns[:$1])
+			response.should redirect_to assigns(:$1)
 		end
 	end
 snippet desdestroy
 	describe "destroy" do
-		before :each do
-			@${1:model} = Factory(:$1)
-		end
+		let(:${1:model}) { Factory(:$1) }
 
 		def make_request(opts = {})
-			delete :destroy, { :id => @$1 }.merge(opts)
+			delete :destroy, { :id => $1 }.merge(opts)
 		end
 
-		it "should destroy the given $1" do
+		it "destroys the given $1" do
 			make_request
-			${2:Model}.exists?(@$1.id).should be_false
+			${2:Model}.exists?($1.id).should be_false
 		end
 
-		it "should redirect to index" do
+		it "redirects to the index" do
 			make_request
 			response.should redirect_to(:action => :index)
 		end
