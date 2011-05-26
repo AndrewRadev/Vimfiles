@@ -7,6 +7,7 @@ command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'l
 
 command! -buffer Focus RunCommand exec '!rspec % -c -d -fd --line='.line('.')
 command! -buffer Unfocus RunCommand !rspec % -c -d -fd <args>
+command! -buffer Outline call lib#Outline('\v^\s*(it|describe|context).*do$')
 
 " Toggle complementing conditions easily:
 nmap <buffer> - mz:s/should /should_not /e<cr>`z

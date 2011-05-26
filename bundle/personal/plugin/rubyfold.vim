@@ -12,6 +12,7 @@ function! RubyFold()
   " fold functions and modules
   if &ft =~ 'rspec'
     call s:FoldAreas('it .* do',       0, line('$'))
+    call s:FoldAreas('context .* do',  0, line('$'))
     call s:FoldAreas('describe .* do', 0, line('$'))
   else
     call s:FoldAreas('\<def\>',    0, line('$'))

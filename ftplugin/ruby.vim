@@ -30,6 +30,7 @@ if !exists('b:erb_loaded')
 
   if &ft == 'ruby'
     command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
+    command! -buffer Outline call lib#Outline('\v^\s*(def|class|module)')
 
     RunCommand !ruby % <args>
   endif
