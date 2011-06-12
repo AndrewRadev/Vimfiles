@@ -24,6 +24,12 @@ let b:surround_indent = 1
 
 ConsoleCommand !irb -r % <args>
 
+" Define a text object for block arguments (do |...|)
+onoremap <buffer> i\| :<c-u>normal! T\|vt\|<cr>
+xnoremap <buffer> i\| :<c-u>normal! T\|vt\|<cr>
+onoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
+xnoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
+
 if !exists('b:erb_loaded')
   " fold nicely -- experimental
   call RubyFold()
