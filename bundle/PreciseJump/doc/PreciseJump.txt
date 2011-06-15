@@ -1,0 +1,150 @@
+
+==============================================================================
+*PreciseJump* - script to ease on-screen motion
+
+version: 0.49 - 2011-03-26
+
+author: Bartlomiej Podolak <bartlomiej (a) gmail com>
+
+
+If you have any comments, have found bugs, know how to make something better
+ - let me know.
+
+==============================================================================
+
+PreciseJump   Script to ease on screen motion
+
+1. Overview       |overview|
+2. Requirements   |requirements|
+3. Installation   |installation|
+4. Configuration  |configuration|
+
+==============================================================================
+1. Overview                                                        *overview*
+
+I find
+    <number>motion
+not very practical for bigger <numbers>.
+
+I usually don't know exactly how many times I want the motion to be repeated -
+I just see place on the screen where I want to jump to.
+
+This script is addressing this inconvenience.
+
+When the motion key is pressed, possible jump targets are highlighted. You just
+have to type character that appeared on desired place.
+
+i.e:
+If you press new '_fx' you get all 'x' characters on the screen highlighted and
+changed to some unique chars. Pressing the highlighted character will take the
+cursor to place you want.
+
+If there are too many possible target jumps on the screen target choosing is
+done in two phases - you have to choose the group character first, then - as
+targets change - you can select desired jump location.
+
+
+==============================================================================
+2. Requirements                                                *requirements*
+
+ - required vim 7.2+
+ - Vi-compatible mode must be off
+
+
+==============================================================================
+3. Installation                                                *installation*
+
+Copy PreciseJump.vim file to your plugin directory and PreciseJump.txt to
+your documentation directory.
+
+
+==============================================================================
+4. Configuration                                              *configuration*
+
+
+======
+4.1 Target characters
+
+You can choose what characters will be used as jump targets and in which order
+they are used.
+
+Just set g:PreciseJump_target_keys variable.
+
+It's value should be a string containing all characters that can be used as target
+characters. By default its value is as below
+
+abcdefghijklmnopqrstuwxz123456789[];'\,./ABCDEFGHIJKLMNOPQRSTUWXZ{}:"|<>?!@#$%^&*()_+
+
+======
+4.2 Target highlight color
+
+Variable g:PreciseJump_match_target_hi contains names of highlight group that
+will be used to mark jump targets. By default it is the group PreciseJumpTarget
+defined in the script (red background, yellow foreground)
+
+
+======
+4.3 PreciseJump invocation
+
+To invoke PreciseJump you have to call PreciseJump function.
+
+:call PreciseJump(re, lines_prev, lines_next, vismode)
+
+where
+ re         - regular expression that will match desired targets
+
+ lines_prev - number - in how many lines above to look for jump targets
+              -1 means - look as far as visible
+
+ lines_next - number - in how many lines below to look for jump targets
+              -1 means - look as far as visible
+
+ vismode    - 1 if function is called in visual mode, 0 otherwise
+
+For example:
+ :call PreciseJump('x', 0, 0, 0)
+     will highlight all 'x' character in the current line
+
+ :call PreciseJump('\<.', -1, -1, 0)
+     will highlight all beginning of words on the whole window
+
+
+Some helper functions are defined:
+
+PreciseJumpF(lines_prev, lines_next, vismode)
+ asks for a character and treat it as jump target - simulates 'f' command
+
+PreciseJumpT(lines_prev, lines_next, vismode)
+ asks for a character and treat it as jump target - simulates 't' command
+
+PreciseJumpW(lines_prev, lines_next, vismode)
+ highlights beginning of the words - simulates 'w' command
+
+PreciseJumpE(lines_prev, lines_next, vismode)
+ highlights ending of the words - simulates 'e' command
+
+
+You may define your own functions with configuration you find convenient.
+
+======
+4.4 Mappings
+
+PreciseJump defines two mappings:
+
+
+  _F - calls PreciseJumpF(0, 0, 0)
+       simulates f command on current line
+
+  _f - calls PreciseJumpF(-1, -1, 0)
+       simulates f command in whole window
+
+(personaly I have them mapped to 'F' and 'f' respectively)
+
+When you are defining visual mode mapping you have to prepend the
+function call with <ESC> key. For example:
+
+    :vmap _f <ESC>:call PreciseJumpF(-1, -1, 1)<cr>
+
+==============================================================================
+
+vim:tw=78:ts=8:ft=help:norl:
