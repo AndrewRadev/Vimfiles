@@ -120,3 +120,17 @@ function! s:TransformFilenameUnderCursor(modifier)
     call lib#InPlace('s/\f*\%#\f*/\='.transformation)
   endif
 endfunction
+
+" Open all files in quickfix window in tabs
+command! Ctabs call s:Ctabs()
+function! s:Ctabs()
+  let files = {}
+  for entry in getqflist()
+    let filename = bufname(entry.bufnr)
+    let files[filename] = 1
+  endfor
+
+  for file in keys(files)
+    silent exe "tabedit ".file
+  endfor
+endfunction
