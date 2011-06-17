@@ -47,8 +47,8 @@ let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
 let OmniCpp_MayCompleteDot      = 1 " Automatically complete
 let OmniCpp_MayCompleteArrow    = 1 " Automatically complete
 
-" Ruby omnicomplete:
-" TODO: Still slow as hell
+" Ruby speedup
+let g:ruby_path                      = ''
 let g:rubycomplete_buffer_loading    = 0
 let g:rubycomplete_classes_in_global = 0
 let g:rubycomplete_rails             = 0
@@ -58,7 +58,7 @@ let ruby_no_expensive = 1
 let ruby_operators    = 1
 
 " Avoid opening webpages in 'links':
-let g:netrw_http_cmd	= "wget -q -O"
+let g:netrw_http_cmd = "wget -q -O"
 
 nmap <C-i> :BufSurfBack<CR>
 nmap <C-o> :BufSurfForward<CR>
