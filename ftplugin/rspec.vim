@@ -1,5 +1,6 @@
 let b:surround_{char2nr('p')} = "pending do \r end"
 let b:surround_{char2nr('d')} = "describe do \r end"
+let b:surround_{char2nr('c')} = "context do \r end"
 
 RunCommand !rspec % -c -d -fd <args>
 
