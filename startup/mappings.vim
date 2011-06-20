@@ -147,6 +147,8 @@ function! s:TabularizeMapping(visual)
     call s:Tabularize('commas', a:visual)
   elseif align_type == ':'
     call s:Tabularize('colons', a:visual)
+  else " just try aligning by the character
+    call s:Tabularize('/'.align_type, a:visual)
   end
 endfunction
 function! s:Tabularize(command, visual)
