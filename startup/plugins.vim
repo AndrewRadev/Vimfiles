@@ -76,3 +76,6 @@ cmap <C-k> <Plug>CmdlineCompletionForward
 " PreciseJump
 noremap ,f :call PreciseJumpF(-1, -1, 0)<cr>
 vnoremap ,f <esc>:call PreciseJumpF(-1, -1, 0)<cr>
+
+" Splitjoin
+let g:splitjoin_normalize_whitespace = 1
