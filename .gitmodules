@@ -27,6 +27,7 @@
 	url = https://github.com/gregsexton/gitv.git
 [submodule "bundle/rails"]
 	path = bundle/rails
+	url = https://github.com/tpope/vim-rails.git
 	url = git@github.com:AndrewRadev/vim-rails.git
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired

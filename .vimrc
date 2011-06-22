@@ -39,7 +39,4 @@ xnoremap <silent> <expr> p <SID>Repl()
 " Indent some additional html tags:
 let g:html_indent_tags = 'p\|li\|nav\|article\|section\|header\|footer\|aside\|time'
 
-" Remove match paren again and find a goddamn way to fix it.
-let loaded_matchparen = 1
-
 source ~/.local_vimrc
