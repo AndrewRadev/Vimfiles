@@ -134,3 +134,28 @@ function! s:Ctabs()
     silent exe "tabedit ".file
   endfor
 endfunction
+
+" Assume that the current file consists only of a ruby error backtrace and
+" load it in the quickfix list.
+"
+" TODO Handle a generic backtrace by using errorformat?
+" TODO Automate backtrace saving somehow?
+command! LoadBacktrace call s:LoadBacktrace()
+function! s:LoadBacktrace()
+  let entries = []
+  for line in getbufline('%', 1, '$')
+    if line !~ '.*:.*:.*'
+      continue
+    endif
+
+    let [filename, lnum, text] = split(line, ':')
+    call add(entries, {
+          \ 'filename': filename,
+          \ 'lnum':     lnum,
+          \ 'text':     text,
+          \ })
+  endfor
+
+  call setqflist(entries)
+  copen
+endfunction
