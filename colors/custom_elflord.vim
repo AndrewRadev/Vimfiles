@@ -94,6 +94,10 @@ hi WildMenu   guifg=#ee1111  guibg=#000000         gui=bold,underline
 hi WildMenu   ctermfg=196    ctermbg=none       cterm=bold,underline
 hi SignColumn cterm=none     ctermbg=none       ctermfg=White        guibg=#000000
 
+" match parenthesis, brackets
+hi MatchParen guifg=#ffff00  guibg=NONE   gui=none
+hi MatchParen ctermfg=Yellow ctermbg=NONE cterm=none
+
 "hi NonText cterm=NONE ctermfg=NONE
 
 " Common groups that link to default highlighting.
