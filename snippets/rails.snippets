@@ -1,5 +1,20 @@
 snippet t
 	t('${1}')
+snippet arb
+	ActiveRecord::Base
+snippet concern
+	module ${1}
+		extend ActiveSupport::Concern
+
+		included do
+		end
+
+		module InstanceMethods
+		end
+
+		module ClassMethods
+		end
+	end
 # Relations
 snippet bt
 	belongs_to ${1}
