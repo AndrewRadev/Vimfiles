@@ -28,7 +28,6 @@
 [submodule "bundle/rails"]
 	path = bundle/rails
 	url = https://github.com/tpope/vim-rails.git
-	url = git@github.com:AndrewRadev/vim-rails.git
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = git@github.com:AndrewRadev/vim-unimpaired.git
