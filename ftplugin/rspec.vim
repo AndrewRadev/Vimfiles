@@ -11,5 +11,13 @@ command! -buffer Unfocus RunCommand !rspec % -c -d -fd <args>
 command! -buffer Outline call lib#Outline('\v^\s*(it|describe|context).*do$')
 
 " Toggle complementing conditions easily:
-nmap <buffer> - mz:s/should /should_not /e<cr>`z
-nmap <buffer> + mz:s/should_not /should /e<cr>`z
+nmap <buffer> - :call <SID>ToggleShould()<cr>
+function! s:ToggleShould()
+  let line = getline('.')
+
+  if line =~ '\<should\>'
+    call lib#InPlace('s/should /should_not /e')
+  elseif line =~ '\<should_not\>'
+    call lib#InPlace('s/should_not /should /e')
+  endif
+endfunction
