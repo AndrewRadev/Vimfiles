@@ -79,3 +79,4 @@ vnoremap ,f <esc>:call PreciseJumpF(-1, -1, 0)<cr>
 
 " Splitjoin
 let g:splitjoin_normalize_whitespace = 1
+let g:splitjoin_align                = 1
