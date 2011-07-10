@@ -22,7 +22,7 @@ let b:surround_{char2nr(':')} = ":\r"
 
 let b:surround_indent = 1
 
-ConsoleCommand !irb -r % <args>
+ConsoleCommand !irb -r'./%' <args>
 
 " Define a text object for block arguments (do |...|)
 onoremap <buffer> i\| :<c-u>normal! T\|vt\|<cr>
