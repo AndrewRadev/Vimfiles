@@ -34,3 +34,6 @@
 [submodule "bundle/rbrepl"]
 	path = bundle/rbrepl
 	url = git@github.com:AndrewRadev/rbrepl.vim.git
+[submodule "bundle/threesome"]
+	path = bundle/threesome
+	url = https://github.com/sjl/threesome.vim.git
