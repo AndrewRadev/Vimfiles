@@ -33,6 +33,7 @@ xnoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
 if !exists('b:erb_loaded')
   " fold nicely -- experimental
   call RubyFold()
+  setlocal nofoldenable
 
   if &ft == 'ruby'
     command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
