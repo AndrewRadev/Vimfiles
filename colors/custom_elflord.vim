@@ -1,8 +1,4 @@
-" local syntax file - set colors on a per-machine basis:
 " vim: tw=0 ts=4 sw=4
-" Vim color file
-" Maintainer:   Ron Aaron <ron@ronware.org>
-" Last Change:  2003 May 02
 
 set background=dark
 hi clear
@@ -95,8 +91,8 @@ hi WildMenu   ctermfg=196    ctermbg=none       cterm=bold,underline
 hi SignColumn cterm=none     ctermbg=none       ctermfg=White        guibg=#000000
 
 " match parenthesis, brackets
-hi MatchParen guifg=#ffff00  guibg=NONE   gui=none
-hi MatchParen ctermfg=Yellow ctermbg=NONE cterm=none
+hi MatchParen guifg=#00ff00 guibg=NONE   gui=none
+hi MatchParen ctermfg=Green ctermbg=NONE cterm=none
 
 "hi NonText cterm=NONE ctermfg=NONE
 

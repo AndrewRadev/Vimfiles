@@ -63,7 +63,7 @@ function! s:FoldAreas(pattern, from, to)
     endif
 
     " ignore a:pattern in comments
-    if getline(start_line) =~ '#.*' . a:pattern
+    if getline(start_line) =~ '^\s*#.*' . a:pattern
       normal! j
       continue
     endif
