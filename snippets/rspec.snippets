@@ -7,9 +7,13 @@ snippet ba
 	  ${1}
 	end
 snippet i
-	it "${1:should foo}"
+	it "${1:twiddles}"
 snippet it
-	it "${1:should foo}" do
+	it "${1:twiddles}" do
+	  ${2}
+	end
+snippet spec
+	specify "${1:twiddling}" do
 	  ${2}
 	end
 snippet des
