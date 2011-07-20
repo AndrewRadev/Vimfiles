@@ -6,7 +6,7 @@ filetype plugin on
 filetype indent on
 syntax on
 
-colo custom_elflord
+colo andrew
 
 runtime! startup/settings.vim
 runtime! startup/plugins.vim

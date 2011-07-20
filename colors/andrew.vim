@@ -5,7 +5,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "custom_elflord"
+let g:colors_name = "andrew"
 
 hi lCursor guibg=Red
 
