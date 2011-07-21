@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Originally by Kiril Vladimiroff: https://gist.github.com/1096728
+
+cd $HOME/.vim/bundle/
+for plugin in *; do
+    cd $plugin
+    echo ":: Updating $plugin ..."
+    if [ -d .git ]; then
+      git checkout master
+      git pull origin master
+    else
+      echo ":: $plugin is not managed as a submodule"
+    fi
+    echo
+    cd ..
+done
