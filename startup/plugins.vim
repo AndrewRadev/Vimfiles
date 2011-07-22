@@ -29,13 +29,6 @@ let g:ProjFile        = '~/.vimproj'
 let g:ProjSplitMethod = 'edit '
 let g:ProjFileBrowser = 'NERDTree | wincmd l'
 
-" EasyGrep options:
-let g:EasyGrepMode              = 2 " Track extension
-let g:EasyGrepCommand           = 0 " vimgrep
-let g:EasyGrepRecursive         = 1 " -> True
-let g:EasyGrepReplaceWindowMode = 0 " At replace, open all in tabs
-let g:EasyGrepExtraWarnings     = 1 " -> True
-
 " TTags options:
 let g:ttags_display = 'quickfix'
 
@@ -72,10 +65,6 @@ let g:SimpleJsIndenter_BriefMode = 1
 " Command-line completion
 cmap <C-j> <Plug>CmdlineCompletionBackward
 cmap <C-k> <Plug>CmdlineCompletionForward
-
-" PreciseJump
-noremap ,f :call PreciseJumpF(-1, -1, 0)<cr>
-vnoremap ,f <esc>:call PreciseJumpF(-1, -1, 0)<cr>
 
 " Splitjoin
 let g:splitjoin_normalize_whitespace = 1

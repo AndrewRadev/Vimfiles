@@ -76,10 +76,6 @@ nnoremap sk :SplitjoinJoin<CR>
 " Execute normal vim join if in visual mode
 xnoremap sk J
 
-" Easier increment/decrement:
-nmap + <C-a>
-nmap - <C-x>
-
 " Split and execute any command:
 nnoremap __ :split \|<Space>
 
