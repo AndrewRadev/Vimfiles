@@ -113,9 +113,9 @@ hi PmenuSel guibg=#0000ff guifg=#ffffff
 hi PmenuThumb cterm=NONE ctermfg=255 ctermbg=255
 hi PmenuThumb guifg=#ffffff
 
-" Red visual selection
-hi Visual ctermbg=Red ctermfg=White
-hi Visual guibg=Red   guifg=White   gui=NONE
+" Light blue visual selection
+hi Visual ctermbg=110   ctermfg=16
+hi Visual guibg=#87afdf guifg=Black gui=NONE
 
 " Grayish search
 hi Search ctermfg=16    ctermbg=248
@@ -141,18 +141,12 @@ hi TabLineFill gui=NONE guifg=#cfcfaf guibg=#363946
 hi TabLineSel cterm=bold ctermfg=254   ctermbg=236
 hi TabLineSel gui=bold   guifg=#efefef guibg=#414658
 
-" Light blue folds with black text
-hi FoldColumn cterm=none ctermfg=110 ctermbg=16
-hi FoldColumn guibg=#000000
+" Gray folds with white text
+hi Folded ctermfg=14 ctermbg=238 cterm=NONE
+hi Folded guifg=#91d6f8 guibg=#363946 gui=NONE
 
-hi Folded cterm=none ctermfg=16 ctermbg=110
-hi Folded guifg=#000000 guibg=#87afd7
-
-" hi Folded ctermfg=14 ctermbg=238 cterm=NONE
-" hi Folded guifg=#91d6f8 guibg=#363946 gui=NONE
-"
-" hi FoldColumn ctermfg=14 ctermbg=238 cterm=NONE
-" hi FoldColumn guifg=#91d6f8 guibg=#363946 gui=NONE
+hi FoldColumn ctermfg=14 ctermbg=238 cterm=NONE
+hi FoldColumn guifg=#91d6f8 guibg=#363946 gui=NONE
 
 " No background for wildmenu, selection is red, bold and underlined
 hi WildMenu ctermfg=196 ctermbg=NONE cterm=bold,underline
