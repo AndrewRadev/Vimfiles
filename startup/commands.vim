@@ -159,3 +159,16 @@ function! s:LoadBacktrace()
   call setqflist(entries)
   copen
 endfunction
+
+command! -nargs=* -complete=command Bufferize call s:Bufferize(<f-args>)
+function! s:Bufferize(...)
+  let cmd = join(a:000, ' ')
+  redir => output
+  silent exe cmd
+  redir END
+
+  new
+  setlocal nonumber
+  call append(0, split(output, "\n"))
+  set nomodified
+endfunction
