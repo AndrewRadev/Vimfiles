@@ -7,55 +7,100 @@ endif
 
 let g:colors_name = "andrew"
 
+" Red cursor when using an alternative keymap
 hi lCursor guibg=Red
 
+" White normal text
+hi Normal cterm=NONE ctermfg=253
+hi Normal guifg=#dddddd guibg=Black
+
+" Bluish comments
 hi Comment term=bold
 hi Comment ctermfg=DarkCyan
 hi Comment guifg=#80a0ff
 
+" Purplish constants: strings, numbers
 hi Constant term=underline
 hi Constant ctermfg=Magenta
 hi Constant guifg=Magenta
 
-hi CursorLine cterm=underline
-hi CursorLine gui=underline guibg=Black
-
-hi DiffAdd cterm=NONE ctermbg=235
-hi DiffAdd guibg=#262626
-
-hi DiffChange cterm=NONE ctermbg=235
-hi DiffChange guibg=#262626
-
-hi DiffDelete cterm=NONE ctermfg=238 ctermbg=244
-hi DiffDelete guibg=#808080 guifg=#444444
-
-hi DiffText cterm=bold ctermfg=255 ctermbg=196
-hi DiffText guifg=#ffffff
-
-hi Directory cterm=NONE ctermfg=Green
-hi Directory guifg=Green
-
-hi Error term=reverse
-hi Error ctermbg=Red ctermfg=White
-hi Error guibg=Red guifg=White
-
+" Cyan function names
 hi Function term=bold
 hi Function ctermfg=Cyan
 hi Function guifg=Cyan
 
+" Bluish identifiers
 hi Identifier term=underline
 hi Identifier ctermfg=Cyan
 hi Identifier guifg=#40ffff
 
-hi Ignore ctermfg=Black
-hi Ignore guifg=bg
-
-hi Normal cterm=NONE ctermfg=White
-hi Normal guifg=#dddddd guibg=Black
-
+" Red operators
 hi Operator ctermfg=Red
 hi Operator guifg=Red
 
+" Greenish types
+hi Type term=underline
+hi Type ctermfg=LightGreen
+hi Type guifg=#60ff60 gui=bold
+
+" White conditionals
+hi Repeat term=underline
+hi Repeat ctermfg=White
+hi Repeat guifg=White
+
+" Orange-brownish special characters: some operators, regex modifiers
+hi Special term=bold
+hi Special ctermfg=166
+hi Special guifg=#df5f00
+
+" Yellow statements: ifs, defs
+hi Statement cterm=NONE ctermfg=Yellow
+hi Statement gui=NONE   guifg=Yellow
+
+" Pure red errors
+hi Error term=reverse
+hi Error ctermbg=Red  ctermfg=White
+hi Error guibg=Red    guifg=White
+
+" Yellowish todos
+hi Todo guifg=#efef8f guibg=NONE gui=underline
+hi Todo ctermfg=228 ctermbg=NONE cterm=underline
+
+" Just underline when using a cursorline
+hi CursorLine cterm=underline ctermbg=NONE
+hi CursorLine gui=underline   guibg=NONE
+
+" Green directory names
+hi Directory cterm=NONE ctermfg=Green
+hi Directory gui=NONE   guifg=Green
+
+" Gold preprocessor directives
+hi PreProc ctermfg=223   cterm=none
+hi PreProc guifg=#f0dfaf gui=none
+
+" Pink preprocessor directives, why not?
+" hi PreProc term=underline
+" hi PreProc ctermfg=207
+" hi PreProc guifg=#ff80ff
+
+" TODO Consider red/green diffs
+hi DiffAdd cterm=NONE ctermbg=235
+hi DiffAdd gui=NONE   guibg=#262626
+
+hi DiffChange cterm=NONE ctermbg=235
+hi DiffChange gui=NONE   guibg=#262626
+
+hi DiffDelete cterm=NONE ctermfg=238   ctermbg=244
+hi DiffDelete gui=NONE   guifg=#444444 guibg=#808080
+
+hi DiffText cterm=bold ctermfg=255   ctermbg=196
+hi DiffText gui=bold   guifg=#ffffff
+
+" Hide concealed items
+hi Ignore ctermfg=Black
+hi Ignore guifg=bg
+
+" Dark gray popup menu with blue selection
 hi Pmenu cterm=NONE ctermfg=255 ctermbg=235
 hi Pmenu guibg=#262626 guifg=#ffffff
 
@@ -68,71 +113,62 @@ hi PmenuSel guibg=#0000ff guifg=#ffffff
 hi PmenuThumb cterm=NONE ctermfg=255 ctermbg=255
 hi PmenuThumb guifg=#ffffff
 
-hi PreProc term=underline
-hi PreProc ctermfg=LightBlue
-hi PreProc guifg=#ff80ff
-
-hi Repeat term=underline
-hi Repeat ctermfg=White
-hi Repeat guifg=White
-
-hi Special term=bold
-hi Special ctermfg=DarkMagenta
-hi Special guifg=Red
-
-hi Statement term=bold
-hi Statement ctermfg=Yellow
-hi Statement gui=bold guifg=#aa4444
-
 " Red visual selection
 hi Visual ctermbg=Red ctermfg=White
-hi Visual guibg=Red guifg=White gui=NONE
+hi Visual guibg=Red   guifg=White   gui=NONE
+
+" Grayish search
+hi Search ctermfg=16    ctermbg=248
+hi Search guifg=#000000 guibg=#a8a8a8
 
 " Slim separator lines
 hi StatusLine ctermfg=White ctermbg=NONE cterm=bold
-hi StatusLine guifg=White guibg=#000000 gui=bold
+hi StatusLine guifg=White   guibg=NONE   gui=bold
 
-hi StatusLineNC ctermfg=White ctermbg=NONE cterm=NONE
-hi StatusLineNC guifg=White guibg=#000000 gui=NONE
+hi StatusLineNC ctermfg=White ctermbg=NONE  cterm=NONE
+hi StatusLineNC guifg=White   guibg=NONE gui=NONE
 
 hi VertSplit cterm=NONE ctermfg=White
-hi VertSplit guifg=White gui=NONE
+hi VertSplit gui=NONE   guifg=White
 
-" Tab Lines
+" Dark tabline, white text (taken from lucius)
+hi TabLine cterm=NONE ctermfg=244   ctermbg=236
+hi TabLine gui=NONE   guifg=#b6bf98 guibg=#363946
 
-hi TabLine ctermfg=244 ctermbg=236 cterm=NONE
-hi TabLine guifg=#b6bf98 guibg=#363946 gui=NONE
+hi TabLineFill cterm=NONE ctermfg=187 ctermbg=236
+hi TabLineFill gui=NONE guifg=#cfcfaf guibg=#363946
 
-hi TabLineFill ctermfg=187 ctermbg=236 cterm=NONE
-hi TabLineFill guifg=#cfcfaf guibg=#363946 gui=NONE
+hi TabLineSel cterm=bold ctermfg=254   ctermbg=236
+hi TabLineSel gui=bold   guifg=#efefef guibg=#414658
 
-hi TabLineSel ctermfg=254 ctermbg=236 cterm=bold
-hi TabLineSel guifg=#efefef guibg=#414658 gui=bold
+" Light blue folds with black text
+hi FoldColumn cterm=none ctermfg=110 ctermbg=16
+hi FoldColumn guibg=#000000
 
-" Folds
+hi Folded cterm=none ctermfg=16 ctermbg=110
+hi Folded guifg=#000000 guibg=#87afd7
 
-hi Folded ctermfg=14 ctermbg=238 cterm=NONE
-hi Folded guifg=#91d6f8 guibg=#363946 gui=NONE
+" hi Folded ctermfg=14 ctermbg=238 cterm=NONE
+" hi Folded guifg=#91d6f8 guibg=#363946 gui=NONE
+"
+" hi FoldColumn ctermfg=14 ctermbg=238 cterm=NONE
+" hi FoldColumn guifg=#91d6f8 guibg=#363946 gui=NONE
 
-hi FoldColumn ctermfg=14 ctermbg=238 cterm=NONE
-hi FoldColumn guifg=#91d6f8 guibg=#363946 gui=NONE
-
-hi Todo guifg=#efef8f guibg=NONE gui=underline
-hi Todo ctermfg=228 ctermbg=NONE cterm=underline
-
-hi Type term=underline
-hi Type ctermfg=LightGreen
-hi Type guifg=#60ff60 gui=bold
-
+" No background for wildmenu, selection is red, bold and underlined
 hi WildMenu ctermfg=196 ctermbg=NONE cterm=bold,underline
 hi WildMenu guifg=#ee1111 guibg=#000000 gui=bold,underline
 
+" Nothing special for sign column
 hi SignColumn cterm=NONE ctermbg=NONE ctermfg=White
 hi SignColumn guibg=#000000
 
-" match parentheses, brackets
+" Gray line numbers
+hi LineNr ctermfg=102   ctermbg=NONE
+hi LineNr guifg=#818698 guibg=NONE
+
+" Green bracket matches
 hi MatchParen ctermfg=Green ctermbg=NONE cterm=NONE
-hi MatchParen guifg=#00ff00 guibg=NONE gui=NONE
+hi MatchParen guifg=Green   guibg=NONE   gui=NONE
 
 " Common groups that link to default highlighting.
 hi link String         Constant
