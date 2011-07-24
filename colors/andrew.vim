@@ -7,6 +7,8 @@ endif
 
 let g:colors_name = "andrew"
 
+set fillchars=stl:-,stlnc:-,vert:│,fold:-,diff:-
+
 " Red cursor when using an alternative keymap
 hi lCursor guibg=Red
 
