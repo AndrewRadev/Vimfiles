@@ -50,10 +50,10 @@ hi Repeat term=underline
 hi Repeat ctermfg=White
 hi Repeat guifg=White
 
-" Orange-brownish special characters: some operators, regex modifiers
+" Dark green special characters: some operators, regex modifiers
 hi Special term=bold
-hi Special ctermfg=166
-hi Special guifg=#df5f00
+hi Special ctermfg=28
+hi Special guifg=#008700
 
 " Yellow statements: ifs, defs
 hi Statement cterm=NONE ctermfg=Yellow
