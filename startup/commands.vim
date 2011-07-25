@@ -50,9 +50,6 @@ endfunction
 " Easy check of current syntax group
 command! Syn call syntax_attr#SyntaxAttr()
 
-" Use 'helptags' with the bundle directory as well
-command! Helptags call pathogen#helptags()
-
 " Quit tab, even if it's just one
 command! Q call s:Q()
 function! s:Q()

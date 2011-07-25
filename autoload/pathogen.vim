@@ -1,8 +1,12 @@
 " pathogen.vim - path option manipulation
 " Maintainer:   Tim Pope <vimNOSPAM@tpope.org>
-" Version:      1.2
+" Version:      1.3
 
 " Install in ~/.vim/autoload (or ~\vimfiles\autoload).
+"
+" For management of individually installed plugins in ~/.vim/bundle
+" (or $HOME/vimfiles/bundle), adding 'call pathogen#infect()' to your
+" .vimrc prior to 'fileype plugin indent on' is the only other setup necessary.
 "
 " API is documented below.
 
@@ -10,6 +14,13 @@ if exists("g:loaded_pathogen") || &cp
   finish
 endif
 let g:loaded_pathogen = 1
+
+" Point of entry for basic default usage.
+function! pathogen#infect(...) abort " {{{1
+  let source_path = a:0 ? a:1 : 'bundle'
+  call pathogen#runtime_append_all_bundles(source_path)
+  call pathogen#cycle_filetype()
+endfunction " }}}1
 
 " Split a path into a list.
 function! pathogen#split(path) abort " {{{1
@@ -65,18 +76,6 @@ function! pathogen#uniq(list) abort " {{{1
   return a:list
 endfunction " }}}1
 
-" Returns a hash indicating which filetype features are enabled.
-function! pathogen#filetype() abort " {{{1
-  redir => output
-  silent filetype
-  redir END
-  let result = {}
-  let result.detection = match(output,'detection:ON') >= 0
-  let result.indent = match(output,'indent:ON') >= 0
-  let result.plugin = match(output,'plugin:ON') >= 0
-  return result
-endfunction " }}}1
-
 " \ on Windows unless shellslash is set, / everywhere else.
 function! pathogen#separator() abort " {{{1
   return !exists("+shellslash") || &shellslash ? '/' : '\'
@@ -93,12 +92,30 @@ function! pathogen#glob_directories(pattern) abort " {{{1
   return filter(pathogen#glob(a:pattern),'isdirectory(v:val)')
 endfunction "}}}1
 
-" Prepend all subdirectories of path to the rtp, and append all after
+" Turn filetype detection off and back on again if it was already enabled.
+function! pathogen#cycle_filetype() " {{{1
+  if exists('g:did_load_filetypes')
+    filetype off
+    filetype on
+  endif
+endfunction " }}}1
+
+" Checks if a bundle is 'disabled'. A bundle is considered 'disabled' if
+" its 'basename()' is included in g:pathogen_disabled[]'.
+function! pathogen#is_disabled(path) " {{{1
+  if !exists("g:pathogen_disabled")
+    return 0
+  endif
+  let sep = pathogen#separator()
+  return index(g:pathogen_disabled, strpart(a:path, strridx(a:path, sep)+1)) != -1
+endfunction "}}}1
+
+" Prepend all subdirectories of path to the rtp, and append all 'after'
 " directories in those subdirectories.
 function! pathogen#runtime_prepend_subdirectories(path) " {{{1
   let sep    = pathogen#separator()
-  let before = pathogen#glob_directories(a:path.sep."*[^~]")
-  let after  = pathogen#glob_directories(a:path.sep."*[^~]".sep."after")
+  let before = filter(pathogen#glob_directories(a:path.sep."*[^~]"), '!pathogen#is_disabled(v:val)')
+  let after  = filter(pathogen#glob_directories(a:path.sep."*[^~]".sep."after"), '!pathogen#is_disabled(v:val[0:-7])')
   let rtp = pathogen#split(&rtp)
   let path = expand(a:path)
   call filter(rtp,'v:val[0:strlen(path)-1] !=# path')
@@ -113,27 +130,34 @@ endfunction " }}}1
 function! pathogen#runtime_append_all_bundles(...) " {{{1
   let sep = pathogen#separator()
   let name = a:0 ? a:1 : 'bundle'
+  if "\n".s:done_bundles =~# "\\M\n".name."\n"
+    return ""
+  endif
+  let s:done_bundles .= name . "\n"
   let list = []
   for dir in pathogen#split(&rtp)
     if dir =~# '\<after$'
-      let list +=  pathogen#glob_directories(substitute(dir,'after$',name.sep.'*[^~]'.sep.'after','')) + [dir]
+      let list +=  filter(pathogen#glob_directories(substitute(dir,'after$',name,'').sep.'*[^~]'.sep.'after'), '!pathogen#is_disabled(v:val[0:-7])') + [dir]
     else
-      let list +=  [dir] + pathogen#glob_directories(dir.sep.name.sep.'*[^~]')
+      let list +=  [dir] + filter(pathogen#glob_directories(dir.sep.name.sep.'*[^~]'), '!pathogen#is_disabled(v:val)')
     endif
   endfor
   let &rtp = pathogen#join(pathogen#uniq(list))
   return 1
 endfunction
 
+let s:done_bundles = ''
 " }}}1
 
 " Invoke :helptags on all non-$VIM doc directories in runtimepath.
 function! pathogen#helptags() " {{{1
   for dir in pathogen#split(&rtp)
-    if dir[0 : strlen($VIM)-1] !=# $VIM && isdirectory(dir.'/doc') && (!filereadable(dir.'/doc/tags') || filewritable(dir.'/doc/tags'))
+    if dir[0 : strlen($VIMRUNTIME)-1] !=# $VIMRUNTIME && filewritable(dir.'/doc') == 2 && !empty(glob(dir.'/doc/*')) && (!filereadable(dir.'/doc/tags') || filewritable(dir.'/doc/tags'))
       helptags `=dir.'/doc'`
     endif
   endfor
 endfunction " }}}1
+
+command! -bar Helptags :call pathogen#helptags()
 
 " vim:set ft=vim ts=8 sw=2 sts=2:
