@@ -50,10 +50,10 @@ hi Repeat term=underline
 hi Repeat ctermfg=White
 hi Repeat guifg=White
 
-" Dark green special characters: some operators, regex modifiers
+" Dark magenta special characters: some operators, regex modifiers
 hi Special term=bold
-hi Special ctermfg=28
-hi Special guifg=#008700
+hi Special ctermfg=5
+hi Special guifg=#800080
 
 " Yellow statements: ifs, defs
 hi Statement cterm=NONE ctermfg=Yellow
@@ -79,11 +79,6 @@ hi Directory gui=NONE   guifg=Green
 " Gold preprocessor directives
 hi PreProc ctermfg=223   cterm=none
 hi PreProc guifg=#f0dfaf gui=none
-
-" Pink preprocessor directives, why not?
-" hi PreProc term=underline
-" hi PreProc ctermfg=207
-" hi PreProc guifg=#ff80ff
 
 " TODO Consider red/green diffs
 hi DiffAdd cterm=NONE ctermbg=235
