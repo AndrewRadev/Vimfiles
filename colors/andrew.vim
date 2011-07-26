@@ -80,7 +80,7 @@ hi Directory gui=NONE   guifg=Green
 hi PreProc ctermfg=223   cterm=none
 hi PreProc guifg=#f0dfaf gui=none
 
-" TODO Consider red/green diffs
+" Subtle gray diffs. TODO experiment
 hi DiffAdd cterm=NONE ctermbg=235
 hi DiffAdd gui=NONE   guibg=#262626
 
