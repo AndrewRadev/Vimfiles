@@ -72,8 +72,8 @@ hi Directory cterm=NONE ctermfg=Green
 hi Directory gui=NONE   guifg=Green
 
 " Gold preprocessor directives
-hi PreProc ctermfg=223   cterm=none
-hi PreProc guifg=#f0dfaf gui=none
+hi PreProc ctermfg=LightBlue cterm=NONE
+hi PreProc guifg=LightBlue   gui=NONE
 
 " Subtle gray diffs. TODO experiment
 hi DiffAdd cterm=NONE ctermbg=235
