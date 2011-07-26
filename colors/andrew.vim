@@ -162,9 +162,9 @@ hi SignColumn guibg=#000000
 hi LineNr ctermfg=102   ctermbg=NONE
 hi LineNr guifg=#818698 guibg=NONE
 
-" Green bracket matches
-hi MatchParen ctermfg=Green ctermbg=NONE cterm=NONE
-hi MatchParen guifg=Green   guibg=NONE   gui=NONE
+" Yellow bracket matches
+hi MatchParen ctermfg=Yellow ctermbg=NONE cterm=bold
+hi MatchParen guifg=Yellow   guibg=NONE   gui=bold
 
 " Common groups that link to default highlighting.
 hi link String         Constant
