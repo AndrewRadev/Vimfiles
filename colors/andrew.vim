@@ -45,11 +45,6 @@ hi Type term=underline
 hi Type ctermfg=LightGreen
 hi Type guifg=#60ff60 gui=bold
 
-" White conditionals
-hi Repeat term=underline
-hi Repeat ctermfg=White
-hi Repeat guifg=White
-
 " Dark magenta special characters: some operators, regex modifiers
 hi Special term=bold
 hi Special ctermfg=5
@@ -128,7 +123,7 @@ hi StatusLineNC guifg=White   guibg=NONE gui=NONE
 hi VertSplit cterm=NONE ctermfg=White
 hi VertSplit gui=NONE   guifg=White
 
-" Dark tabline, white text (taken from lucius)
+" Dark tabline, white text
 hi TabLine cterm=NONE ctermfg=244   ctermbg=236
 hi TabLine gui=NONE   guifg=#b6bf98 guibg=#363946
 
@@ -138,11 +133,11 @@ hi TabLineFill gui=NONE guifg=#cfcfaf guibg=#363946
 hi TabLineSel cterm=bold ctermfg=254   ctermbg=236
 hi TabLineSel gui=bold   guifg=#efefef guibg=#414658
 
-" Gray folds with white text
-hi Folded ctermfg=14 ctermbg=238 cterm=NONE
+" Gray folds with blue text
+hi Folded ctermfg=14 ctermbg=235 cterm=NONE
 hi Folded guifg=#91d6f8 guibg=#363946 gui=NONE
 
-hi FoldColumn ctermfg=14 ctermbg=238 cterm=NONE
+hi FoldColumn ctermfg=14 ctermbg=235 cterm=NONE
 hi FoldColumn guifg=#91d6f8 guibg=#363946 gui=NONE
 
 " No background for wildmenu, selection is red, bold and underlined
