@@ -46,4 +46,6 @@ endif
 if @% =~ 'step_definitions'
   let b:fswitchdst  = 'feature'
   let b:fswitchlocs = 'rel:..'
+
+  command! -buffer Outline call lib#Outline('\v^\s*(Given|When|Then)')
 endif

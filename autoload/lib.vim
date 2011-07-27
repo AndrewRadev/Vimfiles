@@ -121,6 +121,7 @@ function! lib#Outline(pattern)
   else
     exe "FoldMatching ".a:pattern." -1"
     let b:outlined = 1
+    setlocal foldenable
   endif
 endfunction
 
