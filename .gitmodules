@@ -4,9 +4,6 @@
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = http://github.com/tpope/vim-markdown.git
-[submodule "bundle/quickrun"]
-	path = bundle/quickrun
-	url = http://github.com/thinca/vim-quickrun.git
 [submodule "bundle/bufsurf"]
 	path = bundle/bufsurf
 	url = http://github.com/ton/vim-bufsurf.git
@@ -34,12 +31,9 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/vim-ruby"]
-	path = bundle/vim-ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "bundle/rbrepl"]
 	path = bundle/rbrepl
-	url = git@github.com:AndrewRadev/rbrepl.vim.git
+	url = https://github.com/Bogdanp/rbrepl.vim.git
 [submodule "bundle/threesome"]
 	path = bundle/threesome
 	url = https://github.com/sjl/threesome.vim.git
