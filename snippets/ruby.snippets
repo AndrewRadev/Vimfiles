@@ -25,6 +25,9 @@ snippet when
 	when ${1:condition}
 		${2}
 snippet def
+	# TODO document
+	# @param [Type] name description
+	# @return [Type] description
 	def ${1:method_name}
 	end
 snippet defi
@@ -56,10 +59,12 @@ snippet until
 		${2}
 	end
 snippet cla
+	# TODO document. What is this class about?
 	class ${1:`lib#CapitalCamelCase(Filename())`}
 		${2}
 	end
 snippet mod
+	# TODO document. What is this module about?
 	module ${1:`lib#CapitalCamelCase(Filename())`}
 		${2}
 	end
@@ -118,25 +123,3 @@ snippet here
 	<<-EOF
 		${1}
 	EOF
-# Guardfile skeletons
-snippet guardrspec
-	guard 'rspec', :version => 2 do
-		watch('^spec/(.*)_spec.rb')
-		watch('^spec/spec_helper.rb') { "spec" }
-		watch('^spec/factories.rb') { "spec/models" }
-
-		watch('^app/controllers/application_controller.rb') { "spec/controllers" }
-
-		watch('^app/(.*)\.rb') { |m| "spec/#{m[1]}_spec.rb" }
-		watch('^lib/(.*)\.rb') { |m| "spec/lib/#{m[1]}_spec.rb" }
-
-		watch('^app/views/(.*)/.*\.erb$') { |m| "spec/controllers/#{m[1]}_controller_spec.rb" }
-	end
-snippet guardspork
-	guard 'spork' do
-		watch(%r{^config/application.rb$})
-		watch(%r{^config/environment.rb$})
-		watch(%r{^config/environments/.*\.rb$})
-		watch(%r{^config/initializers/.*\.rb$})
-		watch(%r{^spec/spec_helper.rb})
-	end

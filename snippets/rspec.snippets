@@ -17,7 +17,7 @@ snippet spec
 	  ${2}
 	end
 snippet des
-	describe ${1:Object} do
+	describe ${1:`lib#CapitalCamelCase(Filename())`} do
 	  ${2}
 	end
 snippet con
