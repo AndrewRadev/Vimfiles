@@ -129,7 +129,6 @@ endfunction
 
 " Tabularize mappings
 " For custom Tabularize definitions see after/plugin/tabularize.vim
-
 nnoremap sa      :call <SID>TabularizeMapping(0)<cr>
 xnoremap sa :<c-u>call <SID>TabularizeMapping(1)<cr>
 function! s:TabularizeMapping(visual)
@@ -161,3 +160,7 @@ function! s:Tabularize(command, visual)
 
   normal! `z
 endfunction
+
+" Tabularize "reset" -- removes all duplicate whitespace
+nnoremap s= :s/ \+/ /g<cr>==
+xnoremap s= :s/ \+/ /g<cr>gv=
