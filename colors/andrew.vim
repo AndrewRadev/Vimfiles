@@ -71,7 +71,7 @@ hi CursorLine gui=underline   guibg=NONE
 hi Directory cterm=NONE ctermfg=Green
 hi Directory gui=NONE   guifg=Green
 
-" Gold preprocessor directives
+" Light blue preprocessor directives
 hi PreProc ctermfg=LightBlue cterm=NONE
 hi PreProc guifg=LightBlue   gui=NONE
 
