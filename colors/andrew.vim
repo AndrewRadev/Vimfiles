@@ -17,22 +17,18 @@ hi Normal cterm=NONE ctermfg=253
 hi Normal guifg=#dddddd guibg=Black
 
 " Bluish comments
-hi Comment term=bold
 hi Comment ctermfg=DarkCyan
 hi Comment guifg=#80a0ff
 
 " Purplish constants: strings, numbers
-hi Constant term=underline
 hi Constant ctermfg=Magenta
 hi Constant guifg=Magenta
 
 " Cyan function names
-hi Function term=bold
 hi Function ctermfg=Cyan
 hi Function guifg=Cyan
 
 " Bluish identifiers
-hi Identifier term=underline
 hi Identifier ctermfg=Cyan
 hi Identifier guifg=#40ffff
 
@@ -41,12 +37,10 @@ hi Operator ctermfg=Red
 hi Operator guifg=Red
 
 " Greenish types
-hi Type term=underline
 hi Type ctermfg=LightGreen
 hi Type guifg=#60ff60 gui=bold
 
 " Dark magenta special characters: some operators, regex modifiers
-hi Special term=bold
 hi Special ctermfg=5
 hi Special guifg=#800080
 
@@ -55,7 +49,6 @@ hi Statement cterm=NONE ctermfg=Yellow
 hi Statement gui=NONE   guifg=Yellow
 
 " Pure red errors
-hi Error term=reverse
 hi Error ctermbg=Red  ctermfg=White
 hi Error guibg=Red    guifg=White
 
