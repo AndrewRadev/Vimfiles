@@ -8,11 +8,14 @@ augroup custom
 
   " When editing a file, always jump to the last known cursor position.
   autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
 
   autocmd FileType text setlocal textwidth=98
+
+  " Check if editing a directory
+  autocmd BufEnter,VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
 
   autocmd BufEnter *.c setlocal tags+=~/tags/unix.tags
 
@@ -46,4 +49,16 @@ augroup custom
   if has('win32')
     autocmd GUIEnter * simalt ~x
   endif
-augroup end
+augroup END
+
+function! s:MaybeEnterDirectory(file)
+  if a:file != '' && isdirectory(a:file)
+    let dir = a:file
+
+    exe "cd ".dir
+    if filereadable('_project.vim')
+      source _project.vim
+      echo "Loaded project file"
+    endif
+  endif
+endfunction
