@@ -4,8 +4,8 @@
 let s:linediff_first  = []
 let s:linediff_second = []
 
-command! -range LineDiff call s:LineDiff(<line1>, <line2>)
-function! s:LineDiff(from, to)
+command! -range Linediff call s:Linediff(<line1>, <line2>)
+function! s:Linediff(from, to)
   if len(s:linediff_first) == 0
     let s:linediff_first = [bufnr('%'), &filetype, a:from, a:to]
   else
