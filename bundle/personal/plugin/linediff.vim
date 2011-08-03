@@ -1,5 +1,4 @@
 " TODO visual indication, marks
-" TODO feedback on which lines are set -- statusline
 " TODO update original buffer on save
 
 let s:linediff_first  = []
@@ -34,6 +33,11 @@ function! s:CreateDiffBuffer(properties, edit_command)
   call append(0, content)
   normal! Gdd
   set nomodified
+  let statusline = printf('[%s:%d-%d]', bufname(bufno), from, to)
+  if &statusline =~ '%f'
+    let statusline = substitute(&statusline, '%f', statusline, '')
+  endif
+  exe "setlocal statusline=".escape(statusline, ' ')
   exe "set filetype=".ft
   diffthis
 endfunction
