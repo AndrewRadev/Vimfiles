@@ -1,13 +1,16 @@
+" TODO visual indication, marks
+" TODO feedback on which lines are set -- statusline
+" TODO update original buffer on save
+
 let s:linediff_first  = []
 let s:linediff_second = []
 
 command! -range LineDiff call s:LineDiff(<line1>, <line2>)
 function! s:LineDiff(from, to)
-  " TODO Add buffer data, use getbuflines
   if len(s:linediff_first) == 0
-    let s:linediff_first = [a:from, a:to]
+    let s:linediff_first = [bufnr('%'), &filetype, a:from, a:to]
   else
-    let s:linediff_second = [a:from, a:to]
+    let s:linediff_second = [bufnr('%'), &filetype, a:from, a:to]
 
     call s:PerformDiff(s:linediff_first, s:linediff_second)
 
@@ -16,27 +19,21 @@ function! s:LineDiff(from, to)
   endif
 endfunction
 
-" TODO Set filetype properly
 function! s:PerformDiff(first, second)
-  " TODO sj#GetLines
-  let first_content  = sj#GetLines(a:first[0], a:first[1])
-  let second_content = sj#GetLines(a:second[0], a:second[1])
+  call s:CreateDiffBuffer(a:first, "tabedit")
+  call s:CreateDiffBuffer(a:second, "vsplit")
+endfunction
 
-  let first_file  = tempname()
-  let second_file = tempname()
+function! s:CreateDiffBuffer(properties, edit_command)
+  let [bufno, ft, from, to] = a:properties
 
-  tabnew
+  let content   = getbufline(bufno, from, to)
+  let temp_file = tempname()
 
-  " TODO refactor
-  exe "edit ".first_file
-  call append(0, first_content)
+  exe a:edit_command . " " . temp_file
+  call append(0, content)
   normal! Gdd
   set nomodified
-  diffthis
-
-  exe "vsplit ".second_file
-  call append(0, second_content)
-  normal! Gdd
-  set nomodified
+  exe "set filetype=".ft
   diffthis
 endfunction
