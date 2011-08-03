@@ -1,5 +1,5 @@
 " TODO visual indication, marks
-" TODO update original buffer on save
+" TODO update buffer from and to on change
 
 let s:linediff_first  = []
 let s:linediff_second = []
@@ -20,7 +20,7 @@ endfunction
 
 function! s:PerformDiff(first, second)
   call s:CreateDiffBuffer(a:first, "tabedit")
-  call s:CreateDiffBuffer(a:second, "vsplit")
+  call s:CreateDiffBuffer(a:second, "rightbelow vsplit")
 endfunction
 
 function! s:CreateDiffBuffer(properties, edit_command)
@@ -33,11 +33,41 @@ function! s:CreateDiffBuffer(properties, edit_command)
   call append(0, content)
   normal! Gdd
   set nomodified
-  let statusline = printf('[%s:%d-%d]', bufname(bufno), from, to)
+
+  call s:SetupDiffBuffer(bufno, ft, from, to)
+  diffthis
+endfunction
+
+function! s:UpdateOriginalBuffer()
+  let lines           = getbufline('%', 0, '$')
+  let current_buffer  = bufnr('%')
+  let original_buffer = b:original_buffer
+  let from            = b:from
+  let to              = b:to
+
+  exe original_buffer."buffer"
+  let pos = getpos('.')
+  call cursor(from, 1)
+  exe "normal! ".(to - from + 1)."dd"
+  call append(from - 1, lines)
+  call setpos(pos)
+  let ft = &ft
+
+  exe current_buffer."buffer"
+  call s:SetupDiffBuffer(original_buffer, ft, from, to)
+endfunction
+
+function! s:SetupDiffBuffer(bufno, ft, from, to)
+  let b:original_buffer = a:bufno
+  let b:from            = a:from
+  let b:to              = a:to
+
+  let statusline = printf('[%s:%d-%d]', bufname(b:original_buffer), b:from, b:to)
   if &statusline =~ '%f'
     let statusline = substitute(&statusline, '%f', statusline, '')
   endif
   exe "setlocal statusline=".escape(statusline, ' ')
-  exe "set filetype=".ft
-  diffthis
+  exe "set filetype=".a:ft
+
+  autocmd BufWrite <buffer> call s:UpdateOriginalBuffer()
 endfunction
