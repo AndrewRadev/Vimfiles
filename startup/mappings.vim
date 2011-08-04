@@ -162,5 +162,20 @@ function! s:Tabularize(command, visual)
 endfunction
 
 " Tabularize "reset" -- removes all duplicate whitespace
-nnoremap s= :s/ \+/ /g<cr>==
-xnoremap s= :s/ \+/ /g<cr>gv=
+nnoremap s= :call <SID>TabularizeReset('n')<cr>
+xnoremap s= :call <SID>TabularizeReset('v')<cr>
+function! s:TabularizeReset(mode)
+  let original_cursor = getpos('.')
+
+  s/ \+/ /g
+  call histdel('search', -1)
+  let @/ = histget('search', -1)
+
+  if a:mode == 'v'
+    normal! gv=
+  else
+    normal! ==
+  endif
+
+  call setpos('.', original_cursor)
+endfunction
