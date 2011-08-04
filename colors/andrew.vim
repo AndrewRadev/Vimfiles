@@ -7,7 +7,7 @@ endif
 
 let g:colors_name = "andrew"
 
-set fillchars=stl:-,stlnc:-,vert:│,fold:-,diff:-
+set fillchars=stl:\ ,stlnc:\ ,vert:│,fold:-,diff:-
 
 " Red cursor when using an alternative keymap
 hi lCursor guibg=Red
@@ -107,11 +107,11 @@ hi Search ctermfg=16    ctermbg=248
 hi Search guifg=#000000 guibg=#a8a8a8
 
 " Slim separator lines
-hi StatusLine ctermfg=White ctermbg=NONE cterm=bold
-hi StatusLine guifg=White   guibg=NONE   gui=bold
+hi StatusLine ctermfg=White ctermbg=NONE cterm=bold,underline
+hi StatusLine guifg=White   guibg=NONE   gui=bold,underline
 
-hi StatusLineNC ctermfg=White ctermbg=NONE  cterm=NONE
-hi StatusLineNC guifg=White   guibg=NONE gui=NONE
+hi StatusLineNC ctermfg=White ctermbg=NONE cterm=underline
+hi StatusLineNC guifg=White   guibg=NONE   gui=underline
 
 hi VertSplit cterm=NONE ctermfg=White
 hi VertSplit gui=NONE   guifg=White
