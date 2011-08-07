@@ -1,21 +1,36 @@
-" TODO visual indication, marks
 " TODO update buffer from and to on change
 
 let s:linediff_first  = []
 let s:linediff_second = []
 
-command! -range Linediff call s:Linediff(<line1>, <line2>)
+sign define linediff_first  text=1- texthl=Search
+sign define linediff_second text=2- texthl=Search
+
+command! -range -bang Linediff call s:Linediff(<line1>, <line2>)
 function! s:Linediff(from, to)
   if len(s:linediff_first) == 0
     let s:linediff_first = [bufnr('%'), &filetype, a:from, a:to]
-  else
+    exe "sign place 11 name=linediff_first line=".a:from." file=".expand('%')
+    exe "sign place 12 name=linediff_first line=".a:to." file=".expand('%')
+  elseif len(s:linediff_second) == 0
     let s:linediff_second = [bufnr('%'), &filetype, a:from, a:to]
+    exe "sign place 21 name=linediff_second line=".a:from." file=".expand('%')
+    exe "sign place 22 name=linediff_second line=".a:to." file=".expand('%')
 
     call s:PerformDiff(s:linediff_first, s:linediff_second)
-
-    let s:linediff_first  = []
-    let s:linediff_second = []
+  else
+    call s:LinediffReset()
+    call s:Linediff(a:from, a:to)
   endif
+
+  redraw!
+endfunction
+
+command! LinediffReset call s:LinediffReset()
+function! s:LinediffReset()
+  let s:linediff_first  = []
+  let s:linediff_second = []
+  sign unplace *
 endfunction
 
 function! s:PerformDiff(first, second)
