@@ -13,7 +13,7 @@ set fillchars=stl:-,stlnc:-,vert:│,fold:-,diff:-
 hi lCursor guibg=Red
 
 " White normal text
-hi Normal cterm=NONE ctermfg=253
+hi Normal cterm=NONE ctermfg=White
 hi Normal guifg=#dddddd guibg=Black
 
 " Bluish comments
