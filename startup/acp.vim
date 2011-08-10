@@ -1,7 +1,8 @@
 " Custom behaviour here in order not to disturb normal plugin behaviour
 let g:acp_behavior = {
       \ 'php': [],
-      \ 'ruby': []
+      \ 'ruby': [],
+      \ 'python': []
       \ }
 
 call add(g:acp_behavior.php, {
@@ -27,6 +28,17 @@ call add(g:acp_behavior.ruby, {
       \   'repeat'  : 0,
       \ })
 call add(g:acp_behavior.ruby, {
+      \   'command' : "\<C-x>\<C-f>",
+      \   'meets'   : 'acp#meetsForFile',
+      \   'repeat'  : 1,
+      \ })
+
+call add(g:acp_behavior.python, {
+      \   'command' : "\<C-n>",
+      \   'meets'   : 'acp#meetsForKeyword',
+      \   'repeat'  : 0,
+      \ })
+call add(g:acp_behavior.python, {
       \   'command' : "\<C-x>\<C-f>",
       \   'meets'   : 'acp#meetsForFile',
       \   'repeat'  : 1,
