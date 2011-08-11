@@ -14,6 +14,11 @@ snippet fun
 	function! ${1:function_name}(${2})
 		${3:" code}
 	endfunction
+snippet com
+	command! ${1:command_name} :call s:$1()
+	function! s:$1()
+		${2:" code}
+	endfunction
 snippet for
 	for ${1:item} in ${2:collection}
 		${3:" code}
