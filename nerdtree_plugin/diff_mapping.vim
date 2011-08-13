@@ -17,7 +17,7 @@ function! NERDTreeDiffWithLastBuffer()
   else
     wincmd w
     diffthis
-    exe "vsplit ".current_node.path.str()
+    exe "vsplit ".fnameescape(current_node.path.str())
     diffthis
   endif
 endfunction

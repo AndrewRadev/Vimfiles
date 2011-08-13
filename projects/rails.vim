@@ -9,6 +9,7 @@ call ExtractSnipsFile(expand(g:snippets_dir).'rails_haml.snippets', 'haml')
 call ExtractSnipsFile(expand(g:snippets_dir).'jquery.snippets', 'javascript')
 
 call ExtractSnipsFile('_snippets/ruby.snippets', 'ruby')
+call ExtractSnipsFile('_snippets/rspec.snippets', 'rspec')
 call ExtractSnipsFile('_snippets/javascript.snippets', 'javascript')
 
 if !filereadable(fnamemodify('gems.tags', ':p'))

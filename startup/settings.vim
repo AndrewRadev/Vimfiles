@@ -1,5 +1,5 @@
 " General
-set clipboard=unnamed,html
+set clipboard=unnamed
 set incsearch nohlsearch
 set nottybuiltin
 set shortmess=aTI

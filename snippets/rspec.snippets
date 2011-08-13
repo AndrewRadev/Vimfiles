@@ -17,7 +17,7 @@ snippet spec
 	  ${2}
 	end
 snippet des
-	describe ${1:`lib#CapitalCamelCase(Filename())`} do
+	describe ${1:`lib#CapitalCamelCase(substitute(Filename(), '_spec$', '', ''))`} do
 	  ${2}
 	end
 snippet con
@@ -63,3 +63,10 @@ snippet srt
 	should respond_to(:${1:sym})
 snippet snrt
 	should_not respond_to(:${1:sym})
+# Skeleton template
+snippet skel
+	require 'spec_helper'
+
+	describe `lib#CapitalCamelCase(substitute(Filename(), '_spec$', '', ''))` do
+	  pending
+	end
