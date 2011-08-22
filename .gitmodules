@@ -42,7 +42,7 @@
 	url = https://github.com/timcharper/textile.vim.git
 [submodule "bundle/ruby"]
 	path = bundle/ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
+	url = git@github.com:vim-ruby/vim-ruby.git
 [submodule "bundle/linediff"]
 	path = bundle/linediff
 	url = git@github.com:AndrewRadev/linediff.vim.git
