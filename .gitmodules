@@ -46,3 +46,6 @@
 [submodule "bundle/linediff"]
 	path = bundle/linediff
 	url = git@github.com:AndrewRadev/linediff.vim.git
+[submodule "bundle/slim"]
+	path = bundle/slim
+	url = https://github.com/bbommarito/vim-slim.git
