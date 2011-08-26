@@ -63,6 +63,18 @@ endfunction
 " Quickly open up note-files
 command! Note belowright split notes.txt
 
+" Outline the contents of the buffer
+command! -nargs=* Outline call s:Outline(<f-args>)
+function! s:Outline(...)
+  if a:0 > 0
+    call lib#Outline('\<\('.join(a:000, '\|').'\)\>')
+  elseif exists('b:outline_pattern')
+    call lib#Outline(b:outline_pattern)
+  else
+    echoerr "No b:outline_pattern for this buffer"
+  endif
+endfunction
+
 " Setup the "Run" and "Console" commands for the current filetype
 command! -nargs=* RunCommand
       \ command! -buffer -complete=file -nargs=* Run <args>

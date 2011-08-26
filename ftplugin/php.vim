@@ -21,7 +21,7 @@ let b:surround_{char2nr('E')} = "<?php foreach (\1foreach: \1): ?>\r<?php endfor
 " Look up the word under the cursor on php.net:
 nmap <buffer> gm :call OpenURL('http://php.net/manual-lookup.php?pattern=' . expand("<cword>"))<cr>
 
-command! -buffer Outline call lib#Outline('\<function\>')
+let b:outline_pattern = '\<function\>'
 
 if &includeexpr == '' " only if not already set
   setlocal includeexpr=PhpIncludeExpr(v:fname)

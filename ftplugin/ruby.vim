@@ -37,7 +37,8 @@ if !exists('b:erb_loaded')
 
   if &ft == 'ruby'
     command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
-    command! -buffer Outline call lib#Outline('\v^\s*(def|class|module|public|protected|private)(\s|$)')
+
+    let b:outline_pattern = '\v^\s*(def|class|module|public|protected|private)(\s|$)'
 
     RunCommand !ruby % <args>
   endif
@@ -47,5 +48,5 @@ if @% =~ 'step_definitions'
   let b:fswitchdst  = 'feature'
   let b:fswitchlocs = 'rel:..'
 
-  command! -buffer Outline call lib#Outline('\v^\s*(Given|When|Then)')
+  let b:outline_pattern = '\v^\s*(Given|When|Then)'
 endif
