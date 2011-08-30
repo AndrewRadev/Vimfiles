@@ -49,3 +49,6 @@
 [submodule "bundle/slim"]
 	path = bundle/slim
 	url = https://github.com/bbommarito/vim-slim.git
+[submodule "bundle/bundler"]
+	path = bundle/bundler
+	url = https://github.com/tpope/vim-bundler.git
