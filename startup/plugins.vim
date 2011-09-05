@@ -50,6 +50,9 @@ let g:rubycomplete_rails             = 0
 let ruby_no_expensive = 1
 let ruby_operators    = 1
 
+" ruby indenting
+let g:ruby_hanging_indent = 0
+
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd = "wget -q -O"
 
