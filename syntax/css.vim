@@ -12,7 +12,7 @@ if exists("b:current_syntax")
 endif
 
 syn case ignore
-set iskeyword+=-
+setlocal iskeyword+=-
 
 syn region cssAtkeyword start=/@\(media\|import\)/ end=/\ze{/ contains=cssAtType, cssAtkey, cssValFn, cssValBlock
 
