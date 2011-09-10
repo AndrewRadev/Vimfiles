@@ -45,7 +45,7 @@ end
 set backspace=indent,eol,start
 set autoindent
 set expandtab smarttab
-set tabstop=2 softtabstop=2
+set tabstop=8 softtabstop=2
 set shiftwidth=2 shiftround
 
 " Command-line
