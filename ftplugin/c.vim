@@ -6,4 +6,6 @@ iabbr null NULL
 
 nmap <buffer> gm :exe "Man ".expand("<cword>")<cr>
 
+let b:outline_pattern = '^\k'
+
 RunCommand !./a.out <args>
