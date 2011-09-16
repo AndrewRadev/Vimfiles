@@ -36,6 +36,7 @@ augroup custom
 
   autocmd User BufEnterRails Rnavcommand factory spec/factories -glob=* -suffix=.rb -default=model()
   autocmd User BufEnterRails Rnavcommand feature features -glob=**/* -suffix=.feature
+  autocmd User BufEnterRails command! -buffer Rroutes edit config/routes.rb
 
   " For some reason, this doesn't work in ftplugin/man.vim
   autocmd FileType man set nonu
