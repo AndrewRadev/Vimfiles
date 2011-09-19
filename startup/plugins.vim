@@ -50,9 +50,6 @@ let g:rubycomplete_rails             = 0
 let ruby_no_expensive = 1
 let ruby_operators    = 1
 
-" ruby indenting
-let g:ruby_hanging_indent = 0
-
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd = "wget -q -O"
 
@@ -62,8 +59,9 @@ nmap <C-o> :BufSurfForward<CR>
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command         = 'firefox %URL% &'
 
-" Javascript indent
+" Javascript
 let g:SimpleJsIndenter_BriefMode = 1
+let g:jsl_config                 = '$HOME/.jsl'
 
 " Command-line completion
 cmap <C-j> <Plug>CmdlineCompletionBackward

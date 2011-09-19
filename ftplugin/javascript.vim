@@ -1,4 +1,4 @@
-let g:jsl_config = '$HOME/.jsl'
+let b:outline_pattern = '\<function\>'
 
 setlocal foldmethod=indent
 
