@@ -1,3 +1,3 @@
-silent AckOption ignore-dir='coverage'
+silent AckIgnore coverage/ doc/
 
 set tags+=gems.tags
