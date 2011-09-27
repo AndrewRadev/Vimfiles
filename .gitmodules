@@ -58,3 +58,6 @@
 [submodule "bundle/extradite"]
 	path = bundle/extradite
 	url = https://github.com/int3/vim-extradite.git
+[submodule "bundle/tagfinder"]
+	path = bundle/tagfinder
+	url = git@github.com:AndrewRadev/tagfinder.vim.git
