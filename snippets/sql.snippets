@@ -26,3 +26,7 @@ snippet update
 	SET
 		${2}
 	WHERE ${3}
+snippet join
+	INNER JOIN ${1:first}s ON $1s.${2:second}_id = $2s.id
+snippet between
+	BETWEEN `strftime("%Y-%m-%d %H:%M:%S")` AND `strftime("%Y-%m-%d %H:%M:%S")`
