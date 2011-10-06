@@ -61,3 +61,6 @@
 [submodule "bundle/tagfinder"]
 	path = bundle/tagfinder
 	url = git@github.com:AndrewRadev/tagfinder.vim.git
+[submodule "bundle/google_scribe"]
+	path = bundle/google_scribe
+	url = https://github.com/dubenstein/vim-google-scribe.git
