@@ -4,12 +4,16 @@ augroup custom
   autocmd!
 
   " Clean all useless whitespace:
-  autocmd BufWritePre * CleanWhitespace
+  let g:clean_whitespace = 1
+  autocmd BufWritePre *
+        \ if g:clean_whitespace   |
+        \   exe "CleanWhitespace" |
+        \ endif
 
   " When editing a file, always jump to the last known cursor position.
   autocmd BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
+        \   exe "normal! g`\""                           |
         \ endif
 
   autocmd FileType text setlocal textwidth=98
