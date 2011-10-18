@@ -70,3 +70,7 @@ cmap <C-k> <Plug>CmdlineCompletionForward
 " Splitjoin
 let g:splitjoin_normalize_whitespace = 1
 let g:splitjoin_align                = 1
+
+" Github search command
+command! -nargs=+ GithubSearch GHSearchRepo <args>
+let g:github_search_path_format = '~/src/:project'
