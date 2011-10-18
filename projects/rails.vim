@@ -18,3 +18,7 @@ if !filereadable(fnamemodify('gems.tags', ':p'))
 endif
 
 command! Rroutes edit config/routes.rb
+command! Rschema edit db/schema.rb
+
+" TODO (2011-10-18) Not working properly with rvm
+command! DumpRoutes r! bundle exec rake routes
