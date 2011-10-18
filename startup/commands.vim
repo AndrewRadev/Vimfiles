@@ -1,19 +1,10 @@
 " Simpler tag searches:
-command! -nargs=1 -complete=customlist,s:CompleteFunction Function call s:Tag('f', <f-args>)
-command! -nargs=1 -complete=customlist,s:CompleteClass    Class    call s:Tag('c', <f-args>)
-function! s:Tag(type, tag)
-  exec "TTags ".a:type." ".a:tag
-  if len(getqflist()) == 1
-    cfirst
-    cclose
-  endif
-endfunction
-function! s:CompleteFunction(A, L, P)
-  return sort(map(filter(taglist('^'.a:A), 'v:val["kind"] == "f"'), 'v:val["name"]'))
-endfunction
-function! s:CompleteClass(A, L, P)
-  return sort(map(filter(taglist('^'.a:A), 'v:val["kind"] == "c"'), 'v:val["name"]'))
-endfunction
+runtime plugin/tagfinder.vim
+
+DefineTagFinder Function f,function,F,singleton\ method
+DefineTagFinder Class    c,class
+DefineTagFinder Module   m,module
+DefineTagFinder Command  c,command
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)

@@ -23,6 +23,9 @@ let b:surround_indent = 1
 
 ConsoleCommand !irb -r'./%' <args>
 
+DefineTagFinder Method f,method,F,singleton\ method
+DefineTagFinder Module m,module
+
 " Define a text object for block arguments (do |...|)
 onoremap <buffer> i\| :<c-u>normal! T\|vt\|<cr>
 xnoremap <buffer> i\| :<c-u>normal! T\|vt\|<cr>
