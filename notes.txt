@@ -1,8 +1,0 @@
-Changes made to plugins:
-  * utl                  -- normal! <C-l>
-  * ccimpl.vim           -- minor change from vsplit to split
-  * Markdown syntax      -- added txt syntax
-  * php indenting script
-  * dbext                -- perl fix
-  * css_folding          -- fillchars=fold:\
-  * rst_table.vim        -- removed mappings, made commands
