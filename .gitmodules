@@ -64,3 +64,6 @@
 [submodule "bundle/google_scribe"]
 	path = bundle/google_scribe
 	url = https://github.com/dubenstein/vim-google-scribe.git
+[submodule "bundle/github_search"]
+	path = bundle/github_search
+	url = https://github.com/gmarik/github-search.vim.git
