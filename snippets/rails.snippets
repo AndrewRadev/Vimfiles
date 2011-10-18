@@ -46,11 +46,9 @@ snippet facdef
 		${3}
 	end
 snippet fac
-	Factory(:${1:model})
+	FactoryGirl.create(:${1:model})
 snippet facb
-	Factory.build(:${1:model})
-snippet faca
-	Factory.attributes_for(:${1:model})
+	FactoryGirl.build(:${1:model})
 # Controllers
 snippet bf
 	before_filter :${1:method}
