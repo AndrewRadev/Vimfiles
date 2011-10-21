@@ -5,6 +5,7 @@ DefineTagFinder Function f,function,F,singleton\ method
 DefineTagFinder Class    c,class
 DefineTagFinder Module   m,module
 DefineTagFinder Command  c,command
+DefineTagFinder Mapping  m
 
 " Toggle settings:
 command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
