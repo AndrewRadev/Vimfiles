@@ -46,6 +46,9 @@ let g:rubycomplete_buffer_loading    = 0
 let g:rubycomplete_classes_in_global = 0
 let g:rubycomplete_rails             = 0
 
+" get rid of custom rails syntax highlighting
+let g:rails_syntax = 0
+
 " syntax highlighting:
 let ruby_no_expensive = 1
 let ruby_operators    = 1
