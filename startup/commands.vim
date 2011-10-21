@@ -173,3 +173,12 @@ function! s:Bufferize(...)
   call append(0, split(output, "\n"))
   set nomodified
 endfunction
+
+command! Gfiles call s:Gfiles()
+function! s:Gfiles()
+  let files = split(system('git status -s -uall | cut -b 4-'), '\n')
+
+  for file in files
+    silent exe "tabedit ".file
+  endfor
+endfunction
