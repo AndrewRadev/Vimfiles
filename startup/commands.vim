@@ -182,3 +182,37 @@ function! s:Gfiles()
     silent exe "tabedit ".file
   endfor
 endfunction
+
+command! -nargs=1 -complete=file Rnew call s:Rnew(<f-args>)
+function! s:Rnew(name)
+  let parts     = split(a:name, '/')
+  let base_name = parts[-1]
+  let dir_parts = parts[0:-2]
+
+  if base_name =~ '_'
+    let camelcased_name  = lib#CamelCase(base_name)
+    let underscored_name = base_name
+  else
+    let camelcased_name  = base_name
+    let underscored_name = lib#Underscore(base_name)
+  endif
+
+  if !empty(dir_parts)
+    let dir = join(dir_parts, '/')
+    if !isdirectory(dir)
+      call mkdir(join(dir_parts, '/'), 'p')
+    endif
+  endif
+
+  let file_name = join(dir_parts + [underscored_name . '.rb'], '/')
+  let spec_name = join(dir_parts + [underscored_name . '_spec.rb'], '/')
+  let spec_name = substitute(spec_name, '/lib/', '/spec/', '')
+
+  " TODO (2011-10-24) manage replacing /app/ with /spec/ in rails projects
+  " TODO (2011-10-24) generate module/class chain from camelcased name
+
+  exe 'edit '.file_name
+  write
+  exe 'split '.spec_name
+  write
+endfunction
