@@ -77,3 +77,7 @@ let g:splitjoin_align                = 1
 " Github search command
 command! -nargs=+ GithubSearch GHSearchRepo <args>
 let g:github_search_path_format = '~/src/:project'
+
+" CtrlP
+let g:ctrlp_working_path_mode = 0 " don't manage my working path
+let g:ctrlp_mru_files         = 1 " forget about MRU files
