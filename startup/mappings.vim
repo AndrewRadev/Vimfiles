@@ -65,6 +65,9 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
+" Upcase current word
+nnoremap <C-u> mzgUiw`z
+
 " Completion remappings:
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
