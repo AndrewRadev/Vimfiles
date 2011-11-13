@@ -69,9 +69,9 @@ endfunction
 
 " Setup the "Run" and "Console" commands for the current filetype
 command! -nargs=* RunCommand
-      \ command! -buffer -complete=file -nargs=* Run <args>
+      \ command! -range=% -buffer -complete=file -nargs=* Run <args>
 command! -nargs=* ConsoleCommand
-      \ command! -buffer -complete=file -nargs=* Console <args>
+      \ command! -range=% -buffer -complete=file -nargs=* Console <args>
 
 " Should probably be in a project-specific file
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
