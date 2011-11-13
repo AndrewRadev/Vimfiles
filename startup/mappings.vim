@@ -4,7 +4,7 @@ nnoremap Q <Nop>
 
 " Easily mark a single line in character-wise visual mode
 "xnoremap v <esc>0v$
-nnoremap vv _v$h
+nnoremap vv _vg_
 
 " <space>x -> :X
 " For easier typing of custom commands
