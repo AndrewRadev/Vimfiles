@@ -67,3 +67,6 @@
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "bundle/inline_edit"]
+	path = bundle/inline_edit
+	url = git@github.com:AndrewRadev/inline_edit.vim.git
