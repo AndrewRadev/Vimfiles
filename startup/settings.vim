@@ -8,6 +8,7 @@ set sidescroll=4
 set splitbelow
 set t_Co=256
 set updatetime=1000
+set viminfo+=!
 
 " Editing
 set complete=.,w,b,k
