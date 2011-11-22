@@ -206,13 +206,32 @@ function! s:Rnew(name)
 
   let file_name = join(dir_parts + [underscored_name . '.rb'], '/')
   let spec_name = join(dir_parts + [underscored_name . '_spec.rb'], '/')
-  let spec_name = substitute(spec_name, '/lib/', '/spec/', '')
 
-  " TODO (2011-10-24) manage replacing /app/ with /spec/ in rails projects
+  if spec_name =~ '\<app/'
+    let spec_name = s:SubstitutePathSegment(spec_name, 'app', 'spec')
+  else
+    let spec_name = s:SubstitutePathSegment(spec_name, 'lib', 'spec')
+  endif
+
   " TODO (2011-10-24) generate module/class chain from camelcased name
+
+  call s:EnsureDirectoryExists(file_name)
+  call s:EnsureDirectoryExists(spec_name)
 
   exe 'edit '.file_name
   write
   exe 'split '.spec_name
   write
+endfunction
+
+function! s:SubstitutePathSegment(expr, segment, replacement)
+  return substitute(a:expr, '\(^\|/\)'.a:segment.'\(/\|$\)', '\1'.a:replacement.'\2', '')
+endfunction
+
+function! s:EnsureDirectoryExists(file)
+  let dir = fnamemodify(a:file, ':p:h')
+
+  if !isdirectory(dir)
+    call mkdir(dir, 'p')
+  endif
 endfunction
