@@ -12,6 +12,7 @@ runtime startup/settings.vim
 runtime startup/plugins.vim
 runtime startup/smartword.vim
 runtime startup/commands.vim
+runtime startup/rnew.vim
 runtime startup/autocommands.vim
 runtime startup/mappings.vim
 runtime startup/external_open.vim
