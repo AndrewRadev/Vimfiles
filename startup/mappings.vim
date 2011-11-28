@@ -97,6 +97,9 @@ nnoremap sk :SplitjoinJoin<CR>
 " Execute normal vim join if in visual mode
 xnoremap sk J
 
+" Inline edit
+nnoremap ,e :InlineEdit<cr>
+
 " Split and execute any command:
 nnoremap __ :split \|<Space>
 
