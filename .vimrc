@@ -32,4 +32,6 @@ for dir in split(glob('~/.vim/wip/*'), "\n")
   exe "set runtimepath+=".dir
 endfor
 
-source ~/.local_vimrc
+if filereadable(fnamemodify('~/.local_vimrc', ':p'))
+  source ~/.local_vimrc
+endif
