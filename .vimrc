@@ -21,6 +21,18 @@ runtime startup/cyrillic.vim
 
 runtime! ftplugin/man.vim
 
+" Add "personal" directory to runtimepath
+set runtimepath+=~/.vim/personal
+for dir in split(glob('~/.vim/personal/*'), "\n")
+  exe "set runtimepath+=".dir
+endfor
+
+" Add "wip" directory to runtimepath
+set runtimepath+=~/.vim/wip
+for dir in split(glob('~/.vim/wip/*'), "\n")
+  exe "set runtimepath+=".dir
+endfor
+
 " Get rid of annoying register rewriting when pasting on visually selected
 " text.
 function! RestoreRegister()
