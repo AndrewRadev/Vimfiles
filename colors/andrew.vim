@@ -68,7 +68,7 @@ hi Directory gui=NONE   guifg=Green
 hi PreProc ctermfg=LightBlue cterm=NONE
 hi PreProc guifg=LightBlue   gui=NONE
 
-" Subtle gray diffs. TODO experiment
+" Subtle gray diffs.
 hi DiffAdd cterm=NONE ctermbg=235
 hi DiffAdd gui=NONE   guibg=#262626
 

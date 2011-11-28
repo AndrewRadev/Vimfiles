@@ -1,5 +1,4 @@
 function! SymfonyIncludeExpr(fname)
-  " TODO possibly check for module named 'global'
   let quoted_capture = '\s*[''"]\(.\{-}\)[''"]\s*'
   let line = getline('.')
 
