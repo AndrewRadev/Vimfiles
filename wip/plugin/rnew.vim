@@ -4,11 +4,11 @@ function! s:Rnew(name)
   let base_name = parts[-1]
   let dir_parts = parts[0:-2]
 
-  let camelcased_name  = lib#CapitalCamelCase(base_name)
   let underscored_name = base_name
   if underscored_name =~ '\.rb$'
     let underscored_name = fnamemodify(underscored_name, ':r')
   endif
+  let camelcased_name = lib#CapitalCamelCase(underscored_name)
 
   let file_name = join(dir_parts + [underscored_name . '.rb'], '/')
   let spec_name = join(dir_parts + [underscored_name . '_spec.rb'], '/')
