@@ -29,6 +29,8 @@ function! s:Rnew(name)
   exe 'split '.spec_name
   write
   call s:InsertRubyClassSpec(camelcased_name)
+
+  redraw!
 endfunction
 
 function! s:SubstitutePathSegment(expr, segment, replacement)
