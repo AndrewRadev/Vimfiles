@@ -37,6 +37,14 @@ snippet ife
 	else
 		${3}
 	endif
+snippet omap
+	onoremap <buffer> a${1:x} :<c-u>call <SID>${2:TextObject}('a')<cr>
+	xnoremap <buffer> a$1 :<c-u>call <SID>$2('a')<cr>
+	onoremap <buffer> i$1 :<c-u>call <SID>$2('i')<cr>
+	xnoremap <buffer> i$1 :<c-u>call <SID>$2('i')<cr>
+	function! s:$2(mode)
+		return
+	endfunction
 #
 # Skeletons:
 #
