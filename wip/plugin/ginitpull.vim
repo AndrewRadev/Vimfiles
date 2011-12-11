@@ -18,12 +18,16 @@ endfunction
 
 function! s:GithubPath(remote_name)
   for remote in split(system('git remote -v'), "\n")
-    if remote =~ '^'.a:remote_name && remote =~ 'git@github.com'
-      return substitute(remote, '.*git@github.com:\(.*\)\.git.*', '\1', '')
+    if remote =~ '^'.a:remote_name
+      if remote =~ 'git@github.com'
+        return substitute(remote, '.*git@github.com:\(.*\)\.git.*', '\1', '')
+      elseif remote =~ 'https\?://github\.com'
+        return substitute(remote, '.*https\?://github\.com/\(.*\)\.git.*', '\1', '')
+      endif
     endif
   endfor
 
-  throw 'No remote "'.a:remote_name.'" was found, or remote is not from github, or the uri is read-only.'
+  throw 'No remote "'.a:remote_name.'" was found, or remote is not from github.'
 endfunction
 
 function! s:CurrentGitBranch()
