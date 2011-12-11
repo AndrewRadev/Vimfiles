@@ -1,30 +1,22 @@
-autocmd BufReadCmd *.rar call s:ReadRarFile(expand('<afile>'))
+autocmd BufReadCmd *.rar call s:ReadArchive(expand('<afile>'))
+autocmd BufReadCmd *.zip call s:ReadArchive(expand('<afile>'))
 
-function! s:ReadRarFile(archive)
+function! s:ReadArchive(archive)
   exe 'edit '.tempname()
-  let b:archive_name = fnamemodify(a:archive, ':p')
+  let b:archive = edit_archive#archive#New(a:archive)
 
   let banner = ['File: '.a:archive]
   let banner += [repeat('=', len(banner[0]))]
   call append(0, banner)
 
-  let contents = split(system('unrar lb '.a:archive), "\n")
+  let contents = b:archive.FileList()
   call append(line('$'), contents)
 
   nnoremap <buffer> <cr> :call <SID>EditFile()<cr>
 endfunction
 
 function! s:EditFile()
-  let archive  = b:archive_name
-  let filename = expand('<cfile>')
-
-  let cwd     = getcwd()
-  let tempdir = tempname()
-  call mkdir(tempdir)
-  exe 'cd '.tempdir
-
-  call system('unrar x '.archive.' '.filename)
-
-  exe 'edit '.tempdir.'/'.filename
+  let tempfile = b:archive.Tempfile(expand('<cfile>'))
+  exe 'edit '.tempfile
   set readonly
 endfunction
