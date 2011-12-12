@@ -54,7 +54,7 @@ let ruby_no_expensive = 1
 let ruby_operators    = 1
 
 " Avoid opening webpages in 'links':
-let g:netrw_http_cmd = "wget -q -O"
+let g:netrw_http_cmd = 'wget -q -O'
 
 " Indent some additional html tags:
 let g:html_indent_tags = 'p\|li\|nav\|article\|section\|header\|footer\|aside\|time'
@@ -78,6 +78,9 @@ cmap <C-k> <Plug>CmdlineCompletionForward
 " Splitjoin
 let g:splitjoin_normalize_whitespace = 1
 let g:splitjoin_align                = 1
+
+" Inline edit:
+let g:inline_edit_autowrite = 1
 
 " Github search command
 command! -nargs=+ GithubSearch GHSearchRepo <args>
