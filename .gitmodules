@@ -73,3 +73,6 @@
 [submodule "bundle/simple_bookmarks"]
 	path = bundle/simple_bookmarks
 	url = git@github.com:AndrewRadev/simple_bookmarks.vim.git
+[submodule "bundle/coffeescript"]
+	path = bundle/coffeescript
+	url = https://github.com/kchmck/vim-coffee-script.git
