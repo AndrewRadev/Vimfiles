@@ -1,8 +1,6 @@
-" NERD tree:
-nmap gn :NERDTreeToggle<cr>
-nmap gN :NERDTree<cr>
-
-nmap <Leader>f :NERDTreeFind<cr>
+" TabMan:
+let g:tabman_toggle = 'gt'
+let g:tabman_focus = 'gT'
 
 let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeIgnore = [

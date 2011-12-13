@@ -219,3 +219,9 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 xnoremap <silent> <expr> p <SID>Repl()
+
+" NERD tree:
+nnoremap gn :NERDTreeToggle<cr>
+nnoremap gN :NERDTree<cr>
+
+nnoremap <Leader>f :NERDTreeFind<cr>
