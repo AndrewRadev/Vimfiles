@@ -50,14 +50,14 @@ xnoremap j gj
 xnoremap k gk
 
 " Moving through tabs:
-nmap <C-l> gt
-nmap <C-h> gT
+nnoremap <C-l> gt
+nnoremap <C-h> gT
 
 " Moving through splits:
-nmap gh <C-w>h
-nmap gj <C-w>j
-nmap gk <C-w>k
-nmap gl <C-w>l
+nnoremap gh <C-w>h
+nnoremap gj <C-w>j
+nnoremap gk <C-w>k
+nnoremap gl <C-w>l
 
 " Faster scrolling:
 nmap J 5j
@@ -112,11 +112,11 @@ nnoremap ,t :tabnew<cr>
 nnoremap ,T :tabedit %<cr>gT:quit<cr>
 
 " Standard 'go to manual' command
-nmap gm :exe OpenURL('http://google.com/search?q=' . expand("<cword>"))<cr>
+nnoremap gm :exe OpenURL('http://google.com/search?q=' . expand("<cword>"))<cr>
 
 " Paste in insert and command modes
-imap <C-p> <Esc>pa
-cmap <C-p> <C-r>"
+inoremap <C-p> <Esc>pa
+cnoremap <C-p> <C-r>"
 
 " Returns the cursor where it was before the start of the editing
 nmap . .`[
