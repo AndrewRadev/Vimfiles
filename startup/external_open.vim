@@ -17,7 +17,7 @@ function! OpenURL(url)
       return
     end
   else
-    echoerr "Don't know how to open an url on this system"
+    echoerr "Don't know how to open a URL on this system"
     return
   end
 
