@@ -99,7 +99,8 @@ xnoremap sk J
 
 " Inline edit
 nnoremap ,e    :InlineEdit<cr>
-inoremap <c-e> <esc>:InlineEdit<cr>
+xnoremap ,e    :InlineEdit<cr>
+inoremap <c-e> <esc>:InlineEdit<cr>a
 
 " Split and execute any command:
 nnoremap __ :split \|<Space>
