@@ -1,9 +1,10 @@
 " TabMan:
 let g:tabman_toggle = 'gt'
-let g:tabman_focus = 'gT'
+let g:tabman_focus  = 'gT'
 
+let g:NERDTreeDirArrows   = 0
 let g:NERDTreeHijackNetrw = 1
-let g:NERDTreeIgnore = [
+let g:NERDTreeIgnore      = [
       \ '\~$',
       \ '\.o$',
       \ '\.hi$'
