@@ -19,7 +19,21 @@ endif
 
 command! Rroutes edit config/routes.rb
 command! Rschema edit db/schema.rb
-command! -nargs=* Rmodel edit _project.vim | Rmodel <args>
+command! -nargs=* -complete=custom,s:CompleteRailsModels Rmodel edit _project.vim | Rmodel <args>
+" command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory edit _project.vim | Rfactory <args>
 
 " TODO (2011-10-18) Not working properly with rvm
 command! DumpRoutes r! bundle exec rake routes
+
+function! s:CompleteRailsModels(A, L, P)
+  let names = []
+  for file in split(glob('app/models/**/*.rb'), "\n")
+    let name = fnamemodify(file, ':t:r')
+    call add(names, name)
+  endfor
+  return join(names, "\n")
+endfunction
+
+function! s:CompleteRailsFactory(A, L, P)
+  " TODO (2011-12-16)
+endfunction
