@@ -22,7 +22,6 @@ command! Rschema edit db/schema.rb
 command! -nargs=* -complete=custom,s:CompleteRailsModels Rmodel edit _project.vim | Rmodel <args>
 " command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory edit _project.vim | Rfactory <args>
 
-" TODO (2011-10-18) Not working properly with rvm
 command! DumpRoutes r! bundle exec rake routes
 
 function! s:CompleteRailsModels(A, L, P)
