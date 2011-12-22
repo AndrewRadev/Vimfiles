@@ -20,7 +20,7 @@ endif
 command! Rroutes edit config/routes.rb
 command! Rschema edit db/schema.rb
 command! -nargs=* -complete=custom,s:CompleteRailsModels Rmodel edit _project.vim | Rmodel <args>
-" command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory edit _project.vim | Rfactory <args>
+command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
 
 command! DumpRoutes r! bundle exec rake routes
 
@@ -34,5 +34,16 @@ function! s:CompleteRailsModels(A, L, P)
 endfunction
 
 function! s:CompleteRailsFactory(A, L, P)
-  " TODO (2011-12-16)
+  let factories = []
+  for line in split(system("grep -r 'Factory.define' spec/factories"), "\n")
+    let factory = matchstr(line, 'Factory.define :\zs\w\+\ze')
+    call add(factories, factory)
+  endfor
+  return join(factories, "\n")
+endfunction
+
+" TODO (2011-12-19) Extract factories with position data both for completion
+" and editing
+function! s:Rfactory(name)
+  exe "Ack 'Factory.define :".a:name."\\b' spec/factories"
 endfunction
