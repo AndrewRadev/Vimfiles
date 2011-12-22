@@ -7,6 +7,29 @@ nnoremap <buffer> u  :UndoDelete<cr>
 if !exists(':DeleteLines')
   let b:deletion_stack = []
 
+  command! -nargs=1 -bang Delete call s:Delete(<f-args>, '<bang>')
+  function! s:Delete(pattern, bang)
+    let saved_cursor = getpos('.')
+    let deleted      = []
+
+    let new_qflist = []
+    for entry in getqflist()
+      if (entry.text !~ a:pattern && a:bang == '') || (entry.text =~ a:pattern && a:bang == '!')
+        call add(new_qflist, entry)
+      else
+        call add(deleted, entry)
+      endif
+    endfor
+
+    call setqflist(new_qflist)
+    if !empty(deleted)
+      call insert(b:deletion_stack, [0, deleted], 0)
+    endif
+
+    call setpos('.', saved_cursor)
+    echo
+  endfunction
+
   command! -range -buffer DeleteLines call s:DeleteLines(<line1>, <line2>)
   function! s:DeleteLines(start, end)
     let saved_cursor = getpos('.')
