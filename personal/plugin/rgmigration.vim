@@ -16,6 +16,7 @@ function! s:Rgmigration(description)
         \ '  end',
         \ 'end'
         \ ])
-  normal! Gddgg
+  $delete _
+  normal! gg
   write
 endfunction

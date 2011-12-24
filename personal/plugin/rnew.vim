@@ -50,7 +50,8 @@ function! s:InsertRubyClass(class_name)
         \ 'class '.a:class_name,
         \ 'end',
         \ ])
-  normal! Gddgg
+  $delete _
+  normal! gg
   write
 endfunction
 
@@ -61,6 +62,7 @@ function! s:InsertRubyClassSpec(class_name)
         \ 'describe '.a:class_name.' do',
         \ 'end',
         \ ])
-  normal! Gddgg
+  $delete _
+  normal! gg
   write
 endfunction
