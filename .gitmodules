@@ -85,3 +85,6 @@
 [submodule "bundle/edit_archive"]
 	path = bundle/edit_archive
 	url = git@github.com:AndrewRadev/edit_archive.vim.git
+[submodule "bundle/git"]
+	path = bundle/git
+	url = https://github.com/tpope/vim-git.git
