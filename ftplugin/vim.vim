@@ -1,5 +1,4 @@
 setlocal foldmethod=indent
-set iskeyword-=#
 
 let b:surround_{char2nr('i')} = "if \1if: \1 \r endif"
 let b:surround_{char2nr('w')} = "while \1while: \1 \r endwhile"
