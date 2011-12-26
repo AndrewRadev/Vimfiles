@@ -1,10 +1,5 @@
 setlocal foldmethod=indent
-
-" For <C-]> to be able to detect:
-" - autoloaded functions
-" - mappings,
-" - variables with a scope prefix
-setlocal iskeyword+=:,#,<,>
+set iskeyword-=#
 
 let b:surround_{char2nr('i')} = "if \1if: \1 \r endif"
 let b:surround_{char2nr('w')} = "while \1while: \1 \r endwhile"
