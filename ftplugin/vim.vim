@@ -39,7 +39,10 @@ if !exists(':Implement')
       mkdir(dir, 'p')
     endif
 
-    exe 'split '.path
+    if fnamemodify(path, ':p') != expand('%:p')
+      exe 'split '.path
+    endif
+
     call append(line('$'), [
           \ '',
           \ 'function! '.function_name.'()',
