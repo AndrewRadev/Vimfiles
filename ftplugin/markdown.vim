@@ -3,6 +3,8 @@ let b:surround_{char2nr('_')} = "_\r_"
 
 set completefunc=googlescribe#Complete
 
+hi link markdownItalic Normal
+
 RunCommand call MarkdownRun(expand('%'))
 if !exists('*MarkdownRun')
   function MarkdownRun(fname)
