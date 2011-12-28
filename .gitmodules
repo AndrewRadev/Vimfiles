@@ -79,9 +79,6 @@
 [submodule "bundle/tabman"]
 	path = bundle/tabman
 	url = https://github.com/kien/tabman.vim.git
-[submodule "bundle/arduino"]
-	path = bundle/arduino
-	url = https://github.com/tclem/vim-arduino.git
 [submodule "bundle/edit_archive"]
 	path = bundle/edit_archive
 	url = git@github.com:AndrewRadev/edit_archive.vim.git
