@@ -1,5 +1,8 @@
 setlocal nowrap
 
+syntax match quickfixComment '^||.*$'
+hi link quickfixComment Comment
+
 xnoremap <buffer> d  :DeleteLines<cr>
 nnoremap <buffer> dd :DeleteLines<cr>
 nnoremap <buffer> u  :UndoDelete<cr>
