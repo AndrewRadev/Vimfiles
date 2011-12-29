@@ -1,31 +1,9 @@
-# Don't ignore my notes, gonna need them across machines:
-!notes.txt
-
 # Ignore all tags files, just remember to rebuild them every once in a while:
 tags
 bundle/*/doc/tags
 bundle/*/doc/tags-*
 doc/tags
 doc/tags-*
-
-# Ignore the generated files from command-t
-bundle/command-t/ruby/command-t/*.o
-bundle/command-t/ruby/command-t/*.so
-bundle/command-t/ruby/command-t/Makefile
-bundle/command-t/ruby/command-t/mkmf.log
-
-# Temporarily ignore 'test_output' for rspec syntax tests
-test_output
-
-# Probably too dynamic
-next.txt
-
-# To deal with the attempts at a testing tool
-test/*/output.*
-bundle/*/test/output.*
-
-# Splitjoin code output
-bundle/personal_splitjoin/test/output/*
 
 # Vimball record is machine-specific
 .VimballRecord
