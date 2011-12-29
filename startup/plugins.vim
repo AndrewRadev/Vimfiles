@@ -30,9 +30,6 @@ let g:ProjFile        = '~/.vimproj'
 let g:ProjSplitMethod = 'edit '
 let g:ProjFileBrowser = 'NERDTree | wincmd l'
 
-" TTags options:
-let g:ttags_display = 'quickfix'
-
 " Omnicppcomplete options:
 let OmniCpp_NamespaceSearch     = 1 " -> True
 let OmniCpp_ShowPrototypeInAbbr = 1 " -> True
