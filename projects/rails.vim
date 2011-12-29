@@ -23,6 +23,7 @@ command! -nargs=* -complete=custom,s:CompleteRailsModels Rmodel edit _project.vi
 command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
 
 command! DumpRoutes r! bundle exec rake routes
+command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
 
 function! s:CompleteRailsModels(A, L, P)
   let names = []

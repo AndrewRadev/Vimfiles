@@ -3,7 +3,6 @@ nnoremap s <Nop>
 nnoremap Q <Nop>
 
 " Easily mark a single line in character-wise visual mode
-"xnoremap v <esc>0v$
 nnoremap vv _vg_
 
 " <space>x -> :X
@@ -80,16 +79,6 @@ set completefunc=syntaxcomplete#Complete
 
 " For digraphs:
 inoremap <C-n> <C-k>
-
-" Cscope commands
-nnoremap <C-n>s :lcs find s <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-n>g :lcs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-n>c :lcs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-n>t :lcs find t <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-n>e :lcs find e <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-n>f :lcs find f <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <C-n>i :lcs find i <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <C-n>d :lcs find d <C-R>=expand("<cword>")<CR><CR>
 
 " Splitting and joining code blocks
 nnoremap sj :SplitjoinSplit<CR>
@@ -207,6 +196,8 @@ endfunction
 
 " Get rid of annoying register rewriting when pasting on visually selected
 " text.
+"
+" Note: magic
 function! RestoreRegister()
   let @" = s:restore_reg
   let @* = s:restore_reg_star

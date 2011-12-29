@@ -52,9 +52,6 @@ function! s:Q()
   endtry
 endfunction
 
-" Quickly open up note-files
-command! Note belowright split notes.txt
-
 " Outline the contents of the buffer
 command! -nargs=* Outline call s:Outline(<f-args>)
 function! s:Outline(...)
@@ -72,9 +69,6 @@ command! -nargs=* RunCommand
       \ command! -range=% -buffer -complete=file -nargs=* Run <args>
 command! -nargs=* ConsoleCommand
       \ command! -range=% -buffer -complete=file -nargs=* Console <args>
-
-" Should probably be in a project-specific file
-command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
 
 command! Chmodx !chmod +x '%'
 
@@ -134,31 +128,6 @@ function! s:Ctabs()
   for file in keys(files)
     silent exe "tabedit ".file
   endfor
-endfunction
-
-" Assume that the current file consists only of a ruby error backtrace and
-" load it in the quickfix list.
-"
-" TODO Handle a generic backtrace by using errorformat?
-" TODO Automate backtrace saving somehow?
-command! LoadBacktrace call s:LoadBacktrace()
-function! s:LoadBacktrace()
-  let entries = []
-  for line in getbufline('%', 1, '$')
-    if line !~ '.*:.*:.*'
-      continue
-    endif
-
-    let [filename, lnum, text] = split(line, ':')
-    call add(entries, {
-          \ 'filename': filename,
-          \ 'lnum':     lnum,
-          \ 'text':     text,
-          \ })
-  endfor
-
-  call setqflist(entries)
-  copen
 endfunction
 
 command! -nargs=* -complete=command Bufferize call s:Bufferize(<f-args>)

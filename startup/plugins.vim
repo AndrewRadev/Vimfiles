@@ -8,6 +8,7 @@ let g:loaded_zip       = 1
 let g:tabman_toggle = 'gt'
 let g:tabman_focus  = 'gT'
 
+" NERDTree:
 let g:NERDTreeDirArrows   = 0
 let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeIgnore      = [
@@ -19,11 +20,6 @@ let g:NERDTreeIgnore      = [
 " Don't map over J and K
 let g:NERDTreeMapJumpFirstChild = '-'
 let g:NERDTreeMapJumpLastChild  = '-'
-
-" Dbext settings:
-let g:dbext_default_buffer_lines  = 20
-let g:dbext_default_replace_title = 1
-let g:dbext_default_history_file  = '~/.dbext_history'
 
 " Snippet settings:
 let g:snippets_dir = expand('~/.vim/snippets/')
@@ -86,10 +82,6 @@ let g:splitjoin_align                = 1
 
 " Inline edit:
 let g:inline_edit_autowrite = 1
-
-" Github search command
-command! -nargs=+ GithubSearch GHSearchRepo <args>
-let g:github_search_path_format = '~/src/:project'
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0 " don't manage my working path
