@@ -208,3 +208,41 @@ function! lib#VimIncludeExpression(fname)
 
   return a:fname
 endfunction
+
+" Open URLs with the system's default application. Works for both local and
+" remote paths.
+function! lib#OpenUrl(url)
+  let url = shellescape(a:url)
+
+  if has('mac')
+    silent call system('open '.url)
+  elseif has('unix')
+    if executable('xdg-open')
+      silent call system('xdg-open '.url.' 2>&1 > /dev/null &')
+    else
+      echoerr 'You need to install xdg-open to be able to open urls'
+      return
+    end
+  else
+    echoerr 'Don''t know how to open a URL on this system'
+    return
+  end
+
+  echo 'Opening '.url
+endfunction
+
+" Execute the normal mode motion "motion" and return the text it marks. Note
+" that the motion needs to include a visual mode key, like "V", "v" or "gv".
+function! lib#GetMotion(motion)
+  let saved_cursor   = getpos('.')
+  let saved_reg      = getreg('z')
+  let saved_reg_type = getregtype('z')
+
+  exec 'normal! '.a:motion.'"zy'
+  let text = @z
+
+  call setreg('z', saved_reg, saved_reg_type)
+  call setpos('.', saved_cursor)
+
+  return text
+endfunction

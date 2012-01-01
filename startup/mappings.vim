@@ -102,7 +102,7 @@ nnoremap ,t :tabnew<cr>
 nnoremap ,T :tabedit %<cr>gT:quit<cr>
 
 " Standard 'go to manual' command
-nnoremap gm :exe OpenURL('http://google.com/search?q=' . expand("<cword>"))<cr>
+nnoremap gm :call lib#OpenUrl('http://google.com/search?q=' . expand("<cword>"))<cr>
 
 " Paste in insert and command modes
 inoremap <C-p> <Esc>pa
@@ -217,3 +217,7 @@ nnoremap gn :NERDTreeToggle<cr>
 nnoremap gN :NERDTree<cr>
 
 nnoremap <Leader>f :NERDTreeFind<cr>
+
+" Open path with external application
+nnoremap gu :Open<cr>
+xnoremap gu :Open<cr>

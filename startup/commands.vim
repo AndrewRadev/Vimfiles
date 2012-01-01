@@ -16,6 +16,23 @@ MapToggle sw wrap
 MapToggle ss spell
 MapToggle sc cursorcolumn
 
+" Open URLs:
+command! -count=0 -nargs=* -complete=file Open call s:Open(<count>, <f-args>)
+function! s:Open(count, ...)
+  if a:count > 0
+    " then the path is visually selected
+    let path = lib#GetMotion('gv')
+  elseif a:0 == 0
+    " then the path is the filename under the cursor
+    let path = expand('<cfile>')
+  else
+    " it has been given as an argument
+    let path = join(a:000, ' ')
+  endif
+
+  call lib#OpenUrl(path)
+endfunction
+
 " Rebuild tags database:
 command! RebuildTags !ctags -R .
 
