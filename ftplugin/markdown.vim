@@ -22,8 +22,8 @@ if !exists('*MarkdownRun')
   endfunction
 endif
 
-command! -count=0 -nargs=1 Link call s:Link(<count>, <f-args>)
-function! s:Link(count, url)
+command! -count=0 -nargs=* Link call s:Link(<count>, <f-args>)
+function! s:Link(count, ...)
   if a:count == 0
     " then no visual selection, select the closest word
     normal! viw
@@ -34,7 +34,12 @@ function! s:Link(count, url)
 
   normal! gv"zd
   let text = @z
-  let link = printf('[%s](%s)', text, a:url)
+  if a:0 > 0
+    let url  = join(a:000, ' ')
+    let link = printf('[%s](%s)', text, url)
+  else
+    let link = printf('[%s][]', text)
+  endif
   exe 'normal! i'.link
 
   call setreg('z', saved_register, saved_register_mode)
