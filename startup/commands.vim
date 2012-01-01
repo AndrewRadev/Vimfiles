@@ -8,7 +8,11 @@ DefineTagFinder Command  c,command
 DefineTagFinder Mapping  m
 
 " Toggle settings:
-command! -nargs=+ MapToggle call lib#MapToggle(<f-args>)
+command! -nargs=+ MapToggle call s:MapToggle(<f-args>)
+function! s:MapToggle(key, opt)
+  let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
+  exec 'nnoremap '.a:key.' '.cmd
+endfunction
 
 MapToggle sl list
 MapToggle sh hlsearch
@@ -73,11 +77,20 @@ endfunction
 command! -nargs=* Outline call s:Outline(<f-args>)
 function! s:Outline(...)
   if a:0 > 0
-    call lib#Outline('\<\('.join(a:000, '\|').'\)\>')
+    let pattern = '\<\('.join(a:000, '\|').'\)\>'
   elseif exists('b:outline_pattern')
-    call lib#Outline(b:outline_pattern)
-  else
+    let pattern = b:outline_pattern
+  elseif !exists('b:outlined')
     echoerr "No b:outline_pattern for this buffer"
+  endif
+
+  if exists('b:outlined') " Un-outline it
+    FoldEndFolding
+    unlet b:outlined
+  else
+    exe "FoldMatching ".pattern." -1"
+    let b:outlined = 1
+    setlocal foldenable
   endif
 endfunction
 
