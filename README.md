@@ -1,8 +1,8 @@
-This project is my vim setup. It's intended to work on a Linux box, on a vim
-compiled with `+ruby` and `+python`, though it should work just fine even
+This project is my vim setup. It's intended to work on a Linux box with a vim
+compiled with `+ruby` and `+python`, though it should load just fine even
 otherwise, only with less features.
 
-To try it out, backup your `.vimrc` and `.vim` directories and checkout this
+To try it out, backup your `.vimrc` and your `.vim` directory and checkout this
 repository as `~/.vim`. Afterwards, create a symbolic link from `~/.vim/.vimrc`
 to `~/.vimrc` and checkout all submodules:
 
