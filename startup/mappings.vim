@@ -67,6 +67,9 @@ xmap K 5k
 " Upcase current word
 nnoremap <C-u> mzgUiw`z
 
+" Reindent whole file
+nnoremap ++ :call lib#InPlace('normal! gg=G')<cr>
+
 " Completion remappings:
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
