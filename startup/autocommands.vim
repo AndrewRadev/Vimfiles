@@ -37,7 +37,6 @@ augroup custom
   autocmd BufEnter *access.log* set filetype=httplog
   autocmd BufEnter *.hsc        set filetype=haskell
   autocmd BufEnter *.tags       set filetype=tags
-  autocmd BufEnter jquery.*.js  set filetype=jquery
   autocmd BufEnter httpd*.conf  set filetype=apache
 
   autocmd User BufEnterRails Rnavcommand factory spec/factories -glob=* -suffix=.rb -default=model()
