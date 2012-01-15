@@ -3,24 +3,7 @@ let b:surround_{char2nr('_')} = "_\r_"
 
 hi link markdownItalic Normal
 
-RunCommand call MarkdownRun(expand('%'))
-if !exists('*MarkdownRun')
-  function MarkdownRun(fname)
-    let markdown_buffer = bufname('%')
-
-    if !exists('b:preview_file') || bufwinnr(b:preview_file) < 0
-      let b:preview_file = tempname().'.html'
-      exe "split ".b:preview_file
-      call s:SwitchWindow(markdown_buffer)
-    endif
-
-    call system('markdown '.shellescape(a:fname).' > '.b:preview_file)
-    call s:SwitchWindow(b:preview_file)
-    silent edit!
-    set ft=html
-    call s:SwitchWindow(markdown_buffer)
-  endfunction
-endif
+RunCommand call lib#Preview('markdown', 'markdown %s')
 
 command! -count=0 -nargs=* Link call s:Link(<count>, <f-args>)
 function! s:Link(count, ...)
@@ -43,9 +26,4 @@ function! s:Link(count, ...)
   exe 'normal! i'.link
 
   call setreg('z', saved_register, saved_register_mode)
-endfunction
-
-function! s:SwitchWindow(bufname)
-  let window = bufwinnr(a:bufname)
-  exe window."wincmd w"
 endfunction
