@@ -152,36 +152,32 @@ endfunction
 
 " Tabularize mappings
 " For custom Tabularize definitions see after/plugin/tabularize.vim
-nnoremap sa      :call <SID>TabularizeMapping(0)<cr>
-xnoremap sa :<c-u>call <SID>TabularizeMapping(1)<cr>
-function! s:TabularizeMapping(visual)
+nnoremap sa      :call <SID>Tabularize(0)<cr>
+xnoremap sa :<c-u>call <SID>Tabularize(1)<cr>
+function! s:Tabularize(visual)
+  let saved_cursor = getpos('.')
+
   echohl ModeMsg | echo "-- ALIGN -- "  | echohl None
-  let align_type = nr2char(getchar())
-  if align_type     == '='
-    call s:Tabularize('equals', a:visual)
-  elseif align_type == '>'
-    call s:Tabularize('ruby_hash', a:visual)
-  elseif align_type == ','
-    call s:Tabularize('commas', a:visual)
-  elseif align_type == ':'
-    call s:Tabularize('colons', a:visual)
-  elseif align_type == ' '
-    call s:Tabularize('space', a:visual)
-  else " just try aligning by the character
-    call s:Tabularize('/'.align_type, a:visual)
-  end
-endfunction
-function! s:Tabularize(command, visual)
-  normal! mz
+  let char = nr2char(getchar())
 
-  let cmd = "Tabularize ".a:command
-  if a:visual
-    let cmd = "'<,'>" . cmd
+  if     char == '=' | let alignment = 'equals'
+  elseif char == '>' | let alignment = 'ruby_hash'
+  elseif char == ',' | let alignment = 'commas'
+  elseif char == ':' | let alignment = 'colons'
+  elseif char == ' ' | let alignment = 'space'
+  else
+    " just try aligning by the character
+    let alignment = '/'.char
   endif
-  exec cmd
-  echo
 
-  normal! `z
+  if a:visual
+    exe "'<,'>Tabularize ".alignment
+  else
+    exe 'Tabularize '.alignment
+  endif
+
+  echo
+  call setpos('.', saved_cursor)
 endfunction
 
 " Tabularize "reset" -- removes all duplicate whitespace
