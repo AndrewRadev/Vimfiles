@@ -18,12 +18,40 @@ if !filereadable(fnamemodify('gems.tags', ':p'))
 endif
 
 command! Rroutes edit config/routes.rb
-command! Rschema edit db/schema.rb
-command! -nargs=* -complete=custom,s:CompleteRailsModels Rmodel edit _project.vim | Rmodel <args>
+command! Rschema call s:Rschema()
+command! -nargs=1 -complete=custom,s:CompleteRailsModels Rmodel edit app/models/<args>.rb
 command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
 
 command! DumpRoutes r! bundle exec rake routes
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
+
+function! s:Rschema()
+  let current_file = expand('%:p')
+  let model_name = s:CurrentModelName()
+
+  edit db/schema.rb
+
+  if model_name != ''
+    let table_name = s:Tableize(model_name)
+    call search('create_table "'.table_name.'"')
+  endif
+endfunction
+
+function! s:CurrentModelName()
+  let current_file = expand('%:p')
+
+  if current_file =~ 'app/models/.*\.rb$'
+    let filename = expand('%:t:r')
+    return lib#CapitalCamelCase(filename)
+  else
+    return ''
+  endif
+endfunction
+
+" TODO (2012-01-30) Better pluralization
+function! s:Tableize(model_name)
+  return lib#Underscore(a:model_name) . 's'
+endfunction
 
 function! s:CompleteRailsModels(A, L, P)
   let names = []
@@ -47,4 +75,7 @@ endfunction
 " and editing
 function! s:Rfactory(name)
   exe "Ack 'Factory.define :".a:name."\\b' spec/factories"
+  cclose
 endfunction
+
+" TODO (2012-01-30) :A, :R, gf
