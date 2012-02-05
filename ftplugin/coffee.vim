@@ -1,1 +1,2 @@
-RunCommand call lib#Preview('js', 'coffee -c -p %s')
+call SetupPreview('js', 'coffee -p %s')
+RunCommand Preview

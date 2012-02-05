@@ -162,29 +162,5 @@ endfunction
 " Switch to the window that a:bufname is located in.
 function! lib#SwitchWindow(bufname)
   let window = bufwinnr(a:bufname)
-  exe window."wincmd w"
-endfunction
-
-" Generates a preview of a file by processing it with an external command and
-" opening the result in a temporary file.
-"
-" The a:extension parameter sets the extension of the newly created file.
-" The a:command parameter is the command to extecute, with %s denoting the
-" current filename.
-function! lib#Preview(extension, command)
-  let original_buffer = bufname('%')
-
-  if !exists('b:preview_file') || bufwinnr(b:preview_file) < 0
-    let b:preview_file = tempname().'.'.a:extension
-    exe 'split '.b:preview_file
-    call lib#SwitchWindow(original_buffer)
-  endif
-
-  let command = printf(a:command, shellescape(original_buffer))
-  echo system(command . ' > ' . b:preview_file . ' 2>&1')
-
-  call lib#SwitchWindow(b:preview_file)
-  silent edit!
-  normal! zR
-  call lib#SwitchWindow(original_buffer)
+  exe window.'wincmd w'
 endfunction
