@@ -66,13 +66,13 @@ function! NERDTreeMoveNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call <SID>SetupMenuBuffer(current_node, path, 0)
+  call lib#NERDTreeInputBuffer(current_node, path, 'basename')
 
   setlocal statusline=Move
 
   " setup callback
-  nmap <buffer> <cr> :call <SID>ExecuteMove(b:current_node, getline('.'))<cr>
-  imap <buffer> <cr> <esc>:call <SID>ExecuteMove(b:current_node, getline('.'))<cr>
+  nmap <buffer> <cr> :call <SID>ExecuteMove(b:node, getline('.'))<cr>
+  imap <buffer> <cr> <esc>:call <SID>ExecuteMove(b:node, getline('.'))<cr>
 endfunction
 
 "FUNCTION: s:ExecuteMove(current_node, new_path){{{1
@@ -108,13 +108,13 @@ function! NERDTreeAddNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeDirNode.GetSelected()
   let path         = current_node.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash()
 
-  call <SID>SetupMenuBuffer(current_node, path, 1)
+  call lib#NERDTreeInputBuffer(current_node, path, 'append')
 
   setlocal statusline=Add
 
   " setup callback
-  nmap <buffer> <cr> :call <SID>ExecuteAdd(b:current_node, getline('.'))<cr>
-  imap <buffer> <cr> <esc>:call <SID>ExecuteAdd(b:current_node, getline('.'))<cr>
+  nmap <buffer> <cr> :call <SID>ExecuteAdd(b:node, getline('.'))<cr>
+  imap <buffer> <cr> <esc>:call <SID>ExecuteAdd(b:node, getline('.'))<cr>
 endfunction
 
 "FUNCTION: s:ExecuteAdd(current_node, new_node_name){{{1
@@ -152,13 +152,13 @@ function! NERDTreeCopyNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call <SID>SetupMenuBuffer(current_node, path, 0)
+  call lib#NERDTreeInputBuffer(current_node, path, 'basename')
 
   setlocal statusline=Copy
 
   " setup callback
-  nmap <buffer> <cr> :call <SID>ExecuteCopy(b:current_node, getline('.'))<cr>
-  imap <buffer> <cr> <esc>:call <SID>ExecuteCopy(b:current_node, getline('.'))<cr>
+  nmap <buffer> <cr> :call <SID>ExecuteCopy(b:node, getline('.'))<cr>
+  imap <buffer> <cr> <esc>:call <SID>ExecuteCopy(b:node, getline('.'))<cr>
 endfunction
 
 "FUNCTION: s:ExecuteCopy(current_node, new_node_name){{{1
@@ -197,46 +197,6 @@ function! s:ExecuteCopy(current_node, new_path)
     call s:echo("Copy aborted.")
   endif
   redraw
-endfunction
-
-"FUNCTION: s:SetupMenuBuffer(current_node, path, cursor_at_end){{{1
-function! s:SetupMenuBuffer(current_node, path, cursor_at_end)
-  let current_node = a:current_node
-  let path         = a:path
-
-  " one-line buffer, below everything else
-  botright 1new
-
-  " check for automatic completion and temporarily disable it
-  if exists(':AcpLock')
-    AcpLock
-    autocmd BufLeave <buffer> AcpUnlock
-  endif
-
-  autocmd BufLeave <buffer> q!
-
-  call setline(1, path)
-  setlocal nomodified
-  let b:current_node = current_node
-
-  " guard against problems
-  nmap <buffer> o <nop>
-  nmap <buffer> O <nop>
-
-  " cancel action
-  nmap <buffer> <esc> :q!<cr>
-  nmap <buffer> <c-[> :q!<cr>
-
-  map <buffer> <c-c> :q!<cr>
-  imap <buffer> <c-c> :q!<cr>
-
-  if a:cursor_at_end
-    " insert mode at end of path
-    call feedkeys('A')
-  else
-    " go to the beginning of the last path segment
-    normal! $T/
-  end
 endfunction
 
 " FUNCTION: NERDTreeDeleteNode() {{{1

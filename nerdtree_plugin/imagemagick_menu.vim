@@ -21,55 +21,15 @@ function! NERDTreeImageMagickProcessing()
     return
   else
     let path = fnamemodify(current_file.path.str(), ':.')
-    call <SID>SetupMenuBuffer(current_file, path, 0)
+    call lib#NERDTreeInputBuffer(current_file, path, 'basename')
     setlocal statusline=Convert
 
     " setup callback
-    nmap <buffer> <cr> :call <SID>ExecuteConvert(b:current_node, getline('.'))<cr>
-    imap <buffer> <cr> <esc>:call <SID>ExecuteConvert(b:current_node, getline('.'))<cr>
+    nmap <buffer> <cr> :call <SID>ExecuteConvert(b:node, getline('.'))<cr>
+    imap <buffer> <cr> <esc>:call <SID>ExecuteConvert(b:node, getline('.'))<cr>
   endif
 
   redraw!
-endfunction
-
-"FUNCTION: s:SetupMenuBuffer(current_node, path, cursor_at_end){{{1
-function! s:SetupMenuBuffer(current_node, path, cursor_at_end)
-  let current_node = a:current_node
-  let path         = a:path
-
-  " one-line buffer, below everything else
-  botright 1new
-
-  " check for automatic completion and temporarily disable it
-  if exists(':AcpLock')
-    AcpLock
-    autocmd BufLeave <buffer> AcpUnlock
-  endif
-
-  autocmd BufLeave <buffer> q!
-
-  call setline(1, path)
-  setlocal nomodified
-  let b:current_node = current_node
-
-  " guard against problems
-  nmap <buffer> o <nop>
-  nmap <buffer> O <nop>
-
-  " cancel action
-  nmap <buffer> <esc> :q!<cr>
-  nmap <buffer> <c-[> :q!<cr>
-
-  map <buffer> <c-c> :q!<cr>
-  imap <buffer> <c-c> :q!<cr>
-
-  if a:cursor_at_end
-    " insert mode at end of path
-    call feedkeys('A')
-  else
-    " go to the beginning of the last path segment
-    normal! $T/
-  end
 endfunction
 
 "FUNCTION: s:ExecuteConvert(current_node, command_line){{{1

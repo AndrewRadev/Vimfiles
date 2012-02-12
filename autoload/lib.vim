@@ -164,3 +164,45 @@ function! lib#SwitchWindow(bufname)
   let window = bufwinnr(a:bufname)
   exe window.'wincmd w'
 endfunction
+
+" Setup a one-line input buffer for a NERDTree action.
+function! lib#NERDTreeInputBuffer(node, path, cursor_position)
+  let node            = a:node
+  let path            = a:path
+  let cursor_position = a:cursor_position
+
+  " one-line buffer, below everything else
+  botright 1new
+
+  " check for automatic completion and temporarily disable it
+  if exists(':AcpLock')
+    AcpLock
+    autocmd BufLeave <buffer> AcpUnlock
+  endif
+
+  " if we leave the buffer, close it
+  autocmd BufLeave <buffer> q!
+
+  " set the content, store the NERDTree node
+  call setline(1, path)
+  setlocal nomodified
+  let b:node = node
+
+  " disallow opening new lines
+  nmap <buffer> o <nop>
+  nmap <buffer> O <nop>
+
+  " cancel the action
+  nmap <buffer> <esc> :q!<cr>
+  nmap <buffer> <c-[> :q!<cr>
+  map  <buffer> <c-c> :q!<cr>
+  imap <buffer> <c-c> :q!<cr>
+
+  if cursor_position == 'append'
+    " insert mode at end of path
+    call feedkeys('A')
+  elseif cursor_position == 'basename'
+    " go to the beginning of the last path segment
+    normal! $T/
+  end
+endfunction
