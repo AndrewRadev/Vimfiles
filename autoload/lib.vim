@@ -166,10 +166,11 @@ function! lib#SwitchWindow(bufname)
 endfunction
 
 " Setup a one-line input buffer for a NERDTree action.
-function! lib#NERDTreeInputBuffer(node, path, cursor_position)
+function! lib#NERDTreeInputBufferSetup(node, path, cursor_position, callback)
   let node            = a:node
   let path            = a:path
   let cursor_position = a:cursor_position
+  let Callback        = a:callback
 
   " one-line buffer, below everything else
   botright 1new
@@ -186,7 +187,8 @@ function! lib#NERDTreeInputBuffer(node, path, cursor_position)
   " set the content, store the NERDTree node
   call setline(1, path)
   setlocal nomodified
-  let b:node = node
+  let b:node     = node
+  let b:callback = Callback
 
   " disallow opening new lines
   nmap <buffer> o <nop>
@@ -205,4 +207,13 @@ function! lib#NERDTreeInputBuffer(node, path, cursor_position)
     " go to the beginning of the last path segment
     normal! $T/
   end
+
+  " setup callback
+  nmap <buffer> <cr> :call lib#NERDTreeInputBufferExecute(b:callback, b:node, getline('.'))<cr>
+  imap <buffer> <cr> <esc>:call lib#NERDTreeInputBufferExecute(b:callback, b:node, getline('.'))<cr>
+endfunction
+
+function! lib#NERDTreeInputBufferExecute(callback, node, result)
+  q! " close the temporary buffer
+  call call(a:callback, [a:node, a:result])
 endfunction

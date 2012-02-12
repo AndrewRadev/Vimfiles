@@ -61,27 +61,17 @@ if g:NERDTreePath.CopyingSupported()
         \ })
 endif
 
-"FUNCTION: NERDTreeMoveNodeWithTemporaryBuffer(){{{1
 function! NERDTreeMoveNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call lib#NERDTreeInputBuffer(current_node, path, 'basename')
-
+  call lib#NERDTreeInputBufferSetup(current_node, path, 'basename', function('NERDTreeExecuteMove'))
   setlocal statusline=Move
-
-  " setup callback
-  nmap <buffer> <cr> :call <SID>ExecuteMove(b:node, getline('.'))<cr>
-  imap <buffer> <cr> <esc>:call <SID>ExecuteMove(b:node, getline('.'))<cr>
 endfunction
 
-"FUNCTION: s:ExecuteMove(current_node, new_path){{{1
-function! s:ExecuteMove(current_node, new_path)
+function! NERDTreeExecuteMove(current_node, new_path)
   let current_node = a:current_node
   let new_path     = a:new_path
-
-  " close the temporary buffer
-  q!
 
   try
     let bufnum = bufnr(current_node.path.str())
@@ -94,7 +84,6 @@ function! s:ExecuteMove(current_node, new_path)
     endif
 
     call current_node.putCursorHere(1, 0)
-
     redraw!
 
     call s:echo('Node moved to '.new_path)
@@ -103,27 +92,17 @@ function! s:ExecuteMove(current_node, new_path)
   endtry
 endfunction
 
-"FUNCTION: NERDTreeAddNodeWithTemporaryBuffer(){{{1
 function! NERDTreeAddNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeDirNode.GetSelected()
   let path         = current_node.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash()
 
-  call lib#NERDTreeInputBuffer(current_node, path, 'append')
-
+  call lib#NERDTreeInputBufferSetup(current_node, path, 'append', function('NERDTreeExecuteAdd'))
   setlocal statusline=Add
-
-  " setup callback
-  nmap <buffer> <cr> :call <SID>ExecuteAdd(b:node, getline('.'))<cr>
-  imap <buffer> <cr> <esc>:call <SID>ExecuteAdd(b:node, getline('.'))<cr>
 endfunction
 
-"FUNCTION: s:ExecuteAdd(current_node, new_node_name){{{1
-function s:ExecuteAdd(current_node, new_node_name)
+function NERDTreeExecuteAdd(current_node, new_node_name)
   let current_node  = a:current_node
   let new_node_name = a:new_node_name
-
-  " close the temporary buffer
-  q!
 
   if new_node_name ==# ''
     call s:echo("Node Creation Aborted.")
@@ -147,27 +126,17 @@ function s:ExecuteAdd(current_node, new_node_name)
   endtry
 endfunction
 
-"FUNCTION: NERDTreeCopyNodeWithTemporaryBuffer() {{{1
 function! NERDTreeCopyNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call lib#NERDTreeInputBuffer(current_node, path, 'basename')
-
+  call lib#NERDTreeInputBufferSetup(current_node, path, 'basename', function('NERDTreeExecuteCopy'))
   setlocal statusline=Copy
-
-  " setup callback
-  nmap <buffer> <cr> :call <SID>ExecuteCopy(b:node, getline('.'))<cr>
-  imap <buffer> <cr> <esc>:call <SID>ExecuteCopy(b:node, getline('.'))<cr>
 endfunction
 
-"FUNCTION: s:ExecuteCopy(current_node, new_node_name){{{1
-function! s:ExecuteCopy(current_node, new_path)
+function! NERDTreeExecuteCopy(current_node, new_path)
   let current_node = a:current_node
   let new_path     = a:new_path
-
-  " close the temporary buffer
-  q!
 
   if new_path != ""
     "strip trailing slash
@@ -199,7 +168,6 @@ function! s:ExecuteCopy(current_node, new_path)
   redraw
 endfunction
 
-" FUNCTION: NERDTreeDeleteNode() {{{1
 function! NERDTreeDeleteNode()
   let currentNode = g:NERDTreeFileNode.GetSelected()
   let confirmed = 0
@@ -238,20 +206,17 @@ function! NERDTreeDeleteNode()
   endif
 endfunction
 
-"FUNCTION: s:echo(msg){{{1
 function! s:echo(msg)
   redraw
   echomsg "NERDTree: " . a:msg
 endfunction
 
-"FUNCTION: s:echoWarning(msg){{{1
 function! s:echoWarning(msg)
   echohl warningmsg
   call s:echo(a:msg)
   echohl normal
 endfunction
 
-"FUNCTION: s:delBuffer(bufnum)
 "Delete the buffer with the given bufnum.
 "
 "Args:
