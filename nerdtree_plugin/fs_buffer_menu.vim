@@ -65,7 +65,7 @@ function! NERDTreeMoveNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call lib#NERDTreeInputBufferSetup(current_node, path, 'basename', function('NERDTreeExecuteMove'))
+  call lib#NERDTreeInputBufferSetup(current_node, path, 'basename', 'NERDTreeExecuteMove')
   setlocal statusline=Move
 endfunction
 
@@ -96,7 +96,7 @@ function! NERDTreeAddNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeDirNode.GetSelected()
   let path         = current_node.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash()
 
-  call lib#NERDTreeInputBufferSetup(current_node, path, 'append', function('NERDTreeExecuteAdd'))
+  call lib#NERDTreeInputBufferSetup(current_node, path, 'append', 'NERDTreeExecuteAdd')
   setlocal statusline=Add
 endfunction
 
@@ -130,7 +130,7 @@ function! NERDTreeCopyNodeWithTemporaryBuffer()
   let current_node = g:NERDTreeFileNode.GetSelected()
   let path         = current_node.path.str()
 
-  call lib#NERDTreeInputBufferSetup(current_node, path, 'basename', function('NERDTreeExecuteCopy'))
+  call lib#NERDTreeInputBufferSetup(current_node, path, 'basename', 'NERDTreeExecuteCopy')
   setlocal statusline=Copy
 endfunction
 

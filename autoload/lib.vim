@@ -166,12 +166,7 @@ function! lib#SwitchWindow(bufname)
 endfunction
 
 " Setup a one-line input buffer for a NERDTree action.
-function! lib#NERDTreeInputBufferSetup(node, path, cursor_position, callback)
-  let node            = a:node
-  let path            = a:path
-  let cursor_position = a:cursor_position
-  let Callback        = a:callback
-
+function! lib#NERDTreeInputBufferSetup(node, content, cursor_position, callback)
   " one-line buffer, below everything else
   botright 1new
 
@@ -185,10 +180,10 @@ function! lib#NERDTreeInputBufferSetup(node, path, cursor_position, callback)
   autocmd BufLeave <buffer> q!
 
   " set the content, store the NERDTree node
-  call setline(1, path)
+  call setline(1, a:content)
   setlocal nomodified
-  let b:node     = node
-  let b:callback = Callback
+  let b:node     = a:node
+  let b:callback = function(a:callback)
 
   " disallow opening new lines
   nmap <buffer> o <nop>
@@ -200,10 +195,10 @@ function! lib#NERDTreeInputBufferSetup(node, path, cursor_position, callback)
   map  <buffer> <c-c> :q!<cr>
   imap <buffer> <c-c> :q!<cr>
 
-  if cursor_position == 'append'
+  if a:cursor_position == 'append'
     " insert mode at end of path
     call feedkeys('A')
-  elseif cursor_position == 'basename'
+  elseif a:cursor_position == 'basename'
     " go to the beginning of the last path segment
     normal! $T/
   end

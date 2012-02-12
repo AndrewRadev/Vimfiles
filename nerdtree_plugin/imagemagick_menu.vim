@@ -18,7 +18,7 @@ function! NERDTreeImageMagickProcessing()
     return
   else
     let path = fnamemodify(current_file.path.str(), ':.')
-    call lib#NERDTreeInputBufferSetup(current_file, path, 'basename', function('NERDTreeExecuteConvert'))
+    call lib#NERDTreeInputBufferSetup(current_file, path, 'basename', 'NERDTreeExecuteConvert')
     setlocal statusline=Convert
   endif
 
