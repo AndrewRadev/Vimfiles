@@ -30,7 +30,7 @@ onoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
 xnoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
 
 " Look up the word under the cursor on apidock:
-nnoremap <buffer> gm :call lib#OpenUrl('http://apidock.com/ruby/search/quick?query=' . expand("<cword>"))<cr>
+nnoremap <buffer> gm :Doc ruby<cr>
 
 " Make conditional expressions true or false
 command! -buffer True  call s:True()

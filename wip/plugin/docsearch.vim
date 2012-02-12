@@ -3,7 +3,9 @@ let s:search_urls = {
       \ 'rails':  'http://apidock.com/rails/search/quick?query=%s',
       \ 'rspec':  'http://apidock.com/rspec/search/quick?query=%s',
       \ 'jquery': 'http://api.jquery.com/%s',
-      \ 'so':     'http://stackoverflow.com/search?q=%s'
+      \ 'so':     'http://stackoverflow.com/search?q=%s',
+      \ 'css':    'https://developer.mozilla.org/en-US/search?q=%s',
+      \ 'js':     'https://developer.mozilla.org/en-US/search?q=%s'
       \ }
 
 command! -count=0 -nargs=+ -complete=custom,s:CompleteDoc  Doc call s:Doc(<count>, <f-args>)

@@ -1,3 +1,6 @@
+" Go to manual
+nnoremap gm :Doc css<cr>
+
 " Work on a CSS definition in the current line
 " Origin is "delete an argument", similar to arguments of functions
 onoremap <buffer> aa :<c-u>call <SID>DefinitionTextObject('a')<cr>

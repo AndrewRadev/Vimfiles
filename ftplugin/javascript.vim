@@ -2,7 +2,7 @@ let b:outline_pattern = '\<function\>'
 
 setlocal foldmethod=indent
 
-setlocal tags+=~/tags/jquery.tags
+nnoremap <buffer> gm :Doc ruby<cr>
 
 " Reformat json
 command! -buffer Reformat %!jsonpp
