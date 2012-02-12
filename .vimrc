@@ -31,8 +31,8 @@ for dir in split(glob('~/.vim/wip/*'), "\n")
   exe "set runtimepath+=".dir
 endfor
 
-if filereadable(fnamemodify('~/.local_vimrc', ':p'))
-  source ~/.local_vimrc
+if filereadable(fnamemodify('~/.vimrc.local', ':p'))
+  source ~/.vimrc.local
 endif
 
 let g:loaded_rails = 1
