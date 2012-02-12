@@ -4,10 +4,6 @@ let g:loaded_tar       = 1
 let g:loaded_zipPlugin = 1
 let g:loaded_zip       = 1
 
-" TabMan:
-let g:tabman_toggle = 'gt'
-let g:tabman_focus  = 'gT'
-
 " NERDTree:
 let g:NERDTreeDirArrows   = 0
 let g:NERDTreeHijackNetrw = 1
