@@ -6,7 +6,7 @@ cd $HOME/.vim/bundle/
 for plugin in *; do
     cd $plugin
     echo ":: Updating $plugin ..."
-    if [ -d .git ]; then
+    if [ -e .git ]; then
       git checkout master
       git pull origin master
     else
