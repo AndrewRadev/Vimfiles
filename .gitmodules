@@ -70,9 +70,6 @@
 [submodule "bundle/coffeescript"]
 	path = bundle/coffeescript
 	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "bundle/tabman"]
-	path = bundle/tabman
-	url = https://github.com/kien/tabman.vim.git
 [submodule "bundle/edit_archive"]
 	path = bundle/edit_archive
 	url = git@github.com:AndrewRadev/edit_archive.vim.git
