@@ -20,6 +20,17 @@ MapToggle sw wrap
 MapToggle ss spell
 MapToggle sc cursorcolumn
 
+" https://github.com/bjeanes/dot-files/blob/master/vim/vimrc
+" For when you forget to sudo.. Really Write the file.
+command! SudoWrite call s:SudoWrite()
+function! s:SudoWrite()
+  write !sudo tee % >/dev/null
+  e!
+endfunction
+
+" Avoid typing errors
+command! W write
+
 " Open URLs:
 command! -count=0 -nargs=* -complete=file Open call s:Open(<count>, <f-args>)
 function! s:Open(count, ...)

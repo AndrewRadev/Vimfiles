@@ -122,14 +122,6 @@ nmap dsf F(bdt(ds(
 " See startup/commands.vim
 nnoremap QQ :Q<cr>
 
-" https://github.com/bjeanes/dot-files/blob/master/vim/vimrc
-" For when you forget to sudo.. Really Write the file.
-command! W call s:SudoWrite()
-function! s:SudoWrite()
-  write !sudo tee % >/dev/null
-  e!
-endfunction
-
 " Run current file -- filetype-specific
 nnoremap ! :Run<cr>
 xnoremap ! :Run<cr>
