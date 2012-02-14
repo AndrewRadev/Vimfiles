@@ -166,24 +166,24 @@ function! lib#SwitchWindow(bufname)
 endfunction
 
 " Setup a one-line input buffer for a NERDTree action.
-function! lib#NERDTreeInputBufferSetup(node, content, cursor_position, callback)
-  " one-line buffer, below everything else
+function! lib#NERDTreeInputBufferSetup(node, content, cursor_position, callback_function_name)
+  " one-line buffer below everything else
   botright 1new
 
-  " check for automatic completion and temporarily disable it
+  " disable autocompletion
   if exists(':AcpLock')
     AcpLock
     autocmd BufLeave <buffer> AcpUnlock
   endif
 
-  " if we leave the buffer, close it
+  " if we leave the buffer, cancel the operation
   autocmd BufLeave <buffer> q!
 
-  " set the content, store the NERDTree node
+  " set the content, store the callback and the node in the buffer
   call setline(1, a:content)
   setlocal nomodified
   let b:node     = a:node
-  let b:callback = function(a:callback)
+  let b:callback = function(a:callback_function_name)
 
   " disallow opening new lines
   nmap <buffer> o <nop>
@@ -195,20 +195,23 @@ function! lib#NERDTreeInputBufferSetup(node, content, cursor_position, callback)
   map  <buffer> <c-c> :q!<cr>
   imap <buffer> <c-c> :q!<cr>
 
-  if a:cursor_position == 'append'
-    " insert mode at end of path
-    call feedkeys('A')
-  elseif a:cursor_position == 'basename'
-    " go to the beginning of the last path segment
+  if a:cursor_position == 'basename'
+    " cursor is on basename (last path segment)
     normal! $T/
-  end
+  elseif a:cursor_position == 'append'
+    " cursor is in insert mode at the end of the line
+    call feedkeys('A')
+  endif
 
-  " setup callback
-  nmap <buffer> <cr> :call lib#NERDTreeInputBufferExecute(b:callback, b:node, getline('.'))<cr>
+  " mappings to invoke the callback
+  nmap <buffer> <cr>      :call lib#NERDTreeInputBufferExecute(b:callback, b:node, getline('.'))<cr>
   imap <buffer> <cr> <esc>:call lib#NERDTreeInputBufferExecute(b:callback, b:node, getline('.'))<cr>
 endfunction
 
 function! lib#NERDTreeInputBufferExecute(callback, node, result)
-  q! " close the temporary buffer
+  " close the input buffer
+  q!
+
+  " invoke the callback
   call call(a:callback, [a:node, a:result])
 endfunction
