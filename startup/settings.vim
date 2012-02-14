@@ -2,7 +2,7 @@
 set clipboard=unnamed
 set incsearch nohlsearch
 set nottybuiltin
-set shortmess=aTI
+set shortmess=aTOI
 set showcmd
 set sidescroll=4
 set splitbelow
