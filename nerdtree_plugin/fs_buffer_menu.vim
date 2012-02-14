@@ -100,7 +100,7 @@ function! NERDTreeAddNodeWithTemporaryBuffer()
   setlocal statusline=Add
 endfunction
 
-function NERDTreeExecuteAdd(current_node, new_node_name)
+function! NERDTreeExecuteAdd(current_node, new_node_name)
   let current_node  = a:current_node
   let new_node_name = a:new_node_name
 

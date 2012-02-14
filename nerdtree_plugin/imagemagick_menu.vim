@@ -26,28 +26,19 @@ function! NERDTreeImageMagickProcessing()
 endfunction
 
 function! NERDTreeExecuteConvert(current_node, command_line)
-  let current_node = a:current_node
-  let command_line = a:command_line
+  let external_command = 'convert '.a:current_node.path.str().' '.a:command_line
 
-  echomsg 'convert '.current_node.path.str().' '.shellescape(command_line)
-  let output = system('convert '.current_node.path.str().' '.command_line)
+  echomsg external_command
+  let output = system(external_command)
 
   if v:shell_error == 0
-    call s:echo('Image converted as '.command_line)
+    redraw
+    echomsg 'Image converted as '.a:command_line
     call b:NERDTreeRoot.refresh()
     call NERDTreeRender()
   else
-    call s:echoWarning('Error in command line: '.output)
+    echohl WarningMsg
+    echomsg 'Error in command line: '.output
+    echohl None
   endif
-endfunction
-
-function! s:echo(msg)
-  redraw
-  echomsg "NERDTree: " . a:msg
-endfunction
-
-function! s:echoWarning(msg)
-  echohl warningmsg
-  call s:echo(a:msg)
-  echohl normal
 endfunction
