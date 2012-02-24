@@ -79,3 +79,6 @@ let g:inline_edit_autowrite = 1
 " CtrlP
 let g:ctrlp_working_path_mode = 0 " don't manage my working path
 let g:ctrlp_mru_files         = 1 " forget about MRU files
+
+" Coffeescript
+hi link coffeeSpaceError NONE
