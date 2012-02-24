@@ -1,19 +1,19 @@
 " Vim indent file
-" Language:	Php
-" Authors:	Miles Lott <milos@groupwhere.org>, Johannes Zellner <johannes@zellner.org>, Pim Snel <pim@lingewoud.nl>
-" URL:		http://lingewoud.nl/downloads.php
-" Last Change:	23 feb 2004
-" Version:	0.3
-" Notes:  	This is a combination of the PHP indent file of Miles Lott with
-"         	the HTML indent file of Johannes Zellner. Usefull for editing
-"         	php-files with html parts in it.
+" Language: Php
+" Authors:  Miles Lott <milos@groupwhere.org>, Johannes Zellner <johannes@zellner.org>, Pim Snel <pim@lingewoud.nl>
+" URL:      http://lingewoud.nl/downloads.php
+" Last Change: 23 feb 2004
+" Version:  0.3
+" Notes:    This is a combination of the PHP indent file of Miles Lott with
+"           the HTML indent file of Johannes Zellner. Usefull for editing
+"           php-files with html parts in it.
 "
 " Changelog:
-" 			 0.3 - 25 mar 2004
-" 			 - fixed wrong indention when a php-tag is opened and closed on
-" 			   one single line.
-" 			 0.2 - 23 feb 2004
-" 			 - applied patch from Holger Dzeik <dzeik@nentec.de>
+"         0.3 - 25 mar 2004
+"         - fixed wrong indention when a php-tag is opened and closed on
+"           one single line.
+"         0.2 - 23 feb 2004
+"         - applied patch from Holger Dzeik <dzeik@nentec.de>
 "            - added changelog
 "            - added default indention of 3 spaces after the <?php for better
 "              reading
@@ -35,9 +35,9 @@ setlocal indentexpr=GetPhpIndent()
 setlocal indentkeys+=0=,0),=EO,o,O,*<Return>,<>>,{,}
 
 " Only define the function once.
-if exists("*GetPhpIndent")
-   finish
-endif
+" if exists("*GetPhpIndent")
+"    finish
+" endif
 
 " Handle option(s)
 if exists("php_noindent_switch")
@@ -48,7 +48,7 @@ if exists('g:html_indent_tags')
    unlet g:html_indent_tags
 endif
 
-function GetPhpIndent()
+function! GetPhpIndent()
    " Find a non-empty line above the current line.
    let lnum = prevnonblank(v:lnum - 1)
 
@@ -73,32 +73,43 @@ function GetPhpIndent()
    let ind = indent(lnum) + (&sw * ind)
 
    " Indent after php open tags
-   " if line =~ '<?php' && line !~ '?>' && cline !~ '^\s*[?>]'
-      " let ind = ind + &sw
-   " endif
+   if line =~ '<?php' && line !~ '?>' && cline !~ '^\s*[?>]'
+      let ind = ind + &sw
+   endif
+
+   " Indent after php control flow statements
+   if line =~ '<?php\s*\(if\|elseif\|else\|for\|while\).*?>\s*$'
+      return ind + &sw
+   elseif cline =~ '<?php\s*end\(if\|for\|while\)\s*;\?\s*?>'
+      return ind - &sw
+   elseif cline =~ '<?php\s*\(else\|elseif\).*?>\s*$'
+      return ind - &sw
+   elseif cline =~ '^\s*?>\s*$'
+      return ind - &sw
+   endif
 
    " Indent block comments properly:
    if line =~ '^\s*/\*'
       return ind + 1
    elseif line =~ '\*/$'
       return ind - 1
-	endif
+   endif
 
-	" Indent successive '->'s:
-"	let arrow_index = match(line, '->')
-"	if arrow_index != -1
-"		if line !~ ';\s*$'
-"			if !exists('b:indent_before_arrow')
-"				let b:indent_before_arrow = ind
-"			endif
-"
-"			return arrow_index
-"		elseif exists('b:indent_before_arrow')
-"			let ind = b:indent_before_arrow
-"			unlet('b:indent_before_arrow')
-"			return ind
-"		endif
-"	endif
+   " " Indent successive '->'s:
+   " let arrow_index = match(line, '->')
+   " if arrow_index != -1
+   "    if line !~ ';\s*$'
+   "       if !exists('b:indent_before_arrow')
+   "          let b:indent_before_arrow = ind
+   "       endif
+
+   "       return arrow_index
+   "    elseif exists('b:indent_before_arrow')
+   "       let ind = b:indent_before_arrow
+   "       unlet('b:indent_before_arrow')
+   "       return ind
+   "    endif
+   " endif
 
    if exists("b:php_noindent_switch") " version 1 behavior, diy switch/case,etc
       " Indent blocks enclosed by {} or ()
@@ -138,8 +149,6 @@ endfunction
 " [-- local settings (must come before aborting the script) --]
 "setlocal indentexpr=HtmlIndentGet(v:lnum)
 "setlocal indentkeys=o,O,*<Return>,<>>,<bs>,{,}
-
-
 
 " [-- helper function to assemble tag list --]
 fun! <SID>HtmlIndentPush(tag)
