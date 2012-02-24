@@ -3,7 +3,7 @@ let b:surround_{char2nr('_')} = "_\r_"
 
 hi link markdownItalic Normal
 
-call SetupPreview('markdown', 'markdown %s')
+call SetupPreview('html', 'markdown %s')
 RunCommand Preview
 
 command! -count=0 -nargs=* Link call s:Link(<count>, <f-args>)
