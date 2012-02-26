@@ -82,3 +82,4 @@ let g:ctrlp_mru_files         = 1 " forget about MRU files
 
 " Coffeescript
 hi link coffeeSpaceError NONE
+autocmd User CoffeeToolsPreviewOpened nnoremap <buffer> ! ZZ
