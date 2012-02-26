@@ -79,3 +79,6 @@
 [submodule "bundle/haml"]
 	path = bundle/haml
 	url = https://github.com/tpope/vim-haml.git
+[submodule "bundle/coffee_tools"]
+	path = bundle/coffee_tools
+	url = git@github.com:AndrewRadev/coffee_tools.vim.git
