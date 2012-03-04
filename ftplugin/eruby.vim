@@ -32,7 +32,11 @@ function! s:ErbTextObject(mode)
 
   let interval = end - start
 
-  exe 'normal! 0'.start.'lv'.interval.'l'
+  if start == 0
+    exe 'normal! 0v'.interval.'l'
+  else
+    exe 'normal! 0'.start.'lv'.interval.'l'
+  endif
 endfunction
 
 " To be sure it's an erb file
