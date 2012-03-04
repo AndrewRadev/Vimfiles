@@ -31,10 +31,15 @@ function! s:GithubPath(remote_name)
 endfunction
 
 function! s:CurrentGitBranch()
-  if !filereadable('.git/HEAD')
-    throw 'This doesn''t look like a git repository, .git/HEAD was not found.'
+  if filereadable('.git/HEAD')
+    let head_ref = readfile('.git/HEAD')[0]
+  elseif filereadable('.git')
+    let module_file = readfile('.git')[0]
+    let module_file = substitute(module_file, 'gitdir: \(.*\)', '\1/HEAD', '')
+    let head_ref    = readfile(module_file)[0]
+  else
+    throw 'This doesn''t look like a git repository, neither .git/HEAD nor .git were found.'
   endif
 
-  let head_ref = readfile('.git/HEAD')[0]
   return substitute(head_ref, 'ref: refs/heads/\(.*\)', '\1', '')
 endfunction
