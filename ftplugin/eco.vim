@@ -48,3 +48,4 @@ function! s:EcoTextObject(mode)
 endfunction
 
 autocmd Syntax * hi link coffeeSpecialVar Identifier
+autocmd Syntax * hi link ecoDelimiter PreProc
