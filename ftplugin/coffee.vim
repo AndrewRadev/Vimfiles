@@ -1,5 +1,5 @@
 setlocal foldmethod=indent
-setlocal nofoldenable
+setlocal foldenable
 
 RunCommand CoffeePreviewToggle
 
