@@ -64,8 +64,8 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
-" Upcase current word
-nnoremap <C-u> mzgUiw`z
+" Toggle case of current word
+nnoremap <C-u> mzg~iw`z
 
 " Reindent whole file
 nnoremap ++ :call lib#InPlace('normal! gg=G')<cr>
@@ -178,7 +178,7 @@ xnoremap s= :call <SID>TabularizeReset()<cr>
 function! s:TabularizeReset()
   let original_cursor = getpos('.')
 
-  s/\S\zs \+/ /g
+  s/\S\zs \+/ /ge
   call histdel('search', -1)
   let @/ = histget('search', -1)
 
