@@ -1,3 +1,5 @@
+snippet #t
+	# TODO (`strftime("%Y-%m-%d")`) ${1}
 snippet req
 	require '${1}'
 snippet f
@@ -13,5 +15,5 @@ snippet des
 	describe "${1:foo}", ->
 		${2:# code}
 snippet it
-	it "${1:twiddles}", (next) ->
+	it "${1:twiddles}", (done) ->
 		${2:# code}
