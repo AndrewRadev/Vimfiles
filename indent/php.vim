@@ -80,7 +80,7 @@ function! GetPhpIndent()
    " Indent after php control flow statements
    if line =~ '<?php\s*\(if\|elseif\|else\|for\|while\).*?>\s*$'
       return ind + &sw
-   elseif cline =~ '<?php\s*end\(if\|for\|while\)\s*;\?\s*?>'
+   elseif cline =~ '<?php\s*end\(if\|for\|foreach\|while\)\s*;\?\s*?>'
       return ind - &sw
    elseif cline =~ '<?php\s*\(else\|elseif\).*?>\s*$'
       return ind - &sw
