@@ -220,7 +220,6 @@ inoreabbr <silent> <buffer> unique <C-R>=SqlIab_ReplaceConditionally('unique', '
 inoreabbr <silent> <buffer> unknown <C-R>=SqlIab_ReplaceConditionally('unknown', 'UNKNOWN')<CR>
 inoreabbr <silent> <buffer> unlisten <C-R>=SqlIab_ReplaceConditionally('unlisten', 'UNLISTEN')<CR>
 inoreabbr <silent> <buffer> update <C-R>=SqlIab_ReplaceConditionally('update', 'UPDATE')<CR>
-inoreabbr <silent> <buffer> user <C-R>=SqlIab_ReplaceConditionally('user', 'USER')<CR>
 inoreabbr <silent> <buffer> using <C-R>=SqlIab_ReplaceConditionally('using', 'USING')<CR>
 inoreabbr <silent> <buffer> vacuum <C-R>=SqlIab_ReplaceConditionally('vacuum', 'VACUUM')<CR>
 inoreabbr <silent> <buffer> validate <C-R>=SqlIab_ReplaceConditionally('validate', 'VALIDATE')<CR>
