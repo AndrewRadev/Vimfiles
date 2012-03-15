@@ -2,7 +2,7 @@ let b:outline_pattern = '\<function\>'
 
 setlocal foldmethod=indent
 
-nnoremap <buffer> gm :Doc ruby<cr>
+nnoremap <buffer> gm :Doc js<cr>
 
 " Reformat json
 command! -buffer Reformat %!jsonpp

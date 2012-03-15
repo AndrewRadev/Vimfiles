@@ -16,7 +16,7 @@ function! s:ToggleFunctionType()
   call setpos('.', saved_cursor)
 endfunction
 
-nnoremap <buffer> gm :Doc javascript<cr>
+nnoremap <buffer> gm :Doc js<cr>
 xmap <buffer> sO <Plug>CoffeeToolsOpenLineAndIndent
 
 autocmd Syntax * hi link coffeeSpecialVar Identifier
