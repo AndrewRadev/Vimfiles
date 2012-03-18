@@ -82,3 +82,6 @@
 [submodule "bundle/coffee_tools"]
 	path = bundle/coffee_tools
 	url = https://github.com/AndrewRadev/coffee_tools.vim.git
+[submodule "bundle/nyancat"]
+	path = bundle/nyancat
+	url = https://github.com/koron/nyancat-vim.git
