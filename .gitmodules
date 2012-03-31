@@ -91,3 +91,6 @@
 [submodule "bundle/lesscss"]
 	path = bundle/lesscss
 	url = https://github.com/groenewege/vim-less.git
+[submodule "bundle/webapi"]
+	path = bundle/webapi
+	url = https://github.com/mattn/webapi-vim.git
