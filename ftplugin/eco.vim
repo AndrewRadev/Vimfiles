@@ -1,8 +1,8 @@
 let b:surround_{char2nr('-')} = "<% \r %>"
 let b:surround_{char2nr('=')} = "<%= \r %>"
 " surround area with <% <foo> (...) do %> <% end %>
-let b:surround_{char2nr('I')} = "<% if \1<% if: \1 %>: \r <% end %>"
-let b:surround_{char2nr('U')} = "<% unless \1<% unless: \1 %>: \r <% end %>"
+let b:surround_{char2nr('I')} = "<% if \1<% if: \1: %> \r <% end %>"
+let b:surround_{char2nr('U')} = "<% unless \1<% unless: \1: %> \r <% end %>"
 
 nnoremap - :call <SID>ToggleEscaping()<cr>
 function! s:ToggleEscaping()
