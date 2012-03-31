@@ -85,3 +85,6 @@
 [submodule "bundle/nyancat"]
 	path = bundle/nyancat
 	url = https://github.com/koron/nyancat-vim.git
+[submodule "bundle/lesscss"]
+	path = bundle/lesscss
+	url = https://github.com/groenewege/vim-less.git
