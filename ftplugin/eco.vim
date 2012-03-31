@@ -47,5 +47,8 @@ function! s:EcoTextObject(mode)
   endif
 endfunction
 
+let b:splitjoin_split_callbacks = ['sj#html#SplitTags']
+let b:splitjoin_join_callbacks  = ['sj#html#JoinTags']
+
 autocmd Syntax * hi link coffeeSpecialVar Identifier
 autocmd Syntax * hi link ecoDelimiter PreProc
