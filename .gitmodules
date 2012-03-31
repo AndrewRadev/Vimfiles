@@ -88,3 +88,6 @@
 [submodule "bundle/lesscss"]
 	path = bundle/lesscss
 	url = https://github.com/groenewege/vim-less.git
+[submodule "bundle/gist"]
+	path = bundle/gist
+	url = https://github.com/mattn/gist-vim.git

@@ -1,0 +1,243 @@
+*Gist.vim* Vimscript for creating gists (http://gist.github.com)
+
+Usage                                          |gist-vim-usage| 
+Tips                                           |gist-vim-tips| 
+Requirements                                   |gist-vim-requirements| 
+License                                        |gist-vim-license| 
+Install                                        |gist-vim-install| 
+Setup                                          |gist-vim-setup| 
+
+This is a vimscript for creating gists (http://gist.github.com) 
+
+For the latest version please see https://github.com/mattn/gist-vim.
+
+==============================================================================
+USAGE                                                 *:Gist* *gist-vim-usage* 
+
+- Post current buffer to gist, using default privacy option. >
+
+    :Gist
+<
+- Post selected text to gist, using defualt privacy option.
+  This applies to all permutations listed below (except multi). >
+
+    :'<,'>Gist
+<
+- Create a private gist. >
+
+    :Gist -p
+<
+- Create a public gist.
+  (Only relevant if you've set gists to be private by default.) >
+
+    :Gist -P
+<
+- Post whole text to gist as public.
+  This is only relevant if you've set gists to be private by default.
+>
+    :Gist -P
+<
+- Create a gist anonymously. >
+
+    :Gist -a
+<
+- Create a gist with all open buffers. >
+
+    :Gist -m
+<
+- Edit the gist (you need to have opened the gist buffer first).
+  You can update the gist with the {:w} command within the gist buffer. >
+
+    :Gist -e
+<
+- Edit the gist with name "foo.js" (you need to have opened the gist buffer
+  first). >
+
+    :Gist -e foo.js
+<
+- Post/Edit with the description " (you need to have opened the gist buffer
+  first). >
+
+    :Gist -s something
+    :Gist -e -s something
+<
+- Delete the gist (you need to have opened the gist buffer first).
+  Password authentication is needed. >
+
+    :Gist -d
+<
+- Fork the gist (you need to have opened the gist buffer first).
+  Password authentication is needed. >
+
+    :Gist -f
+< 
+- Star the gist (you need to have opened the gist buffer first).
+  Password authentication is needed.
+>
+    :Gist +1
+<
+- Unstar the gist (you need to have opened the gist buffer first).
+  Password authentication is needed.
+>
+    :Gist -1
+<
+- Get gist XXXXX. >
+
+    :Gist XXXXX
+<
+- Get gist XXXXX and add to clipboard. >
+
+    :Gist -c XXXXX
+<
+- List your public gists. >
+
+    :Gist -l
+<
+- List gists from user "mattn". >
+
+    :Gist -l mattn
+<
+- List everyone's gists. >
+
+    :Gist -la
+<
+- List gists from your starred gists.
+>
+    :Gist -ls
+<
+==============================================================================
+TIPS                                                           *gist-vim-tips*
+
+If you set "g:gist_clip_command", gist.vim will copy the gist code with option
+"-c".
+
+  - Mac: >
+    let g:gist_clip_command = 'pbcopy'
+<
+  - Linux: >
+    let g:gist_clip_command = 'xclip -selection clipboard'
+<
+  - Others (cygwin?): >
+    let g:gist_clip_command = 'putclip'
+<
+If you want to detect filetype from the filename: >
+
+    let g:gist_detect_filetype = 1
+<
+If you want to open the browser after the post: >
+
+    let g:gist_open_browser_after_post = 1
+<
+If you want to change the browser: >
+
+    let g:gist_browser_command = 'w3m %URL%'
+<
+or: >
+
+    let g:gist_browser_command = 'opera %URL% &'
+<
+On windows, this should work with your user settings.
+
+If you want to show your private gists with ":Gist -l": >
+
+    let g:gist_show_privates = 1
+<
+You need to either set global git config
+>
+    $ git config --global github.user Username
+<
+==============================================================================
+REQUIREMENTS                                           *gist-vim-requirements*
+
+  - curl command (http://curl.haxx.se/)
+  - webapi-vim (https://github.com/mattn/webapi-vim)
+  - and, if you want to use your git profile, the git command-line client.
+
+==============================================================================
+LICENSE                                                     *gist-vim-license*
+
+
+  Copyright 2010 by Yasuhiro Matsumoto
+  modification, are permitted provided that the following conditions are met:
+  
+  1. Redistributions of source code must retain the above copyright notice,
+     this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice,
+     this list of conditions and the following disclaimer in the documentation
+     and/or other materials provided with the distribution.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+  REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+  OF THE POSSIBILITY OF SUCH DAMAGE.
+
+==============================================================================
+INSTALL                                                     *gist-vim-install*
+
+Copy gist.vim to your plugin directory.
+
+gist.vim will create a curl cookie-jar file in your runtimepath.
+
+rtp:
+  - plugin/gist.vim
+  - cookies/github
+
+If you want to uninstall gist.vim, remember to also remove "cookies/github".
+
+==============================================================================
+SETUP                                                       *gist-vim-setup*
+
+This plugin uses github API v3. Setting value is stored in `~/.gist.vim`.
+gist-vim have two ways to access APIs.
+
+|BasicAuth|
+
+  Require github user ID and password. This is easy but not secure.
+
+|OAuth2|
+
+ 1. Register your application.
+
+   Note that you must set `Callback URL` as same as following.
+
+   https://github.com/settings/applications/new
+
+   fill like following
+
+   Callback URL should be http://mattn.github.com/gist-vim
+   If you don't want to point this site, use URL parameter 'code' as PIN.
+
+  2. Start `:Gist -l`
+
+    You'll see some prompts. fill ClientID/CilentSecret. Then you can see
+    browser show up.
+    If you set Callback URL above, you can see PIN code.
+    Copy this value and paste to prompt `PIN:`.
+
+==============================================================================
+THANKS                                                     *gist-vim-thanks*
+
+  AD7six
+  Bruno Bigras
+  c9s
+  Daniel Bretoi
+  Jeremy Michael Cantrell
+  Kien N
+  kongo2002
+  MATSUU Takuto
+  Matthew Weier O'Phinney
+  ornicar
+  Roland Schilter
+  steve
+  tyru
+  Will Gray
+
+ vim:tw=78:ts=8:ft=help:norl:
