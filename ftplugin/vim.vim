@@ -14,6 +14,33 @@ RunCommand so %
 
 setlocal includeexpr=lib#VimIncludeExpression(v:fname)
 
+onoremap <buffer> af :<c-u>call <SID>FunctionTextObject('a')<cr>
+xnoremap <buffer> af :<c-u>call <SID>FunctionTextObject('a')<cr>
+onoremap <buffer> if :<c-u>call <SID>FunctionTextObject('i')<cr>
+xnoremap <buffer> if :<c-u>call <SID>FunctionTextObject('i')<cr>
+function! s:FunctionTextObject(mode)
+  let function_start = search('^\s*function\>', 'bWnc')
+  let function_end   = search('^\s*endfunction\>', 'Wnc')
+
+  if function_start <= 0 || function_end <= 0
+    return
+  elseif a:mode == 'a'
+    if function_start == 1
+      " then select whitespace below
+      let start = function_start
+      let end   = nextnonblank(function_end + 1) - 1
+    else
+      " select whitespace above
+      let start = prevnonblank(function_start - 1) + 1
+      let end   = function_end
+    endif
+
+    call lib#MarkVisual('V', start, end)
+  elseif a:mode == 'i' && (function_end - function_start) > 1
+    call lib#MarkVisual('V', function_start + 1, function_end - 1)
+  endif
+endfunction
+
 if !exists(':Implement')
   command! Implement call s:Implement()
   function! s:Implement()

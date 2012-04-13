@@ -159,6 +159,20 @@ function! lib#GetMotion(motion)
   return text
 endfunction
 
+function! lib#MarkVisual(command, start_line, end_line)
+  if a:start_line != line('.')
+    exe a:start_line
+  endif
+
+  silent! exe a:start_line.','.a:end_line.'foldopen'
+
+  if a:end_line > a:start_line
+    exe 'normal! '.a:command.(a:end_line - a:start_line).'jg_'
+  else
+    exe 'normal! '.a:command.'g_'
+  endif
+endfunction
+
 " Switch to the window that a:bufname is located in.
 function! lib#SwitchWindow(bufname)
   let window = bufwinnr(a:bufname)
