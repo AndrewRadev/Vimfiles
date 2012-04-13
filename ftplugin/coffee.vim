@@ -9,9 +9,9 @@ function! s:ToggleFunctionDefinition()
 
   let saved_cursor = getpos('.')
 
-  if line =~ '^\s*\k\+:'
+  if line =~ '^\s*\%(\k\|\.\)\+:'
     s/:/ =/
-  elseif line =~ '^\s*\k\+\s\+='
+  elseif line =~ '^\s*\%(\k\|\.\)\+\s\+='
     s/\s*=\s*/: /
   endif
 
