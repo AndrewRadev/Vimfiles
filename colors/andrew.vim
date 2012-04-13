@@ -16,13 +16,13 @@ hi lCursor guibg=Red
 hi Normal cterm=NONE ctermfg=White
 hi Normal guifg=#dddddd guibg=Black
 
-" Bluish comments
-hi Comment ctermfg=DarkCyan
-hi Comment guifg=#80a0ff
+" Grayish comments
+hi Comment ctermfg=248
+hi Comment guifg=#777777
 
-" Purplish constants: strings, numbers
-hi Constant ctermfg=Magenta
-hi Constant guifg=Magenta
+" Greenish constants: strings, numbers
+hi Constant ctermfg=28
+hi Constant guifg=#008700
 
 " Cyan function names
 hi Function ctermfg=Cyan
@@ -41,8 +41,8 @@ hi Type ctermfg=LightGreen
 hi Type guifg=#60ff60 gui=bold
 
 " Dark magenta special characters: some operators, regex modifiers
-hi Special ctermfg=5
-hi Special guifg=#800080
+hi Special ctermfg=40
+hi Special guifg=#00df00
 
 " Yellow statements: ifs, defs
 hi Statement cterm=NONE ctermfg=Yellow
@@ -60,9 +60,9 @@ hi Todo ctermfg=228 ctermbg=NONE cterm=underline
 hi CursorLine cterm=underline ctermbg=NONE
 hi CursorLine gui=underline   guibg=NONE
 
-" Green directory names
-hi Directory cterm=NONE ctermfg=Green
-hi Directory gui=NONE   guifg=Green
+" Bluish directory names
+hi Directory cterm=NONE ctermfg=45
+hi Directory gui=NONE   guifg=#00dfff
 
 " Light blue preprocessor directives
 hi PreProc ctermfg=LightBlue cterm=NONE
