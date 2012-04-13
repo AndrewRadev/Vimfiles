@@ -192,3 +192,9 @@ function! s:Gfiles()
     silent exe "tabedit ".file
   endfor
 endfunction
+
+command! Redraw call s:Redraw()
+function! s:Redraw()
+  syntax sync fromstart
+  redraw!
+endfunction
