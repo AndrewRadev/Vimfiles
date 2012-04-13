@@ -4,9 +4,11 @@ let g:acp_behaviorFileLength = 2 " Speed up?
 
 " Custom behaviour here in order not to disturb normal plugin behaviour
 let g:acp_behavior = {
-      \ 'php': [],
-      \ 'ruby': [],
-      \ 'python': []
+      \ 'php':    [],
+      \ 'ruby':   [],
+      \ 'python': [],
+      \ 'less':   [],
+      \ 'scss':   []
       \ }
 
 call add(g:acp_behavior.php, {
@@ -46,6 +48,18 @@ call add(g:acp_behavior.python, {
       \   'command' : "\<C-x>\<C-f>",
       \   'meets'   : 'acp#meetsForFile',
       \   'repeat'  : 1,
+      \ })
+
+call add(g:acp_behavior.less, {
+      \   'command' : "\<C-x>\<C-o>",
+      \   'meets'   : 'acp#meetsForCssOmni',
+      \   'repeat'  : 0,
+      \ })
+
+call add(g:acp_behavior.scss, {
+      \   'command' : "\<C-x>\<C-o>",
+      \   'meets'   : 'acp#meetsForCssOmni',
+      \   'repeat'  : 0,
       \ })
 
 " Added the condition that the tag does not contain '?'
