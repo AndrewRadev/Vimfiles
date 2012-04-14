@@ -75,6 +75,16 @@ let g:splitjoin_align                = 1
 
 " Inline edit:
 let g:inline_edit_autowrite = 1
+let g:inline_edit_patterns = [
+      \   {
+      \     'main_filetype':     '*html',
+      \     'sub_filetype':      'handlebars',
+      \     'indent_adjustment': 1,
+      \     'start':             '<script\>[^>]*type="text/template"[^>]*>',
+      \     'end':               '</script>',
+      \   }
+      \ ]
+
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0 " don't manage my working path
