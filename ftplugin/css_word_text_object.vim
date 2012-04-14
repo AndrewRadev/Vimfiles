@@ -1,3 +1,4 @@
+" TODO (2012-04-05) Fix problems with #333
 onoremap <buffer> w :<c-u>call <SID>OmapWordTextObject()<cr>
 xnoremap <buffer> w :<c-u>call <SID>XmapWordTextObject()<cr>
 onoremap <buffer> e :<c-u>call <SID>OmapWordTextObject()<cr>
