@@ -38,8 +38,9 @@ plugin material, but are useful anyway.
 
 ## WIP
 
-The "[wip][]" directory contains stuff that I'm currently working on. These will
-probably be incomplete experiments that I can't build plugins from just yet.
+The "[wip][]" directory contains stuff that I'm currently working on. These
+are probably incomplete experiments that I can't build plugins from just yet.
+Note that I have a rather loose definition of "currently".
 
 ## Projects
 
@@ -61,6 +62,27 @@ A lot of interesting things can be found in the "[ftplugin][]" directory. I
 occasionally build useful stuff for filetypes I use often. These are probably
 not very generic or redistributable, which is why I tend to put them there.
 
+## Party tricks
+
+- You can view the contents of various kinds of binary files directly with Vim,
+  thanks to Tim Pope's [afterimage plugin][] and the [JavaDecompiler plugin][].
+  This includes:
+
+  * PNG and GIF images. For best results, open in a GUI instance of Vim.
+    Requires `imagemagick`.
+  * Word documents. Requires `antiword`.
+  * PDFs. Requires `pdftk`.
+  * Java `.class` files. Requires `jad`.
+- You can start an ASCII nyan cat in a new tab with the `:Nyancat` and
+  `:Nyancat2` commands, courtesy of the [nyancat plugin][]
+- You can turn any text into ASCII art by marking it in visual mode and
+  executing `:Figlet`, implemented by the [figlet plugin][]. Requires the
+  `figlet` command.
+- You can have vim speak a snippet of text outloud by marking it in visual
+  mode and executing `:Speak`. The code is in [plugin/speak.vim][], originally
+  by Onur Aslan, with a few tweaks by me. Requires an internet connection,
+  `wget` and `mplayer`.
+
 ## Other
 
 - The file "[autoload/lib.vim][]" contains (mostly) general-purpose functions
@@ -77,9 +99,16 @@ not very generic or redistributable, which is why I tend to put them there.
 [nerdtree_plugin/fs_buffer_menu.vim]: https://github.com/AndrewRadev/Vimfiles/tree/master/nerdtree_plugin/fs_buffer_menu.vim
 [nerdtree_plugin]:                    https://github.com/AndrewRadev/Vimfiles/tree/master/nerdtree_plugin
 [personal]:                           https://github.com/AndrewRadev/Vimfiles/tree/master/personal
+[plugin/afterimage.vim]:              https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/afterimage.vim
+[plugin/jad.vim]:                     https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/jad.vim
+[plugin/speak.vim]:                   https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/speak.vim
 [projects]:                           https://github.com/AndrewRadev/Vimfiles/tree/master/projects
 [startup/mappings.vim]:               https://github.com/AndrewRadev/Vimfiles/tree/master/startup/mappings.vim
 [startup]:                            https://github.com/AndrewRadev/Vimfiles/tree/master/startup
 [wip]:                                https://github.com/AndrewRadev/Vimfiles/tree/master/wip
 
-[proj plugin]: http://www.vim.org/scripts/script.php?script_id=2719
+[JavaDecompiler plugin]: http://www.vim.org/scripts/script.php?script_id=446
+[afterimage plugin]:     http://www.vim.org/scripts/script.php?script_id=1617
+[figlet plugin]:         http://www.vim.org/scripts/script.php?script_id=3359
+[nyancat plugin]:        https://github.com/koron/nyancat-vim
+[proj plugin]:           http://www.vim.org/scripts/script.php?script_id=2719
