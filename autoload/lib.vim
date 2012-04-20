@@ -84,7 +84,7 @@ function! lib#Wrap(surrounding, string)
   endif
 endfunction
 
-" Extract a regex match from a string.
+" Extracts a regex match from a string.
 function! lib#ExtractRx(expr, pat, sub)
   let rx = a:pat
 
