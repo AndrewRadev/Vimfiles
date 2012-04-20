@@ -212,3 +212,9 @@ nnoremap <Leader>f :NERDTreeFind<cr>
 " Open path with external application
 nnoremap gu :Open<cr>
 xnoremap gu :Open<cr>
+
+" Like "*", but for multiple files
+nnoremap s* :call <SID>SearchWord(expand('<cword>'))<cr>
+function! s:SearchWord(word)
+  exe "Ack '\\b".a:word."\\b'"
+endfunction
