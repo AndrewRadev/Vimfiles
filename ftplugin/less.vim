@@ -1,3 +1,6 @@
+call SetupPreview('css', 'lessc %s')
+RunCommand Preview
+
 nnoremap <buffer> gf :call <SID>GotoFile()<cr>
 if !exists('*s:GotoFile')
   function s:GotoFile()
