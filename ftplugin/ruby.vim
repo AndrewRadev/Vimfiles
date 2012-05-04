@@ -15,6 +15,7 @@ let b:surround_{char2nr('m')} = "module \r end"
 let b:surround_{char2nr('d')} = "do\n \r end"
 
 let b:surround_{char2nr(':')} = ":\r"
+let b:surround_{char2nr('#')} = "#{\r}"
 
 let b:surround_indent = 1
 

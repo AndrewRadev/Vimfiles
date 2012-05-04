@@ -4,6 +4,8 @@ let b:surround_{char2nr('=')} = "<%= \r %>"
 let b:surround_{char2nr('I')} = "<% if \1<% if: \1: %> \r <% end %>"
 let b:surround_{char2nr('U')} = "<% unless \1<% unless: \1: %> \r <% end %>"
 
+let b:surround_{char2nr('#')} = "#{\r}"
+
 nnoremap - :call <SID>ToggleEscaping()<cr>
 function! s:ToggleEscaping()
   let line = getline('.')

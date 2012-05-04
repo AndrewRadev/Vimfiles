@@ -7,6 +7,8 @@ let b:surround_{char2nr('W')} = "<% while \1<% while: \1 do %> \r <% end %>"
 let b:surround_{char2nr('E')} = "<% \1<% collection: \1.each do |\2item: \2| %> \r <% end %>"
 let b:surround_{char2nr('D')} = "<% do %> \r <% end %>"
 
+let b:surround_{char2nr('#')} = "#{\r}"
+
 RunCommand !erb % <args>
 
 " Define a text object for erb segments (<%= ... %>)
