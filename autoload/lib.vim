@@ -101,9 +101,9 @@ endfunction
 
 " Execute a command, leaving the cursor on the current line
 function! lib#InPlace(command)
-  let save_cursor = getpos(".")
+  let saved_view = winsaveview()
   exe a:command
-  call setpos('.', save_cursor)
+  call winrestview(saved_view)
 endfunction
 
 " The vim includeexpr
