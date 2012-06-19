@@ -36,5 +36,3 @@ endfor
 if filereadable(fnamemodify('~/.vimrc.local', ':p'))
   source ~/.vimrc.local
 endif
-
-let g:loaded_rails = 1
