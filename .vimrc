@@ -19,6 +19,7 @@ runtime startup/acp.vim
 runtime startup/cyrillic.vim
 
 runtime! ftplugin/man.vim
+autocmd FileType man setlocal foldmethod=indent
 
 " Add "personal" directory to runtimepath
 set runtimepath+=~/.vim/personal
