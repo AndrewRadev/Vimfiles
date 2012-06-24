@@ -100,3 +100,6 @@
 [submodule "bundle/jst"]
 	path = bundle/jst
 	url = https://github.com/briancollins/vim-jst.git
+[submodule "bundle/rtranslate"]
+	path = bundle/rtranslate
+	url = git@github.com:AndrewRadev/rtranslate.vim.git
