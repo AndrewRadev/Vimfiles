@@ -100,3 +100,6 @@
 [submodule "bundle/rtranslate"]
 	path = bundle/rtranslate
 	url = git@github.com:AndrewRadev/rtranslate.vim.git
+[submodule "bundle/camelcasemotion"]
+	path = bundle/camelcasemotion
+	url = https://github.com/vim-scripts/camelcasemotion.git
