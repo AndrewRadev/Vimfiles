@@ -43,7 +43,7 @@ function! s:ErbTextObject(mode)
   endif
 endfunction
 
-nnoremap - :call <SID>ToggleOutput()<cr>
+nnoremap <buffer> - :call <SID>ToggleOutput()<cr>
 function! s:ToggleOutput()
   let saved_cursor = getpos('.')
   let line         = getline('.')

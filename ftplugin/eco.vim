@@ -6,7 +6,7 @@ let b:surround_{char2nr('U')} = "<% unless \1<% unless: \1: %> \r <% end %>"
 
 let b:surround_{char2nr('#')} = "#{\r}"
 
-nnoremap - :call <SID>ToggleEscaping()<cr>
+nnoremap <buffer> - :call <SID>ToggleEscaping()<cr>
 function! s:ToggleEscaping()
   let line = getline('.')
 
