@@ -9,7 +9,7 @@ function! CssFoldText()
   let nnum = nextnonblank(v:foldstart + 1)
   while nnum < v:foldend+1
     let line = line . " " . substitute(getline(nnum), "^ *", "", "g")
-    let line = substitute(line, '\s\+', ' ', 'g')
+    let line = substitute(line, '\S\zs\s\+', ' ', 'g')
     let nnum = nnum + 1
   endwhile
   return line
