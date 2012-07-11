@@ -5,6 +5,7 @@ let b:surround_{char2nr('w')} = "while \1while: \1 \r endwhile"
 let b:surround_{char2nr('f')} = "for \1for: \1 {\r endfor"
 let b:surround_{char2nr('e')} = "foreach \1foreach: \1 \r enforeach"
 let b:surround_{char2nr('F')} = "function! \1function: \1() \r endfunction"
+let b:surround_{char2nr('T')} = "try \r endtry"
 
 let b:outline_pattern = '\<\(function\|command\)\>'
 
