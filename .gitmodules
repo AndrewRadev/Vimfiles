@@ -106,3 +106,6 @@
 [submodule "bundle/jst"]
 	path = bundle/jst
 	url = https://github.com/briancollins/vim-jst.git
+[submodule "bundle/qargs"]
+	path = bundle/qargs
+	url = https://github.com/henrik/vim-qargs.git
