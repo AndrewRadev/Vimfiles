@@ -103,3 +103,6 @@
 [submodule "bundle/camelcasemotion"]
 	path = bundle/camelcasemotion
 	url = https://github.com/vim-scripts/camelcasemotion.git
+[submodule "bundle/jst"]
+	path = bundle/jst
+	url = https://github.com/briancollins/vim-jst.git
