@@ -65,6 +65,6 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 set nocscopetag
 
 let mapleader="_"
-let maplocalleader="_"
+let maplocalleader=","
 
 let apache_version = "2.2"
