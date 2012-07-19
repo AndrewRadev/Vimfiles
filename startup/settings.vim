@@ -6,6 +6,7 @@ set shortmess=aTOI
 set showcmd
 set sidescroll=4
 set splitbelow
+set switchbuf=useopen
 set t_Co=256
 set updatetime=1000
 set viminfo+=!
