@@ -84,7 +84,6 @@ let g:inline_edit_patterns = [
       \   }
       \ ]
 
-
 " CtrlP
 let g:ctrlp_working_path_mode = 0 " don't manage my working path
 let g:ctrlp_mru_files         = 1 " forget about MRU files
@@ -96,3 +95,4 @@ let g:coffee_tools_default_mappings = 1
 
 nmap W <Plug>CamelCaseMotion_w
 nmap B <Plug>CamelCaseMotion_b
+nmap E <Plug>CamelCaseMotion_e
