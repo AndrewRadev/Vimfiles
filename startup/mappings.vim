@@ -64,6 +64,9 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
+" Override 0 to go to the non-blank beginning of the line
+nnoremap 0 ^
+
 " Toggle case of current word
 nnoremap <C-u> mzg~iw`z
 
