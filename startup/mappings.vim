@@ -223,3 +223,7 @@ function! s:SearchWord(word)
 endfunction
 
 nnoremap - :Switch<cr>
+
+" Duplicate above line
+nnoremap yy mzyyP`z
+nnoremap yd mzyyP`z
