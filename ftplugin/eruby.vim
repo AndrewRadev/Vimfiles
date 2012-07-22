@@ -41,19 +41,5 @@ function! s:ErbTextObject(mode)
   endif
 endfunction
 
-nnoremap <buffer> - :call <SID>ToggleOutput()<cr>
-function! s:ToggleOutput()
-  let saved_cursor = getpos('.')
-  let line         = getline('.')
-
-  if line =~ '<%='
-    s/<%=/<%/
-  elseif line =~ '<%[^=]'
-    s/<%/<%=/
-  endif
-
-  call setpos('.', saved_cursor)
-endfunction
-
 " To be sure it's an erb file
 let b:erb_loaded = 1

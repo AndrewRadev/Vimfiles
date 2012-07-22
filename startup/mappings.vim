@@ -221,3 +221,5 @@ nnoremap s* :call <SID>SearchWord(expand('<cword>'))<cr>
 function! s:SearchWord(word)
   exe "Ack '\\b".a:word."\\b'"
 endfunction
+
+nnoremap - :Switch<cr>
