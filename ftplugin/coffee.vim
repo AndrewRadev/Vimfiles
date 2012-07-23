@@ -3,7 +3,7 @@ setlocal foldenable
 
 RunCommand CoffeePreviewToggle
 
-let b:outline_pattern = '^\s*\k\+\%(:\|\s*=\).*[-=]>$'
+let b:outline_pattern = '^\s*\%(class\|\k\+\%(:\|\s*=\).*[-=]>$\)'
 
 nnoremap s; :call <SID>ToggleFunctionDefinition()<cr>
 function! s:ToggleFunctionDefinition()
