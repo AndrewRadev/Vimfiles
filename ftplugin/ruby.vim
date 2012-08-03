@@ -74,12 +74,3 @@ if @% =~ 'step_definitions'
 
   let b:outline_pattern = '\v^\s*(Given|When|Then)'
 endif
-
-let b:switch_definitions =
-      \ [
-      \   ['word', {
-      \       ':\(\k\+\)\s\+=>': '\1:',
-      \       '\<\(\k\+\):':     ':\1 =>',
-      \     }
-      \   ]
-      \ ]

@@ -10,7 +10,3 @@ command! -buffer Focus RunCommand exec '!rspec % -c -d -fd --line='.line('.')
 command! -buffer Unfocus RunCommand !rspec % -c -d -fd <args>
 
 let b:outline_pattern = '\v^\s*(it|describe|context).*do$'
-
-let b:switch_definitions = [
-      \   [ 'word', ['should ', 'should_not '] ]
-      \ ]
