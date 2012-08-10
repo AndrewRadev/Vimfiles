@@ -9,4 +9,4 @@ command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'l
 command! -buffer Focus RunCommand exec '!rspec % -c -d -fd --line='.line('.')
 command! -buffer Unfocus RunCommand !rspec % -c -d -fd <args>
 
-let b:outline_pattern = '\v^\s*(it|describe|context).*do$'
+let b:outline_pattern = '\v^\s*(it|specify|describe|context).*do$'
