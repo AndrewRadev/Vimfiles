@@ -50,14 +50,26 @@ if !exists(':Implement')
     endif
 
     let saved_iskeyword = &iskeyword
-    set iskeyword+=#
+    set iskeyword+=#,:
     let function_name = expand('<cword>')
     let &iskeyword = saved_iskeyword
 
-    let parts = split(function_name, '#')
+    if function_name =~ '^s:'
+      call s:ImplementScriptLocal(function_name)
+    elseif function_name =~ '^\k\+#'
+      call s:ImplementAutoloaded(function_name)
+    else
+      echoerr printf('Don''t know how to implement "%s"', function_name)
+    endif
+  endfunction
+
+  function! s:ImplementAutoloaded(function_name)
+    let function_name = a:function_name
+    let parts         = split(function_name, '#')
+
     call remove(parts, -1)
     if empty(parts)
-      echomsg printf('"%s" doesn''t look like an autoloaded function', function_name)
+      echoerr printf('"%s" doesn''t look like an autoloaded function', function_name)
     endif
 
     let path = printf('autoload/%s.vim', join(parts, '/'))
@@ -76,5 +88,18 @@ if !exists(':Implement')
           \ 'endfunction',
           \ ])
     normal! G
+    call feedkeys('O')
+  endfunction
+
+  function! s:ImplementScriptLocal(function_name)
+    let function_name = a:function_name
+
+    call append(line('$'), [
+          \ '',
+          \ 'function! '.function_name.'()',
+          \ 'endfunction',
+          \ ])
+    normal! G
+    call feedkeys('O')
   endfunction
 endif
