@@ -2,6 +2,7 @@
 set clipboard=unnamed
 set incsearch nohlsearch
 set nottybuiltin
+set noshowcmd
 set shortmess=aTOI
 set showcmd
 set sidescroll=4
