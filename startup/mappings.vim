@@ -229,5 +229,4 @@ endfunction
 nnoremap - :Switch<cr>
 
 " Duplicate above line
-nnoremap yy mzyyP`z
-nnoremap yd mzyyP`z
+nnoremap zj mzyyP`z
