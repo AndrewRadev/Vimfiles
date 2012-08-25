@@ -92,6 +92,10 @@ nnoremap sk :SplitjoinJoin<CR>
 " Execute normal vim join if in visual mode
 xnoremap sk J
 
+" Moving code sideways
+nnoremap s< :SidewaysLeft<CR>
+nnoremap s> :SidewaysRight<CR>
+
 " Inline edit
 nnoremap ,e    :InlineEdit<cr>
 xnoremap ,e    :InlineEdit<cr>
