@@ -7,6 +7,8 @@ let b:surround_{char2nr('e')} = "foreach \1foreach: \1 \r enforeach"
 let b:surround_{char2nr('F')} = "function! \1function: \1() \r endfunction"
 let b:surround_{char2nr('T')} = "try \r endtry"
 
+let b:surround_{char2nr('\')} = "\\(\r\\)"
+
 let b:outline_pattern = '\<\(function\|command\)\>'
 
 nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
