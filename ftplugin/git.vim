@@ -1,2 +1,2 @@
 set foldmethod=syntax
-set foldenable
+set nofoldenable
