@@ -12,6 +12,54 @@ call ExtractSnipsFile('_snippets/ruby.snippets', 'ruby')
 call ExtractSnipsFile('_snippets/rspec.snippets', 'rspec')
 call ExtractSnipsFile('_snippets/javascript.snippets', 'javascript')
 
+autocmd BufRead * nmap <buffer> gf      <Plug>CustomRailsFind
+autocmd BufRead * nmap <buffer> <C-W>f  <Plug>CustomRailsSplitFind
+autocmd BufRead * nmap <buffer> <C-W>gf <Plug>CustomRailsTabFind
+
+nnoremap <Plug>CustomRailsFind      :exe 'edit '   . <SID>CustomRailsIncludeexpr()<cr>
+nnoremap <Plug>CustomRailsSplitFind :exe 'split '  . <SID>CustomRailsIncludeexpr()<cr>
+nnoremap <Plug>CustomRailsTabFind   :exe 'tabnew ' . <SID>CustomRailsIncludeexpr()<cr>
+
+function! s:CustomRailsIncludeexpr()
+  let line = getline('.')
+
+  let coffee_require_pattern = '#=\s*require \(\f\+\)\s*$'
+  let scss_import_pattern    = '@import "\(.\{-}\)";'
+  let stylesheet_pattern     = 'stylesheet ''\(.\{-}\)'''
+  let javascript_pattern     = 'javascript ''\(.\{-}\)'''
+
+  if expand('%:e') =~ 'coffee' && line =~ coffee_require_pattern
+    let path = lib#ExtractRx(line, coffee_require_pattern, '\1')
+    return s:FindRailsFile('app/assets/javascripts/'.path.'.*')
+  elseif expand('%:e') =~ 'scss' && line =~ scss_import_pattern
+    let path = lib#ExtractRx(line, scss_import_pattern, '\1')
+    let file = s:FindRailsFile('app/assets/stylesheets/'.path.'.*')
+    if file == ''
+      let path = substitute(path, '.*/\zs\([^/]\{-}\)$', '_\1', '')
+      let file = s:FindRailsFile('app/assets/stylesheets/'.path.'.*')
+    endif
+    return file
+  elseif line =~ stylesheet_pattern
+    let path = lib#ExtractRx(line, stylesheet_pattern, '\1')
+    return s:FindRailsFile('app/assets/stylesheets/'.path.'.*')
+  elseif line =~ javascript_pattern
+    let path = lib#ExtractRx(line, javascript_pattern, '\1')
+    return s:FindRailsFile('app/assets/javascripts/'.path.'.*')
+  else
+    return RailsIncludeexpr()
+  endif
+endfunction
+function! s:FindRailsFile(pattern)
+  let matches = glob(getcwd().'/'.a:pattern, 0, 1)
+  if !empty(matches)
+    return matches[0]
+  else
+    return ''
+  endif
+endfunction
+
+let g:rails_mappings = 0
+
 if !filereadable(fnamemodify('gems.tags', ':p'))
   " then we don't have gemtags, use static rails tags instead
   set tags+=~/tags/rails3.tags
