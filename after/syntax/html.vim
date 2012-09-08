@@ -8,3 +8,5 @@ if !exists("html_no_rendering")
         hi def link htmlLinkTrailingWhitespace  NONE
     endif
 endif
+
+call SyntaxRange#Include('\%(<script.*\)\@<=>', '<\%(/script>\)\@=', 'javascript', 'htmlScriptTag')
