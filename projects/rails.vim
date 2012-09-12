@@ -68,6 +68,7 @@ endif
 command! Rroutes edit config/routes.rb
 command! Rschema call s:Rschema()
 command! -nargs=1 -complete=custom,s:CompleteRailsModels Rmodel edit app/models/<args>.rb
+command! -nargs=1 -complete=custom,s:CompleteRailsControllers Rcontroller edit app/controllers/<args>_controller.rb
 command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
 
 command! DumpRoutes r! bundle exec rake routes
@@ -105,6 +106,16 @@ function! s:CompleteRailsModels(A, L, P)
   let names = []
   for file in split(glob('app/models/**/*.rb'), "\n")
     let name = fnamemodify(file, ':t:r')
+    call add(names, name)
+  endfor
+  return join(names, "\n")
+endfunction
+
+function! s:CompleteRailsControllers(A, L, P)
+  let names = []
+  for file in split(glob('app/controllers/**/*_controller.rb'), "\n")
+    let name = fnamemodify(file, ':t:r')
+    let name = substitute(name, '_controller$', '', '')
     call add(names, name)
   endfor
   return join(names, "\n")
