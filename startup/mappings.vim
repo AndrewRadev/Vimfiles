@@ -228,5 +228,6 @@ endfunction
 
 nnoremap - :Switch<cr>
 
-" Duplicate above line
+" Duplicate lines
 nnoremap zj mzyyP`z
+nnoremap zk mzyyP`zk
