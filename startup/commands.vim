@@ -49,7 +49,23 @@ function! s:Open(count, ...)
 endfunction
 
 " Rebuild tags database:
-command! RebuildTags !ctags -R .
+command! RebuildTags call s:RebuildTags()
+function! s:RebuildTags()
+  if exists('g:ctags_exclude_patterns')
+    let excludes = join(map(g:ctags_exclude_patterns, '''--exclude="''.v:val.''"'''), ' ')
+    exe '!ctags -R '.excludes
+  else
+    !ctags -R .
+  endif
+endfunction
+command! -nargs=+ -bang -complete=dir TagsExclude call s:TagsExclude('<bang>', <f-args>)
+function! s:TagsExclude(bang, ...)
+  if !exists('g:ctags_exclude_patterns') || (a:bang == '!')
+    let g:ctags_exclude_patterns = []
+  endif
+
+  call extend(g:ctags_exclude_patterns, a:000)
+endfunction
 
 " Refresh snippets
 command! RefreshSnips runtime after/plugin/snippets.vim
