@@ -6,18 +6,18 @@ let b:surround_{char2nr('U')} = "<% unless \1<% unless: \1: %> \r <% end %>"
 
 let b:surround_{char2nr('#')} = "#{\r}"
 
-nnoremap <buffer> - :call <SID>ToggleEscaping()<cr>
-function! s:ToggleEscaping()
-  let line = getline('.')
-
-  let saved_cursor = getpos('.')
-  if line =~ '<%='
-    s/<%=/<%-/
-  elseif line =~ '<%-'
-    s/<%-/<%=/
-  endif
-  call setpos('.', saved_cursor)
-endfunction
+let b:switch_definitions =
+      \ [
+      \   {
+      \     '<%=\(.\{-}\)%>': '<%-\1%>',
+      \     '<%-\(.\{-}\)%>': '<%=\1%>',
+      \   },
+      \   {
+      \     'if true or (\(.*\)):':          'if false and (\1):',
+      \     'if false and (\(.*\)):':        'if \1:',
+      \     'if \%(true\|false\)\@!\(.*\):': 'if true or (\1):',
+      \   },
+      \ ]
 
 " Define a text object for embedded code (<%= ... %>)
 onoremap <buffer> a= :<c-u>call <SID>EcoTextObject('a')<cr>
