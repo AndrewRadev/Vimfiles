@@ -90,7 +90,6 @@ if !exists(':Implement')
           \ 'endfunction',
           \ ])
     normal! G
-    call feedkeys('O')
   endfunction
 
   function! s:ImplementScriptLocal(function_name)
@@ -102,6 +101,5 @@ if !exists(':Implement')
           \ 'endfunction',
           \ ])
     normal! G
-    call feedkeys('O')
   endfunction
 endif
