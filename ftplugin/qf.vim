@@ -17,7 +17,7 @@ if !exists(':DeleteLines')
 
     let new_qflist = []
     for entry in getqflist()
-      if (entry.text !~ a:pattern && a:bang == '') || (entry.text =~ a:pattern && a:bang == '!')
+      if (!s:EntryMatches(entry, a:pattern) && a:bang == '') || (s:EntryMatches(entry, a:pattern) && a:bang == '!')
         call add(new_qflist, entry)
       else
         call add(deleted, entry)
@@ -67,4 +67,8 @@ if !exists(':DeleteLines')
     call setpos('.', saved_cursor)
     echo
   endfunction
-end
+
+  function! s:EntryMatches(entry, pattern)
+    return (a:entry.text =~ a:pattern) || (bufname(a:entry.bufnr) =~ a:pattern)
+  endfunction
+endif
