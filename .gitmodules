@@ -118,3 +118,6 @@
 [submodule "bundle/sideways"]
 	path = bundle/sideways
 	url = https://github.com/AndrewRadev/sideways.vim.git
+[submodule "bundle/eco"]
+	path = bundle/eco
+	url = https://github.com/AndrewRadev/vim-eco.git
