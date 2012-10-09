@@ -23,6 +23,9 @@ augroup custom
   " Check if editing a directory
   autocmd BufEnter,VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
 
+  " Check if it's necessary to create a directory
+  autocmd BufNewFile * :call s:EnsureDirectoryExists()
+
   autocmd BufEnter *.c setlocal tags+=~/tags/unix.tags
 
   autocmd BufEnter *.c    compiler gcc
@@ -81,5 +84,21 @@ function! s:AvoidEditingNERDTree()
     quit
     NERDTreeToggle
     wincmd w
+  endif
+endfunction
+
+function! s:EnsureDirectoryExists()
+  let required_dir = expand("%:h")
+
+  if !isdirectory(required_dir)
+    if !confirm("Directory '" . required_dir . "' doesn't exist. Create it?")
+      return
+    endif
+
+    try
+      call mkdir(required_dir, 'p')
+    catch
+      echoerr "Can't create '" . required_dir . "'"
+    endtry
   endif
 endfunction
