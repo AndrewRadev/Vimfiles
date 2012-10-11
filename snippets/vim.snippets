@@ -58,6 +58,19 @@ snippet plugin
 
 	let &cpo = s:keepcpo
 	unlet s:keepcpo
+snippet cla
+	" Constructor:
+	" ============
+
+	function! ${1:function#name}()
+		let ${2:object} = {
+		      \ }
+
+		return $2
+	endfunction
+
+	" Methods:
+	" ========
 #
 # Skeletons:
 #
