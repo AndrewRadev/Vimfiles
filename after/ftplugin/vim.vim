@@ -1,1 +1,2 @@
 set iskeyword-=#
+set iskeyword-=:
