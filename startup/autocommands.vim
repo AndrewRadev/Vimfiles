@@ -26,6 +26,9 @@ augroup custom
   " Check if it's necessary to create a directory
   autocmd BufNewFile * :call s:EnsureDirectoryExists()
 
+  " Write stats on note files
+  autocmd BufWritePost * :call s:SaveFileStats(expand('%:t'))
+
   autocmd BufEnter *.c setlocal tags+=~/tags/unix.tags
 
   autocmd BufEnter *.c    compiler gcc
@@ -100,5 +103,35 @@ function! s:EnsureDirectoryExists()
     catch
       echoerr "Can't create '" . required_dir . "'"
     endtry
+  endif
+endfunction
+
+function! s:SaveFileStats(filename)
+  let filename = a:filename
+
+  if getcwd() != $HOME
+    return
+  endif
+
+  let stats_filename = 'stats.'.filename.'.csv'
+
+  if filereadable(stats_filename) && filewritable(stats_filename)
+    let today              = strftime('%Y-%m-%d')
+    let current_line_count = split(system('wc -l '.filename), '\s\+')[0]
+    let last_line          = lib#Trim(system('tail -n 1 '.stats_filename))
+    let [line_count, date] = split(last_line, ',')
+    let new_last_line      = current_line_count.','.today
+
+    if date == today
+      " replace the line
+      call system("sed -i '$c".new_last_line."' ".stats_filename)
+    else
+      " add new line
+      call system("echo '".new_last_line."' >> ".stats_filename)
+    endif
+
+    if v:shell_error
+      echoerr "Couldn't write stats file"
+    endif
   endif
 endfunction
