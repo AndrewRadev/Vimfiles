@@ -61,10 +61,10 @@ endfunction
 
 " Trimming functions. Should be obvious.
 function! lib#Ltrim(s)
-  return substitute(a:s, '^\s\+', '', '')
+  return substitute(a:s, '^\_s\+', '', '')
 endfunction
 function! lib#Rtrim(s)
-  return substitute(a:s, '\s\+$', '', '')
+  return substitute(a:s, '\_s\+$', '', '')
 endfunction
 function! lib#Trim(s)
   return lib#Rtrim(lib#Ltrim(a:s))
