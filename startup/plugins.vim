@@ -92,7 +92,3 @@ let g:ctrlp_mru_files         = 1 " forget about MRU files
 hi link coffeeSpaceError NONE
 autocmd User CoffeeToolsPreviewOpened nnoremap <buffer> ! ZZ
 let g:coffee_tools_default_mappings = 1
-
-nmap W <Plug>CamelCaseMotion_w
-nmap B <Plug>CamelCaseMotion_b
-nmap E <Plug>CamelCaseMotion_e
