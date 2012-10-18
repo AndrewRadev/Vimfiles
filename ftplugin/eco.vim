@@ -52,5 +52,14 @@ endfunction
 let b:splitjoin_split_callbacks = ['sj#html#SplitTags']
 let b:splitjoin_join_callbacks  = ['sj#html#JoinTags']
 
-autocmd Syntax * hi link coffeeSpecialVar Identifier
-autocmd Syntax * hi link ecoDelimiter PreProc
+call OnSyntaxChange#Install('Javascript', '^javaScript', 1, 'n')
+
+augroup eco
+  autocmd!
+
+  autocmd Syntax * hi link coffeeSpecialVar Identifier
+  autocmd Syntax * hi link ecoDelimiter PreProc
+
+  autocmd User SyntaxJavascriptEnterN set commentstring=//\ %s
+  autocmd User SyntaxJavascriptLeaveN set commentstring=<!--%s-->
+augroup END
