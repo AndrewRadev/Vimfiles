@@ -35,6 +35,9 @@ xnoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
 " Look up the word under the cursor on apidock:
 nnoremap <buffer> gm :Doc ruby<cr>
 
+" Evaluate and annotate the buffer through rcodetools
+command! Annotate %!xmpfilter
+
 " Make conditional expressions true or false
 command! -buffer True  call s:True()
 command! -buffer False call s:False()
