@@ -38,25 +38,6 @@ nnoremap <buffer> gm :Doc ruby<cr>
 " Evaluate and annotate the buffer through rcodetools
 command! Annotate %!xmpfilter
 
-" Make conditional expressions true or false
-command! -buffer True  call s:True()
-command! -buffer False call s:False()
-command! -buffer Maybe call s:Maybe()
-function! s:True()
-  s/if \(.\{-\}\)\($\|#.*\)/if (true or (\1))\2/e
-  s/unless \(.\{-\}\)\($\|#.*\)/unless (false and (\1))\2/e
-endfunction
-function! s:False()
-  s/if \(.\{-\}\)\($\|#.*\)/if (false and (\1))\2/e
-  s/unless \(.\{-\}\)\($\|#.*\)/unless (true or (\1))\2/e
-endfunction
-function! s:Maybe()
-  s/if (true or (\(.\{-}\)))\(.*\)/if \1\2/e
-  s/if (false and (\(.\{-}\)))\(.*\)/if \1\2/e
-  s/unless (true or (\(.\{-}\)))\(.*\)/if \1\2/e
-  s/unless (false and (\(.\{-}\)))\(.*\)/if \1\2/e
-endfunction
-
 if !exists('b:erb_loaded')
   " fold nicely -- experimental
   call RubyFold()
