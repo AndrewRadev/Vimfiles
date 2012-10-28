@@ -121,3 +121,6 @@
 [submodule "bundle/go"]
 	path = bundle/go
 	url = git://github.com/uggedal/go-vim.git
+[submodule "bundle/multichange"]
+	path = bundle/multichange
+	url = git@github.com:AndrewRadev/vim-markmultiple.git
