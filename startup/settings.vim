@@ -11,6 +11,7 @@ set switchbuf=useopen
 set t_Co=256
 set updatetime=1000
 set viminfo+=!
+set isfname-==
 
 " Editing
 set complete=.,w,b,k
