@@ -24,7 +24,7 @@ set number
 set ruler
 set diffopt=filler,vertical,iwhite
 set guioptions=crb
-set linebreak showbreak=+>
+set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
 set laststatus=2
 
