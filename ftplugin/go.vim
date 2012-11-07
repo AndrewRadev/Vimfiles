@@ -1,5 +1,6 @@
 set noexpandtab
 set tabstop=4
+set shiftwidth=4
 set makeprg=go\ run\ %
 
 " override go vimfiles mapping

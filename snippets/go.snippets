@@ -1,0 +1,12 @@
+snippet if
+	if ${1:condition} {
+		${2}
+	}
+snippet iferr
+	if ${1:v}, e := ${2:statement}; e != nil {
+		${3}
+	}
+snippet ifd
+	if ${1:v}, _ := ${2:statement}; ${3:condition} {
+		${4}
+	}
