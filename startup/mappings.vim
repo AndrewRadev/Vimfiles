@@ -231,3 +231,6 @@ nnoremap - :Switch<cr>
 " Duplicate lines
 nnoremap zj mzyyP`z
 nnoremap zk mzyyP`zk
+
+" Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
+nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
