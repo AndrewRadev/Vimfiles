@@ -55,9 +55,6 @@ augroup custom
   " Custom filetypes:
   autocmd BufEnter Result set filetype=dbext_result.txt
 
-  " Experimental omnicompletion
-  autocmd FileType ruby setlocal omnifunc=rubycomplete_custom#Complete
-
   " Maximise on open on Win32:
   if has('win32')
     autocmd GUIEnter * simalt ~x
