@@ -119,7 +119,8 @@ inoremap <C-p> <Esc>pa
 cnoremap <C-p> <C-r>"
 
 " Returns the cursor where it was before the start of the editing
-nmap . .`[
+runtime autoload/repeat.vim
+nnoremap . :call repeat#run(v:count)<cr>`]
 
 " Delete surrounding function call
 " TODO doesn't work for method calls
