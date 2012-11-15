@@ -1,18 +1,23 @@
 xmap so :<c-u>call <SID>ExtractVar()<cr>
 nmap si :<c-u>call <SID>InlineVar()<cr>
 
-" TODO not working with EOL
 function! s:ExtractVar()
   let original_reg      = getreg('z')
   let original_reg_type = getregtype('z')
 
   let var_name = input("Variable name: ")
 
+  if exists('b:extract_var_template')
+    let extract_var_template = b:extract_var_template
+  else
+    let extract_var_template = '%s = %s'
+  endif
+
   normal! gv"zy
   let body = @z
   let @z = var_name
   normal! gv"zp
-  let @z = var_name . ' = ' . body
+  let @z = printf(extract_var_template, var_name, body)
   normal! O
   normal! "zp==
 

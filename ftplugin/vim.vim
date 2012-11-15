@@ -15,6 +15,8 @@ nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
 
 RunCommand so %
 
+let b:extract_var_template = 'let %s = %s'
+
 setlocal includeexpr=lib#VimIncludeExpression(v:fname)
 
 onoremap <buffer> af :<c-u>call <SID>FunctionTextObject('a')<cr>
