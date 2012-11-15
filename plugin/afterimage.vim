@@ -15,8 +15,8 @@ augroup afterimage
   if !exists("#BufWriteCmd#*.png")
     autocmd BufReadPre,FileReadPre    *.png,*.gif  setlocal bin
     autocmd BufReadPost,FileReadPost  *.png,*.gif  if AfterimageReadPost("convert %s xpm:%s")|set ft=xpm|endif|setlocal nobin
-    autocmd BufWriteCmd,FileWriteCmd  *.png call AfterimageWriteCmd("convert %s png:%s")
-    autocmd BufWriteCmd,FileWriteCmd  *.gif call AfterimageWriteCmd("convert %s gif:%s")
+    autocmd BufWriteCmd,FileWriteCmd  *.png call s:UpdateImageDimensions() | call AfterimageWriteCmd("convert %s png:%s")
+    autocmd BufWriteCmd,FileWriteCmd  *.gif call s:UpdateImageDimensions() | call AfterimageWriteCmd("convert %s gif:%s")
   endif
 
   if !exists("#BufWriteCmd#*.pdf")
@@ -61,6 +61,41 @@ function! s:check(cmd)
     exe "let s:have_" . name . "=" . e
   endif
   exe "return s:have_" . name
+endfunction
+
+" Updates an image's dimensions to avoid saving a broken image when its size
+" has changed
+function! s:UpdateImageDimensions()
+  try
+    let saved_view   = winsaveview()
+    let line_count   = 0
+    let column_count = 0
+
+    let pixel_start_line = search('\V/* pixels */') + 1
+    let pixel_end_line   = search('};', 'W')        - 1
+
+    if pixel_start_line <= 1 || pixel_end_line <= 0
+      return
+    endif
+
+    let line_count   = (pixel_end_line - pixel_start_line) + 1
+    let column_count = len(getline(pixel_start_line)) - 2 " remove quotes
+
+    if getline(pixel_start_line) =~ ',$'
+      let column_count -= 1
+    endif
+
+    let image_dimensions_line = search('/\* columns rows colors chars-per-pixel \*/') + 1
+    if image_dimensions_line <= 1
+      return
+    endif
+
+    let color_count = (pixel_start_line - 1) - (image_dimensions_line + 1)
+
+    silent exe image_dimensions_line.'s/"\d\+ \d\+ \d\+/"'.column_count.' '.line_count.' '.color_count.'/'
+  finally
+    call winrestview(saved_view)
+  endtry
 endfunction
 
 " }}}1
