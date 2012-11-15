@@ -1,8 +1,8 @@
 " Prevent built-in tar and zip plugins from loading
-let g:loaded_tarPlugin = 1
-let g:loaded_tar       = 1
-let g:loaded_zipPlugin = 1
-let g:loaded_zip       = 1
+" let g:loaded_tarPlugin = 1
+" let g:loaded_tar       = 1
+" let g:loaded_zipPlugin = 1
+" let g:loaded_zip       = 1
 
 " NERDTree:
 let g:NERDTreeDirArrows   = 0
@@ -36,9 +36,9 @@ let OmniCpp_MayCompleteArrow    = 1 " Automatically complete
 
 " Ruby speedup
 let g:ruby_path                      = ''
-let g:rubycomplete_buffer_loading    = 0
-let g:rubycomplete_classes_in_global = 0
-let g:rubycomplete_rails             = 0
+let g:rubycomplete_buffer_loading    = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails             = 1
 
 " get rid of custom rails syntax highlighting
 let g:rails_syntax = 0
