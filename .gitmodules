@@ -109,9 +109,6 @@
 [submodule "bundle/switch"]
 	path = bundle/switch
 	url = https://github.com/AndrewRadev/switch.vim.git
-[submodule "bundle/textobj-word-column"]
-	path = bundle/textobj-word-column
-	url = https://github.com/coderifous/textobj-word-column.vim.git
 [submodule "bundle/sideways"]
 	path = bundle/sideways
 	url = https://github.com/AndrewRadev/sideways.vim.git
