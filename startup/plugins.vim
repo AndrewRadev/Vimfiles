@@ -95,4 +95,8 @@ hi link coffeeSpaceError NONE
 autocmd User CoffeeToolsPreviewOpened nnoremap <buffer> ! ZZ
 let g:coffee_tools_default_mappings = 1
 
+" Go
 let g:go_highlight_trailing_whitespace_error = 0
+
+" Use Ag for Ack:
+let g:ackprg = 'ag --nogroup --nocolor --column'
