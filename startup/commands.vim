@@ -71,9 +71,10 @@ endfunction
 command! RefreshSnips runtime after/plugin/snippets.vim
 
 " Clear up garbage:
-command! CleanWhitespace call lib#InPlace('%s/\s\+$//e')
-command! CleanAnsiColors call lib#InPlace('%s/\[.\{-}m//ge')
-command! CleanEol        call lib#InPlace('%s/$//e')
+command! CleanWhitespace  call lib#InPlace('%s/\s\+$//e')
+command! CleanAnsiColors  call lib#InPlace('%s/\[.\{-}m//ge')
+command! CleanEol         call lib#InPlace('%s/$//e')
+command! CleanDoubleLines call lib#InPlace('%s/^\n\+/\r/e')
 
 " Cheat sheet shortcut
 command! -nargs=* -complete=custom,s:CheatComplete Cheat new | call s:Cheat(<q-args>)
