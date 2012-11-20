@@ -12,15 +12,17 @@ call ExtractSnipsFile('_snippets/ruby.snippets', 'ruby')
 call ExtractSnipsFile('_snippets/rspec.snippets', 'rspec')
 call ExtractSnipsFile('_snippets/javascript.snippets', 'javascript')
 
-autocmd BufRead * nmap <buffer> gf      <Plug>CustomRailsFind
-autocmd BufRead * nmap <buffer> <C-W>f  <Plug>CustomRailsSplitFind
-autocmd BufRead * nmap <buffer> <C-W>gf <Plug>CustomRailsTabFind
+" autocmd BufRead * nmap <buffer> gf      <Plug>CustomRailsFind
+" autocmd BufRead * nmap <buffer> <C-W>f  <Plug>CustomRailsSplitFind
+" autocmd BufRead * nmap <buffer> <C-W>gf <Plug>CustomRailsTabFind
+"
+" nnoremap <Plug>CustomRailsFind      :exe 'edit '   . <SID>CustomRailsIncludeexpr()<cr>
+" nnoremap <Plug>CustomRailsSplitFind :exe 'split '  . <SID>CustomRailsIncludeexpr()<cr>
+" nnoremap <Plug>CustomRailsTabFind   :exe 'tabnew ' . <SID>CustomRailsIncludeexpr()<cr>
 
-nnoremap <Plug>CustomRailsFind      :exe 'edit '   . <SID>CustomRailsIncludeexpr()<cr>
-nnoremap <Plug>CustomRailsSplitFind :exe 'split '  . <SID>CustomRailsIncludeexpr()<cr>
-nnoremap <Plug>CustomRailsTabFind   :exe 'tabnew ' . <SID>CustomRailsIncludeexpr()<cr>
+autocmd User Rails set includeexpr=CustomRailsIncludeexpr()
 
-function! s:CustomRailsIncludeexpr()
+function! CustomRailsIncludeexpr()
   let line = getline('.')
 
   let coffee_require_pattern = '#=\s*require \(\f\+\)\s*$'
