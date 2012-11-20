@@ -135,13 +135,13 @@ nnoremap ! :Run<cr>
 xnoremap ! :Run<cr>
 
 " Yank current file's filename
-nnoremap gy :call <SID>YankFilename(0)<cr>
-nnoremap gY :call <SID>YankFilename(1)<cr>
-function! s:YankFilename(linewise)
+nnoremap gy :call <SID>YankFilename(1)<cr>
+nnoremap gY :call <SID>YankFilename(0)<cr>
+function! s:YankFilename(relative)
   let @@ = expand('%:p')
 
-  if (a:linewise) " then add a newline at end
-    let @@ .= "\<nl>"
+  if a:relative " then relativize it
+    let @@ = fnamemodify(@@, ':~:.')
   endif
 
   let @* = @@
