@@ -23,6 +23,7 @@ set nojoinspaces
 set number
 set ruler
 set diffopt=filler,vertical,iwhite
+set fillchars=stl:-,stlnc:-,vert:│,fold:\ ,diff:-
 set guioptions=crb
 set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
