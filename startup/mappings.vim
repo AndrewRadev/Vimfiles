@@ -120,7 +120,7 @@ cnoremap <C-p> <C-r>"
 
 " Returns the cursor where it was before the start of the editing
 runtime autoload/repeat.vim
-nnoremap . mr:call repeat#run(v:count)<cr>`r
+nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 
 " Delete surrounding function call
 " TODO doesn't work for method calls
