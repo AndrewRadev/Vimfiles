@@ -11,6 +11,8 @@ let b:surround_{char2nr('d')} = "<% do %> \r <% end %>"
 
 RunCommand !erb % <args>
 
+let b:extract_var_template = '<%% %s = %s %%>'
+
 " Define a text object for erb segments (<%= ... %>)
 onoremap <buffer> a= :<c-u>call <SID>ErbTextObject('a')<cr>
 xnoremap <buffer> a= :<c-u>call <SID>ErbTextObject('a')<cr>
