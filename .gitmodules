@@ -130,3 +130,6 @@
 [submodule "bundle/pasta"]
 	path = bundle/pasta
 	url = git://github.com/sickill/vim-pasta.git
+[submodule "bundle/id3"]
+	path = bundle/id3
+	url = https://github.com/AndrewRadev/id3.vim.git
