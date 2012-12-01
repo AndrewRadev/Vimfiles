@@ -37,5 +37,7 @@ if filereadable(fnamemodify('~/.vimrc.local', ':p'))
   source ~/.vimrc.local
 endif
 
-nmap p <Plug>WhitespasteAfter
 nmap P <Plug>WhitespasteBefore
+nmap p <Plug>WhitespasteAfter
+xmap p <Plug>WhitespasteVisual
+xmap P <Plug>WhitespasteVisual

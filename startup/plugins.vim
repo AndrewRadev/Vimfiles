@@ -100,3 +100,11 @@ let g:go_highlight_trailing_whitespace_error = 0
 
 " Use Ag for Ack:
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Disable vim-pasta and use it through whitespaste
+
+let g:pasta_enabled_filetypes = []
+
+let g:whitespaste_paste_before_command = "normal \<Plug>BeforePasta"
+let g:whitespaste_paste_after_command  = "normal \<Plug>AfterPasta"
+let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
