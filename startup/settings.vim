@@ -1,8 +1,9 @@
 " General
 set clipboard=unnamed
 set incsearch nohlsearch
-set nottybuiltin
+set isfname-==
 set noshowcmd
+set nottybuiltin
 set shortmess=aTOI
 set showcmd
 set sidescroll=4
@@ -11,7 +12,6 @@ set switchbuf=useopen
 set t_Co=256
 set updatetime=1000
 set viminfo+=!
-set isfname-==
 
 " Editing
 set complete=.,w,b,k
