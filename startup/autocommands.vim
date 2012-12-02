@@ -10,8 +10,6 @@ augroup custom
         \   exe "CleanWhitespace" |
         \ endif
 
-  autocmd BufReadPost * silent call s:AvoidEditingNERDTree()
-
   " When editing a file, always jump to the last known cursor position.
   autocmd BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -70,20 +68,6 @@ function! s:MaybeEnterDirectory(file)
       source _project.vim
       echo "Loaded project file"
     endif
-  endif
-endfunction
-
-function! s:AvoidEditingNERDTree()
-  let old_buffer = expand('#')
-  let new_buffer = expand('%')
-
-  if old_buffer =~ 'NERD_tree_\d\+' && len(tabpagebuflist()) > 1
-    wincmd w
-    exe 'edit '.new_buffer
-    wincmd W
-    quit
-    NERDTreeToggle
-    wincmd w
   endif
 endfunction
 
