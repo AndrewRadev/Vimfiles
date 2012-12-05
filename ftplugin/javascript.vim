@@ -1,3 +1,5 @@
+let b:surround_{char2nr('$')} = "$(\r)"
+
 let b:outline_pattern = '\<function\>'
 
 setlocal foldmethod=indent
