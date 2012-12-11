@@ -37,6 +37,14 @@ snippet ife
 	else
 		${3}
 	endif
+snippet ifnex
+	if !exists('${1:g:variable}')
+		let $1 = ${2}
+	endif
+snippet complete
+	function! s:${1:CompletionFunction}(argument_lead, command_line, cursor_position)
+		return join(sort(keys(${2:g:global_hash})), "\n")
+	endfunction
 snippet omap
 	onoremap <buffer> a${1:x} :<c-u>call <SID>${2:TextObject}('a')<cr>
 	xnoremap <buffer> a$1 :<c-u>call <SID>$2('a')<cr>
