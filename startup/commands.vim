@@ -95,7 +95,8 @@ command! Syn call syntax_attr#SyntaxAttr()
 command! Q call s:Q()
 function! s:Q()
   for bufnr in tabpagebuflist()
-    exe 'buffer '.bufnr
+    let winnr = bufwinnr(bufnr)
+    exe winnr.'wincmd w'
     quit
   endfor
 endfunction
