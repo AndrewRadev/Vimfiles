@@ -1,5 +1,7 @@
 runtime projects/ruby.vim
 
+AckIgnore log
+
 runtime after/plugin/snippets.vim
 
 call ExtractSnipsFile(expand(g:snippets_dir).'rails.snippets', 'ruby')
