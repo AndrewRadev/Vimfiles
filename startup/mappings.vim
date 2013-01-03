@@ -147,7 +147,7 @@ function! s:YankFilename(relative)
   let @* = @@
   let @+ = @@
 
-  echo "Yanked filename in clipboard"
+  echo 'Yanked "'.@@.'" to clipboard'
 endfunction
 
 " Tabularize mappings
