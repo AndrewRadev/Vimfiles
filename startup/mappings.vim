@@ -263,3 +263,7 @@ function! s:SmartStar()
 
   echo 'Search for: '.cword
 endfunction
+
+" Bufsurf
+nnoremap <c-w>< :BufSurfBack<CR>
+nnoremap <c-w>> :BufSurfForward<CR>
