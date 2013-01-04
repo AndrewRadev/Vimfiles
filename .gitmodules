@@ -31,9 +31,6 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/threesome"]
-	path = bundle/threesome
-	url = https://github.com/sjl/threesome.vim.git
 [submodule "bundle/textile"]
 	path = bundle/textile
 	url = https://github.com/timcharper/textile.vim.git
@@ -46,9 +43,6 @@
 [submodule "bundle/slim"]
 	path = bundle/slim
 	url = https://github.com/bbommarito/vim-slim.git
-[submodule "bundle/bundler"]
-	path = bundle/bundler
-	url = https://github.com/tpope/vim-bundler.git
 [submodule "bundle/cucumber"]
 	path = bundle/cucumber
 	url = https://github.com/tpope/vim-cucumber.git
@@ -58,9 +52,6 @@
 [submodule "bundle/tagfinder"]
 	path = bundle/tagfinder
 	url = https://github.com/AndrewRadev/tagfinder.vim.git
-[submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "bundle/inline_edit"]
 	path = bundle/inline_edit
 	url = https://github.com/AndrewRadev/inline_edit.vim.git
