@@ -21,7 +21,7 @@ MapToggle ss spell
 MapToggle sc cursorcolumn
 
 " https://github.com/bjeanes/dot-files/blob/master/vim/vimrc
-" For when you forget to sudo.. Really Write the file.
+" For when you forget to sudo.. Really write the file.
 command! SudoWrite call s:SudoWrite()
 function! s:SudoWrite()
   write !sudo tee % >/dev/null
@@ -68,7 +68,7 @@ function! s:TagsExclude(bang, ...)
 endfunction
 
 " Refresh snippets
-command! RefreshSnips runtime after/plugin/snippets.vim
+command! RefreshSnips runtime after/plugin/snippets.vim | edit!
 
 " Clear up garbage:
 command! CleanWhitespace  call lib#InPlace('%s/\s\+$//e')
@@ -76,30 +76,8 @@ command! CleanAnsiColors  call lib#InPlace('%s/\[.\{-}m//ge')
 command! CleanEol         call lib#InPlace('%s/$//e')
 command! CleanDoubleLines call lib#InPlace('%s/^\n\+/\r/e')
 
-" Cheat sheet shortcut
-command! -nargs=* -complete=custom,s:CheatComplete Cheat new | call s:Cheat(<q-args>)
-function! s:Cheat(args)
-  silent exe "e! ".tempname()
-  silent exe "0r!cheat ".a:args
-  set nomodified
-  normal gg
-endfunction
-function! s:CheatComplete(A, L, P)
-  return system('cheat sheets | cut -b3-')
-endfunction
-
 " Easy check of current syntax group
 command! Syn call syntax_attr#SyntaxAttr()
-
-" Quit tab, even if it's just one
-command! Q call s:Q()
-function! s:Q()
-  for bufnr in tabpagebuflist()
-    let winnr = bufwinnr(bufnr)
-    exe winnr.'wincmd w'
-    quit
-  endfor
-endfunction
 
 " Outline the contents of the buffer
 command! -nargs=* Outline call s:Outline(<f-args>)

@@ -36,9 +36,9 @@ let OmniCpp_MayCompleteArrow    = 1 " Automatically complete
 
 " Ruby speedup
 let g:ruby_path                      = ''
-let g:rubycomplete_buffer_loading    = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails             = 1
+let g:rubycomplete_buffer_loading    = 0
+let g:rubycomplete_classes_in_global = 0
+let g:rubycomplete_rails             = 0
 
 " get rid of custom rails syntax highlighting
 let g:rails_syntax = 0
@@ -82,10 +82,6 @@ let g:inline_edit_patterns = [
       \   }
       \ ]
 
-" CtrlP
-let g:ctrlp_working_path_mode = 0 " don't manage my working path
-let g:ctrlp_mru_files         = 1 " forget about MRU files
-
 " Coffeescript
 hi link coffeeSpaceError NONE
 autocmd User CoffeeToolsPreviewOpened nnoremap <buffer> ! ZZ
@@ -98,7 +94,6 @@ let g:go_highlight_trailing_whitespace_error = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Disable vim-pasta and use it through whitespaste
-
 let g:pasta_enabled_filetypes = []
 
 let g:whitespaste_paste_before_command = "normal \<Plug>BeforePasta"

@@ -127,12 +127,18 @@ nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 " TODO relies on braces
 nmap dsf F(bdt(ds(
 
-" See startup/commands.vim
-nnoremap QQ :Q<cr>
+" Quit tab, even if it's just one
+nnoremap QQ :call <SID>QQ()<cr>
+function! s:QQ()
+  for bufnr in tabpagebuflist()
+    let winnr = bufwinnr(bufnr)
+    exe winnr.'wincmd w'
+    quit
+  endfor
+endfunction
 
 " Run current file -- filetype-specific
 nnoremap ! :Run<cr>
-xnoremap ! :Run<cr>
 
 " Yank current file's filename
 nnoremap gy :call <SID>YankFilename(1)<cr>

@@ -5,6 +5,7 @@ setlocal expandtab
 setlocal foldmethod=indent
 
 compiler ruby
+setlocal makeprg=ruby\ -wc\ %
 
 " surround area with <foo> (...) { }
 if !exists('b:erb_loaded')

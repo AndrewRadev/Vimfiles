@@ -16,8 +16,6 @@ augroup custom
         \   exe "normal! g`\""                           |
         \ endif
 
-  autocmd FileType text setlocal textwidth=98
-
   " Check if editing a directory
   autocmd BufEnter,VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
 
@@ -27,8 +25,6 @@ augroup custom
   " Write stats on note files
   autocmd BufWritePost * :call s:SaveFileStats(expand('%:t'))
 
-  autocmd BufEnter *.c setlocal tags+=~/tags/unix.tags
-
   autocmd BufEnter *.c    compiler gcc
   autocmd BufEnter *.cpp  compiler gcc
   autocmd BufEnter *.php  compiler php
@@ -36,9 +32,6 @@ augroup custom
   autocmd BufEnter *.xml  compiler eclim_xmllint
   autocmd BufEnter *.js   compiler jsl
 
-  autocmd BufEnter Gemfile RunCommand !bundle install
-
-  autocmd BufEnter *access.log* set filetype=httplog
   autocmd BufEnter *.hsc        set filetype=haskell
   autocmd BufEnter *.tags       set filetype=tags
   autocmd BufEnter httpd*.conf  set filetype=apache
@@ -49,9 +42,6 @@ augroup custom
 
   " For some reason, this doesn't work in ftplugin/man.vim
   autocmd FileType man set nonu
-
-  " Custom filetypes:
-  autocmd BufEnter Result set filetype=dbext_result.txt
 
   " Maximise on open on Win32:
   if has('win32')

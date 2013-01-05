@@ -64,11 +64,6 @@ endfunction
 
 let g:rails_mappings = 0
 
-if !filereadable(fnamemodify('gems.tags', ':p'))
-  " then we don't have gemtags, use static rails tags instead
-  set tags+=~/tags/rails3.tags
-endif
-
 command! Rroutes edit config/routes.rb
 command! Rschema call s:Rschema()
 command! -nargs=1 -complete=custom,s:CompleteRailsModels Rmodel edit app/models/<args>.rb

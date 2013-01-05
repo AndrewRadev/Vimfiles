@@ -46,8 +46,7 @@ Note that I have a rather loose definition of "currently".
 
 The "[projects][]" directory holds "project" files. I use this in combination
 with the [proj plugin][] to load some project-specific settings depending on
-what I'm working on right now. The symfony project file might be my largest,
-but it's abandoned, since I'm not writing PHP anymore.
+what I'm working on right now.
 
 ## Nerdtree plugins
 

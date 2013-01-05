@@ -22,7 +22,6 @@ endfunction
 
 nnoremap <buffer> gm :Doc js<cr>
 
-" nmap <buffer> - <Plug>CoffeeToolsToggleFunctionArrow
 xmap <buffer> sO <Plug>CoffeeToolsOpenLineAndIndent
 nmap <buffer> dh <Plug>CoffeeToolsDeleteAndDedent
 
