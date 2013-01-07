@@ -52,7 +52,7 @@ endfunction
 command! RebuildTags call s:RebuildTags()
 function! s:RebuildTags()
   if exists('g:ctags_exclude_patterns')
-    let excludes = join(map(g:ctags_exclude_patterns, '''--exclude="''.v:val.''"'''), ' ')
+    let excludes = join(map(copy(g:ctags_exclude_patterns), '''--exclude="''.v:val.''"'''), ' ')
     exe '!ctags -R '.excludes
   else
     !ctags -R .
