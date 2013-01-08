@@ -37,7 +37,7 @@ function! s:WindowData()
   if len(tabpagebuflist()) == 1
     " then this is the last buffer in this tab
     let window_data.neighbour_buffer = ''
-    let window_data.open_command     = 'tabnew'
+    let window_data.open_command     = (tabpagenr() - 1).'tabnew'
     return window_data
   endif
 
