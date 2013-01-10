@@ -32,9 +32,7 @@ function! s:UndoCloseWindow()
 endfunction
 
 function! s:WindowData()
-  let current_bufnr = bufnr('%')
-  let current_winnr = winnr()
-  let window_data   = { 'filename': expand('%') }
+  let window_data = { 'filename': expand('%') }
 
   if len(tabpagebuflist()) == 1
     " then this is the last buffer in this tab
@@ -43,60 +41,35 @@ function! s:WindowData()
     return window_data
   endif
 
-  try
-    wincmd j
-    let bufnr = bufnr('%')
-    if buflisted(bufnr) && bufnr != current_bufnr
-      " then we have a neighbouring buffer below
-      let window_data.neighbour_buffer = expand('%')
-      let window_data.open_command     = 'leftabove split'
+  " attempt to store neighbouring buffers as split-base-points
+  for direction in ['j', 'k', 'h', 'l']
+    if s:UseNeighbourWindow(direction, window_data)
       return window_data
     endif
-  finally
-    exe current_winnr.'wincmd w'
-  endtry
+  endfor
 
-  try
-    wincmd k
-    let bufnr = bufnr('%')
-    if buflisted(bufnr) && bufnr != current_bufnr
-      " then we have a neighbouring buffer above
-      let window_data.neighbour_buffer = expand('%')
-      let window_data.open_command     = 'rightbelow split'
-      return window_data
-    endif
-  finally
-    exe current_winnr.'wincmd w'
-  endtry
-
-  try
-    wincmd h
-    let bufnr = bufnr('%')
-    if buflisted(bufnr) && bufnr != current_bufnr
-      " then we have a neighbouring buffer to the left
-      let window_data.neighbour_buffer = expand('%')
-      let window_data.open_command     = 'rightbelow vsplit'
-      return window_data
-    endif
-  finally
-    exe current_winnr.'wincmd w'
-  endtry
-
-  try
-    wincmd l
-    let bufnr = bufnr('%')
-    if buflisted(bufnr) && bufnr != current_bufnr
-      " then we have a neighbouring buffer to the right
-      let window_data.neighbour_buffer = expand('%')
-      let window_data.open_command     = 'leftabove vsplit'
-      return window_data
-    endif
-  finally
-    exe current_winnr.'wincmd w'
-  endtry
-
-  " Default case, no listed buffers around
+  " default case, no listed buffers around
   let window_data.neighbour_buffer = ''
   let window_data.open_command     = 'edit'
   return window_data
+endfunction
+
+function! s:UseNeighbourWindow(direction, window_data)
+  let current_bufnr = bufnr('%')
+  let current_winnr = winnr()
+
+  try
+    exe 'wincmd '.a:direction
+    let bufnr = bufnr('%')
+    if buflisted(bufnr) && bufnr != current_bufnr
+      " then we have a neighbouring buffer above
+      let a:window_data.neighbour_buffer = expand('%')
+      let a:window_data.open_command     = 'rightbelow split'
+      return 1
+    else
+      return 0
+    endif
+  finally
+    exe current_winnr.'wincmd w'
+  endtry
 endfunction
