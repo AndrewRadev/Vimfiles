@@ -33,6 +33,7 @@ endfunction
 
 function! s:WindowData()
   let current_bufnr = bufnr('%')
+  let current_winnr = winnr()
   let window_data   = { 'filename': expand('%') }
 
   if len(tabpagebuflist()) == 1
@@ -42,45 +43,57 @@ function! s:WindowData()
     return window_data
   endif
 
-  wincmd j
-  let bufnr = bufnr('%')
-  if buflisted(bufnr) && bufnr != current_bufnr
-    " then we have a neighbouring buffer below
-    let window_data.neighbour_buffer = expand('%')
-    let window_data.open_command     = 'leftabove split'
-    wincmd k
-    return window_data
-  endif
-
-  wincmd k
-  let bufnr = bufnr('%')
-  if buflisted(bufnr) && bufnr != current_bufnr
-    " then we have a neighbouring buffer above
-    let window_data.neighbour_buffer = expand('%')
-    let window_data.open_command     = 'rightbelow split'
+  try
     wincmd j
-    return window_data
-  endif
+    let bufnr = bufnr('%')
+    if buflisted(bufnr) && bufnr != current_bufnr
+      " then we have a neighbouring buffer below
+      let window_data.neighbour_buffer = expand('%')
+      let window_data.open_command     = 'leftabove split'
+      return window_data
+    endif
+  finally
+    exe current_winnr.'wincmd w'
+  endtry
 
-  wincmd h
-  let bufnr = bufnr('%')
-  if buflisted(bufnr) && bufnr != current_bufnr
-    " then we have a neighbouring buffer to the left
-    let window_data.neighbour_buffer = expand('%')
-    let window_data.open_command     = 'rightbelow vsplit'
-    wincmd l
-    return window_data
-  endif
+  try
+    wincmd k
+    let bufnr = bufnr('%')
+    if buflisted(bufnr) && bufnr != current_bufnr
+      " then we have a neighbouring buffer above
+      let window_data.neighbour_buffer = expand('%')
+      let window_data.open_command     = 'rightbelow split'
+      return window_data
+    endif
+  finally
+    exe current_winnr.'wincmd w'
+  endtry
 
-  wincmd l
-  let bufnr = bufnr('%')
-  if buflisted(bufnr) && bufnr != current_bufnr
-    " then we have a neighbouring buffer to the right
-    let window_data.neighbour_buffer = expand('%')
-    let window_data.open_command     = 'leftabove vsplit'
+  try
     wincmd h
-    return window_data
-  endif
+    let bufnr = bufnr('%')
+    if buflisted(bufnr) && bufnr != current_bufnr
+      " then we have a neighbouring buffer to the left
+      let window_data.neighbour_buffer = expand('%')
+      let window_data.open_command     = 'rightbelow vsplit'
+      return window_data
+    endif
+  finally
+    exe current_winnr.'wincmd w'
+  endtry
+
+  try
+    wincmd l
+    let bufnr = bufnr('%')
+    if buflisted(bufnr) && bufnr != current_bufnr
+      " then we have a neighbouring buffer to the right
+      let window_data.neighbour_buffer = expand('%')
+      let window_data.open_command     = 'leftabove vsplit'
+      return window_data
+    endif
+  finally
+    exe current_winnr.'wincmd w'
+  endtry
 
   " Default case, no listed buffers around
   let window_data.neighbour_buffer = ''
