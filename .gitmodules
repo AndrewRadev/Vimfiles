@@ -124,3 +124,6 @@
 [submodule "bundle/id3"]
 	path = bundle/id3
 	url = https://github.com/AndrewRadev/id3.vim.git
+[submodule "bundle/undoquit"]
+	path = bundle/undoquit
+	url = git@github.com:AndrewRadev/undoquit.vim.git
