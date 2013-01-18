@@ -275,12 +275,7 @@ nnoremap <c-w>< :BufSurfBack<CR>
 nnoremap <c-w>> :BufSurfForward<CR>
 
 onoremap " i"
-xnoremap " i"
 onoremap ' i'
-xnoremap ' i'
 onoremap ( i(
-xnoremap ( i(
 onoremap [ i[
-xnoremap [ i[
 onoremap { i{
-xnoremap { i{
