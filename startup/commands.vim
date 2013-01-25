@@ -193,34 +193,3 @@ function! s:Redraw()
   syntax sync fromstart
   redraw!
 endfunction
-
-command! -nargs=1 -complete=custom,s:CompleteFind Find call s:Find(<f-args>)
-function! s:Find(filename)
-  try
-    let saved_tags = &tags
-    let &tags = 'files.tags'
-
-    let results = taglist(a:filename)
-
-    if empty(results)
-      echo 'No results for "'.a:filename.'".'
-    else
-      exe 'edit '.results[0].filename
-    endif
-
-  finally
-    let &tags = saved_tags
-  endtry
-endfunction
-function! s:CompleteFind(argument_lead, command_line, cursor_position)
-  try
-    let saved_tags = &tags
-    let &tags = 'files.tags'
-
-    let taglist   = taglist(a:argument_lead)
-    let filenames = map(taglist, 'v:val.name')
-    return join(sort(filenames), "\n")
-  finally
-    let &tags = saved_tags
-  endtry
-endfunction
