@@ -19,36 +19,6 @@ let b:switch_definitions =
       \   },
       \ ]
 
-" Define a text object for embedded code (<%= ... %>)
-onoremap <buffer> a= :<c-u>call <SID>EcoTextObject('a')<cr>
-xnoremap <buffer> a= :<c-u>call <SID>EcoTextObject('a')<cr>
-onoremap <buffer> i= :<c-u>call <SID>EcoTextObject('i')<cr>
-xnoremap <buffer> i= :<c-u>call <SID>EcoTextObject('i')<cr>
-function! s:EcoTextObject(mode)
-  if search('<%.*\%#.*%>', 'n') <= 0
-    return
-  endif
-
-  if a:mode == 'i'
-    let [start_flags, end_flags] = ['be', '']
-  else " a:mode == 'a'
-    let [start_flags, end_flags] = ['b', 'e']
-  endif
-
-  call search('<%[=-]\?\s*.', start_flags, line('.'))
-  let start = col('.') - 1
-  call search('.\s*%>', end_flags, line('.'))
-  let end = col('.') - 1
-
-  let interval = end - start
-
-  if start == 0
-    exe 'normal! 0v'.interval.'l'
-  else
-    exe 'normal! 0'.start.'lv'.interval.'l'
-  endif
-endfunction
-
 let b:splitjoin_split_callbacks = ['sj#html#SplitTags']
 let b:splitjoin_join_callbacks  = ['sj#html#JoinTags']
 
