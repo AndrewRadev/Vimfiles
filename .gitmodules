@@ -127,3 +127,6 @@
 [submodule "bundle/undoquit"]
 	path = bundle/undoquit
 	url = git@github.com:AndrewRadev/undoquit.vim.git
+[submodule "bundle/characterize"]
+	path = bundle/characterize
+	url = git://github.com/tpope/vim-characterize.git
