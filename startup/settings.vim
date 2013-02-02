@@ -2,7 +2,6 @@
 set clipboard=unnamed
 set incsearch nohlsearch
 set isfname-==
-set noshowcmd
 set nottybuiltin
 set shortmess=aTOI
 set showcmd
