@@ -1,0 +1,55 @@
+==============================================================================
+CONTENTS                                        *xruntime*   *xruntime-contents*
+
+    Installation................................: |xruntime-installation|
+    Usage.......................................: |xruntime-usage|
+    Settings....................................: |xruntime-settings|
+    Internals...................................: |xruntime-internals|
+    Issues......................................: |xruntime-issues|
+
+
+==============================================================================
+INSTALLATION                                            *xruntime-installation*
+
+There are several ways to install the plugin. The recommended one is by using
+Tim Pope's pathogen (http://www.vim.org/scripts/script.php?script_id=2332). In
+that case, you can clone the plugin's git repository like so:
+>
+    git clone git://github.com/AndrewRadev/xruntime.vim.git ~/.vim/bundle/xruntime
+<
+If your vim configuration is under git version control, you could also set up
+the repository as a submodule, which would allow you to update more easily.
+The command is (provided you're in ~/.vim):
+>
+    git submodule add git://github.com/AndrewRadev/xruntime.vim.git bundle/xruntime
+<
+
+Another way is to simply copy all the essential directories inside the ~/.vim
+directory: autoload, doc, plugin.
+
+
+==============================================================================
+USAGE                                                          *xruntime-usage*
+
+TODO
+
+
+==============================================================================
+SETTINGS                                                    *xruntime-settings*
+
+TODO
+
+
+==============================================================================
+INTERNALS                                                  *xruntime-internals*
+
+TODO
+
+==============================================================================
+ISSUES                                                        *xruntime-issues*
+
+Any issues and suggestions are very welcome on the github bugtracker:
+https://github.com/AndrewRadev/xruntime.vim/issues
+
+
+vim:tw=78:sw=4:ft=help:norl:
