@@ -130,3 +130,6 @@
 [submodule "bundle/characterize"]
 	path = bundle/characterize
 	url = git://github.com/tpope/vim-characterize.git
+[submodule "bundle/vsnips"]
+	path = bundle/vsnips
+	url = https://github.com/AndrewRadev/vsnips.vim
