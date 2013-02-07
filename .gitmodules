@@ -133,3 +133,6 @@
 [submodule "bundle/vsnips"]
 	path = bundle/vsnips
 	url = https://github.com/AndrewRadev/vsnips.vim
+[submodule "bundle/xruntime"]
+	path = bundle/xruntime
+	url = git@github.com:AndrewRadev/xruntime.git
