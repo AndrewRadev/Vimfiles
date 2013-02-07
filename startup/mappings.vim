@@ -83,8 +83,14 @@ inoremap <C-]> <C-x><C-]>
 inoremap <C-l> <C-x><C-l>
 set completefunc=syntaxcomplete#Complete
 
-" For digraphs:
-inoremap <C-n> <C-k>
+" Use the last two typed characters to output a digraph.
+inoremap <C-n> <esc>:call <SID>Digraph()<cr>a
+function! s:Digraph()
+  let col   = col('.')
+  let chars = getline('.')[col - 2 : col - 1]
+
+  exe "normal! s\<esc>s\<c-k>".chars
+endfunction
 
 " Splitting and joining code blocks
 nnoremap sj :SplitjoinSplit<CR>
