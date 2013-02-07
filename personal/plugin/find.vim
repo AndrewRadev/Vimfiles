@@ -1,3 +1,5 @@
+let s:root_dir = expand('<sfile>:p:h:h:h')
+
 command! -nargs=1 -complete=custom,s:CompleteFind Find call s:Find(<f-args>)
 command! GenerateFindTags call s:GenerateFindTags()
 
@@ -33,30 +35,15 @@ function! s:CompleteFind(argument_lead, command_line, cursor_position)
   return join(sort(s:Uniq(filenames)), "\n")
 endfunction
 
+" Note: asynchronous
 function! s:GenerateFindTags()
-  let file_tags =
-        \ [
-        \ '!_TAG_FILE_FORMAT	2	/extended format;/',
-        \ '!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/',
-        \ ]
-
-  for file in split(system("find ! -path '*.git*'"), "\n")
-    if isdirectory(file)
-      continue
-    endif
-
-    let basename = fnamemodify(file, ':t')
-    let path     = substitute(file, '^\./', '', '')
-
-    call add(file_tags, basename."\t".path."\t;\"\tf")
-  endfor
-
-  call sort(file_tags)
-  call writefile(file_tags, 'files.tags')
+  let script_name = s:root_dir.'/scripts/generate-find-tags'
+  call system(script_name.' &')
 endfunction
 
 function! s:MaybeUpdateFileTags()
-  let current_filename = expand('%')
+  let current_filename = expand('%:t')
+
   if filewritable('files.tags') && empty(s:FileTaglist(current_filename))
     call s:GenerateFindTags()
   endif
