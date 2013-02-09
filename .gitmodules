@@ -106,9 +106,6 @@
 [submodule "bundle/eco"]
 	path = bundle/eco
 	url = https://github.com/AndrewRadev/vim-eco.git
-[submodule "bundle/go"]
-	path = bundle/go
-	url = git://github.com/uggedal/go-vim.git
 [submodule "bundle/multichange"]
 	path = bundle/multichange
 	url = git@github.com:AndrewRadev/vim-markmultiple.git
