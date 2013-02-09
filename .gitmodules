@@ -133,3 +133,6 @@
 [submodule "bundle/xruntime"]
 	path = bundle/xruntime
 	url = git@github.com:AndrewRadev/xruntime.git
+[submodule "bundle/golang"]
+	path = bundle/golang
+	url = git@github.com:AndrewRadev/vim-golang.git
