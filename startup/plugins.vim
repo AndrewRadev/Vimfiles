@@ -102,6 +102,9 @@ let g:whitespaste_paste_before_command = "normal \<Plug>BeforePasta"
 let g:whitespaste_paste_after_command  = "normal \<Plug>AfterPasta"
 let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
 
+" LanguageTool
+let g:languagetool_lang = 'de'
+
 " Smartword
 nmap w  <Plug>(smartword-w)
 nmap b  <Plug>(smartword-b)
