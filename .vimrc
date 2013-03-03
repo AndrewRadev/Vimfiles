@@ -11,7 +11,6 @@ colo andrew
 
 runtime startup/settings.vim
 runtime startup/plugins.vim
-runtime startup/smartword.vim
 runtime startup/commands.vim
 runtime startup/autocommands.vim
 runtime startup/mappings.vim

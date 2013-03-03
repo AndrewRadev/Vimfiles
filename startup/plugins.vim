@@ -101,3 +101,14 @@ let g:pasta_enabled_filetypes = []
 let g:whitespaste_paste_before_command = "normal \<Plug>BeforePasta"
 let g:whitespaste_paste_after_command  = "normal \<Plug>AfterPasta"
 let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
+
+" Smartword
+nmap w  <Plug>(smartword-w)
+nmap b  <Plug>(smartword-b)
+nmap e  <Plug>(smartword-e)
+nmap ge <Plug>(smartword-ge)
+
+xmap w  <Plug>(smartword-w)
+xmap b  <Plug>(smartword-b)
+xmap e  <Plug>(smartword-e)
+xmap ge <Plug>(smartword-ge)
