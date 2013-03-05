@@ -16,6 +16,8 @@ let g:NERDTreeIgnore      = [
 " Don't map over J and K
 let g:NERDTreeMapJumpFirstChild = '-'
 let g:NERDTreeMapJumpLastChild  = '-'
+" Don't care about cd-ing to the cwd
+let g:NERDTreeMapCWD = '-'
 
 " Snippet settings:
 let g:snippets_dir = expand('~/.vim/snippets/')
