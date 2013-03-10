@@ -136,3 +136,6 @@
 [submodule "bundle/golang"]
 	path = bundle/golang
 	url = git@github.com:AndrewRadev/vim-golang.git
+[submodule "bundle/gapply"]
+	path = bundle/gapply
+	url = git@github.com:AndrewRadev/gapply.vim.git
