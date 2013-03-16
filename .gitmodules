@@ -139,6 +139,3 @@
 [submodule "bundle/gapply"]
 	path = bundle/gapply
 	url = git@github.com:AndrewRadev/gapply.vim.git
-[submodule "bundle/indentline"]
-	path = bundle/indentline
-	url = git://github.com/Yggdroot/indentLine.git
