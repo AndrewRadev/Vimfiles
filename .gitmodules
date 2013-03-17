@@ -139,3 +139,6 @@
 [submodule "bundle/gapply"]
 	path = bundle/gapply
 	url = git@github.com:AndrewRadev/gapply.vim.git
+[submodule "bundle/table-mode"]
+	path = bundle/table-mode
+	url = git://github.com/dhruvasagar/vim-table-mode.git
