@@ -142,3 +142,6 @@
 [submodule "bundle/table-mode"]
 	path = bundle/table-mode
 	url = git://github.com/dhruvasagar/vim-table-mode.git
+[submodule "bundle/onchange"]
+	path = bundle/onchange
+	url = git@github.com:AndrewRadev/onchange.vim.git
