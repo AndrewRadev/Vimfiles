@@ -51,9 +51,6 @@ let ruby_operators = 1
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd = 'wget -q -O'
 
-" Indent some additional html tags:
-let g:html_indent_tags = 'p\|li\|nav\|article\|section\|header\|footer\|aside\|time'
-
 " Gist
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command         = 'firefox %URL% &'
