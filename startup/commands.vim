@@ -54,10 +54,10 @@ endfunction
 command! RefreshSnips runtime after/plugin/snippets.vim | edit!
 
 " Clear up garbage:
-command! CleanWhitespace  call lib#InPlace('%s/\s\+$//e')
-command! CleanAnsiColors  call lib#InPlace('%s/\[.\{-}m//ge')
-command! CleanEol         call lib#InPlace('%s/$//e')
-command! CleanDoubleLines call lib#InPlace('%s/^\n\+/\r/e')
+command! CleanWhitespace  call lib#WithSavedState('%s/\s\+$//e')
+command! CleanAnsiColors  call lib#WithSavedState('%s/\[.\{-}m//ge')
+command! CleanEol         call lib#WithSavedState('%s/$//e')
+command! CleanDoubleLines call lib#WithSavedState('%s/^\n\+/\r/e')
 
 " Easy check of current syntax group
 command! Syn call syntax_attr#SyntaxAttr()
