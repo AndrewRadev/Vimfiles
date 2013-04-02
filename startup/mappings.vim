@@ -290,3 +290,23 @@ onoremap { i{
 " Center result screen when searching
 nnoremap n nzz
 nnoremap N Nzz
+
+" Quickly switch between / and ? when searching
+cnoremap <expr> <c-l> <SID>CmdlineToggle("\<c-l>")
+function! s:CmdlineToggle(default)
+  let command_type = getcmdtype()
+
+  if command_type != '/' && command_type != '?'
+    return a:default
+  endif
+
+  let command_line     = getcmdline()
+  let command_line_pos = getcmdpos()
+  let other_mode       = (command_type == '/') ? '?' : '/'
+
+  let search_command   = "\<c-c>".other_mode.command_line
+  let position_command = "\<home>".repeat("\<right>", command_line_pos - 1)
+
+  call feedkeys(search_command.position_command, 'n')
+  return ''
+endfunction
