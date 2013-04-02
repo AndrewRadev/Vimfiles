@@ -35,10 +35,3 @@ endfor
 if filereadable(fnamemodify('~/.vimrc.local', ':p'))
   source ~/.vimrc.local
 endif
-
-" Get the gender of the German word under the cursor
-command! Gender call s:Gender()
-function! s:Gender()
-  let word = expand('<cword>')
-  echo system('gender '.word)
-endfunction

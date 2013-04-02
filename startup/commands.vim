@@ -179,6 +179,7 @@ function! s:Bufferize(...)
   set nomodified
 endfunction
 
+" Open all git-modified files in tabs
 command! Gfiles call s:Gfiles()
 function! s:Gfiles()
   let files = split(system('git status -s -uall | cut -b 4-'), '\n')
@@ -188,8 +189,17 @@ function! s:Gfiles()
   endfor
 endfunction
 
+" Redraw and restore screen state
 command! Redraw call s:Redraw()
 function! s:Redraw()
   syntax sync fromstart
+  nohlsearch
   redraw!
+endfunction
+
+" Get the gender of the German word under the cursor
+command! Gender call s:Gender()
+function! s:Gender()
+  let word = expand('<cword>')
+  echo system('gender '.word)
 endfunction
