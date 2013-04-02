@@ -8,6 +8,7 @@ let b:surround_{char2nr('F')} = "function! \1function: \1() \r endfunction"
 let b:surround_{char2nr('T')} = "try \r endtry"
 
 let b:surround_{char2nr('\')} = "\\(\r\\)"
+let b:surround_indent = 1
 
 let b:outline_pattern = '\<\(function\|command\)\>'
 

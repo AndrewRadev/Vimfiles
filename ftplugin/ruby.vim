@@ -19,7 +19,6 @@ endif
 
 let b:surround_{char2nr(':')} = ":\r"
 let b:surround_{char2nr('#')} = "#{\r}"
-
 let b:surround_indent = 1
 
 ConsoleCommand !irb -r'./%' <args>
