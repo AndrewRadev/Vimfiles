@@ -15,7 +15,7 @@ function! NERDTreeOpenCurrentNodeWithExternalAssociation()
   if current_file == {}
     return
   else
-    call lib#OpenUrl(current_file.path.str())
+    call Open(current_file.path.str())
   endif
 
   redraw!
