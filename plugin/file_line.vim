@@ -27,15 +27,18 @@ function! s:gotoline()
 	let  col_num  = names[3] == ''? '0' : names[3]
 
 	if filereadable(file_name)
+		let l:bufn = bufnr("%")
+
 		exec "keepalt edit " . file_name
 		exec ":" . line_num
 		exec "normal! " . col_num . '|'
 		if foldlevel(line_num) > 0
 			exec "normal! zv"
 		endif
-
-
 		exec "normal! zz"
+
+		exec ":bwipeout " l:bufn
+		exec ":filetype detect"
 	endif
 
 endfunction
