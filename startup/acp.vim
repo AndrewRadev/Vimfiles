@@ -8,7 +8,8 @@ let g:acp_behavior = {
       \ 'ruby':   [],
       \ 'python': [],
       \ 'less':   [],
-      \ 'scss':   []
+      \ 'scss':   [],
+      \ 'go':     [],
       \ }
 
 call add(g:acp_behavior.php, {
@@ -62,9 +63,19 @@ call add(g:acp_behavior.scss, {
       \   'repeat'  : 0,
       \ })
 
+call add(g:acp_behavior.go, {
+      \   'command' : "\<C-x>\<C-o>",
+      \   'meets'   : 'AcpMeetsForGo',
+      \   'repeat'  : 0,
+      \ })
+
 " Added the condition that the tag does not contain '?'
 function! AcpMeetsForPhpHtmlTag(context)
   return g:acp_behaviorHtmlOmniLength >= 0 &&
         \ a:context =~ '\(<\|<\/\|<[^?>]\+ \|<[^>]\+=\"\)\k\{' .
         \              g:acp_behaviorHtmlOmniLength . ',}$'
+endfunction
+
+function! AcpMeetsForGo(context)
+  return &omnifunc != '' && a:context =~ '\k\.\k*$'
 endfunction
