@@ -27,9 +27,6 @@ function! s:gotoline()
 	let  col_num  = names[3] == ''? '0' : names[3]
 
 	if filereadable(file_name)
-		let l:bufn = bufnr("%")
-		exec ":bwipeout " l:bufn
-
 		exec "keepalt edit " . file_name
 		exec ":" . line_num
 		exec "normal! " . col_num . '|'
