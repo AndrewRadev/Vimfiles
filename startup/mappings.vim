@@ -53,10 +53,19 @@ nnoremap <C-l> gt
 nnoremap <C-h> gT
 
 " Moving through splits:
-nnoremap gh <C-w>h
-nnoremap gj <C-w>j
-nnoremap gk <C-w>k
-nnoremap gl <C-w>l
+nnoremap gh :silent call <SID>Winjump('h', 'l')<cr>
+nnoremap gj :silent call <SID>Winjump('j', 'k')<cr>
+nnoremap gk :silent call <SID>Winjump('k', 'j')<cr>
+nnoremap gl :silent call <SID>Winjump('l', 'h')<cr>
+
+function! s:Winjump(direction, opposite_direction)
+  let current_winnr = winnr()
+  exe 'wincmd' a:direction
+  if current_winnr == winnr()
+    " then we haven't moved, go the other way
+    exe '99wincmd' a:opposite_direction
+  endif
+endfunction
 
 " Faster scrolling:
 nmap J 5j
