@@ -211,6 +211,10 @@ class AutoTag:
 
    def updateTagsFile(self, tagsFile, sources):
       tagsDir = os.path.dirname(tagsFile)
+
+      if tagsDir == '':
+         return
+
       self.stripTags(tagsFile, sources)
       if self.tags_file:
          cmd = "%s -f %s -a 2>/dev/null" % (self.ctags_cmd, self.tags_file)
