@@ -146,9 +146,11 @@ nmap dsf F(bdt(ds(
 nnoremap QQ :call <SID>QQ()<cr>
 function! s:QQ()
   for bufnr in tabpagebuflist()
-    let winnr = bufwinnr(bufnr)
-    exe winnr.'wincmd w'
-    quit
+    if bufexists(bufnr)
+      let winnr = bufwinnr(bufnr)
+      exe winnr.'wincmd w'
+      quit
+    endif
   endfor
 endfunction
 
