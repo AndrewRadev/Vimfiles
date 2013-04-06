@@ -21,7 +21,7 @@ function! s:Doc(count, type, ...)
   let search_url = s:SearchUrl(a:type)
   let search_url = printf(search_url, lib#UrlDecode(query))
 
-  call lib#OpenUrl(search_url)
+  call Open(search_url)
 endfunction
 
 function! s:CompleteDoc(_A, _L, _P)

@@ -127,7 +127,7 @@ nnoremap ,t :tabnew<cr>
 nnoremap ,T :tabedit %<cr>gT:quit<cr>
 
 " Standard 'go to manual' command
-nnoremap gm :call lib#OpenUrl('http://google.com/search?q=' . expand("<cword>"))<cr>
+nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
 
 " Paste in insert and command modes
 inoremap <C-p> <Esc>pa

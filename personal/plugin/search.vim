@@ -19,7 +19,7 @@ endfunction
 function! s:WebSearch(engine, ...)
   let a:query = lib#UrlEncode(join(a:000, " "))
   let query = printf(g:search_engines[a:engine], a:query)
-  call lib#OpenUrl(query)
+  call Open(query)
 endfunction
 
 function! s:WebSearchComplete(ArgLead, CmdLine, CursorPos)

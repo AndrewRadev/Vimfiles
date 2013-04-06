@@ -13,7 +13,7 @@ function! s:Ginitpull(...)
     echoerr v:exception
   endtry
 
-  call lib#OpenUrl('https://github.com/'.github_path.'/pull/new/'.current_branch)
+  call Open('https://github.com/'.github_path.'/pull/new/'.current_branch)
 endfunction
 
 function! s:GithubPath(remote_name)
