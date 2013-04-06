@@ -53,10 +53,10 @@ nnoremap <C-l> gt
 nnoremap <C-h> gT
 
 " Moving through splits:
-nnoremap gh :silent call <SID>Winjump('h', 'l')<cr>
-nnoremap gj :silent call <SID>Winjump('j', 'k')<cr>
-nnoremap gk :silent call <SID>Winjump('k', 'j')<cr>
-nnoremap gl :silent call <SID>Winjump('l', 'h')<cr>
+nnoremap <silent> gh :silent call <SID>Winjump('h', 'l')<cr>
+nnoremap <silent> gj :silent call <SID>Winjump('j', 'k')<cr>
+nnoremap <silent> gk :silent call <SID>Winjump('k', 'j')<cr>
+nnoremap <silent> gl :silent call <SID>Winjump('l', 'h')<cr>
 
 function! s:Winjump(direction, opposite_direction)
   let current_winnr = winnr()
