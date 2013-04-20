@@ -28,7 +28,12 @@ function! s:InlineVar()
   let original_reg      = getreg('z')
   let original_reg_type = getregtype('z')
 
-  let declaration_pattern = '\v^.{-}(\k+)\s+\=\s+(.*)$'
+  if exists('b:inline_var_pattern')
+    let declaration_pattern = '^.\{-}'.b:inline_var_pattern.'\s*$'
+  else
+    let declaration_pattern = '\v^.{-}(\k+)\s+\=\s+(.*)$'
+  endif
+
   let line = getline('.')
 
   if line !~ declaration_pattern
