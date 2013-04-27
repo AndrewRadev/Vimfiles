@@ -102,6 +102,12 @@ let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
 " LanguageTool
 let g:languagetool_lang = 'de'
 
+" Startify
+let g:startify_empty_buffer_key = 'o'
+let g:startify_skiplist = [
+      \ 'COMMIT_EDITMSG'
+      \ ]
+
 " Smartword
 nmap w  <Plug>(smartword-w)
 nmap b  <Plug>(smartword-b)
