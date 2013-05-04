@@ -247,6 +247,42 @@ nnoremap - :Switch<cr>
 nnoremap zj mzyyP`z
 nnoremap zk mzyyP`zk
 
+" Duplicate blocks
+nnoremap zJ :call <SID>DuplicateBlock('below')<cr>
+nnoremap zK :call <SID>DuplicateBlock('above')<cr>
+function! s:DuplicateBlock(direction)
+  let start_lineno = line('.')
+  let start_line   = getline(start_lineno)
+
+  if start_line =~ '^\s*$'
+    return
+  endif
+
+  let indent     = matchstr(start_line, '^\s*\ze\S')
+  let end_lineno = nextnonblank(start_lineno + 1)
+  let end_line   = getline(end_lineno)
+
+  while end_lineno < line('$') && end_line !~ '^'.indent.'\S'
+    let end_lineno = nextnonblank(end_lineno + 1)
+    let end_line   = getline(end_lineno)
+  endwhile
+
+  let line_count = end_lineno - start_lineno + 1
+
+  if line_count < 2
+    return
+  endif
+
+  exe 'normal! y'.line_count.'y'
+
+  if a:direction == 'below'
+    exe end_lineno
+    normal p
+  else
+    normal P
+  endif
+endfunction
+
 " Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
 nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
 
