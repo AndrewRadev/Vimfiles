@@ -132,7 +132,7 @@
 	url = https://github.com/AndrewRadev/vsnips.vim
 [submodule "bundle/xruntime"]
 	path = bundle/xruntime
-	url = git@github.com:AndrewRadev/xruntime.git
+	url = git@github.com:AndrewRadev/xruntime.vim.git
 [submodule "bundle/golang"]
 	path = bundle/golang
 	url = git@github.com:AndrewRadev/vim-golang.git
