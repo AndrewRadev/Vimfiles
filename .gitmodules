@@ -145,6 +145,3 @@
 [submodule "bundle/onchange"]
 	path = bundle/onchange
 	url = git@github.com:AndrewRadev/onchange.vim.git
-[submodule "bundle/startify"]
-	path = bundle/startify
-	url = git://github.com/mhinz/vim-startify.git
