@@ -220,3 +220,15 @@ function! lib#NERDTreeInputBufferExecute(callback, node, result)
   " invoke the callback
   call call(a:callback, [a:node, a:result])
 endfunction
+
+" Finds the configuration's default paste register based on the 'clipboard'
+" option.
+function! lib#DefaultRegister()
+  if &clipboard =~ 'unnamedplus'
+    return '+'
+  elseif &clipboard =~ 'unnamed'
+    return '*'
+  else
+    return '"'
+  endif
+endfunction

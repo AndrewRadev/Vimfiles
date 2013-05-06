@@ -186,3 +186,38 @@ function! s:Gender()
   let word = expand('<cword>')
   echo system('gender '.word)
 endfunction
+
+" TODO (2013-05-06) Not quite working yet
+command! DiffPaste call s:DiffPaste()
+function! s:DiffPaste()
+  let diff           = getreg(lib#DefaultRegister())
+  let filename       = expand('%')
+  let current_lineno = line('.')
+  let current_line   = getline('.')
+
+  if diff !~ '^diff --git' && diff !~ '^@@ -'
+    " then it doesn't contain position information, add some
+    let diff_lines = split(diff, "\n")
+    let old_count = len(filter(copy(diff_lines), "v:val !~ '+'"))
+    let new_count = len(filter(copy(diff_lines), "v:val !~ '-'"))
+
+    let header = [
+          \ 'diff --git a/'.filename.' b/'.filename,
+          \ '--- a/'.filename,
+          \ '+++ b/'.filename,
+          \ '@@ -'.current_lineno.','.old_count.' +'.current_lineno.','.new_count.' @@ '.current_line,
+          \ ]
+    let diff = join(header, "\n")."\n".diff
+    echomsg diff
+  endif
+
+  update
+
+  let command_result = system('git apply -', diff)
+  if v:shell_error
+    echoerr command_result
+    return
+  endif
+
+  edit!
+endfunction
