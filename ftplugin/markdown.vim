@@ -8,6 +8,8 @@ hi link markdownItalic Normal
 call SetupPreview('html', 'markdown %s')
 RunCommand Preview
 
+let b:outline_pattern = '^#\+\s\+\w'
+
 command! -count=0 -nargs=* Link call s:Link(<count>, <f-args>)
 function! s:Link(count, ...)
   if a:count == 0
