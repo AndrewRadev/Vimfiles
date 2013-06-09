@@ -148,3 +148,6 @@
 [submodule "bundle/diff-toggle"]
 	path = bundle/diff-toggle
 	url = git://github.com/twe4ked/vim-diff-toggle.git
+[submodule "bundle/writable_search"]
+	path = bundle/writable_search
+	url = git@github.com:AndrewRadev/writable_search.vim.git
