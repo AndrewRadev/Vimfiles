@@ -9,6 +9,7 @@ set sidescroll=4
 set splitbelow
 set switchbuf=useopen
 set t_Co=256
+set ttyfast
 set updatetime=1000
 set viminfo+=!
 
