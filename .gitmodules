@@ -145,3 +145,6 @@
 [submodule "bundle/onchange"]
 	path = bundle/onchange
 	url = git@github.com:AndrewRadev/onchange.vim.git
+[submodule "bundle/diff-toggle"]
+	path = bundle/diff-toggle
+	url = git://github.com/twe4ked/vim-diff-toggle.git
