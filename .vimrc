@@ -35,3 +35,7 @@ endfor
 if filereadable(fnamemodify('~/.vimrc.local', ':p'))
   source ~/.vimrc.local
 endif
+
+if exists('&regexpengine')
+  set regexpengine=1
+end
