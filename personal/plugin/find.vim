@@ -8,6 +8,14 @@ augroup update_file_tags
 augroup END
 
 function! s:Find(filename)
+  if !filereadable('files.tags')
+    if confirm("No `files.tags` file, generate it?")
+      call s:GenerateFindTagsSync()
+    else
+      return
+    endif
+  endif
+
   try
     let saved_tags = &tags
     let &tags = 'files.tags'
@@ -39,6 +47,11 @@ endfunction
 function! s:GenerateFindTags()
   let script_name = s:root_dir.'/scripts/generate-find-tags'
   call system(script_name.' &')
+endfunction
+
+function! s:GenerateFindTagsSync()
+  let script_name = s:root_dir.'/scripts/generate-find-tags'
+  call system(script_name)
 endfunction
 
 function! s:MaybeUpdateFileTags()
