@@ -148,3 +148,6 @@
 [submodule "bundle/writable_search"]
 	path = bundle/writable_search
 	url = git@github.com:AndrewRadev/writable_search.vim.git
+[submodule "bundle/slim"]
+	path = bundle/slim
+	url = git://github.com/slim-template/vim-slim.git
