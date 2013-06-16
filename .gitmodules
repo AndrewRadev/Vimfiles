@@ -40,9 +40,6 @@
 [submodule "bundle/linediff"]
 	path = bundle/linediff
 	url = https://github.com/AndrewRadev/linediff.vim.git
-[submodule "bundle/slim"]
-	path = bundle/slim
-	url = https://github.com/bbommarito/vim-slim.git
 [submodule "bundle/cucumber"]
 	path = bundle/cucumber
 	url = https://github.com/tpope/vim-cucumber.git
@@ -108,7 +105,7 @@
 	url = https://github.com/AndrewRadev/vim-eco.git
 [submodule "bundle/multichange"]
 	path = bundle/multichange
-	url = git@github.com:AndrewRadev/vim-markmultiple.git
+	url = git@github.com:AndrewRadev/multichange.vim
 [submodule "bundle/whitespaste"]
 	path = bundle/whitespaste
 	url = git://github.com/AndrewRadev/whitespaste.vim.git
