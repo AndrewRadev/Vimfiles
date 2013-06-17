@@ -87,7 +87,7 @@
 	url = https://github.com/nono/vim-handlebars.git
 [submodule "bundle/rtranslate"]
 	path = bundle/rtranslate
-	url = git@github.com:AndrewRadev/rtranslate.vim.git
+	url = https://github.com/AndrewRadev/rtranslate.vim
 [submodule "bundle/jst"]
 	path = bundle/jst
 	url = https://github.com/briancollins/vim-jst.git
@@ -105,7 +105,7 @@
 	url = https://github.com/AndrewRadev/vim-eco.git
 [submodule "bundle/multichange"]
 	path = bundle/multichange
-	url = git@github.com:AndrewRadev/multichange.vim
+	url = https://github.com/AndrewRadev/multichange.vim
 [submodule "bundle/whitespaste"]
 	path = bundle/whitespaste
 	url = git://github.com/AndrewRadev/whitespaste.vim.git
@@ -120,7 +120,7 @@
 	url = https://github.com/AndrewRadev/id3.vim.git
 [submodule "bundle/undoquit"]
 	path = bundle/undoquit
-	url = git@github.com:AndrewRadev/undoquit.vim.git
+	url = https://github.com/AndrewRadev/undoquit.vim
 [submodule "bundle/characterize"]
 	path = bundle/characterize
 	url = git://github.com/tpope/vim-characterize.git
@@ -129,25 +129,25 @@
 	url = https://github.com/AndrewRadev/vsnips.vim
 [submodule "bundle/xruntime"]
 	path = bundle/xruntime
-	url = git@github.com:AndrewRadev/xruntime.vim.git
+	url = https://github.com/AndrewRadev/xruntime.vim
 [submodule "bundle/golang"]
 	path = bundle/golang
-	url = git@github.com:AndrewRadev/vim-golang.git
+	url = https://github.com/AndrewRadev/vim-golang
 [submodule "bundle/gapply"]
 	path = bundle/gapply
-	url = git@github.com:AndrewRadev/gapply.vim.git
+	url = https://github.com/AndrewRadev/gapply.vim
 [submodule "bundle/table-mode"]
 	path = bundle/table-mode
 	url = git://github.com/dhruvasagar/vim-table-mode.git
 [submodule "bundle/onchange"]
 	path = bundle/onchange
-	url = git@github.com:AndrewRadev/onchange.vim.git
+	url = https://github.com/AndrewRadev/onchange.vim
 [submodule "bundle/diff-toggle"]
 	path = bundle/diff-toggle
 	url = git://github.com/twe4ked/vim-diff-toggle.git
 [submodule "bundle/writable_search"]
 	path = bundle/writable_search
-	url = git@github.com:AndrewRadev/writable_search.vim.git
+	url = https://github.com/AndrewRadev/writable_search.vim
 [submodule "bundle/slim"]
 	path = bundle/slim
 	url = git://github.com/slim-template/vim-slim.git
