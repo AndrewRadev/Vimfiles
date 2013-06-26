@@ -181,6 +181,7 @@ function! s:Tabularize(visual)
   elseif char == ' ' | let alignment = 'space'
   else
     " just try aligning by the character
+    let char = escape(char, '/')
     let alignment = '/'.char
   endif
 
