@@ -112,3 +112,6 @@ xmap w  <Plug>(smartword-w)
 xmap b  <Plug>(smartword-b)
 xmap e  <Plug>(smartword-e)
 xmap ge <Plug>(smartword-ge)
+
+" Markdown
+let g:markdown_fenced_languages = ['ruby', 'vim']
