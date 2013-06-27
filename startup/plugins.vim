@@ -90,7 +90,7 @@ let g:coffee_tools_default_mappings = 1
 let g:go_highlight_trailing_whitespace_error = 0
 
 " Use Ag for Ack:
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Disable vim-pasta and use it through whitespaste
 let g:pasta_enabled_filetypes = []
