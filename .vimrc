@@ -38,4 +38,4 @@ endif
 
 if exists('&regexpengine')
   set regexpengine=1
-end
+endif
