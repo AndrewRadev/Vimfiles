@@ -1,6 +1,7 @@
 set noexpandtab
 set tabstop=4
 set shiftwidth=4
+
 set makeprg=go\ run\ %
 
 nmap <buffer> gm <Plug>(godoc-keyword)

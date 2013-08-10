@@ -12,6 +12,8 @@ let b:surround_indent = 1
 
 let b:outline_pattern = '\<\(function\|command\)\>'
 
+let b:dh_closing_pattern = '^\s*end\(\k\{-}\)\>'
+
 nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
 
 RunCommand so %
