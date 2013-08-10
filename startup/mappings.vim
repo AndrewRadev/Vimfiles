@@ -316,13 +316,6 @@ endfunction
 nnoremap <c-w>< :BufSurfBack<CR>
 nnoremap <c-w>> :BufSurfForward<CR>
 
-" Quicker text objects
-onoremap " i"
-onoremap ' i'
-onoremap ( i(
-onoremap [ i[
-onoremap { i{
-
 " Center result screen when searching
 nnoremap n nzz
 nnoremap N Nzz
