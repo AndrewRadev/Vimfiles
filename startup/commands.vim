@@ -66,7 +66,7 @@ command! Syn call syntax_attr#SyntaxAttr()
 command! -nargs=* Outline call s:Outline(<f-args>)
 function! s:Outline(...)
   if a:0 > 0
-    let pattern = '\<\('.join(a:000, '\|').'\)\>'
+    let pattern = join(a:000, '\|')
   elseif exists('b:outline_pattern')
     let pattern = b:outline_pattern
   elseif !exists('b:outlined')
