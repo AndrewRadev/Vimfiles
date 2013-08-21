@@ -229,6 +229,21 @@ nnoremap gN :NERDTree<cr>
 
 nnoremap <Leader>f :NERDTreeFind<cr>
 
+" Toggle quickfix
+" Note: can't use :cwindow, only closes if there's nothing there.
+nnoremap go :call <SID>ToggleQuickfix()<cr>
+function! s:ToggleQuickfix()
+  redir => buffer_list
+  silent ls
+  redir END
+
+  if buffer_list =~ '\[Quickfix List\]'
+    cclose
+  else
+    copen
+  endif
+endfunction
+
 " Open path with external application
 nnoremap gu :Open<cr>
 xnoremap gu :Open<cr>
