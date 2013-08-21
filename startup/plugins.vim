@@ -70,8 +70,9 @@ let g:splitjoin_normalize_whitespace = 1
 let g:splitjoin_align                = 1
 
 " Inline edit:
-let g:inline_edit_autowrite = 1
-let g:inline_edit_patterns = [
+let g:inline_edit_autowrite  = 1
+let g:inline_edit_proxy_type = 'tempfile'
+let g:inline_edit_patterns   = [
       \   {
       \     'main_filetype':     '*html',
       \     'sub_filetype':      'handlebars',
