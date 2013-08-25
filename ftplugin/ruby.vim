@@ -51,6 +51,29 @@ if !exists('b:erb_loaded')
     let b:outline_pattern = '\v^\s*(def|class|module|public|protected|private)(\s|$)'
 
     RunCommand !ruby % <args>
+
+    command! -buffer R call b:R()
+    if !exists('*b:R')
+      function! b:R()
+        let filename   = expand('%')
+        let basename   = expand('%:t:r')
+        let directory  = expand('%:h')
+        let class_name = lib#CapitalCamelCase(basename)
+        let pattern    = class_name.'\s\+<\s\+\(\k\+\)'
+
+        call sj#PushCursor()
+
+        if search(pattern)
+          let parent_class = lib#ExtractRx(getline('.'), pattern, '\1')
+          let parent_class_filename = lib#Underscore(parent_class)
+          call sj#PopCursor()
+          exe 'edit '.directory.'/'.parent_class_filename.'.rb'
+        else
+          call sj#PopCursor()
+          echoerr "Parent class of ".class_name." not found"
+        endif
+      endfunction
+    endif
   endif
 endif
 
