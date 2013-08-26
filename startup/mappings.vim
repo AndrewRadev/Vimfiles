@@ -231,17 +231,19 @@ nnoremap <Leader>f :NERDTreeFind<cr>
 
 " Toggle quickfix
 " Note: can't use :cwindow, only closes if there's nothing there.
+" Note: probably doesn't handle location list well
 nnoremap go :call <SID>ToggleQuickfix()<cr>
 function! s:ToggleQuickfix()
-  redir => buffer_list
-  silent ls
-  redir END
+  for n in range(1, winnr('$'))
+    if getwinvar(n, '&buftype') == 'quickfix'
+      " quickfix buffer found in tab, close
+      cclose
+      return
+    endif
+  endfor
 
-  if buffer_list =~ '\[Quickfix List\]'
-    cclose
-  else
-    copen
-  endif
+  " no quickfix found, open it
+  copen
 endfunction
 
 " Open path with external application
