@@ -13,7 +13,7 @@ augroup custom
   " When editing a file, always jump to the last known cursor position.
   autocmd BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
-        \   exe "normal! g`\""                           |
+        \   exe "keepjumps normal! g`\""                 |
         \ endif
 
   " Check if editing a directory
