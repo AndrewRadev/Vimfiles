@@ -64,6 +64,12 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
+" Resize windows
+nnoremap <left>  <c-w><
+nnoremap <right> <c-w>>
+nnoremap <up>    <c-w>-
+nnoremap <down>  <c-w>+
+
 " Toggle case of current word
 nnoremap <C-u> mzg~iw`z
 
