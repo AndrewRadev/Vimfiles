@@ -1,6 +1,4 @@
-" Custom autocommands group:
 augroup custom
-  " Clear all custom autocommands:
   autocmd!
 
   " Clean all useless whitespace:
@@ -20,10 +18,10 @@ augroup custom
   autocmd BufEnter,VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
 
   " Check if it's necessary to create a directory
-  autocmd BufNewFile * :call s:EnsureDirectoryExists()
+  autocmd BufNewFile * call s:EnsureDirectoryExists()
 
   " Write stats on note files
-  autocmd BufWritePost * :call s:SaveFileStats(expand('%:t'))
+  autocmd BufWritePost * call s:SaveFileStats(expand('%:t'))
 
   autocmd BufEnter *.c    compiler gcc
   autocmd BufEnter *.cpp  compiler gcc
@@ -36,8 +34,6 @@ augroup custom
   autocmd BufEnter *.tags       set filetype=tags
   autocmd BufEnter httpd*.conf  set filetype=apache
 
-  autocmd User BufEnterRails Rnavcommand factory spec/factories -glob=* -suffix=.rb -default=model()
-  autocmd User BufEnterRails Rnavcommand feature features -glob=**/* -suffix=.feature
   autocmd User BufEnterRails command! -buffer Rroutes edit config/routes.rb
 
   " For some reason, this doesn't work in ftplugin/man.vim

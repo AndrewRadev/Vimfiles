@@ -77,11 +77,6 @@ not very generic or redistributable, which is why I tend to put them there.
 - You can turn any text into ASCII art by marking it in visual mode and
   executing `:Figlet`, implemented by the [figlet plugin][]. Requires the
   `figlet` command.
-- You can have vim speak a snippet of text outloud by marking it in visual mode
-  and executing `:Speak`. The code is in [plugin/speech.vim][], originally by
-  Onur Aslan, with a few tweaks by me. Requires an internet connection, `wget`
-  and `mplayer`. **Note**: Doesn't work at the moment :(. At some point, google
-  must have removed their speech API.
 
 ## Other
 
@@ -101,7 +96,6 @@ not very generic or redistributable, which is why I tend to put them there.
 [personal]:                           https://github.com/AndrewRadev/Vimfiles/tree/master/personal
 [plugin/afterimage.vim]:              https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/afterimage.vim
 [plugin/jad.vim]:                     https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/jad.vim
-[plugin/speech.vim]:                  https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/speech.vim
 [projects]:                           https://github.com/AndrewRadev/Vimfiles/tree/master/projects
 [startup/mappings.vim]:               https://github.com/AndrewRadev/Vimfiles/tree/master/startup/mappings.vim
 [startup]:                            https://github.com/AndrewRadev/Vimfiles/tree/master/startup

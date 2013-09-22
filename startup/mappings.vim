@@ -211,24 +211,6 @@ function! s:TabularizeReset()
   call setpos('.', original_cursor)
 endfunction
 
-" Get rid of annoying register rewriting when pasting on visually selected
-" text.
-"
-" Note: magic
-function! RestoreRegister()
-  let @" = s:restore_reg
-  let @* = s:restore_reg_star
-  let @+ = s:restore_reg_plus
-  return ''
-endfunction
-function! s:Repl()
-  let s:restore_reg      = @"
-  let s:restore_reg_star = @*
-  let s:restore_reg_plus = @+
-  return "p@=RestoreRegister()\<cr>"
-endfunction
-xnoremap <silent> <expr> p <SID>Repl()
-
 " NERD tree:
 nnoremap gn :NERDTreeToggle<cr>
 nnoremap gN :NERDTree<cr>
@@ -306,34 +288,6 @@ endfunction
 
 " Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
 nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
-
-" Use * without moving the cursor
-" Note: g* is ordinarily taken
-nnoremap g* :call <SID>SmartStar()<cr>
-function! s:SmartStar()
-  let cword = expand('<cword>')
-
-  if cword == ''
-    echo "No word under the cursor"
-    return
-  endif
-
-  let current_col = col('.')
-
-  call search('\<'.cword.'\>', 'bWc', line('.'))
-
-  let cword_start_col = col('.')
-  let cword_start     = strpart(cword, 0, current_col - cword_start_col)
-  let cword_end       = strpart(cword, current_col - cword_start_col)
-
-  let search_pattern = '\<\%('.cword_start.'\zs'.cword_end.'\)\>'
-
-  call histadd('search', search_pattern)
-  let @/ = search_pattern
-  normal! n
-
-  echo 'Search for: '.cword
-endfunction
 
 " Bufsurf
 nnoremap <c-w>< :BufSurfBack<CR>

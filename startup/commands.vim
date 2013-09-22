@@ -121,20 +121,6 @@ function! s:ProjInit(...)
   exec "Proj ".project_name
 endfunction
 
-" Make filename under cursor relative/absolute
-command! -range Absolutize call <SID>TransformFilenameUnderCursor('p')
-command! -range Relativize call <SID>TransformFilenameUnderCursor('.')
-function! s:TransformFilenameUnderCursor(modifier)
-  let transformation = 'fnamemodify(submatch(0), ":'.a:modifier.'")'
-  let current_mode   = mode()
-
-  if current_mode == 'v' || current_mode == 'V'
-    call lib#InPlace('s/\%V.*\%V/\='.transformation)
-  else
-    call lib#InPlace('s/\f*\%#\f*/\='.transformation)
-  endif
-endfunction
-
 " Open all files in quickfix window in tabs
 command! Ctabs call s:Ctabs()
 function! s:Ctabs()
@@ -181,6 +167,7 @@ function! s:Redraw()
 endfunction
 
 " Get the gender of the German word under the cursor
+" Note: just uses the external "gender" script
 command! Gender call s:Gender()
 function! s:Gender()
   let word = expand('<cword>')
