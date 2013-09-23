@@ -132,9 +132,19 @@ runtime autoload/repeat.vim
 nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 
 " Delete surrounding function call
-" TODO doesn't work for method calls
-" TODO relies on braces
-nmap dsf F(bdt(ds(
+" Depends on surround.vim
+nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
+function! s:DeleteSurroundingFunctionCall()
+  let function_call_pattern = '\%(\k\+\.\)*\k\+(.\{-}\%#.\{-})'
+
+  if search(function_call_pattern, 'Wb', line('.')) < 0
+    return
+  endif
+
+  normal! dt(
+  normal ds(
+  silent! call repeat#set('dsf')
+endfunction
 
 " Quit tab, even if it's just one
 nnoremap QQ :call <SID>QQ()<cr>
