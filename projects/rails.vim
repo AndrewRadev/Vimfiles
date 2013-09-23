@@ -1,6 +1,6 @@
 runtime projects/ruby.vim
 
-silent AckIgnore log
+silent AckIgnore log/ tmp/
 
 runtime after/plugin/snippets.vim
 
