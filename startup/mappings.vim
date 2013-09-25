@@ -363,3 +363,9 @@ function! s:DeleteAndDedent()
   exe start_lineno.'delete'
   echo
 endfunction
+
+" Sideways argument text object
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
