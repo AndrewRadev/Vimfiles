@@ -174,37 +174,61 @@ function! s:Gender()
   echo system('gender '.word)
 endfunction
 
-" TODO (2013-05-06) Not quite working yet
-command! DiffPaste call s:DiffPaste()
-function! s:DiffPaste()
+command! -nargs=* DiffPaste call s:DiffPaste(<q-args>)
+function! s:DiffPaste(flags)
   let diff           = getreg(lib#DefaultRegister())
   let filename       = expand('%')
   let current_lineno = line('.')
   let current_line   = getline('.')
 
-  if diff !~ '^diff --git' && diff !~ '^@@ -'
-    " then it doesn't contain position information, add some
-    let diff_lines = split(diff, "\n")
-    let old_count = len(filter(copy(diff_lines), "v:val !~ '+'"))
-    let new_count = len(filter(copy(diff_lines), "v:val !~ '-'"))
+  " Strip out some metadata, split by positional information
+  let blocks        = []
+  let current_block = []
 
+  for line in split(diff, "\n")
+    if line =~ '^\%(index\|diff --git\|---\|+++\)'
+      continue
+    elseif line =~ '^@@.*@@.*$'
+      call add(blocks, current_block)
+      let current_block = []
+      call add(current_block, line)
+    else
+      call add(current_block, line)
+    endif
+  endfor
+
+  call add(blocks, current_block)
+
+  for block in blocks
+    if empty(block)
+      continue
+    endif
+
+    let old_count = len(filter(copy(block), "v:val !~ '+'"))
+    let new_count = len(filter(copy(block), "v:val !~ '-'"))
+
+    " Add custom metadata
     let header = [
           \ 'diff --git a/'.filename.' b/'.filename,
           \ '--- a/'.filename,
           \ '+++ b/'.filename,
-          \ '@@ -'.current_lineno.','.old_count.' +'.current_lineno.','.new_count.' @@ '.current_line,
           \ ]
-    let diff = join(header, "\n")."\n".diff
-    echomsg diff
-  endif
 
-  update
+    " We may not have positional info, use cursor location
+    if block[0] !~ '^@@.*@@.*$'
+      call add(header, '@@ -'.current_lineno.','.old_count.' +'.current_lineno.','.new_count.' @@ '.current_line)
+    endif
 
-  let command_result = system('git apply -', diff)
-  if v:shell_error
-    echoerr command_result
-    return
-  endif
+    let block = extend(header, block)
+    let diff  = join(block, "\n")
+
+    " Perform this diff
+    let command_result = system('git apply '.a:flags.' -', diff."\n")
+    if v:shell_error
+      echoerr command_result
+      return
+    endif
+  endfor
 
   edit!
 endfunction
