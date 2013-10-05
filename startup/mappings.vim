@@ -135,7 +135,7 @@ nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 " Depends on surround.vim
 nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
 function! s:DeleteSurroundingFunctionCall()
-  let function_call_pattern = '\%(\k\+\.\)*\k\+(.\{-}\%#.\{-})'
+  let function_call_pattern = '\%(\k\+\.\)*\k\+([^()]\{-}\%#[^()]\{-})'
 
   if search(function_call_pattern, 'Wb', line('.')) < 0
     return
