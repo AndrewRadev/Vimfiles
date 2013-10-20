@@ -151,3 +151,6 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
+[submodule "bundle/subtitles"]
+	path = bundle/subtitles
+	url = https://github.com/AndrewRadev/subtitles.vim
