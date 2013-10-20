@@ -41,8 +41,8 @@ function! s:InlineVar()
     return
   endif
 
-  let var_name = lib#ExtractRx(line, declaration_pattern, '\1')
-  let body     = lib#ExtractRx(line, declaration_pattern, '\2')
+  let var_name = s:ExtractRx(line, declaration_pattern, '\1')
+  let body     = s:ExtractRx(line, declaration_pattern, '\2')
 
   normal! dd
 
@@ -77,4 +77,20 @@ function! GetScopeLimits()
   let to = current
 
   return [from, to]
+endfunction
+
+" Extracts a regex match from a string.
+" Original in autoload/lib.vim
+function! s:ExtractRx(expr, pat, sub)
+  let rx = a:pat
+
+  if stridx(a:pat, '^') != 0
+    let rx = '^.*'.rx
+  endif
+
+  if strridx(a:pat, '$') + 1 != strlen(a:pat)
+    let rx = rx.'.*$'
+  endif
+
+  return substitute(a:expr, rx, a:sub, '')
 endfunction
