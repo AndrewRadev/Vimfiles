@@ -330,8 +330,7 @@ endfunction
 nnoremap dh :call <SID>DeleteAndDedent()<cr>
 function! s:DeleteAndDedent()
   if !exists('b:dh_closing_pattern')
-    echohl WarningMsg | echo "No b:dh_closing_pattern found for this buffer" | echohl NONE
-    return
+    let b:dh_closing_pattern = '.'
   end
 
   let start_lineno = line('.')
@@ -350,14 +349,14 @@ function! s:DeleteAndDedent()
 
   let end_lineno = current_lineno
 
-  if indent(end_lineno) == indent(start_lineno) &&
-        \ getline(end_lineno) =~ b:dh_closing_pattern
-    " then it's probably a block-closer, delete it
-    exe end_lineno.'delete _'
-  endif
-
   if end_lineno - start_lineno > 1
     exe (start_lineno + 1).','.(end_lineno - 1).'<'
+
+    if indent(end_lineno) == indent(start_lineno) &&
+          \ getline(end_lineno) =~ b:dh_closing_pattern
+      " then it's a block-closer, delete it
+      exe end_lineno.'delete _'
+    endif
   endif
 
   exe start_lineno.'delete'

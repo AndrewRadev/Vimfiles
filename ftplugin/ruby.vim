@@ -35,12 +35,12 @@ xnoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
 " Look up the word under the cursor on apidock:
 nnoremap <buffer> gm :Doc ruby<cr>
 
-let b:dh_closing_pattern = '^\s*end\>'
-
 " Evaluate and annotate the buffer through rcodetools
 command! Annotate %!xmpfilter
 
 if !exists('b:erb_loaded')
+  let b:dh_closing_pattern = '^\s*end\>'
+
   " fold nicely -- experimental
   call RubyFold()
   setlocal nofoldenable
