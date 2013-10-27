@@ -368,3 +368,30 @@ omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
+
+" Change between `method arg1, arg2` and `method(arg1, arg2)`
+nnoremap g( :call <SID>ToggleBrackets()<cr>
+function! s:ToggleBrackets()
+  let arguments = sideways#parsing#Parse(sideways#Definitions())
+  if empty(arguments)
+    return
+  endif
+
+  let saved_view = winsaveview()
+
+  let line            = getline('.')
+  let start_col       = arguments[0][0]
+  let start_col_index = start_col - 1
+  let end_col         = arguments[-1][1]
+  let end_col_index   = end_col - 1
+
+  if line[start_col_index - 1] == '(' && line[end_col_index + 1] == ')'
+    exe "normal! ".(start_col - 1)."|r\<space>"
+    exe "normal! ".(end_col + 1)."|x"
+  elseif line[start_col_index - 1] == ' '
+    exe "normal! ".(start_col - 1)."|r("
+    exe "normal! ".(end_col)."|a)"
+  endif
+
+  call winrestview(saved_view)
+endfunction
