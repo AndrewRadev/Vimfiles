@@ -116,6 +116,3 @@ xmap ge <Plug>(smartword-ge)
 
 " Markdown
 let g:markdown_fenced_languages = ['ruby', 'vim']
-
-" WritableSearch
-let g:writable_search_command_type = 'ack'
