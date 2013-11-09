@@ -116,3 +116,13 @@ xmap ge <Plug>(smartword-ge)
 
 " Markdown
 let g:markdown_fenced_languages = ['ruby', 'vim']
+
+" Indent guides
+let g:indent_guides_auto_colors           = 0
+let g:indent_guides_guide_size            = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes     = ['help', 'nerdtree']
+let g:indent_guides_default_mapping       = 0
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=NONE
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
