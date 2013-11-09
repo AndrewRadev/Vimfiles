@@ -1,7 +1,3 @@
-if !has('ruby')
-  finish
-endif
-
 call ResetSnippets()
 
 call ExtractSnipsFile(g:snippets_dir.'_.snippets', '_')
