@@ -157,3 +157,6 @@
 [submodule "bundle/indent_guides"]
 	path = bundle/indent_guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "bundle/anzu"]
+	path = bundle/anzu
+	url = https://github.com/osyo-manga/vim-anzu.git
