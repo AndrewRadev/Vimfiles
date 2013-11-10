@@ -126,3 +126,9 @@ let g:indent_guides_default_mapping       = 0
 
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=NONE
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+
+" Anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)

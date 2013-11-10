@@ -304,8 +304,8 @@ nnoremap <c-w>< :BufSurfBack<CR>
 nnoremap <c-w>> :BufSurfForward<CR>
 
 " Center result screen when searching
-nnoremap n nzz
-nnoremap N Nzz
+" nnoremap n nzz
+" nnoremap N Nzz
 
 " Quickly switch between / and ? when searching
 cnoremap <expr> <c-l> <SID>CmdlineToggle("\<c-l>")
