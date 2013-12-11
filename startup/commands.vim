@@ -1,6 +1,7 @@
 " Simpler tag searches:
 runtime plugin/tagfinder.vim
 
+DefineTagFinder Tag
 DefineTagFinder Function f,function,F,singleton\ method
 DefineTagFinder Class    c,class
 DefineTagFinder Module   m,module
