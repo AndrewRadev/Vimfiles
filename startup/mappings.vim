@@ -395,3 +395,26 @@ function! s:ToggleBrackets()
 
   call winrestview(saved_view)
 endfunction
+
+" Quickly make a macro and use it with "."
+"
+" TODO (2013-12-11) Consider a "single-line" macro, moving on a different line
+" records it.
+"
+let s:simple_macro_active = 0
+nnoremap M :call <SID>SimpleMacro()<cr>
+function! s:SimpleMacro()
+  if s:simple_macro_active == 0
+
+    call feedkeys('qm', 'n')
+    let s:simple_macro_active = 1
+
+  elseif s:simple_macro_active == 1
+
+    call feedkeys('q', 'n')
+    let macro = @m[0:-2]
+    call repeat#set(macro, 1)
+    let s:simple_macro_active = 0
+
+  endif
+endfunction
