@@ -89,6 +89,8 @@ let g:coffee_tools_default_mappings = 1
 
 " Go
 let g:go_highlight_trailing_whitespace_error = 0
+" disable built-in commands in favor of my own
+let g:go_import_commands = 0
 
 " Ack.vim
 " let g:ackprg = 'ag --nogroup --nocolor --column'
