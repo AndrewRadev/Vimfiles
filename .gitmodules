@@ -157,3 +157,6 @@
 [submodule "bundle/anzu"]
 	path = bundle/anzu
 	url = https://github.com/osyo-manga/vim-anzu.git
+[submodule "bundle/go-oracle"]
+	path = bundle/go-oracle
+	url = git@github.com:AndrewRadev/go-oracle.vim.git
