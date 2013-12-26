@@ -136,3 +136,7 @@ nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
+
+" surround.vim
+" Surround with function call
+let g:surround_{char2nr('f')} = "\1function: \1(\r)"
