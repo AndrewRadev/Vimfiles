@@ -19,11 +19,9 @@ snippet main
 	func main() {
 
 	}
-snippet fun
+snippet func
 	func ${1:name}(${2:argument string}) (${3:returnType}) {
 		${4}
 	}
-snippet err
-	if err != nil { panic(err) }
 snippet dump
-	fmt.Printf("%v\n", ${1:variable})
+	fmt.Printf("%#v\n", ${1:variable})
