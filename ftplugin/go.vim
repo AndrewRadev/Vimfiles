@@ -2,7 +2,7 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 
-let &l:makeprg = 'go build -o '.tempname().' '.shellescape(expand('%'))
+set makeprg=gotype\ %
 
 nmap <buffer> gm <Plug>(godoc-keyword)
 
