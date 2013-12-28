@@ -12,3 +12,8 @@ let b:inline_var_pattern   = '\v(\k+)\s+:\=\s+(.*)'
 let b:outline_pattern = '^\s*func'
 
 RunCommand !go run %
+
+augroup golang
+  autocmd!
+  autocmd BufWritePost <buffer> :Fmt silent write
+augroup END
