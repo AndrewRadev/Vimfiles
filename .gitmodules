@@ -160,3 +160,6 @@
 [submodule "bundle/go-oracle"]
 	path = bundle/go-oracle
 	url = git@github.com:AndrewRadev/go-oracle.vim.git
+[submodule "bundle/exchange"]
+	path = bundle/exchange
+	url = https://github.com/tommcdo/vim-exchange
