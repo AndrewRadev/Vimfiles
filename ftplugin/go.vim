@@ -15,5 +15,5 @@ RunCommand !go run %
 
 augroup golang
   autocmd!
-  autocmd BufWritePost <buffer> :Fmt silent write
+  autocmd BufWritePre <buffer> :Fmt silent
 augroup END
