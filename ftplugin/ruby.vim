@@ -122,6 +122,7 @@ if !exists('b:erb_loaded')
           call append(class_line, [
                 \ indent.'  def '.action,
                 \ indent.'  end',
+                \ '',
                 \ ])
         endif
 
