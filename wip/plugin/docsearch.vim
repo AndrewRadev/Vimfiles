@@ -2,7 +2,7 @@ let s:search_urls = {
       \ 'ruby':   'http://apidock.com/ruby/search/quick?query=%s',
       \ 'rails':  'http://apidock.com/rails/search/quick?query=%s',
       \ 'rspec':  'http://apidock.com/rspec/search/quick?query=%s',
-      \ 'jquery': 'http://api.jquery.com/%s',
+      \ 'jquery': 'http://api.jquery.com/?s=%s',
       \ 'so':     'http://stackoverflow.com/search?q=%s',
       \ 'css':    'https://developer.mozilla.org/en-US/search?q=%s',
       \ 'js':     'https://developer.mozilla.org/en-US/search?q=%s'
