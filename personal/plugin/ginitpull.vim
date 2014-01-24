@@ -1,19 +1,21 @@
+" TODO (2014-01-24) Completion
+
 command! -nargs=* Ginitpull call s:Ginitpull(<f-args>)
 function! s:Ginitpull(...)
-  if a:0 == 0
-    let remote_name = 'origin'
-  else
-    let remote_name = a:1
-  endif
+  let remote_name = get(a:000, 0, 'origin')
+  let branch_name = get(a:000, 1, '')
 
   try
-    let current_branch = s:CurrentGitBranch()
-    let github_path    = s:GithubPath(remote_name)
+    if branch_name == ''
+      let branch_name = s:CurrentGitBranch()
+    endif
+
+    let github_path = s:GithubPath(remote_name)
   catch /./
     echoerr v:exception
   endtry
 
-  call Open('https://github.com/'.github_path.'/pull/new/'.current_branch)
+  call Open('https://github.com/'.github_path.'/pull/new/'.branch_name)
 endfunction
 
 function! s:GithubPath(remote_name)
