@@ -367,7 +367,8 @@ function! s:SimpleMacro()
 
   elseif s:simple_macro_active == 1
 
-    call feedkeys('q', 'n')
+    normal! q
+    " remove trailing M
     let macro = @m[0:-2]
     call repeat#set(macro, 1)
     let s:simple_macro_active = 0
