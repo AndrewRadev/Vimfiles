@@ -328,7 +328,7 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 " Change between `method arg1, arg2` and `method(arg1, arg2)`
 nnoremap g( :call <SID>ToggleBrackets()<cr>
 function! s:ToggleBrackets()
-  let arguments = sideways#parsing#Parse(sideways#Definitions())
+  let arguments = sideways#Parse()
   if empty(arguments)
     return
   endif
