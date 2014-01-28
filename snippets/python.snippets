@@ -33,6 +33,9 @@ snippet def
 		${3:TODO: docstring for $1}
 		"""
 		${4:pass}
+snippet defi
+	def __init__(self, ${1:argument}):
+		${2}
 snippet deff
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 		${3}
