@@ -1,3 +1,5 @@
+let s:indent_based_languages = ['python', 'coffee', 'haml', 'slim']
+
 " Duplicate lines
 nnoremap zj mzyyP`z
 nnoremap zk mzyyP`zk
@@ -7,14 +9,27 @@ nnoremap zJ :call <SID>DuplicateBlock('below')<cr>
 nnoremap zK :call <SID>DuplicateBlock('above')<cr>
 
 function! s:DuplicateBlock(direction)
-  if index(['python', 'coffee', 'haml', 'slim'], &filetype) >= 0
-    let block = s:OpenBlock(a:direction)
-  else
-    let block = s:ClosedBlock(a:direction)
+  if getline('.') =~ '^\s*$'
+    return
   endif
 
-  let [start, end, lines] = block
+  if index(s:indent_based_languages, &filetype) >= 0
+    let block = s:OpenBlock(line('.'), a:direction)
+  else
+    let block = s:ClosedBlock(line('.'), a:direction)
+  endif
 
+  if empty(block)
+    return
+  endif
+
+  let [start, end] = block
+  let lines        = getbufline('%', start, end)
+
+  " The conditions look swapped, but this actually has the indended effect.
+  " Remember that the result buffer is the same in both cases, it's the cursor
+  " position that matters.
+  "
   if a:direction == 'below'
     call append(start - 1, lines + [''])
   else " a:direction == 'above'
@@ -23,10 +38,10 @@ function! s:DuplicateBlock(direction)
 endfunction
 
 " A "block" defined by indentation in an indent-based language, without a
-" closing tag
-function! s:OpenBlock(direction)
-  let base_indent  = indent('.')
-  let start_lineno = line('.')
+" closing tag.
+function! s:OpenBlock(start, direction)
+  let start_lineno = a:start
+  let base_indent  = indent(start_lineno)
   let end_lineno   = start_lineno
   let next_lineno  = nextnonblank(start_lineno + 1)
 
@@ -35,31 +50,24 @@ function! s:OpenBlock(direction)
     let next_lineno = nextnonblank(end_lineno + 1)
   endwhile
 
-  let lines = getbufline('%', start_lineno, end_lineno)
-
-  return [start_lineno, end_lineno, lines]
+  return [start_lineno, end_lineno]
 endfunction
 
 " A "block" defined by a closing tag, "end", curly bracket. Detected by
 " another line at the same indent.
-function! s:ClosedBlock(direction)
-  let start_lineno = line('.')
-  let start_line   = getline(start_lineno)
+function! s:ClosedBlock(start, direction)
+  let start_lineno = a:start
+  let base_indent  = indent(start_lineno)
+  let end_lineno   = nextnonblank(start_lineno + 1)
 
-  if start_line =~ '^\s*$'
-    return
-  endif
-
-  let indent     = matchstr(start_line, '^\s*\ze\S')
-  let end_lineno = nextnonblank(start_lineno + 1)
-  let end_line   = getline(end_lineno)
-
-  while end_lineno < line('$') && end_line !~ '^'.indent.'\S'
+  while end_lineno < line('$') && indent(end_lineno) != base_indent
     let end_lineno = nextnonblank(end_lineno + 1)
-    let end_line   = getline(end_lineno)
   endwhile
 
-  let lines = getbufline('%', start_lineno, end_lineno)
+  if indent(start_lineno) != indent(end_lineno)
+    " we have an unfinished block, don't duplicate
+    return []
+  endif
 
-  return [start_lineno, end_lineno, lines]
+  return [start_lineno, end_lineno]
 endfunction
