@@ -145,3 +145,6 @@ let g:surround_{char2nr('f')} = "\1function: \1(\r)"
 let g:exchange_no_mappings = 1
 nmap cx <Plug>(Exchange)
 xmap x  <Plug>(Exchange)
+
+" built-in HTML indenting
+let g:html_indent_inctags = 'li,p'
