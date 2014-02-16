@@ -166,3 +166,6 @@
 [submodule "bundle/i18n"]
 	path = bundle/i18n
 	url = https://github.com/stefanoverna/vim-i18n
+[submodule "bundle/projections"]
+	path = bundle/projections
+	url = https://github.com/malkomalko/projections.vim.git
