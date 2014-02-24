@@ -1,8 +1,8 @@
 let s:indent_based_languages = ['python', 'coffee', 'haml', 'slim']
 
 " Duplicate lines
-nnoremap zj mzyyP`z
-nnoremap zk mzyyP`zk
+nnoremap zj mz"yyy"yP`z
+nnoremap zk mz"yyy"yP`zk
 
 " Duplicate blocks
 nnoremap zJ :call <SID>DuplicateBlock('below')<cr>
