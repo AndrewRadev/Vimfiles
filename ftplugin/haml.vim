@@ -20,3 +20,6 @@ function! s:Herbalize(start, end)
   silent keeppatterns exe range.'s/^'.initial_whitespace.'//e'
   exe range.'!herbalizer'
 endfunction
+
+let b:extract_var_template = '- %s = %s'
+let b:inline_var_pattern   = '\v-\s*(\k+)\s+\=\s+(.*)'
