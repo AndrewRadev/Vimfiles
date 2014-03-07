@@ -93,7 +93,7 @@ let g:go_highlight_trailing_whitespace_error = 0
 let g:go_import_commands = 0
 
 " Ack.vim
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
 
