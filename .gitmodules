@@ -169,3 +169,6 @@
 [submodule "bundle/projections"]
 	path = bundle/projections
 	url = https://github.com/malkomalko/projections.vim.git
+[submodule "bundle/wildfire"]
+	path = bundle/wildfire
+	url = https://github.com/gcmt/wildfire.vim
