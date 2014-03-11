@@ -33,3 +33,7 @@ endfor
 if filereadable(fnamemodify('~/.vimrc.local', ':p'))
   source ~/.vimrc.local
 endif
+
+" Presentation mode
+" let g:NERDTreeWinSize = 20
+" set nowrap
