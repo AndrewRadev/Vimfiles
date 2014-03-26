@@ -355,6 +355,9 @@ endfunction
 
 " Quickly make a macro and use it with "."
 "
+" TODO (2014-03-25) Doesn't work for repeated use (due to repeat#set not being
+" re-applied?)
+"
 " TODO (2013-12-11) Consider a "single-line" macro, moving on a different line
 " records it.
 "
@@ -371,8 +374,19 @@ function! s:SimpleMacro()
     normal! q
     " remove trailing M
     let macro = @m[0:-2]
-    call repeat#set(macro, 1)
+    call repeat#set(":\<c-u>call \<SNR>".s:SID()."_SimpleMacroWrap('".escape(macro, "'")."', v:count)\<cr>", 1)
+    " call repeat#set(repeat#wrap(macro), 1)
     let s:simple_macro_active = 0
 
   endif
 endfunction
+" copied over from repeat#wrap, except uses `normal` instead of `normal`
+function! s:SimpleMacroWrap(command,count)
+  exe 'norm '.(a:count ? a:count : '').a:command . (&foldopen =~# 'undo' ? 'zv' : '')
+  if preserve
+    let g:repeat_tick = b:changedtick
+  endif
+endfunction
+function s:SID()
+  return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
+endfun
