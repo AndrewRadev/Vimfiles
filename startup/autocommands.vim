@@ -36,6 +36,9 @@ augroup custom
 
   autocmd User BufEnterRails command! -buffer Rroutes edit config/routes.rb
 
+  " Automatic backup for pentadactyl-opened files
+  autocmd BufWrite /tmp/pentadactyl* call s:BackupPentadactyl()
+
   " For some reason, this doesn't work in ftplugin/man.vim
   autocmd FileType man set nonu
 
@@ -101,4 +104,17 @@ function! s:SaveFileStats(filename)
       echoerr "Couldn't write stats file"
     endif
   endif
+endfunction
+
+function! s:BackupPentadactyl()
+  if !exists('b:backup_filename')
+    let existing_backups = split(glob('/tmp/pentadactyl.txt.backup.*'), "\n")
+    let suffixes         = map(existing_backups, 'matchstr(v:val, "\\.\\zs\\d$")')
+    let numbers          = map(suffixes, 'str2nr(v:val)')
+    let max_number       = max(numbers)
+
+    let b:backup_filename = '/tmp/pentadactyl.txt.backup.'.(max_number + 1)
+  endif
+
+  exe 'silent write! '.b:backup_filename
 endfunction
