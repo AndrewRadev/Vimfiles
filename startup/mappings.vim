@@ -327,7 +327,8 @@ omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 
 " Change between `method arg1, arg2` and `method(arg1, arg2)`
-nnoremap g( :call <SID>ToggleBrackets()<cr>
+nnoremap g( :Repeatable call <SID>ToggleBrackets()<cr>
+nnoremap g) :Repeatable call <SID>ToggleBrackets()<cr>
 function! s:ToggleBrackets()
   let arguments = sideways#Parse()
   if empty(arguments)

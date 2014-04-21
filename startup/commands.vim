@@ -233,3 +233,10 @@ function! s:DiffPaste(flags)
 
   edit!
 endfunction
+
+" Make the given command repeatable using repeat.vim
+command! -nargs=* Repeatable call s:Repeatable(<q-args>)
+function! s:Repeatable(command)
+  exe a:command
+  call repeat#set(':Repeatable '.a:command."\<cr>")
+endfunction
