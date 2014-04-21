@@ -172,3 +172,6 @@
 [submodule "bundle/textobj-rubyblock"]
 	path = bundle/textobj-rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
+[submodule "bundle/projectile"]
+	path = bundle/projectile
+	url = https://github.com/tpope/vim-projectile
