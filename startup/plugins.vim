@@ -140,4 +140,4 @@ nmap X <Plug>(Exchange)
 xmap X <Plug>(Exchange)
 
 " built-in HTML indenting
-let g:html_indent_inctags = 'li,p'
+let g:html_indent_inctags = 'html,head,body,li,p'
