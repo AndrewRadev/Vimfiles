@@ -65,7 +65,7 @@ endfunction
 let g:rails_mappings = 0
 
 command! Rroutes edit config/routes.rb
-command! Rschema call s:Rschema()
+command! -nargs=* -complete=custom,s:CompleteRailsModels Rschema call s:Rschema(<q-args>)
 command! -nargs=1 -complete=custom,s:CompleteRailsModels Rmodel edit app/models/<args>.rb
 command! -nargs=1 -complete=custom,s:CompleteRailsControllers Rcontroller edit app/controllers/<args>_controller.rb
 command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
@@ -73,9 +73,13 @@ command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfacto
 command! DumpRoutes r! bundle exec rake routes
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
 
-function! s:Rschema()
-  let current_file = expand('%:p')
-  let model_name = s:CurrentModelName()
+function! s:Rschema(model_name)
+  let model_name = a:model_name
+
+  if model_name == ''
+    let current_file = expand('%:p')
+    let model_name = s:CurrentModelName()
+  endif
 
   edit db/schema.rb
 
