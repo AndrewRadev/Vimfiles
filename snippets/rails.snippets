@@ -80,9 +80,9 @@ snippet defcreate
 
 		if @$1.save
 			flash[:notice] = '$2 was successfully created.'
-			redirect_to :action => :index
+			redirect_to action: :index
 		else
-			render :action => :new
+			render action: :new
 		end
 	end
 snippet defedit
@@ -97,7 +97,7 @@ snippet defupdate
 			flash[:notice] = '$2 was successfully updated.'
 			redirect_to @$1
 		else
-			render :action => 'edit'
+			render action: 'edit'
 		end
 	end
 snippet defdestroy
@@ -105,5 +105,5 @@ snippet defdestroy
 		@${1:model} = ${2:Model}.find(params[:id])
 		@$1.destroy
 
-		redirect_to $1s_url
+		redirect_to action: :index
 	end
