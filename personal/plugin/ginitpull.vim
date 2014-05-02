@@ -1,6 +1,4 @@
-" TODO (2014-01-24) Completion
-
-command! -nargs=* Ginitpull call s:Ginitpull(<f-args>)
+command! -complete=custom,s:GinitpullComplete -nargs=* Ginitpull call s:Ginitpull(<f-args>)
 function! s:Ginitpull(...)
   let remote_name = get(a:000, 0, 'origin')
   let branch_name = get(a:000, 1, '')
@@ -16,6 +14,32 @@ function! s:Ginitpull(...)
   endtry
 
   call Open('https://github.com/'.github_path.'/pull/new/'.branch_name)
+endfunction
+
+function! s:GinitpullComplete(argument_lead, command_line, cursor_position)
+  if a:argument_lead != ''
+    " then we're in the middle of an argument, remove it from the command-line
+    let start_of_line = substitute(a:command_line, a:argument_lead.'$', '', '')
+  else
+    " just take the entire command-line
+    let start_of_line = a:command_line
+  end
+
+  let arg_count = len(split(start_of_line, '\s\+'))
+
+  if arg_count <= 1
+    " first argument: remote
+    let completions = lib#TrimLines(system('git remote'))
+  elseif arg_count == 2
+    " second argument: branch
+    let completions = substitute(system('git branch'), '\*\s*', '', 'g')
+    let completions = lib#TrimLines(completions)
+  else
+    " can't handle more than 2 arguments
+    let completions = ''
+  endif
+
+  return completions
 endfunction
 
 function! s:GithubPath(remote_name)

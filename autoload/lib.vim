@@ -70,6 +70,16 @@ function! lib#Trim(s)
   return lib#Rtrim(lib#Ltrim(a:s))
 endfunction
 
+" Trim a list of items
+function! lib#TrimList(ss)
+  return map(a:ss, 'lib#Trim(v:val)')
+endfunction
+
+" Trim each line in the given string
+function! lib#TrimLines(s)
+  return join(lib#TrimList(split(a:s, "\n")), "\n")
+endfunction
+
 " Wraps a string with another string if a:string is not empty, in which case
 " returns the empty string.
 "
