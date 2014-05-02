@@ -68,7 +68,7 @@ command! Rroutes edit config/routes.rb
 command! -nargs=* -complete=custom,s:CompleteRailsModels Rschema call s:Rschema(<q-args>)
 command! -nargs=1 -complete=custom,s:CompleteRailsModels Rmodel edit app/models/<args>.rb
 command! -nargs=1 -complete=custom,s:CompleteRailsControllers Rcontroller edit app/controllers/<args>_controller.rb
-command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
+" command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
 
 command! DumpRoutes r! bundle exec rake routes
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
