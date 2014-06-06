@@ -2,10 +2,9 @@ augroup custom
   autocmd!
 
   " Clean all useless whitespace:
-  let g:clean_whitespace = 1
   autocmd BufWritePre *
-        \ if g:clean_whitespace   |
-        \   exe "CleanWhitespace" |
+        \ if !exists('g:skip_clean_whitespace') && !exists('b:skip_clean_whitespaste') |
+        \   exe "CleanWhitespace"                                      |
         \ endif
 
   " When editing a file, always jump to the last known cursor position.
