@@ -110,6 +110,16 @@ function! NERDTreeExecuteAdd(current_node, new_node_name)
   endif
 
   try
+    let directory = fnamemodify(new_node_name, ':h')
+    if !isdirectory(directory)
+      if confirm("Directory '".directory."'doesn't exist, create? ")
+        call mkdir(directory, 'p')
+        call g:NERDTreeKeyMap.Invoke("R")
+      else
+        throw "NERDTree"
+      endif
+    endif
+
     let new_path    = g:NERDTreePath.Create(new_node_name)
     let parent_node = b:NERDTreeRoot.findNode(new_path.getParent())
 
@@ -151,6 +161,16 @@ function! NERDTreeExecuteCopy(current_node, new_path)
 
     if confirmed
       try
+        let directory = fnamemodify(new_path, ':h')
+        if !isdirectory(directory)
+          if confirm("Directory '".directory."'doesn't exist, create? ")
+            call mkdir(directory, 'p')
+            call g:NERDTreeKeyMap.Invoke("R")
+          else
+            throw "NERDTree"
+          endif
+        endif
+
         call s:echo("Copying...")
         let new_node = current_node.copy(new_path)
         if !empty(new_node)
