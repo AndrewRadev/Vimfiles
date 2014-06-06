@@ -5,6 +5,7 @@ RunCommand CoffeePreviewToggle
 
 set define=^\\s*\\ze\\k\\+:\\s*[-=]>
 
+let b:surround_{char2nr('$')} = "$(\r)"
 let b:outline_pattern = '^\s*\%(class\|\k\+\%(:\|\s*=\).*[-=]>$\)'
 
 nnoremap s; :call <SID>ToggleFunctionDefinition()<cr>
