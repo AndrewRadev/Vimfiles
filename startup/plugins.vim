@@ -144,3 +144,6 @@ let g:html_indent_inctags = 'html,head,body,li,p'
 
 " Writable search
 let g:writable_search_backends = ['ack.vim', 'ack', 'egrep']
+
+" Vim-pasta
+let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim", "haml"]
