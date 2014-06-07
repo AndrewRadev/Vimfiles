@@ -110,15 +110,7 @@ function! NERDTreeExecuteAdd(current_node, new_node_name)
   endif
 
   try
-    let directory = fnamemodify(new_node_name, ':h')
-    if !isdirectory(directory)
-      if confirm("Directory '".directory."'doesn't exist, create? ")
-        call mkdir(directory, 'p')
-        call g:NERDTreeKeyMap.Invoke("R")
-      else
-        throw "NERDTree"
-      endif
-    endif
+    call s:EnsureDirectoryExists(new_node_name)
 
     let new_path    = g:NERDTreePath.Create(new_node_name)
     let parent_node = b:NERDTreeRoot.findNode(new_path.getParent())
@@ -161,15 +153,7 @@ function! NERDTreeExecuteCopy(current_node, new_path)
 
     if confirmed
       try
-        let directory = fnamemodify(new_path, ':h')
-        if !isdirectory(directory)
-          if confirm("Directory '".directory."'doesn't exist, create? ")
-            call mkdir(directory, 'p')
-            call g:NERDTreeKeyMap.Invoke("R")
-          else
-            throw "NERDTree"
-          endif
-        endif
+        call s:EnsureDirectoryExists(new_path)
 
         call s:echo("Copying...")
         let new_node = current_node.copy(new_path)
@@ -243,4 +227,27 @@ endfunction
 "bufnum: the buffer that may be deleted
 function! s:delBuffer(bufnum)
   exec "silent bdelete! " . a:bufnum
+endfunction
+
+
+function! s:EnsureDirectoryExists(path)
+  let path = a:path
+  let directory = fnamemodify(path, ':h')
+
+  if directory.'/' == path
+    " we're trying to create a directory, let NERDTree handle it
+    return
+  endif
+
+  if isdirectory(directory)
+    " already exists, nothing to do
+    return
+  endif
+
+  if confirm("Directory '".directory."'doesn't exist, create? ")
+    call mkdir(directory, 'p')
+    call g:NERDTreeKeyMap.Invoke("R")
+  else
+    throw "NERDTree"
+  endif
 endfunction
