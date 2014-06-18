@@ -52,9 +52,9 @@ if !exists('b:erb_loaded')
 
     RunCommand !ruby % <args>
 
-    command! -buffer R call b:R()
-    if !exists('*b:R')
-      function! b:R()
+    command! -buffer R call s:R()
+    if !exists('*s:R')
+      function! s:R()
         let filename   = expand('%')
         let basename   = expand('%:t:r')
         let directory  = expand('%:h')
@@ -75,9 +75,9 @@ if !exists('b:erb_loaded')
       endfunction
     endif
 
-    command! -buffer Implement call b:Implement()
-    if !exists('*b:Implement')
-      function! b:Implement()
+    command! -buffer Implement call s:Implement()
+    if !exists('*s:Implement')
+      function! s:Implement()
         if search('''[^'']*\%#[^'']*''', 'nbc', line('.')) > 0
           let description = sj#GetMotion("Vi'")
         elseif search('"[^"]*\%#[^"]*"', 'nbc', line('.')) > 0
