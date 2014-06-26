@@ -391,3 +391,6 @@ endfunction
 function s:SID()
   return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
 endfun
+
+" Delete left-hand side of assignment
+nnoremap d= df=x
