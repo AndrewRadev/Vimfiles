@@ -174,4 +174,4 @@
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
 [submodule "bundle/projectionist"]
 	path = bundle/projectionist
-	url = git@github.com:tpope/vim-projectionist.git
+	url = https://github.com/tpope/vim-projectionist.git
