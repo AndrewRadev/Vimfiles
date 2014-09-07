@@ -175,3 +175,6 @@
 [submodule "bundle/projectionist"]
 	path = bundle/projectionist
 	url = https://github.com/tpope/vim-projectionist.git
+[submodule "bundle/rust"]
+	path = bundle/rust
+	url = https://github.com/wting/rust.vim
