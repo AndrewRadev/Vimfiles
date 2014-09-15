@@ -1,0 +1,21 @@
+snippet fn
+	fn ${1:function_name}(${2}) {
+		${3}
+	}
+snippet test
+	#[test]
+	fn test_${1:something}() {
+		${2}
+	}
+snippet proc
+	proc() {
+	  ${1}
+	}
+snippet proc)
+	proc() {
+	  ${1}
+	});
+snippet main
+	fn main() {
+		${1}
+	}

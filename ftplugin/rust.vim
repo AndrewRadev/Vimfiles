@@ -1,0 +1,2 @@
+RunCommand RustRun
+compiler rustc
