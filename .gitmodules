@@ -178,3 +178,6 @@
 [submodule "bundle/rust"]
 	path = bundle/rust
 	url = https://github.com/wting/rust.vim
+[submodule "bundle/textobj-comment"]
+	path = bundle/textobj-comment
+	url = https://github.com/glts/vim-textobj-comment
