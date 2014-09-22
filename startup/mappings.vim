@@ -252,7 +252,31 @@ xnoremap gu :Open<cr>
 " Like "*", but for multiple files
 nnoremap s* :call <SID>SearchWord(expand('<cword>'))<cr>
 function! s:SearchWord(word)
+  let position = getpos('.')
+  let active_window = winnr()
+
   exe "Ack '\\b".a:word."\\b'"
+
+  exe active_window.'wincmd w'
+  cclose
+
+  let qflist = getqflist()
+
+  if len(qflist) == 0
+    " nevermind, nothing was found (probably impossible)
+    return
+  endif
+
+  let active_item = qflist[0]
+  let active_index = 0
+
+  if len(qflist) > 1 && position == getpos('.')
+    " this is the place we started from, jump to the next one
+    let active_index = 1
+    silent cnext
+  endif
+
+  echo "Ack: Result ".(active_index + 1)." of ".len(qflist)
 endfunction
 
 nnoremap - :Switch<cr>
