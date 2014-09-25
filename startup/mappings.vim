@@ -105,6 +105,12 @@ xnoremap sk J
 nnoremap s< :SidewaysLeft<CR>
 nnoremap s> :SidewaysRight<CR>
 
+" Sideways argument text object
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+
 " Inline edit
 nnoremap ,e    :InlineEdit<cr>
 xnoremap ,e    :InlineEdit<cr>
@@ -343,12 +349,6 @@ function! s:DeleteAndDedent()
   exe start_lineno.'delete'
   echo
 endfunction
-
-" Sideways argument text object
-omap aa <Plug>SidewaysArgumentTextobjA
-xmap aa <Plug>SidewaysArgumentTextobjA
-omap ia <Plug>SidewaysArgumentTextobjI
-xmap ia <Plug>SidewaysArgumentTextobjI
 
 " Change between `method arg1, arg2` and `method(arg1, arg2)`
 nnoremap g( :Repeatable call <SID>ToggleBrackets()<cr>
