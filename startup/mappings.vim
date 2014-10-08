@@ -418,3 +418,7 @@ endfun
 
 " Delete left-hand side of assignment
 nnoremap d= df=x
+
+" Text object for the visible screen
+onoremap a+ :<c-u>normal! HVL<cr>
+xnoremap a+ :<c-u>normal! HVL<cr>
