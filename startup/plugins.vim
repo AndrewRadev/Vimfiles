@@ -137,3 +137,7 @@ let g:writable_search_backends = ['ack.vim', 'ack', 'egrep']
 
 " Vim-pasta
 let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim", "haml", "txt"]
+
+" Multichange
+let g:multichange_mapping        = 'sm'
+let g:multichange_motion_mapping = 'm'
