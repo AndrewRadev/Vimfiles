@@ -70,6 +70,33 @@ command! -nargs=1 -complete=custom,s:CompleteRailsModels Rmodel edit app/models/
 command! -nargs=1 -complete=custom,s:CompleteRailsControllers Rcontroller edit app/controllers/<args>_controller.rb
 " command! -nargs=* -complete=custom,s:CompleteRailsFactory Rfactory call s:Rfactory(<f-args>)
 
+command! -nargs=1 -complete=custom,s:RconfigComplete Rconfig call s:Rconfig(<f-args>)
+function! s:Rconfig(pattern)
+  let files = split(glob('config/'.a:pattern.'*'), "\n")
+
+  if len(files) == 0
+    echoerr "Pattern not found: config/".a:pattern."*"
+    return
+  elseif len(files) == 1
+    exe 'edit '.files[0]
+  else
+    let prompt = ['Which file?'] + map(copy(files), 'string(v:key + 1) . ") " . v:val')
+    let choice = inputlist(prompt)
+    if choice <= 0
+      return
+    endif
+    let selected_file = files[choice - 1]
+    exe 'edit '.selected_file
+  endif
+endfunction
+function! s:RconfigComplete(argument_lead, command_line, cursor_position)
+  let files = split(glob('config/*'), "\n")
+  let files = map(files, "substitute(v:val, '^config/', '', '')")
+  let files = map(files, "fnamemodify(v:val, ':r')")
+  let files = uniq(files)
+  return join(files, "\n")
+endfunction
+
 command! DumpRoutes r! bundle exec rake routes
 command! ReadCucumberSteps r!cucumber | sed -n -e '/these snippets/,$ p' | sed -n -e '2,$ p'
 
