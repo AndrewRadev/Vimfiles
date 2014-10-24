@@ -78,6 +78,74 @@ if !exists('b:erb_loaded')
     command! -buffer Implement call s:Implement()
     if !exists('*s:Implement')
       function! s:Implement()
+        let syntax_group = synIDattr(synID(line("."), col("."), 1), "name")
+        let cword = expand('<cword>')
+
+        if expand('%:.') == 'config/routes.rb'
+          call s:ImplementRoute()
+        elseif syntax_group == 'rubyConstant'
+          call s:ImplementClass(cword)
+        elseif cword =~ '[a-z][a-z_]*'
+          " underscored, probably a method
+          call s:ImplementMethod(cword)
+        else
+          if cword != ''
+            echomsg "Don't know how to implement: ".cword
+          else
+            echomsg "Nothing under the cursor"
+          endif
+          return
+        endif
+      endfunction
+
+      " TODO (2014-10-23) Use projections if available -- for the template
+      function! s:ImplementClass(class_name)
+        let class_name = a:class_name
+        let location = input("Implement Class where: ", "", "dir")
+        let underscored_name = lib#Underscore(class_name)
+
+        if isdirectory(location)
+          let file_path = simplify(location.'/'.underscored_name.'.rb')
+        else
+          echoerr "Not a directory: ".location
+          return
+        endif
+
+        if filereadable(file_path)
+          exe 'edit '.file_path
+          echomsg "File already exists"
+          return
+        else
+          exe 'edit '.file_path
+          call append(0, [
+                \ 'class '.class_name,
+                \ 'end',
+                \ ])
+          $delete _
+          normal! gg
+        endif
+      endfunction
+
+      " TODO (2014-10-23) Implement method
+      " function! s:ImplementMethod(method_name)
+      "   let method_name = a:method_name
+      "   let location = input("Implement Method where: ", "", "file")
+
+      "   if filereadable(file_path)
+      "     echoerr "File already exists: ".file_path
+      "     return
+      "   else
+      "     exe 'edit '.file_path
+      "     call append(0, [
+      "           \ 'class '.class_name,
+      "           \ 'end',
+      "           \ ])
+      "     $delete _
+      "     normal! gg
+      "   endif
+      " endfunction
+
+      function s:ImplementRoute()
         if search('''[^'']*\%#[^'']*''', 'nbc', line('.')) > 0
           let description = sj#GetMotion("Vi'")
         elseif search('"[^"]*\%#[^"]*"', 'nbc', line('.')) > 0
@@ -105,6 +173,7 @@ if !exists('b:erb_loaded')
                 \ 'end',
                 \ ])
           $delete _
+          exe 2
         else
           let class_line = search('^\s*class\>')
 
