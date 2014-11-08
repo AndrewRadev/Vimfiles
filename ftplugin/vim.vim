@@ -50,7 +50,7 @@ function! s:FunctionTextObject(mode)
 endfunction
 
 if !exists(':Implement')
-  command! Implement call s:Implement()
+  command! -buffer Implement call s:Implement()
   function! s:Implement()
     if !isdirectory('autoload')
       echomsg 'No "autoload" directory found here.'
