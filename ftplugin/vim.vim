@@ -108,3 +108,14 @@ if !exists(':Implement')
     normal! G
   endfunction
 endif
+
+command! -buffer Localvars call s:Localvars()
+function! s:Localvars()
+  let args = reverse(split(sj#GetMotion('vi('), ',\s*'))
+
+  for arg in args
+    call append(line('.'), 'let '.arg.' = a:'.arg)
+  endfor
+
+  exe 'normal! '.string(len(args) + 1).'=='
+endfunction
