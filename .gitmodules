@@ -181,3 +181,6 @@
 [submodule "bundle/textobj-comment"]
 	path = bundle/textobj-comment
 	url = https://github.com/glts/vim-textobj-comment
+[submodule "bundle/rengbang"]
+	path = bundle/rengbang
+	url = https://github.com/deris/vim-rengbang
