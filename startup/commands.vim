@@ -136,16 +136,16 @@ function! s:Ctabs()
   endfor
 endfunction
 
-command! -nargs=* -complete=command Bufferize call s:Bufferize(<f-args>)
-function! s:Bufferize(...)
-  let cmd = join(a:000, ' ')
+command! -nargs=* -complete=command Bufferize call s:Bufferize(<q-args>)
+function! s:Bufferize(cmd)
+  let cmd = a:cmd
   redir => output
   silent exe cmd
   redir END
 
   new
   setlocal nonumber
-  call append(0, split(output, "\n"))
+  call setline(1, split(output, "\n"))
   set nomodified
 endfunction
 
