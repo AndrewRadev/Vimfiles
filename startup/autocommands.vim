@@ -14,7 +14,7 @@ augroup custom
         \ endif
 
   " Check if editing a directory
-  autocmd BufEnter,VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
+  autocmd VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
 
   " Check if it's necessary to create a directory
   autocmd BufNewFile * call s:EnsureDirectoryExists()
@@ -22,16 +22,16 @@ augroup custom
   " Write stats on note files
   autocmd BufWritePost * call s:SaveFileStats(expand('%:t'))
 
-  autocmd BufEnter *.c    compiler gcc
-  autocmd BufEnter *.cpp  compiler gcc
-  autocmd BufEnter *.php  compiler php
-  autocmd BufEnter *.html compiler tidy
-  autocmd BufEnter *.xml  compiler eclim_xmllint
-  autocmd BufEnter *.js   compiler jsl
+  autocmd BufRead *.c    compiler gcc
+  autocmd BufRead *.cpp  compiler gcc
+  autocmd BufRead *.php  compiler php
+  autocmd BufRead *.html compiler tidy
+  autocmd BufRead *.xml  compiler eclim_xmllint
+  autocmd BufRead *.js   compiler jsl
 
-  autocmd BufEnter *.hsc        set filetype=haskell
-  autocmd BufEnter *.tags       set filetype=tags
-  autocmd BufEnter httpd*.conf  set filetype=apache
+  autocmd BufRead *.hsc        set filetype=haskell
+  autocmd BufRead *.tags       set filetype=tags
+  autocmd BufRead httpd*.conf  set filetype=apache
 
   autocmd User BufEnterRails command! -buffer Rroutes edit config/routes.rb
 
