@@ -125,7 +125,7 @@ function! NERDTreeExecuteAdd(current_node, new_node_name)
     let parent_node = b:NERDTreeRoot.findNode(new_path.getParent())
 
     let new_tree_node = g:NERDTreeFileNode.New(new_path)
-    if parent_node.isOpen || !empty(parent_node.children)
+    if parent_node != {} && (parent_node.isOpen || !empty(parent_node.children))
       call parent_node.addChild(new_tree_node, 1)
       call NERDTreeRender()
       call new_tree_node.putCursorHere(1, 0)
