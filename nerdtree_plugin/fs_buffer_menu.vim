@@ -80,6 +80,15 @@ function! NERDTreeExecuteMove(current_node, new_path)
     call NERDTreeRender()
 
     if bufnum != -1
+      let buffer_windownum  = bufwinnr(bufnum)
+      let current_windownum = winnr()
+
+      if buffer_windownum > 0
+        exe buffer_windownum.'wincmd w'
+        exe 'edit '.fnamemodify(new_path, ':.')
+        exe current_windownum.'wincmd w'
+      endif
+
       call s:delBuffer(bufnum)
     endif
 
@@ -228,7 +237,6 @@ endfunction
 function! s:delBuffer(bufnum)
   exec "silent bdelete! " . a:bufnum
 endfunction
-
 
 function! s:EnsureDirectoryExists(path)
   let path = a:path
