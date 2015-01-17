@@ -285,8 +285,6 @@ function! s:SearchWord(word)
   echo "Ack: Result ".(active_index + 1)." of ".len(qflist)
 endfunction
 
-nnoremap - :Switch<cr>
-
 " Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
 nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
 
