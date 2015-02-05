@@ -142,6 +142,7 @@ let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim"
 " Multichange
 let g:multichange_mapping        = 'sm'
 let g:multichange_motion_mapping = 'm'
+let g:multichange_save_position  = 1
 
 " Switch
 let g:switch_mapping = '-'
