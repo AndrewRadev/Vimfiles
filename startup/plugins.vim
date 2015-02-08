@@ -18,6 +18,8 @@ let g:NERDTreeMapJumpFirstChild = '-'
 let g:NERDTreeMapJumpLastChild  = '-'
 " Don't care about cd-ing to the cwd
 let g:NERDTreeMapCWD = '-'
+" The 's' key is a prefix for a lot of things
+let g:NERDTreeMapOpenVSplit = 'so'
 
 " Snippet settings:
 let g:snippets_dir = expand('~/.vim/snippets/')
@@ -146,3 +148,9 @@ let g:multichange_save_position  = 1
 
 " Switch
 let g:switch_mapping = '-'
+
+" QFEnter
+let g:qfenter_open_map  = ['<cr>']
+let g:qfenter_vopen_map = ['so']
+let g:qfenter_hopen_map = ['i']
+let g:qfenter_topen_map = ['t']
