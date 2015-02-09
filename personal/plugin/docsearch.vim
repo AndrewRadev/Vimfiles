@@ -1,5 +1,6 @@
 let s:search_urls = {
       \ 'ruby':         'http://apidock.com/ruby/search/quick?query=%s',
+      \ 'gem':          'https://rubygems.org/gems/%s',
       \ 'rails':        'http://apidock.com/rails/search/quick?query=%s',
       \ 'rspec':        'http://apidock.com/rspec/search/quick?query=%s',
       \ 'jquery':       'http://api.jquery.com/?s=%s',
