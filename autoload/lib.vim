@@ -131,7 +131,7 @@ endfunction
 
 " The vim includeexpr
 function! lib#VimIncludeExpression(fname)
-  if getline('.') =~ '^runtime'
+  if getline('.') =~ '^\s*runtime'
     for dir in split(&rtp, ',')
       let fname = dir.'/'.a:fname
 
