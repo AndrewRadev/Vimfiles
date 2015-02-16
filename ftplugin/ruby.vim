@@ -75,6 +75,26 @@ if !exists('b:erb_loaded')
       endfunction
     endif
 
+    command! -buffer Init call s:Init()
+    if !exists('*s:Init')
+      function! s:Init()
+        let args = split(lib#GetMotion('vi('), ',\s*')
+
+        let assignments = []
+        for arg in args
+          let var = matchstr(arg, '^\k\+')
+          call add(assignments, '@'.var.' = '.var)
+        endfor
+
+        let lineno = line('.')
+        call append(lineno, assignments)
+        let [start, end] = [lineno + 1, lineno + len(assignments)]
+
+        exe start.','.end.'normal! =='
+        call feedkeys('Vimsa=')
+      endfunction
+    endif
+
   endif
 endif
 
