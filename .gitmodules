@@ -190,3 +190,6 @@
 [submodule "bundle/qfenter"]
 	path = bundle/qfenter
 	url = https://github.com/yssl/QFEnter
+[submodule "bundle/gutentags"]
+	path = bundle/gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags
