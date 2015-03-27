@@ -1,6 +1,6 @@
 This project is my vim setup. It's intended to work on a Linux box with a vim
-compiled with `+ruby` and `+python`, though it should load just fine even
-otherwise, only with less features.
+compiled with `+python`, though it should load just fine even otherwise, only
+with less features.
 
 To try it out, backup your `.vimrc` and your `.vim` directory and checkout this
 repository as `~/.vim`. Afterwards, create a symbolic link from `~/.vim/.vimrc`
@@ -17,10 +17,8 @@ read "[startup/mappings.vim][]" beforehand to avoid nasty surprises.
 
 Alternatively, you can read and selectively pick stuff for your own
 configuration, which I highly recommend. A short guide to where you can find
-most of my customizations follows below. If you'd like to know more details on
-my work with vim, you can take a look at posts categorized with "vim"
-[in my blog](http://andrewradev.com/categories/vim/).
-If you're interested in vim plugins I've published, you can find a list on my
+most of my customizations follows below. If you're interested in vim plugins
+I've published, you can find a list on my
 [vim.org profile page](http://www.vim.org/account/profile.php?user_id=31799).
 
 ## Startup
