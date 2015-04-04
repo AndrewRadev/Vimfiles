@@ -9,4 +9,10 @@ command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'l
 command! -buffer Focus RunCommand exec '!rspec % -c -d -fd --line='.line('.')
 command! -buffer Unfocus RunCommand !rspec % -c -d -fd <args>
 
+" Transform should-syntax to expect-syntax
+command! -buffer Expect call s:Expect()
+function! s:Expect()
+  s/^\s*\zs\(.\{-}\)\.should/expect(\1).to/e
+endfunction
+
 let b:outline_pattern = '\v^\s*(it|specify|describe|context).*do$'
