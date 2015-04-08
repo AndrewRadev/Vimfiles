@@ -154,3 +154,6 @@ let g:qfenter_open_map  = ['<cr>']
 let g:qfenter_vopen_map = ['so']
 let g:qfenter_hopen_map = ['i']
 let g:qfenter_topen_map = ['t']
+
+" RengBang
+let g:rengbang_default_start = 1
