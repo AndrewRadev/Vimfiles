@@ -33,8 +33,6 @@ augroup custom
   autocmd BufRead *.tags       set filetype=tags
   autocmd BufRead httpd*.conf  set filetype=apache
 
-  autocmd User BufEnterRails command! -buffer Rroutes edit config/routes.rb
-
   " Automatic backup for pentadactyl-opened files
   autocmd BufWrite /tmp/pentadactyl* call s:BackupPentadactyl()
 
