@@ -104,7 +104,6 @@ function! s:Eschema(model_name)
   let model_name = a:model_name
 
   if model_name == ''
-    let current_file = expand('%:p')
     let model_name = s:CurrentModelName()
   endif
 
