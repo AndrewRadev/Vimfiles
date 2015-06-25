@@ -36,7 +36,10 @@ xnoremap <buffer> a\| :<c-u>normal! F\|vf\|<cr>
 nnoremap <buffer> gm :Doc ruby<cr>
 
 " Evaluate and annotate the buffer through rcodetools
-command! Annotate %!xmpfilter
+command! Annotate call lib#InPlace('%!xmpfilter --no-warnings')
+
+" Auto-evaluate on save
+command! AutoAnnotate autocmd BufWritePre <buffer> Annotate
 
 if !exists('b:erb_loaded')
   let b:dh_closing_pattern = '^\s*end\>'
