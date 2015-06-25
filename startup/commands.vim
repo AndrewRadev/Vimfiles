@@ -240,3 +240,14 @@ function! s:Repeatable(command)
   exe a:command
   call repeat#set(':Repeatable '.a:command."\<cr>")
 endfunction
+
+" Open the given range in libreoffice for pasting highlighted code in
+" presentations
+command! -range=% Tortf call s:Tortf(<line1>, <line2>)
+function! s:Tortf(start, end)
+  let filename = tempname()
+  exe a:start.','.a:end.'TOhtml'
+  exe 'write '.filename
+  call system('libreoffice '.filename)
+  quit!
+endfunction
