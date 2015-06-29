@@ -196,3 +196,6 @@
 [submodule "bundle/elixir"]
 	path = bundle/elixir
 	url = https://github.com/elixir-lang/vim-elixir
+[submodule "bundle/emblem"]
+	path = bundle/emblem
+	url = https://github.com/heartsentwined/vim-emblem
