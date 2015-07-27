@@ -15,4 +15,4 @@ function! s:Expect()
   s/^\s*\zs\(.\{-}\)\.should/expect(\1).to/e
 endfunction
 
-let b:outline_pattern = '\v^\s*(it|specify|describe|context).*do$'
+let b:outline_pattern = '\v^\s*(it|specify|describe|context|feature|background|scenario).*do$'
