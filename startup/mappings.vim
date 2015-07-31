@@ -154,7 +154,7 @@ function! s:DeleteSurroundingFunctionCall(pattern)
 endfunction
 
 " Quit tab, even if it's just one
-nnoremap QQ :call <SID>QQ()<cr>
+nnoremap <silent> QQ :call <SID>QQ()<cr>
 function! s:QQ()
   for bufnr in tabpagebuflist()
     if bufexists(bufnr)
@@ -237,7 +237,7 @@ nnoremap <Leader>f :NERDTreeFind<cr>
 " Toggle quickfix
 " Note: can't use :cwindow, only closes if there's nothing there.
 " Note: probably doesn't handle location list well
-nnoremap go :call <SID>ToggleQuickfix()<cr>
+nnoremap <silent> go :call <SID>ToggleQuickfix()<cr>
 function! s:ToggleQuickfix()
   for n in range(1, winnr('$'))
     if getwinvar(n, '&buftype') == 'quickfix'
