@@ -157,3 +157,8 @@ let g:qfenter_topen_map = ['t']
 
 " RengBang
 let g:rengbang_default_start = 1
+
+" CSV
+let g:csv_nomap_j     = 1
+let g:csv_nomap_k     = 1
+let g:csv_nomap_space = 1

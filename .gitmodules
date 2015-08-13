@@ -199,3 +199,6 @@
 [submodule "bundle/emblem"]
 	path = bundle/emblem
 	url = https://github.com/heartsentwined/vim-emblem
+[submodule "bundle/csv"]
+	path = bundle/csv
+	url = https://github.com/chrisbra/csv.vim
