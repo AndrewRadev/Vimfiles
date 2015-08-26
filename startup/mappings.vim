@@ -402,3 +402,21 @@ nnoremap d= df=x
 " Text object for the visible screen
 onoremap a+ :<c-u>normal! HVL<cr>
 xnoremap a+ :<c-u>normal! HVL<cr>
+
+" Focus marked text by highlighting everything else as a comment
+xnoremap <silent> <cr> :<c-u>call <SID>Focus()<cr>
+nnoremap <silent> <cr> :call <SID>Unfocus()<cr>
+
+function! s:Focus()
+  let start = line("'<")
+  let end   = line("'>")
+
+  call matchadd('Comment', '\%^\_.*\%<'.start.'l')
+  call matchadd('Comment', '\%>'.end.'l\_.*\%$')
+  redraw
+  syntax sync fromstart
+endfunction
+
+function! s:Unfocus()
+  call clearmatches()
+endfunction
