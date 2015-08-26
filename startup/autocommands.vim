@@ -32,6 +32,7 @@ augroup custom
   autocmd BufRead *.hsc        set filetype=haskell
   autocmd BufRead *.tags       set filetype=tags
   autocmd BufRead httpd*.conf  set filetype=apache
+  autocmd BufRead *.hdbs       set filetype=handlebars
 
   " Automatic backup for pentadactyl-opened files
   autocmd BufWrite /tmp/pentadactyl* call s:BackupPentadactyl()
