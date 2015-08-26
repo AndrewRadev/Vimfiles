@@ -4,3 +4,27 @@ snippet ex
 	});
 snippet im
 	import ${1:Ember} from '${2:ember}';
+snippet prop
+	function() {
+		${1}
+	}.property(${2}),
+snippet route
+	import Ember from 'ember';
+
+	export default Ember.Route.extend({
+		model: function() {
+
+		},
+	});
+snippet controller
+	import Ember from 'ember';
+
+	export default Ember.Controller.extend({
+
+	});
+snippet model
+	import DS from 'ember-data';
+
+	export default DS.Model.extend({
+
+	});
