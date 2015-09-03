@@ -138,19 +138,30 @@ runtime autoload/repeat.vim
 nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 
 " Delete surrounding function call
-" Depends on surround.vim
-nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall('\k\+([^()]\{-}\%#[^()]\{-})')<cr>
-nnoremap <silent> dsF :call <SID>DeleteSurroundingFunctionCall('\%(\k\+\.\)*\k\+([^()]\{-}\%#[^()]\{-})')<cr>
-function! s:DeleteSurroundingFunctionCall(pattern)
-  let function_call_pattern = a:pattern
-
-  if search(function_call_pattern, 'Wb', line('.')) < 0
+" Relies on surround.vim
+nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
+function! s:DeleteSurroundingFunctionCall()
+  if search('\k\+\zs[([]', 'b', line('.')) <= 0
     return
   endif
 
-  normal! dt(
-  normal ds(
-  silent! call repeat#set('dsf')
+  " what's the opening bracket?
+  let opener = getline('.')[col('.') - 1]
+
+  " go back one word to get to the beginning of the function call
+  normal! b
+
+  " now we're on the function's name, see if we should move back some more
+  let prefix = strpart(getline('.'), 0, col('.') - 1)
+  while prefix =~ '\(\.\|::\)$'
+    if search('\k\+', 'b', line('.')) <= 0
+      break
+    endif
+    let prefix = strpart(getline('.'), 0, col('.') - 1)
+  endwhile
+
+  exe 'normal! dt'.opener
+  exe 'normal ds'.opener
 endfunction
 
 " Quit tab, even if it's just one
