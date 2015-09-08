@@ -162,6 +162,7 @@ function! s:DeleteSurroundingFunctionCall()
 
   exe 'normal! dt'.opener
   exe 'normal ds'.opener
+  silent! call repeat#set('dsf')
 endfunction
 
 " Quit tab, even if it's just one
