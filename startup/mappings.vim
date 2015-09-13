@@ -153,7 +153,7 @@ function! s:DeleteSurroundingFunctionCall()
 
   " now we're on the function's name, see if we should move back some more
   let prefix = strpart(getline('.'), 0, col('.') - 1)
-  while prefix =~ '\(\.\|::\)$'
+  while prefix =~ '\k\(\.\|::\|:\)$'
     if search('\k\+', 'b', line('.')) <= 0
       break
     endif
