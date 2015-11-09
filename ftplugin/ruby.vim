@@ -49,7 +49,10 @@ if !exists('b:erb_loaded')
   setlocal nofoldenable
 
   if &ft == 'ruby'
-    command! -buffer A exe "edit ".substitute(expand('%'), 'lib/\(.*\).rb', 'spec/\1_spec.rb', '')
+    if !exists('b:alternate_file_matcher')
+      let b:alternate_file_matcher = {'pattern': 'lib/\(.*\).rb', 'replacement': 'spec/\1_spec.rb'}
+    endif
+    command! -buffer A exe "edit ".substitute(expand('%'), b:alternate_file_matcher.pattern, b:alternate_file_matcher.replacement, '')
 
     let b:outline_pattern = '\v^\s*(def|class|module|public|protected|private|(attr_\k{-}))(\s|$)'
 
