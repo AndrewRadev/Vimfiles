@@ -41,6 +41,10 @@ augroup custom
   " For some reason, this doesn't work in ftplugin/man.vim
   autocmd FileType man set nonu
 
+  " Afterimage for jpegs
+  autocmd BufReadPre,FileReadPre   *.jpg,*.jpeg setlocal bin
+  autocmd BufReadPost,FileReadPost *.jpg,*.jpeg if AfterimageReadPost("convert %s xpm:%s")|set ft=xpm|endif|setlocal nobin
+
   " Maximise on open on Win32:
   if has('win32')
     autocmd GUIEnter * simalt ~x
