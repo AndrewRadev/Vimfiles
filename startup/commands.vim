@@ -17,7 +17,6 @@ endfunction
 
 MapToggle sl list
 MapToggle sh hlsearch
-MapToggle sw wrap
 MapToggle ss spell
 MapToggle sc cursorcolumn
 
