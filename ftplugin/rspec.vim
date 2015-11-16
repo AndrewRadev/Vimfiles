@@ -4,7 +4,9 @@ let b:surround_{char2nr('c')} = "context do \r end"
 
 RunCommand !rspec % -c -d -fd <args>
 
-command! -buffer A exe "edit ".substitute(expand('%'), 'spec/\(.*\)_spec.rb', 'lib/\1.rb', '')
+if !exists('b:alternate_file_matcher')
+  let b:alternate_file_matcher = {'pattern': 'spec/\(.*\)_spec.rb', 'replacement': 'lib/\1.rb'}
+endif
 
 command! -buffer Focus RunCommand exec '!rspec % -c -d -fd --line='.line('.')
 command! -buffer Unfocus RunCommand !rspec % -c -d -fd <args>
