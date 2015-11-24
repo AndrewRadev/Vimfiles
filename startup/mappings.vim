@@ -371,17 +371,27 @@ function! s:ToggleBrackets()
 
   let saved_view = winsaveview()
 
-  let line            = getline('.')
-  let start_col       = arguments[0][0]
+  let start_lineno = arguments[0][0]
+  let start_line   = getline(start_lineno)
+  let end_lineno   = arguments[-1][0]
+  let end_line     = getline(end_lineno)
+
+  let start_col       = arguments[0][1]
   let start_col_index = start_col - 1
-  let end_col         = arguments[-1][1]
+  let end_col         = arguments[-1][2]
   let end_col_index   = end_col - 1
 
-  if line[start_col_index - 1] == '(' && line[end_col_index + 1] == ')'
+  if start_line[start_col_index - 1] == '(' && end_line[end_col_index + 1] == ')'
+    exe "normal! ".(start_lineno)."G"
     exe "normal! ".(start_col - 1)."|r\<space>"
+
+    exe "normal! ".(end_lineno)."G"
     exe "normal! ".(end_col + 1)."|x"
-  elseif line[start_col_index - 1] == ' '
+  elseif start_line[start_col_index - 1] == ' '
+    exe "normal! ".(start_lineno)."G"
     exe "normal! ".(start_col - 1)."|r("
+
+    exe "normal! ".(end_lineno)."G"
     exe "normal! ".(end_col)."|a)"
   endif
 
