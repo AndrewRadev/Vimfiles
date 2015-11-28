@@ -180,57 +180,6 @@ function! lib#SwitchWindow(bufname)
   exe window.'wincmd w'
 endfunction
 
-" Setup a one-line input buffer for a NERDTree action.
-function! lib#NERDTreeInputBufferSetup(node, content, cursor_position, callback_function_name)
-  " one-line buffer below everything else
-  botright 1new
-
-  " disable autocompletion
-  if exists(':AcpLock')
-    AcpLock
-    autocmd BufLeave <buffer> AcpUnlock
-  endif
-
-  " if we leave the buffer, cancel the operation
-  autocmd BufLeave <buffer> q!
-
-  " set the content, store the callback and the node in the buffer
-  call setline(1, a:content)
-  setlocal nomodified
-  let b:node     = a:node
-  let b:callback = function(a:callback_function_name)
-
-  " disallow opening new lines
-  nmap <buffer> o <nop>
-  nmap <buffer> O <nop>
-
-  " cancel the action
-  nmap <buffer> <esc> :q!<cr>
-  nmap <buffer> <c-[> :q!<cr>
-  map  <buffer> <c-c> :q!<cr>
-  imap <buffer> <c-c> :q!<cr>
-
-  if a:cursor_position == 'basename'
-    " cursor is on basename (last path segment)
-    normal! $T/
-  elseif a:cursor_position == 'append'
-    " cursor is in insert mode at the end of the line
-    call feedkeys('A')
-  endif
-
-  " mappings to invoke the callback
-  nmap <buffer> <cr>      :call lib#NERDTreeInputBufferExecute(b:callback, b:node, getline('.'))<cr>
-  imap <buffer> <cr> <esc>:call lib#NERDTreeInputBufferExecute(b:callback, b:node, getline('.'))<cr>
-endfunction
-
-function! lib#NERDTreeInputBufferExecute(callback, node, result)
-  " close the input buffer
-  q!
-
-  " invoke the callback
-  call call(a:callback, [a:node, a:result])
-endfunction
-
 " Finds the configuration's default paste register based on the 'clipboard'
 " option.
 function! lib#DefaultRegister()

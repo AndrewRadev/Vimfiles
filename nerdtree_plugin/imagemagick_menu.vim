@@ -1,5 +1,3 @@
-" vim: foldmethod=marker
-
 if exists('g:loaded_nerdree_imagemagick_menu')
   finish
 endif

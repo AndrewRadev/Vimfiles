@@ -162,3 +162,7 @@ let g:rengbang_default_start = 1
 let g:csv_nomap_j     = 1
 let g:csv_nomap_k     = 1
 let g:csv_nomap_space = 1
+
+" Andrew's NERDTree
+let g:andrews_nerdtree_all               = 1
+let g:andrews_nerdtree_external_open_key = 'gu'
