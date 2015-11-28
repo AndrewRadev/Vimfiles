@@ -71,6 +71,7 @@ let g:splitjoin_join_mapping         = ''
 let g:splitjoin_normalize_whitespace = 1
 let g:splitjoin_align                = 1
 let g:splitjoin_ruby_hanging_args    = 0
+let g:splitjoin_trailing_comma       = 1
 
 " Inline edit:
 let g:inline_edit_autowrite  = 1
