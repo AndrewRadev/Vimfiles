@@ -202,3 +202,6 @@
 [submodule "bundle/csv"]
 	path = bundle/csv
 	url = https://github.com/chrisbra/csv.vim
+[submodule "bundle/andrews_nerdtree"]
+	path = bundle/andrews_nerdtree
+	url = https://github.com/AndrewRadev/andrews_nerdtree.vim
