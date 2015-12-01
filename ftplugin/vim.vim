@@ -22,10 +22,10 @@ let b:extract_var_template = 'let %s = %s'
 
 setlocal includeexpr=lib#VimIncludeExpression(v:fname)
 
-onoremap <buffer> af :<c-u>call <SID>FunctionTextObject('a')<cr>
-xnoremap <buffer> af :<c-u>call <SID>FunctionTextObject('a')<cr>
-onoremap <buffer> if :<c-u>call <SID>FunctionTextObject('i')<cr>
-xnoremap <buffer> if :<c-u>call <SID>FunctionTextObject('i')<cr>
+onoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
+xnoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
+onoremap <buffer> im :<c-u>call <SID>FunctionTextObject('i')<cr>
+xnoremap <buffer> im :<c-u>call <SID>FunctionTextObject('i')<cr>
 function! s:FunctionTextObject(mode)
   let function_start = search('^\s*function\>', 'bWnc')
   let function_end   = search('^\s*endfunction\>', 'Wnc')
