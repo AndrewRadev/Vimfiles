@@ -52,14 +52,23 @@ augroup custom
 augroup END
 
 function! s:MaybeEnterDirectory(file)
-  if a:file != '' && isdirectory(a:file)
-    let dir = a:file
+  if a:file == '' || !isdirectory(a:file)
+    return
+  endif
 
-    exe "cd ".dir
-    if filereadable('_project.vim')
-      source _project.vim
-      echo "Loaded project file"
-    endif
+  let dir = a:file
+  exe "cd ".dir
+
+  if filereadable('_project.vim')
+    edit _project.vim
+    setfiletype vim
+    source _project.vim
+    echomsg "Loaded project file"
+    NERDTree
+    wincmd w
+  else
+    NERDTree
+    only
   endif
 endfunction
 
