@@ -141,8 +141,37 @@ nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 " Relies on surround.vim
 nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
 function! s:DeleteSurroundingFunctionCall()
-  if search('\k\+\zs[([]', 'b', line('.')) <= 0
+  let [success, opening_bracket] = s:FindFunctionCallStart('b')
+  if !success
     return
+  endif
+
+  exe 'normal! dt'.opening_bracket
+  exe 'normal ds'.opening_bracket
+  silent! call repeat#set('dsf')
+endfunction
+
+" Operate on a function call
+onoremap af :<c-u>call <SID>FunctionCallTextObject('a')<cr>
+xnoremap af :<c-u>call <SID>FunctionCallTextObject('a')<cr>
+onoremap if :<c-u>call <SID>FunctionCallTextObject('i')<cr>
+xnoremap if :<c-u>call <SID>FunctionCallTextObject('i')<cr>
+function! s:FunctionCallTextObject(mode)
+  let [success, opening_bracket] = s:FindFunctionCallStart('')
+  if !success
+    return
+  endif
+
+  if a:mode == 'i'
+    exe 'normal! f'.opening_bracket.'vi'.opening_bracket
+  else " a:mode == 'a'
+    exe 'normal vf'.opening_bracket.'%'
+  endif
+endfunction
+
+function! s:FindFunctionCallStart(flags)
+  if search('\k\+\zs[([]', a:flags, line('.')) <= 0
+    return [0, '']
   endif
 
   " what's the opening bracket?
@@ -160,9 +189,7 @@ function! s:DeleteSurroundingFunctionCall()
     let prefix = strpart(getline('.'), 0, col('.') - 1)
   endwhile
 
-  exe 'normal! dt'.opener
-  exe 'normal ds'.opener
-  silent! call repeat#set('dsf')
+  return [1, opener]
 endfunction
 
 " Quit tab, even if it's just one
