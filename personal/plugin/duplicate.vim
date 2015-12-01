@@ -1,4 +1,4 @@
-let s:indent_based_languages = ['python', 'coffee', 'haml', 'slim', 'yaml']
+let s:indent_based_languages = ['python', 'coffee', 'haml', 'slim', 'yaml', 'emblem']
 
 " Duplicate lines
 nnoremap zj mz"yyy"yP`z
