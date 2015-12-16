@@ -82,9 +82,6 @@
 [submodule "bundle/webapi"]
 	path = bundle/webapi
 	url = https://github.com/mattn/webapi-vim.git
-[submodule "bundle/handlebars"]
-	path = bundle/handlebars
-	url = https://github.com/nono/vim-handlebars.git
 [submodule "bundle/rtranslate"]
 	path = bundle/rtranslate
 	url = https://github.com/AndrewRadev/rtranslate.vim
