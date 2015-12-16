@@ -139,9 +139,6 @@
 [submodule "bundle/table-mode"]
 	path = bundle/table-mode
 	url = git://github.com/dhruvasagar/vim-table-mode.git
-[submodule "bundle/onchange"]
-	path = bundle/onchange
-	url = https://github.com/AndrewRadev/onchange.vim
 [submodule "bundle/writable_search"]
 	path = bundle/writable_search
 	url = https://github.com/AndrewRadev/writable_search.vim
