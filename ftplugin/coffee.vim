@@ -30,8 +30,9 @@ nmap <buffer> dh <Plug>CoffeeToolsDeleteAndDedent
 
 autocmd Syntax * hi link coffeeSpecialVar Identifier
 
-inoremap <buffer> <bs> <bs><c-r>=<SID>HighlightMatchingIndent()<cr>
-inoremap <buffer> <tab> <tab><c-r>=<SID>HighlightMatchingIndent()<cr>
+" Breaks snippets:
+" inoremap <buffer> <bs> <bs><c-r>=<SID>HighlightMatchingIndent()<cr>
+" inoremap <buffer> <tab> <tab><c-r>=<SID>HighlightMatchingIndent()<cr>
 
 autocmd InsertLeave <buffer> match none
 
