@@ -7,6 +7,8 @@ xnoremap <buffer> d  :DeleteLines<cr>
 nnoremap <buffer> dd :DeleteLines<cr>
 nnoremap <buffer> u  :UndoDelete<cr>
 
+nnoremap o <cr>
+
 if !exists(':DeleteLines')
   let b:deletion_stack = []
 
