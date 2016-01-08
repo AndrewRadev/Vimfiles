@@ -31,6 +31,8 @@ endfunction
 
 " Avoid typing errors
 command! W write
+command! Q quit
+command! E edit
 
 " Rebuild tags database:
 command! RebuildTags call s:RebuildTags()
