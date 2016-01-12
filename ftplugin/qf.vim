@@ -7,7 +7,16 @@ xnoremap <buffer> d  :DeleteLines<cr>
 nnoremap <buffer> dd :DeleteLines<cr>
 nnoremap <buffer> u  :UndoDelete<cr>
 
-nnoremap o <cr>
+" open
+nnoremap <buffer> o <cr>
+" open in a tab
+nnoremap <buffer> t <c-w><cr><c-w>T
+" open in a tab without switching to it
+nnoremap <buffer> T <c-w><cr><c-w>TgT<c-w>j
+" open in a horizontal split
+nnoremap <buffer> i <c-w><cr><c-w>K
+" open in a vertical split
+nnoremap <buffer> s <C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t
 
 if !exists(':DeleteLines')
   let b:deletion_stack = []
