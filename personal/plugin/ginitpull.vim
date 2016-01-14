@@ -57,10 +57,14 @@ function! s:GithubPath(remote_name)
 endfunction
 
 function! s:CurrentGitBranch()
-  if filereadable('.git/HEAD')
-    let head_ref = readfile('.git/HEAD')[0]
-  elseif filereadable('.git')
-    let module_file = readfile('.git')[0]
+  " Search upwards for relevant files
+  let head_file    = findfile('.git/HEAD', ';')
+  let dot_git_file = findfile('.git', ';')
+
+  if filereadable(head_file)
+    let head_ref = readfile(head_file)[0]
+  elseif filereadable(dot_git_file)
+    let module_file = readfile(dot_git_file)[0]
     let module_file = substitute(module_file, 'gitdir: \(.*\)', '\1/HEAD', '')
     let head_ref    = readfile(module_file)[0]
   else
