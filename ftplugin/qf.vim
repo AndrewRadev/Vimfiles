@@ -7,6 +7,9 @@ xnoremap <buffer> d  :DeleteLines<cr>
 nnoremap <buffer> dd :DeleteLines<cr>
 nnoremap <buffer> u  :UndoDelete<cr>
 
+nnoremap <buffer> <c-w>< :colder<cr>
+nnoremap <buffer> <c-w>> :cnewer<cr>
+
 " open
 nnoremap <buffer> o <cr>
 " open in a tab
