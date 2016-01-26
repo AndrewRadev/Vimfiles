@@ -253,3 +253,39 @@ function! s:Tortf(start, end)
   call system('libreoffice '.filename)
   quit!
 endfunction
+
+command! -nargs=+ -complete=custom,s:ModsearchComplete Modsearch call s:Modsearch(<f-args>)
+function! s:Modsearch(...)
+  let last_search = histget('search', -1)
+  let modified_search = last_search
+
+  for mod in a:000
+    if mod == "ignore-syntax-comment"
+      " TODO (2016-01-26)
+      " Idea: maybe just find them manually and pin specific lines?
+    elseif mod == "ignore-syntax-string"
+      " TODO (2016-01-26)
+    elseif mod == "word"
+      let modified_search = '\<'.modified_search.'\>'
+    elseif mod == "unword"
+      let modified_search = substitute(modified_search, '^\\<', '', '')
+      let modified_search = substitute(modified_search, '\\>$', '', '')
+    else
+      echomsg "Unknown modification: ".mod
+      continue
+    endif
+  endfor
+
+  let @/ = modified_search
+endfunction
+
+function! s:ModsearchComplete(_a, _c, _p)
+  let commands = [
+        \ "ignore-syntax-comment",
+        \ "ignore-syntax-string",
+        \ "word",
+        \ "unword",
+        \ ]
+
+  return join(sort(commands), "\n")
+endfunction
