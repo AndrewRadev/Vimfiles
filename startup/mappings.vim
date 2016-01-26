@@ -469,3 +469,6 @@ endfunction
 function! s:Unfocus()
   call clearmatches()
 endfunction
+
+" Clear NERDTree filters
+nnoremap _x :NERDTreeFilterOff<cr>
