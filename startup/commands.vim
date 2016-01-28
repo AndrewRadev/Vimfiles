@@ -261,10 +261,9 @@ function! s:Modsearch(...)
 
   for mod in a:000
     if mod == "ignore-syntax-comment"
-      " TODO (2016-01-26)
-      " Idea: maybe just find them manually and pin specific lines?
+      let modified_search = s:ModsearchIgnoreSyntax(modified_search, 'Comment')
     elseif mod == "ignore-syntax-string"
-      " TODO (2016-01-26)
+      let modified_search = s:ModsearchIgnoreSyntax(modified_search, 'String')
     elseif mod == "word"
       let modified_search = '\<'.modified_search.'\>'
     elseif mod == "unword"
@@ -288,4 +287,25 @@ function! s:ModsearchComplete(_a, _c, _p)
         \ ]
 
   return join(sort(commands), "\n")
+endfunction
+
+function! s:ModsearchIgnoreSyntax(pattern, syntax_group_fragment)
+  call sj#PushCursor()
+
+  let skip_pattern = '\%('.a:syntax_group_fragment.'\)'
+  let ignore_pattern = ''
+
+  " Iterate over all search results in file
+  normal! G$
+  let search_flags = "w"
+  while search(a:pattern, search_flags) > 0
+    let search_flags = "W"
+    if synIDattr(synID(line('.'), col('.'), 1), 'name') =~ skip_pattern
+      let ignore_pattern .= '\%(\%'.line('.').'l\%'.col('.').'c\)\@!'
+    endif
+  endwhile
+
+  call sj#PopCursor()
+
+  return ignore_pattern.a:pattern
 endfunction
