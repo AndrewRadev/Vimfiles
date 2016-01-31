@@ -168,3 +168,6 @@ let g:andrews_nerdtree_quickfix_filter_auto = 1
 
 " Don't use netrw at all, interferes with "clever" autocommands
 let g:loaded_netrwPlugin = 1
+
+" Crystal support
+let g:crystal_define_mappings = 0
