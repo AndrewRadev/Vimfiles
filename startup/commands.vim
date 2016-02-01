@@ -140,15 +140,40 @@ endfunction
 
 command! -nargs=* -complete=command Bufferize call s:Bufferize(<q-args>)
 function! s:Bufferize(cmd)
+  " Execute the command and get its output
   let cmd = a:cmd
   redir => output
   silent exe cmd
   redir END
 
-  new
-  setlocal nonumber
+  " Find an existing Bufferize buffer
+  let bufferize_bufnr = 0
+  for bufnr in tabpagebuflist()
+    if bufname(bufnr) =~ 'Bufferize: '
+      let bufferize_bufnr = bufnr
+      break
+    endif
+  endfor
+
+  let current_buffer = bufnr('%')
+
+  if bufferize_bufnr > 0
+    " There's an existing buffer, clear it out
+    exe bufwinnr(bufferize_bufnr).'wincmd w'
+    normal! gg0dG
+  else
+    " Create a new buffer
+    new
+    setlocal nowrap
+    setlocal nonumber
+    setlocal buftype=nofile
+  endif
+
+  " Set the filename and fill the buffer with the command's output
+  exe 'file Bufferize:\ '.escape(a:cmd, ' ')
   call setline(1, split(output, "\n"))
   set nomodified
+  exe bufwinnr(current_buffer).'wincmd w'
 endfunction
 
 " Open all git-modified files in tabs
