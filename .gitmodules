@@ -199,3 +199,6 @@
 [submodule "bundle/crystal"]
 	path = bundle/crystal
 	url = https://github.com/rhysd/vim-crystal
+[submodule "bundle/modsearch"]
+	path = bundle/modsearch
+	url = https://github.com/AndrewRadev/modsearch.vim
