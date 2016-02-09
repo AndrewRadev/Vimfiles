@@ -8,6 +8,11 @@ set define=^\\s*\\ze\\k\\+:\\s*[-=]>
 let b:surround_{char2nr('$')} = "$(\r)"
 let b:outline_pattern = '^\s*\%(class\|\k\+\%(:\|\s*=\).*[-=]>$\)'
 
+onoremap <buffer> im :<c-u>call coffee_tools#FunctionTextObject('i')<cr>
+onoremap <buffer> am :<c-u>call coffee_tools#FunctionTextObject('a')<cr>
+xnoremap <buffer> im :<c-u>call coffee_tools#FunctionTextObject('i')<cr>
+xnoremap <buffer> am :<c-u>call coffee_tools#FunctionTextObject('a')<cr>
+
 nnoremap s; :call <SID>ToggleFunctionDefinition()<cr>
 function! s:ToggleFunctionDefinition()
   let line = getline('.')

@@ -89,6 +89,7 @@ let g:inline_edit_patterns   = [
 hi link coffeeSpaceError NONE
 autocmd User CoffeeToolsPreviewOpened nnoremap <buffer> ! ZZ
 let g:coffee_tools_default_mappings = 1
+let g:coffee_tools_function_text_object = 0
 
 " Go
 let g:go_highlight_trailing_whitespace_error = 0
