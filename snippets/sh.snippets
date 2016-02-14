@@ -29,7 +29,7 @@ snippet case
 snippet export
 	export ${1:PATH}=$$1:${2}
 snippet usage
-	if [[ $# < ${1} ]]; then
+	if [[ $# -lt ${1} ]]; then
 		echo "USAGE: ${2}"
 		exit 1
 	fi
