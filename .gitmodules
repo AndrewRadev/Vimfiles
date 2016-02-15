@@ -199,3 +199,6 @@
 [submodule "bundle/modsearch"]
 	path = bundle/modsearch
 	url = https://github.com/AndrewRadev/modsearch.vim
+[submodule "bundle/autotag"]
+	path = bundle/autotag
+	url = https://github.com/vim-scripts/AutoTag
