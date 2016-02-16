@@ -27,6 +27,13 @@ function! lib#Underscore(word)
   return substitute(result, '\([A-Z]\)', '_\l\1', 'g')
 endfunction
 
+" Dasherize CamelCased word:
+" FooBarBaz -> foo-bar-baz
+function! lib#Dasherize(word)
+  let result = lib#Lowercase(a:word)
+  return substitute(result, '\([A-Z]\)', '-\l\1', 'g')
+endfunction
+
 " Lowercase first letter of argument:
 " Foo -> foo
 function! lib#Lowercase(word)
