@@ -202,3 +202,6 @@
 [submodule "bundle/autotag"]
 	path = bundle/autotag
 	url = https://github.com/vim-scripts/AutoTag
+[submodule "bundle/ember_tools"]
+	path = bundle/ember_tools
+	url = https://github.com/AndrewRadev/ember_tools.vim
