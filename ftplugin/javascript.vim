@@ -8,4 +8,4 @@ nnoremap <buffer> gm :Doc js<cr>
 
 " Reformat json
 command! -buffer Reformat %!jsonpp
-command! -buffer Unminify %!js-beautify -
+command! -buffer Unminify %!js-beautify -f -
