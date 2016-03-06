@@ -205,3 +205,6 @@
 [submodule "bundle/ember_tools"]
 	path = bundle/ember_tools
 	url = https://github.com/AndrewRadev/ember_tools.vim
+[submodule "bundle/yajs"]
+	path = bundle/yajs
+	url = https://github.com/othree/yajs.vim
