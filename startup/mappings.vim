@@ -478,3 +478,5 @@ function! s:Unfocus()
   call clearmatches()
 endfunction
 
+" Easier :Modsearch
+nnoremap ms :Modsearch<space>
