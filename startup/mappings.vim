@@ -170,26 +170,34 @@ function! s:FunctionCallTextObject(mode)
 endfunction
 
 function! s:FindFunctionCallStart(flags)
-  if search('\k\+\zs[([]', a:flags, line('.')) <= 0
-    return [0, '']
-  endif
+  let original_iskeyword = &iskeyword
 
-  " what's the opening bracket?
-  let opener = getline('.')[col('.') - 1]
+  try
+    set iskeyword+=?,!
 
-  " go back one word to get to the beginning of the function call
-  normal! b
-
-  " now we're on the function's name, see if we should move back some more
-  let prefix = strpart(getline('.'), 0, col('.') - 1)
-  while prefix =~ '\k\(\.\|::\|:\|#\)$'
-    if search('\k\+', 'b', line('.')) <= 0
-      break
+    if search('\k\+\zs[([]', a:flags, line('.')) <= 0
+      return [0, '']
     endif
-    let prefix = strpart(getline('.'), 0, col('.') - 1)
-  endwhile
 
-  return [1, opener]
+    " what's the opening bracket?
+    let opener = getline('.')[col('.') - 1]
+
+    " go back one word to get to the beginning of the function call
+    normal! b
+
+    " now we're on the function's name, see if we should move back some more
+    let prefix = strpart(getline('.'), 0, col('.') - 1)
+    while prefix =~ '\k\(\.\|::\|:\|#\)$'
+      if search('\k\+', 'b', line('.')) <= 0
+        break
+      endif
+      let prefix = strpart(getline('.'), 0, col('.') - 1)
+    endwhile
+
+    return [1, opener]
+  finally
+    let &iskeyword = original_iskeyword
+  endtry
 endfunction
 
 " Quit tab, even if it's just one
