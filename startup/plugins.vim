@@ -1,9 +1,3 @@
-" Prevent built-in tar and zip plugins from loading
-let g:loaded_tarPlugin = 1
-let g:loaded_tar       = 1
-let g:loaded_zipPlugin = 1
-let g:loaded_zip       = 1
-
 " NERDTree:
 let g:NERDTreeHijackNetrw = 0
 let g:NERDTreeIgnore      = [
