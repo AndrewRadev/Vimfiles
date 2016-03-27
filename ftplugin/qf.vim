@@ -5,9 +5,9 @@ hi link quickfixComment Comment
 
 nnoremap <buffer> <cr> <cr>
 
-xnoremap <buffer> d  :DeleteLines<cr>
-nnoremap <buffer> dd :DeleteLines<cr>
-nnoremap <buffer> u  :UndoDelete<cr>
+xnoremap <buffer> d :DeleteLines<cr>
+nnoremap <buffer> d :set opfunc=<SID>DeleteMotion<cr>g@
+nnoremap <buffer> u :UndoDelete<cr>
 
 nnoremap <buffer> <c-w>< :colder<cr>
 nnoremap <buffer> <c-w>> :cnewer<cr>
@@ -26,7 +26,7 @@ nnoremap <buffer> s <C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t
 if !exists(':DeleteLines')
   let b:deletion_stack = []
 
-  command! -nargs=1 -bang Delete call s:Delete(<f-args>, '<bang>')
+  command! -buffer -nargs=1 -bang Delete call s:Delete(<f-args>, '<bang>')
   function! s:Delete(pattern, bang)
     let saved_cursor = getpos('.')
     let deleted      = []
@@ -49,7 +49,11 @@ if !exists(':DeleteLines')
     echo
   endfunction
 
-  command! -range -buffer DeleteLines call s:DeleteLines(<line1>, <line2>)
+  function! s:DeleteMotion(_type)
+    call s:DeleteLines(line("'["), line("']"))
+  endfunction
+
+  command! -buffer -range DeleteLines call s:DeleteLines(<line1>, <line2>)
   function! s:DeleteLines(start, end)
     let saved_cursor = getpos('.')
     let start        = a:start - 1
