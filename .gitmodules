@@ -208,3 +208,6 @@
 [submodule "bundle/yajs"]
 	path = bundle/yajs
 	url = https://github.com/othree/yajs.vim
+[submodule "bundle/vimhelplint"]
+	path = bundle/vimhelplint
+	url = https://github.com/machakann/vim-vimhelplint
