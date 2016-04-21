@@ -68,6 +68,30 @@ if !exists(':DeleteLines')
     echo
   endfunction
 
+  command! -buffer -range Only call s:Only(<line1>, <line2>)
+  function! s:Only(start, end)
+    let saved_cursor = getpos('.')
+    let start        = a:start - 1
+    let end          = a:end - 1
+
+    let qflist  = getqflist()
+    let last_index = len(qflist) - 1
+
+    if end + 1 < last_index
+      let deleted = remove(qflist, end + 1, last_index)
+      call insert(b:deletion_stack, [end + 1, deleted], 0)
+    endif
+
+    if start - 1 > 0
+      let deleted = remove(qflist, 0, start - 1)
+      call insert(b:deletion_stack, [0, deleted], 0)
+    endif
+
+    call setqflist(qflist)
+    call setpos('.', saved_cursor)
+    echo
+  endfunction
+
   command! -buffer UndoDelete call s:UndoDelete()
   function! s:UndoDelete()
     if empty(b:deletion_stack)
