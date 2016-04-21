@@ -7,7 +7,10 @@ nnoremap <buffer> <cr> <cr>
 
 xnoremap <buffer> d :DeleteLines<cr>
 nnoremap <buffer> d :set opfunc=<SID>DeleteMotion<cr>g@
-nnoremap <buffer> u :UndoDelete<cr>
+nnoremap <buffer> dd V:DeleteLines<cr>
+
+nnoremap <buffer> u     :colder<cr>
+nnoremap <buffer> <c-r> :cnewer<cr>
 
 nnoremap <buffer> <c-w>< :colder<cr>
 nnoremap <buffer> <c-w>> :cnewer<cr>
@@ -24,8 +27,6 @@ nnoremap <buffer> i <c-w><cr><c-w>K
 nnoremap <buffer> S <C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t
 
 if !exists(':DeleteLines')
-  let b:deletion_stack = []
-
   command! -buffer -nargs=1 -bang Delete call s:Delete(<f-args>, '<bang>')
   function! s:Delete(pattern, bang)
     let saved_cursor = getpos('.')
@@ -41,10 +42,6 @@ if !exists(':DeleteLines')
     endfor
 
     call setqflist(new_qflist)
-    if !empty(deleted)
-      call insert(b:deletion_stack, [0, deleted], 0)
-    endif
-
     call setpos('.', saved_cursor)
     echo
   endfunction
@@ -60,10 +57,9 @@ if !exists(':DeleteLines')
     let end          = a:end - 1
 
     let qflist  = getqflist()
-    let deleted = remove(qflist, start, end)
-    call insert(b:deletion_stack, [start, deleted], 0)
-
+    call remove(qflist, start, end)
     call setqflist(qflist)
+
     call setpos('.', saved_cursor)
     echo
   endfunction
@@ -74,40 +70,11 @@ if !exists(':DeleteLines')
     let start        = a:start - 1
     let end          = a:end - 1
 
-    let qflist  = getqflist()
+    let qflist = getqflist()
     let last_index = len(qflist) - 1
+    let new_qflist = qflist[start:end]
 
-    if end + 1 < last_index
-      let deleted = remove(qflist, end + 1, last_index)
-      call insert(b:deletion_stack, [end + 1, deleted], 0)
-    endif
-
-    if start - 1 > 0
-      let deleted = remove(qflist, 0, start - 1)
-      call insert(b:deletion_stack, [0, deleted], 0)
-    endif
-
-    call setqflist(qflist)
-    call setpos('.', saved_cursor)
-    echo
-  endfunction
-
-  command! -buffer UndoDelete call s:UndoDelete()
-  function! s:UndoDelete()
-    if empty(b:deletion_stack)
-      return
-    endif
-
-    let saved_cursor = getpos('.')
-    let qflist       = getqflist()
-
-    let [index, deleted] = remove(b:deletion_stack, 0)
-    for line in deleted
-      call insert(qflist, line, index)
-      let index = index + 1
-    endfor
-
-    call setqflist(qflist)
+    call setqflist(new_qflist)
     call setpos('.', saved_cursor)
     echo
   endfunction
