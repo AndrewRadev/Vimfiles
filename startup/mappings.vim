@@ -479,4 +479,4 @@ function! s:Unfocus()
 endfunction
 
 " Easier :Modsearch
-nnoremap ms :Modsearch<space>
+nnoremap _s :Modsearch<space>

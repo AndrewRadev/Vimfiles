@@ -44,12 +44,12 @@ set cpo&vim
 
 " ---------------------------------------------------------------------
 "  Map Interface: {{{2
-if !hasmapto('<Plug>SaveWinPosn')
- map <unique> <Leader>swp <Plug>SaveWinPosn
-endif
-if !hasmapto('<Plug>RestoreWinPosn')
- map <unique> <Leader>rwp <Plug>RestoreWinPosn
-endif
+" if !hasmapto('<Plug>SaveWinPosn')
+"  map <unique> <Leader>swp <Plug>SaveWinPosn
+" endif
+" if !hasmapto('<Plug>RestoreWinPosn')
+"  map <unique> <Leader>rwp <Plug>RestoreWinPosn
+" endif
 nmap <silent> <Plug>SaveWinPosn		:call SaveWinPosn()<CR>
 nmap <silent> <Plug>RestoreWinPosn	:call RestoreWinPosn()<CR>
 
