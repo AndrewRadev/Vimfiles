@@ -69,15 +69,6 @@ let g:splitjoin_trailing_comma       = 1
 " Inline edit:
 let g:inline_edit_autowrite  = 1
 let g:inline_edit_proxy_type = 'tempfile'
-let g:inline_edit_patterns   = [
-      \   {
-      \     'main_filetype':     '*html',
-      \     'sub_filetype':      'handlebars',
-      \     'indent_adjustment': 1,
-      \     'start':             '<script\>[^>]*type="text/template"[^>]*>',
-      \     'end':               '</script>',
-      \   }
-      \ ]
 
 " Coffeescript
 hi link coffeeSpaceError NONE
