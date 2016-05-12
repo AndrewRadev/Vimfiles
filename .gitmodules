@@ -183,7 +183,7 @@
 	url = https://github.com/elixir-lang/vim-elixir
 [submodule "bundle/emblem"]
 	path = bundle/emblem
-	url = https://github.com/heartsentwined/vim-emblem
+	url = https://github.com/andorov/vim-emblem
 [submodule "bundle/csv"]
 	path = bundle/csv
 	url = https://github.com/chrisbra/csv.vim
