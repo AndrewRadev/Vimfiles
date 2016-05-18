@@ -2,6 +2,7 @@
 " TODO (2016-05-12) remove references to lib#
 " TODO (2016-05-12) remove references to rimplement#
 " TODO (2016-05-09) Limit translation gf to translation under the cursor
+" TODO (2016-05-09) Factory root?
 
 let s:http_method_pattern = '\<\%(get\|post\|put\|delete\|patch\)\>'
 
@@ -15,6 +16,7 @@ function! RailsExtraIncludeexpr()
         \ 'RailsExtraGfTranslation',
         \ 'RailsExtraGfAsset',
         \ 'RailsExtraGfRoute',
+        \ 'RailsExtraGfFactory',
         \ ]
 
   for callback in callbacks
@@ -91,7 +93,6 @@ function! RailsExtraGfRoute()
   endif
 
   let nesting = s:FindRouteNesting()
-  echomsg string(nesting)
   if len(nesting) > 0
     let file_prefix = join(nesting, '/').'/'
     let module_prefix = join(map(nesting, 'rimplement#CapitalCamelCase(v:val)'), '::').'::'
@@ -101,7 +102,6 @@ function! RailsExtraGfRoute()
   endif
 
   let [controller, action] = split(description, '#')
-  echomsg string([controller, action, description, nesting])
   let filename = 'app/controllers/'.file_prefix.controller.'_controller.rb'
 
   if !filereadable(filename)
@@ -110,6 +110,13 @@ function! RailsExtraGfRoute()
 
   call ember_tools#SetFileOpenCallback(filename, 'def '.action)
   return filename
+endfunction
+
+function! RailsExtraGfFactory()
+  if rimplement#SearchUnderCursor('\<\%(build\|create\|attributes_for\)[ (]:\zs\k\+') > 0
+    let factory = expand('<cword>')
+    return 'spec/factories/'.rails#pluralize(factory).'.rb'
+  endif
 endfunction
 
 " TODO (2016-05-12) Explicit "controller:" provided
