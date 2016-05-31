@@ -58,9 +58,9 @@
 [submodule "bundle/coffeescript"]
 	path = bundle/coffeescript
 	url = https://github.com/AndrewRadev/vim-coffee-script.git
-[submodule "bundle/edit_archive"]
-	path = bundle/edit_archive
-	url = https://github.com/AndrewRadev/edit_archive.vim.git
+[submodule "bundle/archivitor"]
+	path = bundle/archivitor
+	url = https://github.com/AndrewRadev/archivitor.vim
 [submodule "bundle/git"]
 	path = bundle/git
 	url = https://github.com/tpope/vim-git.git
