@@ -8,7 +8,10 @@ let s:http_method_pattern = '\<\%(get\|post\|put\|delete\|patch\)\>'
 
 augroup RailsExtra
   autocmd!
-  autocmd User Rails cmap <buffer><expr> <Plug><cfile> RailsExtraIncludeexpr()
+  autocmd User Rails
+        \ if !exists('b:ember_root') |
+        \   exe 'cmap <buffer><expr> <Plug><cfile> RailsExtraIncludeexpr()' |
+        \ endif
 augroup END
 
 function! RailsExtraIncludeexpr()
