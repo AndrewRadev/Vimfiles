@@ -20,6 +20,7 @@ function! RailsExtraIncludeexpr()
         \ 'RailsExtraGfAsset',
         \ 'RailsExtraGfRoute',
         \ 'RailsExtraGfFactory',
+        \ 'RailsExtraGfRspecMatcher',
         \ ]
 
   for callback in callbacks
@@ -120,6 +121,17 @@ function! RailsExtraGfFactory()
     let factory = expand('<cword>')
     return 'spec/factories/'.rails#pluralize(factory).'.rb'
   endif
+  return ''
+endfunction
+
+function! RailsExtraGfRspecMatcher()
+  let matcher = expand('<cword>')
+  let matcher_filename = 'spec/support/matchers/'.matcher.'_matcher.rb'
+
+  if filereadable(matcher_filename)
+    return matcher_filename
+  endif
+  return ''
 endfunction
 
 " TODO (2016-05-12) Explicit "controller:" provided
