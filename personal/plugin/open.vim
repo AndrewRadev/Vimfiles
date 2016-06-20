@@ -7,6 +7,11 @@ function! Open(path)
   call s:Open(0, a:path)
 endfunction
 
+" Alias for some plugins
+function! OpenURL(path)
+  call s:Open(0, a:path)
+endfunction
+
 "
 " Private:
 "
