@@ -119,9 +119,6 @@ inoremap <c-e> <esc>:InlineEdit<cr>a
 " Split and execute any command:
 nnoremap __ :split \|<Space>
 
-" Zoom current window in and out:
-nnoremap ,, :ZoomWin<cr>
-
 " Open new tab more easily:
 nnoremap ,t :tabnew<cr>
 nnoremap ,T :tabedit %<cr>gT:quit<cr>

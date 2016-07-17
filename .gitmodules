@@ -211,3 +211,6 @@
 [submodule "bundle/vimhelplint"]
 	path = bundle/vimhelplint
 	url = https://github.com/machakann/vim-vimhelplint
+[submodule "bundle/zoom_win"]
+	path = bundle/zoom_win
+	url = https://github.com/vim-scripts/ZoomWin
