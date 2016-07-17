@@ -5,8 +5,4 @@ bundle/*/doc/tags-*
 doc/tags
 doc/tags-*
 
-# Vimball record is machine-specific
-.VimballRecord
-bundle/*/.VimballRecord
-
 .netrwhist
