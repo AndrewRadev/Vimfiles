@@ -19,9 +19,9 @@ let g:snippets_dir = expand('~/.vim/snippets/')
 let g:snips_author = 'Andrew Radev'
 
 " Proj settings:
-let g:ProjFile        = '~/.vimproj'
-let g:ProjSplitMethod = 'edit '
-let g:ProjFileBrowser = 'NERDTree | wincmd l'
+let g:ProjDisableMappings = 1
+let g:ProjSplitMethod     = 'edit '
+let g:ProjFileBrowser     = 'NERDTree | wincmd l'
 
 " Omnicppcomplete options:
 let OmniCpp_NamespaceSearch     = 1 " -> True
