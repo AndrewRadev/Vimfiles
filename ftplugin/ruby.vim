@@ -103,10 +103,3 @@ if !exists('b:erb_loaded')
 
   endif
 endif
-
-if @% =~ 'step_definitions'
-  let b:fswitchdst  = 'feature'
-  let b:fswitchlocs = 'rel:..'
-
-  let b:outline_pattern = '\v^\s*(Given|When|Then)'
-endif
