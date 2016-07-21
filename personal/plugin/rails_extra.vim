@@ -85,8 +85,11 @@ function! RailsExtraGfAsset()
 endfunction
 
 function! RailsExtraGfRoute()
-  let description = s:FindRouteDescription()
+  if expand('%:p') !~ 'config/routes\.rb$'
+    return
+  endif
 
+  let description = s:FindRouteDescription()
   if description == ''
     return
   endif
@@ -136,28 +139,40 @@ endfunction
 
 " TODO (2016-05-12) Explicit "controller:" provided
 function! s:FindRouteDescription()
-  if rimplement#SearchUnderCursor('''[^'']\+''') > 0
-    return rimplement#GetMotion("vi'")
-  elseif rimplement#SearchUnderCursor('"[^"]\+"') > 0
-    return rimplement#GetMotion('vi"')
-  elseif rimplement#SearchUnderCursor('resources :\zs\k\+') > 0
-    let resource = expand('<cword>')
-    return resource.'#index'
+  let action = 'index'
+
+  if rimplement#SearchUnderCursor('resources :\zs\k\+') > 0
+    let controller = expand('<cword>')
+    let action = 'index'
   elseif rimplement#SearchUnderCursor('resource :\zs\k\+') > 0
-    let resource = expand('<cword>')
-    return resource.'#show'
-  elseif rimplement#SearchUnderCursor(s:http_method_pattern.'\s\+:\zs\k\+') > 0
+    let controller = rails#pluralize(expand('<cword>'))
+    let action = 'show'
+  elseif rimplement#SearchUnderCursor(s:http_method_pattern.'\s\+:\zs\k\+') > 0 ||
+        \ rimplement#SearchUnderCursor(s:http_method_pattern.'\s\+[''"]\zs\k\+\ze[''"]') > 0
     let action = expand('<cword>')
     if search('^\s*resources\= :\zs\k\+\ze\%(.*\) do$', 'b') < 0
       echomsg "Found the action '".action."', but can't find a containing resource."
       return ''
     endif
     let controller = expand('<cword>')
-    return controller.'#'.action
+  elseif rimplement#SearchUnderCursor('''[^'']\+''') > 0
+    let controller = rimplement#GetMotion("vi'")
+  elseif rimplement#SearchUnderCursor('"[^"]\+"') > 0
+    let controller = rimplement#GetMotion('vi"')
   endif
 
-  echomsg "Couldn't find string description"
-  return ''
+  if controller =~ '^\k\+#\k\+$'
+    " then it's a controller#action descriptor, let's split it for consistency
+    let [controller, action] = split(controller, '#')
+  endif
+
+  let explicit_controller_pattern = 'controller\(:\| =>\)\s*[''"]\zs\k\+\ze[''"]'
+  if getline('.') =~ explicit_controller_pattern
+    " explicit controller specified, just use that
+    let controller = matchstr(getline('.'), explicit_controller_pattern)
+  endif
+
+  return controller.'#'.action
 endfunction
 
 function! s:FindRouteNesting()
@@ -166,7 +181,7 @@ function! s:FindRouteNesting()
   let route_path = []
   let namespace_pattern = 'namespace :\zs\k\+'
 
-  while search('^ \{'.(indent - &sw).'}'.namespace_pattern, 'bW')
+  while search('^ \{,'.(indent - &sw).'}'.namespace_pattern, 'bW')
     let route = expand('<cword>')
     call insert(route_path, route, 0)
     let indent = indent('.')
