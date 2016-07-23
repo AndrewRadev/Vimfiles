@@ -38,7 +38,7 @@ function! RailsExtraGfTranslation()
   let saved_iskeyword = &iskeyword
 
   set iskeyword+=.
-  if !ember_tools#search#UnderCursor('\%(I18n\.\)\=t(\=[''"]\zs\k\+[''"]')
+  if !ember_tools#search#UnderCursor('\%(I18n\.\)\=t(\=\s*[''"]\zs\k\+[''"]')
     let &iskeyword = saved_iskeyword
     return ''
   endif
