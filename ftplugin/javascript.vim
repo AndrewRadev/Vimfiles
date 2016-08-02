@@ -3,6 +3,7 @@ let b:outline_pattern = '\<function\>'
 let b:dh_closing_pattern = '^\s*}'
 
 setlocal foldmethod=indent
+compiler eslint
 
 nnoremap <buffer> gm :Doc js<cr>
 

@@ -27,7 +27,6 @@ augroup custom
   autocmd BufRead *.php  compiler php
   autocmd BufRead *.html compiler tidy
   autocmd BufRead *.xml  compiler eclim_xmllint
-  autocmd BufRead *.js   compiler jsl
 
   autocmd BufRead *.hsc        set filetype=haskell
   autocmd BufRead *.tags       set filetype=tags

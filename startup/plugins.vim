@@ -52,7 +52,6 @@ let g:gist_browser_command         = 'firefox %URL% &'
 
 " Javascript
 let g:SimpleJsIndenter_BriefMode = 1
-let g:jsl_config                 = '$HOME/.jsl'
 
 " Command-line completion
 cmap <C-j> <Plug>CmdlineCompletionBackward
