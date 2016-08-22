@@ -32,3 +32,31 @@ function! s:Link(count, ...)
 
   call setreg('z', saved_register, saved_register_mode)
 endfunction
+
+command! -nargs=* -complete=filetype
+      \ VimdocCode call s:VimdocCode(<f-args>)
+function! s:VimdocCode(...)
+  let start_line = search('^>$', 'bnW')
+  if !start_line
+    return
+  endif
+
+  let end_line = search('^<$', 'nW')
+  if !end_line
+    return
+  endif
+
+  if a:0 > 0
+    let opening_markup = '``` '.a:1
+  else
+    let opening_markup = '```'
+  endif
+
+  call setline(start_line, opening_markup)
+  call setline(end_line, '```')
+
+  call append(start_line - 1, [''])
+  call append(end_line + 1, [''])
+
+  exe start_line.','.end_line.'s/^    //'
+endfunction
