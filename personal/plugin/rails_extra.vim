@@ -155,10 +155,12 @@ function! s:FindRouteDescription()
       return ''
     endif
     let controller = expand('<cword>')
+  elseif rimplement#SearchUnderCursor(s:http_method_pattern.'\s\+[''"]\zs\k\+/\k\+\ze[''"]') > 0
+    let [controller, action] = split(expand('<cfile>'), '/')
   elseif rimplement#SearchUnderCursor('''[^'']\+''') > 0
-    let controller = rimplement#GetMotion("vi'")
+    let controller = expand('<cfile>')
   elseif rimplement#SearchUnderCursor('"[^"]\+"') > 0
-    let controller = rimplement#GetMotion('vi"')
+    let controller = expand('<cfile>')
   endif
 
   if controller =~ '^\k\+#\k\+$'
