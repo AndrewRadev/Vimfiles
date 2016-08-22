@@ -8,5 +8,5 @@ compiler eslint
 nnoremap <buffer> gm :Doc js<cr>
 
 " Reformat json
-command! -buffer Reformat %!jsonpp
+command! -buffer Reformat %!jq .
 command! -buffer Unminify %!js-beautify -f -
