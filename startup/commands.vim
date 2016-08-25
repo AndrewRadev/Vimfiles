@@ -234,7 +234,7 @@ endfunction
 " presentations
 command! -range=% Tortf call s:Tortf(<line1>, <line2>)
 function! s:Tortf(start, end)
-  let filename = tempname()
+  let filename = tempname().'.html'
   exe a:start.','.a:end.'TOhtml'
   exe 'write '.filename
   call system('libreoffice '.filename)
