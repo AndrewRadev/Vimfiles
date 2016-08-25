@@ -158,3 +158,11 @@ let g:loaded_netrwPlugin = 1
 
 " Crystal support
 let g:crystal_define_mappings = 0
+
+" Codi customizations
+augroup codi_user
+  autocmd!
+
+  autocmd User CodiEnterPre :let g:skip_clean_whitespace = 1
+  autocmd User CodiLeavePre :let g:skip_clean_whitespace = 0
+augroup END
