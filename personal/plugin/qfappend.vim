@@ -66,7 +66,7 @@ function! s:Qfsort(command)
   endif
 
   let qflist = copy(getqflist())
-  call sort(qflist, function(s:sid.'QfsortCompare'))
+  call sort(qflist, function('s:QfsortCompare'))
   call setqflist(qflist)
 endfunction
 
@@ -82,8 +82,3 @@ function! s:QfsortCompare(x, y)
     return 0
   else
 endfunction
-
-" Get this file's sid. Taken almost directly from rails.vim:
-map <SID>xx <SID>xx
-let s:sid = substitute(maparg("<SID>xx"), 'xx$', '', '')
-unmap <SID>xx
