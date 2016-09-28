@@ -241,15 +241,4 @@ function! s:Tortf(start, end)
   quit!
 endfunction
 
-command! Messages call s:Messages()
-function! s:Messages()
-  if bufferize#Bufnr('messages')
-    return
-  endif
-
-  silent Bufferize messages
-  call lib#SetBufferUpdater(bufferize#Bufnr('messages'), function('s:UpdateMessages'), 500)
-endfunction
-function! s:UpdateMessages(_timer_id)
-  silent Bufferize messages
-endfunction
+command! Messages BufferizeTimer 500 messages
