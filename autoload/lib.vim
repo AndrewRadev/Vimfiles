@@ -198,13 +198,3 @@ function! lib#DefaultRegister()
     return '"'
   endif
 endfunction
-
-" Invokes a:callback every a:interval milliseconds in the buffer, given by
-" a:bufnr. If the buffer is closed, the timer is cancelled.
-function! lib#SetBufferUpdater(bufnr, callback, interval)
-  let timer_id = timer_start(a:interval, a:callback, {"repeat": -1})
-  augroup buffer_updater
-    autocmd!
-    exe 'autocmd BufUnload <buffer='.a:bufnr.'> call timer_stop('.timer_id.')'
-  augroup END
-endfunction
