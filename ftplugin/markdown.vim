@@ -10,7 +10,7 @@ RunCommand Preview
 
 let b:outline_pattern = '^#\+\s\+\w'
 
-command! -count=0 -nargs=* Link call s:Link(<count>, <f-args>)
+command! -buffer -count=0 -nargs=* Link call s:Link(<count>, <f-args>)
 function! s:Link(count, ...)
   if a:count == 0
     " then no visual selection, select the closest word
@@ -33,7 +33,7 @@ function! s:Link(count, ...)
   call setreg('z', saved_register, saved_register_mode)
 endfunction
 
-command! -nargs=* -complete=filetype
+command! -buffer -nargs=* -complete=filetype
       \ VimdocCode call s:VimdocCode(<f-args>)
 function! s:VimdocCode(...)
   let start_line = search('^>$', 'bnW')
