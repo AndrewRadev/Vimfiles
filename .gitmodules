@@ -232,3 +232,6 @@
 [submodule "bundle/gnugo"]
 	path = bundle/gnugo
 	url = https://github.com/AndrewRadev/gnugo.vim
+[submodule "bundle/qftools"]
+	path = bundle/qftools
+	url = https://github.com/AndrewRadev/qftools.vim
