@@ -235,3 +235,6 @@
 [submodule "bundle/qftools"]
 	path = bundle/qftools
 	url = https://github.com/AndrewRadev/qftools.vim
+[submodule "bundle/jsx"]
+	path = bundle/jsx
+	url = https://github.com/mxw/vim-jsx
