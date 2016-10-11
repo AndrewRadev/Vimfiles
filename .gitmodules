@@ -238,3 +238,6 @@
 [submodule "bundle/jsx"]
 	path = bundle/jsx
 	url = https://github.com/mxw/vim-jsx
+[submodule "bundle/markdown-toc"]
+	path = bundle/markdown-toc
+	url = https://github.com/mzlogin/vim-markdown-toc
