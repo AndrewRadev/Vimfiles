@@ -49,9 +49,9 @@ what I'm working on right now.
 ## Nerdtree plugins
 
 The "[nerdtree_plugin][]" directory is not the stock one that comes with the
-NERDTree plugin. It contains a few of my own scripts and some modified stock
-ones, the most interesting of which might be the buffer menu in
-[nerdtree_plugin/fs_buffer_menu.vim][].
+NERDTree plugin. It contains a few of my own scripts, although I've moved most
+of the interesting ones to a separate plugin called [Andrew's
+NERDTree](https://github.com/AndrewRadev/andrews_nerdtree.vim).
 
 ## Filetype-specific stuff
 
@@ -85,19 +85,18 @@ not very generic or redistributable, which is why I tend to put them there.
 - The "[after][]" directory may contain some interesting things that had to be
   placed there for late loading.
 
-[after]:                              https://github.com/AndrewRadev/Vimfiles/tree/master/after
-[autoload/lib.vim]:                   https://github.com/AndrewRadev/Vimfiles/tree/master/autoload/lib.vim
-[colors/andrew.vim]:                  https://github.com/AndrewRadev/Vimfiles/tree/master/colors/andrew.vim
-[ftplugin]:                           https://github.com/AndrewRadev/Vimfiles/tree/master/after
-[nerdtree_plugin/fs_buffer_menu.vim]: https://github.com/AndrewRadev/Vimfiles/tree/master/nerdtree_plugin/fs_buffer_menu.vim
-[nerdtree_plugin]:                    https://github.com/AndrewRadev/Vimfiles/tree/master/nerdtree_plugin
-[personal]:                           https://github.com/AndrewRadev/Vimfiles/tree/master/personal
-[plugin/afterimage.vim]:              https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/afterimage.vim
-[plugin/jad.vim]:                     https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/jad.vim
-[projects]:                           https://github.com/AndrewRadev/Vimfiles/tree/master/projects
-[startup/mappings.vim]:               https://github.com/AndrewRadev/Vimfiles/tree/master/startup/mappings.vim
-[startup]:                            https://github.com/AndrewRadev/Vimfiles/tree/master/startup
-[wip]:                                https://github.com/AndrewRadev/Vimfiles/tree/master/wip
+[after]:                 https://github.com/AndrewRadev/Vimfiles/tree/master/after
+[autoload/lib.vim]:      https://github.com/AndrewRadev/Vimfiles/tree/master/autoload/lib.vim
+[colors/andrew.vim]:     https://github.com/AndrewRadev/Vimfiles/tree/master/colors/andrew.vim
+[ftplugin]:              https://github.com/AndrewRadev/Vimfiles/tree/master/after
+[nerdtree_plugin]:       https://github.com/AndrewRadev/Vimfiles/tree/master/nerdtree_plugin
+[personal]:              https://github.com/AndrewRadev/Vimfiles/tree/master/personal
+[plugin/afterimage.vim]: https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/afterimage.vim
+[plugin/jad.vim]:        https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/jad.vim
+[projects]:              https://github.com/AndrewRadev/Vimfiles/tree/master/projects
+[startup/mappings.vim]:  https://github.com/AndrewRadev/Vimfiles/tree/master/startup/mappings.vim
+[startup]:               https://github.com/AndrewRadev/Vimfiles/tree/master/startup
+[wip]:                   https://github.com/AndrewRadev/Vimfiles/tree/master/wip
 
 [JavaDecompiler plugin]: http://www.vim.org/scripts/script.php?script_id=446
 [afterimage plugin]:     http://www.vim.org/scripts/script.php?script_id=1617
