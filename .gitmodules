@@ -241,3 +241,6 @@
 [submodule "bundle/markdown-toc"]
 	path = bundle/markdown-toc
 	url = https://github.com/mzlogin/vim-markdown-toc
+[submodule "bundle/bundler"]
+	path = bundle/bundler
+	url = https://github.com/tpope/vim-bundler
