@@ -170,7 +170,7 @@
   url = https://github.com/tpope/vim-projectionist.git
 [submodule "bundle/rust"]
   path = bundle/rust
-  url = https://github.com/wting/rust.vim
+  url = https://github.com/rust-lang/rust.vim
 [submodule "bundle/textobj-comment"]
   path = bundle/textobj-comment
   url = https://github.com/glts/vim-textobj-comment
