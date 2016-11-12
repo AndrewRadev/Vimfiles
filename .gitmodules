@@ -247,3 +247,6 @@
 [submodule "bundle/uppercase-sql"]
 	path = bundle/uppercase-sql
 	url = https://github.com/alcesleo/vim-uppercase-sql
+[submodule "bundle/ginitpull"]
+	path = bundle/ginitpull
+	url = https://github.com/AndrewRadev/ginitpull.vim
