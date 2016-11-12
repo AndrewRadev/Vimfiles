@@ -221,32 +221,32 @@
   path = bundle/proj
   url = https://github.com/vim-scripts/Proj
 [submodule "bundle/smartword"]
-	path = bundle/smartword
-	url = https://github.com/kana/vim-smartword
+  path = bundle/smartword
+  url = https://github.com/kana/vim-smartword
 [submodule "bundle/bufferize"]
-	path = bundle/bufferize
-	url = https://github.com/AndrewRadev/bufferize.vim
+  path = bundle/bufferize
+  url = https://github.com/AndrewRadev/bufferize.vim
 [submodule "bundle/codi"]
-	path = bundle/codi
-	url = https://github.com/metakirby5/codi.vim
+  path = bundle/codi
+  url = https://github.com/metakirby5/codi.vim
 [submodule "bundle/gnugo"]
-	path = bundle/gnugo
-	url = https://github.com/AndrewRadev/gnugo.vim
+  path = bundle/gnugo
+  url = https://github.com/AndrewRadev/gnugo.vim
 [submodule "bundle/qftools"]
-	path = bundle/qftools
-	url = https://github.com/AndrewRadev/qftools.vim
+  path = bundle/qftools
+  url = https://github.com/AndrewRadev/qftools.vim
 [submodule "bundle/jsx"]
-	path = bundle/jsx
-	url = https://github.com/mxw/vim-jsx
+  path = bundle/jsx
+  url = https://github.com/mxw/vim-jsx
 [submodule "bundle/markdown-toc"]
-	path = bundle/markdown-toc
-	url = https://github.com/mzlogin/vim-markdown-toc
+  path = bundle/markdown-toc
+  url = https://github.com/mzlogin/vim-markdown-toc
 [submodule "bundle/bundler"]
-	path = bundle/bundler
-	url = https://github.com/tpope/vim-bundler
+  path = bundle/bundler
+  url = https://github.com/tpope/vim-bundler
 [submodule "bundle/uppercase-sql"]
-	path = bundle/uppercase-sql
-	url = https://github.com/alcesleo/vim-uppercase-sql
+  path = bundle/uppercase-sql
+  url = https://github.com/alcesleo/vim-uppercase-sql
 [submodule "bundle/ginitpull"]
-	path = bundle/ginitpull
-	url = https://github.com/AndrewRadev/ginitpull.vim
+  path = bundle/ginitpull
+  url = https://github.com/AndrewRadev/ginitpull.vim
