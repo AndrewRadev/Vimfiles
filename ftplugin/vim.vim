@@ -10,7 +10,7 @@ let b:surround_{char2nr('T')} = "try \r endtry"
 let b:surround_{char2nr('\')} = "\\(\r\\)"
 let b:surround_indent = 1
 
-let b:outline_pattern = '\<\(function\|command\)\>'
+let b:outline_pattern = '^\s*\(function\|command\)\>'
 
 let b:dh_closing_pattern = '^\s*end\(\k\{-}\)\>'
 
