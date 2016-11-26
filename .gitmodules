@@ -250,3 +250,6 @@
 [submodule "bundle/ginitpull"]
   path = bundle/ginitpull
   url = https://github.com/AndrewRadev/ginitpull.vim
+[submodule "bundle/dsf"]
+	path = bundle/dsf
+	url = https://github.com/AndrewRadev/dsf.vim
