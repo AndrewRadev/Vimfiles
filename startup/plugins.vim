@@ -167,3 +167,6 @@ augroup codi_user
   autocmd User CodiEnterPre :let g:skip_clean_whitespace = 1
   autocmd User CodiLeavePre :let g:skip_clean_whitespace = 0
 augroup END
+
+" Colorizer
+let g:colorizer_nomap = 1
