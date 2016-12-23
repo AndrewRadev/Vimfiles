@@ -118,6 +118,8 @@ inoremap <c-e> <esc>:InlineEdit<cr>a
 
 " Split and execute any command:
 nnoremap __ :split \|<Space>
+" Tab-split and execute
+nnoremap _t :tab split \|<Space>
 
 " Open new tab more easily:
 nnoremap ,t :tabnew<cr>
