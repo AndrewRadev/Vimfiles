@@ -136,69 +136,6 @@ cnoremap <C-p> <C-r>"
 runtime autoload/repeat.vim
 nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 
-" Delete surrounding function call
-" Relies on surround.vim
-nnoremap <silent> dsf :call <SID>DeleteSurroundingFunctionCall()<cr>
-function! s:DeleteSurroundingFunctionCall()
-  let [success, opening_bracket] = s:FindFunctionCallStart('b')
-  if !success
-    return
-  endif
-
-  exe 'normal! dt'.opening_bracket
-  exe 'normal ds'.opening_bracket
-  silent! call repeat#set('dsf')
-endfunction
-
-" Operate on a function call
-onoremap af :<c-u>call <SID>FunctionCallTextObject('a')<cr>
-xnoremap af :<c-u>call <SID>FunctionCallTextObject('a')<cr>
-onoremap if :<c-u>call <SID>FunctionCallTextObject('i')<cr>
-xnoremap if :<c-u>call <SID>FunctionCallTextObject('i')<cr>
-function! s:FunctionCallTextObject(mode)
-  let [success, opening_bracket] = s:FindFunctionCallStart('')
-  if !success
-    return
-  endif
-
-  if a:mode == 'i'
-    exe 'normal! f'.opening_bracket.'vi'.opening_bracket
-  else " a:mode == 'a'
-    exe 'normal vf'.opening_bracket.'%'
-  endif
-endfunction
-
-function! s:FindFunctionCallStart(flags)
-  let original_iskeyword = &iskeyword
-
-  try
-    set iskeyword+=?,!
-
-    if search('\k\+\zs[([]', a:flags, line('.')) <= 0
-      return [0, '']
-    endif
-
-    " what's the opening bracket?
-    let opener = getline('.')[col('.') - 1]
-
-    " go back one word to get to the beginning of the function call
-    normal! b
-
-    " now we're on the function's name, see if we should move back some more
-    let prefix = strpart(getline('.'), 0, col('.') - 1)
-    while prefix =~ '\k\(\.\|::\|:\|#\)$'
-      if search('\k\+', 'b', line('.')) <= 0
-        break
-      endif
-      let prefix = strpart(getline('.'), 0, col('.') - 1)
-    endwhile
-
-    return [1, opener]
-  finally
-    let &iskeyword = original_iskeyword
-  endtry
-endfunction
-
 " Quit tab, even if it's just one
 nnoremap <silent> QQ :call <SID>QQ()<cr>
 function! s:QQ()
