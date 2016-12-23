@@ -4,7 +4,7 @@ augroup custom
   " Clean all useless whitespace:
   autocmd BufWritePre *
         \ if !exists('g:skip_clean_whitespace') && !exists('b:skip_clean_whitespaste') |
-        \   exe "CleanWhitespace"                                      |
+        \   exe "CleanWhitespace"                                                      |
         \ endif
 
   " When editing a file, always jump to the last known cursor position.
