@@ -2,6 +2,9 @@ let b:surround_{char2nr('$')} = "$(\r)"
 let b:outline_pattern = '\<function\>'
 let b:dh_closing_pattern = '^\s*}'
 
+let b:extract_var_template = 'var %s = %s;'
+let b:inline_var_pattern   = '\%(var\|let\)\s\+\(\k\+\)\s\+=\s\+\(.\{-}\);'
+
 setlocal foldmethod=indent
 compiler eslint
 
