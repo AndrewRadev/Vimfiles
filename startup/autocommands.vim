@@ -16,6 +16,9 @@ augroup custom
   " Check if editing a directory
   autocmd VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
 
+  " Check if we're opening an http://github.com/... path
+  autocmd BufNewFile * nested call s:MaybeOpenGithubFile()
+
   " Check if it's necessary to create a directory
   autocmd BufNewFile * call s:EnsureDirectoryExists()
 
@@ -128,4 +131,27 @@ function! s:BackupPentadactyl()
   endif
 
   exe 'silent write! '.b:backup_filename
+endfunction
+
+function! s:MaybeOpenGithubFile()
+  let url = expand('%')
+
+  let pattern = 'github\.com/\%(.\{-}\)/blob/\%([^/]\+\)/\(.\{-}\)\%(#L\(\d\+\)\%(-L\d\+\)\=\)\=$'
+  let match = matchlist(url, pattern)
+
+  if len(match) == 0
+    return
+  endif
+
+  let [_, path, line; _rest] = match
+
+  if !filereadable(path)
+    echoerr "File doesn't exist: ".fnamemodify(path, ':p')
+    return
+  endif
+
+  exe 'keepalt edit '.path
+  if line != ''
+    exe line
+  endif
 endfunction
