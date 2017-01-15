@@ -3,7 +3,7 @@ set clipboard=unnamed
 set incsearch nohlsearch
 set isfname-==
 set nottybuiltin
-set shortmess=aTOI
+set shortmess=acTOI
 set showcmd
 set sidescroll=4
 set splitbelow
@@ -15,7 +15,7 @@ set viminfo+=!
 
 " Editing
 set complete=.,w,b,k
-set completeopt=menuone,longest
+set completeopt=menuone,noinsert
 set formatoptions=croqn
 set nojoinspaces
 
