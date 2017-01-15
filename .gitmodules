@@ -256,3 +256,6 @@
 [submodule "bundle/yankwin"]
 	path = bundle/yankwin
 	url = https://github.com/AndrewRadev/yankwin.vim
+[submodule "bundle/typescript"]
+	path = bundle/typescript
+	url = https://github.com/leafgarland/typescript-vim
