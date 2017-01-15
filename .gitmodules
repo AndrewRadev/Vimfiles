@@ -253,3 +253,6 @@
 [submodule "bundle/dsf"]
 	path = bundle/dsf
 	url = https://github.com/AndrewRadev/dsf.vim
+[submodule "bundle/yankwin"]
+	path = bundle/yankwin
+	url = https://github.com/AndrewRadev/yankwin.vim
