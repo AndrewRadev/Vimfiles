@@ -20,6 +20,8 @@ RunCommand so %
 
 let b:extract_var_template = 'let %s = %s'
 
+command! -buffer Lookup call lookup#lookup()
+
 setlocal includeexpr=lib#VimIncludeExpression(v:fname)
 
 onoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>

@@ -259,3 +259,6 @@
 [submodule "bundle/typescript"]
 	path = bundle/typescript
 	url = https://github.com/leafgarland/typescript-vim
+[submodule "bundle/lookup"]
+	path = bundle/lookup
+	url = https://github.com/mhinz/vim-lookup
