@@ -21,6 +21,7 @@ RunCommand so %
 let b:extract_var_template = 'let %s = %s'
 
 command! -buffer Lookup call lookup#lookup()
+nnoremap <buffer> gd :call lookup#lookup()<cr>
 
 setlocal includeexpr=lib#VimIncludeExpression(v:fname)
 
