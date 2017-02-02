@@ -242,3 +242,41 @@ function! s:Tortf(start, end)
 endfunction
 
 command! Messages BufferizeTimer 500 messages
+
+" Invoke the `lebab` tool on the current buffer. Usage:
+"
+"   Lebab <transform1> <transform2> [...]
+"
+" This will run all the transforms specified and replace the buffer with the
+" results. The available transforms tab-complete.
+"
+command! -nargs=+ -complete=custom,s:LebabComplete
+      \ Lebab call s:Lebab(<f-args>)
+function! s:Lebab(...)
+  let transforms = a:000
+  let filename = expand('%:p')
+
+  let command_line = 'lebab '.shellescape(filename).
+        \ ' --transform '.join(transforms, ',')
+
+  let new_lines = systemlist(command_line)
+  if v:shell_error
+    echoerr "There was an error running lebab: ".join(new_lines, "\n")
+    return
+  endif
+
+  %delete _
+  call setline(1, new_lines)
+endfunction
+
+let s:lebab_transforms = []
+
+function! s:LebabComplete(argument_lead, command_line, cursor_position)
+  if len(s:lebab_transforms) == 0
+    for line in systemlist("lebab --help | egrep '^\\s+\\+'")
+      call add(s:lebab_transforms, matchstr(line, '^\s\++ \zs[a-zA-Z-]\+'))
+    endfor
+  endif
+
+  return join(sort(s:lebab_transforms), "\n")
+endfunction
