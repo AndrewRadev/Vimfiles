@@ -262,3 +262,6 @@
 [submodule "bundle/lookup"]
 	path = bundle/lookup
 	url = https://github.com/mhinz/vim-lookup
+[submodule "bundle/exception"]
+	path = bundle/exception
+	url = https://github.com/tweekmonster/exception.vim

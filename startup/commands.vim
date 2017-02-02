@@ -280,3 +280,6 @@ function! s:LebabComplete(argument_lead, command_line, cursor_position)
 
   return join(sort(s:lebab_transforms), "\n")
 endfunction
+
+" Trace Vim exceptions
+command! Trace call exception#trace()
