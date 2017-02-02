@@ -28,3 +28,13 @@ snippet model
 	export default DS.Model.extend({
 
 	});
+snippet debuginit
+	debuginit: function() {
+		${1}
+	}.on('init'),
+snippet debugprop
+	debug$1: function() {
+		console.debug(['$1', this.get('${1:model}')]);
+	}.observes('$1'),
+snippet super
+	this._super(...arguments)
