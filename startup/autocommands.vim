@@ -59,7 +59,7 @@ function! s:MaybeEnterDirectory(file)
   endif
 
   let dir = a:file
-  exe "cd ".dir
+  exe "cd ".fnameescape(dir)
 
   if filereadable('_project.vim')
     edit _project.vim
