@@ -176,7 +176,7 @@
   url = https://github.com/deris/vim-rengbang
 [submodule "bundle/rimplement"]
   path = bundle/rimplement
-  url = git@github.com:AndrewRadev/rimplement.vim.git
+  url = https://github.com/AndrewRadev/rimplement.vim
 [submodule "bundle/elixir"]
   path = bundle/elixir
   url = https://github.com/elixir-lang/vim-elixir
