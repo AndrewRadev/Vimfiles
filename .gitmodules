@@ -153,9 +153,6 @@
   path = bundle/anzu
   url = https://github.com/osyo-manga/vim-anzu.git
   ignore = untracked
-[submodule "bundle/go-oracle"]
-  path = bundle/go-oracle
-  url = https://github.com/AndrewRadev/go-oracle.vim.git
 [submodule "bundle/exchange"]
   path = bundle/exchange
   url = https://github.com/tommcdo/vim-exchange
