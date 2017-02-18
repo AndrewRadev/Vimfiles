@@ -30,7 +30,7 @@
   url = https://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/nerdtree"]
   path = bundle/nerdtree
-  url = https://github.com/scrooloose/nerdtree.git
+  url = https://github.com/AndrewRadev/nerdtree.git
 [submodule "bundle/textile"]
   path = bundle/textile
   url = https://github.com/timcharper/textile.vim.git
