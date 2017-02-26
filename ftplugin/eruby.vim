@@ -1,3 +1,9 @@
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+
+setlocal foldmethod=indent
+
 let b:surround_{char2nr('-')} = "<% \r %>"
 let b:surround_{char2nr('=')} = "<%= \r %>"
 let b:surround_{char2nr('t')} = "<%=t '\r' %>"
