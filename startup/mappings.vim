@@ -388,10 +388,10 @@ function! s:Focus()
   let start = line("'<")
   let end   = line("'>")
 
-  call matchadd('Comment', '\%^\_.*\%<'.start.'l')
-  call matchadd('Comment', '\%>'.end.'l\_.*\%$')
-  redraw
+  call matchadd('Comment', '.*\%<'.start.'l')
+  call matchadd('Comment', '.*\%>'.end.'l')
   syntax sync fromstart
+  redraw
 endfunction
 
 function! s:Unfocus()
