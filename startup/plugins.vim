@@ -1,3 +1,5 @@
+packadd matchit
+
 " NERDTree:
 let g:NERDTreeHijackNetrw = 0
 let g:NERDTreeIgnore      = [
