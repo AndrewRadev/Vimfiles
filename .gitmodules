@@ -262,3 +262,6 @@
 [submodule "bundle/exception"]
 	path = bundle/exception
 	url = https://github.com/tweekmonster/exception.vim
+[submodule "bundle/startuptime"]
+	path = bundle/startuptime
+	url = https://github.com/tweekmonster/startuptime.vim
