@@ -54,7 +54,12 @@ augroup rubyPrivateArea
   autocmd BufEnter <buffer> call <SID>MarkPrivateArea()
 
   " Mark upon writing
-  autocmd BufWrite <buffer> call <SID>MarkPrivateArea()
+  " autocmd BufWrite <buffer> call <SID>MarkPrivateArea()
+
+  " Mark when exiting insert mode (doesn't cover normal-mode text changing
+  autocmd InsertLeave <buffer> call <SID>MarkPrivateArea()
+  " Mark when text has changed in normal mode
+  autocmd TextChanged <buffer> call <SID>MarkPrivateArea()
 
   " Mark when not moving the cursor for 'timeoutlen' time
   " autocmd CursorHold <buffer> call <SID>MarkPrivateArea()
