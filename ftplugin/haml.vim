@@ -8,7 +8,6 @@ let b:switch_definitions =
       \ ]
 
 xmap <buffer> sO <Plug>CoffeeToolsOpenLineAndIndent
-nmap <buffer> dh <Plug>CoffeeToolsDeleteAndDedent
 
 command! -range=% Herbalize call s:Herbalize(<line1>, <line2>)
 function! s:Herbalize(start, end)

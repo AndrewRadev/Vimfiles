@@ -31,7 +31,6 @@ endfunction
 nnoremap <buffer> gm :Doc js<cr>
 
 xmap <buffer> sO <Plug>CoffeeToolsOpenLineAndIndent
-nmap <buffer> dh <Plug>CoffeeToolsDeleteAndDedent
 
 autocmd Syntax * hi link coffeeSpecialVar Identifier
 

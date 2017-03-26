@@ -279,42 +279,6 @@ function! s:CmdlineToggle(default)
   return ''
 endfunction
 
-nnoremap dh :call <SID>DeleteAndDedent()<cr>
-function! s:DeleteAndDedent()
-  if !exists('b:dh_closing_pattern')
-    let b:dh_closing_pattern = '.'
-  end
-
-  let start_lineno = line('.')
-  let start_indent = indent(start_lineno)
-
-  let current_lineno = nextnonblank(start_lineno + 1)
-
-  while current_lineno < line('$') && indent(current_lineno) > start_indent
-    if indent(current_lineno) == indent(start_lineno)
-      let end_lineno = current_lineno
-      break
-    endif
-
-    let current_lineno = nextnonblank(current_lineno + 1)
-  endwhile
-
-  let end_lineno = current_lineno
-
-  if end_lineno - start_lineno > 1
-    exe (start_lineno + 1).','.(end_lineno - 1).'<'
-
-    if indent(end_lineno) == indent(start_lineno) &&
-          \ getline(end_lineno) =~ b:dh_closing_pattern
-      " then it's a block-closer, delete it
-      exe end_lineno.'delete _'
-    endif
-  endif
-
-  exe start_lineno.'delete'
-  echo
-endfunction
-
 " Change between `method arg1, arg2` and `method(arg1, arg2)`
 nnoremap g( :Repeatable call <SID>ToggleBrackets()<cr>
 nnoremap g) :Repeatable call <SID>ToggleBrackets()<cr>

@@ -18,7 +18,7 @@ if &ft =~ 'rspec'
   finish
 endif
 
-let b:dh_closing_pattern = '^\s*end\>'
+let b:deleft_closing_pattern = '^\s*end\>'
 let b:outline_pattern = '\v^\s*(def|class|module|public|protected|private|(attr_\k{-}))(\s|$)'
 
 call RubyFold()

@@ -16,4 +16,4 @@ endif
 
 command! -buffer A exe "edit ".substitute(expand('%'), b:alternate_file_matcher.pattern, b:alternate_file_matcher.replacement, '')
 
-let b:dh_closing_pattern = '^\s*end\>'
+let b:deleft_closing_pattern = '^\s*end\>'

@@ -10,9 +10,8 @@ let b:surround_{char2nr('T')} = "try \r endtry"
 let b:surround_{char2nr('\')} = "\\(\r\\)"
 let b:surround_indent = 1
 
-let b:outline_pattern = '^\s*\(function\|command\)\>'
-
-let b:dh_closing_pattern = '^\s*end\(\k\{-}\)\>'
+let b:outline_pattern = '^\s*\(fun\%[ction]\|com\%[mand]\)\>'
+let b:deleft_closing_pattern = '^\s*end\(\k\{-}\)\>'
 
 nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
 
