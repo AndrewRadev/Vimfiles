@@ -265,3 +265,6 @@
 [submodule "bundle/startuptime"]
 	path = bundle/startuptime
 	url = https://github.com/tweekmonster/startuptime.vim
+[submodule "bundle/deleft"]
+	path = bundle/deleft
+	url = https://github.com/AndrewRadev/deleft.vim.git
