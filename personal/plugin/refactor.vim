@@ -47,7 +47,7 @@ function! s:InlineVar()
   normal! dd
 
   let [from, to] = GetScopeLimits()
-  exe from.','.to.'s/\<'.var_name.'\>/'.escape(body, '/').'/gc'
+  exe from.','.to.'s/\<'.var_name.'\>/'.escape(body, '\/').'/gc'
 
   call setreg('z', original_reg, original_reg_type)
 endfunction
