@@ -10,6 +10,7 @@ let g:acp_behavior = {
       \ 'less':   [],
       \ 'scss':   [],
       \ 'go':     [],
+      \ 'rust':   [],
       \ }
 
 call add(g:acp_behavior.php, {
@@ -69,6 +70,12 @@ call add(g:acp_behavior.go, {
       \   'repeat'  : 0,
       \ })
 
+call add(g:acp_behavior.rust, {
+      \   'command' : "\<C-x>\<C-o>",
+      \   'meets'   : 'AcpMeetsForRust',
+      \   'repeat'  : 0,
+      \ })
+
 " Added the condition that the tag does not contain '?'
 function! AcpMeetsForPhpHtmlTag(context)
   return g:acp_behaviorHtmlOmniLength >= 0 &&
@@ -78,4 +85,8 @@ endfunction
 
 function! AcpMeetsForGo(context)
   return &omnifunc != '' && a:context =~ '\k\.\k*$'
+endfunction
+
+function! AcpMeetsForRust(context)
+  return &omnifunc != '' && a:context =~ '\k::\k*$'
 endfunction
