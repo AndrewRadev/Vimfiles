@@ -271,3 +271,6 @@
 [submodule "bundle/racer"]
 	path = bundle/racer
 	url = https://github.com/racer-rust/vim-racer
+[submodule "bundle/endwise"]
+	path = bundle/endwise
+	url = https://github.com/tpope/vim-endwise
