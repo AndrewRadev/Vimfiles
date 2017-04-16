@@ -177,3 +177,6 @@ let g:racer_experimental_completer = 1
 
 " Colorizer
 let g:colorizer_nomap = 1
+
+" Deleft
+let g:deleft_remove_strategy = 'spaces'
