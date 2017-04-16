@@ -8,6 +8,9 @@ set define=^\\s*\\ze\\k\\+:\\s*[-=]>
 let b:surround_{char2nr('$')} = "$(\r)"
 let b:outline_pattern = '^\s*\%(class\|\k\+\%(:\|\s*=\).*[-=]>$\)'
 
+let b:match_words = '\<if\>:\<else\>'
+let b:match_skip = 'R:^\s*'
+
 onoremap <buffer> im :<c-u>call coffee_tools#FunctionTextObject('i')<cr>
 onoremap <buffer> am :<c-u>call coffee_tools#FunctionTextObject('a')<cr>
 xnoremap <buffer> im :<c-u>call coffee_tools#FunctionTextObject('i')<cr>
