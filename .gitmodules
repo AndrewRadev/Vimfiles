@@ -191,7 +191,7 @@
   url = https://github.com/AndrewRadev/andrews_nerdtree.vim
 [submodule "bundle/mustache-handlebars"]
   path = bundle/mustache-handlebars
-  url = https://github.com/mustache/vim-mustache-handlebars
+  url = https://github.com/AndrewRadev/vim-mustache-handlebars
 [submodule "bundle/crystal"]
   path = bundle/crystal
   url = https://github.com/rhysd/vim-crystal

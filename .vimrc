@@ -14,6 +14,7 @@ runtime startup/autocommands.vim
 runtime startup/mappings.vim
 runtime startup/acp.vim
 runtime startup/cyrillic.vim
+runtime startup/windows.vim
 
 runtime! ftplugin/man.vim
 autocmd FileType man setlocal foldmethod=indent

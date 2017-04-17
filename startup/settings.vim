@@ -10,6 +10,7 @@ set splitbelow
 set switchbuf=useopen
 set t_Co=256
 set ttyfast
+set belloff=all
 set updatetime=1000
 set viminfo+=!
 
@@ -23,7 +24,7 @@ set nojoinspaces
 set number
 set ruler
 set diffopt=filler,vertical,iwhite
-set fillchars=stl:-,stlnc:-,vert:│,fold:\ ,diff:-
+set fillchars=stl:-,stlnc:-,vert:\│,fold:\ ,diff:-
 set guioptions=crb
 set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
