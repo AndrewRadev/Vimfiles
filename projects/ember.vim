@@ -1,6 +1,9 @@
 silent AckIgnore tmp/ bower_components/ node_modules/ dist/
 
-runtime after/plugin/snippets.vim
+augroup Project
+  autocmd!
 
-call ExtractSnipsFile(g:snippets_dir.'ember_js.snippets', 'javascript')
-call ExtractSnipsFile(g:snippets_dir.'ember_coffee.snippets', 'coffee')
+  " Snippets
+  autocmd FileType javascript set filetype=ember.javascript
+  autocmd FileType coffee set filetype=ember.coffee
+augroup END
