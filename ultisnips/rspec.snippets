@@ -1,0 +1,69 @@
+snippet be
+before :each do
+	${1}
+end
+endsnippet
+
+snippet ba
+before :all do
+	${1}
+end
+endsnippet
+
+snippet i
+it "${1:twiddles}"
+endsnippet
+
+snippet it
+it "${1:twiddles}" do
+	${2}
+end
+endsnippet
+
+snippet spec
+specify "${1:twiddling}" do
+	${2}
+end
+endsnippet
+
+snippet des
+describe ${1:`v! lib#CapitalCamelCase(substitute(expand('%:r'), '_spec$', '', ''))`} do
+	${2}
+end
+endsnippet
+
+snippet con
+context "${1:in a foo condition}" do
+	${2}
+end
+endsnippet
+
+snippet scen
+scenario "${1:Twiddling}" do
+	${2}
+end
+endsnippet
+
+snippet feat
+feature "${1:Twiddling}" do
+	${2}
+end
+endsnippet
+
+snippet ch
+expect {
+	${1}
+}.to change(${2})${3}
+endsnippet
+
+snippet let
+let(:${1:subject}) { ${2} }
+endsnippet
+
+snippet skel
+require 'spec_helper'
+
+describe `v! lib#CapitalCamelCase(substitute(expand('%:r'), '_spec$', '', ''))` do
+	pending
+end
+endsnippet

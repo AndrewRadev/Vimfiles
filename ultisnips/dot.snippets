@@ -1,0 +1,16 @@
+snippet dg
+digraph ${1:G} {
+	graph [layout=dot rankdir=LR]
+	node  [shape=box style=rounded]
+
+	${2}
+}
+endsnippet
+
+snippet l
+[label="${1}"]
+endsnippet
+
+snippet record
+${1:Table} [shape=record label="{<table>$1|<cols>${2:column (type)}\l}"]
+endsnippet

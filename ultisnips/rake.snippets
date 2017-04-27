@@ -1,0 +1,13 @@
+snippet t
+desc "${1:description}"
+task :${2:name} do
+	${3}
+end
+endsnippet
+
+snippet t=
+desc "${1:description}"
+task ${2:name}: [${3:depends}] do
+	${4}
+end
+endsnippet

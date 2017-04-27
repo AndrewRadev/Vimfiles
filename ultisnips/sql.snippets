@@ -1,0 +1,45 @@
+snippet select
+SELECT ${1:*}
+FROM
+	${2}
+WHERE
+	${3}
+endsnippet
+
+snippet view
+CREATE VIEW ${1} AS
+SELECT
+	${2}
+FROM
+	${3}
+WHERE
+	${4}
+endsnippet
+
+snippet create
+CREATE TABLE ${1}
+(
+	id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	${2}
+)
+endsnippet
+
+snippet delete
+DELETE FROM ${1}
+WHERE ${2:1 = 0}
+endsnippet
+
+snippet update
+UPDATE ${1}
+SET
+	${2}
+WHERE ${3}
+endsnippet
+
+snippet join
+INNER JOIN ${1:first}s ON $1s.${2:second}_id = $2s.id
+endsnippet
+
+snippet between
+BETWEEN `v! strftime("%Y-%m-%d %H:%M:%S")` AND `v! strftime("%Y-%m-%d %H:%M:%S")`
+endsnippet

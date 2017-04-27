@@ -1,0 +1,57 @@
+snippet ex
+export default ${1}.extend({
+	${2}
+});
+endsnippet
+
+snippet im
+import ${1:Ember} from '${2:ember}';
+endsnippet
+
+snippet prop
+function() {
+	${1}
+}.property(${2}),
+endsnippet
+
+snippet route
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+	model() {
+
+	},
+});
+endsnippet
+
+snippet controller
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+
+});
+endsnippet
+
+snippet model
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+
+});
+endsnippet
+
+snippet debuginit
+debuginit: function() {
+	${1}
+}.on('init'),
+endsnippet
+
+snippet debugprop
+debug$1: function() {
+	console.debug(['$1', this.get('${1:model}')]);
+}.observes('$1'),
+endsnippet
+
+snippet super
+this._super(...arguments)
+endsnippet

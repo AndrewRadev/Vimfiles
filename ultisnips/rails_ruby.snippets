@@ -1,0 +1,86 @@
+snippet t
+I18n.t('${1}')
+endsnippet
+
+snippet arb
+ActiveRecord::Base
+endsnippet
+
+snippet defin
+def inspect
+	"<${1} ##{id}>"
+end
+endsnippet
+
+snippet addcol
+add_column :${1:table}, :${2:column}, :${3:type}
+endsnippet
+
+snippet dropcol
+remove_column :${1:table}, :${2:column}
+endsnippet
+
+snippet join
+create_table :$1s_$2s, id: false do |t|
+	t.references :${1:foo}, :${2:bar}
+end
+endsnippet
+
+snippet defindex
+def index
+	@${1:model} = ${2:Model}.all
+end
+endsnippet
+
+snippet defshow
+def show
+	@${1:model} = ${2:Model}.find(params[:id])
+end
+endsnippet
+
+snippet defnew
+def new
+	@${1:model} = ${2:Model}.new
+end
+endsnippet
+
+snippet defcreate
+def create
+	@${1:model} = ${2:Model}.new($1_params)
+
+	if @$1.save
+		flash[:notice] = '$2 was successfully created.'
+		redirect_to action: :index
+	else
+		render action: :new
+	end
+end
+endsnippet
+
+snippet defedit
+def edit
+	@${1:model} = ${2:Model}.find(params[:id])
+end
+endsnippet
+
+snippet defupdate
+def update
+	@${1:model} = ${2:Model}.find(params[:id])
+
+	if @$1.update_attributes($1_params)
+		flash[:notice] = '$2 was successfully updated.'
+		redirect_to @$1
+	else
+		render action: :edit
+	end
+end
+endsnippet
+
+snippet defdestroy
+def destroy
+	@${1:model} = ${2:Model}.find(params[:id])
+	@$1.destroy
+
+	redirect_to action: :index
+end
+endsnippet

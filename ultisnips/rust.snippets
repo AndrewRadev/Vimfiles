@@ -1,0 +1,26 @@
+snippet fn
+fn ${1:function_name}(${2}) {
+	${3}
+}
+endsnippet
+
+snippet test
+#[test]
+fn test_${1:something}() {
+	${2}
+}
+endsnippet
+
+snippet main
+fn main() {
+	${1}
+}
+endsnippet
+
+snippet p
+println!("${1:text}", ${2:param});
+endsnippet
+
+snippet pp
+println!("{:?}", ${1:something});
+endsnippet

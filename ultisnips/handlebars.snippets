@@ -1,0 +1,15 @@
+snippet =
+{{${1}}}
+endsnippet
+
+snippet each
+{{#each ${1:collection} as |${2:item}|}}
+	${3}
+{{/each}}
+endsnippet
+
+snippet if
+{{#if ${1:condition}}}
+	${2}
+{{/if}}
+endsnippet

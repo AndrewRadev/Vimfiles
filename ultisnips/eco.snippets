@@ -1,0 +1,35 @@
+snippet -
+<% ${1} %>
+endsnippet
+
+snippet =
+<%= ${1} %>
+endsnippet
+
+snippet --
+<%- ${1} %>
+endsnippet
+
+snippet #
+<%# ${1} %>
+endsnippet
+
+snippet for
+<% for ${1:item} in ${2:collection}: %>
+	${3}
+<% end %>
+endsnippet
+
+snippet if
+<% if ${1:true}: %>
+	${2}
+<% end %>
+endsnippet
+
+snippet ife
+<% if ${1:true}: %>
+	${2}
+<% else: %>
+	${3}
+<% end %>
+endsnippet

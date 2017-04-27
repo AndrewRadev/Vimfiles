@@ -1,0 +1,33 @@
+snippet ex
+export default ${1};
+endsnippet
+
+snippet im
+import ${1:Ember} from '${2:ember}';
+endsnippet
+
+snippet prop
+(->
+	${1}
+).property(${2}),
+endsnippet
+
+snippet route
+route = Ember.Route.extend({
+	model: function() {
+
+	},
+});
+endsnippet
+
+snippet controller
+controller = Ember.Controller.extend({
+
+});
+endsnippet
+
+snippet model
+model = DS.Model.extend({
+
+});
+endsnippet

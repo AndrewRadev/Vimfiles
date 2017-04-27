@@ -1,0 +1,167 @@
+snippet !-
+<!-- ${1} -->
+endsnippet
+
+snippet html
+<html>
+	${1}
+</html>
+endsnippet
+
+snippet body
+<body>
+	${1}
+</body>
+endsnippet
+
+snippet head
+<head>
+	<title>${1:Page Title}</title>
+
+	${2}
+</head>
+endsnippet
+
+snippet title
+<title>${1:Page Title}</title>
+endsnippet
+
+snippet script
+<script type="text/javascript">
+	${1}
+</script>
+endsnippet
+
+snippet scripts
+<script src="${1}.js" type="text/javascript"></script>
+endsnippet
+
+snippet style
+<style type="text/css" media="${1:screen}">
+	${2}
+</style>${3}
+endsnippet
+
+snippet styles
+<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" />
+endsnippet
+
+snippet br
+<br>
+endsnippet
+
+snippet hr
+<hr>
+endsnippet
+
+snippet div
+<div class="${1:name}">
+	${2}
+</div>
+endsnippet
+
+snippet clear
+<div class="clear"></div>
+endsnippet
+
+snippet fieldset
+<fieldset id="$1">
+	<legend>${1:name}</legend>
+
+	${3}
+</fieldset>
+endsnippet
+
+snippet form
+<form action="${1:/action/}" method="${2:POST}" accept-charset="utf-8">
+	${3}
+
+	<p><input type="submit" value="Submit" /></p>
+</form>
+endsnippet
+
+snippet h1
+<h1>${1}</h1>
+endsnippet
+
+snippet h2
+<h2>${1}</h2>
+endsnippet
+
+snippet h3
+<h3>${1}</h3>
+endsnippet
+
+snippet h4
+<h4>${1}</h4>
+endsnippet
+
+snippet h5
+<h5>${1}</h5>
+endsnippet
+
+snippet input
+<input type="${1:text}" name="${2:some_name}" value="${3}" />${4}
+endsnippet
+
+snippet label
+<label for="${2:$1}">${1:name}</label>
+<input type="${3:text}" name="${4:$2}" value="${5}" id="${6:$2}" />
+endsnippet
+
+snippet link
+<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" />
+endsnippet
+
+snippet meta
+<meta name="${1:name}" content="${2:content}" />${3}
+endsnippet
+
+snippet utf
+<meta charset="utf-8" />
+endsnippet
+
+snippet opt
+<option value="${1:option}">${2:$1}</option>${3}
+endsnippet
+
+snippet select
+<select name="${1:some_name}" id="${2:$1}">
+	<option value="${3:option}">${4:$3}</option>
+</select>${5}
+endsnippet
+
+snippet a
+<a href="${2:#}">${1:Label}</a>
+endsnippet
+
+snippet ul
+<ul>
+	<li>${1}</li>
+</ul>
+endsnippet
+
+snippet li
+<li>${1}</li>
+endsnippet
+
+snippet table
+<table border="${1:0}">
+	<tr><th>${2:Header}</th></tr>
+	<tr><th>${3:Data}</th></tr>
+</table>${4}
+endsnippet
+
+snippet textarea
+<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
+endsnippet
+
+snippet s
+<${1:span}${2}>${3}</$1>
+endsnippet
+
+snippet p
+<${1:p}${2}>
+	${3}
+</$1>
+endsnippet

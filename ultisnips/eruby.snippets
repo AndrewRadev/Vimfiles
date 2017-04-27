@@ -1,0 +1,39 @@
+snippet -
+<% ${1} %>
+endsnippet
+
+snippet =
+<%= ${1} %>
+endsnippet
+
+snippet --
+<%- ${1} %>
+endsnippet
+
+snippet #
+<%# ${1} %>
+endsnippet
+
+snippet #t
+<%# TODO (`v! strftime("%Y-%m-%d")`) ${1} %>
+endsnippet
+
+snippet each
+<% ${1:@collection}.each do |${2:item}| %>
+	${3}
+<% end %>
+endsnippet
+
+snippet if
+<% if ${1:true} %>
+	${2}
+<% end %>
+endsnippet
+
+snippet ife
+<% if ${1:true} %>
+	${2}
+<% else %>
+	${3}
+<% end %>
+endsnippet

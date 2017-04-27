@@ -1,0 +1,102 @@
+snippet "t
+" TODO (`v! strftime("%Y-%m-%d")`) ${1}
+endsnippet
+
+snippet fun
+function! ${1:function_name}(${2})
+	${3:" code}
+endfunction
+endsnippet
+
+snippet com
+command! ${1:command_name} call s:$1()
+function! s:$1()
+	${2:" code}
+endfunction
+endsnippet
+
+snippet for
+for ${1:item} in ${2:collection}
+	${3:" code}
+endfor
+endsnippet
+
+snippet wh
+while ${1:condition}
+	${2:" code}
+endwhile
+endsnippet
+
+snippet if
+if ${1:condition}
+	${2:" code}
+endif
+endsnippet
+
+snippet ife
+if ${1:condition}
+	${2}
+else
+	${3}
+endif
+endsnippet
+
+snippet ifnex
+if !exists('${1:g:variable}')
+	let $1 = ${2}
+endif
+endsnippet
+
+snippet complete
+function! s:${1:CompletionFunction}(argument_lead, command_line, cursor_position)
+	return join(sort(keys(${2:g:global_hash})), "\n")
+endfunction
+endsnippet
+
+snippet omap
+onoremap <buffer> a${1:x} :<c-u>call <SID>${2:TextObject}('a')<cr>
+xnoremap <buffer> a$1 :<c-u>call <SID>$2('a')<cr>
+onoremap <buffer> i$1 :<c-u>call <SID>$2('i')<cr>
+xnoremap <buffer> i$1 :<c-u>call <SID>$2('i')<cr>
+function! s:$2(mode)
+	return
+endfunction
+endsnippet
+
+snippet plugin
+if exists("g:loaded_${1:plugin}") || &cp
+	finish
+endif
+
+let g:loaded_$1 = '0.0.1' " version number
+let s:keepcpo = &cpo
+set cpo&vim
+
+${2}
+
+let &cpo = s:keepcpo
+unlet s:keepcpo
+endsnippet
+
+snippet class
+" Constructor:
+" ============
+
+function! ${1:function#name}()
+	let ${2:object} = {
+		\ }
+
+	return $2
+endfunction
+
+" Methods:
+" ========
+endsnippet
+
+snippet aug
+augroup ${1}
+	autocmd!
+
+	${2}
+augroup END
+endsnippet

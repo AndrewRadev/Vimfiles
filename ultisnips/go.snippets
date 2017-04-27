@@ -1,0 +1,38 @@
+snippet if
+if ${1:condition} {
+	${2}
+}
+endsnippet
+
+snippet iferr
+if ${1:v}, err := ${2:statement}; err != nil {
+	${3}
+}
+endsnippet
+
+snippet ifd
+if ${1:v}, _ := ${2:statement}; ${3:condition} {
+	${4}
+}
+endsnippet
+
+snippet main
+package main
+
+import (
+)
+
+func main() {
+
+}
+endsnippet
+
+snippet func
+func ${1:name}(${2:argument string}) (${3:returnType}) {
+	${4}
+}
+endsnippet
+
+snippet p
+fmt.Printf("%#v\n", ${1:variable})
+endsnippet

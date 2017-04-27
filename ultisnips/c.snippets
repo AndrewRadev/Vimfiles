@@ -1,0 +1,75 @@
+snippet main
+int main(int argc, const char *args[]) {
+	${1}
+
+	return 0;
+}
+endsnippet
+
+snippet malloc
+${1:type}* ${2:variable} = ($1*)malloc(sizeof($1) * ${3:n});
+endsnippet
+
+snippet once
+#ifndef ${1:`v! toupper(expand('%:r'))`_H}
+#define $1
+
+${2}
+
+#endif
+endsnippet
+
+snippet if
+if (${1:/* condition */}) {
+	${2}
+}
+endsnippet
+
+snippet do
+do {
+	${2:/* code */}
+} while ( ${1:/* condition */} );
+endsnippet
+
+snippet wh
+while (${1:/* condition */}) {
+	${2:/* code */}
+}
+endsnippet
+
+snippet for
+for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	${4:/* code */}
+}
+endsnippet
+
+snippet fun
+${1:void} ${2:function_name}(${3}) {
+	${4:/* code */}
+}
+endsnippet
+
+snippet st
+struct ${1:Name} {
+	${2:/* data */}
+}${3: /* optional variable list */};${4}
+endsnippet
+
+snippet tds
+typedef struct ${2:_$1 }{
+	${3:/* data */}
+} ${1:Name};
+endsnippet
+
+snippet tde
+typedef enum {
+	${1:/* data */}
+} ${2:foo};
+endsnippet
+
+# printf
+# unfortunately version this isn't as nice as TextMates's, given the lack of a
+# dynamic `...`
+snippet pr
+printf( "${1:%s}\n"${2} );${3}
+endsnippet
