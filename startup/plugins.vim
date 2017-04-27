@@ -17,7 +17,6 @@ let g:NERDTreeMapCWD = '-'
 let g:NERDTreeMapOpenVSplit = 'so'
 
 " Snippet settings:
-let g:snippets_dir = expand('~/.vim/snippets/')
 let g:snips_author = 'Andrew Radev'
 
 " Proj settings:
@@ -180,3 +179,6 @@ let g:colorizer_nomap = 1
 
 " Deleft
 let g:deleft_remove_strategy = 'spaces'
+
+" UltiSnips
+let g:UltiSnipsSnippetDirectories = ['ultisnips']
