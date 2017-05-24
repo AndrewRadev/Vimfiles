@@ -40,9 +40,6 @@
 [submodule "bundle/linediff"]
   path = bundle/linediff
   url = https://github.com/AndrewRadev/linediff.vim.git
-[submodule "bundle/cucumber"]
-  path = bundle/cucumber
-  url = https://github.com/tpope/vim-cucumber.git
 [submodule "bundle/extradite"]
   path = bundle/extradite
   url = https://github.com/int3/vim-extradite.git
@@ -131,9 +128,6 @@
 [submodule "bundle/golang"]
   path = bundle/golang
   url = https://github.com/AndrewRadev/vim-golang
-[submodule "bundle/gapply"]
-  path = bundle/gapply
-  url = https://github.com/AndrewRadev/gapply.vim
 [submodule "bundle/table-mode"]
   path = bundle/table-mode
   url = git://github.com/dhruvasagar/vim-table-mode.git
@@ -146,9 +140,6 @@
 [submodule "bundle/gundo"]
   path = bundle/gundo
   url = https://github.com/sjl/gundo.vim.git
-[submodule "bundle/subtitles"]
-  path = bundle/subtitles
-  url = https://github.com/AndrewRadev/subtitles.vim
 [submodule "bundle/anzu"]
   path = bundle/anzu
   url = https://github.com/osyo-manga/vim-anzu.git
@@ -180,9 +171,6 @@
 [submodule "bundle/elixir"]
   path = bundle/elixir
   url = https://github.com/elixir-lang/vim-elixir
-[submodule "bundle/emblem"]
-  path = bundle/emblem
-  url = https://github.com/andorov/vim-emblem
 [submodule "bundle/csv"]
   path = bundle/csv
   url = https://github.com/chrisbra/csv.vim
@@ -238,9 +226,6 @@
 [submodule "bundle/markdown-toc"]
   path = bundle/markdown-toc
   url = https://github.com/mzlogin/vim-markdown-toc
-[submodule "bundle/bundler"]
-  path = bundle/bundler
-  url = https://github.com/tpope/vim-bundler
 [submodule "bundle/uppercase-sql"]
   path = bundle/uppercase-sql
   url = https://github.com/alcesleo/vim-uppercase-sql
