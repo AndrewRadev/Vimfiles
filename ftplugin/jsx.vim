@@ -9,9 +9,13 @@ augroup END
 
 function! s:Includeexpr()
   let word = expand('<cword>')
-  let pattern = '^\s*import\s\+'.word.'\s\+from\s\+\zs[''"]\(.\{-}\)[''"]'
 
-  if search(pattern, 'wc') <= 0
+  let import_pattern =
+        \ '^\s*import\s\+\%({\%(\w\|,\s*\)*\)\='.
+        \ word.
+        \ '\%(\%(\w\|,\|\s*\)*}\)\=\s\+from\s\+\zs[''"]\(.\{-}\)[''"]'
+
+  if search(import_pattern, 'wc') <= 0
     return word
   endif
 
