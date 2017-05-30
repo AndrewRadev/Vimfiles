@@ -364,3 +364,13 @@ endfunction
 
 " Easier :Modsearch
 nnoremap _s :Modsearch<space>
+
+" Source:
+" https://stackoverflow.com/questions/44108563/how-to-delete-or-yank-inside-slashes-and-asterisks
+"
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '-', '#' ]
+  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
