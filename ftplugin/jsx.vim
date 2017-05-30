@@ -30,8 +30,10 @@ function! s:Includeexpr()
   let suffixes = ['.js', '.jsx', '/index.js', '/index.jsx']
 
   for suffix in suffixes
-    if filereadable(absolute_path.suffix)
-      return absolute_path.suffix
+    let path = substitute(absolute_path, '/$', '', '').suffix
+
+    if filereadable(path)
+      return simplify(fnamemodify(path, ':.'))
     endif
   endfor
 
