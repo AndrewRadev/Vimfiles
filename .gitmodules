@@ -262,3 +262,6 @@
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
+[submodule "bundle/vader"]
+	path = bundle/vader
+	url = https://github.com/junegunn/vader.vim
