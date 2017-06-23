@@ -182,3 +182,5 @@ let g:deleft_remove_strategy = 'spaces'
 
 " UltiSnips
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
