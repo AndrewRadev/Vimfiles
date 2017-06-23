@@ -171,9 +171,6 @@ augroup codi_user
   autocmd User CodiLeavePre :let g:skip_clean_whitespace = 0
 augroup END
 
-" Racer customizations
-let g:racer_experimental_completer = 1
-
 " Colorizer
 let g:colorizer_nomap = 1
 

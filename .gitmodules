@@ -253,9 +253,6 @@
 [submodule "bundle/deleft"]
 	path = bundle/deleft
 	url = https://github.com/AndrewRadev/deleft.vim.git
-[submodule "bundle/racer"]
-	path = bundle/racer
-	url = https://github.com/racer-rust/vim-racer
 [submodule "bundle/endwise"]
 	path = bundle/endwise
 	url = https://github.com/tpope/vim-endwise
