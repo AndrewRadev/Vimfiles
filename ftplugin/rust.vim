@@ -6,8 +6,7 @@ let b:inline_var_pattern   = '\vlet (\k+)\s+\=\s+(.*);'
 
 let b:outline_pattern = '\s*\%(pub\s*\)\=\(impl\|fn\|struct\|macro_rules!\)\(\s\|$\)'
 
-nmap <buffer> gd <Plug>(rust-def)
-nmap <buffer> gm <Plug>(rust-doc)
+nnoremap <buffer> gm :call Open('http://docs.rs/' . expand("<cword>"))<CR>
 
 onoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
 xnoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
