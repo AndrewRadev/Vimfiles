@@ -20,7 +20,11 @@ endsnippet
 snippet cla
 class ${1:`v! lib#CapitalCamelCase(expand('%:r'))`}:
 	def __init__(self):
-		${4:super($1, self).__init__()}
+		${4:super().__init__()}
+endsnippet
+
+snippet super
+super().__init__(${1})
 endsnippet
 
 snippet def
