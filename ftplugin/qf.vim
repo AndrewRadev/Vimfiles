@@ -8,18 +8,19 @@ nnoremap <buffer> <c-w>> :silent cnewer<cr>
 nnoremap <buffer> ,w :WritableSearchFromQuickfix<cr>
 
 let b:whitespaste_disable = 1
-nnoremap <buffer> p :call <SID>PasteBacktrace()<cr>
+nnoremap <buffer> p :call <SID>PasteBacktrace(v:register)<cr>
 
 if !exists('*s:PasteBacktrace')
-  function s:PasteBacktrace()
+  function s:PasteBacktrace(register)
     let saved_errorformat = &errorformat
+    let register_contents = getreg(a:register)
 
-    if @" =~ '^rspec'
+    if register_contents =~ '^rspec'
       set errorformat=rspec\ %f:%l\ #\ %m
-      let rspec_errors = @"
+      let rspec_errors = register_contents
       cexpr rspec_errors
     else
-      echohl WarningMsg | echo "Don't know how to paste:\n" . @" | echohl NONE
+      echohl WarningMsg | echo "Don't know how to paste:\n" . register_contents | echohl NONE
     endif
 
     let &errorformat = saved_errorformat
