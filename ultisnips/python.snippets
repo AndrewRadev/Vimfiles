@@ -18,7 +18,7 @@ for ${1:needle} in ${2:haystack}:
 endsnippet
 
 snippet cla
-class ${1:`v! lib#CapitalCamelCase(expand('%:r'))`}:
+class ${1:`v! lib#CapitalCamelCase(expand('%:t:r'))`}:
 	def __init__(self):
 		${4:super().__init__()}
 endsnippet
@@ -27,9 +27,18 @@ snippet super
 super().__init__(${1})
 endsnippet
 
+snippet indent
+Indent is: `!v indent(".")`.
+endsnippet
+
 snippet def
-def ${1:fname}(${2:`v! indent('.') ? 'self' : ''`}):
-	${3:pass}
+def ${1:fname}(${2}):
+	pass
+endsnippet
+
+snippet defs
+def ${1:fname}(self, ${2:var}):
+	pass
 endsnippet
 
 snippet defi

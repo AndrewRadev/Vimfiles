@@ -11,7 +11,7 @@ ${1:type}* ${2:variable} = ($1*)malloc(sizeof($1) * ${3:n});
 endsnippet
 
 snippet once
-#ifndef ${1:`v! toupper(expand('%:r'))`_H}
+#ifndef ${1:`v! toupper(expand('%:t:r'))`_H}
 #define $1
 
 ${2}
