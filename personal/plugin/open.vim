@@ -1,6 +1,5 @@
-"
-" Public:
-"
+" Note: depends on splitjoin
+
 command! -count=0 -nargs=* -complete=file Open call s:Open(<count>, <f-args>)
 
 function! Open(path)
@@ -12,16 +11,13 @@ function! OpenURL(path)
   call s:Open(0, a:path)
 endfunction
 
-"
-" Private:
-"
 function! s:Open(count, ...)
   if a:count > 0
     " then the path is visually selected
-    let path = s:GetMotion('gv')
+    let path = sj#GetMotion('gv')
   elseif a:0 == 0
     " then the path is the filename under the cursor
-    let path = expand('<cfile>')
+    let path = s:GetCursorUrl()
   else
     " it has been given as an argument
     let path = join(a:000, ' ')
@@ -51,18 +47,19 @@ function! s:OpenUrl(url)
   end
 endfunction
 
-" Execute the normal mode motion "motion" and return the text it marks. Note
-" that the motion needs to include a visual mode key, like "V", "v" or "gv".
-function! s:GetMotion(motion)
-  let saved_cursor   = getpos('.')
-  let saved_reg      = getreg('z')
-  let saved_reg_type = getregtype('z')
+function! s:GetCursorUrl()
+  let cfile = expand('<cfile>')
+  let saved_cursor = getpos('.')
 
-  exec 'normal! '.a:motion.'"zy'
-  let text = @z
+  try
+    if sj#SearchUnderCursor('\V'.cfile) <= 0
+      return cfile
+    endif
 
-  call setreg('z', saved_reg, saved_reg_type)
-  call setpos('.', saved_cursor)
-
-  return text
+    let start_col = col('.')
+    call sj#SearchUnderCursor('\V'.cfile.'\m\%(\f\|[?!=&]\)*', 'e')
+    return sj#GetCols(start_col, col('.'))
+  finally
+    call setpos('.', saved_cursor)
+  endtry
 endfunction
