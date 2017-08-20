@@ -262,3 +262,6 @@
 [submodule "bundle/vader"]
 	path = bundle/vader
 	url = https://github.com/junegunn/vader.vim
+[submodule "bundle/vis"]
+	path = bundle/vis
+	url = https://github.com/vim-scripts/vis
