@@ -5,8 +5,8 @@ let b:surround_{char2nr('_')} = "_\r_"
 
 hi link markdownItalic Normal
 
-call SetupPreview('html', 'markdown %s')
-RunCommand Preview
+" call SetupPreview('html', 'markdown %s')
+RunCommand silent call system('quickmd '.shellescape(expand('%')).' 2>&1 > /dev/null &')
 
 let b:outline_pattern = '^#\+\s\+\w'
 
