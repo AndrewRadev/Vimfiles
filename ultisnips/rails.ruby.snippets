@@ -21,8 +21,9 @@ remove_column :${1:table}, :${2:column}
 endsnippet
 
 snippet join
-create_table :$1s_$2s, id: false do |t|
-	t.references :${1:foo}, :${2:bar}
+create_join_table :${1:foo}s, :${2:bar}s do |t|
+	t.index [:$1_id, :$2_id]
+	t.index [:$2_id, :$1_id]
 end
 endsnippet
 
