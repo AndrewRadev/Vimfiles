@@ -36,6 +36,7 @@ if filereadable(fnamemodify('~/.vimrc.local', ':p'))
 endif
 
 " Presentation mode
+" set background=light
 " colo PaperColor
 " let g:NERDTreeWinSize = 20
 " set nowrap
