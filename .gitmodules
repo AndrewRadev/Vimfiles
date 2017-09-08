@@ -258,7 +258,7 @@
 	url = https://github.com/tpope/vim-endwise
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips
+	url = https://github.com/AndrewRadev/ultisnips
 [submodule "bundle/vader"]
 	path = bundle/vader
 	url = https://github.com/junegunn/vader.vim
