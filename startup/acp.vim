@@ -72,10 +72,15 @@ call add(g:acp_behavior.go, {
       \ })
 
 call add(g:acp_behavior.rust, {
-      \   'command' : "\<C-x>\<C-o>",
-      \   'meets'   : 'AcpMeetsForRust',
+      \   'command' : "\<C-n>",
+      \   'meets'   : 'acp#meetsForKeyword',
       \   'repeat'  : 0,
       \ })
+" call add(g:acp_behavior.rust, {
+"       \   'command' : "\<C-x>\<C-o>",
+"       \   'meets'   : 'AcpMeetsForRust',
+"       \   'repeat'  : 0,
+"       \ })
 
 " Added the condition that the tag does not contain '?'
 function! AcpMeetsForPhpHtmlTag(context)
