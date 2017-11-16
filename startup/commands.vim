@@ -283,3 +283,26 @@ endfunction
 
 " Trace Vim exceptions
 command! Trace call exception#trace()
+
+command! -complete=file -nargs=1 Swap call s:Swap(<f-args>)
+function! s:Swap(filename)
+  let first_filename = expand('%')
+  let second_filename = a:filename
+  let temp_filename = tempname()
+
+  if rename(first_filename, temp_filename) < 0
+    echoerr "Couldn't rename ".first_filename." to ".temp_filename
+    return
+  endif
+  if rename(second_filename, first_filename) < 0
+    echoerr "Couldn't rename ".second_filename." to ".first_filename
+    return
+  endif
+  if rename(temp_filename, second_filename) < 0
+    echoerr "Couldn't rename ".temp_filename." to ".second_filename
+    return
+  endif
+
+  exe 'edit! '.fnameescape(second_filename)
+  exe 'edit! '.fnameescape(first_filename)
+endfunction
