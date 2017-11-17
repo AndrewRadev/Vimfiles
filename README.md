@@ -31,7 +31,7 @@ made sense to me as "plugins".
 
 ## Personal
 
-The "[personal][]" directory contains small scripts that I don't consider good
+The "[miniplugins][]" directory contains small scripts that I don't consider good
 plugin material, but are useful anyway.
 
 ## WIP
@@ -90,7 +90,7 @@ not very generic or redistributable, which is why I tend to put them there.
 [colors/andrew.vim]:     https://github.com/AndrewRadev/Vimfiles/tree/master/colors/andrew.vim
 [ftplugin]:              https://github.com/AndrewRadev/Vimfiles/tree/master/after
 [nerdtree_plugin]:       https://github.com/AndrewRadev/Vimfiles/tree/master/nerdtree_plugin
-[personal]:              https://github.com/AndrewRadev/Vimfiles/tree/master/personal
+[miniplugins]:           https://github.com/AndrewRadev/Vimfiles/tree/master/miniplugins
 [plugin/afterimage.vim]: https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/afterimage.vim
 [plugin/jad.vim]:        https://github.com/AndrewRadev/Vimfiles/tree/master/plugin/jad.vim
 [projects]:              https://github.com/AndrewRadev/Vimfiles/tree/master/projects

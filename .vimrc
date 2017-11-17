@@ -19,9 +19,9 @@ runtime startup/windows.vim
 runtime! ftplugin/man.vim
 autocmd FileType man setlocal foldmethod=indent
 
-" Add "personal" directory to runtimepath
-set runtimepath+=~/.vim/personal
-for dir in split(glob('~/.vim/personal/*'), "\n")
+" Add "miniplugins" directory to runtimepath
+set runtimepath+=~/.vim/miniplugins
+for dir in split(glob('~/.vim/miniplugins/*'), "\n")
   exe "set runtimepath+=".dir
 endfor
 
