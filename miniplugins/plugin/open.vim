@@ -49,7 +49,7 @@ endfunction
 
 function! s:GetCursorUrl()
   let cfile = expand('<cfile>')
-  let saved_cursor = getpos('.')
+  let saved_view = winsaveview()
 
   try
     if sj#SearchUnderCursor('\V'.cfile) <= 0
@@ -60,6 +60,6 @@ function! s:GetCursorUrl()
     call sj#SearchUnderCursor('\V'.cfile.'\m\%(\f\|[?!=&]\)*', 'e')
     return sj#GetCols(start_col, col('.'))
   finally
-    call setpos('.', saved_cursor)
+    call winrestview(saved_view)
   endtry
 endfunction
