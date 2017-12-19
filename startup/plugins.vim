@@ -175,7 +175,7 @@ augroup END
 let g:colorizer_nomap = 1
 
 " Deleft
-let g:deleft_remove_strategy = 'spaces'
+let g:deleft_remove_strategy = 'delete'
 
 " UltiSnips
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
