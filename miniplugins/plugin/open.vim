@@ -41,6 +41,8 @@ function! s:OpenUrl(url)
       echoerr 'You need to install xdg-open to be able to open urls'
       return
     end
+  elseif has('win32') || has('win64')
+    silent exe "! start ".a:url
   else
     echoerr 'Don''t know how to open a URL on this system'
     return
