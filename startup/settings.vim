@@ -24,11 +24,16 @@ set nojoinspaces
 set number
 set ruler
 set diffopt=filler,vertical,iwhite
-set fillchars=stl:-,stlnc:-,vert:\│,fold:\ ,diff:-
 set guioptions=crb
 set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
 set laststatus=2
+
+if has('win32') || has('win64')
+  set fillchars=stl:-,stlnc:-,vert:\|,fold:\ ,diff:-
+else
+  set fillchars=stl:-,stlnc:-,vert:\│,fold:\ ,diff:-
+endif
 
 set statusline=
 set statusline+=%<%f\ %h%m%r             " filename and flags
