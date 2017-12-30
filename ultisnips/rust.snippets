@@ -12,6 +12,16 @@ impl ${1:StructName} {
 }
 endsnippet
 
+snippet iter
+impl Iterator for ${1:SomeType} {
+	type Item = ${2:SomeItem};
+
+	fn next(&mut self) -> Option<Self::Item> {
+
+	}
+}
+endsnippet
+
 snippet test
 #[test]
 fn test_${1:something}() {
