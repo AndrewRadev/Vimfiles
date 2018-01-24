@@ -12,7 +12,12 @@ augroup RailsExtra
         \ if !exists('b:ember_root') |
         \   exe 'cmap <buffer><expr> <Plug><cfile> RailsExtraIncludeexpr()' |
         \ endif
+
+  autocmd User Rails command! -buffer -nargs=* -complete=custom,s:CompleteRailsModels Eschema call s:Eschema(<q-args>)
 augroup END
+
+command! Eroutes edit config/routes.rb
+command! -nargs=1 -complete=custom,s:CompleteRailsModels Emodel call s:Emodel(<q-args>)
 
 function! RailsExtraIncludeexpr()
   let callbacks = [
@@ -200,10 +205,6 @@ function! s:FindRailsFile(pattern)
     return ''
   endif
 endfunction
-
-command! Eroutes edit config/routes.rb
-command! -nargs=* -complete=custom,s:CompleteRailsModels Eschema call s:Eschema(<q-args>)
-command! -nargs=1 -complete=custom,s:CompleteRailsModels Emodel call s:Emodel(<q-args>)
 
 function! s:Emodel(model_name)
   let model_name = rails#singularize(rails#underscore(a:model_name))
