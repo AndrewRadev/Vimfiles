@@ -17,6 +17,7 @@ augroup RailsExtra
 augroup END
 
 command! Eroutes edit config/routes.rb
+command! -nargs=* -complete=custom,s:CompleteRailsModels Eschema call s:Eschema(<q-args>)
 command! -nargs=1 -complete=custom,s:CompleteRailsModels Emodel call s:Emodel(<q-args>)
 
 function! RailsExtraIncludeexpr()
