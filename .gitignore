@@ -4,5 +4,6 @@ bundle/*/doc/tags
 bundle/*/doc/tags-*
 doc/tags
 doc/tags-*
+spell/*.spl
 
 .netrwhist
