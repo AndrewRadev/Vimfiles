@@ -1,5 +1,3 @@
-set foldmethod=indent
-
 let b:surround_{char2nr('t')} = "= t '\r' "
 
 let b:switch_definitions =
