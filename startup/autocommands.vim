@@ -3,7 +3,7 @@ augroup custom
 
   " Clean all useless whitespace:
   autocmd BufWritePre *
-        \ if !exists('g:skip_clean_whitespace') && !exists('b:skip_clean_whitespaste') |
+        \ if !exists('g:skip_clean_whitespace') && !exists('b:skip_clean_whitespace') |
         \   exe "CleanWhitespace"                                                      |
         \ endif
 
