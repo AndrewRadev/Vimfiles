@@ -5,7 +5,8 @@ let g:NERDTreeHijackNetrw = 0
 let g:NERDTreeIgnore      = [
       \ '\~$',
       \ '\.o$',
-      \ '\.hi$'
+      \ '\.hi$',
+      \ '\.class$',
       \ ]
 
 " Don't map over J and K
