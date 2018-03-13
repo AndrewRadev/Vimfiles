@@ -268,3 +268,6 @@
 [submodule "bundle/niceblock"]
 	path = bundle/niceblock
 	url = https://github.com/kana/vim-niceblock
+[submodule "bundle/http-client"]
+	path = bundle/http-client
+	url = https://github.com/aquach/vim-http-client
