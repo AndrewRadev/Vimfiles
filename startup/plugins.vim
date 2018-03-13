@@ -182,3 +182,10 @@ let g:deleft_remove_strategy = 'delete'
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+" http-request
+let g:http_client_bind_hotkey = 0
+let g:http_client_json_ft = 'json'
+let g:http_client_result_vsplit = 0
+
+command! HttpRequest HTTPClientDoRequest
