@@ -271,3 +271,6 @@
 [submodule "bundle/http-client"]
 	path = bundle/http-client
 	url = https://github.com/aquach/vim-http-client
+[submodule "bundle/fetch"]
+	path = bundle/fetch
+	url = https://github.com/kopischke/vim-fetch
