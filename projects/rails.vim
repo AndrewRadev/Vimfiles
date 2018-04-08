@@ -9,7 +9,7 @@ augroup Project
 
   " Snippets
   autocmd FileType ruby  set filetype=rails.ruby
-  autocmd FileType erb   set filetype=rails.erb
+  autocmd FileType eruby set filetype=rails.eruby
   autocmd FileType rspec set filetype=rails.rspec.ruby
 augroup END
 
