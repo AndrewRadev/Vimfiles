@@ -4,6 +4,6 @@ augroup Project
   autocmd!
 
   " Snippets
-  autocmd FileType javascript set filetype=ember.javascript
-  autocmd FileType coffee set filetype=ember.coffee
+  autocmd FileType javascript UltiSnipsAddFiletypes ember_javascript
+  autocmd FileType coffee     UltiSnipsAddFiletypes ember_coffeescript
 augroup END
