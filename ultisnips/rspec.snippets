@@ -27,7 +27,7 @@ end
 endsnippet
 
 snippet des
-describe ${1:`v! lib#CapitalCamelCase(substitute(expand('%:t:r'), '_spec$', '', ''))`} do
+describe ${1:`!v lib#CapitalCamelCase(substitute(expand('%:t:r'), '_spec$', '', ''))`} do
 	${2}
 end
 endsnippet
@@ -63,7 +63,7 @@ endsnippet
 snippet skel
 require 'spec_helper'
 
-describe `v! lib#CapitalCamelCase(substitute(expand('%:t:r'), '_spec$', '', ''))` do
+describe `!v lib#CapitalCamelCase(substitute(expand('%:t:r'), '_spec$', '', ''))` do
 	pending
 end
 endsnippet

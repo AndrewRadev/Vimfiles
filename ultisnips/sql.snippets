@@ -41,5 +41,5 @@ INNER JOIN ${1:first}s ON $1s.${2:second}_id = $2s.id
 endsnippet
 
 snippet between
-BETWEEN `v! strftime("%Y-%m-%d %H:%M:%S")` AND `v! strftime("%Y-%m-%d %H:%M:%S")`
+BETWEEN `!v strftime("%Y-%m-%d %H:%M:%S")` AND `!v strftime("%Y-%m-%d %H:%M:%S")`
 endsnippet

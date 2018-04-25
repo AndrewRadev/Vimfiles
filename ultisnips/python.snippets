@@ -4,7 +4,7 @@ snippet #!
 endsnippet
 
 snippet #t
-# TODO (`v! strftime("%Y-%m-%d")`) ${1}
+# TODO (`!v strftime("%Y-%m-%d")`) ${1}
 endsnippet
 
 snippet wh
@@ -18,7 +18,7 @@ for ${1:needle} in ${2:haystack}:
 endsnippet
 
 snippet cla
-class ${1:`v! lib#CapitalCamelCase(expand('%:t:r'))`}:
+class ${1:`!v lib#CapitalCamelCase(expand('%:t:r'))`}:
 	def __init__(self):
 		${4:super().__init__()}
 endsnippet
