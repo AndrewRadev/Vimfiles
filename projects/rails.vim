@@ -2,8 +2,6 @@ runtime projects/ruby.vim
 
 silent AckIgnore log/ tmp/ db/ public/assets/
 
-runtime after/plugin/snippets.vim
-
 augroup Project
   autocmd!
 
