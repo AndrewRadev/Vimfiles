@@ -274,3 +274,6 @@
 [submodule "bundle/fetch"]
 	path = bundle/fetch
 	url = https://github.com/kopischke/vim-fetch
+[submodule "bundle/rhubarb"]
+	path = bundle/rhubarb
+	url = https://github.com/tpope/vim-rhubarb
