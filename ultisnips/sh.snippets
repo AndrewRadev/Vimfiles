@@ -15,8 +15,8 @@ elif [[ ${1:condition} ]]; then
 endsnippet
 
 snippet for
-for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
-	${3:#statements}
+for file in "$@"; do
+	${1}
 done
 endsnippet
 
