@@ -306,3 +306,6 @@ function! s:Swap(filename)
   exe 'edit! '.fnameescape(second_filename)
   exe 'edit! '.fnameescape(first_filename)
 endfunction
+
+" Debug
+command! -nargs=* Debug Decho string(<args>)
