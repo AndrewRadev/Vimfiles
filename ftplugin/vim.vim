@@ -29,8 +29,8 @@ xnoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
 onoremap <buffer> im :<c-u>call <SID>FunctionTextObject('i')<cr>
 xnoremap <buffer> im :<c-u>call <SID>FunctionTextObject('i')<cr>
 function! s:FunctionTextObject(mode)
-  let function_start = search('^\s*function\>', 'bWnc')
-  let function_end   = search('^\s*endfunction\>', 'Wnc')
+  let function_start = search('^\s*func\%[tion]\>', 'bWnc')
+  let function_end   = search('^\s*endfunc\%[tion]\>', 'Wnc')
 
   if function_start <= 0 || function_end <= 0
     return
