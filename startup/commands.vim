@@ -308,4 +308,7 @@ function! s:Swap(filename)
 endfunction
 
 " Debug
-command! -nargs=* Debug Decho string(<args>)
+command! -nargs=* Debug call s:Debug(string(<args>))
+function! s:Debug(args)
+  Decho a:args
+endfunction
