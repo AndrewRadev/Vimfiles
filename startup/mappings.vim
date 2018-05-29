@@ -283,21 +283,21 @@ endfunction
 nnoremap g( :Repeatable call <SID>ToggleBrackets()<cr>
 nnoremap g) :Repeatable call <SID>ToggleBrackets()<cr>
 function! s:ToggleBrackets()
-  let arguments = sideways#Parse()
+  let [_, arguments] = sideways#Parse()
   if empty(arguments)
     return
   endif
 
   let saved_view = winsaveview()
 
-  let start_lineno = arguments[0][0]
+  let start_lineno = arguments[0].start_line
   let start_line   = getline(start_lineno)
-  let end_lineno   = arguments[-1][0]
+  let end_lineno   = arguments[-1].end_line
   let end_line     = getline(end_lineno)
 
-  let start_col       = arguments[0][1]
+  let start_col       = arguments[0].start_col
   let start_col_index = start_col - 1
-  let end_col         = arguments[-1][2]
+  let end_col         = arguments[-1].end_col
   let end_col_index   = end_col - 1
 
   if start_line[start_col_index - 1] == '(' && end_line[end_col_index + 1] == ')'
