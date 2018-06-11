@@ -15,10 +15,10 @@ function! s:ToggleDisco(pattern)
   exe 'syn match Disco /'.escape(a:pattern, '/').'/'
 
   if b:disco_color == "red"
-    highlight Disco ctermfg=blue
+    highlight Disco ctermfg=blue cterm=bold
     let b:disco_color = "blue"
   else
-    highlight Disco ctermfg=red
+    highlight Disco ctermfg=red cterm=bold
     let b:disco_color = "red"
   endif
 endfunction
