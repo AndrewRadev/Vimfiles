@@ -11,574 +11,734 @@ let s:version = '0.9.x'
 "     zR to unfold all recursively
 "     za to toggle a fold
 "     See: http://vim.wikia.com/wiki/Folding
-" - The main section where functions are actually called is located at the end.
-" - The first section right after this note is where themes are defined. Theme
-"   designers only need to work on this section.
+" - The main section is at the end where the functions are called in order.
 
-" THEMES: {{{
+" Theme Repository: {{{
 
 let s:themes = {}
 
-" Theme name should be lowercase
-let s:themes['default'] = {
-      \   'maintainer'  : 'Nikyle Nguyen<NLKNguyen@MSN.com>',
-      \   'source' : 'http://github.com/NLKNguyen/papercolor-theme',
-      \   'description' : 'Original PaperColor Theme, inspired by Google Material Design',
-      \ }
-
-" Theme can have 'light' and/or 'dark' color palette.
-" Color values can be HEX and/or 256-color. Use empty string '' if not provided.
-" Only color00 -> color15 are required. The rest are optional.
-let s:themes['default'].light = {
-      \     'TEST_256_COLOR_CONSISTENCY' : 1,
-      \     'palette' : {
-      \       'color00' : ['#eeeeee', '255'],
-      \       'color01' : ['#af0000', '124'],
-      \       'color02' : ['#008700', '28'],
-      \       'color03' : ['#5f8700', '64'],
-      \       'color04' : ['#0087af', '31'],
-      \       'color05' : ['#878787', '102'],
-      \       'color06' : ['#005f87', '24'],
-      \       'color07' : ['#444444', '238'],
-      \       'color08' : ['#bcbcbc', '250'],
-      \       'color09' : ['#d70000', '160'],
-      \       'color10' : ['#d70087', '162'],
-      \       'color11' : ['#8700af', '91'],
-      \       'color12' : ['#d75f00', '166'],
-      \       'color13' : ['#d75f00', '166'],
-      \       'color14' : ['#005faf', '25'],
-      \       'color15' : ['#005f87', '24'],
-      \       'color16' : ['#0087af', '31'],
-      \       'color17' : ['#008700', '28'],
-      \       'cursor_fg' : ['#eeeeee', '255'],
-      \       'cursor_bg' : ['#005f87', '24'],
-      \       'cursorline' : ['#e4e4e4', '254'],
-      \       'cursorcolumn' : ['#e4e4e4', '254'],
-      \       'cursorlinenr_fg' : ['#af5f00', '130'],
-      \       'cursorlinenr_bg' : ['#eeeeee', '255'],
-      \       'popupmenu_fg' : ['#444444', '238'],
-      \       'popupmenu_bg' : ['#d0d0d0', '252'],
-      \       'search_fg' : ['#444444', '238'],
-      \       'search_bg' : ['#ffff5f', '227'],
-      \       'linenumber_fg' : ['#b2b2b2', '249'],
-      \       'linenumber_bg' : ['#eeeeee', '255'],
-      \       'vertsplit_fg' : ['#005f87', '24'],
-      \       'vertsplit_bg' : ['#eeeeee', '255'],
-      \       'statusline_active_fg' : ['#e4e4e4', '254'],
-      \       'statusline_active_bg' : ['#005f87', '24'],
-      \       'statusline_inactive_fg' : ['#444444', '238'],
-      \       'statusline_inactive_bg' : ['#d0d0d0', '252'],
-      \       'todo_fg' : ['#00af5f', '35'],
-      \       'todo_bg' : ['#eeeeee', '255'],
-      \       'error_fg' : ['#af0000', '124'],
-      \       'error_bg' : ['#ffd7ff', '225'],
-      \       'matchparen_bg' : ['#c6c6c6', '251'],
-      \       'matchparen_fg' : ['#005f87', '24'],
-      \       'visual_fg' : ['#eeeeee', '255'],
-      \       'visual_bg' : ['#0087af', '31'],
-      \       'folded_fg' : ['#0087af', '31'],
-      \       'folded_bg' : ['#afd7ff', '153'],
-      \       'wildmenu_fg': ['#444444', '238'],
-      \       'wildmenu_bg': ['#ffff00', '226'],
-      \       'spellbad':   ['#ffafd7', '218'],
-      \       'spellcap':   ['#ffffaf', '229'],
-      \       'spellrare':  ['#afff87', '156'],
-      \       'spelllocal': ['#d7d7ff', '189'],
-      \       'diffadd_fg':    ['#008700', '28'],
-      \       'diffadd_bg':    ['#afffaf', '157'],
-      \       'diffdelete_fg': ['#af0000', '124'],
-      \       'diffdelete_bg': ['#ffd7ff', '225'],
-      \       'difftext_fg':   ['#0087af', '31'],
-      \       'difftext_bg':   ['#ffffd7', '230'],
-      \       'diffchange_fg': ['#444444', '238'],
-      \       'diffchange_bg': ['#ffd787', '222'],
-      \       'tabline_bg':          ['#005f87', '24'],
-      \       'tabline_active_fg':   ['#444444', '238'],
-      \       'tabline_active_bg':   ['#e4e4e4', '254'],
-      \       'tabline_inactive_fg': ['#eeeeee', '255'],
-      \       'tabline_inactive_bg': ['#0087af', '31'],
-      \       'buftabline_bg':          ['#005f87', '24'],
-      \       'buftabline_current_fg':  ['#444444', '238'],
-      \       'buftabline_current_bg':  ['#e4e4e4', '254'],
-      \       'buftabline_active_fg': ['#eeeeee', '255'],
-      \       'buftabline_active_bg': ['#005faf', '25'],
-      \       'buftabline_inactive_fg': ['#eeeeee', '255'],
-      \       'buftabline_inactive_bg': ['#0087af', '31']
-      \     }
-      \   }
-
-let s:themes['default'].dark = {
-      \     'TEST_256_COLOR_CONSISTENCY' : 1,
-      \     'palette' : {
-      \       'color00' : ['#1c1c1c', '234'],
-      \       'color01' : ['#af005f', '125'],
-      \       'color02' : ['#5faf00', '70'],
-      \       'color03' : ['#d7af5f', '179'],
-      \       'color04' : ['#5fafd7', '74'],
-      \       'color05' : ['#808080', '244'],
-      \       'color06' : ['#d7875f', '173'],
-      \       'color07' : ['#d0d0d0', '252'],
-      \       'color08' : ['#585858', '240'],
-      \       'color09' : ['#5faf5f', '71'],
-      \       'color10' : ['#afd700', '148'],
-      \       'color11' : ['#af87d7', '140'],
-      \       'color12' : ['#ffaf00', '214'],
-      \       'color13' : ['#ff5faf', '205'],
-      \       'color14' : ['#00afaf', '37'],
-      \       'color15' : ['#5f8787', '66'],
-      \       'color16' : ['#5fafd7', '74'],
-      \       'color17' : ['#d7af00', '178'],
-      \       'cursor_fg' : ['#1c1c1c', '234'],
-      \       'cursor_bg' : ['#c6c6c6', '251'],
-      \       'cursorline' : ['#303030', '236'],
-      \       'cursorcolumn' : ['#303030', '236'],
-      \       'cursorlinenr_fg' : ['#ffff00', '226'],
-      \       'cursorlinenr_bg' : ['#1c1c1c', '234'],
-      \       'popupmenu_fg' : ['#c6c6c6', '251'],
-      \       'popupmenu_bg' : ['#303030', '236'],
-      \       'search_fg' : ['#000000', '16'],
-      \       'search_bg' : ['#00875f', '29'],
-      \       'linenumber_fg' : ['#585858', '240'],
-      \       'linenumber_bg' : ['#1c1c1c', '234'],
-      \       'vertsplit_fg' : ['#5f8787', '66'],
-      \       'vertsplit_bg' : ['#1c1c1c', '234'],
-      \       'statusline_active_fg' : ['#1c1c1c', '234'],
-      \       'statusline_active_bg' : ['#5f8787', '66'],
-      \       'statusline_inactive_fg' : ['#bcbcbc', '250'],
-      \       'statusline_inactive_bg' : ['#3a3a3a', '237'],
-      \       'todo_fg' : ['#ff8700', '208'],
-      \       'todo_bg' : ['#1c1c1c', '234'],
-      \       'error_fg' : ['#af005f', '125'],
-      \       'error_bg' : ['#5f0000', '52'],
-      \       'matchparen_bg' : ['#4e4e4e', '239'],
-      \       'matchparen_fg' : ['#c6c6c6', '251'],
-      \       'visual_fg' : ['#000000', '16'],
-      \       'visual_bg' : ['#8787af', '103'],
-      \       'folded_fg' : ['#d787ff', '177'],
-      \       'folded_bg' : ['#5f005f', '53'],
-      \       'wildmenu_fg': ['#1c1c1c', '234'],
-      \       'wildmenu_bg': ['#afd700', '148'],
-      \       'tabline_bg':          ['#262626', '235'],
-      \       'tabline_active_fg':   ['#121212', '233'],
-      \       'tabline_active_bg':   ['#00afaf', '37'],
-      \       'tabline_inactive_fg': ['#bcbcbc', '250'],
-      \       'tabline_inactive_bg': ['#585858', '240'],
-      \       'spellbad':   ['#5f0000', '52'],
-      \       'spellcap':   ['#5f005f', '53'],
-      \       'spellrare':  ['#005f00', '22'],
-      \       'spelllocal': ['#00005f', '17'],
-      \       'diffadd_fg':    ['#87d700', '112'],
-      \       'diffadd_bg':    ['#005f00', '22'],
-      \       'diffdelete_fg': ['#af005f', '125'],
-      \       'diffdelete_bg': ['#5f0000', '52'],
-      \       'difftext_fg':   ['#5fffff', '87'],
-      \       'difftext_bg':   ['#008787', '30'],
-      \       'diffchange_fg': ['#d0d0d0', '252'],
-      \       'diffchange_bg': ['#005f5f', '23']
-      \     }
-      \   }
-
-
 " }}}
 
-" Get Selected Theme: {{{
+fun! s:register_default_theme()
+  " Theme name should be lowercase
+  let s:themes['default'] = {
+        \   'maintainer'  : 'Nikyle Nguyen <me@Nikyle.com>',
+        \   'source' : 'http://github.com/NLKNguyen/papercolor-theme',
+        \   'description' : 'The original PaperColor Theme, inspired by Google Material Design',
+        \   'options' : {
+        \       'allow_bold': 1
+        \    }
+        \ }
 
-let s:theme_name = 'default'
+  " Theme can have 'light' and/or 'dark' color palette.
+  " Color values can be HEX and/or 256-color. Use empty string '' if not provided.
+  " Only color00 -> color15 are required. The rest are optional.
+  let s:themes['default'].light = {
+        \     'NO_CONVERSION': 1,
+        \     'TEST_256_COLOR_CONSISTENCY' : 1,
+        \     'palette' : {
+        \       'color00' : ['#eeeeee', '255'],
+        \       'color01' : ['#af0000', '124'],
+        \       'color02' : ['#008700', '28'],
+        \       'color03' : ['#5f8700', '64'],
+        \       'color04' : ['#0087af', '31'],
+        \       'color05' : ['#878787', '102'],
+        \       'color06' : ['#005f87', '24'],
+        \       'color07' : ['#444444', '238'],
+        \       'color08' : ['#bcbcbc', '250'],
+        \       'color09' : ['#d70000', '160'],
+        \       'color10' : ['#d70087', '162'],
+        \       'color11' : ['#8700af', '91'],
+        \       'color12' : ['#d75f00', '166'],
+        \       'color13' : ['#d75f00', '166'],
+        \       'color14' : ['#005faf', '25'],
+        \       'color15' : ['#005f87', '24'],
+        \       'color16' : ['#0087af', '31'],
+        \       'color17' : ['#008700', '28'],
+        \       'cursor_fg' : ['#eeeeee', '255'],
+        \       'cursor_bg' : ['#005f87', '24'],
+        \       'cursorline' : ['#e4e4e4', '254'],
+        \       'cursorcolumn' : ['#e4e4e4', '254'],
+        \       'cursorlinenr_fg' : ['#af5f00', '130'],
+        \       'cursorlinenr_bg' : ['#eeeeee', '255'],
+        \       'popupmenu_fg' : ['#444444', '238'],
+        \       'popupmenu_bg' : ['#d0d0d0', '252'],
+        \       'search_fg' : ['#444444', '238'],
+        \       'search_bg' : ['#ffff5f', '227'],
+        \       'linenumber_fg' : ['#b2b2b2', '249'],
+        \       'linenumber_bg' : ['#eeeeee', '255'],
+        \       'vertsplit_fg' : ['#005f87', '24'],
+        \       'vertsplit_bg' : ['#eeeeee', '255'],
+        \       'statusline_active_fg' : ['#e4e4e4', '254'],
+        \       'statusline_active_bg' : ['#005f87', '24'],
+        \       'statusline_inactive_fg' : ['#444444', '238'],
+        \       'statusline_inactive_bg' : ['#d0d0d0', '252'],
+        \       'todo_fg' : ['#00af5f', '35'],
+        \       'todo_bg' : ['#eeeeee', '255'],
+        \       'error_fg' : ['#af0000', '124'],
+        \       'error_bg' : ['#ffd7ff', '225'],
+        \       'matchparen_bg' : ['#c6c6c6', '251'],
+        \       'matchparen_fg' : ['#005f87', '24'],
+        \       'visual_fg' : ['#eeeeee', '255'],
+        \       'visual_bg' : ['#0087af', '31'],
+        \       'folded_fg' : ['#0087af', '31'],
+        \       'folded_bg' : ['#afd7ff', '153'],
+        \       'wildmenu_fg': ['#444444', '238'],
+        \       'wildmenu_bg': ['#ffff00', '226'],
+        \       'spellbad':   ['#ffafd7', '218'],
+        \       'spellcap':   ['#ffffaf', '229'],
+        \       'spellrare':  ['#afff87', '156'],
+        \       'spelllocal': ['#d7d7ff', '189'],
+        \       'diffadd_fg':    ['#008700', '28'],
+        \       'diffadd_bg':    ['#afffaf', '157'],
+        \       'diffdelete_fg': ['#af0000', '124'],
+        \       'diffdelete_bg': ['#ffd7ff', '225'],
+        \       'difftext_fg':   ['#0087af', '31'],
+        \       'difftext_bg':   ['#ffffd7', '230'],
+        \       'diffchange_fg': ['#444444', '238'],
+        \       'diffchange_bg': ['#ffd787', '222'],
+        \       'tabline_bg':          ['#005f87', '24'],
+        \       'tabline_active_fg':   ['#444444', '238'],
+        \       'tabline_active_bg':   ['#e4e4e4', '254'],
+        \       'tabline_inactive_fg': ['#eeeeee', '255'],
+        \       'tabline_inactive_bg': ['#0087af', '31'],
+        \       'buftabline_bg':          ['#005f87', '24'],
+        \       'buftabline_current_fg':  ['#444444', '238'],
+        \       'buftabline_current_bg':  ['#e4e4e4', '254'],
+        \       'buftabline_active_fg':   ['#eeeeee', '255'],
+        \       'buftabline_active_bg':   ['#005faf', '25'],
+        \       'buftabline_inactive_fg': ['#eeeeee', '255'],
+        \       'buftabline_inactive_bg': ['#0087af', '31']
+        \     }
+        \   }
 
-if exists("g:PaperColor_Theme") " Users expressed theme preference
-  let lowercase_theme_name = tolower(g:PaperColor_Theme)
+  " TODO: idea for subtheme options
+  " let s:themes['default'].light.subtheme = {
+  "       \     'alternative' : {
+  "       \         'options' : {
+  "       \           'transparent_background': 1
+  "       \         },
+  "       \         'palette' : {
+  "       \         }
+  "       \     }
+  "       \ }
 
-  if has_key(s:themes, lowercase_theme_name) "the name is part of built-in themes
-    let s:theme_name = lowercase_theme_name
+  let s:themes['default'].dark = {
+        \     'NO_CONVERSION': 1,
+        \     'TEST_256_COLOR_CONSISTENCY' : 1,
+        \     'palette' : {
+        \       'color00' : ['#1c1c1c', '234'],
+        \       'color01' : ['#af005f', '125'],
+        \       'color02' : ['#5faf00', '70'],
+        \       'color03' : ['#d7af5f', '179'],
+        \       'color04' : ['#5fafd7', '74'],
+        \       'color05' : ['#808080', '244'],
+        \       'color06' : ['#d7875f', '173'],
+        \       'color07' : ['#d0d0d0', '252'],
+        \       'color08' : ['#585858', '240'],
+        \       'color09' : ['#5faf5f', '71'],
+        \       'color10' : ['#afd700', '148'],
+        \       'color11' : ['#af87d7', '140'],
+        \       'color12' : ['#ffaf00', '214'],
+        \       'color13' : ['#ff5faf', '205'],
+        \       'color14' : ['#00afaf', '37'],
+        \       'color15' : ['#5f8787', '66'],
+        \       'color16' : ['#5fafd7', '74'],
+        \       'color17' : ['#d7af00', '178'],
+        \       'cursor_fg' : ['#1c1c1c', '234'],
+        \       'cursor_bg' : ['#c6c6c6', '251'],
+        \       'cursorline' : ['#303030', '236'],
+        \       'cursorcolumn' : ['#303030', '236'],
+        \       'cursorlinenr_fg' : ['#ffff00', '226'],
+        \       'cursorlinenr_bg' : ['#1c1c1c', '234'],
+        \       'popupmenu_fg' : ['#c6c6c6', '251'],
+        \       'popupmenu_bg' : ['#303030', '236'],
+        \       'search_fg' : ['#000000', '16'],
+        \       'search_bg' : ['#00875f', '29'],
+        \       'linenumber_fg' : ['#585858', '240'],
+        \       'linenumber_bg' : ['#1c1c1c', '234'],
+        \       'vertsplit_fg' : ['#5f8787', '66'],
+        \       'vertsplit_bg' : ['#1c1c1c', '234'],
+        \       'statusline_active_fg' : ['#1c1c1c', '234'],
+        \       'statusline_active_bg' : ['#5f8787', '66'],
+        \       'statusline_inactive_fg' : ['#bcbcbc', '250'],
+        \       'statusline_inactive_bg' : ['#3a3a3a', '237'],
+        \       'todo_fg' : ['#ff8700', '208'],
+        \       'todo_bg' : ['#1c1c1c', '234'],
+        \       'error_fg' : ['#af005f', '125'],
+        \       'error_bg' : ['#5f0000', '52'],
+        \       'matchparen_bg' : ['#4e4e4e', '239'],
+        \       'matchparen_fg' : ['#c6c6c6', '251'],
+        \       'visual_fg' : ['#000000', '16'],
+        \       'visual_bg' : ['#8787af', '103'],
+        \       'folded_fg' : ['#d787ff', '177'],
+        \       'folded_bg' : ['#5f005f', '53'],
+        \       'wildmenu_fg': ['#1c1c1c', '234'],
+        \       'wildmenu_bg': ['#afd700', '148'],
+        \       'spellbad':   ['#5f0000', '52'],
+        \       'spellcap':   ['#5f005f', '53'],
+        \       'spellrare':  ['#005f00', '22'],
+        \       'spelllocal': ['#00005f', '17'],
+        \       'diffadd_fg':    ['#87d700', '112'],
+        \       'diffadd_bg':    ['#005f00', '22'],
+        \       'diffdelete_fg': ['#af005f', '125'],
+        \       'diffdelete_bg': ['#5f0000', '52'],
+        \       'difftext_fg':   ['#5fffff', '87'],
+        \       'difftext_bg':   ['#008787', '30'],
+        \       'diffchange_fg': ['#d0d0d0', '252'],
+        \       'diffchange_bg': ['#005f5f', '23'],
+        \       'tabline_bg':          ['#262626', '235'],
+        \       'tabline_active_fg':   ['#121212', '233'],
+        \       'tabline_active_bg':   ['#00afaf', '37'],
+        \       'tabline_inactive_fg': ['#bcbcbc', '250'],
+        \       'tabline_inactive_bg': ['#585858', '240'],
+        \       'buftabline_bg':          ['#262626', '235'],
+        \       'buftabline_current_fg':  ['#121212', '233'],
+        \       'buftabline_current_bg':  ['#00afaf', '37'],
+        \       'buftabline_active_fg':   ['#00afaf', '37'],
+        \       'buftabline_active_bg':   ['#585858', '240'],
+        \       'buftabline_inactive_fg': ['#bcbcbc', '250'],
+        \       'buftabline_inactive_bg': ['#585858', '240']
+        \     }
+        \   }
+endfun
 
-  else "expect a variable with a designated theme name
-    let theme_variable =  "g:PaperColor_Theme_" . lowercase_theme_name
+" ============================ THEME REGISTER =================================
 
-    if exists(theme_variable)
-      " Register custom theme to theme dictionary
-      let s:themes[lowercase_theme_name] = {theme_variable}
-      let s:theme_name = lowercase_theme_name
-    else
-      echom "Cannot find variable " . theme_variable
-      " Still use 'default' theme
+" Acquire Theme Data: {{{
+
+" Brief: 
+"   Function to get theme information and store in variables for other
+"   functions to use
+"
+" Require:
+"   s:themes    <dictionary>    collection of all theme palettes
+"
+" Require Optionally:
+"   {g:PaperColor_Theme_[s:theme_name]}   <dictionary>  user custom theme palette
+"   g:PaperColor_Theme_Options            <dictionary>  user options
+"
+" Expose:
+"   s:theme_name       <string>     the name of the selected theme 
+"   s:selected_theme   <dictionary> the selected theme object (contains palette, etc.)
+"   s:selected_variant <string>     'light' or 'dark'
+"   s:palette          <dictionary> the palette of selected theme
+"   s:options          <dictionary> user options
+fun! s:acquire_theme_data()
+  
+  " Get theme name: {{{
+  let s:theme_name = 'default'
+
+  if exists("g:PaperColor_Theme") " Users expressed theme preference
+    let lowercase_theme_name = tolower(g:PaperColor_Theme)
+
+    if lowercase_theme_name !=? 'default'
+      let theme_identifier = 'PaperColor_' . lowercase_theme_name
+      let autoload_function = theme_identifier . '#register'
+
+      call {autoload_function}()
+
+      let theme_variable = 'g:' . theme_identifier
+
+      if exists(theme_variable)
+        let s:theme_name = lowercase_theme_name
+        let s:themes[s:theme_name] = {theme_variable}
+      endif
+
     endif
 
   endif
-endif
+  " }}}
 
-let s:selected_theme = s:themes[s:theme_name]
+  if s:theme_name ==? 'default'
+    " Either no other theme is specified or they failed to load
+    " Defer loading default theme until now
+    call s:register_default_theme()
+  endif
+
+  let s:selected_theme = s:themes[s:theme_name]
+
+  " Get Theme Variant: either dark or light  {{{
+  let s:selected_variant = 'dark'
+
+  let s:is_dark=(&background == 'dark')
+
+  if s:is_dark
+    if has_key(s:selected_theme, 'dark')
+      let s:selected_variant = 'dark'
+    else " in case the theme only provides the other variant
+      let s:selected_variant = 'light'
+    endif
+
+  else " is light background
+    if has_key(s:selected_theme, 'light')
+      let s:selected_variant = 'light'
+    else " in case the theme only provides the other variant
+      let s:selected_variant = 'dark'
+    endif
+  endif
+
+  let s:palette = s:selected_theme[s:selected_variant].palette
+
+  " Systematic User-Config Options: {{{
+  " Example config in .vimrc
+  " let g:PaperColor_Theme_Options = {
+  "       \   'theme': {
+  "       \     'default': {
+  "       \       'allow_bold': 1,
+  "       \       'allow_italic': 0,
+  "       \       'transparent_background': 1
+  "       \     }
+  "       \   },
+  "       \   'language': {
+  "       \     'python': {
+  "       \       'highlight_builtins' : 1
+  "       \     },
+  "       \     'c': {
+  "       \       'highlight_builtins' : 1
+  "       \     },
+  "       \     'cpp': {
+  "       \       'highlight_standard_library': 1
+  "       \     }
+  "       \   }
+  "       \ }
+  "
+  let s:options = {}
 
 
-" }}}
+  if exists("g:PaperColor_Theme_Options")
+    let s:options = g:PaperColor_Theme_Options
+  endif
+  " }}}
 
-" Command to show theme information {{{
-fun! g:PaperColor()
-  echom 'PaperColor Theme Framework'
-  echom '  version ' . s:version
-  echom '  by Nikyle Nguyen et al.'
-  echom '  at https://github.com/NLKNguyen/papercolor-theme/'
-  echom ' '
-  echom 'Current theme: ' . s:theme_name
-  echom '  ' . s:selected_theme['description']
-  echom '  by ' . s:selected_theme['maintainer']
-  echom '  at ' . s:selected_theme['source']
-
-  " TODO: add diff display for theme color names between 'default' and current
-  " theme if it is a custom theme, i.e. child theme.
+  " }}}
 endfun
 
-" @brief command alias for g:PaperColor()
-command! -nargs=0 PaperColor :call g:PaperColor()
-" }}}
-
-" Get Theme Variant: either dark or light  {{{
-let s:selected_variant = 'dark'
-
-let s:is_dark=(&background == 'dark')
-
-if s:is_dark
-  if has_key(s:selected_theme, 'dark')
-    let s:selected_variant = 'dark'
-  else " in case the theme only provides the other variant
-    let s:selected_variant = 'light'
-  endif
-
-else " is light background
-  if has_key(s:selected_theme, 'light')
-    let s:selected_variant = 'light'
-  else " in case the theme only provides the other variant
-    let s:selected_variant = 'dark'
-  endif
-endif
-
-let s:palette = s:selected_theme[s:selected_variant].palette
-" }}}
-
-" Systematic User-Config Options: {{{
-" Example config in .vimrc
-" let g:PaperColor_Theme_Options = {
-"       \   'theme': {
-"       \     'default': {
-"       \       'allow_bold': 1,
-"       \       'allow_italic': 0,
-"       \       'transparent_background': 1
-"       \     }
-"       \   },
-"       \   'language': {
-"       \     'python': {
-"       \       'highlight_builtins' : 1
-"       \     },
-"       \     'c': {
-"       \       'highlight_builtins' : 1
-"       \     },
-"       \     'cpp': {
-"       \       'highlight_standard_library': 1
-"       \     }
-"       \   }
-"       \ }
-"
-let s:options = {}
-if exists("g:PaperColor_Theme_Options")
-  let s:options = g:PaperColor_Theme_Options
-endif
 
 " }}}
 
-" Theme Options: {{{
-" Part of user-config options
-let s:theme_options = {}
-if has_key(s:options, 'theme')
-  let s:theme_options = s:options['theme']
-endif
+" Identify Color Mode: {{{
 
+fun! s:identify_color_mode()
+  let s:MODE_16_COLOR = 0
+  let s:MODE_256_COLOR = 1
+  let s:MODE_GUI_COLOR = 2
 
-" Function to obtain theme option for the current theme
-" @param option - string
-" @return the value of that option if specified; empty string otherwise
-" Example: s:Theme_Options('transparent_background')
-"     returns 1 if there is an option for current theme in `theme` section in
-"     g:PaperColor_Theme_Options such as:
-"       'theme': {
-"       \   'default': {
-"       \     'transparent_background': 1
-"       \   }
-"       }
-"     OR it could specify for the exact light or dark variant of the theme,
-"     which will take higher precedence for the current theme variant
-"       'theme': {
-"       \   'default': {
-"       \     'transparent_background': 0
-"       \   },
-"       \   'default.light': {
-"       \     'transparent_background': 1
-"       \   }
-"       }
-fun! s:Theme_Options(option)
-  let l:value = ''
-
-  let l:variant = 'light'
-  if s:is_dark
-    let l:variant = 'dark'
+  if has("gui_running")  || has('termguicolors') && &termguicolors || has('nvim') && $NVIM_TUI_ENABLE_TRUE_COLOR
+    let s:mode = s:MODE_GUI_COLOR
+  elseif (&t_Co >= 256)
+    let s:mode = s:MODE_256_COLOR
+  else
+    let s:mode = s:MODE_16_COLOR
   endif
-  let l:specific_theme_variant = s:theme_name . '.' . l:variant
+endfun
+
+" }}}
+
+" ============================ OPTION HANDLER =================================
+
+" Generate Them Option Variables: {{{
+
+
+fun! s:generate_theme_option_variables()
+  " 0. All possible theme option names must be registered here
+  let l:available_theme_options = [
+        \ 'allow_bold', 
+        \ 'allow_italic', 
+        \ 'transparent_background',
+        \ ]
+
+  " 1. Generate variables and set to default value
+  for l:option in l:available_theme_options
+      let s:{'themeOpt_' . l:option} = 0
+  endfor
+
+  let s:themeOpt_override = {} " special case, this has to be a dictionary
+
+  " 2. Reassign value to the above variables based on theme settings
+
+  " 2.1 In case the theme has top-level options
+  if has_key(s:selected_theme, 'options')
+    let l:theme_options = s:selected_theme['options']
+    for l:opt_name in keys(l:theme_options)
+      let s:{'themeOpt_' . l:opt_name} = l:theme_options[l:opt_name]
+      " echo 's:themeOpt_' . l:opt_name . ' = ' . s:{'themeOpt_' . l:opt_name}
+    endfor
+  endif
+
+  " 2.2 In case the theme has specific variant options
+  if has_key(s:selected_theme[s:selected_variant], 'options')
+    let l:theme_options = s:selected_theme[s:selected_variant]['options']
+    for l:opt_name in keys(l:theme_options)
+      let s:{'themeOpt_' . l:opt_name} = l:theme_options[l:opt_name]
+      " echo 's:themeOpt_' . l:opt_name . ' = ' . s:{'themeOpt_' . l:opt_name}
+    endfor
+  endif
+
+
+  " 3. Reassign value to the above variables which the user customizes
+  " Part of user-config options
+  let s:theme_options = {}
+  if has_key(s:options, 'theme')
+    let s:theme_options = s:options['theme']
+  endif
+  
+  " 3.1 In case user sets for a theme without specifying which variant
+  if has_key(s:theme_options, s:theme_name)
+    let l:theme_options = s:theme_options[s:theme_name]
+    for l:opt_name in keys(l:theme_options)
+      let s:{'themeOpt_' . l:opt_name} = l:theme_options[l:opt_name]
+      " echo 's:themeOpt_' . l:opt_name . ' = ' . s:{'themeOpt_' . l:opt_name}
+    endfor
+  endif
+
+
+  " 3.2 In case user sets for a specific variant of a theme
+  
+  " Create the string that the user might have set for this theme variant
+  " for example, 'default.dark'
+  let l:specific_theme_variant = s:theme_name . '.' . s:selected_variant
 
   if has_key(s:theme_options, l:specific_theme_variant)
-    let l:theme_option = s:theme_options[l:specific_theme_variant]
-    if has_key(l:theme_option, a:option)
-      let l:value = l:theme_option[a:option]
-    endif
-  elseif has_key(s:theme_options, s:theme_name)
-    let l:theme_option = s:theme_options[s:theme_name]
-    if has_key(l:theme_option, a:option)
-      let l:value = l:theme_option[a:option]
-    endif
+    let l:theme_options = s:theme_options[l:specific_theme_variant]
+    for l:opt_name in keys(l:theme_options)
+      let s:{'themeOpt_' . l:opt_name} = l:theme_options[l:opt_name]
+      " echo 's:themeOpt_' . l:opt_name . ' = ' . s:{'themeOpt_' . l:opt_name}
+    endfor
   endif
 
-  return l:value
 endfun
-
-" These options will be checked at many place so better be cached to variables
-let s:TRANSPARENT_BACKGROUND = s:Theme_Options('transparent_background') == 1
-
-
 " }}}
 
-" Language Options: {{{
-" Part of user-config options
-let s:language_options = {}
-if has_key(s:options, 'language')
-  let s:language_options = s:options['language']
-endif
+" Check If Theme Has Hint: {{{
+"
+" Brief:
+"   Function to Check if the selected theme and variant has a hint
+"
+" Details:
+"   A hint is a known key that has value 1
+"   It is not part of theme design but is used for technical purposes
+"
+" Example:
+"   If a theme has hint 'NO_CONVERSION', then we can assume that every
+"   color value is a complete pair, so we don't have to check.
 
-" Function to obtain a language option
-" @param option - string pattern [language].[option]
-" @param value - number or string
-" @return the option value if it is provided; empty string otherwise
-" Example: s:Language_Options('python.highlight_builtins', 1)
-"     returns 1 if there is an option in `language` section in
-"     g:PaperColor_Theme_Options such as:
+fun! s:theme_has_hint(hint)
+  return has_key(s:selected_theme[s:selected_variant], a:hint) &&
+        \ s:selected_theme[s:selected_variant][a:hint] == 1
+endfun
+" }}}
+
+" Set Overriding Colors: {{{
+
+fun! s:set_overriding_colors()
+
+  if s:theme_has_hint('NO_CONVERSION')
+    " s:convert_colors will not do anything, so we take care of conversion
+    " for the overriding colors that need to be converted
+
+    if s:mode == s:MODE_GUI_COLOR
+      " if GUI color is not provided, convert from 256 color that must be available
+      if !empty(s:themeOpt_override)
+        call s:load_256_to_GUI_converter()
+      endif
+
+      for l:color in keys(s:themeOpt_override)
+        let l:value = s:themeOpt_override[l:color]
+        if l:value[0] == ''
+          let l:value[0] = s:to_HEX[l:value[1]]
+        endif
+        let s:palette[l:color] = l:value
+      endfor
+
+    elseif s:mode == s:MODE_256_COLOR
+      " if 256 color is not provided, convert from GUI color that must be available
+      if !empty(s:themeOpt_override)
+        call s:load_GUI_to_256_converter()
+      endif
+ 
+      for l:color in keys(s:themeOpt_override)
+        let l:value = s:themeOpt_override[l:color]
+        if l:value[1] == ''
+          let l:value[1] = s:to_256(l:value[0])
+        endif
+        let s:palette[l:color] = l:value
+      endfor
+    endif
+
+  else " simply set the colors and let s:convert_colors() take care of conversion
+
+    for l:color in keys(s:themeOpt_override)
+      let s:palette[l:color] = s:themeOpt_override[l:color]
+    endfor
+  endif
+
+endfun
+" }}}
+
+" Generate Language Option Variables: {{{
+
+" Brief:
+"   Function to generate language option variables so that there is no need to
+"   look up from the dictionary every time the option value is checked in the
+"   function s:apply_syntax_highlightings()
+"
+" Require:
+"   s:options <dictionary> user options
+"
+" Require Optionally:
+"   g:PaperColor_Theme_Options  <dictionary>  user option config in .vimrc
+"
+" Expose:
+"   s:langOpt_[LANGUAGE]__[OPTION]  <any>   variables for language options
+"
+" Example: 
+"     g:PaperColor_Theme_Options has something like this:
 "       'language': {
 "       \   'python': {
 "       \     'highlight_builtins': 1
 "       \   }
 "       }
-fun! s:Language_Options(option)
-  let l:parts = split(a:option, "\\.")
-  let l:language = l:parts[0]
-  let l:option = l:parts[1]
+"    The following variable will be generated:
+"    s:langOpt_python__highlight_builtins = 1
 
-  if has_key(s:language_options, l:language)
-    let l:language_option = s:language_options[l:language]
-    if has_key(l:language_option, l:option)
-      return l:language_option[l:option]
-    endif
+fun! s:generate_language_option_variables()
+  " 0. All possible theme option names must be registered here
+  let l:available_language_options = [
+        \   'c__highlight_builtins',
+        \   'cpp__highlight_standard_library',
+        \   'python__highlight_builtins'
+        \ ]
+
+  " 1. Generate variables and set to default value
+  for l:option in l:available_language_options
+    let s:{'langOpt_' . l:option} = 0
+  endfor
+
+  " Part of user-config options
+  if has_key(s:options, 'language')
+    let l:language_options = s:options['language']
+    " echo l:language_options 
+    for l:lang in keys(l:language_options)
+      let l:options = l:language_options[l:lang]
+      " echo l:lang 
+      " echo l:options
+      for l:option in keys(l:options)
+        let s:{'langOpt_' . l:lang . '__' . l:option} = l:options[l:option]
+        " echo 's:langOpt_' . l:lang . '__' . l:option . ' = ' . l:options[l:option]
+      endfor
+    endfor
+
   endif
 
-  return ''
 endfun
-
 " }}}
 
-" HEX TO 256-COLOR CONVERTER: {{{
-" Returns an approximate grey index for the given grey level
-fun! s:grey_number(x)
-  if &t_Co == 88
-    if a:x < 23
-      return 0
-    elseif a:x < 69
-      return 1
-    elseif a:x < 103
-      return 2
-    elseif a:x < 127
-      return 3
-    elseif a:x < 150
-      return 4
-    elseif a:x < 173
-      return 5
-    elseif a:x < 196
-      return 6
-    elseif a:x < 219
-      return 7
-    elseif a:x < 243
-      return 8
-    else
-      return 9
-    endif
-  else
-    if a:x < 14
-      return 0
-    else
-      let l:n = (a:x - 8) / 10
-      let l:m = (a:x - 8) % 10
-      if l:m < 5
-        return l:n
+" =========================== COLOR CONVERTER =================================
+
+fun! s:load_GUI_to_256_converter()
+  " GUI-color To 256-color: {{{
+  " Returns an approximate grey index for the given grey level
+  fun! s:grey_number(x)
+    if &t_Co == 88
+      if a:x < 23
+        return 0
+      elseif a:x < 69
+        return 1
+      elseif a:x < 103
+        return 2
+      elseif a:x < 127
+        return 3
+      elseif a:x < 150
+        return 4
+      elseif a:x < 173
+        return 5
+      elseif a:x < 196
+        return 6
+      elseif a:x < 219
+        return 7
+      elseif a:x < 243
+        return 8
       else
-        return l:n + 1
+        return 9
+      endif
+    else
+      if a:x < 14
+        return 0
+      else
+        let l:n = (a:x - 8) / 10
+        let l:m = (a:x - 8) % 10
+        if l:m < 5
+          return l:n
+        else
+          return l:n + 1
+        endif
       endif
     endif
-  endif
-endfun
+  endfun
 
-" Returns the actual grey level represented by the grey index
-fun! s:grey_level(n)
-  if &t_Co == 88
-    if a:n == 0
-      return 0
-    elseif a:n == 1
-      return 46
-    elseif a:n == 2
-      return 92
-    elseif a:n == 3
-      return 115
-    elseif a:n == 4
-      return 139
-    elseif a:n == 5
-      return 162
-    elseif a:n == 6
-      return 185
-    elseif a:n == 7
-      return 208
-    elseif a:n == 8
-      return 231
-    else
-      return 255
-    endif
-  else
-    if a:n == 0
-      return 0
-    else
-      return 8 + (a:n * 10)
-    endif
-  endif
-endfun
-
-" Returns the palette index for the given grey index
-fun! s:grey_colour(n)
-  if &t_Co == 88
-    if a:n == 0
-      return 16
-    elseif a:n == 9
-      return 79
-    else
-      return 79 + a:n
-    endif
-  else
-    if a:n == 0
-      return 16
-    elseif a:n == 25
-      return 231
-    else
-      return 231 + a:n
-    endif
-  endif
-endfun
-
-" Returns an approximate colour index for the given colour level
-fun! s:rgb_number(x)
-  if &t_Co == 88
-    if a:x < 69
-      return 0
-    elseif a:x < 172
-      return 1
-    elseif a:x < 230
-      return 2
-    else
-      return 3
-    endif
-  else
-    if a:x < 75
-      return 0
-    else
-      let l:n = (a:x - 55) / 40
-      let l:m = (a:x - 55) % 40
-      if l:m < 20
-        return l:n
+  " Returns the actual grey level represented by the grey index
+  fun! s:grey_level(n)
+    if &t_Co == 88
+      if a:n == 0
+        return 0
+      elseif a:n == 1
+        return 46
+      elseif a:n == 2
+        return 92
+      elseif a:n == 3
+        return 115
+      elseif a:n == 4
+        return 139
+      elseif a:n == 5
+        return 162
+      elseif a:n == 6
+        return 185
+      elseif a:n == 7
+        return 208
+      elseif a:n == 8
+        return 231
       else
-        return l:n + 1
+        return 255
+      endif
+    else
+      if a:n == 0
+        return 0
+      else
+        return 8 + (a:n * 10)
       endif
     endif
-  endif
-endfun
+  endfun
 
-" Returns the actual colour level for the given colour index
-fun! s:rgb_level(n)
-  if &t_Co == 88
-    if a:n == 0
-      return 0
-    elseif a:n == 1
-      return 139
-    elseif a:n == 2
-      return 205
+  " Returns the palette index for the given grey index
+  fun! s:grey_colour(n)
+    if &t_Co == 88
+      if a:n == 0
+        return 16
+      elseif a:n == 9
+        return 79
+      else
+        return 79 + a:n
+      endif
     else
-      return 255
+      if a:n == 0
+        return 16
+      elseif a:n == 25
+        return 231
+      else
+        return 231 + a:n
+      endif
     endif
-  else
-    if a:n == 0
-      return 0
+  endfun
+
+  " Returns an approximate colour index for the given colour level
+  fun! s:rgb_number(x)
+    if &t_Co == 88
+      if a:x < 69
+        return 0
+      elseif a:x < 172
+        return 1
+      elseif a:x < 230
+        return 2
+      else
+        return 3
+      endif
     else
-      return 55 + (a:n * 40)
+      if a:x < 75
+        return 0
+      else
+        let l:n = (a:x - 55) / 40
+        let l:m = (a:x - 55) % 40
+        if l:m < 20
+          return l:n
+        else
+          return l:n + 1
+        endif
+      endif
     endif
-  endif
-endfun
+  endfun
 
-" Returns the palette index for the given R/G/B colour indices
-fun! s:rgb_colour(x, y, z)
-  if &t_Co == 88
-    return 16 + (a:x * 16) + (a:y * 4) + a:z
-  else
-    return 16 + (a:x * 36) + (a:y * 6) + a:z
-  endif
-endfun
-
-" Returns the palette index to approximate the given R/G/B colour levels
-fun! s:colour(r, g, b)
-  " Get the closest grey
-  let l:gx = s:grey_number(a:r)
-  let l:gy = s:grey_number(a:g)
-  let l:gz = s:grey_number(a:b)
-
-  " Get the closest colour
-  let l:x = s:rgb_number(a:r)
-  let l:y = s:rgb_number(a:g)
-  let l:z = s:rgb_number(a:b)
-
-  if l:gx == l:gy && l:gy == l:gz
-    " There are two possibilities
-    let l:dgr = s:grey_level(l:gx) - a:r
-    let l:dgg = s:grey_level(l:gy) - a:g
-    let l:dgb = s:grey_level(l:gz) - a:b
-    let l:dgrey = (l:dgr * l:dgr) + (l:dgg * l:dgg) + (l:dgb * l:dgb)
-    let l:dr = s:rgb_level(l:gx) - a:r
-    let l:dg = s:rgb_level(l:gy) - a:g
-    let l:db = s:rgb_level(l:gz) - a:b
-    let l:drgb = (l:dr * l:dr) + (l:dg * l:dg) + (l:db * l:db)
-    if l:dgrey < l:drgb
-      " Use the grey
-      return s:grey_colour(l:gx)
+  " Returns the actual colour level for the given colour index
+  fun! s:rgb_level(n)
+    if &t_Co == 88
+      if a:n == 0
+        return 0
+      elseif a:n == 1
+        return 139
+      elseif a:n == 2
+        return 205
+      else
+        return 255
+      endif
     else
-      " Use the colour
+      if a:n == 0
+        return 0
+      else
+        return 55 + (a:n * 40)
+      endif
+    endif
+  endfun
+
+  " Returns the palette index for the given R/G/B colour indices
+  fun! s:rgb_colour(x, y, z)
+    if &t_Co == 88
+      return 16 + (a:x * 16) + (a:y * 4) + a:z
+    else
+      return 16 + (a:x * 36) + (a:y * 6) + a:z
+    endif
+  endfun
+
+  " Returns the palette index to approximate the given R/G/B colour levels
+  fun! s:colour(r, g, b)
+    " Get the closest grey
+    let l:gx = s:grey_number(a:r)
+    let l:gy = s:grey_number(a:g)
+    let l:gz = s:grey_number(a:b)
+
+    " Get the closest colour
+    let l:x = s:rgb_number(a:r)
+    let l:y = s:rgb_number(a:g)
+    let l:z = s:rgb_number(a:b)
+
+    if l:gx == l:gy && l:gy == l:gz
+      " There are two possibilities
+      let l:dgr = s:grey_level(l:gx) - a:r
+      let l:dgg = s:grey_level(l:gy) - a:g
+      let l:dgb = s:grey_level(l:gz) - a:b
+      let l:dgrey = (l:dgr * l:dgr) + (l:dgg * l:dgg) + (l:dgb * l:dgb)
+      let l:dr = s:rgb_level(l:gx) - a:r
+      let l:dg = s:rgb_level(l:gy) - a:g
+      let l:db = s:rgb_level(l:gz) - a:b
+      let l:drgb = (l:dr * l:dr) + (l:dg * l:dg) + (l:db * l:db)
+      if l:dgrey < l:drgb
+        " Use the grey
+        return s:grey_colour(l:gx)
+      else
+        " Use the colour
+        return s:rgb_colour(l:x, l:y, l:z)
+      endif
+    else
+      " Only one possibility
       return s:rgb_colour(l:x, l:y, l:z)
     endif
-  else
-    " Only one possibility
-    return s:rgb_colour(l:x, l:y, l:z)
-  endif
+  endfun
+
+  " Returns the palette index to approximate the '#rrggbb' hex string
+  fun! s:to_256(rgb)
+    let l:r = ("0x" . strpart(a:rgb, 1, 2)) + 0
+    let l:g = ("0x" . strpart(a:rgb, 3, 2)) + 0
+    let l:b = ("0x" . strpart(a:rgb, 5, 2)) + 0
+
+    return s:colour(l:r, l:g, l:b)
+  endfun
+
+
+
+  " }}}
 endfun
 
-" Returns the palette index to approximate the '#rrggbb' hex string
-fun! s:to_256(rgb)
-  let l:r = ("0x" . strpart(a:rgb, 1, 2)) + 0
-  let l:g = ("0x" . strpart(a:rgb, 3, 2)) + 0
-  let l:b = ("0x" . strpart(a:rgb, 5, 2)) + 0
-
-  return s:colour(l:r, l:g, l:b)
-endfun
-
-
-
-" }}}
-
-" 256-COLOR TO HEX TABLE: {{{
+fun! s:load_256_to_GUI_converter()
+" 256-color To GUI-color: {{{
 
 """ Xterm 256 color dictionary
 " See: http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
@@ -638,49 +798,86 @@ let s:to_HEX = {
       \ '255': '#eeeeee' }
 
 " }}}
+endfun
 
-" COLOR MODE IDENTIFICATION: {{{
-let s:MODE_16_COLOR = 0
-let s:MODE_256_COLOR = 1
-let s:MODE_GUI_COLOR = 2
+" ========================== ENVIRONMENT ADAPTER ==============================
 
-if has("gui_running")  || has('termguicolors') && &termguicolors || has('nvim') && $NVIM_TUI_ENABLE_TRUE_COLOR
-  let s:mode = s:MODE_GUI_COLOR
-elseif (&t_Co >= 256)
-  let s:mode = s:MODE_256_COLOR
-else
-  let s:mode = s:MODE_16_COLOR
-endif
+" Set Format Attributes: {{{
 
-" }}}
-
-" COLOR MODE ADAPTATION: {{{
-" Handle Preprocessing For Current Color Set If Necessary
-fun! s:adapt_to_environment()
+fun! s:set_format_attributes()
+  " These are the default
   if s:mode == s:MODE_GUI_COLOR
-    let s:ft_bold    = " gui=bold "
-    let s:ft_italic  = " gui=italic "
-    let s:ft_none    = " gui=none "
-    let s:ft_reverse = " gui=reverse "
-    " TODO: if require auto-gui-color coversion
+    let s:ft_bold    = " cterm=bold gui=bold "
+    let s:ft_none    = " cterm=none gui=none "
+    let s:ft_reverse = " cterm=reverse gui=reverse "
+    let s:ft_italic  = " cterm=italic gui=italic "
+    let s:ft_italic_bold = " cterm=italic,bold gui=italic,bold "
   elseif s:mode == s:MODE_256_COLOR
     let s:ft_bold    = " cterm=bold "
-    let s:ft_italic  = " cterm=italic "
     let s:ft_none    = " cterm=none "
     let s:ft_reverse = " cterm=reverse "
-    " TODO: if require auto-256-color coversion
+    let s:ft_italic  = " cterm=italic "
+    let s:ft_italic_bold = " cterm=italic,bold "
   else
     let s:ft_bold    = ""
-    let s:ft_italic  = ""
     let s:ft_none    = " cterm=none "
     let s:ft_reverse = " cterm=reverse "
+    let s:ft_italic  = ""
+    let s:ft_italic_bold = ""
   endif
+
+  " Unless instructed otherwise either by theme setting or user overriding
+
+  if s:themeOpt_allow_bold == 0
+    let s:ft_bold    = ""
+  endif
+  if s:themeOpt_allow_italic == 0
+    let s:ft_italic = ""
+    let s:ft_italic_bold = s:ft_bold
+  endif
+
 endfun
+
 " }}}
 
+" Convert Colors If Needed: {{{
+fun! s:convert_colors()
+  if s:theme_has_hint('NO_CONVERSION')
+    return
+  endif
 
+  if s:mode == s:MODE_GUI_COLOR
+    " if GUI color is not provided, convert from 256 color that must be available
+    call s:load_256_to_GUI_converter()
 
-" SET COLOR VARIABLES: {{{
+    for l:color in keys(s:palette)
+      let l:value = s:palette[l:color]
+      if l:value[0] == ''
+        let l:value[0] = s:to_HEX[l:value[1]]
+      endif
+      let s:palette[l:color] = l:value
+    endfor
+
+  elseif s:mode == s:MODE_256_COLOR
+    " if 256 color is not provided, convert from GUI color that must be available
+    call s:load_GUI_to_256_converter()
+
+    for l:color in keys(s:palette)
+      let l:value = s:palette[l:color]
+      if l:value[1] == ''
+        let l:value[1] = s:to_256(l:value[0])
+      endif
+      let s:palette[l:color] = l:value
+    endfor
+  endif
+  " otherwise use the terminal colors and none of the theme colors are used
+endfun
+
+" }}}
+
+" ============================ COLOR POPULARIZER ===============================
+
+" Set Color Variables: {{{
 fun! s:set_color_variables()
 
   " Helper: {{{
@@ -704,22 +901,22 @@ fun! s:set_color_variables()
   " often called helps speeding things up quite a bit. Think of this like macro.
   "
   " If you are familiar with the old code base (v0.9 and ealier), this way of
-  " generate variables dramatically increases the loading speed.
+  " generate variables dramatically reduces the loading speed.
   " None of previous optimization tricks gets anywhere near this.
   if s:mode == s:MODE_GUI_COLOR
-    fun! s:create_color_variables(color_name, color_value)
-      let {'s:fg_' . a:color_name} = ' guifg=' . a:color_value[0] . ' '
-      let {'s:bg_' . a:color_name} = ' guibg=' . a:color_value[0] . ' '
+    fun! s:create_color_variables(color_name, rich_color, term_color)
+      let {'s:fg_' . a:color_name} = ' guifg=' . a:rich_color[0] . ' '
+      let {'s:bg_' . a:color_name} = ' guibg=' . a:rich_color[0] . ' '
     endfun
   elseif s:mode == s:MODE_256_COLOR
-    fun! s:create_color_variables(color_name, color_value)
-      let {'s:fg_' . a:color_name} = ' ctermfg=' . a:color_value[1] . ' '
-      let {'s:bg_' . a:color_name} = ' ctermbg=' . a:color_value[1] . ' '
+    fun! s:create_color_variables(color_name, rich_color, term_color)
+      let {'s:fg_' . a:color_name} = ' ctermfg=' . a:rich_color[1] . ' '
+      let {'s:bg_' . a:color_name} = ' ctermbg=' . a:rich_color[1] . ' '
     endfun
   else
-    fun! s:create_color_variables(color_name, color_value)
-      let {'s:fg_' . a:color_name} = ' ctermfg=' . a:color_value[2] . ' '
-      let {'s:bg_' . a:color_name} = ' ctermbg=' . a:color_value[2] . ' '
+    fun! s:create_color_variables(color_name, rich_color, term_color)
+      let {'s:fg_' . a:color_name} = ' ctermfg=' . a:term_color . ' '
+      let {'s:bg_' . a:color_name} = ' ctermbg=' . a:term_color . ' '
     endfun
   endif
   " }}}
@@ -743,27 +940,43 @@ fun! s:set_color_variables()
   " only store the color names to use the terminal color palette which is the only
   " thing available therefore no need for GUI-color or 256-color.
 
+  let color00 = get(s:palette, 'color00')
+  let color01 = get(s:palette, 'color01')
+  let color02 = get(s:palette, 'color02')
+  let color03 = get(s:palette, 'color03')
+  let color04 = get(s:palette, 'color04')
+  let color05 = get(s:palette, 'color05')
+  let color06 = get(s:palette, 'color06')
+  let color07 = get(s:palette, 'color07')
+  let color08 = get(s:palette, 'color08')
+  let color09 = get(s:palette, 'color09')
+  let color10 = get(s:palette, 'color10')
+  let color11 = get(s:palette, 'color11')
+  let color12 = get(s:palette, 'color12')
+  let color13 = get(s:palette, 'color13')
+  let color14 = get(s:palette, 'color14')
+  let color15 = get(s:palette, 'color15')
 
-  call s:create_color_variables('background', get(s:palette, 'color00') + ['Black'])
-  call s:create_color_variables('negative', get(s:palette, 'color01') + ['DarkRed'])
-  call s:create_color_variables('positive', get(s:palette, 'color02') + ['DarkGreen'])
-  call s:create_color_variables('olive', get(s:palette, 'color03') + ['DarkYellow']) " string
-  call s:create_color_variables('neutral', get(s:palette, 'color04') + ['DarkBlue'])
-  call s:create_color_variables('comment', get(s:palette, 'color05') + ['DarkMagenta'])
-  call s:create_color_variables('navy', get(s:palette, 'color06') + ['DarkCyan']) " storageclass
-  call s:create_color_variables('foreground', get(s:palette, 'color07') + ['LightGray'])
+  call s:create_color_variables('background', color00 , 'Black')
+  call s:create_color_variables('negative',   color01 , 'DarkRed')
+  call s:create_color_variables('positive',   color02 , 'DarkGreen')
+  call s:create_color_variables('olive',      color03 , 'DarkYellow') " string
+  call s:create_color_variables('neutral',    color04 , 'DarkBlue')
+  call s:create_color_variables('comment',    color05 , 'DarkMagenta')
+  call s:create_color_variables('navy',       color06 , 'DarkCyan') " storageclass
+  call s:create_color_variables('foreground', color07 , 'LightGray')
 
-  call s:create_color_variables('nontext', get(s:palette, 'color08') + ['DarkGray'])
-  call s:create_color_variables('red', get(s:palette, 'color09') + ['LightRed']) " import / try/catch
-  call s:create_color_variables('pink', get(s:palette, 'color10') + ['LightGreen']) " statement, type
-  call s:create_color_variables('purple', get(s:palette, 'color11') + ['LightYellow']) " if / conditional
-  call s:create_color_variables('accent', get(s:palette, 'color12') + ['LightBlue'])
-  call s:create_color_variables('orange', get(s:palette, 'color13') + ['LightMagenta']) " number
-  call s:create_color_variables('blue', get(s:palette, 'color14') + ['LightCyan']) " other keyword
-  call s:create_color_variables('highlight', get(s:palette, 'color15') + ['White'])
+  call s:create_color_variables('nontext',   color08 , 'DarkGray')
+  call s:create_color_variables('red',       color09 , 'LightRed') " import / try/catch
+  call s:create_color_variables('pink',      color10 , 'LightGreen') " statement, type
+  call s:create_color_variables('purple',    color11 , 'LightYellow') " if / conditional
+  call s:create_color_variables('accent',    color12 , 'LightBlue')
+  call s:create_color_variables('orange',    color13 , 'LightMagenta') " number
+  call s:create_color_variables('blue',      color14 , 'LightCyan') " other keyword
+  call s:create_color_variables('highlight', color15 , 'White')
 
   " Note: special case for FoldColumn group. I want to get rid of this case.
-  call s:create_color_variables('transparent', [get(s:palette, 'color00')[0], 'none', 'none'])
+  call s:create_color_variables('transparent', [color00[0], 'none'], 'none')
 
   " EXTENDED COLORS:
   " From here on, all colors are optional and must have default values (3rd parameter of the
@@ -771,132 +984,132 @@ fun! s:set_color_variables()
   " provide the extended colors. The default values should be reasonably sensible.
   " The terminal color must be provided also.
 
-  call s:create_color_variables('aqua', get(s:palette, 'color16', get(s:palette, 'color14')) + ['LightCyan'])
-  call s:create_color_variables('green', get(s:palette, 'color17', get(s:palette, 'color13')) + ['LightMagenta'])
-  call s:create_color_variables('wine', get(s:palette, 'color18', get(s:palette, 'color11')) + ['LightYellow'])
+  call s:create_color_variables('aqua',  get(s:palette, 'color16', color14) , 'LightCyan')
+  call s:create_color_variables('green', get(s:palette, 'color17', color13) , 'LightMagenta')
+  call s:create_color_variables('wine',  get(s:palette, 'color18', color11) , 'LightYellow')
 
   " LineNumber: when set number
-  call s:create_color_variables('linenumber_fg', get(s:palette, 'linenumber_fg', get(s:palette, 'color08')) + ['DarkGray'])
-  call s:create_color_variables('linenumber_bg', get(s:palette, 'linenumber_bg', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('linenumber_fg', get(s:palette, 'linenumber_fg', color08) , 'DarkGray')
+  call s:create_color_variables('linenumber_bg', get(s:palette, 'linenumber_bg', color00) , 'Black')
 
   " Vertical Split: when there are more than 1 window side by side, ex: <C-W><C-V>
-  call s:create_color_variables('vertsplit_fg', get(s:palette, 'vertsplit_fg', get(s:palette, 'color15')) + ['White'])
-  call s:create_color_variables('vertsplit_bg', get(s:palette, 'vertsplit_bg', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('vertsplit_fg', get(s:palette, 'vertsplit_fg', color15) , 'White')
+  call s:create_color_variables('vertsplit_bg', get(s:palette, 'vertsplit_bg', color00) , 'Black')
 
   " Statusline: when set status=2
-  call s:create_color_variables('statusline_active_fg', get(s:palette, 'statusline_active_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('statusline_active_bg', get(s:palette, 'statusline_active_bg', get(s:palette, 'color15')) + ['White'])
-  call s:create_color_variables('statusline_inactive_fg', get(s:palette, 'statusline_inactive_fg', get(s:palette, 'color07')) + ['LightGray'])
-  call s:create_color_variables('statusline_inactive_bg', get(s:palette, 'statusline_inactive_bg', get(s:palette, 'color08')) + ['DarkGray'])
+  call s:create_color_variables('statusline_active_fg', get(s:palette, 'statusline_active_fg', color00) , 'Black')
+  call s:create_color_variables('statusline_active_bg', get(s:palette, 'statusline_active_bg', color15) , 'White')
+  call s:create_color_variables('statusline_inactive_fg', get(s:palette, 'statusline_inactive_fg', color07) , 'LightGray')
+  call s:create_color_variables('statusline_inactive_bg', get(s:palette, 'statusline_inactive_bg', color08) , 'DarkGray')
 
 
   " Cursor: in normal mode
-  call s:create_color_variables('cursor_fg', get(s:palette, 'cursor_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('cursor_bg', get(s:palette, 'cursor_bg', get(s:palette, 'color07')) + ['LightGray'])
+  call s:create_color_variables('cursor_fg', get(s:palette, 'cursor_fg', color00) , 'Black')
+  call s:create_color_variables('cursor_bg', get(s:palette, 'cursor_bg', color07) , 'LightGray')
 
-  call s:create_color_variables('cursorline', get(s:palette, 'cursorline', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('cursorline', get(s:palette, 'cursorline', color00) , 'Black')
 
   " CursorColumn: when set cursorcolumn
-  call s:create_color_variables('cursorcolumn', get(s:palette, 'cursorcolumn', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('cursorcolumn', get(s:palette, 'cursorcolumn', color00) , 'Black')
 
   " CursorLine Number: when set cursorline number
-  call s:create_color_variables('cursorlinenr_fg', get(s:palette, 'cursorlinenr_fg', get(s:palette, 'color13')) + ['LightMagenta'])
-  call s:create_color_variables('cursorlinenr_bg', get(s:palette, 'cursorlinenr_bg', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('cursorlinenr_fg', get(s:palette, 'cursorlinenr_fg', color13) , 'LightMagenta')
+  call s:create_color_variables('cursorlinenr_bg', get(s:palette, 'cursorlinenr_bg', color00) , 'Black')
 
   " Popup Menu: when <C-X><C-N> for autocomplete
-  call s:create_color_variables('popupmenu_fg', get(s:palette, 'popupmenu_fg', get(s:palette, 'color07')) + ['LightGray'])
-  call s:create_color_variables('popupmenu_bg', get(s:palette, 'popupmenu_bg', get(s:palette, 'color08')) + ['DarkGray'])
+  call s:create_color_variables('popupmenu_fg', get(s:palette, 'popupmenu_fg', color07) , 'LightGray')
+  call s:create_color_variables('popupmenu_bg', get(s:palette, 'popupmenu_bg', color08) , 'DarkGray') " TODO: double check this, might resolve an issue
 
   " Search: ex: when * on a word
-  call s:create_color_variables('search_fg', get(s:palette, 'search_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('search_bg', get(s:palette, 'search_bg', get(s:palette, 'color15')) + ['Yellow'])
+  call s:create_color_variables('search_fg', get(s:palette, 'search_fg', color00) , 'Black')
+  call s:create_color_variables('search_bg', get(s:palette, 'search_bg', color15) , 'Yellow')
 
   " Todo: ex: TODO
-  call s:create_color_variables('todo_fg', get(s:palette, 'todo_fg', get(s:palette, 'color05')) + ['LightYellow'])
-  call s:create_color_variables('todo_bg', get(s:palette, 'todo_bg', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('todo_fg', get(s:palette, 'todo_fg', color05) , 'LightYellow')
+  call s:create_color_variables('todo_bg', get(s:palette, 'todo_bg', color00) , 'Black')
 
   " Error: ex: turn spell on and have invalid words
-  call s:create_color_variables('error_fg', get(s:palette, 'error_fg', get(s:palette, 'color01')) + ['DarkRed'])
-  call s:create_color_variables('error_bg', get(s:palette, 'error_bg', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('error_fg', get(s:palette, 'error_fg', color01) , 'DarkRed')
+  call s:create_color_variables('error_bg', get(s:palette, 'error_bg', color00) , 'Black')
 
   " Match Parenthesis: selecting an opening/closing pair and the other one will be highlighted
-  call s:create_color_variables('matchparen_fg', get(s:palette, 'matchparen_fg', get(s:palette, 'color00')) + ['LightMagenta'])
-  call s:create_color_variables('matchparen_bg', get(s:palette, 'matchparen_bg', get(s:palette, 'color05')) + ['Black'])
+  call s:create_color_variables('matchparen_fg', get(s:palette, 'matchparen_fg', color00) , 'LightMagenta')
+  call s:create_color_variables('matchparen_bg', get(s:palette, 'matchparen_bg', color05) , 'Black')
 
   " Visual:
-  call s:create_color_variables('visual_fg', get(s:palette, 'visual_fg', get(s:palette, 'color08')) + ['Black'])
-  call s:create_color_variables('visual_bg', get(s:palette, 'visual_bg', get(s:palette, 'color07')) + ['White'])
+  call s:create_color_variables('visual_fg', get(s:palette, 'visual_fg', color08) , 'Black')
+  call s:create_color_variables('visual_bg', get(s:palette, 'visual_bg', color07) , 'White')
 
   " Folded:
-  call s:create_color_variables('folded_fg', get(s:palette, 'folded_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('folded_bg', get(s:palette, 'folded_bg', get(s:palette, 'color05')) + ['DarkYellow'])
+  call s:create_color_variables('folded_fg', get(s:palette, 'folded_fg', color00) , 'Black')
+  call s:create_color_variables('folded_bg', get(s:palette, 'folded_bg', color05) , 'DarkYellow')
 
   " WildMenu: Autocomplete command, ex: :color <tab><tab>
-  call s:create_color_variables('wildmenu_fg', get(s:palette, 'wildmenu_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('wildmenu_bg', get(s:palette, 'wildmenu_bg', get(s:palette, 'color06')) + ['LightGray'])
+  call s:create_color_variables('wildmenu_fg', get(s:palette, 'wildmenu_fg', color00) , 'Black')
+  call s:create_color_variables('wildmenu_bg', get(s:palette, 'wildmenu_bg', color06) , 'LightGray')
 
   " Spelling: when spell on and there are spelling problems like this for example: papercolor. a vim color scheme
-  call s:create_color_variables('spellbad', get(s:palette, 'spellbad', get(s:palette, 'color04')) + ['DarkRed'])
-  call s:create_color_variables('spellcap', get(s:palette, 'spellcap', get(s:palette, 'color05')) + ['DarkMagenta'])
-  call s:create_color_variables('spellrare', get(s:palette, 'spellrare', get(s:palette, 'color06')) + ['DarkYellow'])
-  call s:create_color_variables('spelllocal', get(s:palette, 'spelllocal', get(s:palette, 'color01')) + ['DarkBlue'])
+  call s:create_color_variables('spellbad', get(s:palette, 'spellbad', color04) , 'DarkRed')
+  call s:create_color_variables('spellcap', get(s:palette, 'spellcap', color05) , 'DarkMagenta')
+  call s:create_color_variables('spellrare', get(s:palette, 'spellrare', color06) , 'DarkYellow')
+  call s:create_color_variables('spelllocal', get(s:palette, 'spelllocal', color01) , 'DarkBlue')
 
   " Diff:
-  call s:create_color_variables('diffadd_fg', get(s:palette, 'diffadd_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('diffadd_bg', get(s:palette, 'diffadd_bg', get(s:palette, 'color02')) + ['DarkGreen'])
+  call s:create_color_variables('diffadd_fg', get(s:palette, 'diffadd_fg', color00) , 'Black')
+  call s:create_color_variables('diffadd_bg', get(s:palette, 'diffadd_bg', color02) , 'DarkGreen')
 
-  call s:create_color_variables('diffdelete_fg', get(s:palette, 'diffdelete_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('diffdelete_bg', get(s:palette, 'diffdelete_bg', get(s:palette, 'color04')) + ['DarkRed'])
+  call s:create_color_variables('diffdelete_fg', get(s:palette, 'diffdelete_fg', color00) , 'Black')
+  call s:create_color_variables('diffdelete_bg', get(s:palette, 'diffdelete_bg', color04) , 'DarkRed')
 
-  call s:create_color_variables('difftext_fg', get(s:palette, 'difftext_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('difftext_bg', get(s:palette, 'difftext_bg', get(s:palette, 'color06')) + ['DarkYellow'])
+  call s:create_color_variables('difftext_fg', get(s:palette, 'difftext_fg', color00) , 'Black')
+  call s:create_color_variables('difftext_bg', get(s:palette, 'difftext_bg', color06) , 'DarkYellow')
 
-  call s:create_color_variables('diffchange_fg', get(s:palette, 'diffchange_fg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('diffchange_bg', get(s:palette, 'diffchange_bg', get(s:palette, 'color14')) + ['LightYellow'])
+  call s:create_color_variables('diffchange_fg', get(s:palette, 'diffchange_fg', color00) , 'Black')
+  call s:create_color_variables('diffchange_bg', get(s:palette, 'diffchange_bg', color14) , 'LightYellow')
 
   " Tabline: when having tabs, ex: :tabnew
-  call s:create_color_variables('tabline_bg', get(s:palette, 'tabline_bg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('tabline_active_fg', get(s:palette, 'tabline_active_fg', get(s:palette, 'color07')) + ['LightGray'])
-  call s:create_color_variables('tabline_active_bg', get(s:palette, 'tabline_active_bg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('tabline_inactive_fg', get(s:palette, 'tabline_inactive_fg', get(s:palette, 'color07')) + ['Black'])
-  call s:create_color_variables('tabline_inactive_bg', get(s:palette, 'tabline_inactive_bg', get(s:palette, 'color08')) + ['DarkMagenta'])
+  call s:create_color_variables('tabline_bg',          get(s:palette, 'tabline_bg',          color00) , 'Black')
+  call s:create_color_variables('tabline_active_fg',   get(s:palette, 'tabline_active_fg',   color07) , 'LightGray')
+  call s:create_color_variables('tabline_active_bg',   get(s:palette, 'tabline_active_bg',   color00) , 'Black')
+  call s:create_color_variables('tabline_inactive_fg', get(s:palette, 'tabline_inactive_fg', color07) , 'Black')
+  call s:create_color_variables('tabline_inactive_bg', get(s:palette, 'tabline_inactive_bg', color08) , 'DarkMagenta')
 
   " Plugin: BufTabLine https://github.com/ap/vim-buftabline
-  call s:create_color_variables('buftabline_bg', get(s:palette, 'buftabline_bg', get(s:palette, 'color00')) + ['Black'])
-  call s:create_color_variables('buftabline_current_fg', get(s:palette, 'buftabline_current_fg', get(s:palette, 'color07')) + ['LightGray'])
-  call s:create_color_variables('buftabline_current_bg', get(s:palette, 'buftabline_current_bg', get(s:palette, 'color05')) + ['DarkMagenta'])
-  call s:create_color_variables('buftabline_active_fg', get(s:palette, 'buftabline_active_fg', get(s:palette, 'color07')) + ['LightGray'])
-  call s:create_color_variables('buftabline_active_bg', get(s:palette, 'buftabline_active_bg', get(s:palette, 'color12')) + ['LightBlue'])
-  call s:create_color_variables('buftabline_inactive_fg', get(s:palette, 'buftabline_inactive_fg', get(s:palette, 'color07')) + ['LightGray'])
-  call s:create_color_variables('buftabline_inactive_bg', get(s:palette, 'buftabline_inactive_bg', get(s:palette, 'color00')) + ['Black'])
+  call s:create_color_variables('buftabline_bg',          get(s:palette, 'buftabline_bg',          color00) , 'Black')
+  call s:create_color_variables('buftabline_current_fg',  get(s:palette, 'buftabline_current_fg',  color07) , 'LightGray')
+  call s:create_color_variables('buftabline_current_bg',  get(s:palette, 'buftabline_current_bg',  color05) , 'DarkMagenta')
+  call s:create_color_variables('buftabline_active_fg',   get(s:palette, 'buftabline_active_fg',   color07) , 'LightGray')
+  call s:create_color_variables('buftabline_active_bg',   get(s:palette, 'buftabline_active_bg',   color12) , 'LightBlue')
+  call s:create_color_variables('buftabline_inactive_fg', get(s:palette, 'buftabline_inactive_fg', color07) , 'LightGray')
+  call s:create_color_variables('buftabline_inactive_bg', get(s:palette, 'buftabline_inactive_bg', color00) , 'Black')
 
   " Neovim terminal colors https://neovim.io/doc/user/nvim_terminal_emulator.html#nvim-terminal-emulator-configuration
   " TODO: Fix this
-  let g:terminal_color_0=get(s:palette, 'color00')[0]
-  let g:terminal_color_1=get(s:palette, 'color01')[0]
-  let g:terminal_color_2=get(s:palette, 'color02')[0]
-  let g:terminal_color_3=get(s:palette, 'color03')[0]
-  let g:terminal_color_4=get(s:palette, 'color04')[0]
-  let g:terminal_color_5=get(s:palette, 'color05')[0]
-  let g:terminal_color_6=get(s:palette, 'color06')[0]
-  let g:terminal_color_7=get(s:palette, 'color07')[0]
-  let g:terminal_color_8=get(s:palette, 'color08')[0]
-  let g:terminal_color_9=get(s:palette, 'color09')[0]
-  let g:terminal_color_10=get(s:palette, 'color10')[0]
-  let g:terminal_color_11=get(s:palette, 'color11')[0]
-  let g:terminal_color_12=get(s:palette, 'color12')[0]
-  let g:terminal_color_13=get(s:palette, 'color13')[0]
-  let g:terminal_color_14=get(s:palette, 'color14')[0]
-  let g:terminal_color_15=get(s:palette, 'color15')[0]
+  let g:terminal_color_0  = color00[0]
+  let g:terminal_color_1  = color01[0]
+  let g:terminal_color_2  = color02[0]
+  let g:terminal_color_3  = color03[0]
+  let g:terminal_color_4  = color04[0]
+  let g:terminal_color_5  = color05[0]
+  let g:terminal_color_6  = color06[0]
+  let g:terminal_color_7  = color07[0]
+  let g:terminal_color_8  = color08[0]
+  let g:terminal_color_9  = color09[0]
+  let g:terminal_color_10 = color10[0]
+  let g:terminal_color_11 = color11[0]
+  let g:terminal_color_12 = color12[0]
+  let g:terminal_color_13 = color13[0]
+  let g:terminal_color_14 = color14[0]
+  let g:terminal_color_15 = color15[0]
 
 endfun
 " }}}
 
-" SET SYNTAX HIGHLIGHTING: {{{
+" Apply Syntax Highlightings: {{{
 
-fun! s:set_syntax_highlighting()
+fun! s:apply_syntax_highlightings()
 
-  if s:TRANSPARENT_BACKGROUND
+  if s:themeOpt_transparent_background
     exec 'hi Normal' . s:fg_foreground
     " Switching between dark & light variant through `set background`
     " NOTE: Handle background switching right after `Normal` group because of
@@ -953,7 +1166,7 @@ fun! s:set_syntax_highlighting()
     exec 'hi CursorColumn'  . s:bg_cursorcolumn . s:ft_none
     exec 'hi PMenu' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
     exec 'hi PMenuSel' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_reverse
-    if s:TRANSPARENT_BACKGROUND
+    if s:themeOpt_transparent_background
       exec 'hi SignColumn' . s:fg_green . s:ft_none
     else
       exec 'hi SignColumn' . s:fg_green . s:bg_background . s:ft_none
@@ -973,7 +1186,7 @@ fun! s:set_syntax_highlighting()
   exec 'hi BufTabLineFill'  . s:bg_buftabline_bg . s:ft_none
 
   " Standard Group Highlighting:
-  exec 'hi Comment' . s:fg_comment
+  exec 'hi Comment' . s:fg_comment . s:ft_italic
 
   exec 'hi Constant' . s:fg_orange
   exec 'hi String' . s:fg_olive
@@ -1034,7 +1247,7 @@ fun! s:set_syntax_highlighting()
   exec 'hi vimLet' . s:fg_red
   exec 'hi vimContinue' . s:fg_aqua
   exec 'hi vimMapRhsExtend' . s:fg_foreground
-  exec 'hi vimCommentTitle' . s:fg_comment . s:ft_bold
+  exec 'hi vimCommentTitle' . s:fg_comment . s:ft_italic_bold
   exec 'hi vimBracket' . s:fg_aqua
   exec 'hi vimParenSep' . s:fg_aqua
   exec 'hi vimNotation' . s:fg_aqua
@@ -1042,6 +1255,9 @@ fun! s:set_syntax_highlighting()
   exec 'hi vimOperParen' . s:fg_foreground
   exec 'hi vimSynType' . s:fg_purple
   exec 'hi vimSynReg' . s:fg_pink . s:ft_none
+  exec 'hi vimSynRegion' . s:fg_foreground
+  exec 'hi vimSynMtchGrp' . s:fg_pink
+  exec 'hi vimSynNextgroup' . s:fg_pink
   exec 'hi vimSynKeyRegion' . s:fg_green
   exec 'hi vimSynRegOpt' . s:fg_blue
   exec 'hi vimSynMtchOpt' . s:fg_blue
@@ -1060,11 +1276,35 @@ fun! s:set_syntax_highlighting()
   exec 'hi makeCommands' . s:fg_foreground
   exec 'hi makeSpecial' . s:fg_orange . s:ft_bold
 
-  " CMake Highlighting
-  exec 'hi cmakeStatement' . s:fg_pink
+  " CMake Highlighting (Builtin)
+  exec 'hi cmakeStatement' . s:fg_blue
   exec 'hi cmakeArguments' . s:fg_foreground
-  exec 'hi cmakeVariableValue' . s:fg_blue
-  exec 'hi cmakeOperators' . s:fg_red
+  exec 'hi cmakeVariableValue' . s:fg_pink
+
+  " CMake Highlighting (Plugin: https://github.com/pboettch/vim-cmake-syntax)
+  exec 'hi cmakeCommand' . s:fg_blue
+  exec 'hi cmakeCommandConditional' . s:fg_purple . s:ft_bold
+  exec 'hi cmakeKWset' . s:fg_orange
+  exec 'hi cmakeKWvariable_watch' . s:fg_orange
+  exec 'hi cmakeKWif' . s:fg_orange
+  exec 'hi cmakeArguments' . s:fg_foreground
+  exec 'hi cmakeKWproject' . s:fg_pink
+  exec 'hi cmakeGeneratorExpressions' . s:fg_orange
+  exec 'hi cmakeGeneratorExpression' . s:fg_aqua
+  exec 'hi cmakeVariable' . s:fg_pink
+  exec 'hi cmakeProperty' . s:fg_aqua
+  exec 'hi cmakeKWforeach' . s:fg_aqua
+  exec 'hi cmakeKWunset' . s:fg_aqua
+  exec 'hi cmakeKWmacro' . s:fg_aqua
+  exec 'hi cmakeKWget_property' . s:fg_aqua
+  exec 'hi cmakeKWset_tests_properties' . s:fg_aqua
+  exec 'hi cmakeKWmessage' . s:fg_aqua
+  exec 'hi cmakeKWinstall_targets' . s:fg_orange
+  exec 'hi cmakeKWsource_group' . s:fg_orange
+  exec 'hi cmakeKWfind_package' . s:fg_aqua
+  exec 'hi cmakeKWstring' . s:fg_olive
+  exec 'hi cmakeKWinstall' . s:fg_aqua
+  exec 'hi cmakeKWtarget_sources' . s:fg_orange
 
   " C Highlighting
   exec 'hi cType' . s:fg_pink . s:ft_bold
@@ -1095,7 +1335,7 @@ fun! s:set_syntax_highlighting()
   " exec 'hi cCustomFunc' . s:fg_foreground
   " exec 'hi cUserFunction' . s:fg_blue . s:ft_bold
   exec 'hi cOctalZero' . s:fg_purple . s:ft_bold
-  if s:Language_Options('c.highlight_builtins') == 1
+  if s:langOpt_c__highlight_builtins == 1
     exec 'hi cFunction' . s:fg_blue
   else
     exec 'hi cFunction' . s:fg_foreground
@@ -1111,7 +1351,7 @@ fun! s:set_syntax_highlighting()
   exec 'hi cppStatement' . s:fg_blue
   exec 'hi cppStorageClass' . s:fg_navy . s:ft_bold
   exec 'hi cppAccess' . s:fg_blue
-  if s:Language_Options('cpp.highlight_standard_library') == 1
+  if s:langOpt_cpp__highlight_standard_library == 1
     exec 'hi cppSTLconstant' . s:fg_green . s:ft_bold
     exec 'hi cppSTLtype' . s:fg_pink . s:ft_bold
     exec 'hi cppSTLfunction' . s:fg_blue
@@ -1124,6 +1364,24 @@ fun! s:set_syntax_highlighting()
   endif
   " exec 'hi cppSTL' . s:fg_blue
 
+  " Rust highlighting
+  exec 'hi rustKeyword' . s:fg_pink
+  exec 'hi rustModPath' . s:fg_blue
+  exec 'hi rustModPathSep' . s:fg_blue
+  exec 'hi rustLifetime' . s:fg_purple
+  exec 'hi rustStructure' . s:fg_aqua . s:ft_bold
+  exec 'hi rustAttribute' . s:fg_aqua . s:ft_bold
+  exec 'hi rustPanic' . s:fg_olive . s:ft_bold
+  exec 'hi rustTrait' . s:fg_blue . s:ft_bold
+  exec 'hi rustEnum' . s:fg_green . s:ft_bold
+  exec 'hi rustEnumVariant' . s:fg_green
+  exec 'hi rustSelf' . s:fg_orange
+  exec 'hi rustSigil' . s:fg_aqua . s:ft_bold
+  exec 'hi rustOperator' . s:fg_aqua . s:ft_bold
+  exec 'hi rustMacro' . s:fg_olive . s:ft_bold
+  exec 'hi rustMacroVariable' . s:fg_olive
+  exec 'hi rustAssert' . s:fg_olive . s:ft_bold
+  exec 'hi rustConditional' . s:fg_purple . s:ft_bold
 
   " Lex highlighting
   exec 'hi lexCFunctions' . s:fg_foreground
@@ -1194,6 +1452,18 @@ fun! s:set_syntax_highlighting()
   exec 'hi shSetList' . s:fg_navy
   " @see Dockerfile Highlighting section for more sh*
 
+  " PowerShell Highlighting
+  exec 'hi ps1Type' . s:fg_green . s:ft_bold
+  exec 'hi ps1Variable' . s:fg_navy
+  exec 'hi ps1Boolean' . s:fg_navy . s:ft_bold
+  exec 'hi ps1FunctionInvocation' . s:fg_pink
+  exec 'hi ps1FunctionDeclaration' . s:fg_pink
+  exec 'hi ps1Keyword' . s:fg_blue . s:ft_bold
+  exec 'hi ps1Exception' . s:fg_red
+  exec 'hi ps1Operator' . s:fg_aqua . s:ft_bold
+  exec 'hi ps1CommentDoc' . s:fg_purple
+  exec 'hi ps1CDocParam' . s:fg_orange
+
   " HTML Highlighting
   exec 'hi htmlTitle' . s:fg_green . s:ft_bold
   exec 'hi htmlH1' . s:fg_green . s:ft_bold
@@ -1207,13 +1477,13 @@ fun! s:set_syntax_highlighting()
   exec 'hi htmlString' . s:fg_blue
   exec 'hi htmlScriptTag' . s:fg_comment
   exec 'hi htmlBold' . s:fg_foreground . s:ft_bold
-  exec 'hi htmlItalic' . s:fg_comment . s:ft_bold
-  exec 'hi htmlBoldItalic' . s:fg_navy . s:ft_bold
+  exec 'hi htmlItalic' . s:fg_comment . s:ft_italic
+  exec 'hi htmlBoldItalic' . s:fg_navy . s:ft_italic_bold
   " exec 'hi htmlLink' . s:fg_blue . s:ft_bold
   exec 'hi htmlTagN' . s:fg_wine . s:ft_bold
   exec 'hi htmlSpecialTagName' . s:fg_wine
-  exec 'hi htmlComment' . s:fg_comment
-  exec 'hi htmlCommentPart' . s:fg_comment
+  exec 'hi htmlComment' . s:fg_comment . s:ft_italic
+  exec 'hi htmlCommentPart' . s:fg_comment . s:ft_italic
 
   " CSS Highlighting
   exec 'hi cssIdentifier' . s:fg_pink
@@ -1290,7 +1560,7 @@ fun! s:set_syntax_highlighting()
   exec 'hi pythonDottedName' . s:fg_purple
   exec 'hi pythonStrFormat' . s:fg_foreground
 
-  if s:Language_Options('python.highlight_builtins') == 1
+  if s:langOpt_python__highlight_builtins == 1
     exec 'hi pythonBuiltinFunc' . s:fg_blue
     exec 'hi pythonBuiltinObj' . s:fg_red
   else
@@ -1476,14 +1746,25 @@ fun! s:set_syntax_highlighting()
   exec 'hi rubyBoolean' . s:fg_green . s:ft_bold
 
   " Fortran Highlighting
-  exec 'hi fortranUnitHeader' . s:fg_foreground . s:ft_bold
+  exec 'hi fortranUnitHeader' . s:fg_blue . s:ft_bold
+  exec 'hi fortranIntrinsic' . s:fg_blue . s:bg_background . s:ft_none
   exec 'hi fortranType' . s:fg_pink . s:ft_bold
-  exec 'hi fortranStructure' . s:fg_blue . s:ft_bold
+  exec 'hi fortranTypeOb' . s:fg_pink . s:ft_bold
+  exec 'hi fortranStructure' . s:fg_aqua
   exec 'hi fortranStorageClass' . s:fg_navy . s:ft_bold
   exec 'hi fortranStorageClassR' . s:fg_navy . s:ft_bold
   exec 'hi fortranKeyword' . s:fg_pink
-  exec 'hi fortranReadWrite' . s:fg_blue
+  exec 'hi fortranReadWrite' . s:fg_aqua . s:ft_bold
   exec 'hi fortranIO' . s:fg_navy
+  exec 'hi fortranOperator' . s:fg_aqua . s:ft_bold
+  exec 'hi fortranCall' . s:fg_aqua . s:ft_bold
+  exec 'hi fortranContinueMark' . s:fg_green
+
+  " ALGOL Highlighting (Plugin: https://github.com/sterpe/vim-algol68)
+  exec 'hi algol68Statement' . s:fg_blue . s:ft_bold
+  exec 'hi algol68Operator' . s:fg_aqua . s:ft_bold
+  exec 'hi algol68PreProc' . s:fg_green
+  exec 'hi algol68Function' . s:fg_blue
 
   " R Highlighting
   exec 'hi rType' . s:fg_blue
@@ -1719,6 +2000,71 @@ fun! s:set_syntax_highlighting()
   exec 'hi sedBranch' . s:fg_green . s:ft_bold
   exec 'hi sedLabel' . s:fg_green . s:ft_bold
 
+  " GNU awk highlighting
+  exec 'hi awkPatterns' . s:fg_pink . s:ft_bold
+  exec 'hi awkSearch' . s:fg_pink
+  exec 'hi awkRegExp' . s:fg_blue . s:ft_bold
+  exec 'hi awkCharClass' . s:fg_blue . s:ft_bold
+  exec 'hi awkFieldVars' . s:fg_green . s:ft_bold
+  exec 'hi awkStatement' . s:fg_blue . s:ft_bold
+  exec 'hi awkFunction' . s:fg_blue
+  exec 'hi awkVariables' . s:fg_green . s:ft_bold
+  exec 'hi awkArrayElement' . s:fg_orange
+  exec 'hi awkOperator' . s:fg_foreground
+  exec 'hi awkBoolLogic' . s:fg_foreground
+  exec 'hi awkExpression' . s:fg_foreground
+  exec 'hi awkSpecialPrintf' . s:fg_olive . s:ft_bold
+
+  " Elm highlighting
+  exec 'hi elmImport' . s:fg_navy 
+  exec 'hi elmAlias' . s:fg_aqua
+  exec 'hi elmType' . s:fg_pink
+  exec 'hi elmOperator' . s:fg_aqua . s:ft_bold
+  exec 'hi elmBraces' . s:fg_aqua . s:ft_bold 
+  exec 'hi elmTypedef' . s:fg_blue .  s:ft_bold
+  exec 'hi elmTopLevelDecl' . s:fg_green . s:ft_bold
+
+  " Purescript highlighting
+  exec 'hi purescriptModuleKeyword' . s:fg_navy
+  exec 'hi purescriptImportKeyword' . s:fg_navy
+  exec 'hi purescriptModuleName' . s:fg_pink
+  exec 'hi purescriptOperator' . s:fg_aqua . s:ft_bold
+  exec 'hi purescriptType' . s:fg_pink
+  exec 'hi purescriptTypeVar' . s:fg_navy
+  exec 'hi purescriptStructure' . s:fg_blue . s:ft_bold
+  exec 'hi purescriptLet' . s:fg_blue . s:ft_bold
+  exec 'hi purescriptFunction' . s:fg_green . s:ft_bold
+  exec 'hi purescriptDelimiter' . s:fg_aqua . s:ft_bold
+  exec 'hi purescriptStatement' . s:fg_purple . s:ft_bold
+  exec 'hi purescriptConstructor' . s:fg_pink
+  exec 'hi purescriptWhere' . s:fg_purple . s:ft_bold
+
+  " F# highlighting
+  exec 'hi fsharpTypeName' . s:fg_pink
+  exec 'hi fsharpCoreClass' . s:fg_pink
+  exec 'hi fsharpType' . s:fg_pink
+  exec 'hi fsharpKeyword' . s:fg_blue . s:ft_bold
+  exec 'hi fsharpOperator' . s:fg_aqua . s:ft_bold
+  exec 'hi fsharpBoolean' . s:fg_green . s:ft_bold
+  exec 'hi fsharpFormat' . s:fg_foreground
+  exec 'hi fsharpLinq' . s:fg_blue
+  exec 'hi fsharpKeyChar' . s:fg_aqua . s:ft_bold
+  exec 'hi fsharpOption' . s:fg_orange
+  exec 'hi fsharpCoreMethod' . s:fg_purple
+  exec 'hi fsharpAttrib' . s:fg_orange
+  exec 'hi fsharpModifier' . s:fg_aqua
+  exec 'hi fsharpOpen' . s:fg_red
+
+  " ASN.1 highlighting
+  exec 'hi asnExternal' . s:fg_green . s:ft_bold
+  exec 'hi asnTagModifier' . s:fg_purple
+  exec 'hi asnBraces' . s:fg_aqua . s:ft_bold
+  exec 'hi asnDefinition' . s:fg_foreground
+  exec 'hi asnStructure' . s:fg_blue
+  exec 'hi asnType' . s:fg_pink
+  exec 'hi asnTypeInfo' . s:fg_aqua . s:ft_bold
+  exec 'hi asnFieldOption' . s:fg_purple
+
   " }}}
 
   " Plugin: Netrw
@@ -1808,6 +2154,7 @@ fun! s:set_syntax_highlighting()
   exec 'hi gitcommitSelectedFile' . s:fg_pink
   exec 'hi gitcommitUntrackedFile' . s:fg_diffdelete_fg
   exec 'hi gitcommitBranch' . s:fg_aqua . s:ft_bold
+  exec 'hi gitcommitDiscardedType' . s:fg_diffdelete_fg
 
   exec 'hi diffFile' . s:fg_aqua . s:ft_bold
   exec 'hi diffIndexLine' . s:fg_purple
@@ -1818,276 +2165,47 @@ fun! s:set_syntax_highlighting()
 endfun
 " }}}
 
-" =========================== TESTING =====================================
-" Run unit testing :call g:PaperColor_Test()
+" ================================== MISC =====================================
+" Command to show theme information {{{
+fun! g:PaperColor()
+  echom 'PaperColor Theme Framework'
+  echom '  version ' . s:version
+  echom '  by Nikyle Nguyen et al.'
+  echom '  at https://github.com/NLKNguyen/papercolor-theme/'
+  echom ' '
+  echom 'Current theme: ' . s:theme_name
+  echom '  ' . s:selected_theme['description']
+  echom '  by ' . s:selected_theme['maintainer']
+  echom '  at ' . s:selected_theme['source']
 
-" UNIT TESTING: {{{
-
-fun! s:test_report(test, verbose)
-  if a:test[1] != ''
-    echo a:test[0]
-    echo '==> failed. ' . a:test[1]
-    return 1
-
-  elseif a:verbose == 1
-    echo a:test[0]
-    echo '==> passed.'
-    return 0
-
-  endif
+  " TODO: add diff display for theme color names between 'default' and current
+  " theme if it is a custom theme, i.e. child theme.
 endfun
 
-fun! s:palettes_should_have_color00_to_color15()
-  let l:premise = "All color palettes should have color00 to color15, each has 2 components"
-  let l:error = ''
-
-  for [name, theme] in items(s:themes)
-
-    for l:variant in ['light', 'dark']
-      if has_key(theme, l:variant)
-        let l:palette = theme[l:variant].palette
-
-        for l:color in ['color00', 'color01', 'color02', 'color03',
-              \ 'color04', 'color05', 'color06', 'color07',
-              \ 'color08', 'color09', 'color10', 'color11',
-              \ 'color12', 'color13', 'color14', 'color15' ]
-          if !has_key(l:palette, l:color)
-            let l:error .= "s:themes['" . name . "']." . l:variant . ".palette doesn't have " . l:color
-            break
-          else
-            let l:value = l:palette[l:color]
-            if len(l:value) != 2
-              let l:error .= "s:themes['" . name . "']." . l:variant . ".palette." . l:color . " doesn't have required value"
-              break
-            endif
-          endif
-        endfor
-
-        if l:error != ''
-          return [l:premise, l:error]
-        endif
-      endif
-    endfor
-
-  endfor
-
-  return [l:premise, l:error]
-endfun
-" ------------------------------------------------------------------
-
-fun! s:colors_should_have_correct_format()
-  let l:premise = "All colors should have correct format like this ['#abcdef', '123'] or []"
-  let l:error = ''
-
-  for [name, theme] in items(s:themes)
-
-    for l:variant in ['light', 'dark']
-      if has_key(theme, l:variant)
-        let l:palette = theme[l:variant].palette
-
-        let l:msg_prefix = "\ns:themes['" . name . "']." . l:variant . ".palette."
-        for [l:color, l:value] in items(l:palette)
-
-          let l:value = l:palette[l:color]
-          if len(l:value) != 2 && len(l:value) != 0
-            let l:error .= msg_prefix . l:color . " doesn't have length 2 or 0"
-            continue
-          endif
-
-          if len(l:value) == 2
-            if l:value[0] == '' && l:value[1] == ''
-              let l:error .= msg_prefix . l:color . " doesn't have at least 1 non-empty value"
-              continue
-            endif
-
-            if stridx(l:value[0], ' ') != -1
-              let l:error .= msg_prefix . l:color . " has space in the first value"
-              continue
-            endif
-
-            if stridx(l:value[1], ' ') != -1
-              let l:error .= msg_prefix . l:color . " has space in the second value"
-              continue
-            endif
-
-            if l:value[0] != '' && l:value[0][0] != '#'
-              let l:error .= msg_prefix . l:color . " doesn't have '#' at the beginning of the first value"
-              continue
-            endif
-          endif
-
-        endfor
-
-        " if l:error != ''
-        "   return [l:premise, l:error]
-        " endif
-
-      endif
-    endfor
-
-  endfor
-
-  return [l:premise, l:error]
-endfun
-" ------------------------------------------------------------------
-
-fun! s:expected_256_only_colors_should_be_consistent()
-  let l:premise = 'Palletes that are marked for TEST_256_COLOR_CONSISTENCY should have consitent values of HEX and 256 for each color'
-  let l:error = ''
-
-  for [name, theme] in items(s:themes)
-
-    for l:variant in ['light', 'dark']
-      if has_key(theme, l:variant)
-
-        if has_key(theme[l:variant], 'TEST_256_COLOR_CONSISTENCY') &&
-              \ theme[l:variant].TEST_256_COLOR_CONSISTENCY == 1
-          let l:palette = theme[l:variant].palette
-
-          for [l:color, l:value] in items(l:palette)
-            if len(l:value) == 2
-              let l:value_hex = l:value[0]
-              let l:value_256 = l:value[1]
-              let l:expected_hex = s:to_HEX[l:value_256]
-              if l:value_hex != l:expected_hex
-                let l:error .= "\ns:themes['" . name . "']." . l:variant . ".palette  " .
-                      \ "Expected: '" . l:color ."' : ['" . l:expected_hex . "', '". l:value_256 . "']"
-              endif
-            endif
-          endfor " end looping through colors
-
-        endif " had TEST_256_COLOR_CONSISTENCY
-
-      endif " had variant
-    endfor " end looping through variants
-
-  endfor " end looping through themes
-
-  return [l:premise, l:error]
-endfun
-" ------------------------------------------------------------------
-
-" TODO: later
-" fun! s:test_converter()
-"   let l:premise = 'Just test converter'
-"   let l:error = ''
-
-"   echo s:to_HEX['134'] . '  ' . s:to_256(s:to_HEX['134']) . ' expected 134'
-"   echo s:to_HEX['135'] . '  ' . s:to_256(s:to_HEX['135']) . ' expected 135'
-"   echo s:to_HEX['136'] . '  ' . s:to_256(s:to_HEX['136']) . ' expected 136'
-"   echo s:to_HEX['234'] . '  ' . s:to_256(s:to_HEX['234']) . ' expected 234'
-"   echo s:to_HEX['235'] . '  ' . s:to_256(s:to_HEX['235']) . ' expected 235'
-"   echo s:to_HEX['236'] . '  ' . s:to_256(s:to_HEX['236']) . ' expected 236'
-
-"   return [l:premise, l:error]
-" endfun
-" ------------------------------------------------------------------
-
-fun! g:PaperColor_Test()
-  let l:verbose = 1 " 0: only error
-  let l:test_functions =  [
-        \ function('s:palettes_should_have_color00_to_color15'),
-        \ function('s:colors_should_have_correct_format'),
-        \ function('s:expected_256_only_colors_should_be_consistent'),
-        \ ]
-
-  if l:verbose == 1
-    echo '----- PaperColor-Theme ------'
-    echo '-------- TEST BEGIN ---------'
-  endif
-
-  let l:has_failed = 0
-
-  let l:counter = 0
-  for l:Test in l:test_functions
-    let l:has_failed = l:has_failed || s:test_report(l:Test(), l:verbose)
-    if l:has_failed == 1
-      echo ' '
-      echo '[FAILED]'
-      echo "Failed at test function: " l:Test
-      echo ' '
-      echo '-----------------------------'
-      echo '' 1.0 * l:counter  / len(l:test_functions) * 100
-      echon '% passed'
-      break
-    endif
-    let l:counter += 1
-  endfor
-
-  if l:verbose == 1
-    if l:has_failed == 0
-      echo '[SUCCEEDED]'
-    endif
-    echo '-------- TEST END -----------'
-  endif
-
-  return l:has_failed
-endfun
-
+" @brief command alias for g:PaperColor()
+command! -nargs=0 PaperColor :call g:PaperColor()
 " }}}
 
-" INTERMEDIATE FILES GENERATOR: {{{
-
-fun! s:writeToFile(message, file)
-  echo a:file
-  new
-  setlocal buftype=nofile bufhidden=hide noswapfile nobuflisted
-  put =a:message
-  execute 'w ' a:file
-  q
-endfun
-
-let s:script_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-
-fun! g:PaperColor_GenerateSpecs()
-  call s:generate_color_palettes()
-endfun
-
-fun! s:generate_color_palettes()
-  let l:content = ''
-  let l:indent1 = '  '
-  let l:indent2 = '    '
-  for [l:name, l:theme] in items(s:themes)
-
-    let l:content .= l:name . ":\n"
-    for l:variant in ['light', 'dark']
-      if has_key(l:theme, l:variant)
-
-        let l:content .= l:indent1 . l:variant . ":\n"
-        let l:palette = l:theme[l:variant].palette
-
-        for [l:color, l:value] in items(l:palette)
-          let l:value_hex = l:value[0]
-          " let l:value_256 = l:value[1]
-          let l:content .= l:indent2 . l:color . ": " . l:value_hex . "\n"
-        endfor " end looping through colors
-
-      endif
-    endfor " end looping through variants
-
-  endfor " end looping through themes
-  " echo l:content
-  call s:writeToFile(l:content, "palettes.yml")
-endfun
-
-
-
-" }}}
-
-" ============================ MAIN =======================================
-
-" MAIN: {{{
+" =============================== MAIN ========================================
 
 hi clear
 syntax reset
 let g:colors_name = "PaperColor"
 
-call s:adapt_to_environment()
+call s:acquire_theme_data()
+call s:identify_color_mode()
+
+call s:generate_theme_option_variables()
+call s:generate_language_option_variables()
+
+call s:set_format_attributes()
+call s:set_overriding_colors()
+
+call s:convert_colors()
 call s:set_color_variables()
-call s:set_syntax_highlighting()
 
-" }}}
+call s:apply_syntax_highlightings()
 
-" =========================================================================
+" =============================================================================
 " Cheers!
 " vim: fdm=marker ff=unix
