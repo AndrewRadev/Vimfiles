@@ -374,3 +374,11 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', 
   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
+
+" Yank current directory path
+nnoremap gy :call <SID>YankDir()<cr>
+function! s:YankDir()
+  let current_dir = getcwd()
+  call setreg(v:register, current_dir)
+  echomsg 'Yanked "'.current_dir.'" to clipboard ("'.v:register.')'
+endfunction
