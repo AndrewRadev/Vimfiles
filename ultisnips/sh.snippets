@@ -4,13 +4,13 @@ snippet #!
 endsnippet
 
 snippet if
-if [[ ${1:condition} ]]; then
+if [ ${1:condition} ]; then
 	${2:#statements}
 fi
 endsnippet
 
 snippet elif
-elif [[ ${1:condition} ]]; then
+elif [ ${1:condition} ]; then
 	${2:#statements}
 endsnippet
 
@@ -21,13 +21,13 @@ done
 endsnippet
 
 snippet wh
-while [[ ${1:condition} ]]; do
+while [ ${1:condition} ]; do
 	${2:#statements}
 done
 endsnippet
 
 snippet until
-until [[ ${1:condition} ]]; do
+until [ ${1:condition} ]; do
 	${2:#statements}
 done
 endsnippet
@@ -44,7 +44,7 @@ export ${1:PATH}=$$1:${2}
 endsnippet
 
 snippet usage
-if [[ $# -lt ${1} ]]; then
+if [ $# -lt ${1} ]; then
 	echo "USAGE: ${2}"
 	exit 1
 fi
