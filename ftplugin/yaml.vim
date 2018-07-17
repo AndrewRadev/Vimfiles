@@ -4,3 +4,5 @@ setlocal expandtab
 
 setlocal foldmethod=indent
 setlocal nofoldenable
+
+setlocal commentstring=#\ %s
