@@ -277,3 +277,6 @@
 [submodule "bundle/rhubarb"]
 	path = bundle/rhubarb
 	url = https://github.com/tpope/vim-rhubarb
+[submodule "bundle/large_file"]
+	path = bundle/large_file
+	url = https://github.com/vim-scripts/LargeFile
