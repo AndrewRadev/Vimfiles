@@ -33,11 +33,12 @@ let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
 let OmniCpp_MayCompleteDot      = 1 " Automatically complete
 let OmniCpp_MayCompleteArrow    = 1 " Automatically complete
 
-" Ruby speedup
+" Ruby settings
 let g:ruby_path                      = ''
-let g:rubycomplete_buffer_loading    = 0
-let g:rubycomplete_classes_in_global = 0
 let g:rubycomplete_rails             = 0
+let g:rubycomplete_buffer_loading    = 1
+let g:rubycomplete_classes_in_global = 1
+
 
 " get rid of custom rails syntax highlighting
 let g:rails_syntax = 0
