@@ -38,13 +38,10 @@ let g:ruby_path                      = ''
 let g:rubycomplete_rails             = 0
 let g:rubycomplete_buffer_loading    = 1
 let g:rubycomplete_classes_in_global = 1
-
+let g:ruby_operators                 = 1
 
 " get rid of custom rails syntax highlighting
 let g:rails_syntax = 0
-
-" syntax highlighting:
-let ruby_operators = 1
 
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd = 'wget -q -O'
