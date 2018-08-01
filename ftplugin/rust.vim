@@ -1,6 +1,8 @@
 RunCommand RustRun
 compiler cargo
 
+setlocal tags+=Cargo.tags
+
 let b:extract_var_template = 'let %s = %s;'
 let b:inline_var_pattern   = '\vlet (\k+)\s+\=\s+(.*);'
 
