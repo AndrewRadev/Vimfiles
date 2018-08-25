@@ -3,12 +3,12 @@ compiler cargo
 
 setlocal tags+=Cargo.tags
 
+nnoremap <buffer> gm :call <SID>Doc()<Cr>
+
 let b:extract_var_template = 'let %s = %s;'
 let b:inline_var_pattern   = '\vlet (\k+)\s+\=\s+(.*);'
 
 let b:outline_pattern = '\s*\%(pub\s*\)\=\(impl\|fn\|struct\|macro_rules!\)\(\s\|$\)'
-
-nnoremap <buffer> gm :call Open('http://docs.rs/' . expand("<cword>"))<CR>
 
 onoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
 xnoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
@@ -41,4 +41,69 @@ function! s:FunctionTextObject(mode)
   elseif a:mode == 'i' && (function_end - function_start) > 1
     call lib#MarkVisual('V', function_start + 1, function_end - 1)
   endif
+endfunction
+
+function! s:Doc()
+  let term = expand('<cword>')
+  let [imported_symbols, aliases] = s:ParseImports()
+  let namespaces = values(imported_symbols)
+  let packages = map(namespaces, {_, ns -> split(ns, '::')[0]})
+  let url = ""
+
+  if getline('.') =~ 'extern crate '.term.';'
+    call Open('https://docs.rs/'.term)
+  elseif term == 'std'
+    call Open('https://doc.rust-lang.org/std')
+  elseif index(packages, term) >= 0
+    call Open('https://docs.rs/'.term)
+  elseif has_key(imported_symbols, term)
+    let namespace = imported_symbols[term]
+    if namespace =~ 'std::'
+      let path = substitute(namespace, '::', '/', 'g')
+      call Open('https://doc.rust-lang.org/'.path.'/?search='.term)
+    else
+      if has_key(aliases, term)
+        let term = aliases[term]
+      endif
+
+      let path = substitute(namespace, '::', '/', 'g')
+      let package = split(namespace, '::')[0]
+      call Open('https://docs.rs/'.package.'/latest/'.path.'/?search='.term)
+    endif
+  else
+    echomsg "Don't know how to open docs for '".term."' in this context"
+  endif
+endfunction
+
+function! s:ParseImports()
+  let imported_symbols = {}
+  let aliases = {}
+
+  for line in filter(getline(1, '$'), {_, l -> l =~ '^\s*use'})
+    let namespace = matchstr(line, '^\s*use \zs.\+\ze::')
+    let symbols = []
+
+    if line =~ '::\k\+ as \k\+;'
+      let real_name      = matchstr(line, '::\zs\k\+\ze as \k\+;')
+      let alias          = matchstr(line, '::\k\+ as \zs\k\+\ze;')
+      let symbols        = [alias]
+      let aliases[alias] = real_name
+    endif
+
+    if symbols == []
+      let symbols = [matchstr(line, '::\zs\k\+\ze;')]
+    endif
+    if symbols == [""]
+      let symbols = split(matchstr(line, '::{\zs.*\ze};'), ',\s*')
+    endif
+    if symbols == []
+      continue
+    endif
+
+    for symbol in symbols
+      let imported_symbols[symbol] = namespace
+    endfor
+  endfor
+
+  return [imported_symbols, aliases]
 endfunction
