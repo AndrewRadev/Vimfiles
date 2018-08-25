@@ -13,7 +13,9 @@ let b:outline_pattern = '^\s*func'
 
 RunCommand !go run %
 
-augroup golang
-  autocmd!
-  autocmd BufWritePre <buffer> :Fmt silent simplify
-augroup END
+if exists(':Fmt')
+  augroup golang
+    autocmd!
+    autocmd BufWritePre <buffer> :Fmt silent simplify
+  augroup END
+endif
