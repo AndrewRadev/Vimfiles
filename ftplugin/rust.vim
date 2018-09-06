@@ -10,6 +10,18 @@ let b:inline_var_pattern   = '\vlet (\k+)\s+\=\s+(.*);'
 
 let b:outline_pattern = '\s*\%(pub\s*\)\=\(impl\|fn\|struct\|macro_rules!\)\(\s\|$\)'
 
+cmap <buffer><script><expr> <Plug><ctag> substitute(<SID>RustCursorTag(),'^$',"\<c-c>",'')
+
+nmap <buffer> <c-]>       :<c-u>exe v:count1."tag <Plug><ctag>"<cr>
+nmap <buffer> g<c-]>      :<c-u>exe          "tjump <Plug><ctag>"<cr>
+nmap <buffer> g]          :<c-u>exe          "tselect <Plug><ctag>"<cr>
+nmap <buffer> <c-w>]      :<c-u>exe v:count1."stag <Plug><ctag>"<cr>
+nmap <buffer> <c-w><c-]>  :<c-u>exe v:count1."stag <Plug><ctag>"<cr>
+nmap <buffer> <c-w>g<c-]> :<c-u>exe          "stjump <Plug><ctag>"<cr>
+nmap <buffer> <c-w>g]     :<c-u>exe          "stselect <Plug><ctag>"<cr>
+nmap <buffer> <c-w>}      :<c-u>exe v:count1."ptag <Plug><ctag>"<cr>
+nmap <buffer> <c-w>g}     :<c-u>exe v:count1."ptjump <Plug><ctag>"<cr>
+
 onoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
 xnoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
 onoremap <buffer> im :<c-u>call <SID>FunctionTextObject('i')<cr>
@@ -106,4 +118,15 @@ function! s:ParseImports()
   endfor
 
   return [imported_symbols, aliases]
+endfunction
+
+function! s:RustCursorTag() abort
+  let [_, aliases] = s:ParseImports()
+  let identifier = expand('<cword>')
+
+  if has_key(aliases, identifier)
+    return aliases[identifier]
+  else
+    return identifier
+  endif
 endfunction
