@@ -300,6 +300,9 @@ function! s:ToggleBrackets()
   let end_col         = arguments[-1].end_col
   let end_col_index   = end_col - 1
 
+  let saved_wrap = &wrap
+  set nowrap
+
   if start_line[start_col_index - 1] == '(' && end_line[end_col_index + 1] == ')'
     exe "normal! ".(start_lineno)."G"
     exe "normal! ".(start_col - 1)."|r\<space>"
@@ -313,6 +316,8 @@ function! s:ToggleBrackets()
     exe "normal! ".(end_lineno)."G"
     exe "normal! ".(end_col)."|a)"
   endif
+
+  let &wrap = saved_wrap
 
   call winrestview(saved_view)
 endfunction
