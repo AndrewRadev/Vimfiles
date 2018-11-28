@@ -280,3 +280,6 @@
 [submodule "bundle/exercism"]
 	path = bundle/exercism
 	url = git@github.com:AndrewRadev/exercism.vim.git
+[submodule "bundle/discotheque"]
+	path = bundle/discotheque
+	url = https://github.com/AndrewRadev/discotheque.vim
