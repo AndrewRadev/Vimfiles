@@ -96,8 +96,8 @@ function! s:Digraph()
 endfunction
 
 " Splitting and joining code blocks
-nnoremap <silent> sj :SplitjoinSplit<CR>
-nnoremap <silent> sk :SplitjoinJoin<CR>
+nmap <silent> sj <Plug>SplitjoinSplit
+nmap <silent> sk <Plug>SplitjoinJoin
 " Execute normal vim join if in visual mode
 xnoremap sk J
 
