@@ -20,7 +20,29 @@ impl ${1:StructName} {
 }
 endsnippet
 
-snippet iter
+snippet implfor
+impl ${1:TraitName} for ${2:TypeName} {
+
+}
+endsnippet
+
+snippet implfrom
+impl From<${1:Source}> for ${2:Output} {
+	fn from(source: $1) -> Self {
+		${3}
+	}
+}
+endsnippet
+
+snippet impldisplay
+impl fmt::Display for ${1:Type} {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		f.write_fmt(format_args!("{}", ${2:self.prop}))
+	}
+}
+endsnippet
+
+snippet impliter
 impl Iterator for ${1:SomeType} {
 	type Item = ${2:SomeItem};
 
@@ -48,23 +70,27 @@ println!("${1:text}", ${2:param});
 endsnippet
 
 snippet pp
-println!("{:#?}", ${1:something});
+println!("{:?}", ${1:something});
 endsnippet
 
 snippet der
 #[derive(${1:Debug})]
 endsnippet
 
-snippet some
+snippet matchsome
 match $1 {
 	Some(value) => ${2:value},
 	None => ${3:return},
 };
 endsnippet
 
-snippet ok
+snippet matchok
 match $1 {
 	Ok(value) => ${2:value},
 	Err(e) => ${3:return Err(e)},
 };
+endsnippet
+
+snippet eq
+assert_eq!(${1:left}, ${2:right});
 endsnippet
