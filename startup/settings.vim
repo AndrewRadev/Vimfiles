@@ -23,7 +23,7 @@ set nojoinspaces
 " View formatting
 set number
 set ruler
-set diffopt=filler,vertical,iwhite
+set diffopt+=vertical,iwhite,algorithm:patience,indent-heuristic
 set guioptions=crb
 set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
