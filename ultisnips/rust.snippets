@@ -52,10 +52,31 @@ impl Iterator for ${1:SomeType} {
 }
 endsnippet
 
+snippet implwrite
+impl Write for ${1:MockIO} {
+	fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+
+	}
+
+	fn flush(&mut self) -> io::Result<()> {
+
+	}
+}
+endsnippet
+
 snippet test
 #[test]
 fn test_${1:something}() {
 	${2}
+}
+endsnippet
+
+snippet modtest
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	${1}
 }
 endsnippet
 
