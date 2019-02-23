@@ -64,6 +64,16 @@ impl Write for ${1:MockIO} {
 }
 endsnippet
 
+snippet implderef
+impl Deref for ${1:Container} {
+	type Target = ${2:Target};
+
+	fn deref(&self) -> &Self::Target {
+		&self.${3:property}
+	}
+}
+endsnippet
+
 snippet test
 #[test]
 fn test_${1:something}() {
