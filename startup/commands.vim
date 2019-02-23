@@ -312,3 +312,21 @@ command! -nargs=* Debug call s:Debug(string(<args>))
 function! s:Debug(args)
   Decho a:args
 endfunction
+
+" Copy a snippet of code without its initial whitespace
+command! -range Snip call s:Snip(<line1>, <line2>)
+function! s:Snip(from, to)
+  let lines = getbufline('%', a:from, a:to)
+  let min_whitespace_count = min(map(copy(lines), {_, l -> len(matchstr(l, '^\s*'))}))
+
+  if min_whitespace_count > 0
+    let whitespace_pattern = '^'.repeat('\s', min_whitespace_count)
+    call map(lines, {_, l -> substitute(l, whitespace_pattern, '', '')})
+  endif
+
+  let snippet = join(lines, "\n")
+
+  call setreg('"', snippet, 'V')
+  call setreg('*', snippet, 'V')
+  call setreg('+', snippet, 'V')
+endfunction
