@@ -29,7 +29,7 @@ set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
 set laststatus=2
 
-if has('win32') || has('win64')
+if has('win32') || has('win64') || has('osx')
   set fillchars=stl:-,stlnc:-,vert:\|,fold:\ ,diff:-
 else
   set fillchars=stl:-,stlnc:-,vert:\│,fold:\ ,diff:-
