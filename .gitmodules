@@ -283,3 +283,6 @@
 [submodule "bundle/discotheque"]
 	path = bundle/discotheque
 	url = https://github.com/AndrewRadev/discotheque.vim
+[submodule "bundle/swift"]
+	path = bundle/swift
+	url = https://github.com/keith/swift.vim
