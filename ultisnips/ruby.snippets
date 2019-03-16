@@ -143,3 +143,10 @@ endsnippet
 snippet pry
 require 'pry'; binding.pry
 endsnippet
+
+snippet usage
+if ARGV.count < ${1}
+	STDERR.puts "USAGE: ${2}"
+	exit 1
+end
+endsnippet
