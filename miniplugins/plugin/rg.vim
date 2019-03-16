@@ -10,6 +10,7 @@ function! s:Rgmigration(description)
   call append(0, [
         \ 'class '.class_name.' < ActiveRecord::Migration[5.2]',
         \ '  def change',
+        \ '    create_table #<tab>',
         \ '  end',
         \ 'end'
         \ ])

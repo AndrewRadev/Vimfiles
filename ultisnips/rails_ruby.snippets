@@ -20,6 +20,13 @@ snippet dropcol
 remove_column :${1:table}, :${2:column}
 endsnippet
 
+snippet create_table
+create_table :${1:table_name}, id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+	${2}
+	t.timestamps null: false
+end
+endsnippet
+
 snippet join
 create_join_table :${1:foo}s, :${2:bar}s do |t|
 	t.index [:$1_id, :$2_id]
