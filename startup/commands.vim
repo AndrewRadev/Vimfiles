@@ -317,7 +317,8 @@ endfunction
 command! -range Snip call s:Snip(<line1>, <line2>)
 function! s:Snip(from, to)
   let lines = getbufline('%', a:from, a:to)
-  let min_whitespace_count = min(map(copy(lines), {_, l -> len(matchstr(l, '^\s*'))}))
+  let non_empty_lines = filter(copy(lines), {_, l -> l !~ '^\s*$'})
+  let min_whitespace_count = min(map(non_empty_lines, {_, l -> len(matchstr(l, '^\s*'))}))
 
   if min_whitespace_count > 0
     let whitespace_pattern = '^'.repeat('\s', min_whitespace_count)
