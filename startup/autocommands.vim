@@ -100,8 +100,14 @@ function! s:SaveFileStats(filename)
     let today              = strftime('%Y-%m-%d')
     let current_line_count = split(system('wc -l '.filename), '\s\+')[0]
     let last_line          = lib#Trim(system('tail -n 1 '.stats_filename))
-    let [line_count, date] = split(last_line, ',')
-    let new_last_line      = current_line_count.','.today
+
+    if last_line == ''
+      let date = ''
+    else
+      let [_line_count, date] = split(last_line, ',')
+    endif
+
+    let new_last_line = current_line_count.','.today
 
     if date == today
       " replace the line
