@@ -40,18 +40,49 @@ endfunction
 
 command! -buffer Init call s:Init()
 function! s:Init()
-  let args = split(lib#GetMotion('vi('), ',\s*')
+  let saved_view = winsaveview()
 
-  let assignments = []
-  for arg in args
-    let var = matchstr(arg, '^\k\+')
-    call add(assignments, '@'.var.' = '.var)
-  endfor
+  try
+    let arglist = lib#GetMotion('vi(')
+    if arglist == ''
+      return
+    endif
+    let args = split(arglist, ',\s*')
 
-  let lineno = line('.')
-  call append(lineno, assignments)
-  let [start, end] = [lineno + 1, lineno + len(assignments)]
+    let existing_assignment_block = lib#GetMotion('vim')
+    let existing_assignments = {}
+    if existing_assignment_block =~ '^def'
+      " then the whole method was selected as the "inner" method, so no
+      " assignments
+    else
+      for line in split(existing_assignment_block, "\n")
+        let line = lib#Trim(line)
+        let var = matchstr(line, '^@\zs\k\+\ze\s*=')
+        if var != ''
+          let existing_assignments[var] = v:true
+        endif
+      endfor
+    endif
 
-  exe start.','.end.'normal! =='
-  call feedkeys('Vimsa=')
+    let assignments = []
+    for arg in args
+      let var = matchstr(arg, '^\k\+')
+      if !get(existing_assignments, var, 0)
+        call add(assignments, '@'.var.' = '.var)
+      endif
+    endfor
+
+    if len(assignments) <= 0
+      return
+    endif
+
+    let lineno = line('.')
+    call append(lineno, assignments)
+    let [start, end] = [lineno + 1, lineno + len(assignments)]
+
+    exe start.','.end.'normal! =='
+    normal Vimsa=
+  finally
+    call winrestview(saved_view)
+  endtry
 endfunction

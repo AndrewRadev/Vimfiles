@@ -153,16 +153,25 @@ endfunction
 
 " Execute the normal mode motion "motion" and return the text it marks. Note
 " that the motion needs to include a visual mode key, like "V", "v" or "gv".
+"
+" Note that it respects user remappings via "normal" (rather than "normal!").
+"
 function! lib#GetMotion(motion)
-  let saved_cursor   = getpos('.')
-  let saved_reg      = getreg('z')
-  let saved_reg_type = getregtype('z')
+  let saved_view          = winsaveview()
+  let saved_register_text = getreg('z', 1)
+  let saved_register_type = getregtype('z')
 
-  exec 'normal! '.a:motion.'"zy'
+  let @z = ''
+  exec 'silent normal '.a:motion.'"zy'
   let text = @z
 
-  call setreg('z', saved_reg, saved_reg_type)
-  call setpos('.', saved_cursor)
+  if text == ''
+    " nothing got selected, so we might still be in visual mode
+    exe "normal! \<esc>"
+  endif
+
+  call setreg('z', saved_register_text, saved_register_type)
+  call winrestview(saved_view)
 
   return text
 endfunction
