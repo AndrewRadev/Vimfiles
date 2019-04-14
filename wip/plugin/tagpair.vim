@@ -1,17 +1,16 @@
-nnoremap cw :call <SID>ChangeTag('cw')<cr>
-nnoremap ce :call <SID>ChangeTag('ce')<cr>
+nnoremap cw  :call <SID>ChangeTag('w')<cr>
+nnoremap ce  :call <SID>ChangeTag('e')<cr>
+nnoremap ciw :call <SID>ChangeTag('iw')<cr>
+nnoremap caw :call <SID>ChangeTag('aw')<cr>
+nnoremap ci< :call <SID>ChangeTag('i<')<cr>
+nnoremap ci> :call <SID>ChangeTag('i>')<cr>
+nnoremap ct> :call <SID>ChangeTag('t>')<cr>
 
 " TODO (2019-04-14) Store and restore typeahead? (Fast typing)
 " (inputsave/inputrestore)
 
 " TODO (2019-04-14) Visual + c?
 " TODO (2019-04-14) repeat.vim support
-
-" TODO (2019-04-12) Not working:
-" nnoremap ciw :call <SID>ChangeTag('ciw')<cr>
-" nnoremap caw :call <SID>ChangeTag('caw')<cr>
-" nnoremap ci< :call <SID>ChangeTag('ci<')<cr>
-" nnoremap ci> :call <SID>ChangeTag('ci>')<cr>
 
 " TODO (2019-04-12) autocmd -buffer? Multiple sourcing?
 augroup tag_edit
@@ -27,10 +26,10 @@ augroup END
 "
 " TODO (2019-04-12) Document: Requires matchit
 
-function! s:ChangeTag(mapping)
+function! s:ChangeTag(motion)
   call sj#PushCursor()
 
-  if sj#SearchUnderCursor('<\k\+', 'n')
+  if sj#SearchUnderCursor('<\zs\k\+')
     " We are on an opening tag
     let tag = expand('<cword>')
 
@@ -42,12 +41,13 @@ function! s:ChangeTag(mapping)
       " match seems to position cursor on the `/` of `</tag`
       let closing_position[2] += 1
 
-      let b:old_tag = tag
-      let b:changed_tag = 'opening'
+      let b:old_tag              = tag
+      let b:motion               = a:motion
+      let b:changed_tag          = 'opening'
       let b:opening_tag_position = opening_position
       let b:closing_tag_position = closing_position
     endif
-  elseif sj#SearchUnderCursor('</\k\+>', 'n')
+  elseif sj#SearchUnderCursor('</\zs\k\+>')
     " We are on a closing tag
     let tag = expand('<cword>')
 
@@ -56,8 +56,9 @@ function! s:ChangeTag(mapping)
     let opening_position = getpos('.')
 
     if opening_position != closing_position && sj#SearchUnderCursor('<\V'.tag.'\m\>', 'n')
-      let b:old_tag = tag
-      let b:changed_tag = 'closing'
+      let b:old_tag              = tag
+      let b:motion               = a:motion
+      let b:changed_tag          = 'closing'
       let b:opening_tag_position = opening_position
       let b:closing_tag_position = closing_position
     endif
@@ -65,7 +66,7 @@ function! s:ChangeTag(mapping)
 
   call sj#PopCursor()
 
-  call feedkeys(a:mapping, 'n')
+  call feedkeys('c'.a:motion, 'n')
 endfunction
 
 function! s:ReplaceMatchingTag()
@@ -76,6 +77,7 @@ function! s:ReplaceMatchingTag()
   call sj#PushCursor()
 
   let changed_tag          = b:changed_tag          | unlet b:changed_tag
+  let motion               = b:motion               | unlet b:motion
   let old_tag              = b:old_tag              | unlet b:old_tag
   let closing_tag_position = b:closing_tag_position | unlet b:closing_tag_position
   let opening_tag_position = b:opening_tag_position | unlet b:opening_tag_position
@@ -88,6 +90,8 @@ function! s:ReplaceMatchingTag()
     let new_tag = new_content
   endif
 
+  " Debug [old_tag, new_tag, opening_tag_position, closing_tag_position]
+
   if new_tag !~ '^\k\+$'
     " we've had a change that resulted in something weird, like an empty
     " <></>, bail out
@@ -99,11 +103,11 @@ function! s:ReplaceMatchingTag()
 
   " First the closing, in case the length changes:
   call setpos('.', closing_tag_position)
-  call s:ReplaceMotion('viw', new_tag)
+  call s:ReplaceMotion('v'.motion, new_tag)
 
   " Then the opening tag:
   call setpos('.', opening_tag_position)
-  call s:ReplaceMotion('viw', new_content)
+  call s:ReplaceMotion('v'.motion, new_content)
 
   call sj#PopCursor()
 endfunction
