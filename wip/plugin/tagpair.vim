@@ -1,6 +1,12 @@
 nnoremap cw :call <SID>ChangeTag('cw')<cr>
 nnoremap ce :call <SID>ChangeTag('ce')<cr>
 
+" TODO (2019-04-14) Store and restore typeahead? (Fast typing)
+" (inputsave/inputrestore)
+
+" TODO (2019-04-14) Visual + c?
+" TODO (2019-04-14) repeat.vim support
+
 " TODO (2019-04-12) Not working:
 " nnoremap ciw :call <SID>ChangeTag('ciw')<cr>
 " nnoremap caw :call <SID>ChangeTag('caw')<cr>
