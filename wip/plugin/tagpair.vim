@@ -11,6 +11,8 @@ nnoremap ct> :call <SID>ChangeTag('t>')<cr>
 
 " TODO (2019-04-14) Visual + c?
 " TODO (2019-04-14) repeat.vim support
+" TODO (2019-04-14) multichange support? Hack in direct support, or provide
+" some form of callback? maparg?
 
 " TODO (2019-04-12) autocmd -buffer? Multiple sourcing?
 augroup tag_edit
@@ -28,6 +30,11 @@ augroup END
 
 function! s:ChangeTag(motion)
   call sj#PushCursor()
+  let motion = a:motion
+  if motion == 'w'
+    " special case implemented by Vim
+    let motion = 'e'
+  endif
 
   if sj#SearchUnderCursor('<\zs\k\+')
     " We are on an opening tag
@@ -41,11 +48,13 @@ function! s:ChangeTag(motion)
       " match seems to position cursor on the `/` of `</tag`
       let closing_position[2] += 1
 
-      let b:old_tag              = tag
-      let b:motion               = a:motion
-      let b:changed_tag          = 'opening'
-      let b:opening_tag_position = opening_position
-      let b:closing_tag_position = closing_position
+      let b:tag_change = {
+            \ 'motion':           motion,
+            \ 'source':           'opening',
+            \ 'old_tag':          tag,
+            \ 'opening_position': opening_position,
+            \ 'closing_position': closing_position,
+            \ }
     endif
   elseif sj#SearchUnderCursor('</\zs\k\+>')
     " We are on a closing tag
@@ -56,41 +65,41 @@ function! s:ChangeTag(motion)
     let opening_position = getpos('.')
 
     if opening_position != closing_position && sj#SearchUnderCursor('<\V'.tag.'\m\>', 'n')
-      let b:old_tag              = tag
-      let b:motion               = a:motion
-      let b:changed_tag          = 'closing'
-      let b:opening_tag_position = opening_position
-      let b:closing_tag_position = closing_position
+      let b:tag_change = {
+            \ 'motion':           motion,
+            \ 'source':           'closing',
+            \ 'old_tag':          tag,
+            \ 'opening_position': opening_position,
+            \ 'closing_position': closing_position,
+            \ }
     endif
   endif
 
   call sj#PopCursor()
 
-  call feedkeys('c'.a:motion, 'n')
+  call feedkeys('c'.motion, 'n')
 endfunction
 
 function! s:ReplaceMatchingTag()
-  if !exists('b:old_tag')
+  if !exists('b:tag_change')
     return
   endif
+  let tag_change = b:tag_change | unlet b:tag_change
 
   call sj#PushCursor()
 
-  let changed_tag          = b:changed_tag          | unlet b:changed_tag
-  let motion               = b:motion               | unlet b:motion
-  let old_tag              = b:old_tag              | unlet b:old_tag
-  let closing_tag_position = b:closing_tag_position | unlet b:closing_tag_position
-  let opening_tag_position = b:opening_tag_position | unlet b:opening_tag_position
-
-  if changed_tag == 'opening'
-    let new_content = sj#GetByPosition(opening_tag_position, getpos('.'))
-    let new_tag = matchstr(new_content, '^\s*\zs\k\+')
-  else
+  if tag_change.source == 'opening'
+    let new_content = sj#GetByPosition(tag_change.opening_position, getpos('.'))
+    let new_tag     = matchstr(new_content, '^\s*\zs\k\+')
+  elseif tag_change.source == 'closing'
     let new_content = expand('<cword>')
-    let new_tag = new_content
+    let new_tag     = new_content
+  else
+    echoerr "Unexpected tag change source: " . tag_change.source
+    return
   endif
 
-  " Debug [old_tag, new_tag, opening_tag_position, closing_tag_position]
+  " Debug tag_change
 
   if new_tag !~ '^\k\+$'
     " we've had a change that resulted in something weird, like an empty
@@ -102,12 +111,12 @@ function! s:ReplaceMatchingTag()
   undo
 
   " First the closing, in case the length changes:
-  call setpos('.', closing_tag_position)
-  call s:ReplaceMotion('v'.motion, new_tag)
+  call setpos('.', tag_change.closing_position)
+  call s:ReplaceMotion('v' . tag_change.motion, new_tag)
 
   " Then the opening tag:
-  call setpos('.', opening_tag_position)
-  call s:ReplaceMotion('v'.motion, new_content)
+  call setpos('.', tag_change.opening_position)
+  call s:ReplaceMotion('v' . tag_change.motion, new_content)
 
   call sj#PopCursor()
 endfunction
