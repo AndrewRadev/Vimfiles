@@ -286,3 +286,6 @@
 [submodule "bundle/swift"]
 	path = bundle/swift
 	url = https://github.com/keith/swift.vim
+[submodule "bundle/surround"]
+	path = bundle/surround
+	url = https://github.com/tpope/vim-surround
