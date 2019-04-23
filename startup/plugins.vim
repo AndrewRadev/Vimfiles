@@ -180,6 +180,7 @@ let g:deleft_remove_strategy = 'delete'
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsNoPythonWarning = 1
 
 " http-request
 let g:http_client_bind_hotkey = 0
