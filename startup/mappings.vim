@@ -106,10 +106,10 @@ nnoremap s< :SidewaysLeft<CR>
 nnoremap s> :SidewaysRight<CR>
 
 " Sideways argument text object
-omap aa <Plug>SidewaysArgumentTextobjA
-xmap aa <Plug>SidewaysArgumentTextobjA
-omap ia <Plug>SidewaysArgumentTextobjI
-xmap ia <Plug>SidewaysArgumentTextobjI
+omap <silent> aa <Plug>SidewaysArgumentTextobjA
+xmap <silent> aa <Plug>SidewaysArgumentTextobjA
+omap <silent> ia <Plug>SidewaysArgumentTextobjI
+xmap <silent> ia <Plug>SidewaysArgumentTextobjI
 
 " Inline edit
 nnoremap ,e    :InlineEdit<cr>
