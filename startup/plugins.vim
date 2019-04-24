@@ -114,6 +114,7 @@ nmap # <Plug>(anzu-sharp-with-echo)
 " surround.vim
 " Surround with function call
 let g:surround_{char2nr('f')} = "FUNCTION(\r)"
+xmap s S
 
 " vim-exchange
 let g:exchange_no_mappings = 1
