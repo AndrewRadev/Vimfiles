@@ -292,3 +292,6 @@
 [submodule "bundle/tagalong"]
 	path = bundle/tagalong
 	url = https://github.com/AndrewRadev/tagalong.vim
+[submodule "bundle/ron"]
+	path = bundle/ron
+	url = https://github.com/ron-rs/ron.vim
