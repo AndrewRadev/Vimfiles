@@ -134,7 +134,7 @@ cnoremap <C-p> <C-r>"
 
 " Returns the cursor where it was before the start of the editing
 runtime autoload/repeat.vim
-nnoremap . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
+nnoremap <silent> . mr:call repeat#run(v:count)<bar>call feedkeys('`r', 'n')<cr>
 
 " Quit tab, even if it's just one
 nnoremap <silent> QQ :call <SID>QQ()<cr>
