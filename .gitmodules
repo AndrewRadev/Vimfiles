@@ -295,3 +295,6 @@
 [submodule "bundle/ron"]
 	path = bundle/ron
 	url = https://github.com/ron-rs/ron.vim
+[submodule "bundle/kotlin"]
+	path = bundle/kotlin
+	url = https://github.com/udalov/kotlin-vim
