@@ -24,6 +24,36 @@ nnoremap <buffer> gd :call lookup#lookup()<cr>
 
 setlocal includeexpr=lib#VimIncludeExpression(v:fname)
 
+cmap <buffer><script><expr> <Plug><ctag> substitute(<SID>VimCursorTag(),'^$',"\<c-c>",'')
+
+nmap <buffer> <c-]>       :<c-u>exe v:count1."tag <Plug><ctag>"<cr>
+nmap <buffer> g<c-]>      :<c-u>exe          "tjump <Plug><ctag>"<cr>
+nmap <buffer> g]          :<c-u>exe          "tselect <Plug><ctag>"<cr>
+nmap <buffer> <c-w>]      :<c-u>exe v:count1."stag <Plug><ctag>"<cr>
+nmap <buffer> <c-w><c-]>  :<c-u>exe v:count1."stag <Plug><ctag>"<cr>
+nmap <buffer> <c-w>g<c-]> :<c-u>exe          "stjump <Plug><ctag>"<cr>
+nmap <buffer> <c-w>g]     :<c-u>exe          "stselect <Plug><ctag>"<cr>
+nmap <buffer> <c-w>}      :<c-u>exe v:count1."ptag <Plug><ctag>"<cr>
+nmap <buffer> <c-w>g}     :<c-u>exe v:count1."ptjump <Plug><ctag>"<cr>
+
+function! s:VimCursorTag() abort
+  let pattern = '\%(\k\+#\)*\%([bgstw]:\|<SID>\)\=\k\+'
+
+  if !search(pattern, 'Wbc', line('.'))
+    return ''
+  endif
+  let start_col = col('.')
+
+  if !search(pattern, 'We', line('.'))
+    return ''
+  endif
+  let end_col = col('.')
+
+  let identifier = sj#GetCols(start_col, end_col)
+  let identifier = substitute(identifier, '^<SID>', 's:', '')
+  return identifier
+endfunction
+
 onoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
 xnoremap <buffer> am :<c-u>call <SID>FunctionTextObject('a')<cr>
 onoremap <buffer> im :<c-u>call <SID>FunctionTextObject('i')<cr>
