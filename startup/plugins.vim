@@ -188,4 +188,7 @@ let g:http_client_bind_hotkey = 0
 let g:http_client_json_ft = 'json'
 let g:http_client_result_vsplit = 0
 
+" Tagalong
+let g:tagalong_verbose = 1
+
 command! HttpRequest HTTPClientDoRequest
