@@ -58,6 +58,7 @@ set autoindent
 set expandtab smarttab
 set tabstop=8 softtabstop=2
 set shiftwidth=2 shiftround
+set cinoptions+=:0
 
 " Command-line
 set cmdheight=1
