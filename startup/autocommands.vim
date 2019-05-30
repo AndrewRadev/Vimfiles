@@ -44,6 +44,9 @@ augroup custom
   autocmd BufReadPre,FileReadPre   *.jpg,*.jpeg setlocal bin
   autocmd BufReadPost,FileReadPost *.jpg,*.jpeg if AfterimageReadPost("convert %s xpm:%s")|set ft=xpm|endif|setlocal nobin
 
+  " Remove Projectionist's :A if there's no real projections
+  autocmd User ProjectionistActivate call s:ConfigureProjectionist()
+
   " Maximise on open on Win32:
   if has('win32')
     autocmd GUIEnter * simalt ~x
@@ -143,5 +146,21 @@ function! s:MaybeOpenGithubFile()
   exe 'keepalt edit '.path
   if line != ''
     exe line
+  endif
+endfunction
+
+function! s:ConfigureProjectionist()
+  if !exists('b:projectionist')
+    return
+  endif
+
+  if !has_key(b:projectionist, getcwd())
+    return
+  endif
+
+  if b:projectionist[getcwd()] == [{}]
+    " This is not a useful project definition,
+    " disable the buffer-local :A command
+    delcommand A
   endif
 endfunction
