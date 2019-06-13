@@ -298,3 +298,6 @@
 [submodule "bundle/kotlin"]
 	path = bundle/kotlin
 	url = https://github.com/udalov/kotlin-vim
+[submodule "bundle/tcomment"]
+	path = bundle/tcomment
+	url = https://github.com/tomtom/tcomment_vim
