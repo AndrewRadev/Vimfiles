@@ -31,9 +31,6 @@
 [submodule "bundle/nerdtree"]
   path = bundle/nerdtree
   url = https://github.com/AndrewRadev/nerdtree.git
-[submodule "bundle/textile"]
-  path = bundle/textile
-  url = https://github.com/timcharper/textile.vim.git
 [submodule "bundle/ruby"]
   path = bundle/ruby
   url = https://github.com/vim-ruby/vim-ruby.git
