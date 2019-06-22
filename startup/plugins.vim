@@ -188,7 +188,14 @@ let g:http_client_bind_hotkey = 0
 let g:http_client_json_ft = 'json'
 let g:http_client_result_vsplit = 0
 
+command! HttpRequest HTTPClientDoRequest
+
 " Tagalong
 let g:tagalong_verbose = 1
 
-command! HttpRequest HTTPClientDoRequest
+" Gundo
+let g:gundo_prefer_python3 = 1
+
+" Tcomment
+let g:tcomment_maps = 0
+xmap <c-_><c-_> <Plug>TComment_<c-_><c-_>
