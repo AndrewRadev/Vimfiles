@@ -295,3 +295,6 @@
 [submodule "bundle/renamer"]
 	path = bundle/renamer
 	url = https://github.com/qpkorr/vim-renamer
+[submodule "bundle/golang"]
+	path = bundle/golang
+	url = https://github.com/fatih/vim-go
