@@ -211,9 +211,6 @@
 [submodule "bundle/bufferize"]
   path = bundle/bufferize
   url = https://github.com/AndrewRadev/bufferize.vim
-[submodule "bundle/codi"]
-  path = bundle/codi
-  url = https://github.com/metakirby5/codi.vim
 [submodule "bundle/gnugo"]
   path = bundle/gnugo
   url = https://github.com/AndrewRadev/gnugo.vim
