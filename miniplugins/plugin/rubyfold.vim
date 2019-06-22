@@ -17,6 +17,7 @@ function! RubyFold()
   else
     call s:FoldAreas('\<def\>',    0, line('$'))
     call s:FoldAreas('\<module\>', 0, line('$'))
+    call s:FoldAreas('test .* do', 0, line('$'))
   endif
 
   " fold public, private, protected scopes
