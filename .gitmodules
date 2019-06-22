@@ -113,9 +113,6 @@
 [submodule "bundle/characterize"]
   path = bundle/characterize
   url = git://github.com/tpope/vim-characterize.git
-[submodule "bundle/xruntime"]
-  path = bundle/xruntime
-  url = https://github.com/AndrewRadev/xruntime.vim
 [submodule "bundle/table-mode"]
   path = bundle/table-mode
   url = git://github.com/dhruvasagar/vim-table-mode.git
