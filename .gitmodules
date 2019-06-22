@@ -301,3 +301,6 @@
 [submodule "bundle/tcomment"]
 	path = bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim
+[submodule "bundle/renamer"]
+	path = bundle/renamer
+	url = https://github.com/qpkorr/vim-renamer
