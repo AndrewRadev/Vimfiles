@@ -200,3 +200,6 @@ let g:gundo_prefer_python3 = 1
 let g:tcomment_maps = 0
 nmap <c-_><c-_> <Plug>TComment_<c-_><c-_>
 xmap <c-_><c-_> <Plug>TComment_<c-_><c-_>
+
+" Loclist-follow
+let g:loclist_follow = 1
