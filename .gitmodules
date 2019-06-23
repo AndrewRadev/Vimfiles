@@ -289,3 +289,6 @@
 [submodule "bundle/helplink"]
 	path = bundle/helplink
 	url = https://github.com/arp242/helplink.vim
+[submodule "bundle/loclist-follow"]
+	path = bundle/loclist-follow
+	url = https://github.com/elbeardmorez/vim-loclist-follow
