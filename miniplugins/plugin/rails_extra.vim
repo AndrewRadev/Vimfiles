@@ -37,7 +37,7 @@ function! RailsExtraIncludeexpr()
     endif
   endfor
 
-  return rails#cfile('delegate')
+  return rails#ruby_cfile('delegate')
 endfunction
 
 function! RailsExtraGfTranslation()
