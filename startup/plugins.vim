@@ -198,4 +198,5 @@ let g:gundo_prefer_python3 = 1
 
 " Tcomment
 let g:tcomment_maps = 0
+nmap <c-_><c-_> <Plug>TComment_<c-_><c-_>
 xmap <c-_><c-_> <Plug>TComment_<c-_><c-_>
