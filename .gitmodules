@@ -292,3 +292,6 @@
 [submodule "bundle/loclist-follow"]
 	path = bundle/loclist-follow
 	url = https://github.com/elbeardmorez/vim-loclist-follow
+[submodule "bundle/flog"]
+	path = bundle/flog
+	url = https://github.com/rbong/vim-flog
