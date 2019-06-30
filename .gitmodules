@@ -295,3 +295,6 @@
 [submodule "bundle/flog"]
 	path = bundle/flog
 	url = https://github.com/rbong/vim-flog
+[submodule "bundle/convert-color-to"]
+	path = bundle/convert-color-to
+	url = git@github.com:amadeus/vim-convert-color-to.git
