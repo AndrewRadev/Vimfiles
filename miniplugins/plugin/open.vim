@@ -1,6 +1,6 @@
 " Note: depends on splitjoin
 
-command! -count=0 -nargs=* -complete=file Open call s:Open(<count>, <f-args>)
+command! -range=0 -nargs=* -complete=file Open call s:Open(<count>, <f-args>)
 
 function! Open(path)
   call s:Open(0, a:path)

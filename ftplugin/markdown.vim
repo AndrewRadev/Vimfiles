@@ -10,7 +10,7 @@ RunCommand silent call system('quickmd '.shellescape(expand('%')).' 2>&1 > /dev/
 
 let b:outline_pattern = '^#\+\s\+\w'
 
-command! -buffer -count=0 -nargs=* Link call s:Link(<count>, <f-args>)
+command! -buffer -range=0 -nargs=* Link call s:Link(<count>, <f-args>)
 function! s:Link(count, ...)
   if a:count == 0
     " then no visual selection, select the closest word
