@@ -43,10 +43,10 @@ function! s:NextTextObject(motion, dir)
 endfunction
 
 " Always move through visual lines:
-nnoremap j gj
-nnoremap k gk
-xnoremap j gj
-xnoremap k gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+xnoremap <silent> j gj
+xnoremap <silent> k gk
 
 " Moving through tabs:
 nnoremap <C-l> gt
@@ -59,10 +59,10 @@ nnoremap gk <C-w>k
 nnoremap gl <C-w>l
 
 " Faster scrolling:
-nmap J 5j
-nmap K 5k
-xmap J 5j
-xmap K 5k
+nmap <silent> J 5j
+nmap <silent> K 5k
+xmap <silent> J 5j
+xmap <silent> K 5k
 
 " Resize windows
 nnoremap <left>  <c-w><
