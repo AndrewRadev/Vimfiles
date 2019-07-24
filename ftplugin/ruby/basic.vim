@@ -15,7 +15,7 @@ if &ft =~ 'rspec'
 endif
 
 let b:deleft_closing_pattern = '^\s*end\>'
-let b:outline_pattern = '\v^\s*(def|class|module|public|protected|private|(attr_\k{-}))(\s|$)'
+let b:outline_pattern = '\v^\s*(def|class|module|public|protected|private|(attr_\k{-})|test)(\s|$)'
 
 call RubyFold()
 setlocal nofoldenable
