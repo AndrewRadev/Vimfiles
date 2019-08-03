@@ -298,3 +298,6 @@
 [submodule "bundle/convert-color-to"]
 	path = bundle/convert-color-to
 	url = git@github.com:amadeus/vim-convert-color-to.git
+[submodule "bundle/silicon"]
+	path = bundle/silicon
+	url = https://github.com/segeljakt/vim-silicon
