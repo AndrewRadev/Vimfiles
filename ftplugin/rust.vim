@@ -3,7 +3,7 @@ compiler cargo
 
 setlocal tags+=Cargo.tags
 
-nnoremap <buffer> gm :call <SID>Doc()<Cr>
+nnoremap <buffer> gm :call <SID>Doc()<cr>
 
 let b:extract_var_template = 'let %s = %s;'
 let b:inline_var_pattern   = 'let \%(\s*mut\s\+\)\=\(\k\+\)\%(: [^=]\+\)\=\s\+=\s\+\(.*\);'
