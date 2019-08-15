@@ -74,6 +74,14 @@ impl Deref for ${1:Container} {
 }
 endsnippet
 
+snippet impldrop
+impl Drop for ${1:Type} {
+	fn drop(&mut self) {
+		println!("$1 dropped");
+	}
+}
+endsnippet
+
 snippet test
 #[test]
 fn test_${1:something}() {
