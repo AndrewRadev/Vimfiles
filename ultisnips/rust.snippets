@@ -1,3 +1,13 @@
+global !p
+def placeholders_matching_template(string):
+    placeholders = ["var{}".format(i + 1) for i in range(0, len(re.findall('{(:.*?)?}', string)))]
+
+    if len(placeholders) > 0:
+       return ", {}".format(", ".join(placeholders))
+    else:
+       return ""
+endglobal
+
 snippet macro
 macro_rules! ${1:frobble} {
 	(${2}) => {
@@ -105,7 +115,7 @@ fn main() {
 endsnippet
 
 snippet p
-println!("${1:text}");
+println!("${1:{}}"`!p snip.rv = placeholders_matching_template(t[1]) `);
 endsnippet
 
 snippet pp
