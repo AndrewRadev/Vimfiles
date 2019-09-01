@@ -13,6 +13,7 @@ set ttyfast
 set belloff=all
 set updatetime=1000
 set viminfo+=!
+set mouse=a
 
 " Editing
 set complete=.,w,b,k
