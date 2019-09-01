@@ -81,7 +81,7 @@ function! s:Init()
     let [start, end] = [lineno + 1, lineno + len(assignments)]
 
     exe start.','.end.'normal! =='
-    normal Vimsa=
+    exe start.','.end.'normal sa='
   finally
     call winrestview(saved_view)
   endtry
