@@ -304,3 +304,6 @@
 [submodule "bundle/toml"]
 	path = bundle/toml
 	url = https://github.com/cespare/vim-toml
+[submodule "bundle/quickpeek"]
+	path = bundle/quickpeek
+	url = git@github.com:AndrewRadev/quickpeek.vim.git
