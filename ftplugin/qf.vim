@@ -1,4 +1,5 @@
 setlocal nowrap
+" setlocal cursorline
 
 nnoremap <buffer> <cr> <cr>
 
