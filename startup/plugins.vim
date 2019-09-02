@@ -206,18 +206,18 @@ let g:loclist_follow = 1
 
 " Silicon
 let g:silicon = #{
-      \ theme:              'Dracula',
-      \ font:               'Fantasque Sans Mono',
-      \ background:         '#aaaacc',
-      \ shadow-color:       '#555555',
-      \ line-pad:           2,
-      \ pad-horiz:          30,
-      \ pad-vert:           40,
-      \ shadow-blur-radius: 0,
-      \ shadow-offset-x:    0,
-      \ shadow-offset-y:    0,
-      \ line-number:        v:true,
-      \ round-corner:       v:true,
-      \ window-controls:    v:true,
+      \ theme:                'Dracula',
+      \ font:                 'Fantasque Sans Mono',
+      \ background:           '#aaaacc',
+      \ shadow-color:         '#555555',
+      \ line-pad:             2,
+      \ pad-horiz:            30,
+      \ pad-vert:             40,
+      \ shadow-blur-radius:   0,
+      \ shadow-offset-x:      0,
+      \ shadow-offset-y:      0,
+      \ line-number:          v:true,
+      \ round-corner:         v:true,
+      \ window-controls:      v:true,
+      \ default-file-pattern: '~/images/shots/{time:%Y-%m-%d-%H%M%S}-silicon.png'
       \ }
-let g:silicon_default_file_pattern = '~/images/shots/{time:%Y-%m-%d-%H%M%S}-silicon.png'
