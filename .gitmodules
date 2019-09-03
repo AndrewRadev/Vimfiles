@@ -307,3 +307,6 @@
 [submodule "bundle/quickpeek"]
 	path = bundle/quickpeek
 	url = git@github.com:AndrewRadev/quickpeek.vim.git
+[submodule "bundle/http"]
+	path = bundle/http
+	url = https://github.com/nicwest/vim-http
