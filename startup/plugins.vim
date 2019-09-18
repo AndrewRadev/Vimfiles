@@ -221,3 +221,7 @@ let g:silicon = #{
       \ window-controls:      v:true,
       \ default-file-pattern: '~/images/shots/{time:%Y-%m-%d-%H%M%S}-silicon.png'
       \ }
+
+" Http
+let g:vim_http_clean_before_do = 0
+let g:vim_http_tempbuffer      = 1
