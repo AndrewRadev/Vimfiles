@@ -331,3 +331,21 @@ function! s:Snip(from, to)
   call setreg('*', snippet, 'V')
   call setreg('+', snippet, 'V')
 endfunction
+
+command! Timestamp call s:Timestamp()
+function! s:Timestamp()
+  let string_ts = expand('<cword>')
+  if string_ts !~ '^\d\+$'
+    return
+  endif
+
+  if len(string_ts) == 13
+    " it's milliseconds
+    let ts = str2nr(strpart(string_ts, 0, 10))
+  else
+    " consider it seconds
+    let ts = str2nr(string_ts)
+  endif
+
+  echomsg strftime("%c", ts)
+endfunction
