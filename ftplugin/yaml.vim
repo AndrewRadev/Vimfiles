@@ -6,3 +6,5 @@ setlocal foldmethod=indent
 setlocal nofoldenable
 
 setlocal commentstring=#\ %s
+
+RunCommand %!yaml2json
