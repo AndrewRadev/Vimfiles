@@ -59,7 +59,7 @@ function! s:GetCursorUrl()
     endif
 
     let start_col = col('.')
-    call sj#SearchUnderCursor('\V'.cfile.'\m\%(\f\|[?!=&]\)*', 'e')
+    call sj#SearchUnderCursor('\V'.cfile.'\m\%(\f\|[@?!=&]\)*', 'e')
     return sj#GetCols(start_col, col('.'))
   finally
     call winrestview(saved_view)
