@@ -237,7 +237,7 @@ function! s:Tortf(start, end)
   let filename = tempname().'.html'
   exe a:start.','.a:end.'TOhtml'
   exe 'write '.filename
-  call system('libreoffice '.filename)
+  call system('libreoffice '.filename.' &')
   quit!
 endfunction
 
