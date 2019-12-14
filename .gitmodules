@@ -310,3 +310,6 @@
 [submodule "bundle/http"]
 	path = bundle/http
 	url = https://github.com/nicwest/vim-http
+[submodule "bundle/killersheep"]
+	path = bundle/killersheep
+	url = https://github.com/vim/killersheep
