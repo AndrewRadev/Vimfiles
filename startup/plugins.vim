@@ -225,3 +225,6 @@ let g:silicon = #{
 " Http
 let g:vim_http_clean_before_do = 0
 let g:vim_http_tempbuffer      = 1
+
+" JSON
+let g:vim_json_syntax_conceal = 0
