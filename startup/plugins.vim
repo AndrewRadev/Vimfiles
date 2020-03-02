@@ -16,6 +16,8 @@ let g:NERDTreeMapJumpLastChild  = '-'
 let g:NERDTreeMapCWD = '-'
 " The 's' key is a prefix for a lot of things
 let g:NERDTreeMapOpenVSplit = 'so'
+" I use 'go' for something else and don't use it in the NERDTree
+let g:NERDTreeMapPreview = '-'
 
 " Snippet settings:
 let g:snips_author = 'Andrew Radev'
