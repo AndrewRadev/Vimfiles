@@ -322,3 +322,6 @@
 [submodule "bundle/isotope"]
 	path = bundle/isotope
 	url = https://github.com/segeljakt/vim-isotope
+[submodule "bundle/pickachu"]
+	path = bundle/pickachu
+	url = https://github.com/DougBeney/pickachu

@@ -230,3 +230,7 @@ let g:vim_http_tempbuffer      = 1
 
 " JSON
 let g:vim_json_syntax_conceal = 0
+
+" Pickachu
+let g:pickachu_default_date_format = "%Y-%m-%d"
+let g:pickachu_default_command = "qarma"
