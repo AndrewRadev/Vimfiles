@@ -103,6 +103,16 @@ impl Drop for ${1:Type} {
 }
 endsnippet
 
+snippet impldefault
+impl Default for ${1:Type} {
+	fn default() -> Self {
+		Self {
+			${2}
+		}
+	}
+}
+endsnippet
+
 snippet test
 #[test]
 fn test_${1:something}() {
