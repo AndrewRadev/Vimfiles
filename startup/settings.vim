@@ -14,7 +14,7 @@ set belloff=all
 set updatetime=1000
 set viminfo+=!
 set mouse=a
-set maxmempattern=10000
+set maxmempattern=2000000
 
 " Editing
 set complete=.,w,b,k
