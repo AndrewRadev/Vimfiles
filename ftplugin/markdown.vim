@@ -8,6 +8,12 @@ hi link markdownItalic Normal
 " call SetupPreview('html', 'markdown %s')
 RunCommand silent call system('quickmd '.shellescape(expand('%')).' 2>&1 > /dev/null &')
 
+xnoremap ! :<c-u>call <SID>VisualRun()<cr>
+function! s:VisualRun()
+  let target_lines = getbufline('%', line("'<"), line("'>"))
+  silent call system('quickmd - 2>&1 > /dev/null &', target_lines)
+endfunction
+
 let b:outline_pattern = '^#\+\s\+\w'
 
 command! -buffer -range=0 -nargs=* Link call s:Link(<count>, <f-args>)
