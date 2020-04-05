@@ -55,6 +55,8 @@ function! s:FunctionTextObject(mode)
   endif
 endfunction
 
+command! Emain edit src/main.rs
+
 function! s:Doc()
   let term = expand('<cword>')
   let [imported_symbols, aliases] = s:ParseImports()
