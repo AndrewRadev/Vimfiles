@@ -7,4 +7,4 @@ setlocal nofoldenable
 
 setlocal commentstring=#\ %s
 
-RunCommand %!yaml2json
+" RunCommand new | !r yaml2json %
