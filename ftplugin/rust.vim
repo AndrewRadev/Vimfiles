@@ -57,6 +57,74 @@ endfunction
 
 command! Emain edit src/main.rs
 
+let s:wrap_types = ['Result', 'Option', 'Rc']
+
+command! -buffer -complete=customlist,s:WrapComplete -nargs=+
+      \ Wrap call s:Wrap(<f-args>)
+
+" TODO (2020-04-11) Unwrap
+
+function! s:Wrap(type, ...)
+  let wrap_type = a:type
+
+  if wrap_type == 'Result'
+    " TODO (2020-04-11) custom error type
+    let wrap_left = 'Result<'
+    let wrap_right = ', TODOError>'
+  else
+    let wrap_left = wrap_type.'<'
+    let wrap_right = '>'
+  endif
+
+  if wrap_type == 'Result'
+    let value_wrapper = 'Ok'
+  elseif wrap_type == 'Option'
+    let value_wrapper = 'Some'
+  else
+    let value_wrapper = wrap_type
+  endif
+
+  let saved_view = winsaveview()
+  let skip_syntax = sj#SkipSyntax(['String', 'Comment'])
+
+  try
+    " Handle return type:
+    if sj#SearchSkip(')\_s\+->\_s\+\zs.\{-}\ze\s*\%(where\|{\)', skip_syntax, 'Wbc') > 0
+      " there's a return type, match it, wrap it:
+      call sj#Keeppatterns('s/\%#.\{-}\ze\s*\%(where\|{\)/'.wrap_left.'\0'.wrap_right.'/')
+    elseif sj#SearchSkip(')\_s*\%(where\|{\)', skip_syntax, 'Wbc') > 0
+      " no return type, so consider it ():
+      call sj#Keeppatterns('s/)\_s*\%(where\|{\)/'.wrap_left.'()'.wrap_right.'/')
+    endif
+
+    " Find start and end of function:
+    let start_line = line('.')
+    call sj#SearchSkip('{$', skip_syntax, 'Wc')
+    normal! %
+    let end_line = line('.')
+    exe start_line
+
+    " Handle return statements:
+    while search('\<return\s\+.*;', 'W', end_line) > 0
+      let syntax_group = synIDattr(synID(line('.'),col('.'),1),'name')
+      if syntax_group == 'rustKeyword'
+        call sj#Keeppatterns('s/\%#return \zs.*\ze;/'.value_wrapper.'(\0)/')
+      end
+    endwhile
+
+    " TODO (2020-04-11) handle end expression
+  finally
+    call winrestview(saved_view)
+  endtry
+endfunction
+
+function! s:WrapComplete(argument_lead, _command_line, _cursor_position)
+  let types = copy(s:wrap_types)
+  call filter(types, {_, t -> t =~? a:argument_lead})
+  call sort(types)
+  return types
+endfunction
+
 function! s:Doc()
   let term = expand('<cword>')
   let [imported_symbols, aliases] = s:ParseImports()
