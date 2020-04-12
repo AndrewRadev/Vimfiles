@@ -2,7 +2,6 @@
 " TODO (2016-05-12) remove references to lib#
 " TODO (2016-05-12) remove references to rimplement#
 " TODO (2016-05-09) Limit translation gf to translation under the cursor
-" TODO (2016-05-09) Factory root?
 
 let s:http_method_pattern = '\<\%(get\|post\|put\|delete\|patch\)\>'
 
@@ -20,7 +19,7 @@ augroup END
 command! Eroutes edit config/routes.rb
 command! -nargs=* -complete=custom,s:CompleteRailsModels Eschema  call s:Eschema(<q-args>)
 command! -nargs=1 -complete=custom,s:CompleteRailsModels Emodel   call s:Emodel(<q-args>)
-command! -nargs=1 -complete=custom,s:CompleteFactories   Efactory call s:Efactory(<q-args>)
+command! -nargs=* -complete=custom,s:CompleteFactories   Efactory call s:Efactory(<q-args>)
 
 function! RailsExtraIncludeexpr()
   let callbacks = [
@@ -241,7 +240,12 @@ function! s:Eschema(model_name)
 endfunction
 
 function! s:Efactory(factory_name)
-  let [filename, lineno] = s:FindFactory(a:factory_name)
+  let factory_name = a:factory_name
+  if factory_name == ''
+    let factory_name = lib#Underscore(s:CurrentModelName())
+  endif
+
+  let [filename, lineno] = s:FindFactory(factory_name)
 
   if filename != ''
     exe 'edit '.filename
@@ -291,7 +295,7 @@ function! s:CompleteFactories(A, L, P)
 endfunction
 
 function! s:FindFactory(name)
-  let pattern = '^\s*factory :'.a:name
+  let pattern = '^\s*factory :'.a:name.'\>'
 
   for filename in s:FindFactoryFiles()
     let lineno = 1
