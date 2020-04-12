@@ -13,12 +13,14 @@ augroup RailsExtra
         \   exe 'cmap <buffer><expr> <Plug><cfile> RailsExtraIncludeexpr()' |
         \ endif
 
-  autocmd User Rails command! -buffer -nargs=* -complete=custom,s:CompleteRailsModels Eschema call s:Eschema(<q-args>)
+  autocmd User Rails command! -buffer -nargs=* -complete=custom,s:CompleteRailsModels Eschema  call s:Eschema(<q-args>)
+  autocmd User Rails command! -buffer -nargs=* -complete=custom,s:CompleteFactories   Efactory call s:Efactory(<q-args>)
 augroup END
 
 command! Eroutes edit config/routes.rb
-command! -nargs=* -complete=custom,s:CompleteRailsModels Eschema call s:Eschema(<q-args>)
-command! -nargs=1 -complete=custom,s:CompleteRailsModels Emodel call s:Emodel(<q-args>)
+command! -nargs=* -complete=custom,s:CompleteRailsModels Eschema  call s:Eschema(<q-args>)
+command! -nargs=1 -complete=custom,s:CompleteRailsModels Emodel   call s:Emodel(<q-args>)
+command! -nargs=1 -complete=custom,s:CompleteFactories   Efactory call s:Efactory(<q-args>)
 
 function! RailsExtraIncludeexpr()
   let callbacks = [
@@ -238,6 +240,17 @@ function! s:Eschema(model_name)
   endif
 endfunction
 
+function! s:Efactory(factory_name)
+  let [filename, lineno] = s:FindFactory(a:factory_name)
+
+  if filename != ''
+    exe 'edit '.filename
+    exe lineno
+  else
+    echohl WarningMsg | echomsg "Factory not found: ".factory_name | echohl NONE
+  endif
+endfunction
+
 function! s:CurrentModelName()
   let current_file = expand('%:p')
 
@@ -256,4 +269,51 @@ function! s:CompleteRailsModels(A, L, P)
     call add(names, name)
   endfor
   return join(names, "\n")
+endfunction
+
+function! s:CompleteFactories(A, L, P)
+  let factory_names = []
+
+  for filename in s:FindFactoryFiles()
+    for line in readfile(filename)
+      let pattern = '^\s*factory :\zs\k\+\ze\s*\%(,\|do\)'
+
+      if line =~ pattern
+        call add(factory_names, matchstr(line, pattern))
+      endif
+    endfor
+  endfor
+
+  call sort(factory_names)
+  call uniq(factory_names)
+
+  return join(factory_names, "\n")
+endfunction
+
+function! s:FindFactory(name)
+  let pattern = '^\s*factory :'.a:name
+
+  for filename in s:FindFactoryFiles()
+    let lineno = 1
+    for line in readfile(filename)
+      if line =~ pattern
+        return [filename, lineno]
+      endif
+
+      let lineno += 1
+    endfor
+  endfor
+
+  return ['', -1]
+endfunction
+
+function! s:FindFactoryFiles()
+  let factory_files = []
+
+  call extend(factory_files, split(glob('test/**/factories/**/*.rb'), "\n"))
+  call extend(factory_files, split(glob('spec/**/factories/**/*.rb'), "\n"))
+  call extend(factory_files, split(glob('test/**/factories.rb'), "\n"))
+  call extend(factory_files, split(glob('spec/**/factories.rb'), "\n"))
+
+  return factory_files
 endfunction
