@@ -314,10 +314,18 @@ endfunction
 function! s:FindFactoryFiles()
   let factory_files = []
 
-  call extend(factory_files, split(glob('test/**/factories/**/*.rb'), "\n"))
-  call extend(factory_files, split(glob('spec/**/factories/**/*.rb'), "\n"))
-  call extend(factory_files, split(glob('test/**/factories.rb'), "\n"))
-  call extend(factory_files, split(glob('spec/**/factories.rb'), "\n"))
+  if exists('b:rails_root')
+    let root = b:rails_root
+  else
+    " assume we're in the root of the application
+    let root = '.'
+  endif
+
+  for test_dir in ['test', 'spec']
+    call extend(factory_files, split(glob(root.'/'.test_dir.'/**/factories.rb'), "\n"))
+    call extend(factory_files, split(glob(root.'/'.test_dir.'/**/factories/*.rb'), "\n"))
+    call extend(factory_files, split(glob(root.'/'.test_dir.'/**/factories/**/*.rb'), "\n"))
+  endfor
 
   return factory_files
 endfunction
