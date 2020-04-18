@@ -209,116 +209,116 @@
   path = bundle/ginitpull
   url = https://github.com/AndrewRadev/ginitpull.vim
 [submodule "bundle/dsf"]
-	path = bundle/dsf
-	url = https://github.com/AndrewRadev/dsf.vim
+  path = bundle/dsf
+  url = https://github.com/AndrewRadev/dsf.vim
 [submodule "bundle/yankwin"]
-	path = bundle/yankwin
-	url = https://github.com/AndrewRadev/yankwin.vim
+  path = bundle/yankwin
+  url = https://github.com/AndrewRadev/yankwin.vim
 [submodule "bundle/typescript"]
-	path = bundle/typescript
-	url = https://github.com/leafgarland/typescript-vim
+  path = bundle/typescript
+  url = https://github.com/leafgarland/typescript-vim
 [submodule "bundle/lookup"]
-	path = bundle/lookup
-	url = https://github.com/mhinz/vim-lookup
+  path = bundle/lookup
+  url = https://github.com/mhinz/vim-lookup
 [submodule "bundle/exception"]
-	path = bundle/exception
-	url = https://github.com/tweekmonster/exception.vim
+  path = bundle/exception
+  url = https://github.com/tweekmonster/exception.vim
 [submodule "bundle/startuptime"]
-	path = bundle/startuptime
-	url = https://github.com/tweekmonster/startuptime.vim
+  path = bundle/startuptime
+  url = https://github.com/tweekmonster/startuptime.vim
 [submodule "bundle/deleft"]
-	path = bundle/deleft
-	url = https://github.com/AndrewRadev/deleft.vim.git
+  path = bundle/deleft
+  url = https://github.com/AndrewRadev/deleft.vim.git
 [submodule "bundle/endwise"]
-	path = bundle/endwise
-	url = https://github.com/tpope/vim-endwise
+  path = bundle/endwise
+  url = https://github.com/tpope/vim-endwise
 [submodule "bundle/ultisnips"]
-	path = bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips
+  path = bundle/ultisnips
+  url = https://github.com/SirVer/ultisnips
 [submodule "bundle/vader"]
-	path = bundle/vader
-	url = https://github.com/junegunn/vader.vim
+  path = bundle/vader
+  url = https://github.com/junegunn/vader.vim
 [submodule "bundle/vis"]
-	path = bundle/vis
-	url = https://github.com/vim-scripts/vis
+  path = bundle/vis
+  url = https://github.com/vim-scripts/vis
 [submodule "bundle/niceblock"]
-	path = bundle/niceblock
-	url = https://github.com/kana/vim-niceblock
+  path = bundle/niceblock
+  url = https://github.com/kana/vim-niceblock
 [submodule "bundle/http-client"]
-	path = bundle/http-client
-	url = https://github.com/aquach/vim-http-client
+  path = bundle/http-client
+  url = https://github.com/aquach/vim-http-client
 [submodule "bundle/fetch"]
-	path = bundle/fetch
-	url = https://github.com/kopischke/vim-fetch
+  path = bundle/fetch
+  url = https://github.com/kopischke/vim-fetch
 [submodule "bundle/rhubarb"]
-	path = bundle/rhubarb
-	url = https://github.com/tpope/vim-rhubarb
+  path = bundle/rhubarb
+  url = https://github.com/tpope/vim-rhubarb
 [submodule "bundle/exercism"]
-	path = bundle/exercism
-	url = https://github.com/AndrewRadev/exercism.vim.git
+  path = bundle/exercism
+  url = https://github.com/AndrewRadev/exercism.vim.git
 [submodule "bundle/discotheque"]
-	path = bundle/discotheque
-	url = https://github.com/AndrewRadev/discotheque.vim
+  path = bundle/discotheque
+  url = https://github.com/AndrewRadev/discotheque.vim
 [submodule "bundle/swift"]
-	path = bundle/swift
-	url = https://github.com/keith/swift.vim
+  path = bundle/swift
+  url = https://github.com/keith/swift.vim
 [submodule "bundle/surround"]
-	path = bundle/surround
-	url = https://github.com/tpope/vim-surround
+  path = bundle/surround
+  url = https://github.com/tpope/vim-surround
 [submodule "bundle/tagalong"]
-	path = bundle/tagalong
-	url = https://github.com/AndrewRadev/tagalong.vim
+  path = bundle/tagalong
+  url = https://github.com/AndrewRadev/tagalong.vim
 [submodule "bundle/ron"]
-	path = bundle/ron
-	url = https://github.com/ron-rs/ron.vim
+  path = bundle/ron
+  url = https://github.com/ron-rs/ron.vim
 [submodule "bundle/kotlin"]
-	path = bundle/kotlin
-	url = https://github.com/udalov/kotlin-vim
+  path = bundle/kotlin
+  url = https://github.com/udalov/kotlin-vim
 [submodule "bundle/tcomment"]
-	path = bundle/tcomment
-	url = https://github.com/tomtom/tcomment_vim
+  path = bundle/tcomment
+  url = https://github.com/tomtom/tcomment_vim
 [submodule "bundle/renamer"]
-	path = bundle/renamer
-	url = https://github.com/qpkorr/vim-renamer
+  path = bundle/renamer
+  url = https://github.com/qpkorr/vim-renamer
 [submodule "bundle/golang"]
-	path = bundle/golang
-	url = https://github.com/fatih/vim-go
+  path = bundle/golang
+  url = https://github.com/fatih/vim-go
 [submodule "bundle/helplink"]
-	path = bundle/helplink
-	url = https://github.com/arp242/helplink.vim
+  path = bundle/helplink
+  url = https://github.com/arp242/helplink.vim
 [submodule "bundle/loclist-follow"]
-	path = bundle/loclist-follow
-	url = https://github.com/elbeardmorez/vim-loclist-follow
+  path = bundle/loclist-follow
+  url = https://github.com/elbeardmorez/vim-loclist-follow
 [submodule "bundle/flog"]
-	path = bundle/flog
-	url = https://github.com/rbong/vim-flog
+  path = bundle/flog
+  url = https://github.com/rbong/vim-flog
 [submodule "bundle/convert-color-to"]
-	path = bundle/convert-color-to
-	url = git@github.com:amadeus/vim-convert-color-to.git
+  path = bundle/convert-color-to
+  url = https://github.com/amadeus/vim-convert-color-to
 [submodule "bundle/silicon"]
-	path = bundle/silicon
-	url = https://github.com/segeljakt/vim-silicon
+  path = bundle/silicon
+  url = https://github.com/segeljakt/vim-silicon
 [submodule "bundle/toml"]
-	path = bundle/toml
-	url = https://github.com/cespare/vim-toml
+  path = bundle/toml
+  url = https://github.com/cespare/vim-toml
 [submodule "bundle/quickpeek"]
-	path = bundle/quickpeek
-	url = git@github.com:AndrewRadev/quickpeek.vim.git
+  path = bundle/quickpeek
+  url = https://github.com/AndrewRadev/quickpeek.vim
 [submodule "bundle/http"]
-	path = bundle/http
-	url = https://github.com/nicwest/vim-http
+  path = bundle/http
+  url = https://github.com/nicwest/vim-http
 [submodule "bundle/killersheep"]
-	path = bundle/killersheep
-	url = https://github.com/vim/killersheep
+  path = bundle/killersheep
+  url = https://github.com/vim/killersheep
 [submodule "bundle/crates"]
-	path = bundle/crates
-	url = https://github.com/mhinz/vim-crates
+  path = bundle/crates
+  url = https://github.com/mhinz/vim-crates
 [submodule "bundle/json"]
-	path = bundle/json
-	url = https://github.com/elzr/vim-json
+  path = bundle/json
+  url = https://github.com/elzr/vim-json
 [submodule "bundle/isotope"]
-	path = bundle/isotope
-	url = https://github.com/segeljakt/vim-isotope
+  path = bundle/isotope
+  url = https://github.com/segeljakt/vim-isotope
 [submodule "bundle/pickachu"]
-	path = bundle/pickachu
-	url = https://github.com/DougBeney/pickachu
+  path = bundle/pickachu
+  url = https://github.com/DougBeney/pickachu
