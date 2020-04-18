@@ -234,3 +234,6 @@ let g:vim_json_syntax_conceal = 0
 " Pickachu
 let g:pickachu_default_date_format = "%Y-%m-%d"
 let g:pickachu_default_command = "qarma"
+
+" JSX
+let g:vim_jsx_pretty_colorful_config = 1

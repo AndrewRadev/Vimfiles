@@ -325,3 +325,6 @@
 [submodule "bundle/javascript"]
   path = bundle/javascript
   url = https://github.com/pangloss/vim-javascript
+[submodule "bundle/jsx-pretty"]
+  path = bundle/jsx-pretty
+  url = https://github.com/MaxMEllon/vim-jsx-pretty
