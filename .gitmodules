@@ -322,3 +322,6 @@
 [submodule "bundle/pickachu"]
   path = bundle/pickachu
   url = https://github.com/DougBeney/pickachu
+[submodule "bundle/javascript"]
+  path = bundle/javascript
+  url = https://github.com/pangloss/vim-javascript
