@@ -88,6 +88,9 @@ function! s:Wrap(type, ...)
   let skip_syntax = sj#SkipSyntax(['String', 'Comment'])
 
   try
+    " to the end of the line, so it works on the first line of the function
+    normal! $
+
     " Handle return type:
     if sj#SearchSkip(')\_s\+->\_s\+\zs.\{-}\ze\s*\%(where\|{\)', skip_syntax, 'Wbc') > 0
       " there's a return type, match it, wrap it:
@@ -112,10 +115,55 @@ function! s:Wrap(type, ...)
       end
     endwhile
 
-    " TODO (2020-04-11) handle end expression
+    " Handle end expression
+    let last_line = prevnonblank(end_line - 1)
+    call s:WrapExpression(last_line, value_wrapper, start_line)
   finally
     call winrestview(saved_view)
   endtry
+endfunction
+
+function! s:WrapExpression(last_lineno, wrapper, limit)
+  let last_lineno       = a:last_lineno
+  let expr_start_lineno = a:last_lineno
+  let current_lineno    = a:last_lineno
+
+  let wrapper     = a:wrapper
+  let limit       = a:limit
+  let prev_lineno = prevnonblank(last_lineno - 1)
+
+  let skip_syntax = sj#SkipSyntax(['String', 'Comment'])
+  let operator_pattern = '[,*/%+\-|.]'
+
+  " jump to the line
+  exe last_lineno
+  normal! $
+
+  if sj#SearchSkip('}$', skip_syntax, 'bWc', last_lineno) > 0
+    " TODO it's a block, check contents
+    normal! %
+    let expr_start_lineno = line('.')
+    let current_lineno = expr_start_lineno
+    let prev_lineno = prevnonblank(current_lineno - 1)
+  endif
+
+  while sj#SearchSkip('^\s*'.operator_pattern, skip_syntax, 'Wbc', current_lineno) > 0 ||
+        \ sj#SearchSkip(operator_pattern.'\s*$', skip_syntax, 'Wb', prev_lineno) > 0
+    let expr_start_lineno = prev_lineno
+    let current_lineno    = prev_lineno
+    let prev_lineno       = prevnonblank(prev_lineno - 1)
+
+    normal! k
+
+    if prev_lineno <= limit
+      " we've gone past the start of the function, bail out
+      return
+    endif
+  endwhile
+
+  let body = sj#Trim(join(getbufline('%', expr_start_lineno, last_lineno), "\n"))
+  let body = wrapper.'('.body.')'
+  call sj#ReplaceLines(expr_start_lineno, last_lineno, body)
 endfunction
 
 function! s:WrapComplete(argument_lead, _command_line, _cursor_position)
