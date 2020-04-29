@@ -15,10 +15,10 @@
   url = https://github.com/godlygeek/tabular.git
 [submodule "bundle/splitjoin"]
   path = bundle/splitjoin
-  url = https://github.com/AndrewRadev/splitjoin.vim.git
+  url = ../splitjoin.vim.git
 [submodule "bundle/ack"]
   path = bundle/ack
-  url = https://github.com/AndrewRadev/ack.vim.git
+  url = ../ack.vim.git
 [submodule "bundle/gitv"]
   path = bundle/gitv
   url = https://github.com/gregsexton/gitv.git
@@ -30,31 +30,31 @@
   url = https://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/nerdtree"]
   path = bundle/nerdtree
-  url = https://github.com/AndrewRadev/nerdtree.git
+  url = ../nerdtree.git
 [submodule "bundle/ruby"]
   path = bundle/ruby
-  url = https://github.com/vim-ruby/vim-ruby.git
+  url = ../../vim-ruby/vim-ruby.git
 [submodule "bundle/linediff"]
   path = bundle/linediff
-  url = https://github.com/AndrewRadev/linediff.vim.git
+  url = ../linediff.vim.git
 [submodule "bundle/extradite"]
   path = bundle/extradite
   url = https://github.com/int3/vim-extradite.git
 [submodule "bundle/tagfinder"]
   path = bundle/tagfinder
-  url = https://github.com/AndrewRadev/tagfinder.vim.git
+  url = ../tagfinder.vim.git
 [submodule "bundle/inline_edit"]
   path = bundle/inline_edit
-  url = https://github.com/AndrewRadev/inline_edit.vim.git
+  url = ../inline_edit.vim.git
 [submodule "bundle/simple_bookmarks"]
   path = bundle/simple_bookmarks
-  url = https://github.com/AndrewRadev/simple_bookmarks.vim.git
+  url = ../simple_bookmarks.vim.git
 [submodule "bundle/coffeescript"]
   path = bundle/coffeescript
-  url = https://github.com/AndrewRadev/vim-coffee-script.git
+  url = ../vim-coffee-script.git
 [submodule "bundle/archivitor"]
   path = bundle/archivitor
-  url = https://github.com/AndrewRadev/archivitor.vim
+  url = ../archivitor.vim.git
   ignore = untracked
 [submodule "bundle/git"]
   path = bundle/git
@@ -64,7 +64,7 @@
   url = https://github.com/tpope/vim-haml.git
 [submodule "bundle/coffee_tools"]
   path = bundle/coffee_tools
-  url = https://github.com/AndrewRadev/coffee_tools.vim.git
+  url = ../coffee_tools.vim.git
 [submodule "bundle/nyancat"]
   path = bundle/nyancat
   url = https://github.com/koron/nyancat-vim.git
@@ -79,22 +79,22 @@
   url = https://github.com/mattn/webapi-vim.git
 [submodule "bundle/rtranslate"]
   path = bundle/rtranslate
-  url = https://github.com/AndrewRadev/rtranslate.vim
+  url = ../rtranslate.vim.git
 [submodule "bundle/jst"]
   path = bundle/jst
   url = https://github.com/briancollins/vim-jst.git
 [submodule "bundle/switch"]
   path = bundle/switch
-  url = https://github.com/AndrewRadev/switch.vim.git
+  url = ../switch.vim.git
 [submodule "bundle/sideways"]
   path = bundle/sideways
-  url = https://github.com/AndrewRadev/sideways.vim.git
+  url = ../sideways.vim.git
 [submodule "bundle/eco"]
   path = bundle/eco
-  url = https://github.com/AndrewRadev/vim-eco.git
+  url = ../vim-eco.git
 [submodule "bundle/multichange"]
   path = bundle/multichange
-  url = https://github.com/AndrewRadev/multichange.vim
+  url = ../multichange.vim.git
 [submodule "bundle/whitespaste"]
   path = bundle/whitespaste
   url = git://github.com/AndrewRadev/whitespaste.vim.git
@@ -106,10 +106,10 @@
   url = git://github.com/sickill/vim-pasta.git
 [submodule "bundle/id3"]
   path = bundle/id3
-  url = https://github.com/AndrewRadev/id3.vim.git
+  url = ../id3.vim.git
 [submodule "bundle/undoquit"]
   path = bundle/undoquit
-  url = https://github.com/AndrewRadev/undoquit.vim
+  url = ../undoquit.vim.git
 [submodule "bundle/characterize"]
   path = bundle/characterize
   url = git://github.com/tpope/vim-characterize.git
@@ -118,7 +118,7 @@
   url = git://github.com/dhruvasagar/vim-table-mode.git
 [submodule "bundle/writable_search"]
   path = bundle/writable_search
-  url = https://github.com/AndrewRadev/writable_search.vim
+  url = ../writable_search.vim.git
 [submodule "bundle/slim"]
   path = bundle/slim
   url = git://github.com/slim-template/vim-slim.git
@@ -152,7 +152,7 @@
   url = https://github.com/deris/vim-rengbang
 [submodule "bundle/rimplement"]
   path = bundle/rimplement
-  url = https://github.com/AndrewRadev/rimplement.vim
+  url = ../rimplement.vim.git
 [submodule "bundle/elixir"]
   path = bundle/elixir
   url = https://github.com/elixir-lang/vim-elixir
@@ -161,19 +161,19 @@
   url = https://github.com/chrisbra/csv.vim
 [submodule "bundle/andrews_nerdtree"]
   path = bundle/andrews_nerdtree
-  url = https://github.com/AndrewRadev/andrews_nerdtree.vim
+  url = ../andrews_nerdtree.vim.git
 [submodule "bundle/mustache-handlebars"]
   path = bundle/mustache-handlebars
-  url = https://github.com/AndrewRadev/vim-mustache-handlebars
+  url = ../vim-mustache-handlebars.git
 [submodule "bundle/modsearch"]
   path = bundle/modsearch
-  url = https://github.com/AndrewRadev/modsearch.vim
+  url = ../modsearch.vim.git
 [submodule "bundle/autotag"]
   path = bundle/autotag
-  url = https://github.com/AndrewRadev/vim-autotag
+  url = ../vim-autotag.git
 [submodule "bundle/ember_tools"]
   path = bundle/ember_tools
-  url = https://github.com/AndrewRadev/ember_tools.vim
+  url = ../ember_tools.vim.git
 [submodule "bundle/yajs"]
   path = bundle/yajs
   url = https://github.com/othree/yajs.vim
@@ -192,13 +192,13 @@
   url = https://github.com/kana/vim-smartword
 [submodule "bundle/bufferize"]
   path = bundle/bufferize
-  url = https://github.com/AndrewRadev/bufferize.vim
+  url = ../bufferize.vim.git
 [submodule "bundle/gnugo"]
   path = bundle/gnugo
-  url = https://github.com/AndrewRadev/gnugo.vim
+  url = ../gnugo.vim.git
 [submodule "bundle/qftools"]
   path = bundle/qftools
-  url = https://github.com/AndrewRadev/qftools.vim
+  url = ../qftools.vim.git
 [submodule "bundle/markdown-toc"]
   path = bundle/markdown-toc
   url = https://github.com/mzlogin/vim-markdown-toc
@@ -207,13 +207,13 @@
   url = https://github.com/alcesleo/vim-uppercase-sql
 [submodule "bundle/ginitpull"]
   path = bundle/ginitpull
-  url = https://github.com/AndrewRadev/ginitpull.vim
+  url = ../ginitpull.vim.git
 [submodule "bundle/dsf"]
   path = bundle/dsf
-  url = https://github.com/AndrewRadev/dsf.vim
+  url = ../dsf.vim.git
 [submodule "bundle/yankwin"]
   path = bundle/yankwin
-  url = https://github.com/AndrewRadev/yankwin.vim
+  url = ../yankwin.vim.git
 [submodule "bundle/typescript"]
   path = bundle/typescript
   url = https://github.com/leafgarland/typescript-vim
@@ -228,7 +228,7 @@
   url = https://github.com/tweekmonster/startuptime.vim
 [submodule "bundle/deleft"]
   path = bundle/deleft
-  url = https://github.com/AndrewRadev/deleft.vim.git
+  url = ../deleft.vim.git
 [submodule "bundle/endwise"]
   path = bundle/endwise
   url = https://github.com/tpope/vim-endwise
@@ -255,10 +255,10 @@
   url = https://github.com/tpope/vim-rhubarb
 [submodule "bundle/exercism"]
   path = bundle/exercism
-  url = https://github.com/AndrewRadev/exercism.vim.git
+  url = ../exercism.vim.git
 [submodule "bundle/discotheque"]
   path = bundle/discotheque
-  url = https://github.com/AndrewRadev/discotheque.vim
+  url = ../discotheque.vim.git
 [submodule "bundle/swift"]
   path = bundle/swift
   url = https://github.com/keith/swift.vim
@@ -267,7 +267,7 @@
   url = https://github.com/tpope/vim-surround
 [submodule "bundle/tagalong"]
   path = bundle/tagalong
-  url = https://github.com/AndrewRadev/tagalong.vim
+  url = ../tagalong.vim.git
 [submodule "bundle/ron"]
   path = bundle/ron
   url = https://github.com/ron-rs/ron.vim
@@ -303,7 +303,7 @@
   url = https://github.com/cespare/vim-toml
 [submodule "bundle/quickpeek"]
   path = bundle/quickpeek
-  url = https://github.com/AndrewRadev/quickpeek.vim
+  url = ../quickpeek.vim.git
 [submodule "bundle/http"]
   path = bundle/http
   url = https://github.com/nicwest/vim-http
@@ -329,5 +329,5 @@
   path = bundle/jsx-pretty
   url = https://github.com/MaxMEllon/vim-jsx-pretty
 [submodule "bundle/rails_extra"]
-	path = bundle/rails_extra
-	url = git@github.com:AndrewRadev/rails_extra.vim.git
+  path = bundle/rails_extra
+  url = ../rails_extra.vim.git
