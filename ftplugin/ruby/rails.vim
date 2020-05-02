@@ -1,3 +1,7 @@
+if exists(':Emodel')
+  finish
+endif
+
 command! -nargs=1 -complete=custom,s:CompleteRailsModels Emodel call s:Emodel(<q-args>)
 
 function! s:Emodel(model_name)
