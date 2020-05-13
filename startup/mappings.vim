@@ -59,10 +59,10 @@ nnoremap gk <C-w>k
 nnoremap gl <C-w>l
 
 " Faster scrolling:
-nmap <silent> J 5j
-nmap <silent> K 5k
-xmap <silent> J 5j
-xmap <silent> K 5k
+nnoremap <silent> J 5gj
+nnoremap <silent> K 5gk
+xnoremap <silent> J 5gj
+xnoremap <silent> K 5gk
 
 " Resize windows
 nnoremap <left>  <c-w><
