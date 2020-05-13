@@ -30,9 +30,9 @@ function! s:SudoWrite()
 endfunction
 
 " Avoid typing errors
-command! -bang W write<bang>
-command! -bang Q quit<bang>
-command! -bang E edit<bang>
+" command! -bang W write<bang>
+" command! -bang Q quit<bang>
+" command! -bang E edit<bang>
 
 " Rebuild tags database:
 command! RebuildTags call s:RebuildTags()
