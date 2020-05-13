@@ -105,7 +105,7 @@ xmap e  <Plug>(smartword-e)
 xmap ge <Plug>(smartword-ge)
 
 " Markdown
-let g:markdown_fenced_languages = ['ruby', 'vim', 'rust']
+let g:markdown_fenced_languages = ['ruby', 'vim', 'rust', 'bash']
 
 " Anzu
 nmap n <Plug>(anzu-n-with-echo)
