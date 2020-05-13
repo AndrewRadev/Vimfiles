@@ -331,3 +331,6 @@
 [submodule "bundle/rails_extra"]
   path = bundle/rails_extra
   url = ../rails_extra.vim.git
+[submodule "bundle/rust_wrap"]
+  path = bundle/rust_wrap
+  url = ../rust_wrap.vim.git
