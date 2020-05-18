@@ -334,3 +334,6 @@
 [submodule "bundle/rust_wrap"]
   path = bundle/rust_wrap
   url = ../rust_wrap.vim.git
+[submodule "bundle/jsonpath"]
+  path = bundle/jsonpath
+  url = https://github.com/mogelbrod/vim-jsonpath
