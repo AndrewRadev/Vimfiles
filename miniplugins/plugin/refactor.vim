@@ -1,10 +1,9 @@
+" Note: Depends on splitjoin.vim
+
 xmap so :<c-u>call <SID>ExtractVar()<cr>
 nmap si :<c-u>call <SID>InlineVar()<cr>
 
 function! s:ExtractVar()
-  let original_reg      = getreg('z')
-  let original_reg_type = getregtype('z')
-
   let var_name = input("Variable name: ")
 
   if exists('b:extract_var_template')
@@ -13,21 +12,14 @@ function! s:ExtractVar()
     let extract_var_template = '%s = %s'
   endif
 
-  normal! gv"zy
-  let body = @z
-  let @z = var_name
-  normal! gv"zp
-  let @z = printf(extract_var_template, var_name, body)
-  normal! O
-  normal! "zp==
+  let body = sj#GetMotion('gv')
+  call sj#ReplaceMotion('gv', var_name)
 
-  call setreg('z', original_reg, original_reg_type)
+  let declaration = printf(extract_var_template, var_name, body)
+  call append(line('.') - 1, declaration)
 endfunction
 
 function! s:InlineVar()
-  let original_reg      = getreg('z')
-  let original_reg_type = getregtype('z')
-
   if exists('b:inline_var_pattern')
     let declaration_pattern = '^.\{-}'.b:inline_var_pattern.'\s*$'
   else
@@ -44,12 +36,10 @@ function! s:InlineVar()
   let var_name = s:ExtractRx(line, declaration_pattern, '\1')
   let body     = s:ExtractRx(line, declaration_pattern, '\2')
 
-  normal! dd
+  delete _
 
   let [from, to] = GetScopeLimits()
-  exe from.','.to.'s/\<'.var_name.'\>/'.escape(body, '\/&').'/gc'
-
-  call setreg('z', original_reg, original_reg_type)
+  keeppatterns exe from.','.to.'s/\<'.var_name.'\>/'.escape(body, '\/&').'/gc'
 endfunction
 
 function! GetScopeLimits()
