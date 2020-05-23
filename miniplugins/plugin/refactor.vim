@@ -60,9 +60,10 @@ function! s:InlineVar()
   let var_name = s:ExtractRx(line, declaration_pattern, '\1')
   let body     = s:ExtractRx(line, declaration_pattern, '\2')
 
+  let [from, to] = GetScopeLimits()
+
   delete _
 
-  let [from, to] = GetScopeLimits()
   keeppatterns exe from.','.to.'s/\<'.var_name.'\>/'.escape(body, '\/&').'/gc'
 endfunction
 
