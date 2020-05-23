@@ -13,16 +13,17 @@ function! s:ExtractVar()
     let extract_var_template = '%s = %s'
   endif
 
-  let body = sj#GetMotion('gv')
+  let body = sj#Trim(sj#GetMotion('gv'))
   call sj#ReplaceMotion('gv', var_name)
 
   let declaration = printf(extract_var_template, var_name, body)
-  call append(line('.') - 1, declaration)
+  let declaration_lines = split(declaration, "\n")
+  call append(line('.') - 1, declaration_lines)
 
-  " Indent and position at the start
-  normal! k==0
+  " Indent all lines and position at the start
+  exe 'normal! '.len(declaration_lines).'k'.len(declaration_lines).'==0'
 
-  if search('${[^}]\+}', 'Wc', line('.'))
+  if search('${[^}]\+}', 'Wc', line('.') + len(declaration_lines) - 1)
     " delete the first '$'
     normal! "_x
     " remove the surrounding curly brackets
