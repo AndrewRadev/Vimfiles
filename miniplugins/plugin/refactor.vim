@@ -1,7 +1,8 @@
 " Note: Depends on splitjoin.vim
 
 xmap so :<c-u>call <SID>ExtractVar()<cr>
-nmap si :<c-u>call <SID>InlineVar()<cr>
+nmap si :<c-u>call <SID>InlineVar('normal')<cr>
+xmap si :<c-u>call <SID>InlineVar('visual')<cr>
 
 function! s:ExtractVar()
   let saved_view = winsaveview()
@@ -43,28 +44,68 @@ function! s:ExtractVar()
   call winrestview(saved_view)
 endfunction
 
-function! s:InlineVar()
+function! s:InlineVar(mode)
   if exists('b:inline_var_pattern')
     let declaration_pattern = '^.\{-}'.b:inline_var_pattern.'\s*$'
   else
     let declaration_pattern = '\v^.{-}(\k+)\s+\=\s+(.*)$'
   endif
 
-  let line = getline('.')
-
-  if line !~ declaration_pattern
-    echohl WarningMsg | echo "Couldn't find a declaration on the current line" | echohl None
+  if a:mode == 'normal'
+    let declaration = getline('.')
+  elseif a:mode == 'visual'
+    let declaration = sj#GetMotion('gv')
+  else
+    echoerr "Unknown mode: ".a:mode
     return
   endif
 
-  let var_name = s:ExtractRx(line, declaration_pattern, '\1')
-  let body     = s:ExtractRx(line, declaration_pattern, '\2')
+  if declaration !~ declaration_pattern
+    if a:mode == 'normal'
+      let message = "Couldn't find a declaration on the current line"
+    else
+      let message = "Couldn't find a declaration in the selection"
+    endif
 
+    echohl WarningMsg | echo message | echohl None
+    return
+  endif
+
+  let declaration_lines = split(declaration, "\n")
+
+  let var_name  = s:ExtractRx(declaration, declaration_pattern, '\1')
+  let body_start = s:ExtractRx(declaration_lines[0], declaration_pattern, '\2')
+
+  let body_lines = [body_start]
+  call extend(body_lines, declaration_lines[1:(len(declaration_lines) - 1)])
+  let body = join(body_lines, "\r")
+
+  let declaration_start_line = line('.')
   let [from, to] = GetScopeLimits()
+  " only replace variables after the declaration (note: could just get the end
+  " in that case?)
+  let from = max([from, declaration_start_line])
 
-  delete _
+  exe from
+  normal! $
+  let tick = b:changedtick
+  while search('\<'.var_name.'\>', 'W', to)
+    keeppatterns exe 's/\<'.var_name.'\>/'.escape(body, '\/&').'/c'
 
-  keeppatterns exe from.','.to.'s/\<'.var_name.'\>/'.escape(body, '\/&').'/gc'
+    if tick != b:changedtick
+      if len(body_lines) > 1
+        exe 'normal! '.(len(body_lines) - 1).'k'.len(body_lines).'=='
+        let to += (len(body_lines) - 1)
+      endif
+
+      let tick = b:changedtick
+    endif
+  endwhile
+
+  " Remove the original declaration
+  let delete_start = declaration_start_line
+  let delete_end = declaration_start_line + (len(body_lines) - 1)
+  silent exe delete_start.','.delete_end.'delete _'
 endfunction
 
 function! GetScopeLimits()
