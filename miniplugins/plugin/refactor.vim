@@ -4,6 +4,7 @@ xmap so :<c-u>call <SID>ExtractVar()<cr>
 nmap si :<c-u>call <SID>InlineVar()<cr>
 
 function! s:ExtractVar()
+  let saved_view = winsaveview()
   let var_name = input("Variable name: ")
 
   if exists('b:extract_var_template')
@@ -17,6 +18,28 @@ function! s:ExtractVar()
 
   let declaration = printf(extract_var_template, var_name, body)
   call append(line('.') - 1, declaration)
+
+  " Indent and position at the start
+  normal! k==0
+
+  if search('${[^}]\+}', 'Wc', line('.'))
+    " delete the first '$'
+    normal! "_x
+    " remove the surrounding curly brackets
+    let placeholder = sj#GetMotion('vi{')
+    call sj#ReplaceMotion('va{', placeholder)
+
+    if len(placeholder) > 1
+      exe "normal! v".(len(placeholder) - 1)."l\<c-g>"
+    else
+      exe "normal! v\<c-g>"
+    endif
+
+    " don't restore cursor position
+    return
+  endif
+
+  call winrestview(saved_view)
 endfunction
 
 function! s:InlineVar()
