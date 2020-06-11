@@ -12,7 +12,9 @@ endfunction
 function! s:CompleteRailsModels(A, L, P)
   let names = []
   for file in split(glob('app/models/**/*.rb'), "\n")
-    let name = fnamemodify(file, ':t:r')
+    let name = substitute(name, '^app/models/', '')
+    let name = substitute(name, '\.rb$', '')
+
     call add(names, name)
   endfor
   return join(names, "\n")
