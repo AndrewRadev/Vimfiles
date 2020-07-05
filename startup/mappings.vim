@@ -324,6 +324,7 @@ endfunction
 
 " Delete left-hand side of assignment
 nnoremap d= df=x
+nnoremap c= df=xi
 
 " Text object for the visible screen
 onoremap a+ :<c-u>normal! HVL<cr>
