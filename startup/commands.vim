@@ -156,14 +156,6 @@ function! s:Redraw()
   redraw!
 endfunction
 
-" Get the gender of the German word under the cursor
-" Note: just uses the external "gender" script
-command! Gender call s:Gender()
-function! s:Gender()
-  let word = expand('<cword>')
-  echo system('gender '.word)
-endfunction
-
 command! -nargs=* DiffPaste call s:DiffPaste(<q-args>)
 function! s:DiffPaste(flags)
   let diff           = getreg(lib#DefaultRegister())

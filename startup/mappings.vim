@@ -322,26 +322,6 @@ function! s:ToggleBrackets()
   call winrestview(saved_view)
 endfunction
 
-" Quickly make a macro and use it with "."
-let s:simple_macro_active = 0
-nnoremap M :call <SID>SimpleMacro()<cr>
-function! s:SimpleMacro()
-  if s:simple_macro_active == 0
-
-    call feedkeys('qm', 'n')
-    let s:simple_macro_active = 1
-
-  elseif s:simple_macro_active == 1
-
-    normal! q
-    " remove trailing M
-    let @m = @m[0:-2]
-    call repeat#set(":\<c-u>call repeat#wrap('@m', 1)\<cr>", 1)
-    let s:simple_macro_active = 0
-
-  endif
-endfunction
-
 " Delete left-hand side of assignment
 nnoremap d= df=x
 
@@ -366,9 +346,6 @@ endfunction
 function! s:Unfocus()
   call clearmatches()
 endfunction
-
-" Easier :Modsearch
-nnoremap _s :Modsearch<space>
 
 " Source:
 " https://stackoverflow.com/questions/44108563/how-to-delete-or-yank-inside-slashes-and-asterisks
