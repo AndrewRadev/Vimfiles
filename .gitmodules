@@ -337,3 +337,6 @@
 [submodule "bundle/jsonpath"]
   path = bundle/jsonpath
   url = https://github.com/mogelbrod/vim-jsonpath
+[submodule "bundle/mundo"]
+  path = bundle/mundo
+  url = https://github.com/simnalamburt/vim-mundo
