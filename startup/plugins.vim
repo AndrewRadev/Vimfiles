@@ -195,8 +195,10 @@ command! HttpRequest HTTPClientDoRequest
 " Tagalong
 let g:tagalong_verbose = 1
 
-" Gundo
-let g:gundo_prefer_python3 = 1
+" Mundo
+let g:mundo_right = 1
+let g:mundo_auto_preview_delay = 150
+let g:mundo_inline_undo = 1
 
 " Tcomment
 let g:tcomment_maps = 0
