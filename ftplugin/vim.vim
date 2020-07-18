@@ -152,8 +152,10 @@ function! s:Localvars()
   exe 'normal! '.string(len(args) + 1).'=='
 endfunction
 
-command! -buffer DebugIf call s:DebugIf()
-function! s:DebugIf()
+command! -nargs=* -buffer DebugIf call s:DebugIf(<q-args>)
+function! s:DebugIf(label)
+  let label = a:label
+
   if search('^\s*\zsif ', 'Wbc') <= 0
     return
   endif
@@ -171,7 +173,19 @@ function! s:DebugIf()
       normal! j
     endwhile
 
-    let @z = "Decho \"Debug: ".debug_index." (".strpart(if_line, 0, 20)."...)\""
+    if len(if_line) <= 23
+      let line_description = if_line
+    else
+      let line_description = strpart(if_line, 0, 20)."..."
+    endif
+    let line_description = escape(line_description, '"')
+
+    if label != ''
+      let @z = "Decho \"Debug (" . label . ") " . debug_index . ': ' . line_description . '"'
+    else
+      let @z = "Decho \"Debug " . debug_index . ': ' . line_description . '"'
+    endif
+
     put z
     normal! ==
     let debug_index += 1
