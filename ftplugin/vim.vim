@@ -151,3 +151,34 @@ function! s:Localvars()
 
   exe 'normal! '.string(len(args) + 1).'=='
 endfunction
+
+command! -buffer DebugIf call s:DebugIf()
+function! s:DebugIf()
+  if search('^\s*\zsif ', 'Wbc') <= 0
+    return
+  endif
+
+  let debug_index = 1
+  let saved_register_text = getreg('z', 1)
+  let saved_register_type = getregtype('z')
+
+  while getline('.') !~ '^\s*endif\>'
+    let if_lineno = line('.')
+    let if_line = lib#Trim(getline('.'))
+
+    while getline(line('.') + 1) =~ '^\s*\\'
+      " it's a continuation, move downwards
+      normal! j
+    endwhile
+
+    let @z = "Decho \"Debug: ".debug_index." (".strpart(if_line, 0, 20)."...)\""
+    put z
+    normal! ==
+    let debug_index += 1
+
+    exe if_lineno
+    normal %
+  endwhile
+
+  call setreg('z', saved_register_text, saved_register_type)
+endfunction
