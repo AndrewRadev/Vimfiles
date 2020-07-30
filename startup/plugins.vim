@@ -55,10 +55,6 @@ let g:gist_browser_command         = 'firefox %URL% &'
 " Javascript
 let g:SimpleJsIndenter_BriefMode = 1
 
-" Command-line completion
-cmap <C-j> <Plug>CmdlineCompletionBackward
-cmap <C-k> <Plug>CmdlineCompletionForward
-
 " Splitjoin
 let g:splitjoin_split_mapping                           = ''
 let g:splitjoin_join_mapping                            = ''

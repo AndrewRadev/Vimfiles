@@ -331,3 +331,6 @@
 [submodule "bundle/mundo"]
   path = bundle/mundo
   url = https://github.com/simnalamburt/vim-mundo
+[submodule "bundle/commandlinecomplete"]
+  path = bundle/commandlinecomplete
+  url = https://github.com/j5shi/commandlinecomplete.vim
