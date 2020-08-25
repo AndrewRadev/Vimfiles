@@ -35,3 +35,45 @@ function! s:YamlPreview()
 endfunction
 
 RunCommand YamlPreview
+
+nnoremap <buffer> zp :call <SID>PrintPath()<cr>
+nnoremap <buffer> zy :call <SID>YankPath()<cr>
+
+function! s:PrintPath()
+  echomsg s:GetPath()
+endfunction
+
+function! s:YankPath()
+  let path = s:GetPath()
+  echomsg 'Yanked: "'.path.'" to all clipboards'
+
+  let @" = path
+  let @* = path
+  let @+ = path
+endfunction
+
+function! s:GetPath()
+  let saved_view = winsaveview()
+
+  let line = getline('.')
+  let indent = indent(line('.'))
+  let path = []
+
+  let extraction_pattern = '^\s*\zs\k\+\ze:'
+
+  if line =~ '^\s*\k\+:'
+    let path = [matchstr(line, extraction_pattern)]
+  endif
+
+  while search('^\s\{,'.(indent - 1).'}\k\+:', 'Wb', 1, 0, sj#SkipSyntax(['Comment'])) > 0
+    call insert(path, matchstr(getline('.'), extraction_pattern), 0)
+
+    let indent = indent(line('.'))
+    if indent <= 0
+      break
+    endif
+  endwhile
+
+  call winrestview(saved_view)
+  return join(path, '.')
+endfunction
