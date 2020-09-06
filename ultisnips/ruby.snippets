@@ -160,3 +160,12 @@ endsnippet
 snippet putsvar
 puts "${1:variable}: #{$1.inspect}"
 endsnippet
+
+snippet bundler
+require 'bundler/inline'
+
+gemfile do
+	source 'https://rubygems.org'
+	${1}
+end
+endsnippet
