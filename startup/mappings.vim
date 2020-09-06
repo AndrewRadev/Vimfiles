@@ -101,15 +101,21 @@ nmap <silent> sk <Plug>SplitjoinJoin
 " Execute normal vim join if in visual mode
 xnoremap sk J
 
-" Moving code sideways
+" Sideways: moving
 nnoremap s< :SidewaysLeft<CR>
 nnoremap s> :SidewaysRight<CR>
 
-" Sideways argument text object
+" Sideways: argument text object
 omap <silent> aa <Plug>SidewaysArgumentTextobjA
 xmap <silent> aa <Plug>SidewaysArgumentTextobjA
 omap <silent> ia <Plug>SidewaysArgumentTextobjI
 xmap <silent> ia <Plug>SidewaysArgumentTextobjI
+
+" Sideways: add new argument
+nmap ,si <Plug>SidewaysArgumentInsertBefore
+nmap ,sa <Plug>SidewaysArgumentAppendAfter
+nmap ,sI <Plug>SidewaysArgumentInsertFirst
+nmap ,sA <Plug>SidewaysArgumentAppendLast
 
 " Inline edit
 nnoremap ,e    :InlineEdit<cr>
