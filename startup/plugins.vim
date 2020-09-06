@@ -235,3 +235,6 @@ let g:pickachu_default_command = "qarma"
 
 " JSX
 let g:vim_jsx_pretty_colorful_config = 1
+
+" Yankwin
+let g:yankwin_clipboard = "unnamed,unnamedplus"
