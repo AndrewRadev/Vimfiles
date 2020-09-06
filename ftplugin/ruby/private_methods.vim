@@ -1,9 +1,17 @@
 " Define what color the private area will be
-hi rubyPrivateArea cterm=underline gui=underline
+hi rubyPrivateMethod cterm=underline gui=underline
+
+if empty(prop_type_get('private_area'))
+  call prop_type_add('private_method', {
+        \ 'bufnr':     bufnr(),
+        \ 'highlight': 'rubyPrivateMethod',
+        \ 'combine':   v:true
+        \ })
+endif
 
 function! s:MarkPrivateArea()
   " Clear out any previous matches
-  call clearmatches()
+  call prop_remove({'type': 'private_method', 'all': v:true})
 
   " Store the current view, in order to restore it later
   let saved_view = winsaveview()
@@ -21,6 +29,7 @@ function! s:MarkPrivateArea()
     endif
 
     let start_line = line('.')
+    let end_line = line('.')
 
     " look for the matching "end"
     let saved_position = getpos('.')
@@ -31,8 +40,21 @@ function! s:MarkPrivateArea()
       endif
 
       let end_line = line('.') - 1
-      call matchadd('rubyPrivateArea', '\%>'.start_line.'l\<def\>\%<'.end_line.'l')
       break
+    endwhile
+
+    exe start_line
+
+    while search('\<def\>', 'W', end_line) > 0
+      if s:CurrentSyntaxName() !~# "rubyDefine"
+        " it's not a "def" that defines a function
+        continue
+      endif
+
+      call prop_add(line('.'), col('.'), {
+            \ 'length': '3',
+            \ 'type': 'private_method'
+            \ })
     endwhile
 
     " restore where we were before we started looking for the "end"
@@ -47,19 +69,21 @@ function! s:CurrentSyntaxName()
   return synIDattr(synID(line("."), col("."), 0), "name")
 endfunction
 
-augroup rubyPrivateArea
+augroup rubyPrivateMethod
   autocmd!
 
   " Initial marking
   autocmd BufEnter <buffer> call <SID>MarkPrivateArea()
 
   " Mark upon writing
-  " autocmd BufWrite <buffer> call <SID>MarkPrivateArea()
+  autocmd BufWrite <buffer> call <SID>MarkPrivateArea()
 
-  " Mark when exiting insert mode (doesn't cover normal-mode text changing
-  autocmd InsertLeave <buffer> call <SID>MarkPrivateArea()
-  " Mark when text has changed in normal mode
-  autocmd TextChanged <buffer> call <SID>MarkPrivateArea()
+  " Mark when exiting insert mode (doesn't cover normal-mode text changing)
+  " autocmd InsertLeave <buffer> call <SID>MarkPrivateArea()
+  "
+  " Mark when text has changed in normal mode. (doesn't work sometimes, syntax
+  " doesn't get updated in time)
+  " autocmd TextChanged <buffer> call <SID>MarkPrivateArea()
 
   " Mark when not moving the cursor for 'timeoutlen' time
   " autocmd CursorHold <buffer> call <SID>MarkPrivateArea()
