@@ -1,13 +1,16 @@
+if (exists("b:did_ftplugin_private_methods"))
+  finish
+endif
+let b:did_ftplugin_private_methods = 1
+
 " Define what color the private area will be
 hi rubyPrivateMethod cterm=underline gui=underline
 
-if empty(prop_type_get('private_area'))
-  call prop_type_add('private_method', {
-        \ 'bufnr':     bufnr(),
-        \ 'highlight': 'rubyPrivateMethod',
-        \ 'combine':   v:true
-        \ })
-endif
+call prop_type_add('private_method', {
+      \ 'bufnr':     bufnr(),
+      \ 'highlight': 'rubyPrivateMethod',
+      \ 'combine':   v:true
+      \ })
 
 function! s:MarkPrivateArea()
   " Clear out any previous matches
