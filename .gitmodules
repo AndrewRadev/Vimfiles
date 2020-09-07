@@ -334,3 +334,6 @@
 [submodule "bundle/commandlinecomplete"]
   path = bundle/commandlinecomplete
   url = https://github.com/j5shi/commandlinecomplete.vim
+[submodule "bundle/shoot"]
+	path = bundle/shoot
+	url = https://github.com/JMcKiern/vim-shoot
