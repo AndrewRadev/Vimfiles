@@ -121,6 +121,8 @@ xmap X <Plug>(Exchange)
 
 " built-in HTML indenting
 let g:html_indent_inctags = 'html,head,body,li,p'
+" For :TOhtml
+let g:html_font = "Fantasque Sans Mono"
 
 " Writable search
 let g:writable_search_backends = ['ack.vim', 'ack', 'egrep']

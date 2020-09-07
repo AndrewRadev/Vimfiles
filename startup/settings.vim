@@ -27,6 +27,7 @@ set number
 set ruler
 set diffopt+=vertical,iwhite,algorithm:patience,indent-heuristic
 set guioptions=crb
+set guifont=Fantasque\ Sans\ Mono\ 11
 set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
 set laststatus=2
