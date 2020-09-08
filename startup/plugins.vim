@@ -240,3 +240,6 @@ let g:vim_jsx_pretty_colorful_config = 1
 
 " Yankwin
 let g:yankwin_clipboard = "unnamed,unnamedplus"
+
+" Sideways
+let g:sideways_add_item_cursor_restore = 1
