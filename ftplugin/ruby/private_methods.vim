@@ -1,18 +1,15 @@
-if (exists("b:did_ftplugin_private_methods"))
-  finish
-endif
-let b:did_ftplugin_private_methods = 1
-
 " Define what color the private area will be
 hi rubyPrivateMethod cterm=underline gui=underline
 
-call prop_type_add('private_method', {
-      \ 'bufnr':     bufnr(),
-      \ 'highlight': 'rubyPrivateMethod',
-      \ 'combine':   v:true
-      \ })
-
 function! s:MarkPrivateArea()
+  if empty(prop_type_get('private_method', {'bufnr': bufnr()}))
+    call prop_type_add('private_method', {
+          \ 'bufnr':     bufnr(),
+          \ 'highlight': 'rubyPrivateMethod',
+          \ 'combine':   v:true
+          \ })
+  endif
+
   " Clear out any previous matches
   call prop_remove({'type': 'private_method', 'all': v:true})
 
@@ -72,22 +69,18 @@ function! s:CurrentSyntaxName()
   return synIDattr(synID(line("."), col("."), 0), "name")
 endfunction
 
-augroup rubyPrivateMethod
-  autocmd!
+" Initial marking
+autocmd BufEnter <buffer> call <SID>MarkPrivateArea()
 
-  " Initial marking
-  autocmd BufEnter <buffer> call <SID>MarkPrivateArea()
+" Mark upon writing
+autocmd BufWrite <buffer> call <SID>MarkPrivateArea()
 
-  " Mark upon writing
-  autocmd BufWrite <buffer> call <SID>MarkPrivateArea()
+" Mark when exiting insert mode (doesn't cover normal-mode text changing)
+" autocmd InsertLeave <buffer> call <SID>MarkPrivateArea()
+"
+" Mark when text has changed in normal mode. (doesn't work sometimes, syntax
+" doesn't get updated in time)
+" autocmd TextChanged <buffer> call <SID>MarkPrivateArea()
 
-  " Mark when exiting insert mode (doesn't cover normal-mode text changing)
-  " autocmd InsertLeave <buffer> call <SID>MarkPrivateArea()
-  "
-  " Mark when text has changed in normal mode. (doesn't work sometimes, syntax
-  " doesn't get updated in time)
-  " autocmd TextChanged <buffer> call <SID>MarkPrivateArea()
-
-  " Mark when not moving the cursor for 'timeoutlen' time
-  " autocmd CursorHold <buffer> call <SID>MarkPrivateArea()
-augroup END
+" Mark when not moving the cursor for 'timeoutlen' time
+" autocmd CursorHold <buffer> call <SID>MarkPrivateArea()
