@@ -7,6 +7,8 @@ setlocal nofoldenable
 
 setlocal commentstring=#\ %s
 
+command! -buffer Flatten YAMLToggleFlatness
+
 command! -buffer YamlPreview call s:YamlPreview()
 function! s:YamlPreview()
   let file_name = expand('%')
