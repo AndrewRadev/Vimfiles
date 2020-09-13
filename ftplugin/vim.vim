@@ -152,9 +152,9 @@ function! s:Localvars()
   exe 'normal! '.string(len(args) + 1).'=='
 endfunction
 
-command! -nargs=* -buffer DebugIf call s:DebugIf(<q-args>)
-function! s:DebugIf(label)
-  let label = a:label
+command! -nargs=* -complete=custom,s:WhatIfComplete -buffer WhatIf call s:WhatIf(<q-args>)
+function! s:WhatIf(command)
+  let command = a:command
 
   if search('^\s*\zsif ', 'Wbc') <= 0
     return
@@ -180,11 +180,7 @@ function! s:DebugIf(label)
     endif
     let line_description = escape(line_description, '"')
 
-    if label != ''
-      let @z = "Decho \"Debug (" . label . ") " . debug_index . ': ' . line_description . '"'
-    else
-      let @z = "Decho \"Debug " . debug_index . ': ' . line_description . '"'
-    endif
+    let @z = command." \"Debug " . debug_index . ': ' . line_description . '"'
 
     put z
     normal! ==
@@ -195,4 +191,8 @@ function! s:DebugIf(label)
   endwhile
 
   call setreg('z', saved_register_text, saved_register_type)
+endfunction
+
+function! s:WhatIfComplete(_argument_lead, _command_line, _cursor_position)
+  return join(sort(["echomsg", "Decho"]), "\n")
 endfunction

@@ -1,5 +1,5 @@
-command! -nargs=* -buffer DebugIf call s:DebugIf(<q-args>)
-function! s:DebugIf(label)
+command! -nargs=* -buffer WhatIf call s:WhatIf(<q-args>)
+function! s:WhatIf(label)
   let label = a:label
 
   if search('^\s*\zsif ', 'Wbc') <= 0
