@@ -340,3 +340,6 @@
 [submodule "bundle/yaml-flattener"]
 	path = bundle/yaml-flattener
 	url = https://github.com/henrik/vim-yaml-flattener
+[submodule "bundle/helpful"]
+	path = bundle/helpful
+	url = https://github.com/tweekmonster/helpful.vim
