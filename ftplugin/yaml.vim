@@ -61,13 +61,13 @@ function! s:GetPath()
   let indent = indent(line('.'))
   let path = []
 
-  let extraction_pattern = '^\s*\zs\k\+\ze:'
+  let extraction_pattern = '^\s*\zs[[:keyword:]/]\+\ze:'
 
-  if line =~ '^\s*\k\+:'
+  if line =~ extraction_pattern
     let path = [matchstr(line, extraction_pattern)]
   endif
 
-  while search('^\s\{,'.(indent - 1).'}\k\+:', 'Wb', 1, 0, sj#SkipSyntax(['Comment'])) > 0
+  while search('^\s\{,'.(indent - 1).'}[[:keyword:]/]\+:', 'Wb', 1, 0, sj#SkipSyntax(['Comment'])) > 0
     call insert(path, matchstr(getline('.'), extraction_pattern), 0)
 
     let indent = indent(line('.'))
