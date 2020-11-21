@@ -94,5 +94,5 @@ function! AcpMeetsForGo(context)
 endfunction
 
 function! AcpMeetsForRust(context)
-  return &omnifunc != '' && a:context =~ '\k::\k*$'
+  return &omnifunc != '' && a:context =~ '\k\%(::\|\.\)\k*$'
 endfunction
