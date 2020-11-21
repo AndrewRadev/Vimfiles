@@ -55,37 +55,88 @@ function! s:FunctionTextObject(mode)
   endif
 endfunction
 
-command! Emain edit src/main.rs
+command! -buffer Emain edit src/main.rs
 
-function! s:Doc()
-  let term = expand('<cword>')
+" LanguageClient setup (optional)
+if has_key(get(g:, 'LanguageClient_serverCommands'), &filetype)
+  nnoremap <buffer> <c-p> :call LanguageClient#textDocument_hover()<cr>
+  nnoremap <buffer> gd :call LanguageClient#textDocument_definition()<CR>
+  command! -buffer Rename call LanguageClient#textDocument_rename()
+  set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+end
+
+let s:std_prelude = {
+      \ 'Copy':                'std::marker::Copy',
+      \ 'Send':                'std::marker::Send',
+      \ 'Sized':               'std::marker::Sized',
+      \ 'Sync':                'std::marker::Sync',
+      \ 'Unpin':               'std::marker::Unpin',
+      \ 'Drop':                'std::ops::Drop',
+      \ 'Fn':                  'std::ops::Fn',
+      \ 'FnMut':               'std::ops::FnMut',
+      \ 'FnOnce':              'std::ops::FnOnce',
+      \ 'drop':                'std::mem::drop',
+      \ 'Box':                 'std::boxed::Box',
+      \ 'ToOwned':             'std::borrow::ToOwned',
+      \ 'Clone':               'std::clone::Cone',
+      \ 'PartialEq':           'std::cmp::PartialEq',
+      \ 'PartialOrd':          'std::cmp::PartialOrd',
+      \ 'Eq':                  'std::cmp::Eq',
+      \ 'Ord':                 'std::cmp::Ord',
+      \ 'AsRef':               'std::convert::AsRef',
+      \ 'AsMut':               'std::convert::AsMut',
+      \ 'Into':                'std::convert::Into',
+      \ 'From':                'std::convert::From',
+      \ 'Default':             'std::default::Default',
+      \ 'Iterator':            'std::iter::Iterator',
+      \ 'Extend':              'std::iter::Extend',
+      \ 'IntoIterator':        'std::iter::IntoIterator',
+      \ 'DoubleEndedIterator': 'std::iter::DoubleEndedIterator',
+      \ 'ExactSizeIterator':   'std::iter::ExactSizeIterator',
+      \ 'Option':              'std::option',
+      \ 'Some':                'std::option::Option',
+      \ 'None':                'std::option::Option',
+      \ 'Result':              'std::result',
+      \ 'Ok':                  'std::result::Result',
+      \ 'Err':                 'std::result::Result',
+      \ 'String':              'std::string::String',
+      \ 'ToString':            'std::string::ToString',
+      \ 'Vec':                 'std::vec::Vec',
+      \ }
+
+function! s:Doc() abort
+  try
+    let saved_iskeyword = &l:iskeyword
+    setlocal iskeyword+=:
+    let term = expand('<cword>')
+  finally
+    let &l:iskeyword = saved_iskeyword
+  endtry
+
   let [imported_symbols, aliases] = s:ParseImports()
-  let namespaces = values(imported_symbols)
-  let packages = map(namespaces, {_, ns -> split(ns, '::')[0]})
-  let url = ""
+  let term_head = split(term, '::')[0]
 
-  if getline('.') =~ 'extern crate '.term.';'
-    call Open('https://docs.rs/'.term)
-  elseif term == 'std'
-    call Open('https://doc.rust-lang.org/std')
-  elseif index(packages, term) >= 0
-    call Open('https://docs.rs/'.term)
-  elseif has_key(imported_symbols, term)
-    let namespace = imported_symbols[term]
-    if namespace =~ 'std::'
-      let path = substitute(namespace, '::', '/', 'g')
-      call Open('https://doc.rust-lang.org/'.path.'/?search='.term)
-    else
-      if has_key(aliases, term)
-        let term = aliases[term]
-      endif
+  if has_key(imported_symbols, term_head)
+    let term = imported_symbols[term_head] . '::' . term
+  elseif has_key(aliases, term_head)
+    let term = aliases[term_head] . '::' . term
+  elseif has_key(s:std_prelude, term_head)
+    let term = s:std_prelude[term_head] . '::' . term
+  endif
 
-      let path = substitute(namespace, '::', '/', 'g')
-      let package = split(namespace, '::')[0]
-      call Open('https://docs.rs/'.package.'/latest/'.path.'/?search='.term)
-    endif
+  let term_path = split(term, '::')
+
+  if term_path[0] == 'std'
+    call Open('https://doc.rust-lang.org/std/?search='.term)
+  elseif term_path[0] == 'crate'
+    echomsg "Local documentation not supported yet: ".term
+    return
   else
-    echomsg "Don't know how to open docs for '".term."' in this context"
+    let package = term_path[0]
+    let term_name = term_path[-1]
+    let path = join(term_path[1:-2], '/')
+    call Open('https://docs.rs/'.package.'/latest/'.path.'/?search='.term_name)
+    return
   endif
 endfunction
 
@@ -98,7 +149,7 @@ function! s:ParseImports()
     let symbols = []
 
     if line =~ '::\k\+ as \k\+;'
-      let real_name      = matchstr(line, '::\zs\k\+\ze as \k\+;')
+      let real_name      = matchstr(line, 'use\s\+\zs\%(::\|\k\+\)\+\ze as \k\+;')
       let alias          = matchstr(line, '::\k\+ as \zs\k\+\ze;')
       let symbols        = [alias]
       let aliases[alias] = real_name
