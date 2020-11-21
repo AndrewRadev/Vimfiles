@@ -1,3 +1,6 @@
+" TODO (2020-10-01) bug with `go` and byte counts
+finish
+
 " Define what color the private area will be
 hi rubyPrivateMethod cterm=underline gui=underline
 
