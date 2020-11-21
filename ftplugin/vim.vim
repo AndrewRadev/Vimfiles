@@ -155,6 +155,9 @@ endfunction
 command! -nargs=* -complete=custom,s:WhatIfComplete -buffer WhatIf call s:WhatIf(<q-args>)
 function! s:WhatIf(command)
   let command = a:command
+  if command == ''
+    let command = 'Debug'
+  endif
 
   if search('^\s*\zsif ', 'Wbc') <= 0
     return
