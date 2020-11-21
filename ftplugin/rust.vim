@@ -105,13 +105,7 @@ let s:std_prelude = {
       \ }
 
 function! s:Doc() abort
-  try
-    let saved_iskeyword = &l:iskeyword
-    setlocal iskeyword+=:
-    let term = expand('<cword>')
-  finally
-    let &l:iskeyword = saved_iskeyword
-  endtry
+  let term = s:GetRustIdentifier()
 
   let [imported_symbols, aliases] = s:ParseImports()
   let term_head = split(term, '::')[0]
@@ -175,11 +169,21 @@ endfunction
 
 function! s:RustCursorTag() abort
   let [_, aliases] = s:ParseImports()
-  let identifier = expand('<cword>')
+  let identifier = s:GetRustIdentifier()
 
   if has_key(aliases, identifier)
-    return aliases[identifier]
+    return split(aliases[identifier], '::')[-1]
   else
-    return identifier
+    return split(identifier, '::')[-1]
   endif
+endfunction
+
+function! s:GetRustIdentifier()
+  try
+    let saved_iskeyword = &l:iskeyword
+    setlocal iskeyword+=:
+    return expand('<cword>')
+  finally
+    let &l:iskeyword = saved_iskeyword
+  endtry
 endfunction
