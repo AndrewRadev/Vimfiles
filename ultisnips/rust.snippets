@@ -113,6 +113,16 @@ impl Default for ${1:Type} {
 }
 endsnippet
 
+snippet implfromstr
+impl FromStr for ${1:Type} {
+	type Err = ${2:Box<Error>};
+
+	fn from_str(s: &str) -> Result<Self, Self::Err> {
+		todo!()
+	}
+}
+endsnippet
+
 snippet test
 #[test]
 fn test_${1:something}() {
