@@ -343,3 +343,6 @@
 [submodule "bundle/helpful"]
 	path = bundle/helpful
 	url = https://github.com/tweekmonster/helpful.vim
+[submodule "bundle/colddeck"]
+	path = bundle/colddeck
+	url = git@github.com:AndrewRadev/vim-colddeck.git
