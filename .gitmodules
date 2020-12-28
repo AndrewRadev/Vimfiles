@@ -346,3 +346,6 @@
 [submodule "bundle/colddeck"]
 	path = bundle/colddeck
 	url = git@github.com:AndrewRadev/vim-colddeck.git
+[submodule "bundle/complimentary"]
+	path = bundle/complimentary
+	url = https://github.com/fcpg/vim-complimentary
