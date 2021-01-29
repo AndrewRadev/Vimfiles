@@ -243,3 +243,9 @@ let g:yankwin_clipboard = "unnamed,unnamedplus"
 
 " Sideways
 let g:sideways_add_item_cursor_restore = 1
+
+" Git-msg-wheel
+let g:git_msg_wheel_list_show = 0 " hide list
+
+" Colddeck
+let g:cdeck_nomaps = 1
