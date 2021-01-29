@@ -8,7 +8,7 @@ function! s:Rgmigration(description)
   exe 'edit '.file_name
 
   call append(0, [
-        \ 'class '.class_name.' < ActiveRecord::Migration[5.2]',
+        \ 'class '.class_name.' < ActiveRecord::Migration[6.1]',
         \ '  def change',
         \ '    create_table #<tab>',
         \ '  end',

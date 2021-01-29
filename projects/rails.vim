@@ -1,7 +1,7 @@
 runtime projects/ruby.vim
 
-silent AckIgnore log/ tmp/ db/ public/assets/
-silent TagsExclude tmp/* node_modules/* db/* public/assets/*
+silent AckIgnore log/ tmp/ db/ public/assets/ public/packs/ public/packs-test/
+silent TagsExclude tmp/* node_modules/* db/* public/assets/* public/packs/* public/packs-test/*
 
 command! Eroutes edit config/routes.rb
 command! -nargs=* -complete=custom,rails_extra#edit#CompleteSchema

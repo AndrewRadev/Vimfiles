@@ -21,7 +21,7 @@ remove_column :${1:table}, :${2:column}
 endsnippet
 
 snippet create_table
-create_table :${1:table_name}, id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+create_table :${1:table_name} do |t|
 	${2}
 	t.timestamps null: false
 end
