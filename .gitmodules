@@ -352,3 +352,6 @@
 [submodule "bundle/git-msg-wheel"]
 	path = bundle/git-msg-wheel
 	url = https://github.com/johngrib/vim-git-msg-wheel
+[submodule "bundle/highlighturl"]
+	path = bundle/highlighturl
+	url = https://github.com/itchyny/vim-highlighturl
