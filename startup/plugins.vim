@@ -249,3 +249,6 @@ let g:git_msg_wheel_list_show = 0 " hide list
 
 " Colddeck
 let g:cdeck_nomaps = 1
+
+" Rails Extra
+let g:rails_extra_debug = 1
