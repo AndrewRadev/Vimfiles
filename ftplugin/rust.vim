@@ -58,12 +58,12 @@ endfunction
 command! -buffer Emain edit src/main.rs
 
 " LanguageClient setup (optional)
-if has_key(get(g:, 'LanguageClient_serverCommands'), &filetype)
-  nnoremap <buffer> <c-p> :call LanguageClient#textDocument_hover()<cr>
-  nnoremap <buffer> gd :call LanguageClient#textDocument_definition()<CR>
-  command! -buffer Rename call LanguageClient#textDocument_rename()
-  set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-end
+" if has_key(get(g:, 'LanguageClient_serverCommands'), &filetype)
+"   nnoremap <buffer> <c-p> :call LanguageClient#textDocument_hover()<cr>
+"   nnoremap <buffer> gd :call LanguageClient#textDocument_definition()<CR>
+"   command! -buffer Rename call LanguageClient#textDocument_rename()
+"   set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+" end
 
 let s:std_prelude = {
       \ 'Copy':                'std::marker::Copy',
