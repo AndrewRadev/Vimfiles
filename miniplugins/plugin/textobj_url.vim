@@ -6,11 +6,12 @@ onoremap au :<c-u>call <SID>UrlTextObject()<cr>
 xnoremap au :<c-u>call <SID>UrlTextObject()<cr>
 
 function! s:UrlTextObject()
-  let url_pattern = '\(http\|https\|ftp\|file\)://\f\%(\f\|[@?!=&]\)*'
+  " let url_pattern = '\(http\|https\|ftp\|file\)://\f\%(\f\|[@?!=&]\)*'
+  let url_pattern = highlighturl#default_pattern()
+
   if sj#SearchUnderCursor(url_pattern) <= 0
     return
   endif
-  let cfile = expand('<cfile>')
 
   let start_position = getpos('.')
   call sj#SearchUnderCursor(url_pattern, 'e')

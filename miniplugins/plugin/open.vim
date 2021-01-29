@@ -23,6 +23,11 @@ function! s:Open(count, ...)
     let path = join(a:000, ' ')
   endif
 
+  if path == ''
+    echomsg "Can't find URL under cursor"
+    return
+  endif
+
   call s:OpenUrl(path)
   echomsg 'Opening '.path
 endfunction
@@ -50,16 +55,16 @@ function! s:OpenUrl(url)
 endfunction
 
 function! s:GetCursorUrl()
-  let cfile = expand('<cfile>')
+  let url_pattern = highlighturl#default_pattern()
   let saved_view = winsaveview()
 
   try
-    if sj#SearchUnderCursor('\V'.cfile) <= 0
-      return cfile
+    if sj#SearchUnderCursor(url_pattern) <= 0
+      return ''
     endif
 
     let start_col = col('.')
-    call sj#SearchUnderCursor('\V'.cfile.'\m\%(\f\|[@?!=&]\)*', 'e')
+    call sj#SearchUnderCursor(url_pattern, 'e')
     return sj#GetCols(start_col, col('.'))
   finally
     call winrestview(saved_view)
