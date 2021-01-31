@@ -1,5 +1,6 @@
 RunCommand RustRun
 compiler cargo
+set makeprg=cargo\ test
 
 setlocal tags+=Cargo.tags
 
