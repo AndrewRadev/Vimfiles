@@ -108,6 +108,13 @@ let s:std_prelude = {
 function! s:Doc() abort
   let term = s:GetRustIdentifier()
 
+  if term[len(term) - 1] == '!'
+    let is_macro = 1
+    let term = term[0:(len(term) - 2)]
+  else
+    let is_macro = 0
+  endif
+
   let [imported_symbols, aliases] = s:ParseImports()
   let term_head = split(term, '::')[0]
 
@@ -130,7 +137,18 @@ function! s:Doc() abort
     let package = term_path[0]
     let term_name = term_path[-1]
     let path = join(term_path[1:-2], '/')
-    call Open('https://docs.rs/'.package.'/latest/'.path.'/?search='.term_name)
+
+    let url = 'https://docs.rs/'.package.'/'
+
+    if is_macro
+      let url .= 'latest/'.package.'/'.path.'/macro.'.term_name.'.html'
+    else
+      let url .= path.'/?search='.term_name
+    endif
+
+    let url = substitute(url, '//', '/', 'g')
+
+    call Open(url)
     return
   endif
 endfunction
@@ -182,7 +200,7 @@ endfunction
 function! s:GetRustIdentifier()
   try
     let saved_iskeyword = &l:iskeyword
-    setlocal iskeyword+=:
+    setlocal iskeyword+=:,!
     return expand('<cword>')
   finally
     let &l:iskeyword = saved_iskeyword
