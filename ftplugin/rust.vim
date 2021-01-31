@@ -106,6 +106,9 @@ let s:std_prelude = {
       \ }
 
 function! s:Doc() abort
+  " TODO (2021-01-31) WebContext::get_default() -> func call, not namespace.
+  " Read bracket?
+
   let term = s:GetRustIdentifier()
 
   if term[len(term) - 1] == '!'
@@ -136,14 +139,19 @@ function! s:Doc() abort
   else
     let package = term_path[0]
     let term_name = term_path[-1]
-    let path = join(term_path[1:-2], '/')
+    let path = join(term_path[0:-2], '/')
 
-    let url = 'https://docs.rs/'.package.'/'
+    let package_version = s:ParsePackageVersion(package)
+    if package_version == ''
+      let package_version = 'latest'
+    endif
+
+    let url = 'https://docs.rs/'.package.'/'.package_version.'/'.path
 
     if is_macro
-      let url .= 'latest/'.package.'/'.path.'/macro.'.term_name.'.html'
+      let url .= '/macro.'.term_name.'.html'
     else
-      let url .= path.'/?search='.term_name
+      let url .= '/?search='.term_name
     endif
 
     let url = substitute(url, '//', '/', 'g')
@@ -184,6 +192,29 @@ function! s:ParseImports()
   endfor
 
   return [imported_symbols, aliases]
+endfunction
+
+function! s:ParsePackageVersion(package)
+  let lockfile = findfile('Cargo.lock', '.;')
+  if lockfile == ''
+    return ''
+  endif
+
+  let package_data = systemlist("grep -A1 'name = \"".a:package."\"' ".lockfile)
+  if len(package_data) == 0
+    return ''
+  endif
+
+  let version_breakdowns = []
+  for i in range(1, len(package_data), 2)
+    let package_version = matchstr(package_data[i], 'version = "\zs\d\+\.\d\+\.\d\+\ze"')
+    let version_breakdown = map(split(package_version, '\.'), 'str2nr(v:val)')
+    call add(version_breakdowns, version_breakdown)
+  endfor
+
+  call sort(version_breakdowns)
+
+  return join(version_breakdowns[0], '.')
 endfunction
 
 function! s:RustCursorTag() abort
