@@ -355,3 +355,6 @@
 [submodule "bundle/highlighturl"]
 	path = bundle/highlighturl
 	url = https://github.com/itchyny/vim-highlighturl
+[submodule "bundle/dealwithit"]
+	path = bundle/dealwithit
+	url = https://github.com/AndrewRadev/dealwithit.vim
