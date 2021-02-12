@@ -335,26 +335,29 @@
   path = bundle/commandlinecomplete
   url = https://github.com/j5shi/commandlinecomplete.vim
 [submodule "bundle/shoot"]
-	path = bundle/shoot
-	url = https://github.com/JMcKiern/vim-shoot
+  path = bundle/shoot
+  url = https://github.com/JMcKiern/vim-shoot
 [submodule "bundle/yaml-flattener"]
-	path = bundle/yaml-flattener
-	url = https://github.com/henrik/vim-yaml-flattener
+  path = bundle/yaml-flattener
+  url = https://github.com/henrik/vim-yaml-flattener
 [submodule "bundle/helpful"]
-	path = bundle/helpful
-	url = https://github.com/tweekmonster/helpful.vim
+  path = bundle/helpful
+  url = https://github.com/tweekmonster/helpful.vim
 [submodule "bundle/colddeck"]
-	path = bundle/colddeck
-	url = git@github.com:AndrewRadev/vim-colddeck.git
+  path = bundle/colddeck
+  url = git@github.com:AndrewRadev/vim-colddeck.git
 [submodule "bundle/complimentary"]
-	path = bundle/complimentary
-	url = https://github.com/fcpg/vim-complimentary
+  path = bundle/complimentary
+  url = https://github.com/fcpg/vim-complimentary
 [submodule "bundle/git-msg-wheel"]
-	path = bundle/git-msg-wheel
-	url = https://github.com/johngrib/vim-git-msg-wheel
+  path = bundle/git-msg-wheel
+  url = https://github.com/johngrib/vim-git-msg-wheel
 [submodule "bundle/highlighturl"]
-	path = bundle/highlighturl
-	url = https://github.com/itchyny/vim-highlighturl
+  path = bundle/highlighturl
+  url = https://github.com/itchyny/vim-highlighturl
 [submodule "bundle/dealwithit"]
-	path = bundle/dealwithit
-	url = https://github.com/AndrewRadev/dealwithit.vim
+  path = bundle/dealwithit
+  url = https://github.com/AndrewRadev/dealwithit.vim
+[submodule "bundle/rustbucket"]
+  path = bundle/rustbucket
+  url = ../rustbucket.vim.git
