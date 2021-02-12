@@ -25,6 +25,11 @@ augroup custom
   " Write stats on note files
   autocmd BufWritePost * call s:SaveFileStats(expand('%:t'))
 
+  " Check if the buffer needs to be refreshed from disk (using 'autoread').
+  " Useful when branch-hopping with git.
+  autocmd FocusGained * checktime
+  autocmd WinEnter    * checktime
+
   autocmd BufRead *.c    compiler gcc
   autocmd BufRead *.cpp  compiler gcc
   autocmd BufRead *.php  compiler php
