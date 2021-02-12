@@ -252,3 +252,7 @@ let g:cdeck_nomaps = 1
 
 " Rails Extra
 let g:rails_extra_debug = 1
+
+" Deal with it
+let g:dealwithit_guifont = 'Fantasque Sans Mono 8'
+let g:dealwithit_sleep = 0
