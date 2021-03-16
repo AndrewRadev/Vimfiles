@@ -358,3 +358,6 @@
 [submodule "bundle/rustbucket"]
   path = bundle/rustbucket
   url = ../rustbucket.vim.git
+[submodule "bundle/graphql"]
+	path = bundle/graphql
+	url = https://github.com/jparise/vim-graphql
