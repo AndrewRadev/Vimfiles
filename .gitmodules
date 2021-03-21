@@ -358,3 +358,6 @@
 [submodule "bundle/graphql"]
 	path = bundle/graphql
 	url = https://github.com/jparise/vim-graphql
+[submodule "bundle/prettier"]
+	path = bundle/prettier
+	url = https://github.com/prettier/vim-prettier
