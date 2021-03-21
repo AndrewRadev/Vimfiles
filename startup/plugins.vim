@@ -233,7 +233,6 @@ let g:vim_json_syntax_conceal = 0
 
 " Pickachu
 let g:pickachu_default_date_format = "%Y-%m-%d"
-let g:pickachu_default_command = "qarma"
 
 " JSX
 let g:vim_jsx_pretty_colorful_config = 1
@@ -256,3 +255,6 @@ let g:rails_extra_debug = 1
 " Deal with it
 let g:dealwithit_guifont = 'Fantasque Sans Mono 8'
 let g:dealwithit_sleep = 0
+
+" Prettier
+let g:prettier#autoformat = 0
