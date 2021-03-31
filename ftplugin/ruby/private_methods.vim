@@ -1,10 +1,14 @@
+if !has('textprop')
+  finish
+endif
+
 " Define what color the private area will be
 hi rubyPrivateMethod cterm=underline gui=underline
 
 function! s:MarkPrivateArea()
-  if empty(prop_type_get('private_method', {'bufnr': bufnr()}))
+  if empty(prop_type_get('private_method', {'bufnr': bufnr('%')}))
     call prop_type_add('private_method', {
-          \ 'bufnr':     bufnr(),
+          \ 'bufnr':     bufnr('%'),
           \ 'highlight': 'rubyPrivateMethod',
           \ 'combine':   v:true
           \ })
