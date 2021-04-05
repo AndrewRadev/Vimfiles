@@ -5,6 +5,8 @@ let b:surround_{char2nr('_')} = "_\r_"
 
 hi link markdownItalic Normal
 
+compiler markdownlint
+
 " call SetupPreview('html', 'markdown %s')
 RunCommand silent call system('quickmd '.shellescape(expand('%')).' 2>&1 > /dev/null &')
 
