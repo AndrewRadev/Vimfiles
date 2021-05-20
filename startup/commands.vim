@@ -9,6 +9,7 @@ DefineTagFinder Command  c,command
 DefineTagFinder Mapping  m
 
 " Toggle settings:
+" https://vim.fandom.com/wiki/Quick_generic_option_toggling
 command! -nargs=+ MapToggle call s:MapToggle(<f-args>)
 function! s:MapToggle(key, opt)
   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
