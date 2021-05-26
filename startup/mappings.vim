@@ -129,7 +129,7 @@ nnoremap _t :tab split \|<Space>
 
 " Open new tab more easily:
 nnoremap ,t :tabnew<cr>
-nnoremap ,T :tabedit %<cr>gT:quit<cr>
+nnoremap ,T mt:tabedit %<cr>`tgT:quit<cr>
 
 " Standard 'go to manual' command
 nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
