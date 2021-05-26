@@ -1,5 +1,9 @@
 runtime projects/ruby.vim
 
+" override my usual "tabnew" mapping to ensure a vim-projectionist-monitored
+" file is opened
+nnoremap ,t :tabedit _project.vim<cr>
+
 silent AckIgnore log/ tmp/ db/ public/assets/ public/packs/ public/packs-test/
 silent TagsExclude tmp/* node_modules/* db/* public/assets/* public/packs/* public/packs-test/*
 
