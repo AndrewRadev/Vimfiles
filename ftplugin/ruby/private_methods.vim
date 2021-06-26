@@ -74,10 +74,10 @@ function! s:CurrentSyntaxName()
 endfunction
 
 " Initial marking
-autocmd BufEnter <buffer> call <SID>MarkPrivateArea()
+autocmd Syntax <buffer> call <SID>MarkPrivateArea()
 
-" Mark upon writing
-autocmd BufWrite <buffer> call <SID>MarkPrivateArea()
+" Mark on write
+autocmd BufWritePost <buffer> call <SID>MarkPrivateArea()
 
 " Mark when exiting insert mode (doesn't cover normal-mode text changing)
 " autocmd InsertLeave <buffer> call <SID>MarkPrivateArea()
