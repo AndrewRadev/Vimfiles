@@ -5,6 +5,7 @@ set makeprg=cargo\ test
 setlocal tags+=Cargo.tags
 
 nnoremap <buffer> gm :call rustbucket#Doc()<cr>
+nnoremap <buffer> gi :call rustbucket#Info()<cr>
 
 let b:extract_var_template = 'let %s = %s;'
 let b:inline_var_pattern   = 'let \%(\s*mut\s\+\)\=\(\k\+\)\%(: [^=]\+\)\=\s\+=\s\+\(.*\);'
