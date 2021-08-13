@@ -1,0 +1,73 @@
+snippet reactcomponent
+import * as React from 'react';
+
+interface IProps {
+
+};
+
+export default function Content({}: IProps) {
+	${1}
+}
+endsnippet
+
+snippet {,
+{
+	${1}
+},
+endsnippet
+
+snippet if
+if (${1:true}) {
+	${2}
+}
+endsnippet
+
+snippet ife
+if (${1:true}) {
+	${2}
+} else {
+	${3}
+}
+endsnippet
+
+snippet t
+${1:/* condition */} ? ${2:a} : ${3:b}
+endsnippet
+
+snippet switch
+switch(${1:expression}) {
+	case '${3:case}':
+		${4:// code}
+		break;
+	${5}
+	default:
+		${2:// code}
+}
+# case
+endsnippet
+
+snippet case
+case '${1:case}':
+	${2:// code}
+	break;
+${3}
+endsnippet
+
+snippet wh
+while (${1:/* condition */}) {
+	${2:/* code */}
+}
+# do...while
+endsnippet
+
+snippet do
+do {
+	${2:/* code */}
+} while (${1:/* condition */});
+endsnippet
+
+snippet timeout
+setTimeout(function() {
+	${2}
+}, ${1:1000});
+endsnippet
