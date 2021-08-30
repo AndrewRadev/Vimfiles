@@ -205,9 +205,6 @@
 [submodule "bundle/yankwin"]
   path = bundle/yankwin
   url = ../yankwin.vim.git
-[submodule "bundle/typescript"]
-  path = bundle/typescript
-  url = https://github.com/leafgarland/typescript-vim
 [submodule "bundle/lookup"]
   path = bundle/lookup
   url = https://github.com/mhinz/vim-lookup
