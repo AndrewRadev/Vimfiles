@@ -315,7 +315,7 @@
   url = https://github.com/pangloss/vim-javascript
 [submodule "bundle/jsx-pretty"]
   path = bundle/jsx-pretty
-  url = https://github.com/MaxMEllon/vim-jsx-pretty
+  url = https://github.com/AndrewRadev/vim-jsx-pretty
 [submodule "bundle/rails_extra"]
   path = bundle/rails_extra
   url = ../rails_extra.vim.git
