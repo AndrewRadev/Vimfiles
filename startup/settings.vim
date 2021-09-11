@@ -32,6 +32,7 @@ set linebreak showbreak=+
 set listchars=eol:.,tab:\|-
 set laststatus=2
 set cursorlineopt=number,screenline
+set signcolumn=number
 
 if has('win32') || has('win64') || has('osx')
   set fillchars=stl:-,stlnc:-,vert:\|,fold:\ ,diff:-
