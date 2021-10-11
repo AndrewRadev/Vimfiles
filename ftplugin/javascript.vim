@@ -3,7 +3,7 @@ let b:outline_pattern = '\<function\>'
 let b:deleft_closing_pattern = '^\s*}'
 
 let b:extract_var_template = 'let %s = %s;'
-let b:inline_var_pattern   = '\%(var\|let\)\s\+\(\k\+\)\s\+=\s\+\(.\{-}\);\='
+let b:inline_var_pattern   = '\%(var\|let\|const\)\s\+\(\k\+\)\s\+=\s\+\(.\{-}\);\='
 
 setlocal foldmethod=indent
 compiler eslint
