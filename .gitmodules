@@ -359,5 +359,8 @@
   path = bundle/prettier
   url = https://github.com/prettier/vim-prettier
 [submodule "bundle/ansi_esc"]
-	path = bundle/ansi_esc
-	url = https://github.com/powerman/vim-plugin-ansiesc
+  path = bundle/ansi_esc
+  url = https://github.com/powerman/vim-plugin-ansiesc
+[submodule "bundle/diffurcate"]
+  path = bundle/diffurcate
+  url = ../diffurcate.vim.git
