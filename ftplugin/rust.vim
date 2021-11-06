@@ -12,6 +12,32 @@ let b:inline_var_pattern   = 'let \%(\s*mut\s\+\)\=\(\k\+\)\%(: [^=]\+\)\=\s\+=\
 
 let b:outline_pattern = '\s*\%(pub\s*\)\=\(impl\|fn\|struct\|macro_rules!\)\(\s\|$\)'
 
+" Kind of basic, but might do the trick for now
+if !exists(':A')
+  command! -buffer A call s:A()
+  function s:A()
+    let filename = expand('%')
+
+    if filename =~ 'src/.*\.rs$'
+      let test_files = glob('tests/*.rs', 0, 1)
+
+      if len(test_files) > 0
+        exe 'edit '.test_files[0]
+      else
+        echomsg "No test files found"
+      endif
+    elseif filename =~ 'tests/.*\.rs$'
+      if filereadable('src/lib.rs')
+        edit src/lib.rs
+      else
+        echomsg "No src/lib.rs found"
+      endif
+    else
+      echomsg "No alternate file found"
+    endif
+  endfunction
+endif
+
 cmap <buffer><script><expr> <Plug><ctag> substitute(<SID>RustCursorTag(),'^$',"\<c-c>",'')
 
 nmap <buffer> <c-]>       :<c-u>exe v:count1."tag <Plug><ctag>"<cr>
