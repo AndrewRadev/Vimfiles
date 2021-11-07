@@ -18,7 +18,14 @@ if !exists(':A')
   function s:A()
     let filename = expand('%')
 
-    if filename =~ 'src/.*\.rs$'
+    if filename =~ 'src/[^/]\+\.rs$'
+      let basename = matchstr(filename, 'src/\zs[^/]\+\ze\.rs$')
+      if filereadable('tests/test_'.basename.'.rs')
+        exe 'edit tests/test_'.basename.'.rs'
+        return
+      end
+
+      " otherwise, find first file
       let test_files = glob('tests/*.rs', 0, 1)
 
       if len(test_files) > 0
