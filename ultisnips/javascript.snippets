@@ -105,3 +105,7 @@ new Promise(function(resolve, reject) {
 	${1}
 });
 endsnippet
+
+snippet usestate
+const [${1}, set`!p snip.rv = t[1][:1].upper() + t[1][1:]`] = React.useState(${2});
+endsnippet
