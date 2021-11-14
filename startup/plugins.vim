@@ -44,9 +44,6 @@ let g:netrw_http_cmd = 'wget -q -O'
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command         = 'firefox %URL% &'
 
-" Javascript
-let g:SimpleJsIndenter_BriefMode = 1
-
 " Splitjoin
 let g:splitjoin_split_mapping                           = ''
 let g:splitjoin_join_mapping                            = ''
@@ -69,17 +66,12 @@ let g:coffee_tools_function_text_object = 0
 
 " Go
 let g:go_highlight_trailing_whitespace_error = 0
-" disable built-in commands in favor of my own
-let g:go_import_commands = 0
 
 " Ack.vim
 " let g:ackprg = 'ag --nogroup --nocolor --column'
 " let g:ackprg = 'rg --vimgrep'
 let g:ack_apply_qmappings = 0
 let g:ack_apply_lmappings = 0
-
-" LanguageTool
-let g:languagetool_lang = 'de'
 
 " Smartword
 nmap w  <Plug>(smartword-w)
@@ -96,8 +88,6 @@ xmap ge <Plug>(smartword-ge)
 let g:markdown_fenced_languages = ['ruby', 'vim', 'rust', 'bash']
 
 " surround.vim
-" Surround with function call
-let g:surround_{char2nr('f')} = "FUNCTION(\r)"
 xmap s S
 
 " vim-exchange
@@ -128,7 +118,7 @@ let g:multichange_motion_mapping = 'm'
 let g:multichange_save_position  = 1
 
 " Switch
-let g:switch_mapping = '-'
+nmap - <Plug>(Switch)
 
 " RengBang
 let g:rengbang_default_start = 1
@@ -145,17 +135,6 @@ let g:andrews_nerdtree_external_open_key    = 'gu'
 
 " Don't use netrw at all, interferes with "clever" autocommands
 let g:loaded_netrwPlugin = 1
-
-" Crystal support
-let g:crystal_define_mappings = 0
-
-" Codi customizations
-augroup codi_user
-  autocmd!
-
-  autocmd User CodiEnterPre :let g:skip_clean_whitespace = 1
-  autocmd User CodiLeavePre :let g:skip_clean_whitespace = 0
-augroup END
 
 " Colorizer
 let g:colorizer_nomap = 1
@@ -189,8 +168,8 @@ let g:tcomment_maps = 0
 nmap <c-_><c-_> <Plug>TComment_<c-_><c-_>
 xmap <c-_><c-_> <Plug>TComment_<c-_><c-_>
 
-" Loclist-follow
-let g:loclist_follow = 1
+" Loclist-follow: disabled for now, need to debug performance issues
+let g:loclist_follow = 0
 
 " Silicon
 let g:silicon = #{
@@ -225,9 +204,6 @@ let g:vim_jsx_pretty_colorful_config = 1
 
 " Yankwin
 let g:yankwin_clipboard = "unnamed,unnamedplus"
-
-" Sideways
-let g:sideways_add_item_cursor_restore = 1
 
 " Git-msg-wheel
 let g:git_msg_wheel_list_show = 0 " hide list

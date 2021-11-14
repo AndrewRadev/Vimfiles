@@ -35,8 +35,6 @@ if filereadable(fnamemodify('~/.vimrc.local', ':p'))
   source ~/.vimrc.local
 endif
 
-let g:loclist_follow = 0
-
 " Presentation mode
 " set background=light
 " colo PaperColor
