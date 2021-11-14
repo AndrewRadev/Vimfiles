@@ -125,10 +125,6 @@
 [submodule "bundle/gundo"]
   path = bundle/gundo
   url = https://github.com/sjl/gundo.vim.git
-[submodule "bundle/anzu"]
-  path = bundle/anzu
-  url = https://github.com/osyo-manga/vim-anzu.git
-  ignore = untracked
 [submodule "bundle/exchange"]
   path = bundle/exchange
   url = https://github.com/tommcdo/vim-exchange

@@ -95,12 +95,6 @@ xmap ge <Plug>(smartword-ge)
 " Markdown
 let g:markdown_fenced_languages = ['ruby', 'vim', 'rust', 'bash']
 
-" Anzu
-" nmap n <Plug>(anzu-n-with-echo)
-" nmap N <Plug>(anzu-N-with-echo)
-" nmap * <Plug>(anzu-star-with-echo)
-" nmap # <Plug>(anzu-sharp-with-echo)
-
 " surround.vim
 " Surround with function call
 let g:surround_{char2nr('f')} = "FUNCTION(\r)"
