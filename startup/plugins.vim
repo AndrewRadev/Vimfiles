@@ -27,14 +27,6 @@ let g:ProjDisableMappings = 1
 let g:ProjSplitMethod     = 'edit '
 let g:ProjFileBrowser     = 'NERDTree | wincmd l'
 
-" Omnicppcomplete options:
-let OmniCpp_NamespaceSearch     = 1 " -> True
-let OmniCpp_ShowPrototypeInAbbr = 1 " -> True
-let OmniCpp_SelectFirstItem     = 2 " Select item, but don't insert
-let OmniCpp_LocalSearchDecl     = 1 " Search regardless of bracket position
-let OmniCpp_MayCompleteDot      = 1 " Automatically complete
-let OmniCpp_MayCompleteArrow    = 1 " Automatically complete
-
 " Ruby settings
 let g:ruby_path                      = ''
 let g:rubycomplete_rails             = 0
