@@ -29,6 +29,7 @@ xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
 onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
 xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
 function! s:NextTextObject(motion, dir)
+  echo "Jump to next motion: "
   let c = nr2char(getchar())
 
   if c ==# "b"
@@ -118,9 +119,8 @@ nmap ,sI <Plug>SidewaysArgumentInsertFirst
 nmap ,sA <Plug>SidewaysArgumentAppendLast
 
 " Inline edit
-nnoremap ,e    :InlineEdit<cr>
-xnoremap ,e    :InlineEdit<cr>
-inoremap <c-e> <esc>:InlineEdit<cr>a
+nnoremap ,e :InlineEdit<cr>
+xnoremap ,e :InlineEdit<cr>
 
 " Split and execute any command:
 nnoremap __ :split \|<Space>
@@ -132,7 +132,7 @@ nnoremap ,t :tabnew<cr>
 nnoremap ,T mt:tabedit %<cr>`tgT:quit<cr>
 
 " Standard 'go to manual' command
-nnoremap gm :call Open('http://google.com/search?q=' . expand("<cword>"))<cr>
+nnoremap gm :call Open('https://duckduckgo.com/?q=' . expand("<cword>"))<cr>
 
 " Paste in insert and command modes
 inoremap <C-p> <Esc>pa
