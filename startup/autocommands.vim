@@ -16,9 +16,6 @@ augroup custom
   " Check if editing a directory
   autocmd VimEnter * call s:MaybeEnterDirectory(expand("<amatch>"))
 
-  " Check if we're opening an http://github.com/... path
-  autocmd BufNewFile * nested call s:MaybeOpenGithubFile()
-
   " Check if it's necessary to create a directory
   autocmd BufNewFile * call s:EnsureDirectoryExists()
 
@@ -36,11 +33,8 @@ augroup custom
   autocmd BufRead *.html compiler tidy
   autocmd BufRead *.xml  compiler eclim_xmllint
 
-  autocmd BufRead *.hsc        set filetype=haskell
   autocmd BufRead *.tags       set filetype=tags
   autocmd BufRead httpd*.conf  set filetype=apache
-  autocmd BufRead *.prawn      set filetype=ruby
-  autocmd BufRead *.hdbs       set filetype=handlebars
 
   " For some reason, this doesn't work in ftplugin/man.vim
   autocmd FileType man set nonu
@@ -130,28 +124,5 @@ function! s:SaveFileStats(filename)
     if v:shell_error
       echoerr "Couldn't write stats file"
     endif
-  endif
-endfunction
-
-function! s:MaybeOpenGithubFile()
-  let url = expand('%')
-
-  let pattern = 'github\.com/\%(.\{-}\)/blob/\%([^/]\+\)/\(.\{-}\)\%(#L\(\d\+\)\%(-L\d\+\)\=\)\=$'
-  let match = matchlist(url, pattern)
-
-  if len(match) == 0
-    return
-  endif
-
-  let [_, path, line; _rest] = match
-
-  if !filereadable(path)
-    echoerr "File doesn't exist: ".fnamemodify(path, ':p')
-    return
-  endif
-
-  exe 'keepalt edit '.path
-  if line != ''
-    exe line
   endif
 endfunction
