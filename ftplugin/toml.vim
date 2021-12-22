@@ -18,7 +18,7 @@ if expand('%:t') =~# '^Cargo.\%(toml\|lock\)$'
         let json_definition = substitute(string_definition, '\([[:keyword:]-]\+\)\s*=', '"\1": ', 'g')
         let definition = json_decode(json_definition)
 
-        if definition.git =~ '^https\=://'
+        if has_key(definition, 'git') && definition.git =~ '^https\=://'
           let url = definition.git
 
           if has_key(definition, 'branch')
@@ -28,6 +28,8 @@ if expand('%:t') =~# '^Cargo.\%(toml\|lock\)$'
           elseif has_key(definition, 'tag')
             let url .= '/tree/' . definition.tag
           endif
+        elseif has_key(definition, 'version')
+          let url .= '/' . definition.version
         endif
       endif
 
