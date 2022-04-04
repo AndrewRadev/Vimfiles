@@ -360,3 +360,6 @@
 [submodule "bundle/diffurcate"]
   path = bundle/diffurcate
   url = ../diffurcate.vim.git
+[submodule "bundle/iseven"]
+  path = bundle/iseven
+  url = ../iseven.vim.git
