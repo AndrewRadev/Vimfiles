@@ -29,7 +29,7 @@ though. The reason they're not in `plugin` is because it's necessary to either
 load them very early or load them in a specific order. Or, they just haven't
 made sense to me as "plugins".
 
-## Personal
+## Miniplugins
 
 The "[miniplugins][]" directory contains small scripts that I don't consider good
 plugin material, but are useful anyway.
@@ -75,6 +75,9 @@ not very generic or redistributable, which is why I tend to put them there.
 - You can turn any text into ASCII art by marking it in visual mode and
   executing `:Figlet`, implemented by the [figlet plugin][]. Requires the
   `figlet` command.
+- A plugin I made for April Fools:
+  * `:IsEven <number>` tells you if a number is even or not by making an API
+    call to <https://isevenapi.xyz>.
 
 ## Other
 
