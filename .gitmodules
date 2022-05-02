@@ -363,3 +363,6 @@
 [submodule "bundle/iseven"]
   path = bundle/iseven
   url = ../iseven.vim.git
+[submodule "bundle/whatif"]
+	path = bundle/whatif
+	url = git@github.com:AndrewRadev/whatif.vim.git

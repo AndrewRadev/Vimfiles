@@ -13,6 +13,8 @@ let b:surround_indent = 1
 let b:outline_pattern = '^\s*\(fun\%[ction]\|com\%[mand]\)\>'
 let b:deleft_closing_pattern = '^\s*end\(\k\{-}\)\>'
 
+let b:whatif_command = 'Debug %s'
+
 nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
 
 RunCommand so %
@@ -150,52 +152,4 @@ function! s:Localvars()
   endfor
 
   exe 'normal! '.string(len(args) + 1).'=='
-endfunction
-
-command! -nargs=* -complete=custom,s:WhatIfComplete -buffer WhatIf call s:WhatIf(<q-args>)
-function! s:WhatIf(command)
-  let command = a:command
-  if command == ''
-    let command = 'Debug'
-  endif
-
-  if search('^\s*\zsif ', 'Wbc') <= 0
-    return
-  endif
-
-  let debug_index = 1
-  let saved_register_text = getreg('z', 1)
-  let saved_register_type = getregtype('z')
-
-  while getline('.') !~ '^\s*endif\>'
-    let if_lineno = line('.')
-    let if_line = lib#Trim(getline('.'))
-
-    while getline(line('.') + 1) =~ '^\s*\\'
-      " it's a continuation, move downwards
-      normal! j
-    endwhile
-
-    if len(if_line) <= 23
-      let line_description = if_line
-    else
-      let line_description = strpart(if_line, 0, 20)."..."
-    endif
-    let line_description = escape(line_description, '"')
-
-    let @z = command." \"Debug " . debug_index . ': ' . line_description . '"'
-
-    put z
-    normal! ==
-    let debug_index += 1
-
-    exe if_lineno
-    normal %
-  endwhile
-
-  call setreg('z', saved_register_text, saved_register_type)
-endfunction
-
-function! s:WhatIfComplete(_argument_lead, _command_line, _cursor_position)
-  return join(sort(["echomsg", "Decho"]), "\n")
 endfunction
