@@ -18,3 +18,9 @@ endfunction
 
 let b:extract_var_template = '- %s = %s'
 let b:inline_var_pattern   = '\v-\s*(\k+)\s+\=\s+(.*)'
+
+if has('patch-8.2.5073')
+  setlocal listchars=leadmultispace:\│\ ,
+  setlocal list
+  hi SpecialKey ctermfg=DarkGray
+endif
