@@ -266,3 +266,47 @@ function! s:Timestamp()
 
   echomsg strftime("%c", ts)
 endfunction
+
+" Invoke a specific split/join callback based on convention
+command! -nargs=1 -complete=custom,s:SplitComplete Split call s:Split(<f-args>)
+function! s:Split(callback_shorthand) abort
+  let mapping = s:SplitjoinShorthandMapping('split')
+  let callback = mapping[a:callback_shorthand]
+  call call(callback, [])
+endfunction
+function! s:SplitComplete(argument_lead, command_line, cursor_position)
+  let mapping = s:SplitjoinShorthandMapping('split')
+  return join(sort(keys(mapping)), "\n")
+endfunction
+
+command! -nargs=1 -complete=custom,s:JoinComplete Join call s:Join(<f-args>)
+function! s:Join(callback_shorthand) abort
+  let mapping = s:SplitjoinShorthandMapping('join')
+  let callback = mapping[a:callback_shorthand]
+  call call(callback, [])
+endfunction
+function! s:JoinComplete(argument_lead, command_line, cursor_position)
+  let mapping = s:SplitjoinShorthandMapping('join')
+  return join(sort(keys(mapping)), "\n")
+endfunction
+
+function s:SplitjoinShorthandMapping(splitjoin)
+  if a:splitjoin == 'split'
+    let callbacks = b:splitjoin_split_callbacks
+    let prefix = 'split-'
+  elseif a:splitjoin == 'join'
+    let callbacks = b:splitjoin_join_callbacks
+    let prefix = 'join-'
+  else
+    throw "Neither 'split' nor 'join'" . a:splitjoin
+  endif
+
+  let mapping = {}
+  for callback in callbacks
+    let key = lib#Dasherize(split(callback, '#')[-1])
+    let key = substitute(key, '^'.prefix, '', '')
+    let mapping[key] = callback
+  endfor
+
+  return mapping
+endfunction
