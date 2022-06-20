@@ -103,7 +103,7 @@
   url = https://github.com/tpope/vim-repeat.git
 [submodule "bundle/pasta"]
   path = bundle/pasta
-  url = git://github.com/sickill/vim-pasta.git
+  url = https://github.com/sickill/vim-pasta.git
 [submodule "bundle/id3"]
   path = bundle/id3
   url = ../id3.vim.git
@@ -112,16 +112,16 @@
   url = ../undoquit.vim.git
 [submodule "bundle/characterize"]
   path = bundle/characterize
-  url = git://github.com/tpope/vim-characterize.git
+  url = https://github.com/tpope/vim-characterize.git
 [submodule "bundle/table-mode"]
   path = bundle/table-mode
-  url = git://github.com/dhruvasagar/vim-table-mode.git
+  url = https://github.com/dhruvasagar/vim-table-mode.git
 [submodule "bundle/writable_search"]
   path = bundle/writable_search
   url = ../writable_search.vim.git
 [submodule "bundle/slim"]
   path = bundle/slim
-  url = git://github.com/slim-template/vim-slim.git
+  url = https://github.com/slim-template/vim-slim.git
 [submodule "bundle/gundo"]
   path = bundle/gundo
   url = https://github.com/sjl/gundo.vim.git
@@ -335,7 +335,7 @@
   url = https://github.com/tweekmonster/helpful.vim
 [submodule "bundle/colddeck"]
   path = bundle/colddeck
-  url = git@github.com:AndrewRadev/vim-colddeck.git
+  url = ../vim-colddeck.git
 [submodule "bundle/complimentary"]
   path = bundle/complimentary
   url = https://github.com/fcpg/vim-complimentary
@@ -364,5 +364,5 @@
   path = bundle/iseven
   url = ../iseven.vim.git
 [submodule "bundle/whatif"]
-	path = bundle/whatif
-	url = git@github.com:AndrewRadev/whatif.vim.git
+  path = bundle/whatif
+  url = ../whatif.vim.git
