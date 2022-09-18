@@ -4,6 +4,9 @@ set langmap=
       \Ч~,Ш{,Щ},
       \ч`,ш[,щ],
 
+map Й J
+map К K
+
 map гх gh
 map гй gj
 map гк gk
