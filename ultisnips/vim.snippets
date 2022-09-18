@@ -3,14 +3,14 @@ snippet "t
 endsnippet
 
 snippet fun
-function! ${1:function_name}(${2})
+function! ${1:function_name}(${2}) abort
 	${3:" code}
 endfunction
 endsnippet
 
 snippet com
 command! ${1:command_name} call s:$1()
-function! s:$1()
+function! s:$1() abort
 	${2:" code}
 endfunction
 endsnippet
