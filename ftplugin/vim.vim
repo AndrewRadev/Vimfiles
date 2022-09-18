@@ -13,13 +13,48 @@ let b:surround_indent = 1
 let b:outline_pattern = '^\s*\(fun\%[ction]\|com\%[mand]\)\>'
 let b:deleft_closing_pattern = '^\s*end\(\k\{-}\)\>'
 
-let b:whatif_command = 'Debug %s'
+let b:extract_var_template = 'let %s = %s'
 
-nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
+let b:whatif_command = 'Debug %s'
 
 RunCommand so %
 
-let b:extract_var_template = 'let %s = %s'
+nmap <buffer> gm :exe "help ".expand("<cword>")<cr>
+
+" Copied/Adapted from vim-rails
+exe 'cmap <buffer><script><expr> <Plug><cfile> <SID>Includeexpr()'
+
+nmap <buffer><silent> gf         :find    <Plug><cfile><CR>
+nmap <buffer><silent> <C-W>f     :sfind   <Plug><cfile><CR>
+nmap <buffer><silent> <C-W><C-F> :sfind   <Plug><cfile><CR>
+nmap <buffer><silent> <C-W>gf    :tabfind <Plug><cfile><CR>
+cmap <buffer>         <C-R><C-F> <Plug><cfile>
+
+function! s:Includeexpr() abort
+  let filename = ''
+
+  try
+    let saved_iskeyword = &iskeyword
+    set iskeyword+=#
+
+    let filename = expand('<cword>')
+  finally
+    let &iskeyword = saved_iskeyword
+  endtry
+
+  if stridx(filename, '#') >= 0
+    let parts = split(filename, '#')
+    let path = 'autoload/' .. join(parts[0:-2], '/') .. '.vim'
+    let resolved_path = globpath(&runtimepath, path)
+
+    if resolved_path != ''
+      call rustbucket#util#SetFileOpenCallback(resolved_path, '^\s*fun.*\<\zs' .. filename .. '(')
+      return resolved_path
+    endif
+  endif
+
+  return expand('<cfile>')
+endfunction
 
 command! -buffer Lookup call lookup#lookup()
 nnoremap <buffer> gd :call lookup#lookup()<cr>
