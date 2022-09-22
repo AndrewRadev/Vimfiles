@@ -366,3 +366,6 @@
 [submodule "bundle/whatif"]
   path = bundle/whatif
   url = ../whatif.vim.git
+[submodule "bundle/popup_scrollbar"]
+  path = bundle/popup_scrollbar
+  url = ../popup_scrollbar.vim.git
