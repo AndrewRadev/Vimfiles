@@ -220,3 +220,11 @@ let g:dealwithit_sleep = 0
 
 " Prettier
 let g:prettier#autoformat = 0
+
+" Popup scrollbar (probably temporary?)
+let g:popup_scrollbar_auto = 1
+let g:popup_scrollbar_shape = {
+      \ 'head': '∧',
+      \ 'body': '┃',
+      \ 'tail': '∨',
+      \ }
