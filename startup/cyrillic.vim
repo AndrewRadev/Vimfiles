@@ -30,6 +30,3 @@ xmap в  <Plug>(smartword-w)
 xmap б  <Plug>(smartword-b)
 xmap е  <Plug>(smartword-e)
 xmap ге <Plug>(smartword-ge)
-
-cmap в w
-cmap я q
