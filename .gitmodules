@@ -369,3 +369,6 @@
 [submodule "bundle/popup_scrollbar"]
   path = bundle/popup_scrollbar
   url = ../popup_scrollbar.vim.git
+[submodule "bundle/context"]
+	path = bundle/context
+	url = https://github.com/wellle/context.vim
