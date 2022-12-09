@@ -1,1 +1,13 @@
 extends javascriptreact
+
+snippet component
+import * as React from 'react';
+
+interface IProps {
+
+}
+
+export default function ${1:ComponentName}({ ${2:input} }: IProps) {
+	return <div>$1</div>;
+}
+endsnippet

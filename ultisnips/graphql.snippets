@@ -1,0 +1,19 @@
+snippet mutation
+mutation ${1:pageName}Mutation(
+	$input: ${1}Input!
+) {
+	response: ${2:fieldName}(input: $input) {
+		clientMutationId
+		errors {
+			field
+			messages
+		}
+	}
+}
+endsnippet
+
+snippet fragment
+fragment ${1:Name} on ${2:Type} {
+	id
+}
+endsnippet
