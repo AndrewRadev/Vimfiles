@@ -296,7 +296,7 @@
   url = https://github.com/vim/killersheep
 [submodule "bundle/crates"]
   path = bundle/crates
-  url = https://github.com/mhinz/vim-crates
+  url = ../vim-crates
 [submodule "bundle/json"]
   path = bundle/json
   url = https://github.com/elzr/vim-json
