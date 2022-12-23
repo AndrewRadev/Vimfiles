@@ -1,3 +1,6 @@
+" :StartupTime requires it:
+set nocompatible
+
 call pathogen#infect()
 call pathogen#helptags()
 
