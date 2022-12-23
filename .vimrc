@@ -19,9 +19,6 @@ runtime startup/acp.vim
 runtime startup/cyrillic.vim
 runtime startup/windows.vim
 
-runtime! ftplugin/man.vim
-autocmd FileType man setlocal foldmethod=indent
-
 " Add "miniplugins" directory to runtimepath
 set runtimepath+=~/.vim/miniplugins
 for dir in split(glob('~/.vim/miniplugins/*'), "\n")
