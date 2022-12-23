@@ -138,6 +138,7 @@ let g:loaded_netrwPlugin = 1
 
 " Colorizer
 let g:colorizer_nomap = 1
+let g:colorizer_startup = 0
 
 " Deleft
 let g:deleft_remove_strategy = 'delete'

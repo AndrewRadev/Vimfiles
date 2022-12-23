@@ -372,3 +372,6 @@
 [submodule "bundle/context"]
 	path = bundle/context
 	url = https://github.com/wellle/context.vim
+[submodule "bundle/colorizer"]
+	path = bundle/colorizer
+	url = https://github.com/lilydjwg/colorizer
