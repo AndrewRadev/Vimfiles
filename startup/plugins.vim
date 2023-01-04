@@ -229,15 +229,3 @@ let g:popup_scrollbar_shape = {
       \ 'body': '┃',
       \ 'tail': '∨',
       \ }
-
-" Context
-" TODO (2022-12-09) Instead of the cursor context, turns out I'd like to see
-" top-line context
-let g:context_enabled = 0
-
-let g:Context_border_indent = { -> [0, 0] }
-let g:context_add_mappings = 0
-" let g:context_max_height = 3
-let g:context_highlight_normal = ''
-let g:context_highlight_border = 'Comment'
-let g:context_highlight_tag    = 'Comment'
