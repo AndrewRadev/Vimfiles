@@ -19,6 +19,9 @@ if !exists('*s:PasteBacktrace')
 
     " pattern like `rspec filename[<context number>:<test number>]`. No way to
     " parse it directly, we put the file in the list and stick to line 1
+    "
+    " possibly, rspec-translate
+    " or, potentially: https://github.com/CKolkey/quickfix_formatter
     let context_pattern = 'rspec ''\(\f\+\)\(\[\%(\d\|:\)\+\]\)'' #'
 
     if register_contents =~ '^rspec'
