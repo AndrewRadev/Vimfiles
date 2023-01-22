@@ -370,5 +370,8 @@
   path = bundle/popup_scrollbar
   url = ../popup_scrollbar.vim.git
 [submodule "bundle/colorizer"]
-	path = bundle/colorizer
-	url = https://github.com/lilydjwg/colorizer
+  path = bundle/colorizer
+  url = https://github.com/lilydjwg/colorizer
+[submodule "bundle/strftime"]
+  path = bundle/strftime
+  url = ../strftime.vim.git
