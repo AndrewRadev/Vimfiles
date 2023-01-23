@@ -9,7 +9,15 @@ def generate_tags
     '!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/',
   ]
 
-  %x[find ! -path '*.git*'].split("\n").each do |file|
+  ignore_paths = [
+    '*.git',
+    '*/.git/*',
+    '*/.next/*',
+    '*/tmp/*',
+    '*/node_modules/*',
+  ].map { |p| "! -path '#{p}'" }.join(' ')
+
+  %x[find #{ignore_paths}].split("\n").each do |file|
     next if File.directory?(file)
 
     basename = File.basename(file)
