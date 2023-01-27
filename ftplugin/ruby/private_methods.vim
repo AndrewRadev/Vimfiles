@@ -38,7 +38,7 @@ function! s:MarkPrivateArea()
     " look for the matching "end"
     let saved_position = getpos('.')
     while search('\<end\>', 'W') > 0
-      if s:CurrentSyntaxName() !~# "rubyClass"
+      if s:CurrentSyntaxName() !~# '\%(rubyClass\|rubyModule\)'
         " it's not an end that closes a class, keep going
         continue
       endif
