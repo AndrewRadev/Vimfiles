@@ -372,3 +372,9 @@
 [submodule "bundle/strftime"]
   path = bundle/strftime
   url = ../strftime.vim.git
+[submodule "bundle/ingo-library"]
+  path = bundle/ingo-library
+  url = https://github.com/inkarkat/vim-ingo-library
+[submodule "bundle/syntax_range"]
+  path = bundle/syntax_range
+  url = https://github.com/inkarkat/vim-SyntaxRange
