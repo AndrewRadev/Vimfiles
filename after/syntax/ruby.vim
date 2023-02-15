@@ -1,1 +1,12 @@
-call SyntaxRange#Include('<<[-~]\?\([''"]\?\)\z(\s*SQL\s*\)\1', '^\s*\z1', 'sql', 'Operator')
+call SyntaxRange#Include(
+      \ '<<[-~]\?\([''"]\?\)\z(\s*SQL\s*\)\1',
+      \ '^\s*\z1',
+      \ 'sql',
+      \ 'Operator'
+      \ )
+call SyntaxRange#Include(
+      \ '<<[-~]\?\([''"]\?\)\z(\s*\(GRAPHQL\|GQL\)\s*\)\1',
+      \ '^\s*\z1',
+      \ 'graphql',
+      \ 'Operator'
+      \ )
