@@ -44,7 +44,7 @@ function! s:ExtractVar()
   call winrestview(saved_view)
 endfunction
 
-function! s:InlineVar(mode)
+function! s:InlineVar(mode) abort
   if exists('b:inline_var_pattern')
     let declaration_pattern = '^.\{-}'.b:inline_var_pattern.'\s*$'
   else
@@ -90,7 +90,7 @@ function! s:InlineVar(mode)
   normal! $
   let tick = b:changedtick
   while search('\<'.var_name.'\>', 'W', to)
-    keeppatterns exe 's/\<'.var_name.'\>/'.escape(body, '\/&').'/c'
+    keeppatterns exe line('.').'s/\<'.var_name.'\>/'.escape(body, '\/&').'/gc'
 
     if tick != b:changedtick
       if len(body_lines) > 1
