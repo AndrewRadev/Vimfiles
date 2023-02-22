@@ -15,6 +15,7 @@ set updatetime=1000
 set viminfo+=!
 set mouse=a
 set maxmempattern=2000000
+set smoothscroll
 
 " Editing
 set complete=.,w,b,k
