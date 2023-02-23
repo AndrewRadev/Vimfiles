@@ -16,6 +16,7 @@ set viminfo+=!
 set mouse=a
 set maxmempattern=2000000
 set smoothscroll
+set display=lastline
 
 " Editing
 set complete=.,w,b,k
