@@ -25,27 +25,28 @@ xnoremap <buffer> a= :<c-u>call <SID>ErbTextObject('a')<cr>
 onoremap <buffer> i= :<c-u>call <SID>ErbTextObject('i')<cr>
 xnoremap <buffer> i= :<c-u>call <SID>ErbTextObject('i')<cr>
 function! s:ErbTextObject(mode)
-  if search('<%.*\%#.*%>', 'n') <= 0
+  if sj#SearchUnderCursor('<%.\{-}%>', '') <= 0
     return
   endif
 
   if a:mode == 'i'
-    let [start_flags, end_flags] = ['be', '']
-  else " a:mode == 'a'
-    let [start_flags, end_flags] = ['b', 'e']
+    call search('<%=\?\s*\S', 'e', line('.'))
+  endif
+  let start = virtcol('.')
+
+  if a:mode == 'i'
+    let end_flags = ''
+  else
+    let end_flags = ''
   endif
 
-  call search('<%=\?\s*.', start_flags, line('.'))
-  let start = col('.') - 1
-  call search('.\s*-\?%>', end_flags, line('.'))
-  let end = col('.') - 1
-
-  let interval = end - start
+  call search('\S\s*-\?%>', end_flags, line('.'))
+  let end = virtcol('.')
 
   if start == 0
-    exe 'normal! 0v'.interval.'l'
+    exe 'normal! 0v'.end.'|'
   else
-    exe 'normal! 0'.start.'lv'.interval.'l'
+    exe 'normal! 0'.start.'|v'.end.'|'
   endif
 endfunction
 
