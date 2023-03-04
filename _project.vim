@@ -1,1 +1,1 @@
-e .vimrc
+e vimrc
