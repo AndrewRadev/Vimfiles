@@ -27,6 +27,10 @@ augroup custom
   autocmd FocusGained * checktime
   autocmd WinEnter    * checktime
 
+  if has('gui_running')
+    autocmd FocusGained * redraw!
+  endif
+
   autocmd BufRead *.c    compiler gcc
   autocmd BufRead *.cpp  compiler gcc
   autocmd BufRead *.php  compiler php
