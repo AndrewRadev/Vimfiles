@@ -9,7 +9,6 @@ set sidescroll=4
 set splitbelow
 set switchbuf=useopen
 set t_Co=256
-set ttyfast
 set belloff=all
 set updatetime=1000
 set viminfo+=!
@@ -73,9 +72,8 @@ set wildmenu
 set wildmode=list:longest,full
 
 " Timeouts
-set notimeout
 set ttimeout
-set ttimeoutlen=200
+set ttimeoutlen=50
 
 " Cscope
 set cscopetagorder=1 " Look in tags file first
