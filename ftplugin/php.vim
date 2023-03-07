@@ -40,3 +40,34 @@ function! PhpIncludeExpr(fname)
 endfunction
 
 RunCommand !php % <args>
+
+" Define a text object for php segments (<?php ... ?>)
+onoremap <buffer> a= :<c-u>call <SID>PhpTextObject('a')<cr>
+xnoremap <buffer> a= :<c-u>call <SID>PhpTextObject('a')<cr>
+onoremap <buffer> i= :<c-u>call <SID>PhpTextObject('i')<cr>
+xnoremap <buffer> i= :<c-u>call <SID>PhpTextObject('i')<cr>
+function! s:PhpTextObject(mode)
+  if sj#SearchUnderCursor('<?\%(php\)\?.\{-}?>', '') <= 0
+    return
+  endif
+
+  if a:mode == 'i'
+    call search('<?\%(php\)\?\s*\S', 'e', line('.'))
+  endif
+  let start = virtcol('.')
+
+  if a:mode == 'i'
+    let end_flags = ''
+  else
+    let end_flags = 'e'
+  endif
+
+  call search('\S\s*-\??>', end_flags, line('.'))
+  let end = virtcol('.')
+
+  if start == 0
+    exe 'normal! 0v'.end.'|'
+  else
+    exe 'normal! 0'.start.'|v'.end.'|'
+  endif
+endfunction
