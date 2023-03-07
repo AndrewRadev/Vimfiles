@@ -37,7 +37,7 @@ function! s:ErbTextObject(mode)
   if a:mode == 'i'
     let end_flags = ''
   else
-    let end_flags = ''
+    let end_flags = 'e'
   endif
 
   call search('\S\s*-\?%>', end_flags, line('.'))
