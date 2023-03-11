@@ -3,13 +3,13 @@ snippet "t
 endsnippet
 
 snippet fun
-function! ${1:function_name}(${2}) abort
+function! ${1:FunctionName}(${2}) abort
 	${3:" code}
 endfunction
 endsnippet
 
 snippet com
-command! ${1:command_name} call s:$1()
+command! ${1:CommandName} call s:$1()
 function! s:$1() abort
 	${2:" code}
 endfunction
@@ -94,7 +94,7 @@ endfunction
 endsnippet
 
 snippet aug
-augroup ${1}
+augroup ${1:group_name}
 	autocmd!
 
 	${2}
