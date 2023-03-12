@@ -3,7 +3,6 @@ setlocal foldmethod=indent
 let b:surround_{char2nr('i')} = "if \1if: \1 \r endif"
 let b:surround_{char2nr('w')} = "while \1while: \1 \r endwhile"
 let b:surround_{char2nr('f')} = "for \1for: \1 {\r endfor"
-let b:surround_{char2nr('e')} = "foreach \1foreach: \1 \r enforeach"
 let b:surround_{char2nr('F')} = "function! \1function: \1() \r endfunction"
 let b:surround_{char2nr('T')} = "try \r endtry"
 
@@ -51,6 +50,14 @@ function! s:Includeexpr() abort
       call rustbucket#util#SetFileOpenCallback(resolved_path, '^\s*fun.*\<\zs' .. filename .. '(')
       return resolved_path
     endif
+  elseif filename =~ '^\s*runtime'
+    for dir in split(&rtp, ',')
+      let fname = dir.'/'.a:fname
+
+      if filereadable(fname)
+        return fname
+      endif
+    endfor
   endif
 
   return expand('<cfile>')
@@ -59,19 +66,15 @@ endfunction
 command! -buffer Lookup call lookup#lookup()
 nnoremap <buffer> gd :call lookup#lookup()<cr>
 
-setlocal includeexpr=lib#VimIncludeExpression(v:fname)
+setlocal tagfunc=VimTagfunc
 
-cmap <buffer><script><expr> <Plug><ctag> substitute(<SID>VimCursorTag(),'^$',"\<c-c>",'')
-
-nmap <buffer> <c-]>       :<c-u>exe v:count1."tag <Plug><ctag>"<cr>
-nmap <buffer> g<c-]>      :<c-u>exe          "tjump <Plug><ctag>"<cr>
-nmap <buffer> g]          :<c-u>exe          "tselect <Plug><ctag>"<cr>
-nmap <buffer> <c-w>]      :<c-u>exe v:count1."stag <Plug><ctag>"<cr>
-nmap <buffer> <c-w><c-]>  :<c-u>exe v:count1."stag <Plug><ctag>"<cr>
-nmap <buffer> <c-w>g<c-]> :<c-u>exe          "stjump <Plug><ctag>"<cr>
-nmap <buffer> <c-w>g]     :<c-u>exe          "stselect <Plug><ctag>"<cr>
-nmap <buffer> <c-w>}      :<c-u>exe v:count1."ptag <Plug><ctag>"<cr>
-nmap <buffer> <c-w>g}     :<c-u>exe v:count1."ptjump <Plug><ctag>"<cr>
+function! VimTagfunc(pattern, flags, info) abort
+  if stridx(a:flags, 'c') >= 0
+    return taglist(s:VimCursorTag(), get(a:info, 'buf_ffname', ''))
+  else
+    return v:null
+  endif
+endfunction
 
 function! s:VimCursorTag() abort
   let pattern = '\%(\k\+#\)*\%([bgstw]:\|<SID>\)\=\k\+'
@@ -119,63 +122,7 @@ function! s:FunctionTextObject(mode)
 endfunction
 
 if !exists(':Implement')
-  command! -buffer Implement call s:Implement()
-  function! s:Implement()
-    if !isdirectory('autoload')
-      echomsg 'No "autoload" directory found here.'
-    endif
-
-    let saved_iskeyword = &iskeyword
-    set iskeyword+=#,:
-    let function_name = expand('<cword>')
-    let &iskeyword = saved_iskeyword
-
-    if function_name =~ '^s:'
-      call s:ImplementScriptLocal(function_name)
-    elseif function_name =~ '^\k\+#'
-      call s:ImplementAutoloaded(function_name)
-    else
-      echoerr printf('Don''t know how to implement "%s"', function_name)
-    endif
-  endfunction
-
-  function! s:ImplementAutoloaded(function_name)
-    let function_name = a:function_name
-    let parts         = split(function_name, '#')
-
-    call remove(parts, -1)
-    if empty(parts)
-      echoerr printf('"%s" doesn''t look like an autoloaded function', function_name)
-    endif
-
-    let path = printf('autoload/%s.vim', join(parts, '/'))
-    let dir  = fnamemodify(path, ':p:h')
-    if !isdirectory(dir)
-      mkdir(dir, 'p')
-    endif
-
-    if fnamemodify(path, ':p') != expand('%:p')
-      exe 'split '.path
-    endif
-
-    call append(line('$'), [
-          \ '',
-          \ 'function! '.function_name.'()',
-          \ 'endfunction',
-          \ ])
-    normal! G
-  endfunction
-
-  function! s:ImplementScriptLocal(function_name)
-    let function_name = a:function_name
-
-    call append(line('$'), [
-          \ '',
-          \ 'function! '.function_name.'()',
-          \ 'endfunction',
-          \ ])
-    normal! G
-  endfunction
+  command! -buffer Implement call lib#ImplementVimFunction()
 endif
 
 command! -buffer Localvars call s:Localvars()

@@ -136,19 +136,24 @@ function! lib#WithSavedState(command)
   endif
 endfunction
 
-" The vim includeexpr
-function! lib#VimIncludeExpression(fname)
-  if getline('.') =~ '^\s*runtime'
-    for dir in split(&rtp, ',')
-      let fname = dir.'/'.a:fname
-
-      if(filereadable(fname))
-        return fname
-      endif
-    endfor
+" Create a skeleton implementation for the vim function under the cursor
+function! lib#ImplementVimFunction()
+  if !isdirectory('autoload')
+    echomsg 'No "autoload" directory found here.'
   endif
 
-  return a:fname
+  let saved_iskeyword = &iskeyword
+  set iskeyword+=#,:
+  let function_name = expand('<cword>')
+  let &iskeyword = saved_iskeyword
+
+  if function_name =~ '^s:'
+    call s:ImplementScriptLocalVimFunction(function_name)
+  elseif function_name =~ '^\k\+#'
+    call s:ImplementAutoloadedVimFunction(function_name)
+  else
+    echoerr printf('Don''t know how to implement "%s"', function_name)
+  endif
 endfunction
 
 " Execute the normal mode motion "motion" and return the text it marks. Note
@@ -206,4 +211,42 @@ function! lib#DefaultRegister()
   else
     return '"'
   endif
+endfunction
+
+function! s:ImplementAutoloadedVimFunction(function_name)
+  let function_name = a:function_name
+  let parts         = split(function_name, '#')
+
+  call remove(parts, -1)
+  if empty(parts)
+    echoerr printf('"%s" doesn''t look like an autoloaded function', function_name)
+  endif
+
+  let path = printf('autoload/%s.vim', join(parts, '/'))
+  let dir  = fnamemodify(path, ':p:h')
+  if !isdirectory(dir)
+    mkdir(dir, 'p')
+  endif
+
+  if fnamemodify(path, ':p') != expand('%:p')
+    exe 'split '.path
+  endif
+
+  call append(line('$'), [
+        \ '',
+        \ 'function! '.function_name.'()',
+        \ 'endfunction',
+        \ ])
+  normal! G
+endfunction
+
+function! s:ImplementScriptLocalVimFunction(function_name)
+  let function_name = a:function_name
+
+  call append(line('$'), [
+        \ '',
+        \ 'function! '.function_name.'()',
+        \ 'endfunction',
+        \ ])
+  normal! G
 endfunction
