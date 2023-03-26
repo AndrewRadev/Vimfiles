@@ -1,6 +1,8 @@
 " :StartupTime requires it:
 set nocompatible
 
+scriptversion 4
+
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -22,13 +24,13 @@ runtime startup/windows.vim
 " Add "miniplugins" directory to runtimepath
 set runtimepath+=~/.vim/miniplugins
 for dir in split(glob('~/.vim/miniplugins/*'), "\n")
-  exe "set runtimepath+=".dir
+  exe "set runtimepath+=" .. dir
 endfor
 
 " Add "wip" directory to runtimepath
 set runtimepath+=~/.vim/wip
 for dir in split(glob('~/.vim/wip/*'), "\n")
-  exe "set runtimepath+=".dir
+  exe "set runtimepath+=" .. dir
 endfor
 
 if filereadable(fnamemodify('~/.vimrc.local', ':p'))
