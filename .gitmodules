@@ -378,3 +378,6 @@
 [submodule "bundle/syntax_range"]
   path = bundle/syntax_range
   url = https://github.com/inkarkat/vim-SyntaxRange
+[submodule "bundle/typewriter"]
+  path = bundle/typewriter
+  url = ../typewriter.vim.git
