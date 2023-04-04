@@ -13,3 +13,5 @@ nnoremap <buffer> gm :Doc js<cr>
 " Reformat json
 command! -buffer Reformat %!jq .
 command! -buffer Unminify %!js-beautify -f -
+
+RunCommand !node % <args>
