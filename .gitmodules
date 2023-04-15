@@ -378,3 +378,6 @@
 [submodule "bundle/visualstar"]
   path = bundle/visualstar
   url = https://github.com/thinca/vim-visualstar
+[submodule "bundle/gv"]
+  path = bundle/gv
+  url = https://github.com/junegunn/gv.vim
