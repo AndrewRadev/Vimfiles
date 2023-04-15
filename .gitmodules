@@ -19,9 +19,6 @@
 [submodule "bundle/ack"]
   path = bundle/ack
   url = ../ack.vim.git
-[submodule "bundle/gitv"]
-  path = bundle/gitv
-  url = https://github.com/gregsexton/gitv.git
 [submodule "bundle/rails"]
   path = bundle/rails
   url = https://github.com/tpope/vim-rails.git
@@ -37,9 +34,6 @@
 [submodule "bundle/linediff"]
   path = bundle/linediff
   url = ../linediff.vim.git
-[submodule "bundle/extradite"]
-  path = bundle/extradite
-  url = https://github.com/int3/vim-extradite.git
 [submodule "bundle/tagfinder"]
   path = bundle/tagfinder
   url = ../tagfinder.vim.git
