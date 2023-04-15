@@ -381,3 +381,6 @@
 [submodule "bundle/typewriter"]
   path = bundle/typewriter
   url = ../typewriter.vim.git
+[submodule "bundle/visualstar"]
+  path = bundle/visualstar
+  url = https://github.com/thinca/vim-visualstar
