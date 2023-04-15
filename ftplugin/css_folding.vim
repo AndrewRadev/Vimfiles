@@ -4,18 +4,6 @@
 " Licence:     BSD license
 " Version:     1e-6
 
-function! CssFoldText()
-  let line = getline(v:foldstart)
-  let nnum = nextnonblank(v:foldstart + 1)
-  while nnum < v:foldend+1
-    let line = line . " " . substitute(getline(nnum), "^ *", "", "g")
-    let line = substitute(line, '\S\zs\s\+', ' ', 'g')
-    let nnum = nnum + 1
-  endwhile
-  return line
-endfunction
-
-setlocal foldtext=CssFoldText()
+setlocal foldtext=css_folding#FoldText()
 setlocal foldmethod=marker
 setlocal foldmarker={,}
-"setlocal fillchars=fold:\
