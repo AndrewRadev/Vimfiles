@@ -27,7 +27,7 @@
   url = https://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/nerdtree"]
   path = bundle/nerdtree
-  url = ../nerdtree.git
+  url = https://github.com/preservim/nerdtree
 [submodule "bundle/ruby"]
   path = bundle/ruby
   url = ../../vim-ruby/vim-ruby.git
