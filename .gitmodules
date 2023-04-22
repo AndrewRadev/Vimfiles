@@ -381,3 +381,6 @@
 [submodule "bundle/gv"]
   path = bundle/gv
   url = https://github.com/junegunn/gv.vim
+[submodule "bundle/obsession"]
+  path = bundle/obsession
+  url = https://github.com/tpope/vim-obsession
