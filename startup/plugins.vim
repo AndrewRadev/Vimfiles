@@ -134,7 +134,7 @@ let g:andrews_nerdtree_external_open_key    = 'gu'
 " let g:andrews_nerdtree_quickfix_filter_auto = 1
 
 " Don't use netrw at all, interferes with "clever" autocommands
-let g:loaded_netrwPlugin = 1
+" let g:loaded_netrwPlugin = 1
 
 " Colorizer
 let g:colorizer_nomap = 1
