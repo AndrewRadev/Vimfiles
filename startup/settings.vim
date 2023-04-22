@@ -43,7 +43,7 @@ endif
 
 set statusline=
 set statusline+=%<%f\ %h%m%r             " filename and flags
-set statusline+=%{fugitive#statusline()} " git info
+set statusline+=%{fugitive#Statusline()} " git info
 set statusline+=%=                       " alignment separator
 set statusline+=[%{&ft}]                 " filetype
 set statusline+=%-14.([%l/%L],%c%V%)     " cursor info
