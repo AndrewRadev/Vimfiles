@@ -7,6 +7,9 @@ set langmap=
 map Й J
 map К K
 
+map й j
+map к k
+
 map гх gh
 map гй gj
 map гк gk
