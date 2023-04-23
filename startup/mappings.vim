@@ -266,22 +266,46 @@ nnoremap <c-w>< :BufSurfBack<CR>
 nnoremap <c-w>> :BufSurfForward<CR>
 
 " Quickly switch between / and ? when searching
-cnoremap <expr> <c-l> <SID>CmdlineToggle("\<c-l>")
-function! s:CmdlineToggle(default)
+cnoremap <expr> <c-l> <SID>CmdlineToggle()
+function! s:CmdlineToggle() abort
   let command_type = getcmdtype()
-
   if command_type != '/' && command_type != '?'
-    return a:default
+    return ''
   endif
 
   let command_line     = getcmdline()
   let command_line_pos = getcmdpos()
   let other_mode       = (command_type == '/') ? '?' : '/'
 
-  let search_command   = "\<c-c>".other_mode.command_line
-  let position_command = "\<home>".repeat("\<right>", command_line_pos - 1)
+  let search_command   = "\<c-c>"..other_mode..command_line
+  let position_command = "\<home>"..repeat("\<right>", command_line_pos - 1)
 
-  call feedkeys(search_command.position_command, 'n')
+  call feedkeys(search_command..position_command, 'n')
+  return ''
+endfunction
+
+" Easily switch to very magic mode in a search
+" TODO switch back to magic?
+cnoremap <expr> <c-y> <SID>VeryMagicToggle()
+function! s:VeryMagicToggle() abort
+  let command_type = getcmdtype()
+  if command_type != '/' && command_type != '?'
+    return ''
+  endif
+
+  let command_line = getcmdline()
+  if command_line =~# '^\\v'
+    " already in very magic mode, nothing to do
+    return ''
+  endif
+
+  let very_magic_command_line = '\v' .. substitute(command_line, '\\\(\W\)', '\1', 'g')
+
+  let command_line_pos = getcmdpos()
+  let search_command   = "\<c-u>"..very_magic_command_line
+  let position_command = "\<home>"..repeat("\<right>", command_line_pos - 1)
+
+  call feedkeys(search_command..position_command, 'n')
   return ''
 endfunction
 
