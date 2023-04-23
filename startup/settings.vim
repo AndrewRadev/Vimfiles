@@ -16,6 +16,7 @@ set mouse=a
 set maxmempattern=2000000
 set smoothscroll
 set display=lastline
+set sessionoptions-=options
 
 " Editing
 set complete=.,w,b,k
