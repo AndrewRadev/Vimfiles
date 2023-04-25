@@ -384,3 +384,6 @@
 [submodule "bundle/obsession"]
   path = bundle/obsession
   url = https://github.com/tpope/vim-obsession
+[submodule "bundle/xterm-color-table"]
+  path = bundle/xterm-color-table
+  url = https://github.com/guns/xterm-color-table.vim
