@@ -18,6 +18,7 @@ runtime startup/commands.vim
 runtime startup/autocommands.vim
 runtime startup/mappings.vim
 runtime startup/acp.vim
+runtime startup/lsp.vim
 runtime startup/cyrillic.vim
 runtime startup/windows.vim
 

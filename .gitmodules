@@ -387,3 +387,6 @@
 [submodule "bundle/xterm-color-table"]
   path = bundle/xterm-color-table
   url = https://github.com/guns/xterm-color-table.vim
+[submodule "bundle/lsp"]
+  path = bundle/lsp
+  url = https://github.com/prabirshrestha/vim-lsp
