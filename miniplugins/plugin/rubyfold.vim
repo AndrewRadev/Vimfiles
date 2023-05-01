@@ -2,7 +2,7 @@ function! RubyFold()
   let b:foldtexts = {}
   setlocal foldtext=RubyFoldText()
 
-  let save_cursor = getpos('.')
+  let saved_view = winsaveview()
 
   " remove all folds for now
   set foldmethod=manual
@@ -37,6 +37,7 @@ function! RubyFold()
   endwhile
 
   normal! zM
+  call winrestview(saved_view)
 endfunction
 
 function! RubyFoldText()
