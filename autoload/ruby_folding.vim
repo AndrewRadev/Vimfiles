@@ -1,6 +1,6 @@
-function! RubyFold()
+function! ruby_folding#Create()
   let b:foldtexts = {}
-  setlocal foldtext=RubyFoldText()
+  setlocal foldtext=ruby_folding#Foldtext()
 
   let saved_view = winsaveview()
 
@@ -40,7 +40,7 @@ function! RubyFold()
   call winrestview(saved_view)
 endfunction
 
-function! RubyFoldText()
+function! ruby_folding#Foldtext()
   let line = v:foldstart
 
   if has_key(b:foldtexts, line)

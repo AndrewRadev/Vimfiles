@@ -17,5 +17,5 @@ endif
 let b:deleft_closing_pattern = '^\s*end\>'
 let b:outline_pattern = '\v^\s*(def|class|module|public|protected|private|(attr_\k{-})|test)(\s|$)'
 
-call RubyFold()
+call ruby_folding#Create()
 setlocal nofoldenable
