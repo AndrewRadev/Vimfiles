@@ -6,6 +6,10 @@ endif
 hi rubyPrivateMethod cterm=underline gui=underline
 
 function! s:MarkPrivateArea()
+  " Store the current view, in order to restore it later
+  let saved_view = winsaveview()
+  let start_time = reltime()
+
   if empty(prop_type_get('private_method', {'bufnr': bufnr('%')}))
     call prop_type_add('private_method', {
           \ 'bufnr':     bufnr('%'),
@@ -16,9 +20,6 @@ function! s:MarkPrivateArea()
 
   " Clear out any previous matches
   call prop_remove({'type': 'private_method', 'all': v:true})
-
-  " Store the current view, in order to restore it later
-  let saved_view = winsaveview()
 
   " start at the last char in the file and wrap for the
   " first search to find match at start of file
@@ -73,18 +74,22 @@ function! s:CurrentSyntaxName()
   return synIDattr(synID(line("."), col("."), 0), "name")
 endfunction
 
-" Initial marking
-autocmd Syntax <buffer> call <SID>MarkPrivateArea()
+augroup rubyPrivateMethod
+  autocmd!
 
-" Mark on write
-autocmd BufWritePost <buffer> call <SID>MarkPrivateArea()
+  " Initial marking
+  autocmd Syntax <buffer> call s:MarkPrivateArea()
 
-" Mark when exiting insert mode (doesn't cover normal-mode text changing)
-" autocmd InsertLeave <buffer> call <SID>MarkPrivateArea()
-"
-" Mark when text has changed in normal mode. (doesn't work sometimes, syntax
-" doesn't get updated in time)
-" autocmd TextChanged <buffer> call <SID>MarkPrivateArea()
+  " Mark on write
+  autocmd BufWritePost <buffer> call s:MarkPrivateArea()
 
-" Mark when not moving the cursor for 'timeoutlen' time
-" autocmd CursorHold <buffer> call <SID>MarkPrivateArea()
+  " Mark when exiting insert mode (doesn't cover normal-mode text changing)
+  " autocmd InsertLeave <buffer> call s:MarkPrivateArea()
+  "
+  " Mark when text has changed in normal mode. (doesn't work sometimes, syntax
+  " doesn't get updated in time)
+  " autocmd TextChanged <buffer> call s:MarkPrivateArea()
+
+  " Mark when not moving the cursor for 'timeoutlen' time
+  " autocmd CursorHold <buffer> call s:MarkPrivateArea()
+augroup END
