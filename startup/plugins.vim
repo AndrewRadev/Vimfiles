@@ -39,6 +39,8 @@ let g:rails_syntax = 0
 
 " Avoid opening webpages in 'links':
 let g:netrw_http_cmd = 'wget -q -O'
+" Don't use netrw at all, attaches BufEditCmd handlers for URLs
+let g:loaded_netrwPlugin = 1
 
 " Gist
 let g:gist_open_browser_after_post = 1
@@ -132,9 +134,6 @@ let g:csv_nomap_space = 1
 let g:andrews_nerdtree_all                  = 1
 let g:andrews_nerdtree_external_open_key    = 'gu'
 " let g:andrews_nerdtree_quickfix_filter_auto = 1
-
-" Don't use netrw at all, interferes with "clever" autocommands
-" let g:loaded_netrwPlugin = 1
 
 " Colorizer
 let g:colorizer_nomap = 1
