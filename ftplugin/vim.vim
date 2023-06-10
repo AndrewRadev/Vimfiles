@@ -69,7 +69,7 @@ nnoremap <buffer> gd :call lookup#lookup()<cr>
 setlocal tagfunc=VimTagfunc
 
 function! VimTagfunc(pattern, flags, info) abort
-  if stridx(a:flags, 'c') >= 0
+  if stridx(a:flags, 'c') >= 0 && stridx(a:flags, 'i') < 0
     return taglist(s:VimCursorTag(), get(a:info, 'buf_ffname', ''))
   else
     return v:null
