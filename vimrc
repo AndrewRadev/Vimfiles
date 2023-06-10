@@ -40,6 +40,6 @@ endif
 
 " Presentation mode
 " set background=light
-" colo andrew-light
+" colo PaperColor
 " let g:NERDTreeWinSize = 20
 " set nowrap
