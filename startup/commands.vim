@@ -316,3 +316,23 @@ command!
       \ -bar -bang -range=-1 -nargs=*
       \ -complete=customlist,fugitive#CompleteObject
       \ Gbrowse exe fugitive#BrowseCommand(<line1>, <count>, +"<range>", <bang>0, "<mods>", <q-args>)
+
+command! -nargs=1 Egithub call s:Egithub(<q-args>)
+
+function! s:Egithub(url) abort
+  let github_pattern = 'github\.com/\%(.\{-}\)/blob/\%([^/]\+\)/\(.\{-}\)\%(#L\(\d\+\)\%(-L\d\+\)\=\)\=$'
+  let [result, path, line; _rest] = matchlist(a:url, github_pattern)
+
+  if result == ''
+    echoerr "Couldn't parse github URL from: "..a:url
+    return
+  endif
+
+  if !filereadable(path)
+    echoerr "Couldn't find path in current root: "..path
+    return
+  endif
+
+  exe 'edit' path
+  exe line
+endfunction
