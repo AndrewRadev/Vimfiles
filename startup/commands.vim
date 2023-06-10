@@ -310,3 +310,9 @@ function s:SplitjoinShorthandMapping(splitjoin)
 
   return mapping
 endfunction
+
+" Reimplement Fugitive's :Gbrowse for my convenience
+command!
+      \ -bar -bang -range=-1 -nargs=*
+      \ -complete=customlist,fugitive#CompleteObject
+      \ Gbrowse exe fugitive#BrowseCommand(<line1>, <count>, +"<range>", <bang>0, "<mods>", <q-args>)
