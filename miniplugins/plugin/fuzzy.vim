@@ -1,12 +1,11 @@
-" Note: Educational, will likely be removed
-
 hi def link fuzzyMatch Search
+hi def link fuzzyScore TODO
 
-command! Fuzzy2 call s:FuzzyFindFile('<mods>')
+command! Fuzzy call s:Fuzzy(<q-mods>)
 
-function! s:FuzzyFindFile(mods)
+function! s:Fuzzy(mods)
   if !executable('rg')
-    echoerr "Fuzzy2 requires ripgrep (the `rg` executable)"
+    echoerr ":Fuzzy requires ripgrep (the `rg` executable)"
     return
   endif
 
@@ -22,18 +21,18 @@ function! s:FuzzyFindFile(mods)
   let b:loading = ['⢿', '⣻', '⣽', '⣾', '⣷', '⣯', '⣟', '⡿']
   let b:loading_index = 0
 
-  let b:job = job_start('slow_rg', #{
+  let b:job = job_start('rg --files', #{
         \ out_cb: function('s:AddPath'),
         \ exit_cb: function('s:Finish'),
         \ })
 
   call prompt_setcallback(bufnr(), function('s:TextEntered'))
   call prompt_setprompt(bufnr(), "> ")
-  call prop_type_add('score_text', { 'bufnr': bufnr(), 'highlight': 'TODO' })
+  call prop_type_add('score_text', { 'bufnr': bufnr(), 'highlight': 'fuzzyScore' })
 
   startinsert
 
-  autocmd TextChangedI <buffer> call s:UpdateBuffer()
+  autocmd TextChangedI,TextChangedP <buffer> call s:UpdateBuffer()
   autocmd QuitPre <buffer> call job_stop(b:job)
 
   inoremap <buffer> <c-c> <esc>:quit!<cr>
