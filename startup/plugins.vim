@@ -228,3 +228,6 @@ let g:popup_scrollbar_shape = {
       \ 'body': '┃',
       \ 'tail': '∨',
       \ }
+
+" Strftime
+imap <c-x><c-d> <Plug>StrftimeComplete
