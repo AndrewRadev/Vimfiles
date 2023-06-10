@@ -12,6 +12,8 @@ let b:inline_var_pattern   = 'let \%(\s*mut\s\+\)\=\(\k\+\)\%(: [^=]\+\)\=\s\+=\
 
 let b:outline_pattern = '\s*\%(pub\s*\)\=\(impl\|fn\|struct\|enum\|macro_rules!\)\(\s\|$\)'
 
+" call lsp#enable()
+
 " Kind of basic, but might do the trick for now
 if !exists(':A')
   command! -buffer A call s:A()
