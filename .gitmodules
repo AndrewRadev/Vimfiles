@@ -200,7 +200,7 @@
   url = https://github.com/mhinz/vim-lookup
 [submodule "bundle/exception"]
   path = bundle/exception
-  url = https://github.com/tweekmonster/exception.vim
+  url = ../exception.vim.git
 [submodule "bundle/startuptime"]
   path = bundle/startuptime
   url = https://github.com/tweekmonster/startuptime.vim
