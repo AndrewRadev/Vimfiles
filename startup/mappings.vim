@@ -234,7 +234,7 @@ function! s:SearchWord(word)
   let position = getpos('.')
   let active_window = winnr()
 
-  exe "Ack '\\b".a:word."\\b'"
+  exe 'Ack \b'.a:word.'\b'
 
   exe active_window.'wincmd w'
   cclose
