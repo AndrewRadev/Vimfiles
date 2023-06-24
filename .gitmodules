@@ -151,7 +151,7 @@
   url = ../modsearch.vim.git
 [submodule "bundle/autotag"]
   path = bundle/autotag
-  url = ../vim-autotag.git
+  url = https://github.com/craigemery/vim-autotag
 [submodule "bundle/ember_tools"]
   path = bundle/ember_tools
   url = ../ember_tools.vim.git
