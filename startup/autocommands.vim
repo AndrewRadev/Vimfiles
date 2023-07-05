@@ -75,9 +75,9 @@ function! s:MaybeEnterDirectory(file)
 endfunction
 
 function! s:EnsureDirectoryExists()
-  let required_dir = expand("%:h")
+  let required_dir = trim(expand("%:h"))
 
-  if required_dir =~ '^https\=:\/\/'
+  if required_dir =~ '^https\=:'
     " it's not a "real" file, it's intended for some other callback, ignore it
     return
   endif
