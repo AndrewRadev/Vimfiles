@@ -17,6 +17,7 @@ set maxmempattern=2000000
 set smoothscroll
 set display=lastline
 set sessionoptions-=options
+set cryptmethod=xchacha20v2
 
 " Editing
 set complete=.,w,b,k
