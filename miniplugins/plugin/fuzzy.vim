@@ -1,12 +1,18 @@
 hi def link fuzzyMatch Search
 hi def link fuzzyScore TODO
 
-command! Fuzzy call s:Fuzzy(<q-mods>)
+command! -nargs=* -complete=dir Fuzzy call s:Fuzzy(<q-mods>, <q-args>)
 
-function! s:Fuzzy(mods)
+function! s:Fuzzy(mods, dir)
   if !executable('rg')
     echoerr ":Fuzzy requires ripgrep (the `rg` executable)"
     return
+  endif
+
+  if a:dir == ''
+    let dir = '.'
+  else
+    let dir = a:dir
   endif
 
   exe a:mods .. ' new'
@@ -21,7 +27,7 @@ function! s:Fuzzy(mods)
   let b:loading = ['⢿', '⣻', '⣽', '⣾', '⣷', '⣯', '⣟', '⡿']
   let b:loading_index = 0
 
-  let b:job = job_start('rg --files', #{
+  let b:job = job_start('rg --files ' .. dir, #{
         \ out_cb: function('s:AddPath'),
         \ exit_cb: function('s:Finish'),
         \ })
