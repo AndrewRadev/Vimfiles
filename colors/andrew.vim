@@ -84,7 +84,7 @@ hi Ignore ctermfg=Black
 hi Ignore guifg=bg
 
 " Dark gray popup menu with blue selection
-hi Pmenu cterm=NONE ctermfg=255 ctermbg=235
+hi Pmenu cterm=NONE ctermfg=NONE ctermbg=235
 hi Pmenu guibg=#262626 guifg=#ffffff
 
 hi PmenuSbar cterm=NONE ctermfg=240 ctermbg=240
