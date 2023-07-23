@@ -387,3 +387,6 @@
 [submodule "bundle/lsp"]
   path = bundle/lsp
   url = https://github.com/prabirshrestha/vim-lsp
+[submodule "bundle/sticky_line"]
+  path = bundle/sticky_line
+  url = ../sticky_line.vim.git
