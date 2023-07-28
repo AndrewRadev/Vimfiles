@@ -390,3 +390,6 @@
 [submodule "bundle/sticky_line"]
   path = bundle/sticky_line
   url = ../sticky_line.vim.git
+[submodule "bundle/closer"]
+  path = bundle/closer
+  url = https://github.com/rstacruz/vim-closer
