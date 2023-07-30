@@ -395,3 +395,8 @@ function! s:YankDir()
   call setreg(v:register, current_dir)
   echomsg 'Yanked "'.current_dir.'" to clipboard ("'.v:register.')'
 endfunction
+
+" Easy way to append in normal mode
+nnoremap <silent> z, :call put_at_end#Mapping(',')<cr>
+nnoremap <silent> z; :call put_at_end#Mapping(';')<cr>
+nnoremap <silent> z) :call put_at_end#Mapping('),')<cr>
