@@ -336,3 +336,28 @@ function! s:Egithub(url) abort
   exe 'edit' path
   exe line
 endfunction
+
+command! Restart call s:Restart()
+
+function s:Restart()
+  let transient_buffers = []
+
+  for tab_index in range(tabpagenr('$'))
+    for bufnr in tabpagebuflist(tab_index + 1)
+      if getbufvar(bufnr, '&filetype') == 'nerdtree'
+        call add(transient_buffers, bufnr)
+      endif
+    endfor
+  endfor
+
+  for buffer in transient_buffers
+    for window_id in win_findbuf(buffer)
+      call win_execute(window_id, 'noautocmd quit', 'silent')
+    endfor
+  endfor
+
+  mksession! /tmp/restart_session.vim
+
+  call system('(sleep 0.3 && xdotool type ''vim +"source /tmp/restart_session.vim"'' && xdotool key Return) &')
+  qall!
+endfunction
