@@ -259,7 +259,7 @@ function! s:SearchWord(word)
 endfunction
 
 " Show last search in quickfix (http://travisjeffery.com/b/2011/10/m-x-occur-for-vim/)
-nmap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
+nnoremap g/ :vimgrep /<C-R>//j %<CR>\|:cw<CR>
 
 " Bufsurf
 nnoremap <c-w>< :BufSurfBack<CR>
