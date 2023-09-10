@@ -6,7 +6,6 @@ xmap si :<c-u>call <SID>InlineVar('visual')<cr>
 
 function! s:ExtractVar()
   let saved_view = winsaveview()
-  let var_name = input("Variable name: ")
 
   if exists('b:extract_var_template')
     let extract_var_template = b:extract_var_template
@@ -14,15 +13,41 @@ function! s:ExtractVar()
     let extract_var_template = '%s = %s'
   endif
 
-  let body = sj#Trim(sj#GetMotion('gv'))
-  call sj#ReplaceMotion('gv', var_name)
+  if exists('b:extract_partial_template')
+    let extract_partial_template = b:extract_partial_template
+  else
+    let extract_partial_template = '\zs\k\+\ze\s*='
+  endif
 
-  let declaration = printf(extract_var_template, var_name, body)
-  let declaration_lines = split(declaration, "\n")
-  call append(line('.') - 1, declaration_lines)
+  let var_declaration_line = search(extract_partial_template.'\s*$', 'bWn')
 
-  " Indent all lines and position at the start
-  exe 'normal! '.len(declaration_lines).'k'.len(declaration_lines).'==0'
+  if var_declaration_line > 0
+    let var_name = matchstr(getline(var_declaration_line), extract_partial_template.'\s*$')
+    let body = sj#Trim(sj#GetMotion('gv'))
+
+    let prefix = lib#Rtrim(getline(var_declaration_line))
+    let declaration = prefix .. ' ' .. body
+    let declaration_lines = split(declaration, "\n")
+
+    call append(var_declaration_line, declaration_lines)
+    exe var_declaration_line.'delete _'
+
+    call sj#ReplaceMotion('gv', var_name)
+
+    exe var_declaration_line
+    exe 'normal! '.len(declaration_lines).'==0'
+  else
+    let var_name = input("Variable name: ")
+
+    let body = sj#Trim(sj#GetMotion('gv'))
+    call sj#ReplaceMotion('gv', var_name)
+
+    let declaration = printf(extract_var_template, var_name, body)
+    let declaration_lines = split(declaration, "\n")
+
+    call append(line('.') - 1, declaration_lines)
+    exe 'normal! '.len(declaration_lines).'k'.len(declaration_lines).'==0'
+  endif
 
   if search('${[^}]\+}', 'Wc', line('.') + len(declaration_lines) - 1)
     " delete the first '$'
