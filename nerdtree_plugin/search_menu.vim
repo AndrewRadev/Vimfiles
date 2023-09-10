@@ -34,5 +34,5 @@ function! NERDTreeAck()
     echo 'Maybe another time...'
     return
   endif
-  exec "Ack! ".pattern." ".dir
+  call Ack('grep!', pattern, 0, dir)
 endfunction
