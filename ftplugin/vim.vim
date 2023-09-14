@@ -13,6 +13,7 @@ let b:outline_pattern = '^\s*\(fun\%[ction]\|com\%[mand]\)\>'
 let b:deleft_closing_pattern = '^\s*end\(\k\{-}\)\>'
 
 let b:extract_var_template = 'let %s = %s'
+let b:extract_prefix_template = '\(let\|var\) \zs\k\+\ze ='
 
 let b:whatif_command = 'Debug %s'
 

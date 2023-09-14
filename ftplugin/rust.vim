@@ -8,6 +8,7 @@ nnoremap <buffer> gm :call rustbucket#Doc()<cr>
 nnoremap <buffer> gi :call rustbucket#Info()<cr>
 
 let b:extract_var_template = 'let %s = %s;'
+let b:extract_prefix_template = 'let \%(\s*mut\s\+\)\=\zs\k\+\ze\%(: [^=]\+\)\=\s\+='
 let b:inline_var_pattern   = 'let \%(\s*mut\s\+\)\=\(\k\+\)\%(: [^=]\+\)\=\s\+=\s\+\(.*\);'
 
 let b:outline_pattern = '\s*\%(pub\s*\)\=\(impl\|fn\|struct\|enum\|macro_rules!\)\(\s\|$\)'
