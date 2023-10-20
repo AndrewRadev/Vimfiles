@@ -3,11 +3,9 @@ compiled with `+python`, though it should load just fine even otherwise, only
 with less features.
 
 To try it out, backup your `.vimrc` and your `.vim` directory and checkout this
-repository as `~/.vim`. Afterwards, create a symbolic link from `~/.vim/.vimrc`
-to `~/.vimrc` and checkout all submodules:
+repository as `~/.vim` and checkout all submodules:
 
-    git clone git://github.com/AndrewRadev/Vimfiles.git ~/.vim
-    ln -s ~/.vim/.vimrc ~/.vimrc
+    git clone https://github.com/AndrewRadev/Vimfiles.git ~/.vim
     cd ~/.vim
     git submodule init
     git submodule update
