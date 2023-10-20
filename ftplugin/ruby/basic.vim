@@ -7,9 +7,6 @@ setlocal foldmethod=indent
 compiler ruby
 setlocal makeprg=ruby\ -wc\ %
 
-" Look up the word under the cursor on apidock:
-nnoremap <buffer> gm :Doc ruby<cr>
-
 if &ft =~ 'rspec'
   finish
 endif
