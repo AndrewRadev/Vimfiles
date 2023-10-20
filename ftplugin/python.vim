@@ -13,3 +13,8 @@ let b:outline_pattern = '\v^\s*(def|class)(\s|$)'
 
 let b:match_words = '\<if\>:\<elsif\>:\<else\>'
 let b:match_skip = 'R:^\s*'
+
+" Indent guides
+setlocal listchars=leadmultispace:\┊\ \ \ ,
+setlocal list
+hi SpecialKey ctermfg=DarkGray

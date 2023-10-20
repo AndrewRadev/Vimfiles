@@ -16,7 +16,10 @@ function! s:MapToggle(key, opt)
   exec 'nnoremap '.a:key.' '.cmd
 endfunction
 
+" TODO (2023-10-04) Need to modify this to take into account leading
+" multispace
 MapToggle sl list
+
 MapToggle sh hlsearch
 MapToggle sw wrap
 MapToggle ss spell
