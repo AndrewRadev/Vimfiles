@@ -393,3 +393,6 @@
 [submodule "bundle/closer"]
   path = bundle/closer
   url = https://github.com/rstacruz/vim-closer
+[submodule "bundle/bio-vim"]
+  path = bundle/bio-vim
+  url = https://github.com/viklund/bio-vim
