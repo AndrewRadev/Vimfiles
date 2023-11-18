@@ -400,3 +400,6 @@ endfunction
 nnoremap <silent> z, :call put_at_end#Mapping(',')<cr>
 nnoremap <silent> z; :call put_at_end#Mapping(';')<cr>
 nnoremap <silent> z) :call put_at_end#Mapping('),')<cr>
+
+" Quickly record a .-appliable macro using M
+nnoremap M :call quickmacro#Record()<cr>
