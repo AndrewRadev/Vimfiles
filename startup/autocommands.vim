@@ -1,6 +1,9 @@
 augroup custom
   autocmd!
 
+  " If opening content from stdin, don't consider it a file
+  autocmd StdinReadPost * set buftype=nofile
+
   " Clean all useless whitespace:
   autocmd BufWritePre *
         \ if !exists('g:skip_clean_whitespace') && !exists('b:skip_clean_whitespace') |
