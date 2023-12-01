@@ -5,6 +5,7 @@ setlocal expandtab
 compiler python
 
 setlocal foldmethod=indent
+setlocal nofoldenable
 
 RunCommand     !python3    %:S <args>
 ConsoleCommand !python3 -i %:S <args>

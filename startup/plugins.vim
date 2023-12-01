@@ -34,6 +34,14 @@ let g:rubycomplete_buffer_loading    = 1
 let g:rubycomplete_classes_in_global = 1
 let g:ruby_operators                 = 1
 
+" Python settings
+let g:python_indent = {
+      \ 'open_paren':                   'shiftwidth()',
+      \ 'nested_paren':                 'shiftwidth()',
+      \ 'continue':                     'shiftwidth()',
+      \ 'closed_paren_align_last_line': v:false,
+      \ }
+
 " get rid of custom rails syntax highlighting
 let g:rails_syntax = 0
 
