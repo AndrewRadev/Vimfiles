@@ -66,18 +66,22 @@ hi Directory gui=NONE   guifg=#00dfff
 hi PreProc ctermfg=LightBlue cterm=NONE
 hi PreProc guifg=LightBlue   gui=NONE
 
-" Subtle gray diffs.
-hi DiffAdd cterm=NONE ctermbg=235
-hi DiffAdd gui=NONE   guibg=#262626
+" Red and green diffs (from lunaperche)
+hi DiffAdd     ctermfg=251 ctermbg=96   cterm=NONE
+hi DiffChange  ctermfg=251 ctermbg=59   cterm=NONE
+hi DiffText    ctermfg=159 ctermbg=66   cterm=NONE
+hi DiffDelete  ctermfg=174 ctermbg=NONE cterm=NONE
+hi diffAdded   ctermfg=77  ctermbg=NONE cterm=NONE
+hi diffRemoved ctermfg=174 ctermbg=NONE cterm=NONE
+hi diffSubname ctermfg=213 ctermbg=NONE cterm=NONE
 
-hi DiffChange cterm=NONE ctermbg=235
-hi DiffChange gui=NONE   guibg=#262626
-
-hi DiffDelete cterm=NONE ctermfg=238   ctermbg=244
-hi DiffDelete gui=NONE   guifg=#444444 guibg=#808080
-
-hi DiffText cterm=bold ctermfg=255   ctermbg=196
-hi DiffText gui=bold   guifg=#ffffff
+hi DiffAdd     guifg=#c6c6c6 guibg=#875f87 gui=NONE cterm=NONE
+hi DiffChange  guifg=#c6c6c6 guibg=#5f5f5f gui=NONE cterm=NONE
+hi DiffText    guifg=#afffff guibg=#5f8787 gui=NONE cterm=NONE
+hi DiffDelete  guifg=#d78787 guibg=NONE    gui=NONE cterm=NONE
+hi diffAdded   guifg=#5fd75f guibg=NONE    gui=NONE cterm=NONE
+hi diffRemoved guifg=#d78787 guibg=NONE    gui=NONE cterm=NONE
+hi diffSubname guifg=#ff87ff guibg=NONE    gui=NONE cterm=NONE
 
 " Hide concealed items
 hi Ignore ctermfg=Black
