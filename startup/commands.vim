@@ -340,6 +340,7 @@ function! s:Egithub(url) abort
   exe line
 endfunction
 
+" Restart Vim, (hopefully) maintaining the current state
 command! Restart call s:Restart()
 
 function s:Restart()
@@ -364,3 +365,6 @@ function s:Restart()
   call system('(sleep 0.3 && xdotool type ''vim +"source /tmp/restart_session.vim"'' && xdotool key Return) &')
   qall!
 endfunction
+
+" Clear the quickfix list and remove markers
+command! Cclear call setqflist([]) | sign unplace *
