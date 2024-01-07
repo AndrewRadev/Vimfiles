@@ -393,3 +393,6 @@
 [submodule "bundle/bio-vim"]
   path = bundle/bio-vim
   url = https://github.com/viklund/bio-vim
+[submodule "bundle/christmass-tree"]
+  path = bundle/christmass-tree
+  url = https://github.com/rhysd/vim-syntax-christmas-tree
