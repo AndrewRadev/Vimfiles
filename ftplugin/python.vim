@@ -2,7 +2,7 @@ setlocal softtabstop=4
 setlocal shiftwidth=4
 setlocal expandtab
 
-compiler python
+compiler flake8
 
 setlocal foldmethod=indent
 setlocal nofoldenable

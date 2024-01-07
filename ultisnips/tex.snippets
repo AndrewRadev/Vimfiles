@@ -1,0 +1,98 @@
+# Copied from https://github.com/ShawnHuang/ulti-snippets
+
+extends texmath
+
+
+snippet r "\\ref{}" w
+\ref{$1}
+endsnippet
+
+snippet it
+\textit{$0}
+endsnippet
+
+snippet tt
+\texttt{$0}
+endsnippet
+
+snippet bold
+\textbf{$0}
+endsnippet
+
+snippet figure
+\begin{figure}[h]
+	\centering
+
+	\includegraphics[scale=0.5]{${1:images/figure}}
+	\caption{${2:Figure}}
+	\label{fig:${3:label}}
+\end{figure}
+endsnippet
+
+snippet "b(egin)?" "begin{} / end{}" br
+\begin{${1:something}}
+	${0:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet tab
+\begin{${1:t}${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${2:c}}
+$0${2/((?<=.)c|l|r)|./(?1: & )/g}
+\end{$1${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
+endsnippet
+
+snippet enum "Enumerate" b
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet item "Itemize" b
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+snippet desc "Description" b
+\begin{description}
+	\item[$1] $0
+\end{description}
+endsnippet
+
+snippet sec "Section" b
+\section{${1:section name}}
+\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+
+${0}
+
+% section $2 (end)
+endsnippet
+
+
+snippet sub "Subsection" b
+\subsection{${1:subsection name}}
+\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+
+${0}
+
+% subsection $2 (end)
+endsnippet
+
+snippet subsub "Subsubsection" b
+\subsubsection{${1:subsubsection name}}
+\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+
+${0}
+
+% subsubsection $2 (end)
+endsnippet
+
+snippet use "Package" b
+\usepackage[${1:options}]{${2:package}}$0
+endsnippet
+
+snippet lp "Long parenthesis"
+\left(${1:${VISUAL:contents}}\right)$0
+endsnippet
+
+# vim:ft=snippets:
