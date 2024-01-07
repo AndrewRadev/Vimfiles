@@ -6,6 +6,7 @@ Supraventricular
 backend
 bugfixes
 composable
+datapoints
 filesystem
 fullscreen
 onboarding
@@ -14,3 +15,5 @@ timeframe
 timeseries
 timestamp
 timezones
+wavenumber
+wavenumbers
