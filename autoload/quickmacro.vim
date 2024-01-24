@@ -2,7 +2,7 @@ let s:recording = v:false
 
 function! quickmacro#Record() abort
   if s:recording
-    normal! qm
+    normal! q
     let s:recording = v:false
 
     silent! call repeat#set(":call quickmacro#Run()\<cr>")
