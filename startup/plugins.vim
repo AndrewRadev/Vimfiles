@@ -239,3 +239,7 @@ let g:popup_scrollbar_shape = {
 
 " Strftime
 imap <c-x><c-d> <Plug>StrftimeComplete
+
+" Rust settings:
+" Don't define global cargo commands
+let g:loaded_rust_vim_plugin_cargo = 1
