@@ -8,7 +8,7 @@ endif
 let g:loaded_matchparen_text = 1
 
 " List of autocommands copied from matchparen plugin
-augroup paren_hint
+augroup matchparen_text
   autocmd! CursorMoved,CursorMovedI,WinEnter,BufWinEnter,WinScrolled * call s:AddText()
   autocmd! WinLeave,BufLeave * call s:RemoveText()
   if exists('##TextChanged')
@@ -22,8 +22,8 @@ function! s:AddText() abort
     return
   endif
 
-  if empty(prop_type_get('paren_hint', {'bufnr': bufnr('%')}))
-    call prop_type_add('paren_hint', {
+  if empty(prop_type_get('matchparen_text', {'bufnr': bufnr('%')}))
+    call prop_type_add('matchparen_text', {
           \ 'bufnr':     bufnr('%'),
           \ 'highlight': 'Comment',
           \ 'combine':   v:true
@@ -52,14 +52,14 @@ function! s:AddText() abort
     let text = trim(strpart(getline(start_pos[0]), 0, start_pos[1] - 1))
 
     call prop_add(end_pos[0], len(getline(end_pos[0])) + 1, {
-          \ 'type': 'paren_hint',
+          \ 'type': 'matchparen_text',
           \ 'text': ' ' .. text,
           \ })
   endfor
 endfunction
 
 function! s:RemoveText() abort
-  if !empty(prop_type_get('paren_hint', {'bufnr': bufnr('%')}))
-    call prop_remove({'type': 'paren_hint', 'all': v:true})
+  if !empty(prop_type_get('matchparen_text', {'bufnr': bufnr('%')}))
+    call prop_remove({'type': 'matchparen_text', 'all': v:true})
   endif
 endfunction
