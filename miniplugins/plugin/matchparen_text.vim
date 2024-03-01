@@ -40,7 +40,9 @@ function! s:AddText() abort
 
     if m.pos1[0] <= m.pos2[0]
       " if equal, it's the same line, we don't need the context
-      " if pos1 > pos2, we're on the opening bracket and we can see the text
+      "
+      " if pos1 < pos2, we're currently on the opening bracket, so we don't
+      " need to see the opening text
       continue
     endif
 
