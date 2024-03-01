@@ -7,6 +7,13 @@ if exists("g:loaded_matchparen_text") || &cp
 endif
 let g:loaded_matchparen_text = 1
 
+if empty(prop_type_get('matchparen_text'))
+  call prop_type_add('matchparen_text', {
+        \ 'highlight': 'Comment',
+        \ 'combine':   v:true
+        \ })
+endif
+
 " List of autocommands copied from matchparen plugin
 augroup matchparen_text
   autocmd! CursorMoved,CursorMovedI,WinEnter,BufWinEnter,WinScrolled * call s:AddText()
@@ -20,14 +27,6 @@ augroup END
 function! s:AddText() abort
   if !exists(':DoMatchParen')
     return
-  endif
-
-  if empty(prop_type_get('matchparen_text', {'bufnr': bufnr('%')}))
-    call prop_type_add('matchparen_text', {
-          \ 'bufnr':     bufnr('%'),
-          \ 'highlight': 'Comment',
-          \ 'combine':   v:true
-          \ })
   endif
 
   call s:RemoveText()
@@ -59,7 +58,5 @@ function! s:AddText() abort
 endfunction
 
 function! s:RemoveText() abort
-  if !empty(prop_type_get('matchparen_text', {'bufnr': bufnr('%')}))
-    call prop_remove({'type': 'matchparen_text', 'all': v:true})
-  endif
+  call prop_remove({'type': 'matchparen_text', 'all': v:true})
 endfunction
