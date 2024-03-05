@@ -2,6 +2,11 @@ if !has('textprop')
   finish
 endif
 
+if exists('b:ruby_private_methods')
+  finish
+endif
+let b:ruby_private_methods = 1
+
 " Define what color the private area will be
 hi rubyPrivateMethod cterm=underline gui=underline
 
@@ -74,22 +79,18 @@ function! s:CurrentSyntaxName()
   return synIDattr(synID(line("."), col("."), 0), "name")
 endfunction
 
-augroup rubyPrivateMethod
-  autocmd!
+" Initial marking
+autocmd Syntax <buffer> call s:MarkPrivateArea()
 
-  " Initial marking
-  autocmd Syntax <buffer> call s:MarkPrivateArea()
+" Mark on write
+autocmd BufWritePost <buffer> call s:MarkPrivateArea()
 
-  " Mark on write
-  autocmd BufWritePost <buffer> call s:MarkPrivateArea()
+" Mark when exiting insert mode (doesn't cover normal-mode text changing)
+" autocmd InsertLeave <buffer> call s:MarkPrivateArea()
+"
+" Mark when text has changed in normal mode. (doesn't work sometimes, syntax
+" doesn't get updated in time)
+" autocmd TextChanged <buffer> call s:MarkPrivateArea()
 
-  " Mark when exiting insert mode (doesn't cover normal-mode text changing)
-  " autocmd InsertLeave <buffer> call s:MarkPrivateArea()
-  "
-  " Mark when text has changed in normal mode. (doesn't work sometimes, syntax
-  " doesn't get updated in time)
-  " autocmd TextChanged <buffer> call s:MarkPrivateArea()
-
-  " Mark when not moving the cursor for 'timeoutlen' time
-  " autocmd CursorHold <buffer> call s:MarkPrivateArea()
-augroup END
+" Mark when not moving the cursor for 'timeoutlen' time
+" autocmd CursorHold <buffer> call s:MarkPrivateArea()
