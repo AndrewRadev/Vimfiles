@@ -396,3 +396,6 @@
 [submodule "bundle/christmass-tree"]
   path = bundle/christmass-tree
   url = https://github.com/rhysd/vim-syntax-christmas-tree
+[submodule "bundle/jqplay"]
+	path = bundle/jqplay
+	url = https://github.com/bfrg/vim-jqplay
