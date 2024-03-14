@@ -399,3 +399,6 @@
 [submodule "bundle/jqplay"]
 	path = bundle/jqplay
 	url = https://github.com/bfrg/vim-jqplay
+[submodule "bundle/snakemake"]
+	path = bundle/snakemake
+	url = https://github.com/ShaiberAlon/snakemake-vim
