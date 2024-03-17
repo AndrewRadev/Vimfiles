@@ -1,1 +1,1 @@
-au BufNewFile,BufRead Snakefile set syntax=snakemake
+au BufNewFile,BufRead Snakefile set filetype=snakemake
