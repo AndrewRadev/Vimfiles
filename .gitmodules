@@ -402,3 +402,6 @@
 [submodule "bundle/snakemake"]
 	path = bundle/snakemake
 	url = https://github.com/ShaiberAlon/snakemake-vim
+[submodule "bundle/srht"]
+	path = bundle/srht
+	url = https://git.sr.ht/~willdurand/srht.vim
