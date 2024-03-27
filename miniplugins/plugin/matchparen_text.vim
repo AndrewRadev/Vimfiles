@@ -1,6 +1,10 @@
 " Original idea: https://github.com/briangwaltney/paren-hint.nvim
 "
 " Requires the built-in matchparen plugin to be activated
+"
+if !has('textprop')
+  finish
+endif
 
 if exists("g:loaded_matchparen_text") || &cp
   finish
